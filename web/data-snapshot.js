@@ -1,6 +1,6 @@
-/* Auto-generated snapshot at 2026-07-26T12:00:00Z — fallback when API is offline */
+/* Auto-generated snapshot at 2026-07-26T13:50:00Z - 42 SKUs, decision nested */
 var EMBEDDED_DATA = {
-  "snapshot_at": "2026-07-26T12:00:00Z",
+  "snapshot_at": "2026-07-26T13:50:00Z",
   "opportunities": [
     {
       "id": 1,
@@ -211,6 +211,678 @@ var EMBEDDED_DATA = {
       "data_freshness_ts": "2026-07-26",
       "verified": 1,
       "created_at": "2026-07-26 03:33:16"
+    },
+    {
+      "id": 809,
+      "sku": "JP-POLA-BA-CREAM-50",
+      "name": "POLA B.A Cream (日中用クリーム) 50g",
+      "category": "Prestige Skincare — Anti-Aging Moisturizer",
+      "source_market": "JP — POLA 公式 / Isetan / 髙島屋 免税柜 (tax-free 10% off)",
+      "target_market": "US — Nordstrom / Sephora / Neiman Marcus",
+      "purchase_price_usd": 230.82,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 385.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.pola.co.jp/en/products/ba/",
+      "sell_source_url": "https://www.nordstrom.com/s/pola-b-a-cream/5669231",
+      "notes": "POLA B.A Cream 50g JP 公式 ¥38,500 含税,免税柜 10% off 后 ¥34,623(~$231)。US Nordstrom/Sephora/Neiman Marcus 一致标价 $385。扣除 13% 平台费 + $8 国际物流,单件净 $138.93,ROI 56.7%。已验证 US 与 JP 价差 ~67%,稳定套利。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 810,
+      "sku": "JP-SUQQU-LOOSEPOWDER-13",
+      "name": "SUQQU Extra Glow Loose Powder (エクストラ グロウ ルースパウダー) 13g",
+      "category": "Prestige Makeup — Loose Setting Powder",
+      "source_market": "JP — SUQQU 公式 / 伊勢丹 免税柜",
+      "target_market": "US — Beautylish / B-glowing / Bergdorf Goodman (2026 新进)",
+      "purchase_price_usd": 43.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 73.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.suqqu.com/jp/products/extra-glow-loose-powder",
+      "sell_source_url": "https://www.beautylish.com/shop/suqqu/extra-glow-loose-powder",
+      "notes": "JP 免税价 ¥6,500(~$43),US Beautylish $73 / B-glowing $77 / Bergdorf 2026 上架。扣除 13% 平台费 + $5 物流,单件净 $19.67,ROI 31.2%。SUQQU US 渠道仍偏窄,Bergdorf 2026 才开始进,US 价比 JP 高 ~70%,套利空间清晰。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 811,
+      "sku": "JP-SUQQU-CUSHION-01",
+      "name": "Suqqu Signature Color Cushion Compact (シグネチャーカラークッション ケース + レフィル)",
+      "category": "Prestige Makeup — Cushion Foundation",
+      "source_market": "JP — Suqqu 公式 / Isetan / 髙島屋 免税柜",
+      "target_market": "US — Nordstrom / Bergdorf (2026 新进) / Amazon 第三方",
+      "purchase_price_usd": 51.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 100.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.suqqu.com/jp/products/signature-color-cushion",
+      "sell_source_url": "https://www.bergdorfgoodman.com/en-us/shop/department/beauty-cosmetics-brands/suqqu/makeup",
+      "notes": "Suqqu 几乎不在 US 大规模推广,2026 才进 Bergdorf。JP 免税 ¥7,700(~$51),US Nordstrom/Bergdorf 标价 $100,Amazon 第三方 $100-160。扣除 13% 平台费 + $5 物流,单件净 $31.17,ROI 39.6%。US 色号 101/102/203 需求最高,但 JP 版与 US 版色号映射需验证。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 812,
+      "sku": "JP-ALBION-DERMA-40",
+      "name": "Albion Excia AL Derma Synergy Cream (新生 EXCIA 抗老保湿渗透乳 Derma Synergy Cream) 40g",
+      "category": "Prestige Skincare — Premium Moisturizer",
+      "source_market": "JP — Albion 公式 / 伊勢丹 / 高島屋 免税柜",
+      "target_market": "US — eBay 直邮 JP / 第三方代购 (无官方渠道)",
+      "purchase_price_usd": 153.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 555.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.albion.co.jp/en/products/detail/al_dc01/",
+      "sell_source_url": "https://www.ebay.com/itm/265655145299",
+      "notes": "Albion 无 US 官方渠道,Excia Derma Synergy Cream 40g JP 免税 ¥23,000(~$153),US eBay 第三方挂价 $555(部分挂 $371-555)。扣除 13% 平台费 + $15 国际物流 + 风险溢价,单件净 $320,ROI 196%。但 eBay 流动率偏低,需用 60 天均价验证;定为 high 因价差巨大且无官方渠道压制。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 813,
+      "sku": "JP-THREE-HADAH-100",
+      "name": "Three Hada Hazumi Mist (ハダハズム ミスト) 100ml",
+      "category": "Prestige Skincare — Hydrating Face Mist",
+      "source_market": "JP — Three 公式 / Loft / プラザ 免税柜",
+      "target_market": "US — eBay 第三方 / Beautylish 部分",
+      "purchase_price_usd": 53.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 120.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.threecosmetics.com/jp/products/hada-hazumi-mist",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=three+hada+hazumi+mist",
+      "notes": "Three 由 Pola Orbis 持有,US Sephora 无此品牌。JP 公式 ¥8,000(~$53),US eBay 第三方挂价 $90-140。扣除 13% 平台费 + $6 物流,单件净 $49.67,ROI 93.1%。但 Three US 缺官方渠道,品牌认知依赖 J-Beauty 小众圈;定为 medium 因 US 销售主要靠二手市场,波动较大。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 814,
+      "sku": "JP-SHISEIDO-FSLX-REGEN-50",
+      "name": "Shiseido Future Solution LX Total Regenerating Cream 50ml",
+      "category": "Prestige Skincare — Premium Anti-Aging",
+      "source_market": "JP — Shiseido 公式 / 資生堂 PARLOUR 免税柜",
+      "target_market": "US — Nordstrom / Neiman Marcus / Sephora",
+      "purchase_price_usd": 200.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 280.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.shiseido.co.jp/sw/products/SWFG030802.seam",
+      "sell_source_url": "https://www.sephora.com/product/shiseido-future-solution-lx-universal-defense-cream-P5065216",
+      "notes": "JP 免税 ¥30,000(~$200),US Sephora/Nordstrom $250-310。扣除 13% 平台费 + $10 国际物流,单件净 $53.50,ROI 23.9%。Shiseido 是双轨品牌(JDM vs US 版配方差异),需验证 JP 版无 US 配方禁忌成分;定为 medium 因 US 价差稳定但利润空间中等。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 815,
+      "sku": "JP-THREE-HADAH-LOTION-30",
+      "name": "Three Hada Hazumi Lotion 30ml",
+      "category": "Prestige Skincare — Hydrating Lotion",
+      "source_market": "JP — Three 公式 / Loft 免税柜",
+      "target_market": "US — eBay / 三方代购",
+      "purchase_price_usd": 25.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 60.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.55,
+      "purchase_source_url": "https://www.threecosmetics.com/jp/products/hada-hazumi-lotion",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=three+hada+hazumi+lotion",
+      "notes": "JP 公式 ¥3,850(~$26),US eBay 第三方 $40-60。扣除 13% 平台费 + $4 物流,单件净 $23.93,ROI 80.5%。但 Three US 渠道极弱,30ml 体积偏小,物流成本占比高,且 US 卖家数量稀少,定价权在买家;定为 low 因流动性风险高。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 816,
+      "sku": "JP-POLA-BA-LOTION-120",
+      "name": "POLA B.A Lotion (120ml)",
+      "category": "Prestige Skincare — Hydrating Lotion",
+      "source_market": "JP — POLA 公式 / Isetan 免税柜",
+      "target_market": "US — Sephora / Neiman Marcus",
+      "purchase_price_usd": 78.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 90.0,
+      "shipping_per_unit_usd": 8.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.pola.co.jp/en/products/ba/",
+      "sell_source_url": "https://www.sephora.com/product/pola-b-a-lotion-P381900",
+      "notes": "POLA B.A Lotion JP 免税 ~¥11,700(~$78),US Sephora/Neiman Marcus 一致 $90。扣除 13% 平台费 + $8 物流后单件净 $0.30,ROI 仅 0.4%。US 价差过小,无套利价值——保留为 medium-confidence 仅作对照(baseline),实际不建议进货。放入清单用于后续如 US 调价可重新评估。",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 817,
+      "sku": "JP-KAPITAL-BORO-JKT",
+      "name": "Kapital Boro Sashiko Patchwork Denim Jacket (any season, e.g., 14oz Century Denim)",
+      "category": "J-Fashion / Vintage Denim / Sakiorimono",
+      "source_market": "JP — Kapital 直营 (中目黒/代官山/京都) / 公式 EC (kapital.jp) / 三越 / 伊勢丹 / beamsofhope",
+      "target_market": "US — Grailed / eBay / Mr Porter / Nepenthes NY",
+      "purchase_price_usd": 300.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 520.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.kapital.jp/",
+      "sell_source_url": "https://www.grailed.com/designers/kapital",
+      "notes": "Kapital 美国只有 Nepenthes NY 一个直营,Grailed 上 BORO 拼接款长期溢价(eBay 成交 $400-1200)。JP 公式缺货款多,游客退税 10% 后实际成本 ¥40,500。扣除 Grailed 9% fee + $25 国际物流 + $40 US shipping,单品净 $165,ROl 50%。流动性差,要挑 sashiko / bone / IDG 限",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 818,
+      "sku": "JP-CDG-PLAY-CTN",
+      "name": "Comme des Garçons PLAY Double-Eye Heart Cardigan Wool",
+      "category": "J-Fashion / Designer Basics",
+      "source_market": "JP — 伊勢丹 / 青山 CDG 直营 / Dover Street Market Tokyo / 公式 EC",
+      "target_market": "US — Grailed / Dover Street Market NY (online) / Bergdorf Goodman / SSENSE",
+      "purchase_price_usd": 400.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 475.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.doverstreetmarket.com/tokyo",
+      "sell_source_url": "https://www.grailed.com/designers/comme-des-garcons-play",
+      "notes": "CDG PLAY 是入门 J-fashion 标杆,品牌认知全美最高。JP 公式 ¥60,000 vs US DSM/Bergdorf $450-550,游客税退后实际成本 ¥54,000($360)。但 Grailed 二手成交均价受 stock 多压制($400-500),套利空间窄。优势是单 SKU 全球流通快,可批量走 Dover Street Market e-commerce 美国直发",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 819,
+      "sku": "JP-HUMANMADE-TEE-GRAPHIC",
+      "name": "Human Made Graphic Tee (Made in Japan, e.g., #1117 Refrigeration / Nigo Duck)",
+      "category": "J-Fashion / Streetwear Nigo-Label",
+      "source_market": "JP — Human Made 直营 (东京/京都) / 公式 online store / United Arrows / IP 上市后 channel",
+      "target_market": "US — Grailed / eBay NWT / StockX (Human Made 服饰) / HBX",
+      "purchase_price_usd": 36.7,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 120.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://humanmade.jp/",
+      "sell_source_url": "https://www.grailed.com/designers/human-made",
+      "notes": "Human Made 2025 年 10 月在东京证交所 Growth Market 上市(IPO ¥3130/股,首日 +13%),品牌力背书强。Nigo + Pharrell 双重文化符号,eBay NWT tee 成交 $99-155,部分稀有款 $200+。日本零售 ¥5,500-6,500(Made in Japan),游客退税后净成本 ~$33。Grailed 9% fee + $15",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 820,
+      "sku": "JP-SACAI-NIKE-LDW",
+      "name": "Sacai × Nike LDWaffle (e.g., Summit White / Black / Fragment / Vaporwaffle)",
+      "category": "J-Fashion Sneaker / Designer Collab",
+      "source_market": "JP — atmos / Nike SNKRS JP / Dover Street Market Tokyo / BIOTOP / UNITED ARROWS",
+      "target_market": "US — StockX / GOAT / eBay / Grailed (apparel matching)",
+      "purchase_price_usd": 116.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 385.0,
+      "shipping_per_unit_usd": 15.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 15.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.nike.com/jp/launch",
+      "sell_source_url": "https://stockx.com/sacai-nike-ldwaffle",
+      "notes": "Sacai × Nike LDWaffle 套利教科书级 case。JP 公式零售 ¥16,500-18,000(~$110-120),美国 StockX/GOAT 长期成交 $300-500(Summit White $300-450,Fragment/Vaporwaffle 高位 $500+)。游客退 10% 消费税后实际成本 $105。StockX 9% fee + $15 shipping",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 821,
+      "sku": "JP-CE-CAVEMPT-TEE",
+      "name": "Cav Empt (C.E.) MD 2XZ / World Map / Ziggurat Graphic Tee Made in Japan",
+      "category": "J-Fashion / Cyberpunk Streetwear",
+      "source_market": "JP — Cav Empt 直营 (东京 中目黒) / 公式 EC (cavempt.com) / Nepenthes / 伊勢丹 EDIFICE",
+      "target_market": "US — Grailed / eBay (Made in Japan 标签溢价) / SSENSE 编辑选品",
+      "purchase_price_usd": 58.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 145.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.cavempt.com/",
+      "sell_source_url": "https://www.grailed.com/designers/cav-empt",
+      "notes": "C.E. 是 Sk8thing / Toby Feltwell 主导的小众 cyberpunk 品牌,US 文化渗透弱但 Made in Japan 在 resell 端有 2-3× 溢价。JP 公式 tee ¥8,800-12,000(~$58-80),退税后 $52。Grailed / eBay Made in Japan 标签款成交 $120-180。eBay 13% fee + $20 s",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 822,
+      "sku": "JP-UNDERCOVER-ANATOMIC",
+      "name": "Undercover Anatomic Denim / Nude Jacket (Jun Takahashi Runway 2022-2025)",
+      "category": "J-Fashion / Avant Designer",
+      "source_market": "JP — UNDERCOVER 直营 (东京 神宮前/代官山) / 公式 EC (undercoverism.com) / 伊勢丹 / I.T",
+      "target_market": "US — Grailed (archive / runway) / SSENSE / Mr Porter",
+      "purchase_price_usd": 433.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 620.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.undercoverism.com/",
+      "sell_source_url": "https://www.grailed.com/designers/undercover",
+      "notes": "Undercover Jun Takahashi 副线 SCAB/UNDERCOVERISM 与主线两套系统。JP 公式 Anatomic 系列 jacket ¥60,000-80,000,退税后 ~$390。Grailed archive / runway 款成交 $500-1200,大众款 $250-400。优势:US 无 UNDERCOVER 旗舰零售,二手价稳定。风险:库存薄,品类分散(每",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 823,
+      "sku": "JP-VISVIM-ICT-JUMPER",
+      "name": "Visvim ICT Jumper / FBT Sneaker (Hiroki Nakamura 设计师 archive)",
+      "category": "J-Fashion Premium / Heritage Americana",
+      "source_market": "JP — visvim WMV 直营 (东京 中目黒/福岡) / 公式 EC (shop.visvim.tv) / Nepenthes 渠道",
+      "target_market": "US — Grailed / eBay (FBT 系列价格高) / Mr Porter / Herno (select pieces)",
+      "purchase_price_usd": 533.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 725.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://shop.visvim.tv/jp/",
+      "sell_source_url": "https://www.grailed.com/designers/visvim",
+      "notes": "Visvim 是 J-fashion 顶级 heritage 品牌,Barneys 2020 倒闭后 US 直营只剩 Mr Porter 转售,Grailed 成为主要交易场。JP 公式 ICT jumper ¥70,000-90,000(~$467-600),退税后 ~$480。Grailed 成交均价 ICT $600-900,FBT 鞋类 $800-1500。Grailed 9% fee +",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 824,
+      "sku": "JP-WTAPS-MILITARY-JERSEY",
+      "name": "WTAPS Military / Tactical Jersey Tee or 03 Print Shirt (Tetsu Nishiyama 设计师)",
+      "category": "J-Fashion / Military Streetwear",
+      "source_market": "JP — WTAPS 直营 (东京 原宿/裏原宿) / 公式 EC (wtaps-tokyo.jp) / WUT BERLIN / ABC-Legacy",
+      "target_market": "US — Grailed / eBay (Japan-made 标签) / StockX (少量)",
+      "purchase_price_usd": 80.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 165.0,
+      "shipping_per_unit_usd": 20.0,
+      "platform_fee_rate": 0.09,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.55,
+      "purchase_source_url": "https://wtaps-tokyo.jp/",
+      "sell_source_url": "https://www.grailed.com/designers/wtaps",
+      "notes": "WTAPS Tetsu Nishiyama(原 Neighborhood 设计)品牌,US 知名度中等偏低,套利依赖 Gorpcore / Military core 上涨周期。JP 公式 tee ¥10,000-15,000,退税后 ~$72。eBay Japan-made tee $130-200。单品净 $59,ROl 73%。低 confidence 原因:US 文化渗透中,出清周期 6-",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 825,
+      "sku": "JP-SONY-GM2-2470-28",
+      "name": "Sony FE 24-70mm F2.8 GM II (SEL2470GM2)",
+      "category": "Camera Lens / Photography",
+      "source_market": "JP — Sony 公式ストア / ヨドバシ / ビックカメラ",
+      "target_market": "US — B&H / Adorama / Sony US Store",
+      "purchase_price_usd": 1804.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 2299.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.yodobashi.com/product/100000001007056000/",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1595387-REG/sony_sel2470gm2.html",
+      "notes": "Sony 官方 US MSRP $2,299,JP 公式 ¥270,600 ≈ $1,804(含税);持护照免税后 ¥246,000 ≈ $1,640。即使按含税价 + ¥10,000 跨境物流 + $50 PayPal/Fee,单台净利润约 $395 (22% ROI)。Sony 国际版 (非 JP 限定) 享有 Sony USA 1 年保修,灰关风险较低。**可套利,建议每批 3-5 台。**",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 826,
+      "sku": "JP-SONY-GM2-70200-28",
+      "name": "Sony FE 70-200mm F2.8 GM OSS II (SEL70200GM2)",
+      "category": "Camera Lens / Photography",
+      "source_market": "JP — Sony 公式 / マップカメラ 新宿 / ヨドバシ",
+      "target_market": "US — B&H / Adorama / Amazon US",
+      "purchase_price_usd": 2120.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 2799.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.mapcamera.com/item/4548736133425",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1595388-REG/sony_sel70200gm2.html",
+      "notes": "Sony US MSRP $2,799,JP 公式 ¥318,000 ≈ $2,120;免税后 ¥289,000 ≈ $1,927。扣除 ¥10,000 物流 + $150 跨境手续费,单台净利润 $529-$722 (19-26% ROI)。GM II 是 Sony 2024-11 新品,US 货源紧 + JP 二手溢价空间大。**强烈推荐,体积小 (1,095g) 适合随身带货。**",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 827,
+      "sku": "JP-CANON-RF-70200-28",
+      "name": "Canon RF 70-200mm F2.8 L IS USM",
+      "category": "Camera Lens / Photography",
+      "source_market": "JP — Canon 公式 / ヨドバシ Akiba / キタムラ",
+      "target_market": "US — B&H / Adorama / Canon USA Refurb",
+      "purchase_price_usd": 1900.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 2699.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.yodobashi.com/product/100000001003602000/",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1540582-REG/canon_3792c002_rf_70_200mm_f_2_8_l.html",
+      "notes": "Canon US B&H 标价 $2,699,JP 公式 ¥285,000 ≈ $1,900;免税后 ¥259,000 ≈ $1,727。扣除 ¥12,000 物流 + $180 灰关保修风险溢价,单台净利润 $619-$792 (23-29% ROI)。RF 70-200 是 Canon 三元长焦旗舰,US 卖家溢价高。**中等信心**:Canon USA 不保修 N 标示日规件,需向买家明示灰",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 828,
+      "sku": "JP-SONY-GM-135-18",
+      "name": "Sony FE 135mm F1.8 GM (SEL135F18GM)",
+      "category": "Camera Lens / Photography",
+      "source_market": "JP — Sony 公式 / マップカメラ / ヨドバシ",
+      "target_market": "US — B&H / Adorama / Sony US",
+      "purchase_price_usd": 1613.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 1798.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://store.sony.jp/SonyStyle/Product/Details/SEL135F18GM",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1491337-REG/sony_sel135f18gm.html",
+      "notes": "Sony US 官方 $1,798,JP Sony 公式 ¥242,000 ≈ $1,613(含 10% 税);免税后 ¥220,000 ≈ $1,467。扣除 ¥10,000 物流 + $80 手续费,单台净利润 $85-$231 (5-13% ROI)。**溢价空间小但价差真实**,Sony 全球统一保修 (国际版 + JP 版同样 1 年),灰关风险低。**适合稳健低风险批量出货,但单台利润",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 829,
+      "sku": "JP-CANON-RF-50-12",
+      "name": "Canon RF 50mm F1.2 L USM",
+      "category": "Camera Lens / Photography",
+      "source_market": "JP — Canon 公式 / マップカメラ 銀座 / ヨドバシ",
+      "target_market": "US — B&H / Adorama / Canon USA",
+      "purchase_price_usd": 1866.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 2299.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.yodobashi.com/product/100000001002596000/",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1469816-REG/canon_2959c002_rf_50mm_f_1_2_l.html",
+      "notes": "Canon US B&H 标价 $2,299,JP 公式 ¥280,000 ≈ $1,867;免税后 ¥254,500 ≈ $1,697。扣除物流 + 灰关溢价,单台净利润约 $282-$432 (12-19% ROI)。**但 Canon 2025 年底已发布 RF 50mm F1.2 L VCM (USM 替代品,US 上市 $1,899),原版 USM 在 US 库存清货**。**中等信心*",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 830,
+      "sku": "JP-CANON-R5-BODY",
+      "name": "Canon EOS R5 (Body Only, 2020 款)",
+      "category": "Camera Body / Mirrorless Full-Frame",
+      "source_market": "JP — Canon 公式 / ヨドバシ Akiba / マップカメラ",
+      "target_market": "US — B&H / Adorama / Canon USA Refurb",
+      "purchase_price_usd": 2133.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 3699.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.yodobashi.com/product/100000001004502000/",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1553361-REG/canon_4147c002_eos_r5.html",
+      "notes": "**理论上最大套利**:Canon US B&H $3,699,JP 公式 ¥320,000 ≈ $2,133;免税后 ¥291,000 ≈ $1,940。单台账面利润 $1,366-$1,559 (37-42% ROI)。**但 Canon USA 明确不保修 N 标示日规机身**;R5 固件锁区(需海外版固件刷新)。eBay 灰关可标价 $3,200-$3,400 出清,实际到手利润约 $90",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 831,
+      "sku": "JP-DJI-MINI4PRO-FMC",
+      "name": "DJI Mini 4 Pro Fly More Combo (DJI RC 2)",
+      "category": "Drone / Aerial Photography",
+      "source_market": "JP — DJI Japan 公式 / ヨドバシ / Amazon.co.jp",
+      "target_market": "US — DJI US 公式 / B&H / Amazon US",
+      "purchase_price_usd": 786.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 959.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.yodobashi.com/product/100000001008512000/",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1776543-REG/dji_mini_4_pro_fly_more_combo.html",
+      "notes": "**表面价差小且合规风险极高**。DJI US Fly More Combo (RC 2) $959,JP 公式 ¥118,000 ≈ $787;免税后 ¥107,000 ≈ $713。单台账面利润 $72-$146 (9-19% ROI)。**但**:① 锂电池空运需 UN38.3 + 货代报关,单台物流成本 ¥15,000+ 抹平利润;② DJI JP 固件锁区 + Geo 地图差异(US 版",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 832,
+      "sku": "JP-LEICA-M11",
+      "name": "Leica M11 (Body, 2022 款)",
+      "category": "Camera Body / Premium Rangefinder",
+      "source_market": "JP — Leica 公式銀座 / マップカメラ / ヨドバシ",
+      "target_market": "US — Leica US 公式 / B&H / Adorama",
+      "purchase_price_usd": 7333.33,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 8995.0,
+      "shipping_per_unit_usd": 25.0,
+      "platform_fee_rate": 0.08,
+      "minutes_per_unit": 30.0,
+      "success_rate": 0.55,
+      "purchase_source_url": "https://store.leica-camera.jp/Product/M11",
+      "sell_source_url": "https://www.bhphotovideo.com/c/product/1623819-REG/leica_20200_m11.html",
+      "notes": "**小众高单价套利**:Leica US B&H 标价 $8,995,JP 公式 ¥1,100,000 ≈ $7,333;免税后 ¥1,000,000 ≈ $6,667。单台净利润 $1,362-$1,928 (15-21% ROI)。**但**:① Leica 全球联保 (Leica Passport Warranty) 名义有效,但实际灰色渠道 US Leica Store 常以序列号查不到为",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 833,
+      "sku": "JP-PKMN-151-ETB",
+      "name": "Pokemon Card 151 Enhanced Edition Elite Trainer Box (Japanese, sealed)",
+      "category": "TCG / Collectibles",
+      "source_market": "JP — Pokemon Center Online / Yodobashi Camera / Amazon JP",
+      "target_market": "US — eBay sold (Japanese importer filter) / TCGplayer marketplace",
+      "purchase_price_usd": 58.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 95.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.pokemoncenter-online.com/",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=pokemon+151+etb+japanese+sealed&LH_Sold=1",
+      "notes": "JP MSRP 强化拡張パック ¥8,800 (~USD 150) stable; US eBay sold 2025 区间 $85-110, 中位 $95. 151 chase 牌 (Charizard/Mew) 持续推动需求, 流动性稳定, Pokemon Center Online 限购 5盒/单, JP 货源充裕. ROI 21.4% 扣 13% eBay 费用 + Buyee ¥3000",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 834,
+      "sku": "JP-PKMN-151-SR",
+      "name": "Pokemon Card 151 全套单卡 (SR/AR/SAR chase cards, mixed lot)",
+      "category": "TCG / Collectibles / Sealed Lot",
+      "source_market": "JP — Buyee/Mercari JP single-card sellers",
+      "target_market": "US — TCGplayer marketplace / eBay raw NM cards",
+      "purchase_price_usd": 200.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 280.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://buyee.jp/item/search?query=pokemon+151+SAR",
+      "sell_source_url": "https://www.tcgplayer.com/search/all/product?q=pokemon+151+SAR+japanese",
+      "notes": "9张一套 chase 组合 (Charizard SAR 201/165 + Mew ex SAR 205/165 + Pikachu ex SAR 199/165 等) JP 散卡购入价 ~¥30,000 (含 Buyee 代拍费+国际运费), US TCGplayer mid + eBay sold 30天均价 $280. ROI 15.5% 保守估计, 如 PSA10 评级溢价 3-5x 二",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 835,
+      "sku": "JP-PKMN-ANCIENT",
+      "name": "Ancient Roaring + Future Biset 拡張パック 双扩张包 Booster Box (October 2025 release)",
+      "category": "TCG / Collectibles / New Release",
+      "source_market": "JP — Pokemon Center Online / Yodobashi / Big Web Japan (release Oct 2025)",
+      "target_market": "US — eBay sold (futures/spot) / TCGplayer preorder",
+      "purchase_price_usd": 57.2,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 130.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.pokemoncenter-online.com/?utm_source=arb",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=ancient+roaring+future+blight+booster+box&LH_Sold=1",
+      "notes": "2025年10月新发售 SV era 双扩张包 (古代の咆哮 未来 Koroyasu/Lugia ex 类型), JP MSRP ¥8,580/box; US eBay spot $120-180, 中位 $130. Koraidon/Miraidon ex chase 卡 + Ace Spec 回归引发抢购. Pokemon Center 限购, 但 Yodobashi 等量贩店流通. ROI ",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 836,
+      "sku": "JP-PKMN-SV-AMA",
+      "name": "Stellar Miracle (ステラミラクル) SV7 Booster Box Japanese Sealed",
+      "category": "TCG / Collectibles",
+      "source_market": "JP — Yodobashi / Amazon JP / Yahoo Auction JP",
+      "target_market": "US — eBay sold / TCGplayer (Japanese importer)",
+      "purchase_price_usd": 49.87,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 140.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://www.amazon.co.jp/s?k=ステラミラクル+ボックス",
+      "sell_source_url": "https://www.pricecharting.com/game/pokemon-japanese-stellar-miracle/booster-box",
+      "notes": "SV7 Stellar Miracle (2024-04) 仍是 JP→US 套利头牌. JP MSRP ¥7,480 (~$50) 在 Yodobashi 仍可购入, US eBay sold 30天均价 $130-150. Terapagos ex chase SAR 持续推动需求, 价格 2025 Q4 稳定 $130-140. ROI 83.8% 是当前性价比最高的 SKU. 已验证 20",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 837,
+      "sku": "JP-PKMN-SV-CRS",
+      "name": "Clay Burst (クレイバースト) SV2D Booster Box Japanese Sealed",
+      "category": "TCG / Collectibles",
+      "source_market": "JP — Yahoo Auction JP / Amazon JP",
+      "target_market": "US — eBay sold / TCGplayer (Japanese importer filter)",
+      "purchase_price_usd": 49.87,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 110.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.85,
+      "purchase_source_url": "https://auction.yahoo.co.jp/search?p=クレイバースト+sv2d",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=clay+burst+sv2d+japanese&LH_Sold=1",
+      "notes": "SV2D Clay Burst (2023-07) 含 Chi-Yu ex / Tinkaton ex SAR chase 卡. JP Yahoo Auction MSRP 包 $50-$60, US sold 30天均价 $105-115. 已稳定 12 个月以上. ROI 51.1%, 单盒利润 $40, 物流周期 7-10 天. 中等流动性但稳定.",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 1,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 838,
+      "sku": "JP-PKMN-SV-SLP",
+      "name": "拡張パック 151 5-pack Booster Bundle (Pokemon Center exclusive sealed box of 5 packs)",
+      "category": "TCG / Collectibles / Small Sealed",
+      "source_market": "JP — Pokemon Center Online exclusive (re-stocked)",
+      "target_market": "US — eBay sold / Etsy Pokemon Center bundlers",
+      "purchase_price_usd": 14.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 32.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://www.pokemoncenter-online.com/?p_cd=4530326380015",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=pokemon+151+booster+bundle+japanese&LH_Sold=1",
+      "notes": "151 booster bundle (5 packs) JP Pokemon Center 独占品, MSRP ¥2,200 (含税), 单 SKU 轻量 (60g) 国际物流便宜. US eBay 5-pack bundle sold 2025 中位 $32. ROI 33.6% (物流优势: 1kg=100 packs/bundles). 中等置信度因 Pokemon Center 时常限购",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 839,
+      "sku": "JP-PKMN-PSA",
+      "name": "Raw Japanese 151 chase card → PSA 10 graded (Charizard SAR 201/165 PMGC model)",
+      "category": "TCG / Collectibles / Graded singles",
+      "source_market": "JP — Buyee/Mercari raw NM grade 9-10 candidates",
+      "target_market": "US — eBay sold PSA10 / Goldin / PWCC auctions",
+      "purchase_price_usd": 100.0,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 1200.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.7,
+      "purchase_source_url": "https://buyee.jp/item/search?query=charizard+SAR+201%2F165",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=psa+10+charizard+sar+201%2F165&LH_Sold=1",
+      "notes": "JP raw Charizard SAR (PSA 10 候选) ¥15,000 区间 + Buyee/PSA Economy round-trip $25 grading fee + $30 shipping/handling. US PSA 10 sold 30天均价 $1200 ($800-$1800 区间 by centering). 按 70% PSA 10 命中率 + 加权均价: RO",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
+    },
+    {
+      "id": 840,
+      "sku": "JP-PKMN-SEALED",
+      "name": "Mixed Sealed Japanese Pokemon Lot (random lots: 1 box + 3 ETB + packs bundle)",
+      "category": "TCG / Collectibles / Mystery Box",
+      "source_market": "JP — Yahoo Auction JP / Mercari JP 'setまとめて' lots",
+      "target_market": "US — eBay sold (mystery box keyword) / Whatnot live auctions",
+      "purchase_price_usd": 166.67,
+      "tariff_rate": 0.0,
+      "sell_price_usd": 250.0,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.13,
+      "minutes_per_unit": 10.0,
+      "success_rate": 0.55,
+      "purchase_source_url": "https://auction.yahoo.co.jp/search?p=ポケモンカード+まとめ売り",
+      "sell_source_url": "https://www.ebay.com/sch/i.html?_nkw=japanese+pokemon+sealed+lot&LH_Sold=1",
+      "notes": "JP Yahoo 'まとめ売り' lots (mixed sealed boxed + packs) ¥20-30k 区间, US mystery box / Whatnot live buyer 喜好 unique-lot 卖相. ROI 23.3% 中等, 但置信度低: SKU 内容随机, 影响 US 买家体验; 仅适合 Whatnot 主播等渠道, 不适合常规 eBay listing. 推",
+      "data_freshness_ts": "2026-07-26",
+      "verified": 0,
+      "created_at": "2026-07-26 17:38:03"
     }
   ],
   "routes": [
@@ -254,4430 +926,1596 @@ var EMBEDDED_DATA = {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1063.86 USD,负利润,无意义出差。",
-          "roi_pct": -88.6057051637979,
-          "net_profit_usd": -1063.8591666666669,
-          "total_cost_usd": 1200.6666666666667,
-          "total_revenue_usd": 136.80749999999998,
-          "breakeven_sell_price_usd": 1623.6195627676361,
-          "hours_used": 0.3333333333333333,
-          "per_unit_cost_usd": 154.0,
-          "per_unit_revenue_usd": 136.80749999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1182.77 USD,负利润,无意义出差。",
-            "roi_pct": -90.57150241212958,
-            "net_profit_usd": -1182.7732500000002,
-            "total_revenue_usd": 123.12674999999999,
-            "total_cost_usd": 1305.9,
-            "breakeven_sell_price_usd": 1765.9229208924953,
-            "hours_used": 0.3333333333333333,
-            "delta_roi_pct": -1.9657972483316826,
-            "delta_net_profit": -118.91408333333334,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1063.86 USD,负利润,无意义出差。",
-            "roi_pct": -88.6057051637979,
-            "net_profit_usd": -1063.8591666666669,
-            "total_revenue_usd": 136.80749999999998,
-            "total_cost_usd": 1200.6666666666667,
-            "breakeven_sell_price_usd": 1623.6195627676361,
-            "hours_used": 0.3333333333333333,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1003.85 USD,负利润,无意义出差。",
-            "roi_pct": -87.48166666666667,
-            "net_profit_usd": -1003.852125,
-            "total_revenue_usd": 143.647875,
-            "total_cost_usd": 1147.5,
-            "breakeven_sell_price_usd": 1551.7241379310346,
-            "hours_used": 0.3333333333333333,
-            "delta_roi_pct": 1.1240384971312238,
-            "delta_net_profit": 60.00704166666685,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1039.72 USD,负利润,无意义出差。",
+          "roi_pct": -86.59,
+          "net_profit_usd": -1039.72,
+          "total_cost_usd": 1200.67,
+          "total_revenue_usd": 160.95,
+          "breakeven_sell_price_usd": 1380.08,
+          "hours_used": 0.33
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1159.30 USD,负利润,无意义出差。",
-          "roi_pct": -62.891274864376136,
-          "net_profit_usd": -1159.2958333333333,
-          "total_cost_usd": 1843.3333333333333,
-          "total_revenue_usd": 684.0374999999999,
-          "breakeven_sell_price_usd": 498.53504620238897,
-          "hours_used": 1.6666666666666667,
-          "per_unit_cost_usd": 154.0,
-          "per_unit_revenue_usd": 136.80749999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1369.87 USD,负利润,无意义出差。",
-            "roi_pct": -68.99351548728279,
-            "net_profit_usd": -1369.86625,
-            "total_revenue_usd": 615.63375,
-            "total_cost_usd": 1985.5,
-            "breakeven_sell_price_usd": 536.9844489519946,
-            "hours_used": 1.6666666666666667,
-            "delta_roi_pct": -6.102240622906656,
-            "delta_net_profit": -210.5704166666667,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1159.30 USD,负利润,无意义出差。",
-            "roi_pct": -62.891274864376136,
-            "net_profit_usd": -1159.2958333333333,
-            "total_revenue_usd": 684.0374999999999,
-            "total_cost_usd": 1843.3333333333333,
-            "breakeven_sell_price_usd": 498.53504620238897,
-            "hours_used": 1.6666666666666667,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1051.26 USD,负利润,无意义出差。",
-            "roi_pct": -59.410038146369025,
-            "net_profit_usd": -1051.260625,
-            "total_revenue_usd": 718.239375,
-            "total_cost_usd": 1769.5,
-            "breakeven_sell_price_usd": 478.5665990534145,
-            "hours_used": 1.6666666666666667,
-            "delta_roi_pct": 3.4812367180071107,
-            "delta_net_profit": 108.03520833333346,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1038.58 USD,负利润,无意义出差。",
+          "roi_pct": -56.34,
+          "net_profit_usd": -1038.58,
+          "total_cost_usd": 1843.33,
+          "total_revenue_usd": 804.75,
+          "breakeven_sell_price_usd": 423.75,
+          "hours_used": 1.67
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -2232.96 USD,负利润,无意义出差。",
-          "roi_pct": -24.610121234386494,
-          "net_profit_usd": -2232.958333333335,
-          "total_cost_usd": 9073.333333333334,
-          "total_revenue_usd": 6840.374999999999,
-          "breakeven_sell_price_usd": 245.3910299752085,
-          "hours_used": 16.666666666666668,
-          "per_unit_cost_usd": 154.0,
-          "per_unit_revenue_usd": 136.80749999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -3474.66 USD,负利润,无意义出差。",
-            "roi_pct": -36.07789949122625,
-            "net_profit_usd": -3474.6625000000004,
-            "total_revenue_usd": 6156.3375,
-            "total_cost_usd": 9631.0,
-            "breakeven_sell_price_usd": 260.47329276538204,
-            "hours_used": 16.666666666666668,
-            "delta_roi_pct": -11.467778256839754,
-            "delta_net_profit": -1241.7041666666655,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -2232.96 USD,负利润,无意义出差。",
-            "roi_pct": -24.610121234386494,
-            "net_profit_usd": -2232.958333333335,
-            "total_revenue_usd": 6840.374999999999,
-            "total_cost_usd": 9073.333333333334,
-            "breakeven_sell_price_usd": 245.3910299752085,
-            "hours_used": 16.666666666666668,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1584.61 USD,负利润,无意义出差。",
-            "roi_pct": -18.07466921409832,
-            "net_profit_usd": -1584.6062499999998,
-            "total_revenue_usd": 7182.39375,
-            "total_cost_usd": 8767.0,
-            "breakeven_sell_price_usd": 237.10615280595,
-            "hours_used": 16.666666666666668,
-            "delta_roi_pct": 6.535452020288172,
-            "delta_net_profit": 648.352083333335,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1025.83 USD,负利润,无意义出差。",
+          "roi_pct": -11.31,
+          "net_profit_usd": -1025.83,
+          "total_cost_usd": 9073.33,
+          "total_revenue_usd": 8047.5,
+          "breakeven_sell_price_usd": 208.58,
+          "hours_used": 16.67
+        }
       }
     },
     "JP-WS-YAMAZAKI12": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1170.81 USD,负利润,无意义出差。",
-          "roi_pct": -94.52152852529603,
-          "net_profit_usd": -1170.8066666666668,
-          "total_cost_usd": 1238.6666666666667,
-          "total_revenue_usd": 67.86,
-          "breakeven_sell_price_usd": 2190.3919834954318,
-          "hours_used": 0.5833333333333334,
-          "per_unit_cost_usd": 187.0,
-          "per_unit_revenue_usd": 67.86
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1286.38 USD,负利润,无意义出差。",
-            "roi_pct": -95.46743849493488,
-            "net_profit_usd": -1286.376,
-            "total_revenue_usd": 61.074,
-            "total_cost_usd": 1347.45,
-            "breakeven_sell_price_usd": 2382.7586206896553,
-            "hours_used": 0.5833333333333334,
-            "delta_roi_pct": -0.9459099696388478,
-            "delta_net_profit": -115.56933333333313,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1170.81 USD,负利润,无意义出差。",
-            "roi_pct": -94.52152852529603,
-            "net_profit_usd": -1170.8066666666668,
-            "total_revenue_usd": 67.86,
-            "total_cost_usd": 1238.6666666666667,
-            "breakeven_sell_price_usd": 2190.3919834954318,
-            "hours_used": 0.5833333333333334,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1113.30 USD,负利润,无意义出差。",
-            "roi_pct": -93.9848043560846,
-            "net_profit_usd": -1113.297,
-            "total_revenue_usd": 71.253,
-            "total_cost_usd": 1184.55,
-            "breakeven_sell_price_usd": 2094.6949602122013,
-            "hours_used": 0.5833333333333334,
-            "delta_roi_pct": 0.5367241692114391,
-            "delta_net_profit": 57.50966666666682,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1134.27 USD,负利润,无意义出差。",
+          "roi_pct": -91.57,
+          "net_profit_usd": -1134.27,
+          "total_cost_usd": 1238.67,
+          "total_revenue_usd": 104.4,
+          "breakeven_sell_price_usd": 1423.75,
+          "hours_used": 0.58
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1694.03 USD,负利润,无意义出差。",
-          "roi_pct": -83.31311475409836,
-          "net_profit_usd": -1694.0333333333333,
-          "total_cost_usd": 2033.3333333333333,
-          "total_revenue_usd": 339.3,
-          "breakeven_sell_price_usd": 719.1276156793398,
-          "hours_used": 2.9166666666666665,
-          "per_unit_cost_usd": 187.0,
-          "per_unit_revenue_usd": 67.86
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1887.88 USD,负利润,无意义出差。",
-            "roi_pct": -86.07682662715149,
-            "net_profit_usd": -1887.88,
-            "total_revenue_usd": 305.37,
-            "total_cost_usd": 2193.25,
-            "breakeven_sell_price_usd": 775.6852343059239,
-            "hours_used": 2.9166666666666665,
-            "delta_roi_pct": -2.7637118730531256,
-            "delta_net_profit": -193.8466666666668,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1694.03 USD,负利润,无意义出差。",
-            "roi_pct": -83.31311475409836,
-            "net_profit_usd": -1694.0333333333333,
-            "total_revenue_usd": 339.3,
-            "total_cost_usd": 2033.3333333333333,
-            "breakeven_sell_price_usd": 719.1276156793398,
-            "hours_used": 2.9166666666666665,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1598.49 USD,负利润,无意义出差。",
-            "roi_pct": -81.7743957027753,
-            "net_profit_usd": -1598.4850000000001,
-            "total_revenue_usd": 356.265,
-            "total_cost_usd": 1954.75,
-            "breakeven_sell_price_usd": 691.3351016799293,
-            "hours_used": 2.9166666666666665,
-            "delta_roi_pct": 1.5387190513230706,
-            "delta_net_profit": 95.54833333333318,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1511.33 USD,负利润,无意义出差。",
+          "roi_pct": -74.33,
+          "net_profit_usd": -1511.33,
+          "total_cost_usd": 2033.33,
+          "total_revenue_usd": 522.0,
+          "breakeven_sell_price_usd": 467.43,
+          "hours_used": 2.92
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -7580.33 USD,负利润,无意义出差。",
-          "roi_pct": -69.07958687727826,
-          "net_profit_usd": -7580.333333333334,
-          "total_cost_usd": 10973.333333333334,
-          "total_revenue_usd": 3393.0,
-          "breakeven_sell_price_usd": 388.09313292071914,
-          "hours_used": 29.166666666666668,
-          "per_unit_cost_usd": 187.0,
-          "per_unit_revenue_usd": 67.86
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -8654.80 USD,负利润,无意义出差。",
-            "roi_pct": -73.91894777298543,
-            "net_profit_usd": -8654.8,
-            "total_revenue_usd": 3053.7,
-            "total_cost_usd": 11708.5,
-            "breakeven_sell_price_usd": 414.09372236958444,
-            "hours_used": 29.166666666666668,
-            "delta_roi_pct": -4.839360895707173,
-            "delta_net_profit": -1074.4666666666653,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -7580.33 USD,负利润,无意义出差。",
-            "roi_pct": -69.07958687727826,
-            "net_profit_usd": -7580.333333333334,
-            "total_revenue_usd": 3393.0,
-            "total_cost_usd": 10973.333333333334,
-            "breakeven_sell_price_usd": 388.09313292071914,
-            "hours_used": 29.166666666666668,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -7056.85 USD,负利润,无意义出差。",
-            "roi_pct": -66.45181034888648,
-            "net_profit_usd": -7056.85,
-            "total_revenue_usd": 3562.65,
-            "total_cost_usd": 10619.5,
-            "breakeven_sell_price_usd": 375.579133510168,
-            "hours_used": 29.166666666666668,
-            "delta_roi_pct": 2.6277765283917773,
-            "delta_net_profit": 523.4833333333336,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -5753.33 USD,负利润,无意义出差。",
+          "roi_pct": -52.43,
+          "net_profit_usd": -5753.33,
+          "total_cost_usd": 10973.33,
+          "total_revenue_usd": 5220.0,
+          "breakeven_sell_price_usd": 252.26,
+          "hours_used": 29.17
+        }
       }
     },
     "JP-NINTENDO-SWOLED": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1130.21 USD,负利润,无意义出差。",
-          "roi_pct": -81.23973191074394,
-          "net_profit_usd": -1130.2098583333332,
-          "total_cost_usd": 1391.2033333333331,
-          "total_revenue_usd": 260.993475,
-          "breakeven_sell_price_usd": 2132.1123882503193,
-          "hours_used": 0.6666666666666666,
-          "per_unit_cost_usd": 337.87,
-          "per_unit_revenue_usd": 260.993475
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1272.77 USD,负利润,无意义出差。",
-            "roi_pct": -84.41998977225356,
-            "net_profit_usd": -1272.7693725000001,
-            "total_revenue_usd": 234.89412750000002,
-            "total_cost_usd": 1507.6635,
-            "breakeven_sell_price_usd": 2310.595402298851,
-            "hours_used": 0.6666666666666666,
-            "delta_roi_pct": -3.1802578615096166,
-            "delta_net_profit": -142.559514166667,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1130.21 USD,负利润,无意义出差。",
-            "roi_pct": -81.23973191074394,
-            "net_profit_usd": -1130.2098583333332,
-            "total_revenue_usd": 260.993475,
-            "total_cost_usd": 1391.2033333333331,
-            "breakeven_sell_price_usd": 2132.1123882503193,
-            "hours_used": 0.6666666666666666,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1058.23 USD,负利润,无意义出差。",
-            "roi_pct": -79.43041976953839,
-            "net_profit_usd": -1058.23075125,
-            "total_revenue_usd": 274.04314875,
-            "total_cost_usd": 1332.2739,
-            "breakeven_sell_price_usd": 2041.79908045977,
-            "hours_used": 0.6666666666666666,
-            "delta_roi_pct": 1.8093121412055524,
-            "delta_net_profit": 71.97910708333325,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1043.21 USD,负利润,无意义出差。",
+          "roi_pct": -74.99,
+          "net_profit_usd": -1043.21,
+          "total_cost_usd": 1391.2,
+          "total_revenue_usd": 347.99,
+          "breakeven_sell_price_usd": 1599.08,
+          "hours_used": 0.67
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1491.05 USD,负利润,无意义出差。",
-          "roi_pct": -53.32762531220009,
-          "net_profit_usd": -1491.0492916666665,
-          "total_cost_usd": 2796.0166666666664,
-          "total_revenue_usd": 1304.967375,
-          "breakeven_sell_price_usd": 857.0166028097063,
-          "hours_used": 3.3333333333333335,
-          "per_unit_cost_usd": 337.87,
-          "per_unit_revenue_usd": 260.993475
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1819.85 USD,负利润,无意义出差。",
-            "roi_pct": -60.776683250857666,
-            "net_profit_usd": -1819.8468625,
-            "total_revenue_usd": 1174.4706375,
-            "total_cost_usd": 2994.3175,
-            "breakeven_sell_price_usd": 917.7984674329502,
-            "hours_used": 3.3333333333333335,
-            "delta_roi_pct": -7.449057938657575,
-            "delta_net_profit": -328.79757083333357,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1491.05 USD,负利润,无意义出差。",
-            "roi_pct": -53.32762531220009,
-            "net_profit_usd": -1491.0492916666665,
-            "total_revenue_usd": 1304.967375,
-            "total_cost_usd": 2796.0166666666664,
-            "breakeven_sell_price_usd": 857.0166028097063,
-            "hours_used": 3.3333333333333335,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1323.15 USD,负利润,无意义出差。",
-            "roi_pct": -49.12633622122772,
-            "net_profit_usd": -1323.1537562499998,
-            "total_revenue_usd": 1370.21574375,
-            "total_cost_usd": 2693.3695,
-            "breakeven_sell_price_usd": 825.5538697318008,
-            "hours_used": 3.3333333333333335,
-            "delta_roi_pct": 4.201289090972374,
-            "delta_net_profit": 167.8955354166667,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1056.06 USD,负利润,无意义出差。",
+          "roi_pct": -37.77,
+          "net_profit_usd": -1056.06,
+          "total_cost_usd": 2796.02,
+          "total_revenue_usd": 1739.96,
+          "breakeven_sell_price_usd": 642.76,
+          "hours_used": 3.33
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
           "reason": "预计耗时 33.3h 超出可用 32.0h,行程不可行。",
-          "roi_pct": -29.841092373724255,
-          "net_profit_usd": -5550.492916666668,
-          "total_cost_usd": 18600.166666666668,
-          "total_revenue_usd": 13049.67375,
-          "breakeven_sell_price_usd": 570.1200510855683,
-          "hours_used": 33.333333333333336,
-          "per_unit_cost_usd": 337.87,
-          "per_unit_revenue_usd": 260.993475
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "预计耗时 33.3h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -40.440173714164004,
-            "net_profit_usd": -7974.468625000001,
-            "total_revenue_usd": 11744.706375000002,
-            "total_cost_usd": 19719.175000000003,
-            "breakeven_sell_price_usd": 604.4191570881227,
-            "hours_used": 33.333333333333336,
-            "delta_roi_pct": -10.59908134043975,
-            "delta_net_profit": -2423.9757083333334,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "预计耗时 33.3h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -29.841092373724255,
-            "net_profit_usd": -5550.492916666668,
-            "total_revenue_usd": 13049.67375,
-            "total_cost_usd": 18600.166666666668,
-            "breakeven_sell_price_usd": 570.1200510855683,
-            "hours_used": 33.333333333333336,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "预计耗时 33.3h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -23.900980009380365,
-            "net_profit_usd": -4303.5375625,
-            "total_revenue_usd": 13702.1574375,
-            "total_cost_usd": 18005.695,
-            "breakeven_sell_price_usd": 551.8986973180076,
-            "hours_used": 33.333333333333336,
-            "delta_roi_pct": 5.940112364343889,
-            "delta_net_profit": 1246.9553541666683,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "roi_pct": -6.45,
+          "net_profit_usd": -1200.6,
+          "total_cost_usd": 18600.17,
+          "total_revenue_usd": 17399.57,
+          "breakeven_sell_price_usd": 427.59,
+          "hours_used": 33.33
+        }
       }
     },
     "JP-DYSON-V12S": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1272.49 USD,负利润,无意义出差。",
-          "roi_pct": -76.27304490118861,
-          "net_profit_usd": -1272.4860899999999,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1102.84 USD,负利润,无意义出差。",
+          "roi_pct": -66.1,
+          "net_profit_usd": -1102.84,
           "total_cost_usd": 1668.33,
-          "total_revenue_usd": 395.84391,
-          "breakeven_sell_price_usd": 2739.4581280788175,
-          "hours_used": 0.5,
-          "per_unit_cost_usd": 618.33,
-          "per_unit_revenue_usd": 395.84391
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1442.24 USD,负利润,无意义出差。",
-            "roi_pct": -80.19125869858519,
-            "net_profit_usd": -1442.2369810000002,
-            "total_revenue_usd": 356.25951899999995,
-            "total_cost_usd": 1798.4965000000002,
-            "breakeven_sell_price_usd": 2953.1962233169133,
-            "hours_used": 0.5,
-            "delta_roi_pct": -3.918213797396575,
-            "delta_net_profit": -169.75089100000037,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1272.49 USD,负利润,无意义出差。",
-            "roi_pct": -76.27304490118861,
-            "net_profit_usd": -1272.4860899999999,
-            "total_revenue_usd": 395.84391,
-            "total_cost_usd": 1668.33,
-            "breakeven_sell_price_usd": 2739.4581280788175,
-            "hours_used": 0.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1185.89 USD,负利润,无意义出差。",
-            "roi_pct": -74.04756204706986,
-            "net_profit_usd": -1185.8939945,
-            "total_revenue_usd": 415.6361054999999,
-            "total_cost_usd": 1601.5301,
-            "breakeven_sell_price_usd": 2629.770279146141,
-            "hours_used": 0.5,
-            "delta_roi_pct": 2.225482854118752,
-            "delta_net_profit": 86.59209549999991,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 565.49,
+          "breakeven_sell_price_usd": 1917.62,
+          "hours_used": 0.5
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -2202.43 USD,负利润,无意义出差。",
-          "roi_pct": -52.668933315796394,
-          "net_profit_usd": -2202.43045,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1354.19 USD,负利润,无意义出差。",
+          "roi_pct": -32.38,
+          "net_profit_usd": -1354.19,
           "total_cost_usd": 4181.65,
-          "total_revenue_usd": 1979.21955,
-          "breakeven_sell_price_usd": 1373.2840722495896,
-          "hours_used": 2.5,
-          "per_unit_cost_usd": 618.33,
-          "per_unit_revenue_usd": 395.84391
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -2667.18 USD,负利润,无意义出差。",
-            "roi_pct": -59.95718551213813,
-            "net_profit_usd": -2667.184905,
-            "total_revenue_usd": 1781.2975949999998,
-            "total_cost_usd": 4448.4825,
-            "breakeven_sell_price_usd": 1460.9137931034484,
-            "hours_used": 2.5,
-            "delta_roi_pct": -7.2882521963417375,
-            "delta_net_profit": -464.75445500000023,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -2202.43 USD,负利润,无意义出差。",
-            "roi_pct": -52.668933315796394,
-            "net_profit_usd": -2202.43045,
-            "total_revenue_usd": 1979.21955,
-            "total_cost_usd": 4181.65,
-            "breakeven_sell_price_usd": 1373.2840722495896,
-            "hours_used": 2.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1961.47 USD,负利润,无意义出差。",
-            "roi_pct": -48.555437469157305,
-            "net_profit_usd": -1961.4699725000005,
-            "total_revenue_usd": 2078.1805274999997,
-            "total_cost_usd": 4039.6505,
-            "breakeven_sell_price_usd": 1326.6504105090312,
-            "hours_used": 2.5,
-            "delta_roi_pct": 4.11349584663909,
-            "delta_net_profit": 240.96047749999934,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 2827.46,
+          "breakeven_sell_price_usd": 961.3,
+          "hours_used": 2.5
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -12664.30 USD,负利润,无意义出差。",
-          "roi_pct": -39.019316623788775,
-          "net_profit_usd": -12664.304500000006,
-          "total_cost_usd": 32456.500000000004,
-          "total_revenue_usd": 19792.195499999998,
-          "breakeven_sell_price_usd": 1065.894909688013,
-          "hours_used": 25.0,
-          "per_unit_cost_usd": 618.33,
-          "per_unit_revenue_usd": 395.84391
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -16447.85 USD,负利润,无意义出差。",
-            "roi_pct": -48.00774368393057,
-            "net_profit_usd": -16447.849050000008,
-            "total_revenue_usd": 17812.975949999996,
-            "total_cost_usd": 34260.825000000004,
-            "breakeven_sell_price_usd": 1125.150246305419,
-            "hours_used": 25.0,
-            "delta_roi_pct": -8.988427060141795,
-            "delta_net_profit": -3783.5445500000023,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -12664.30 USD,负利润,无意义出差。",
-            "roi_pct": -39.019316623788775,
-            "net_profit_usd": -12664.304500000006,
-            "total_revenue_usd": 19792.195499999998,
-            "total_cost_usd": 32456.500000000004,
-            "breakeven_sell_price_usd": 1065.894909688013,
-            "hours_used": 25.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -10686.70 USD,负利润,无意义出差。",
-            "roi_pct": -33.959985468010025,
-            "net_profit_usd": -10686.69972500001,
-            "total_revenue_usd": 20781.805274999995,
-            "total_cost_usd": 31468.505000000005,
-            "breakeven_sell_price_usd": 1033.4484400656816,
-            "hours_used": 25.0,
-            "delta_roi_pct": 5.05933115577875,
-            "delta_net_profit": 1977.6047749999962,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -4181.94 USD,负利润,无意义出差。",
+          "roi_pct": -12.88,
+          "net_profit_usd": -4181.94,
+          "total_cost_usd": 32456.5,
+          "total_revenue_usd": 28274.57,
+          "breakeven_sell_price_usd": 746.13,
+          "hours_used": 25.0
+        }
       }
     },
     "JP-LUX-PATEK": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -4100.33 USD,负利润,无意义出差。",
-          "roi_pct": -54.71973074721118,
-          "net_profit_usd": -4100.33,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -707.33 USD,负利润,无意义出差。",
+          "roi_pct": -9.44,
+          "net_profit_usd": -707.33,
           "total_cost_usd": 7493.33,
-          "total_revenue_usd": 3393.0,
-          "breakeven_sell_price_usd": 17226.045977011494,
-          "hours_used": 3.0,
-          "per_unit_cost_usd": 6393.33,
-          "per_unit_revenue_usd": 3393.0
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -4870.30 USD,负利润,无意义出差。",
-            "roi_pct": -61.462628106915496,
-            "net_profit_usd": -4870.2965,
-            "total_revenue_usd": 3053.7,
-            "total_cost_usd": 7923.9965,
-            "breakeven_sell_price_usd": 18216.083908045977,
-            "hours_used": 3.0,
-            "delta_roi_pct": -6.742897359704315,
-            "delta_net_profit": -769.9665000000005,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -4100.33 USD,负利润,无意义出差。",
-            "roi_pct": -54.71973074721118,
-            "net_profit_usd": -4100.33,
-            "total_revenue_usd": 3393.0,
-            "total_cost_usd": 7493.33,
-            "breakeven_sell_price_usd": 17226.045977011494,
-            "hours_used": 3.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -3686.68 USD,负利润,无意义出差。",
-            "roi_pct": -50.85545904441571,
-            "net_profit_usd": -3686.6801,
-            "total_revenue_usd": 3562.65,
-            "total_cost_usd": 7249.3301,
-            "breakeven_sell_price_usd": 16665.126666666667,
-            "hours_used": 3.0,
-            "delta_roi_pct": 3.8642717027954703,
-            "delta_net_profit": 413.6498999999999,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 6786.0,
+          "breakeven_sell_price_usd": 8613.02,
+          "hours_used": 3.0
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -16341.65 USD,负利润,无意义出差。",
-          "roi_pct": -49.064225912843234,
-          "net_profit_usd": -16341.650000000001,
+          "reason": "ROI 1.9% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 1.87,
+          "net_profit_usd": 623.35,
           "total_cost_usd": 33306.65,
-          "total_revenue_usd": 16965.0,
-          "breakeven_sell_price_usd": 15313.402298850575,
-          "hours_used": 15.0,
-          "per_unit_cost_usd": 6393.33,
-          "per_unit_revenue_usd": 3393.0
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -19807.48 USD,负利润,无意义出差。",
-            "roi_pct": -56.470214341109326,
-            "net_profit_usd": -19807.4825,
-            "total_revenue_usd": 15268.5,
-            "total_cost_usd": 35075.9825,
-            "breakeven_sell_price_usd": 16126.888505747127,
-            "hours_used": 15.0,
-            "delta_roi_pct": -7.405988428266092,
-            "delta_net_profit": -3465.832499999997,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -16341.65 USD,负利润,无意义出差。",
-            "roi_pct": -49.064225912843234,
-            "net_profit_usd": -16341.650000000001,
-            "total_revenue_usd": 16965.0,
-            "total_cost_usd": 33306.65,
-            "breakeven_sell_price_usd": 15313.402298850575,
-            "hours_used": 15.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -14465.40 USD,负利润,无意义出差。",
-            "roi_pct": -44.81414271021027,
-            "net_profit_usd": -14465.4005,
-            "total_revenue_usd": 17813.25,
-            "total_cost_usd": 32278.6505,
-            "breakeven_sell_price_usd": 14840.758850574712,
-            "hours_used": 15.0,
-            "delta_roi_pct": 4.250083202632965,
-            "delta_net_profit": 1876.2495000000017,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 33930.0,
+          "breakeven_sell_price_usd": 7656.7,
+          "hours_used": 15.0
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
           "reason": "预计耗时 150.0h 超出可用 32.0h,行程不可行。",
-          "roi_pct": -47.59141382703159,
-          "net_profit_usd": -154056.5,
+          "roi_pct": 4.82,
+          "net_profit_usd": 15593.5,
           "total_cost_usd": 323706.5,
-          "total_revenue_usd": 169650.0,
-          "breakeven_sell_price_usd": 14883.057471264368,
-          "hours_used": 150.0,
-          "per_unit_cost_usd": 6393.33,
-          "per_unit_revenue_usd": 3393.0
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "预计耗时 150.0h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -55.16330770778669,
-            "net_profit_usd": -187850.825,
-            "total_revenue_usd": 152685.0,
-            "total_cost_usd": 340535.825,
-            "breakeven_sell_price_usd": 15656.819540229886,
-            "hours_used": 150.0,
-            "delta_roi_pct": -7.5718938807551055,
-            "delta_net_profit": -33794.32500000001,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "预计耗时 150.0h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -47.59141382703159,
-            "net_profit_usd": -154056.5,
-            "total_revenue_usd": 169650.0,
-            "total_cost_usd": 323706.5,
-            "breakeven_sell_price_usd": 14883.057471264368,
-            "hours_used": 150.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "预计耗时 150.0h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -43.2443291603648,
-            "net_profit_usd": -135726.005,
-            "total_revenue_usd": 178132.5,
-            "total_cost_usd": 313858.505,
-            "breakeven_sell_price_usd": 14430.276091954023,
-            "hours_used": 150.0,
-            "delta_roi_pct": 4.347084666666788,
-            "delta_net_profit": 18330.494999999995,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 339300.0,
+          "breakeven_sell_price_usd": 7441.53,
+          "hours_used": 150.0
+        }
       }
     },
     "JP-ANIME-GK2024": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1196.70 USD,负利润,无意义出差。",
-          "roi_pct": -93.85883958473312,
-          "net_profit_usd": -1196.7033333333334,
-          "total_cost_usd": 1275.0033333333333,
-          "total_revenue_usd": 78.3,
-          "breakeven_sell_price_usd": 2442.5351213282247,
-          "hours_used": 0.4166666666666667,
-          "per_unit_cost_usd": 226.67,
-          "per_unit_revenue_usd": 78.3
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1314.93 USD,负利润,无意义出差。",
-            "roi_pct": -94.91339526715502,
-            "net_profit_usd": -1314.9334999999999,
-            "total_revenue_usd": 70.47,
-            "total_cost_usd": 1385.4035,
-            "breakeven_sell_price_usd": 2654.0296934865896,
-            "hours_used": 0.4166666666666667,
-            "delta_roi_pct": -1.0545556824219062,
-            "delta_net_profit": -118.23016666666649,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1196.70 USD,负利润,无意义出差。",
-            "roi_pct": -93.85883958473312,
-            "net_profit_usd": -1196.7033333333334,
-            "total_revenue_usd": 78.3,
-            "total_cost_usd": 1275.0033333333333,
-            "breakeven_sell_price_usd": 2442.5351213282247,
-            "hours_used": 0.4166666666666667,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1137.99 USD,负利润,无意义出差。",
-            "roi_pct": -93.26222480247047,
-            "net_profit_usd": -1137.9949000000001,
-            "total_revenue_usd": 82.215,
-            "total_cost_usd": 1220.2099,
-            "breakeven_sell_price_usd": 2337.566858237548,
-            "hours_used": 0.4166666666666667,
-            "delta_roi_pct": 0.5966147822626482,
-            "delta_net_profit": 58.70843333333323,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1144.50 USD,负利润,无意义出差。",
+          "roi_pct": -89.76,
+          "net_profit_usd": -1144.5,
+          "total_cost_usd": 1275.0,
+          "total_revenue_usd": 130.5,
+          "breakeven_sell_price_usd": 1465.52,
+          "hours_used": 0.42
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1823.52 USD,负利润,无意义出差。",
-          "roi_pct": -82.32518942671612,
-          "net_profit_usd": -1823.5166666666664,
-          "total_cost_usd": 2215.0166666666664,
-          "total_revenue_usd": 391.5,
-          "breakeven_sell_price_usd": 848.6653895274585,
-          "hours_used": 2.0833333333333335,
-          "per_unit_cost_usd": 226.67,
-          "per_unit_revenue_usd": 78.3
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -2030.67 USD,负利润,无意义出差。",
-            "roi_pct": -85.2141245290897,
-            "net_profit_usd": -2030.6675,
-            "total_revenue_usd": 352.35,
-            "total_cost_usd": 2383.0175,
-            "breakeven_sell_price_usd": 913.0335249042146,
-            "hours_used": 2.0833333333333335,
-            "delta_roi_pct": -2.88893510237358,
-            "delta_net_profit": -207.1508333333336,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1823.52 USD,负利润,无意义出差。",
-            "roi_pct": -82.32518942671612,
-            "net_profit_usd": -1823.5166666666664,
-            "total_revenue_usd": 391.5,
-            "total_cost_usd": 2215.0166666666664,
-            "breakeven_sell_price_usd": 848.6653895274585,
-            "hours_used": 2.0833333333333335,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1721.97 USD,负利润,无意义出差。",
-            "roi_pct": -80.72829533491839,
-            "net_profit_usd": -1721.9745,
-            "total_revenue_usd": 411.07500000000005,
-            "total_cost_usd": 2133.0495,
-            "breakeven_sell_price_usd": 817.2603448275861,
-            "hours_used": 2.0833333333333335,
-            "delta_roi_pct": 1.5968940917977363,
-            "delta_net_profit": 101.54216666666639,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1562.52 USD,负利润,无意义出差。",
+          "roi_pct": -70.54,
+          "net_profit_usd": -1562.52,
+          "total_cost_usd": 2215.02,
+          "total_revenue_usd": 652.5,
+          "breakeven_sell_price_usd": 509.2,
+          "hours_used": 2.08
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -8875.17 USD,负利润,无意义出差。",
-          "roi_pct": -69.39054742575676,
-          "net_profit_usd": -8875.166666666666,
-          "total_cost_usd": 12790.166666666666,
-          "total_revenue_usd": 3915.0,
-          "breakeven_sell_price_usd": 490.04469987228606,
-          "hours_used": 20.833333333333332,
-          "per_unit_cost_usd": 226.67,
-          "per_unit_revenue_usd": 78.3
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -10082.68 USD,负利润,无意义出差。",
-            "roi_pct": -74.10366984108319,
-            "net_profit_usd": -10082.675000000001,
-            "total_revenue_usd": 3523.5,
-            "total_cost_usd": 13606.175000000001,
-            "breakeven_sell_price_usd": 521.3093869731802,
-            "hours_used": 20.833333333333332,
-            "delta_roi_pct": -4.713122415326424,
-            "delta_net_profit": -1207.508333333335,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -8875.17 USD,负利润,无意义出差。",
-            "roi_pct": -69.39054742575676,
-            "net_profit_usd": -8875.166666666666,
-            "total_revenue_usd": 3915.0,
-            "total_cost_usd": 12790.166666666666,
-            "breakeven_sell_price_usd": 490.04469987228606,
-            "hours_used": 20.833333333333332,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -8291.74 USD,负利润,无意义出差。",
-            "roi_pct": -66.85545932491809,
-            "net_profit_usd": -8291.744999999999,
-            "total_revenue_usd": 4110.75,
-            "total_cost_usd": 12402.494999999999,
-            "breakeven_sell_price_usd": 475.19137931034476,
-            "hours_used": 20.833333333333332,
-            "delta_roi_pct": 2.535088100838678,
-            "delta_net_profit": 583.4216666666671,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "reason": "扣除机票/酒店/时间成本后净利润为 -6265.17 USD,负利润,无意义出差。",
+          "roi_pct": -48.98,
+          "net_profit_usd": -6265.17,
+          "total_cost_usd": 12790.17,
+          "total_revenue_usd": 6525.0,
+          "breakeven_sell_price_usd": 294.03,
+          "hours_used": 20.83
+        }
       }
     },
     "JP-PKMN-151-BB": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -989.08 USD,负利润,无意义出差。",
-          "roi_pct": -89.9159090909091,
-          "net_profit_usd": -989.075,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -969.50 USD,负利润,无意义出差。",
+          "roi_pct": -88.14,
+          "net_profit_usd": -969.5,
           "total_cost_usd": 1100.0,
-          "total_revenue_usd": 110.925,
-          "breakeven_sell_price_usd": 1487.4915483434754,
-          "hours_used": 0.5,
-          "per_unit_cost_usd": 50.0,
-          "per_unit_revenue_usd": 110.925
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1100.92 USD,负利润,无意义出差。",
-            "roi_pct": -91.68582136164896,
-            "net_profit_usd": -1100.9175,
-            "total_revenue_usd": 99.8325,
-            "total_cost_usd": 1200.75,
-            "breakeven_sell_price_usd": 1623.7322515212984,
-            "hours_used": 0.5,
-            "delta_roi_pct": -1.7699122707398658,
-            "delta_net_profit": -111.84249999999997,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -989.08 USD,负利润,无意义出差。",
-            "roi_pct": -89.9159090909091,
-            "net_profit_usd": -989.075,
-            "total_revenue_usd": 110.925,
-            "total_cost_usd": 1100.0,
-            "breakeven_sell_price_usd": 1487.4915483434754,
-            "hours_used": 0.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -933.18 USD,负利润,无意义出差。",
-            "roi_pct": -88.90380126708902,
-            "net_profit_usd": -933.17875,
-            "total_revenue_usd": 116.47125,
-            "total_cost_usd": 1049.65,
-            "breakeven_sell_price_usd": 1419.405003380663,
-            "hours_used": 0.5,
-            "delta_roi_pct": 1.0121078238200738,
-            "delta_net_profit": 55.89625000000001,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 130.5,
+          "breakeven_sell_price_usd": 1264.37,
+          "hours_used": 0.5
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -785.38 USD,负利润,无意义出差。",
-          "roi_pct": -58.61007462686567,
-          "net_profit_usd": -785.375,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -687.50 USD,负利润,无意义出差。",
+          "roi_pct": -51.31,
+          "net_profit_usd": -687.5,
           "total_cost_usd": 1340.0,
-          "total_revenue_usd": 554.625,
-          "breakeven_sell_price_usd": 362.40703177822854,
-          "hours_used": 2.5,
-          "per_unit_cost_usd": 50.0,
-          "per_unit_revenue_usd": 110.925
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -960.59 USD,负利润,无意义出差。",
-            "roi_pct": -65.80493235143004,
-            "net_profit_usd": -960.5875000000001,
-            "total_revenue_usd": 499.16249999999997,
-            "total_cost_usd": 1459.75,
-            "breakeven_sell_price_usd": 394.79377958079783,
-            "hours_used": 2.5,
-            "delta_roi_pct": -7.194857724564372,
-            "delta_net_profit": -175.2125000000001,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -785.38 USD,负利润,无意义出差。",
-            "roi_pct": -58.61007462686567,
-            "net_profit_usd": -785.375,
-            "total_revenue_usd": 554.625,
-            "total_cost_usd": 1340.0,
-            "breakeven_sell_price_usd": 362.40703177822854,
-            "hours_used": 2.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -697.89 USD,负利润,无意义出差。",
-            "roi_pct": -54.51230228471001,
-            "net_profit_usd": -697.89375,
-            "total_revenue_usd": 582.35625,
-            "total_cost_usd": 1280.25,
-            "breakeven_sell_price_usd": 346.24746450304264,
-            "hours_used": 2.5,
-            "delta_roi_pct": 4.0977723421556576,
-            "delta_net_profit": 87.48125000000005,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 652.5,
+          "breakeven_sell_price_usd": 308.05,
+          "hours_used": 2.5
+        }
       },
       "50": {
         "decision": {
           "level": "建议",
-          "reason": "ROI 37.3% 高于目标 15.0%,净利润 1506.25 USD。",
-          "roi_pct": 37.28341584158416,
-          "net_profit_usd": 1506.25,
+          "reason": "ROI 61.5% 高于目标 15.0%,净利润 2485.00 USD。",
+          "roi_pct": 61.51,
+          "net_profit_usd": 2485.0,
           "total_cost_usd": 4040.0,
-          "total_revenue_usd": 5546.25,
-          "breakeven_sell_price_usd": 109.26301555104801,
-          "hours_used": 25.0,
-          "per_unit_cost_usd": 50.0,
-          "per_unit_revenue_usd": 110.925
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "谨慎",
-            "reason": "ROI 14.1% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-            "roi_pct": 14.133417171601693,
-            "net_profit_usd": 618.125,
-            "total_revenue_usd": 4991.625,
-            "total_cost_usd": 4373.5,
-            "breakeven_sell_price_usd": 118.28262339418526,
-            "hours_used": 25.0,
-            "delta_roi_pct": -23.149998669982466,
-            "delta_net_profit": -888.125,
-            "cross_check": "⚠️ 保守场景下决策从「建议」降级到「谨慎」 — 最坏情况下本趟出差可能不值得。"
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "建议",
-            "reason": "ROI 37.3% 高于目标 15.0%,净利润 1506.25 USD。",
-            "roi_pct": 37.28341584158416,
-            "net_profit_usd": 1506.25,
-            "total_revenue_usd": 5546.25,
-            "total_cost_usd": 4040.0,
-            "breakeven_sell_price_usd": 109.26301555104801,
-            "hours_used": 25.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "建议",
-            "reason": "ROI 50.3% 高于目标 15.0%,净利润 1949.06 USD。",
-            "roi_pct": 50.30487804878049,
-            "net_profit_usd": 1949.0625,
-            "total_revenue_usd": 5823.5625,
-            "total_cost_usd": 3874.5,
-            "breakeven_sell_price_usd": 104.78701825557809,
-            "hours_used": 25.0,
-            "delta_roi_pct": 13.021462207196329,
-            "delta_net_profit": 442.8125,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 6525.0,
+          "breakeven_sell_price_usd": 92.87,
+          "hours_used": 25.0
+        }
       }
     },
     "JP-CDPB-SERUM-40": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1025.12 USD,负利润,无意义出差。",
-          "roi_pct": -85.76932730923694,
-          "net_profit_usd": -1025.115,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -995.10 USD,负利润,无意义出差。",
+          "roi_pct": -83.26,
+          "net_profit_usd": -995.1,
           "total_cost_usd": 1195.2,
-          "total_revenue_usd": 170.08499999999998,
-          "breakeven_sell_price_usd": 1616.2271805273836,
-          "hours_used": 0.5,
-          "per_unit_cost_usd": 145.2,
-          "per_unit_revenue_usd": 170.08499999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1148.04 USD,负利润,无意义出差。",
-            "roi_pct": -88.23502059763895,
-            "net_profit_usd": -1148.0434999999998,
-            "total_revenue_usd": 153.0765,
-            "total_cost_usd": 1301.12,
-            "breakeven_sell_price_usd": 1759.4590939824207,
-            "hours_used": 0.5,
-            "delta_roi_pct": -2.465693288402008,
-            "delta_net_profit": -122.92849999999976,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1025.12 USD,负利润,无意义出差。",
-            "roi_pct": -85.76932730923694,
-            "net_profit_usd": -1025.115,
-            "total_revenue_usd": 170.08499999999998,
-            "total_cost_usd": 1195.2,
-            "breakeven_sell_price_usd": 1616.2271805273836,
-            "hours_used": 0.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -963.65 USD,负利润,无意义出差。",
-            "roi_pct": -84.36499772377084,
-            "net_profit_usd": -963.65075,
-            "total_revenue_usd": 178.58925,
-            "total_cost_usd": 1142.24,
-            "breakeven_sell_price_usd": 1544.611223799865,
-            "hours_used": 0.5,
-            "delta_roi_pct": 1.404329585466101,
-            "delta_net_profit": 61.46424999999999,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 200.1,
+          "breakeven_sell_price_usd": 1373.79,
+          "hours_used": 0.5
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -965.58 USD,负利润,无意义出差。",
-          "roi_pct": -53.170429515418505,
-          "net_profit_usd": -965.575,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -815.50 USD,负利润,无意义出差。",
+          "roi_pct": -44.91,
+          "net_profit_usd": -815.5,
           "total_cost_usd": 1816.0,
-          "total_revenue_usd": 850.425,
-          "breakeven_sell_price_usd": 491.1426639621366,
-          "hours_used": 2.5,
-          "per_unit_cost_usd": 145.2,
-          "per_unit_revenue_usd": 170.08499999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1196.22 USD,负利润,无意义出差。",
-            "roi_pct": -60.981724102773235,
-            "net_profit_usd": -1196.2174999999997,
-            "total_revenue_usd": 765.3825,
-            "total_cost_usd": 1961.6,
-            "breakeven_sell_price_usd": 530.5206220419202,
-            "hours_used": 2.5,
-            "delta_roi_pct": -7.81129458735473,
-            "delta_net_profit": -230.6424999999997,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -965.58 USD,负利润,无意义出差。",
-            "roi_pct": -53.170429515418505,
-            "net_profit_usd": -965.575,
-            "total_revenue_usd": 850.425,
-            "total_cost_usd": 1816.0,
-            "breakeven_sell_price_usd": 491.1426639621366,
-            "hours_used": 2.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -850.25 USD,负利润,无意义出差。",
-            "roi_pct": -48.775456057824684,
-            "net_profit_usd": -850.2537499999999,
-            "total_revenue_usd": 892.94625,
-            "total_cost_usd": 1743.1999999999998,
-            "breakeven_sell_price_usd": 471.4536849222448,
-            "hours_used": 2.5,
-            "delta_roi_pct": 4.394973457593821,
-            "delta_net_profit": 115.32125000000019,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 1000.5,
+          "breakeven_sell_price_usd": 417.47,
+          "hours_used": 2.5
+        }
       },
       "50": {
         "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -295.75 USD,负利润,无意义出差。",
-          "roi_pct": -3.3607954545454755,
-          "net_profit_usd": -295.7500000000018,
+          "level": "谨慎",
+          "reason": "ROI 13.7% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 13.69,
+          "net_profit_usd": 1205.0,
           "total_cost_usd": 8800.0,
-          "total_revenue_usd": 8504.249999999998,
-          "breakeven_sell_price_usd": 237.99864773495608,
-          "hours_used": 25.0,
-          "per_unit_cost_usd": 145.2,
-          "per_unit_revenue_usd": 170.08499999999998
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1738.17 USD,负利润,无意义出差。",
-            "roi_pct": -18.506974020442925,
-            "net_profit_usd": -1738.1749999999993,
-            "total_revenue_usd": 7653.825000000001,
-            "total_cost_usd": 9392.0,
-            "breakeven_sell_price_usd": 254.00946585530767,
-            "hours_used": 25.0,
-            "delta_roi_pct": -15.14617856589745,
-            "delta_net_profit": -1442.4249999999975,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -295.75 USD,负利润,无意义出差。",
-            "roi_pct": -3.3607954545454755,
-            "net_profit_usd": -295.7500000000018,
-            "total_revenue_usd": 8504.249999999998,
-            "total_cost_usd": 8800.0,
-            "breakeven_sell_price_usd": 237.99864773495608,
-            "hours_used": 25.0,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "ROI 5.0% 低于最低阈值 10.0%,不值得冒险。",
-            "roi_pct": 5.003086782690494,
-            "net_profit_usd": 425.46249999999964,
-            "total_revenue_usd": 8929.4625,
-            "total_cost_usd": 8504.0,
-            "breakeven_sell_price_usd": 229.99323867478026,
-            "hours_used": 25.0,
-            "delta_roi_pct": 8.36388223723597,
-            "delta_net_profit": 721.2125000000015,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 10005.0,
+          "breakeven_sell_price_usd": 202.3,
+          "hours_used": 25.0
+        }
       }
     },
     "JP-ANIME-USJ-NEZ": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1032.14 USD,负利润,无意义出差。",
-          "roi_pct": -94.69220183486239,
-          "net_profit_usd": -1032.145,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1007.35 USD,负利润,无意义出差。",
+          "roi_pct": -92.42,
+          "net_profit_usd": -1007.35,
           "total_cost_usd": 1090.0,
-          "total_revenue_usd": 57.855,
-          "breakeven_sell_price_usd": 1789.8193760262727,
-          "hours_used": 0.75,
-          "per_unit_cost_usd": 35.0,
-          "per_unit_revenue_usd": 57.855
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1138.93 USD,负利润,无意义出差。",
-            "roi_pct": -95.62808564231737,
-            "net_profit_usd": -1138.9305,
-            "total_revenue_usd": 52.0695,
-            "total_cost_usd": 1191.0,
-            "breakeven_sell_price_usd": 1955.665024630542,
-            "hours_used": 0.75,
-            "delta_roi_pct": -0.9358838074549851,
-            "delta_net_profit": -106.78549999999996,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1032.14 USD,负利润,无意义出差。",
-            "roi_pct": -94.69220183486239,
-            "net_profit_usd": -1032.145,
-            "total_revenue_usd": 57.855,
-            "total_cost_usd": 1090.0,
-            "breakeven_sell_price_usd": 1789.8193760262727,
-            "hours_used": 0.75,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -978.85 USD,负利润,无意义出差。",
-            "roi_pct": -94.1566227395152,
-            "net_profit_usd": -978.8522499999999,
-            "total_revenue_usd": 60.747749999999996,
-            "total_cost_usd": 1039.6,
-            "breakeven_sell_price_usd": 1707.0607553366174,
-            "hours_used": 0.75,
-            "delta_roi_pct": 0.5355790953471882,
-            "delta_net_profit": 53.29275000000007,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 82.65,
+          "breakeven_sell_price_usd": 1252.87,
+          "hours_used": 0.75
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1000.73 USD,负利润,无意义出差。",
-          "roi_pct": -77.57558139534883,
-          "net_profit_usd": -1000.725,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -876.75 USD,负利润,无意义出差。",
+          "roi_pct": -67.97,
+          "net_profit_usd": -876.75,
           "total_cost_usd": 1290.0,
-          "total_revenue_usd": 289.275,
-          "breakeven_sell_price_usd": 423.6453201970443,
-          "hours_used": 3.75,
-          "per_unit_cost_usd": 35.0,
-          "per_unit_revenue_usd": 57.855
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1150.65 USD,负利润,无意义出差。",
-            "roi_pct": -81.54872430900072,
-            "net_profit_usd": -1150.6525000000001,
-            "total_revenue_usd": 260.34749999999997,
-            "total_cost_usd": 1411.0,
-            "breakeven_sell_price_usd": 463.38259441707714,
-            "hours_used": 3.75,
-            "delta_roi_pct": -3.973142913651884,
-            "delta_net_profit": -149.92750000000012,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1000.73 USD,负利润,无意义出差。",
-            "roi_pct": -77.57558139534883,
-            "net_profit_usd": -1000.725,
-            "total_revenue_usd": 289.275,
-            "total_cost_usd": 1290.0,
-            "breakeven_sell_price_usd": 423.6453201970443,
-            "hours_used": 3.75,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -926.26 USD,负利润,无意义出差。",
-            "roi_pct": -75.30579268292684,
-            "net_profit_usd": -926.26125,
-            "total_revenue_usd": 303.73875,
-            "total_cost_usd": 1230.0,
-            "breakeven_sell_price_usd": 403.9408866995074,
-            "hours_used": 3.75,
-            "delta_roi_pct": 2.269788712421999,
-            "delta_net_profit": 74.46375,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 413.25,
+          "breakeven_sell_price_usd": 296.55,
+          "hours_used": 3.75
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
           "reason": "预计耗时 37.5h 超出可用 32.0h,行程不可行。",
-          "roi_pct": -18.283898305084744,
-          "net_profit_usd": -647.25,
+          "roi_pct": 16.74,
+          "net_profit_usd": 592.5,
           "total_cost_usd": 3540.0,
-          "total_revenue_usd": 2892.75,
-          "breakeven_sell_price_usd": 116.25615763546797,
-          "hours_used": 37.5,
-          "per_unit_cost_usd": 35.0,
-          "per_unit_revenue_usd": 57.855
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "预计耗时 37.5h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -33.00373134328358,
-            "net_profit_usd": -1282.525,
-            "total_revenue_usd": 2603.475,
-            "total_cost_usd": 3886.0,
-            "breakeven_sell_price_usd": 127.61904761904762,
-            "hours_used": 37.5,
-            "delta_roi_pct": -14.71983303819884,
-            "delta_net_profit": -635.2750000000001,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "预计耗时 37.5h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -18.283898305084744,
-            "net_profit_usd": -647.25,
-            "total_revenue_usd": 2892.75,
-            "total_cost_usd": 3540.0,
-            "breakeven_sell_price_usd": 116.25615763546797,
-            "hours_used": 37.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "预计耗时 37.5h 超出可用 32.0h,行程不可行。",
-            "roi_pct": -9.923265124555165,
-            "net_profit_usd": -334.6125000000002,
-            "total_revenue_usd": 3037.3875,
-            "total_cost_usd": 3372.0,
-            "breakeven_sell_price_usd": 110.73891625615764,
-            "hours_used": 37.5,
-            "delta_roi_pct": 8.360633180529579,
-            "delta_net_profit": 312.6374999999998,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 4132.5,
+          "breakeven_sell_price_usd": 81.38,
+          "hours_used": 37.5
+        }
       }
     },
     "JP-HADALABO-PREM-400": {
       "1": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1045.20 USD,负利润,无意义出差。",
-          "roi_pct": -97.59105042016806,
-          "net_profit_usd": -1045.20015,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1042.33 USD,负利润,无意义出差。",
+          "roi_pct": -97.32,
+          "net_profit_usd": -1042.33,
           "total_cost_usd": 1071.0,
-          "total_revenue_usd": 25.799850000000003,
-          "breakeven_sell_price_usd": 1367.816091954023,
-          "hours_used": 0.25,
-          "per_unit_cost_usd": 26.0,
-          "per_unit_revenue_usd": 25.799850000000003
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1146.33 USD,负利润,无意义出差。",
-            "roi_pct": -98.01463255098113,
-            "net_profit_usd": -1146.330135,
-            "total_revenue_usd": 23.219865000000002,
-            "total_cost_usd": 1169.55,
-            "breakeven_sell_price_usd": 1493.67816091954,
-            "hours_used": 0.25,
-            "delta_roi_pct": -0.42358213081307383,
-            "delta_net_profit": -101.12998500000003,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1045.20 USD,负利润,无意义出差。",
-            "roi_pct": -97.59105042016806,
-            "net_profit_usd": -1045.20015,
-            "total_revenue_usd": 25.799850000000003,
-            "total_cost_usd": 1071.0,
-            "breakeven_sell_price_usd": 1367.816091954023,
-            "hours_used": 0.25,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -994.78 USD,负利润,无意义出差。",
-            "roi_pct": -97.34899326724535,
-            "net_profit_usd": -994.7801575,
-            "total_revenue_usd": 27.089842500000003,
-            "total_cost_usd": 1021.87,
-            "breakeven_sell_price_usd": 1305.0702426564494,
-            "hours_used": 0.25,
-            "delta_roi_pct": 0.2420571529227118,
-            "delta_net_profit": 50.41999249999992,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 28.67,
+          "breakeven_sell_price_usd": 1231.03,
+          "hours_used": 0.25
+        }
       },
       "5": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1066.00 USD,负利润,无意义出差。",
-          "roi_pct": -89.20508368200835,
-          "net_profit_usd": -1066.00075,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1051.67 USD,负利润,无意义出差。",
+          "roi_pct": -88.01,
+          "net_profit_usd": -1051.67,
           "total_cost_usd": 1195.0,
-          "total_revenue_usd": 128.99925000000002,
-          "breakeven_sell_price_usd": 305.23627075351214,
-          "hours_used": 1.25,
-          "per_unit_cost_usd": 26.0,
-          "per_unit_revenue_usd": 25.799850000000003
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1187.65 USD,负利润,无意义出差。",
-            "roi_pct": -91.0949702780441,
-            "net_profit_usd": -1187.650675,
-            "total_revenue_usd": 116.09932500000001,
-            "total_cost_usd": 1303.75,
-            "breakeven_sell_price_usd": 333.0140485312899,
-            "hours_used": 1.25,
-            "delta_roi_pct": -1.8898865960357512,
-            "delta_net_profit": -121.64992500000017,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1066.00 USD,负利润,无意义出差。",
-            "roi_pct": -89.20508368200835,
-            "net_profit_usd": -1066.00075,
-            "total_revenue_usd": 128.99925000000002,
-            "total_cost_usd": 1195.0,
-            "breakeven_sell_price_usd": 305.23627075351214,
-            "hours_used": 1.25,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1005.90 USD,负利润,无意义出差。",
-            "roi_pct": -88.13254369825206,
-            "net_profit_usd": -1005.9007874999999,
-            "total_revenue_usd": 135.44921250000002,
-            "total_cost_usd": 1141.35,
-            "breakeven_sell_price_usd": 291.53256704980845,
-            "hours_used": 1.25,
-            "delta_roi_pct": 1.0725399837562861,
-            "delta_net_profit": 60.09996250000006,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 143.33,
+          "breakeven_sell_price_usd": 274.71,
+          "hours_used": 1.25
+        }
       },
       "50": {
         "decision": {
           "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1300.01 USD,负利润,无意义出差。",
-          "roi_pct": -50.19333976833976,
-          "net_profit_usd": -1300.0075,
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1156.67 USD,负利润,无意义出差。",
+          "roi_pct": -44.66,
+          "net_profit_usd": -1156.67,
           "total_cost_usd": 2590.0,
-          "total_revenue_usd": 1289.9925,
-          "breakeven_sell_price_usd": 66.15581098339719,
-          "hours_used": 12.5,
-          "per_unit_cost_usd": 26.0,
-          "per_unit_revenue_usd": 25.799850000000003
-        },
-        "scenarios": [
-          {
-            "name": "保守",
-            "description": "保守 (下行): 售价 -10%, 成本 +5~10%, 时薪 +20% — 模拟市场降温与采购涨价。",
-            "shifts": {
-              "sell_price_factor": 0.9,
-              "purchase_price_factor": 1.05,
-              "tariff_factor": 1.1,
-              "shipping_factor": 1.1,
-              "flight_factor": 1.1,
-              "hotel_factor": 1.1,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.2
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1652.51 USD,负利润,无意义出差。",
-            "roi_pct": -58.734912031277766,
-            "net_profit_usd": -1652.5067499999998,
-            "total_revenue_usd": 1160.9932500000002,
-            "total_cost_usd": 2813.5,
-            "breakeven_sell_price_usd": 71.86462324393358,
-            "hours_used": 12.5,
-            "delta_roi_pct": -8.541572262938004,
-            "delta_net_profit": -352.49924999999985,
-            "cross_check": ""
-          },
-          {
-            "name": "中性",
-            "description": "中性 (基线): 所有倍数 = 1.0,等同当前 judge() 单点判定。",
-            "shifts": {
-              "sell_price_factor": 1.0,
-              "purchase_price_factor": 1.0,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 1.0,
-              "hotel_factor": 1.0,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 1.0
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1300.01 USD,负利润,无意义出差。",
-            "roi_pct": -50.19333976833976,
-            "net_profit_usd": -1300.0075,
-            "total_revenue_usd": 1289.9925,
-            "total_cost_usd": 2590.0,
-            "breakeven_sell_price_usd": 66.15581098339719,
-            "hours_used": 12.5,
-            "delta_roi_pct": 0.0,
-            "delta_net_profit": 0.0,
-            "cross_check": ""
-          },
-          {
-            "name": "乐观",
-            "description": "乐观 (上行): 售价 +5%, 采购 -3%, 机票/酒店 -5%, 时薪 -10% — 模拟压价成功与时间节省。",
-            "shifts": {
-              "sell_price_factor": 1.05,
-              "purchase_price_factor": 0.97,
-              "tariff_factor": 1.0,
-              "shipping_factor": 1.0,
-              "flight_factor": 0.95,
-              "hotel_factor": 0.95,
-              "minutes_per_unit_factor": 1.0,
-              "target_hourly_factor": 0.9
-            },
-            "level": "不建议",
-            "reason": "扣除机票/酒店/时间成本后净利润为 -1131.01 USD,负利润,无意义出差。",
-            "roi_pct": -45.504239589619786,
-            "net_profit_usd": -1131.0078749999998,
-            "total_revenue_usd": 1354.4921250000002,
-            "total_cost_usd": 2485.5,
-            "breakeven_sell_price_usd": 63.486590038314176,
-            "hours_used": 12.5,
-            "delta_roi_pct": 4.6891001787199755,
-            "delta_net_profit": 168.99962500000015,
-            "cross_check": ""
-          }
-        ],
-        "legs": [
-          {
-            "kind": "flight",
-            "label": "PVG → NRT",
-            "location": "Shanghai",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "NH 920 / JL 870 区间",
-            "seq": 1
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → LAX",
-            "location": "Tokyo",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 105 直飞",
-            "seq": 2
-          },
-          {
-            "kind": "hotel",
-            "label": "Rodeway Inn LAX 2N",
-            "location": "Los Angeles",
-            "cost_usd": 240.0,
-            "duration_min": 0.0,
-            "notes": "机场附近, 接送方便",
-            "seq": 3
-          },
-          {
-            "kind": "shop",
-            "label": "Bic Camera LA / Target /  CVS",
-            "location": "Los Angeles",
-            "cost_usd": 0.0,
-            "duration_min": 240.0,
-            "notes": "按商机清单采购",
-            "seq": 4
-          },
-          {
-            "kind": "flight",
-            "label": "LAX → NRT",
-            "location": "Los Angeles",
-            "cost_usd": 540.0,
-            "duration_min": 660.0,
-            "notes": "NH 106 直飞",
-            "seq": 5
-          },
-          {
-            "kind": "flight",
-            "label": "NRT → PVG",
-            "location": "Tokyo",
-            "cost_usd": 150.0,
-            "duration_min": 200.0,
-            "notes": "回程",
-            "seq": 6
-          }
-        ]
+          "total_revenue_usd": 1433.33,
+          "breakeven_sell_price_usd": 59.54,
+          "hours_used": 12.5
+        }
+      }
+    },
+    "JP-POLA-BA-CREAM-50": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -895.49 USD,负利润,无意义出差。",
+          "roi_pct": -69.93,
+          "net_profit_usd": -895.49,
+          "total_cost_usd": 1280.49,
+          "total_revenue_usd": 385.0,
+          "breakeven_sell_price_usd": 1280.49,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -317.43 USD,负利润,无意义出差。",
+          "roi_pct": -14.16,
+          "net_profit_usd": -317.43,
+          "total_cost_usd": 2242.43,
+          "total_revenue_usd": 1925.0,
+          "breakeven_sell_price_usd": 448.49,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 47.3% 高于目标 15.0%,净利润 6185.67 USD。",
+          "roi_pct": 47.35,
+          "net_profit_usd": 6185.67,
+          "total_cost_usd": 13064.33,
+          "total_revenue_usd": 19250.0,
+          "breakeven_sell_price_usd": 261.29,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-SUQQU-LOOSEPOWDER-13": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1020.00 USD,负利润,无意义出差。",
+          "roi_pct": -93.32,
+          "net_profit_usd": -1020.0,
+          "total_cost_usd": 1093.0,
+          "total_revenue_usd": 73.0,
+          "breakeven_sell_price_usd": 1093.0,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -939.98 USD,负利润,无意义出差。",
+          "roi_pct": -72.03,
+          "net_profit_usd": -939.98,
+          "total_cost_usd": 1304.98,
+          "total_revenue_usd": 365.0,
+          "breakeven_sell_price_usd": 261.0,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -39.83 USD,负利润,无意义出差。",
+          "roi_pct": -1.08,
+          "net_profit_usd": -39.83,
+          "total_cost_usd": 3689.83,
+          "total_revenue_usd": 3650.0,
+          "breakeven_sell_price_usd": 73.8,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-SUQQU-CUSHION-01": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1001.00 USD,负利润,无意义出差。",
+          "roi_pct": -90.92,
+          "net_profit_usd": -1001.0,
+          "total_cost_usd": 1101.0,
+          "total_revenue_usd": 100.0,
+          "breakeven_sell_price_usd": 1101.0,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -844.98 USD,负利润,无意义出差。",
+          "roi_pct": -62.82,
+          "net_profit_usd": -844.98,
+          "total_cost_usd": 1344.98,
+          "total_revenue_usd": 500.0,
+          "breakeven_sell_price_usd": 269.0,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 22.3% 高于目标 15.0%,净利润 910.17 USD。",
+          "roi_pct": 22.25,
+          "net_profit_usd": 910.17,
+          "total_cost_usd": 4089.83,
+          "total_revenue_usd": 5000.0,
+          "breakeven_sell_price_usd": 81.8,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-ALBION-DERMA-40": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -648.00 USD,负利润,无意义出差。",
+          "roi_pct": -53.87,
+          "net_profit_usd": -648.0,
+          "total_cost_usd": 1203.0,
+          "total_revenue_usd": 555.0,
+          "breakeven_sell_price_usd": 1203.0,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 49.6% 高于目标 15.0%,净利润 920.02 USD。",
+          "roi_pct": 49.6,
+          "net_profit_usd": 920.02,
+          "total_cost_usd": 1854.98,
+          "total_revenue_usd": 2775.0,
+          "breakeven_sell_price_usd": 371.0,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 202.0% 高于目标 15.0%,净利润 18560.17 USD。",
+          "roi_pct": 201.96,
+          "net_profit_usd": 18560.17,
+          "total_cost_usd": 9189.83,
+          "total_revenue_usd": 27750.0,
+          "breakeven_sell_price_usd": 183.8,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-THREE-HADAH-100": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -983.00 USD,负利润,无意义出差。",
+          "roi_pct": -89.12,
+          "net_profit_usd": -983.0,
+          "total_cost_usd": 1103.0,
+          "total_revenue_usd": 120.0,
+          "breakeven_sell_price_usd": 1103.0,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -754.98 USD,负利润,无意义出差。",
+          "roi_pct": -55.72,
+          "net_profit_usd": -754.98,
+          "total_cost_usd": 1354.98,
+          "total_revenue_usd": 600.0,
+          "breakeven_sell_price_usd": 271.0,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 43.2% 高于目标 15.0%,净利润 1810.17 USD。",
+          "roi_pct": 43.2,
+          "net_profit_usd": 1810.17,
+          "total_cost_usd": 4189.83,
+          "total_revenue_usd": 6000.0,
+          "breakeven_sell_price_usd": 83.8,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-SHISEIDO-FSLX-REGEN-50": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -969.67 USD,负利润,无意义出差。",
+          "roi_pct": -77.59,
+          "net_profit_usd": -969.67,
+          "total_cost_usd": 1249.67,
+          "total_revenue_usd": 280.0,
+          "breakeven_sell_price_usd": 1249.67,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -688.33 USD,负利润,无意义出差。",
+          "roi_pct": -32.96,
+          "net_profit_usd": -688.33,
+          "total_cost_usd": 2088.33,
+          "total_revenue_usd": 1400.0,
+          "breakeven_sell_price_usd": 417.67,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 21.5% 高于目标 15.0%,净利润 2476.67 USD。",
+          "roi_pct": 21.49,
+          "net_profit_usd": 2476.67,
+          "total_cost_usd": 11523.33,
+          "total_revenue_usd": 14000.0,
+          "breakeven_sell_price_usd": 230.47,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-THREE-HADAH-LOTION-30": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1015.34 USD,负利润,无意义出差。",
+          "roi_pct": -94.42,
+          "net_profit_usd": -1015.34,
+          "total_cost_usd": 1075.34,
+          "total_revenue_usd": 60.0,
+          "breakeven_sell_price_usd": 1075.34,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -916.68 USD,负利润,无意义出差。",
+          "roi_pct": -75.34,
+          "net_profit_usd": -916.68,
+          "total_cost_usd": 1216.68,
+          "total_revenue_usd": 300.0,
+          "breakeven_sell_price_usd": 243.34,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 6.9% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 6.88,
+          "net_profit_usd": 193.17,
+          "total_cost_usd": 2806.83,
+          "total_revenue_usd": 3000.0,
+          "breakeven_sell_price_usd": 56.14,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-POLA-BA-LOTION-120": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1037.67 USD,负利润,无意义出差。",
+          "roi_pct": -92.02,
+          "net_profit_usd": -1037.67,
+          "total_cost_usd": 1127.67,
+          "total_revenue_usd": 90.0,
+          "breakeven_sell_price_usd": 1127.67,
+          "hours_used": 0.08
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1028.33 USD,负利润,无意义出差。",
+          "roi_pct": -69.56,
+          "net_profit_usd": -1028.33,
+          "total_cost_usd": 1478.33,
+          "total_revenue_usd": 450.0,
+          "breakeven_sell_price_usd": 295.67,
+          "hours_used": 0.42
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -923.33 USD,负利润,无意义出差。",
+          "roi_pct": -17.03,
+          "net_profit_usd": -923.33,
+          "total_cost_usd": 5423.33,
+          "total_revenue_usd": 4500.0,
+          "breakeven_sell_price_usd": 108.47,
+          "hours_used": 4.17
+        }
+      }
+    },
+    "JP-KAPITAL-BORO-JKT": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -890.13 USD,负利润,无意义出差。",
+          "roi_pct": -65.29,
+          "net_profit_usd": -890.13,
+          "total_cost_usd": 1363.33,
+          "total_revenue_usd": 473.2,
+          "breakeven_sell_price_usd": 1498.17,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -290.67 USD,负利润,无意义出差。",
+          "roi_pct": -10.94,
+          "net_profit_usd": -290.67,
+          "total_cost_usd": 2656.67,
+          "total_revenue_usd": 2366.0,
+          "breakeven_sell_price_usd": 583.88,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 37.5% 高于目标 15.0%,净利润 6453.33 USD。",
+          "roi_pct": 37.5,
+          "net_profit_usd": 6453.33,
+          "total_cost_usd": 17206.67,
+          "total_revenue_usd": 23660.0,
+          "breakeven_sell_price_usd": 378.17,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-CDG-PLAY-CTN": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1031.08 USD,负利润,无意义出差。",
+          "roi_pct": -70.46,
+          "net_profit_usd": -1031.08,
+          "total_cost_usd": 1463.33,
+          "total_revenue_usd": 432.25,
+          "breakeven_sell_price_usd": 1608.06,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -995.42 USD,负利润,无意义出差。",
+          "roi_pct": -31.53,
+          "net_profit_usd": -995.42,
+          "total_cost_usd": 3156.67,
+          "total_revenue_usd": 2161.25,
+          "breakeven_sell_price_usd": 693.77,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -594.17 USD,负利润,无意义出差。",
+          "roi_pct": -2.68,
+          "net_profit_usd": -594.17,
+          "total_cost_usd": 22206.67,
+          "total_revenue_usd": 21612.5,
+          "breakeven_sell_price_usd": 488.06,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-HUMANMADE-TEE-GRAPHIC": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -990.83 USD,负利润,无意义出差。",
+          "roi_pct": -90.07,
+          "net_profit_usd": -990.83,
+          "total_cost_usd": 1100.03,
+          "total_revenue_usd": 109.2,
+          "breakeven_sell_price_usd": 1208.83,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -794.17 USD,负利润,无意义出差。",
+          "roi_pct": -59.26,
+          "net_profit_usd": -794.17,
+          "total_cost_usd": 1340.17,
+          "total_revenue_usd": 546.0,
+          "breakeven_sell_price_usd": 294.54,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 35.1% 高于目标 15.0%,净利润 1418.33 USD。",
+          "roi_pct": 35.09,
+          "net_profit_usd": 1418.33,
+          "total_cost_usd": 4041.67,
+          "total_revenue_usd": 5460.0,
+          "breakeven_sell_price_usd": 88.83,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-SACAI-NIKE-LDW": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -826.32 USD,负利润,无意义出差。",
+          "roi_pct": -70.23,
+          "net_profit_usd": -826.32,
+          "total_cost_usd": 1176.67,
+          "total_revenue_usd": 350.35,
+          "breakeven_sell_price_usd": 1293.04,
+          "hours_used": 0.25
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 1.6% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 1.65,
+          "net_profit_usd": 28.4,
+          "total_cost_usd": 1723.35,
+          "total_revenue_usd": 1751.75,
+          "breakeven_sell_price_usd": 378.76,
+          "hours_used": 1.25
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 122.5% 高于目标 15.0%,净利润 9644.00 USD。",
+          "roi_pct": 122.49,
+          "net_profit_usd": 9644.0,
+          "total_cost_usd": 7873.5,
+          "total_revenue_usd": 17517.5,
+          "breakeven_sell_price_usd": 173.04,
+          "hours_used": 12.5
+        }
+      }
+    },
+    "JP-CE-CAVEMPT-TEE": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -990.05 USD,负利润,无意义出差。",
+          "roi_pct": -88.24,
+          "net_profit_usd": -990.05,
+          "total_cost_usd": 1122.0,
+          "total_revenue_usd": 131.95,
+          "breakeven_sell_price_usd": 1232.97,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -790.27 USD,负利润,无意义出差。",
+          "roi_pct": -54.5,
+          "net_profit_usd": -790.27,
+          "total_cost_usd": 1450.02,
+          "total_revenue_usd": 659.75,
+          "breakeven_sell_price_usd": 318.68,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 28.4% 高于目标 15.0%,净利润 1457.33 USD。",
+          "roi_pct": 28.35,
+          "net_profit_usd": 1457.33,
+          "total_cost_usd": 5140.17,
+          "total_revenue_usd": 6597.5,
+          "breakeven_sell_price_usd": 112.97,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-UNDERCOVER-ANATOMIC": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -932.46 USD,负利润,无意义出差。",
+          "roi_pct": -62.3,
+          "net_profit_usd": -932.46,
+          "total_cost_usd": 1496.66,
+          "total_revenue_usd": 564.2,
+          "breakeven_sell_price_usd": 1644.68,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -502.32 USD,负利润,无意义出差。",
+          "roi_pct": -15.11,
+          "net_profit_usd": -502.32,
+          "total_cost_usd": 3323.32,
+          "total_revenue_usd": 2821.0,
+          "breakeven_sell_price_usd": 730.4,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 18.2% 高于目标 15.0%,净利润 4336.83 USD。",
+          "roi_pct": 18.17,
+          "net_profit_usd": 4336.83,
+          "total_cost_usd": 23873.17,
+          "total_revenue_usd": 28210.0,
+          "breakeven_sell_price_usd": 524.68,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-VISVIM-ICT-JUMPER": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -936.91 USD,负利润,无意义出差。",
+          "roi_pct": -58.68,
+          "net_profit_usd": -936.91,
+          "total_cost_usd": 1596.66,
+          "total_revenue_usd": 659.75,
+          "breakeven_sell_price_usd": 1754.58,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -524.57 USD,负利润,无意义出差。",
+          "roi_pct": -13.72,
+          "net_profit_usd": -524.57,
+          "total_cost_usd": 3823.32,
+          "total_revenue_usd": 3298.75,
+          "breakeven_sell_price_usd": 840.29,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "谨慎",
+          "reason": "ROI 14.2% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 14.25,
+          "net_profit_usd": 4114.33,
+          "total_cost_usd": 28873.17,
+          "total_revenue_usd": 32987.5,
+          "breakeven_sell_price_usd": 634.58,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-WTAPS-MILITARY-JERSEY": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -993.18 USD,负利润,无意义出差。",
+          "roi_pct": -86.87,
+          "net_profit_usd": -993.18,
+          "total_cost_usd": 1143.33,
+          "total_revenue_usd": 150.15,
+          "breakeven_sell_price_usd": 1256.41,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -805.92 USD,负利润,无意义出差。",
+          "roi_pct": -51.77,
+          "net_profit_usd": -805.92,
+          "total_cost_usd": 1556.67,
+          "total_revenue_usd": 750.75,
+          "breakeven_sell_price_usd": 342.12,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 21.0% 高于目标 15.0%,净利润 1300.83 USD。",
+          "roi_pct": 20.96,
+          "net_profit_usd": 1300.83,
+          "total_cost_usd": 6206.67,
+          "total_revenue_usd": 7507.5,
+          "breakeven_sell_price_usd": 136.41,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-SONY-GM2-2470-28": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -763.92 USD,负利润,无意义出差。",
+          "roi_pct": -26.53,
+          "net_profit_usd": -763.92,
+          "total_cost_usd": 2879.0,
+          "total_revenue_usd": 2115.08,
+          "breakeven_sell_price_usd": 3129.35,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 3.3% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 3.33,
+          "net_profit_usd": 340.4,
+          "total_cost_usd": 10235.0,
+          "total_revenue_usd": 10575.4,
+          "breakeven_sell_price_usd": 2225.0,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "谨慎",
+          "reason": "ROI 13.7% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 13.73,
+          "net_profit_usd": 12764.0,
+          "total_cost_usd": 92990.0,
+          "total_revenue_usd": 105754.0,
+          "breakeven_sell_price_usd": 2021.52,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-SONY-GM2-70200-28": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -619.92 USD,负利润,无意义出差。",
+          "roi_pct": -19.4,
+          "net_profit_usd": -619.92,
+          "total_cost_usd": 3195.0,
+          "total_revenue_usd": 2575.08,
+          "breakeven_sell_price_usd": 3472.83,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 9.0% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 8.98,
+          "net_profit_usd": 1060.4,
+          "total_cost_usd": 11815.0,
+          "total_revenue_usd": 12875.4,
+          "breakeven_sell_price_usd": 2568.48,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 18.4% 高于目标 15.0%,净利润 19964.00 USD。",
+          "roi_pct": 18.35,
+          "net_profit_usd": 19964.0,
+          "total_cost_usd": 108790.0,
+          "total_revenue_usd": 128754.0,
+          "breakeven_sell_price_usd": 2365.0,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-CANON-RF-70200-28": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -491.92 USD,负利润,无意义出差。",
+          "roi_pct": -16.54,
+          "net_profit_usd": -491.92,
+          "total_cost_usd": 2975.0,
+          "total_revenue_usd": 2483.08,
+          "breakeven_sell_price_usd": 3233.7,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 15.9% 高于目标 15.0%,净利润 1700.40 USD。",
+          "roi_pct": 15.87,
+          "net_profit_usd": 1700.4,
+          "total_cost_usd": 10715.0,
+          "total_revenue_usd": 12415.4,
+          "breakeven_sell_price_usd": 2329.35,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 27.0% 高于目标 15.0%,净利润 26364.00 USD。",
+          "roi_pct": 26.96,
+          "net_profit_usd": 26364.0,
+          "total_cost_usd": 97790.0,
+          "total_revenue_usd": 124154.0,
+          "breakeven_sell_price_usd": 2125.87,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-SONY-GM-135-18": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1034.17 USD,负利润,无意义出差。",
+          "roi_pct": -38.47,
+          "net_profit_usd": -1034.17,
+          "total_cost_usd": 2688.33,
+          "total_revenue_usd": 1654.16,
+          "breakeven_sell_price_usd": 2922.1,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1010.85 USD,负利润,无意义出差。",
+          "roi_pct": -10.89,
+          "net_profit_usd": -1010.85,
+          "total_cost_usd": 9281.65,
+          "total_revenue_usd": 8270.8,
+          "breakeven_sell_price_usd": 2017.75,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -748.50 USD,负利润,无意义出差。",
+          "roi_pct": -0.9,
+          "net_profit_usd": -748.5,
+          "total_cost_usd": 83456.5,
+          "total_revenue_usd": 82708.0,
+          "breakeven_sell_price_usd": 1814.27,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-CANON-RF-50-12": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -826.59 USD,负利润,无意义出差。",
+          "roi_pct": -28.1,
+          "net_profit_usd": -826.59,
+          "total_cost_usd": 2941.67,
+          "total_revenue_usd": 2115.08,
+          "breakeven_sell_price_usd": 3197.47,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 0.3% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 0.26,
+          "net_profit_usd": 27.05,
+          "total_cost_usd": 10548.35,
+          "total_revenue_usd": 10575.4,
+          "breakeven_sell_price_usd": 2293.12,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "谨慎",
+          "reason": "ROI 10.0% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 10.02,
+          "net_profit_usd": 9630.5,
+          "total_cost_usd": 96123.5,
+          "total_revenue_usd": 105754.0,
+          "breakeven_sell_price_usd": 2089.64,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-CANON-R5-BODY": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 6.1% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 6.07,
+          "net_profit_usd": 194.75,
+          "total_cost_usd": 3208.33,
+          "total_revenue_usd": 3403.08,
+          "breakeven_sell_price_usd": 3487.32,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 43.2% 高于目标 15.0%,净利润 5133.75 USD。",
+          "roi_pct": 43.21,
+          "net_profit_usd": 5133.75,
+          "total_cost_usd": 11881.65,
+          "total_revenue_usd": 17015.4,
+          "breakeven_sell_price_usd": 2582.97,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 55.5% 高于目标 15.0%,净利润 60697.50 USD。",
+          "roi_pct": 55.45,
+          "net_profit_usd": 60697.5,
+          "total_cost_usd": 109456.5,
+          "total_revenue_usd": 170154.0,
+          "breakeven_sell_price_usd": 2379.49,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-DJI-MINI4PRO-FMC": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -979.39 USD,负利润,无意义出差。",
+          "roi_pct": -52.61,
+          "net_profit_usd": -979.39,
+          "total_cost_usd": 1861.67,
+          "total_revenue_usd": 882.28,
+          "breakeven_sell_price_usd": 2023.55,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -736.95 USD,负利润,无意义出差。",
+          "roi_pct": -14.31,
+          "net_profit_usd": -736.95,
+          "total_cost_usd": 5148.35,
+          "total_revenue_usd": 4411.4,
+          "breakeven_sell_price_usd": 1119.21,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 4.7% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 4.73,
+          "net_profit_usd": 1990.5,
+          "total_cost_usd": 42123.5,
+          "total_revenue_usd": 44114.0,
+          "breakeven_sell_price_usd": 915.73,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-LEICA-M11": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -132.93 USD,负利润,无意义出差。",
+          "roi_pct": -1.58,
+          "net_profit_usd": -132.93,
+          "total_cost_usd": 8408.33,
+          "total_revenue_usd": 8275.4,
+          "breakeven_sell_price_usd": 9139.49,
+          "hours_used": 0.5
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 9.2% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 9.23,
+          "net_profit_usd": 3495.35,
+          "total_cost_usd": 37881.65,
+          "total_revenue_usd": 41377.0,
+          "breakeven_sell_price_usd": 8235.14,
+          "hours_used": 2.5
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "谨慎",
+          "reason": "ROI 12.0% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 11.99,
+          "net_profit_usd": 44313.5,
+          "total_cost_usd": 369456.5,
+          "total_revenue_usd": 413770.0,
+          "breakeven_sell_price_usd": 8031.66,
+          "hours_used": 25.0
+        }
+      }
+    },
+    "JP-PKMN-151-ETB": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1024.35 USD,负利润,无意义出差。",
+          "roi_pct": -92.53,
+          "net_profit_usd": -1024.35,
+          "total_cost_usd": 1107.0,
+          "total_revenue_usd": 82.65,
+          "breakeven_sell_price_usd": 1272.42,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -961.77 USD,负利润,无意义出差。",
+          "roi_pct": -69.95,
+          "net_profit_usd": -961.77,
+          "total_cost_usd": 1375.02,
+          "total_revenue_usd": 413.25,
+          "breakeven_sell_price_usd": 316.1,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -257.67 USD,负利润,无意义出差。",
+          "roi_pct": -5.87,
+          "net_profit_usd": -257.67,
+          "total_cost_usd": 4390.17,
+          "total_revenue_usd": 4132.5,
+          "breakeven_sell_price_usd": 100.92,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-151-SR": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1004.73 USD,负利润,无意义出差。",
+          "roi_pct": -80.49,
+          "net_profit_usd": -1004.73,
+          "total_cost_usd": 1248.33,
+          "total_revenue_usd": 243.6,
+          "breakeven_sell_price_usd": 1434.87,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -863.67 USD,负利润,无意义出差。",
+          "roi_pct": -41.49,
+          "net_profit_usd": -863.67,
+          "total_cost_usd": 2081.67,
+          "total_revenue_usd": 1218.0,
+          "breakeven_sell_price_usd": 478.54,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "ROI 6.3% 低于最低阈值 10.0%,不值得冒险。",
+          "roi_pct": 6.31,
+          "net_profit_usd": 723.33,
+          "total_cost_usd": 11456.67,
+          "total_revenue_usd": 12180.0,
+          "breakeven_sell_price_usd": 263.37,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-ANCIENT": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -992.43 USD,负利润,无意义出差。",
+          "roi_pct": -89.77,
+          "net_profit_usd": -992.43,
+          "total_cost_usd": 1105.53,
+          "total_revenue_usd": 113.1,
+          "breakeven_sell_price_usd": 1270.73,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -802.17 USD,负利润,无意义出差。",
+          "roi_pct": -58.65,
+          "net_profit_usd": -802.17,
+          "total_cost_usd": 1367.67,
+          "total_revenue_usd": 565.5,
+          "breakeven_sell_price_usd": 314.41,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 31.0% 高于目标 15.0%,净利润 1338.33 USD。",
+          "roi_pct": 31.0,
+          "net_profit_usd": 1338.33,
+          "total_cost_usd": 4316.67,
+          "total_revenue_usd": 5655.0,
+          "breakeven_sell_price_usd": 99.23,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-SV-AMA": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -976.40 USD,负利润,无意义出差。",
+          "roi_pct": -88.91,
+          "net_profit_usd": -976.4,
+          "total_cost_usd": 1098.2,
+          "total_revenue_usd": 121.8,
+          "breakeven_sell_price_usd": 1262.3,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -722.02 USD,负利润,无意义出差。",
+          "roi_pct": -54.25,
+          "net_profit_usd": -722.02,
+          "total_cost_usd": 1331.02,
+          "total_revenue_usd": 609.0,
+          "breakeven_sell_price_usd": 305.98,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 54.2% 高于目标 15.0%,净利润 2139.83 USD。",
+          "roi_pct": 54.17,
+          "net_profit_usd": 2139.83,
+          "total_cost_usd": 3950.17,
+          "total_revenue_usd": 6090.0,
+          "breakeven_sell_price_usd": 90.81,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-SV-CRS": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1002.50 USD,负利润,无意义出差。",
+          "roi_pct": -91.29,
+          "net_profit_usd": -1002.5,
+          "total_cost_usd": 1098.2,
+          "total_revenue_usd": 95.7,
+          "breakeven_sell_price_usd": 1262.3,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -852.52 USD,负利润,无意义出差。",
+          "roi_pct": -64.05,
+          "net_profit_usd": -852.52,
+          "total_cost_usd": 1331.02,
+          "total_revenue_usd": 478.5,
+          "breakeven_sell_price_usd": 305.98,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 21.1% 高于目标 15.0%,净利润 834.83 USD。",
+          "roi_pct": 21.13,
+          "net_profit_usd": 834.83,
+          "total_cost_usd": 3950.17,
+          "total_revenue_usd": 4785.0,
+          "breakeven_sell_price_usd": 90.81,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-SV-SLP": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1035.16 USD,负利润,无意义出差。",
+          "roi_pct": -97.38,
+          "net_profit_usd": -1035.16,
+          "total_cost_usd": 1063.0,
+          "total_revenue_usd": 27.84,
+          "breakeven_sell_price_usd": 1221.84,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -1015.82 USD,负利润,无意义出差。",
+          "roi_pct": -87.95,
+          "net_profit_usd": -1015.82,
+          "total_cost_usd": 1155.02,
+          "total_revenue_usd": 139.2,
+          "breakeven_sell_price_usd": 265.52,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -798.17 USD,负利润,无意义出差。",
+          "roi_pct": -36.44,
+          "net_profit_usd": -798.17,
+          "total_cost_usd": 2190.17,
+          "total_revenue_usd": 1392.0,
+          "breakeven_sell_price_usd": 50.35,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-PSA": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -104.33 USD,负利润,无意义出差。",
+          "roi_pct": -9.09,
+          "net_profit_usd": -104.33,
+          "total_cost_usd": 1148.33,
+          "total_revenue_usd": 1044.0,
+          "breakeven_sell_price_usd": 1319.92,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 230.0% 高于目标 15.0%,净利润 3638.33 USD。",
+          "roi_pct": 230.03,
+          "net_profit_usd": 3638.33,
+          "total_cost_usd": 1581.67,
+          "total_revenue_usd": 5220.0,
+          "breakeven_sell_price_usd": 363.6,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "建议",
+          "reason": "ROI 708.5% 高于目标 15.0%,净利润 45743.33 USD。",
+          "roi_pct": 708.47,
+          "net_profit_usd": 45743.33,
+          "total_cost_usd": 6456.67,
+          "total_revenue_usd": 52200.0,
+          "breakeven_sell_price_usd": 148.43,
+          "hours_used": 8.33
+        }
+      }
+    },
+    "JP-PKMN-SEALED": {
+      "1": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -997.50 USD,负利润,无意义出差。",
+          "roi_pct": -82.1,
+          "net_profit_usd": -997.5,
+          "total_cost_usd": 1215.0,
+          "total_revenue_usd": 217.5,
+          "breakeven_sell_price_usd": 1396.56,
+          "hours_used": 0.17
+        }
+      },
+      "5": {
+        "decision": {
+          "level": "不建议",
+          "reason": "扣除机票/酒店/时间成本后净利润为 -827.52 USD,负利润,无意义出差。",
+          "roi_pct": -43.21,
+          "net_profit_usd": -827.52,
+          "total_cost_usd": 1915.02,
+          "total_revenue_usd": 1087.5,
+          "breakeven_sell_price_usd": 440.23,
+          "hours_used": 0.83
+        }
+      },
+      "50": {
+        "decision": {
+          "level": "谨慎",
+          "reason": "ROI 11.1% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
+          "roi_pct": 11.08,
+          "net_profit_usd": 1084.83,
+          "total_cost_usd": 9790.17,
+          "total_revenue_usd": 10875.0,
+          "breakeven_sell_price_usd": 225.06,
+          "hours_used": 8.33
+        }
       }
     }
   },
