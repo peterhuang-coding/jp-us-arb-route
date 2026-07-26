@@ -1,0 +1,9 @@
+data/*.db
+data/*.db-journal
+exports/*.pdf
+exports/*.md
+__pycache__/
+.venv/
+node_modules/
+.DS_Store
+
