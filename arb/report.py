@@ -19,6 +19,7 @@ from typing import Iterable, Optional
 
 from . import db, freshness
 from .decision import Decision, DecisionInputs, judge
+from .scenarios import ScenarioResult, summarize as scenarios_summarize
 
 
 # ---------- helpers shared by md + html ----------
@@ -47,7 +48,25 @@ def report_filename(sku: str, dest_city: str, ext: str = "md") -> str:
 
 
 def decide_for(conn, sku: str, num_units: int, route_name: str):
-    """Load opp + route from DB, run judge(), return (opp, route, decision, legs)."""
+    """Load opp + route from DB, run judge(), return (opp, route, decision, legs).
+
+    Backward-compatible 4-tuple. The 中性 scenario is used as the canonical
+    decision (numerically identical to plain judge() under default shifts).
+    """
+    opp, route, decision, legs, _scenarios = decide_for_full(
+        conn, sku, num_units, route_name
+    )
+    return opp, route, decision, legs
+
+
+def decide_for_full(conn, sku: str, num_units: int, route_name: str):
+    """Same as decide_for but also returns the 3-band scenarios.
+
+    Returns: (opp, route, decision, legs, scenarios)
+      * scenarios: list of 3 ScenarioResult [保守, 中性, 乐观]. The middle one
+        is numerically identical to ``decision`` so existing callers that
+        rely on the single Decision keep their guarantees.
+    """
     opp = db.get_opportunity(conn, sku)
     if opp is None:
         raise ValueError(f"opportunity not found: {sku}")
@@ -70,14 +89,124 @@ def decide_for(conn, sku: str, num_units: int, route_name: str):
         target_roi_pct=route["target_roi_pct"],
         min_roi_pct=route["min_roi_pct"],
     )
-    decision = judge(di)
+    scenarios = scenarios_summarize(di)
+    decision = scenarios[1].decision  # 中性 band = canonical judge() result
     legs = db.list_route_legs(conn, route["id"])
-    return opp, route, decision, legs
+    return opp, route, decision, legs, scenarios
+
+
+# ---------- scenario blocks (shared by md + html) ----------
+
+def _scenario_block_markdown(opp, route, scenarios: list[ScenarioResult]) -> str:
+    """Markdown block: 保守 / 中性 / 乐观 table + delta + cross-check."""
+    L: list[str] = []
+    L.append("## 三档情景分析 (保守 / 中性 / 乐观)")
+    L.append("")
+    L.append("> 单一数字估算易高估收益。下方三档把售价、采购、关税/物流、机票/酒店、时薪做上下行扰动，"
+             "便于看到「最坏情况下这趟还值不值得去」。中性等同当前决策。")
+    L.append("")
+    L.append("| 情景 | 售价(USD) | 采购价(USD) | 机票(USD) | 酒店(USD) | 时薪(USD) | 净利润(USD) | ROI | 等级 |")
+    L.append("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |")
+    for s in scenarios:
+        icon, _, _ = _level_badge(s.decision.level)
+        sh = s.shifts
+        shifted_sell = opp["sell_price_usd"] * sh.sell_price_factor
+        shifted_purchase = opp["purchase_price_usd"] * sh.purchase_price_factor
+        shifted_flight = route["flight_cost_usd"] * sh.flight_factor
+        shifted_hotel = route["hotel_cost_usd"] * sh.hotel_factor
+        shifted_hourly = route["target_hourly_usd"] * sh.target_hourly_factor
+        L.append(
+            f"| **{icon} {s.name}** | {_format_money(shifted_sell)} | "
+            f"{_format_money(shifted_purchase)} | "
+            f"{_format_money(shifted_flight)} | "
+            f"{_format_money(shifted_hotel)} | "
+            f"{_format_money(shifted_hourly)} | "
+            f"{_format_money(s.decision.net_profit_usd)} | "
+            f"{s.decision.roi_pct:.1f}% | {s.decision.level} |"
+        )
+    L.append("")
+    L.append("**与中性的差值**:")
+    for s in scenarios:
+        if s.name == "中性":
+            continue
+        sign_roi = "+" if s.delta_roi_pct >= 0 else ""
+        sign_np = "+" if s.delta_net_profit >= 0 else ""
+        L.append(
+            f"- {s.name}: ROI {sign_roi}{s.delta_roi_pct:.1f}pp, "
+            f"净利润 {sign_np}{_format_money(s.delta_net_profit)}"
+        )
+    L.append("")
+    for s in scenarios:
+        if s.cross_check:
+            L.append(f"> {s.cross_check}")
+    L.append("")
+    return "\n".join(L)
+
+
+def _scenario_block_html(opp, route, scenarios: list[ScenarioResult]) -> str:
+    """HTML block: same content, styled for the SPA report."""
+    rows = []
+    for s in scenarios:
+        icon, _, _ = _level_badge(s.decision.level)
+        sh = s.shifts
+        shifted_sell = opp["sell_price_usd"] * sh.sell_price_factor
+        shifted_purchase = opp["purchase_price_usd"] * sh.purchase_price_factor
+        shifted_flight = route["flight_cost_usd"] * sh.flight_factor
+        shifted_hotel = route["hotel_cost_usd"] * sh.hotel_factor
+        shifted_hourly = route["target_hourly_usd"] * sh.target_hourly_factor
+        delta_roi = (
+            f'<span class="delta-pp">{"+" if s.delta_roi_pct >= 0 else ""}'
+            f'{s.delta_roi_pct:.1f}pp</span>' if s.name != "中性" else "—"
+        )
+        delta_np = (
+            f'<span class="delta-usd">{"+" if s.delta_net_profit >= 0 else ""}'
+            f'${s.delta_net_profit:,.2f}</span>' if s.name != "中性" else "—"
+        )
+        rows.append(
+            f'<tr><td><strong>{icon} {html.escape(s.name)}</strong></td>'
+            f'<td>{_format_money(shifted_sell)}</td>'
+            f'<td>{_format_money(shifted_purchase)}</td>'
+            f'<td>{_format_money(shifted_flight)}</td>'
+            f'<td>{_format_money(shifted_hotel)}</td>'
+            f'<td>{_format_money(shifted_hourly)}</td>'
+            f'<td>{_format_money(s.decision.net_profit_usd)}</td>'
+            f'<td>{s.decision.roi_pct:.1f}%</td>'
+            f'<td>{s.decision.level}</td>'
+            f'<td>{delta_roi}</td>'
+            f'<td>{delta_np}</td></tr>'
+        )
+    cross_checks = "".join(
+        f'<div class="scenario-cross-check">{html.escape(s.cross_check)}</div>'
+        for s in scenarios if s.cross_check
+    )
+    if not cross_checks:
+        cross_checks = ""
+    return (
+        '<h2>三档情景分析 (保守 / 中性 / 乐观)</h2>'
+        '<p class="scenario-intro">单一数字估算易高估收益。下表把售价、采购、关税/物流、'
+        '机票/酒店、时薪做上下行扰动；中性等同当前决策。</p>'
+        '<table class="scenario-table">'
+        '<thead><tr>'
+        '<th>情景</th><th>售价</th><th>采购价</th><th>机票</th><th>酒店</th>'
+        '<th>时薪</th><th>净利润</th><th>ROI</th><th>等级</th>'
+        '<th>Δ ROI</th><th>Δ 净利</th>'
+        '</tr></thead>'
+        f'<tbody>{"".join(rows)}</tbody>'
+        '</table>'
+        f'{cross_checks}'
+    )
 
 
 # ---------- Markdown ----------
 
-def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str:
+def render_markdown(
+    opp,
+    route,
+    legs,
+    num_units: int,
+    decision: Decision,
+    scenarios: Optional[list[ScenarioResult]] = None,
+) -> str:
     icon, level_text, _ = _level_badge(decision.level)
     freshness_ts = opp["data_freshness_ts"]
     verified = "✅ 已验证" if opp["verified"] else "⚠️ 未验证"
@@ -137,6 +266,8 @@ def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str
     L.append(f"- 耗时: {decision.hours_used:.1f}h / {route['hours_available']:.1f}h")
     L.append(f"- 盈亏平衡售价: {_format_money(decision.breakeven_sell_price_usd)}")
     L.append("")
+    if scenarios:
+        L.append(_scenario_block_markdown(opp, route, scenarios))
     L.append("## 风险与提示")
     L.append("- 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)")
     L.append("- 品牌方限购政策可能随时调整;参考各 SKU 实际限购")
@@ -192,6 +323,12 @@ ol.timeline .leg-notes { display: block; color: var(--muted); font-size: 12px; m
 .freshness-badge.aging { background: #b06000; color: #fff; }
 .freshness-badge.fresh { background: #137333; color: #fff; }
 .freshness-age { color: var(--muted); font-size: 12px; }
+.scenario-table { margin-top: 6px; font-size: 12px; }
+.scenario-table th, .scenario-table td { padding: 4px 8px; }
+.scenario-intro { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+.scenario-cross-check { margin-top: 8px; padding: 8px 12px; background: #fef7e0; border-left: 4px solid #b06000; border-radius: 4px; font-size: 13px; color: var(--warn); }
+.delta-pp { color: var(--muted); font-variant-numeric: tabular-nums; }
+.delta-usd { color: var(--muted); font-variant-numeric: tabular-nums; }
 @media print { body { padding: 0; background: #fff; } .report { border: none; } }
 """
 
@@ -256,6 +393,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
     ⚠️ 数据新鲜度: <span class="freshness-badge {stale_class}">{freshness_badge}</span> ({freshness_age})。
   </div>
+  {scenario_block}
   {pending_proposals_html}
   {stale_warning_html}
 </div>
@@ -337,7 +475,14 @@ def _pending_proposals_html(opp, pending: list[dict]) -> str:
     )
 
 
-def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
+def render_html(
+    opp,
+    route,
+    legs,
+    num_units: int,
+    decision: Decision,
+    scenarios: Optional[list[ScenarioResult]] = None,
+) -> str:
     icon, level_text, _ = _level_badge(decision.level)
     badge_class = {"建议": "ok", "谨慎": "warn", "不建议": "bad"}[decision.level]
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
@@ -358,6 +503,9 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         if fv["is_stale"] else ""
     )
     pending_proposals_html = _pending_proposals_html(opp, pending)
+    scenario_block = (
+        _scenario_block_html(opp, route, scenarios) if scenarios else ""
+    )
     return _HTML_TEMPLATE.format(
         title=f"决策报告 — {opp['name']}",
         css=_HTML_CSS,
@@ -400,6 +548,7 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         hours_used=f"{decision.hours_used:.1f}h",
         hours_available=f"{route['hours_available']:.1f}h",
         breakeven=_format_money(decision.breakeven_sell_price_usd),
+        scenario_block=scenario_block,
         pending_proposals_html=pending_proposals_html,
     )
 

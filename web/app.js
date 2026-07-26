@@ -166,6 +166,10 @@ function app() {
       if (f.status === 'stale' || f.status === 'missing' || f.status === 'future') return 'stale';
       return f.status;  // fresh | aging
     },
+    scenarioRowClass(s) {
+      // Highlight the neutral row so it's visually distinct from the bands.
+      return s.name === '中性' ? 'neutral-band' : '';
+    },
     freshAge(f) {
       if (!f || f.age_days === null || f.age_days === undefined) return '未知';
       const d = f.age_days;

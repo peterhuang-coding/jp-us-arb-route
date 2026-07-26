@@ -160,6 +160,41 @@
           </div>
         </div>
 
+        <!-- three-band scenarios (Round 5) -->
+        <details open x-show="currentDetail.scenarios">
+          <summary>三档情景分析 (保守 / 中性 / 乐观)</summary>
+          <p class="scenario-intro">单一数字估算易高估收益。下表把售价、采购、机票/酒店、时薪做上下行扰动;中性等同当前决策。</p>
+          <table class="scenario-table">
+            <thead>
+              <tr>
+                <th>情景</th>
+                <th>净利润</th>
+                <th>ROI</th>
+                <th>等级</th>
+                <th>Δ ROI</th>
+                <th>Δ 净利</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="s in (currentDetail.scenarios || [])" :key="s.name">
+                <tr :class="scenarioRowClass(s)">
+                  <td><strong x-text="s.name"></strong></td>
+                  <td x-text="'$' + s.net_profit_usd.toFixed(2)"></td>
+                  <td x-text="s.roi_pct.toFixed(1) + '%'"></td>
+                  <td>
+                    <span class="badge" :class="badgeClass(s.level)" x-text="badgeText(s.level)"></span>
+                  </td>
+                  <td x-text="s.name === '中性' ? '—' : (s.delta_roi_pct >= 0 ? '+' : '') + s.delta_roi_pct.toFixed(1) + 'pp'"></td>
+                  <td x-text="s.name === '中性' ? '—' : (s.delta_net_profit >= 0 ? '+' : '') + '$' + s.delta_net_profit.toFixed(2)"></td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+          <template x-for="s in (currentDetail.scenarios || []).filter(x => x.cross_check)" :key="'cc-' + s.name">
+            <div class="scenario-cross-check" x-text="s.cross_check"></div>
+          </template>
+        </details>
+
         <!-- cost breakdown -->
         <details open>
           <summary>单件成本明细 (USD)</summary>

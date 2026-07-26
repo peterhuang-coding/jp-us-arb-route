@@ -46,10 +46,37 @@ def test_decide_returns_decision(scratch_db):
     assert out.returncode == 0
     assert "决策" in out.stdout
     assert "建议" in out.stdout or "谨慎" in out.stdout or "不建议" in out.stdout
+    # Round 5: scenarios now part of decide output.
+    assert "三档情景" in out.stdout
+    assert "保守" in out.stdout and "中性" in out.stdout and "乐观" in out.stdout
 
 
 def test_decide_rejects_invalid_inputs(scratch_db):
     out = _run("decide", "--sku", "JP-LUX-PATEK", "--units", "0")
+    assert out.returncode != 0
+    assert "error" in out.stderr.lower()
+
+
+def test_scenarios_cli_text(scratch_db):
+    out = _run("scenarios", "--sku", "JP-SKII-FT230", "--units", "5")
+    assert out.returncode == 0
+    assert "决策" in out.stdout
+    assert "三档情景" in out.stdout
+    assert "保守" in out.stdout and "中性" in out.stdout and "乐观" in out.stdout
+
+
+def test_scenarios_cli_json(scratch_db):
+    out = _run("scenarios", "--sku", "JP-SKII-FT230", "--units", "5", "--json")
+    assert out.returncode == 0
+    payload = json.loads(out.stdout)
+    assert payload["sku"] == "JP-SKII-FT230"
+    assert len(payload["scenarios"]) == 3
+    names = [s["name"] for s in payload["scenarios"]]
+    assert names == ["保守", "中性", "乐观"]
+
+
+def test_scenarios_cli_unknown_sku(scratch_db):
+    out = _run("scenarios", "--sku", "DOES-NOT-EXIST", "--units", "1")
     assert out.returncode != 0
     assert "error" in out.stderr.lower()
 

@@ -67,6 +67,28 @@ def test_decide_post_returns_decision(client):
     assert body["num_units"] == 10
     assert body["decision"]["level"] in ("建议", "谨慎", "不建议")
     assert isinstance(body["decision"]["roi_pct"], float)
+    # Round 5: scenarios returned with the canonical decision.
+    assert "scenarios" in body
+    assert [s["name"] for s in body["scenarios"]] == ["保守", "中性", "乐观"]
+    # 中性 band matches the canonical decision numerically.
+    neutral = body["scenarios"][1]
+    assert neutral["level"] == body["decision"]["level"]
+    assert abs(neutral["roi_pct"] - body["decision"]["roi_pct"]) < 1e-9
+    assert abs(neutral["net_profit_usd"] - body["decision"]["net_profit_usd"]) < 1e-9
+
+
+def test_decide_scenarios_cover_downside_upside_delta(client):
+    """Conservative ROI must be <= neutral <= optimistic (monotonic)."""
+    r = client.post("/api/decide", json={
+        "sku": "JP-DYSON-V12S", "num_units": 3, "route": "PVG-NRT-LAX-2N",
+    })
+    assert r.status_code == 200
+    scenarios = r.json()["scenarios"]
+    cons, neu, opt = scenarios
+    assert cons["delta_roi_pct"] <= 0
+    assert neu["delta_roi_pct"] == 0
+    assert opt["delta_roi_pct"] >= 0
+    assert cons["net_profit_usd"] <= neu["net_profit_usd"] <= opt["net_profit_usd"]
 
 
 def test_decide_404_for_unknown_sku(client):

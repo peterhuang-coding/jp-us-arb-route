@@ -320,3 +320,20 @@ ol.timeline li::before {
   gap: 8px;
 }
 .footer .db { font-family: monospace; }
+/* Round 5: three-band scenarios */
+.scenario-table { margin-top: 6px; font-size: 13px; }
+.scenario-table th, .scenario-table td { padding: 5px 8px; }
+.scenario-intro { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+.scenario-cross-check {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #fef7e0;
+  border-left: 4px solid var(--warn);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--warn);
+}
+
+/* Round 5: emphasize the neutral row inside the scenario table */
+.scenario-table tr.neutral-band td { background: #f8f9fa; }
+.scenario-table tr.neutral-band td:first-child { border-left: 3px solid var(--ok); }

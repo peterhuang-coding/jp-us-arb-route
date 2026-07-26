@@ -23,6 +23,7 @@ from .refresh import outcome_as_dict, refresh_opportunity
 from .verify import outcome_as_dict as verify_outcome_as_dict, verify_opportunity
 from .report import (
     decide_for,
+    decide_for_full,
     render_html,
     render_markdown,
     render_pdf,
@@ -51,7 +52,7 @@ def _print_opportunity(o, unit_profit: float | None = None) -> str:
     return "\n".join(lines)
 
 
-def _print_decision(d, opp, route, num_units: int) -> str:
+def _print_decision(d, opp, route, num_units: int, scenarios=None) -> str:
     L = [
         f"决策: {_fmt_level(d.level)}",
         f"理由: {d.reason}",
@@ -64,6 +65,20 @@ def _print_decision(d, opp, route, num_units: int) -> str:
         f"  耗时: {d.hours_used:.1f}h / {route['hours_available']:.1f}h",
         f"  盈亏平衡售价: ${d.breakeven_sell_price_usd:.2f}",
     ]
+    if scenarios:
+        L.append("")
+        L.append("三档情景:")
+        for s in scenarios:
+            sign_roi = "+" if s.delta_roi_pct >= 0 else ""
+            sign_np = "+" if s.delta_net_profit >= 0 else ""
+            L.append(
+                f"  [{_fmt_level(s.decision.level)}] {s.name}: "
+                f"净利润 ${s.decision.net_profit_usd:,.2f}  ROI {s.decision.roi_pct:.1f}%  "
+                f"(Δ ROI {sign_roi}{s.delta_roi_pct:.1f}pp, "
+                f"Δ 净利 {sign_np}${s.delta_net_profit:,.2f})"
+            )
+            if s.cross_check:
+                L.append(f"        {s.cross_check}")
     return "\n".join(L)
 
 
@@ -108,8 +123,11 @@ def cmd_list(args):
 
 def cmd_decide(args):
     conn = db.connect()
-    opp, route, d = _decide(conn, args.sku, args.units, args.route)
-    print(_print_decision(d, opp, route, args.units))
+    opp, route, decision, legs, scenarios = decide_for_full(
+        conn, args.sku, args.units, args.route
+    )
+    db.record_decision(conn, opp["id"], route["id"], args.units, decision)
+    print(_print_decision(decision, opp, route, args.units, scenarios))
     conn.close()
 
 
@@ -123,7 +141,9 @@ def cmd_report(args):
     """
     conn = db.connect()
     try:
-        opp, route, decision, legs = decide_for(conn, args.sku, args.units, args.route)
+        opp, route, decision, legs, scenarios = decide_for_full(
+            conn, args.sku, args.units, args.route
+        )
     except ValueError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
@@ -134,7 +154,7 @@ def cmd_report(args):
     # Resolve target: --out can be a file path or an existing directory.
     # No --out for md -> stdout; for html/pdf -> exports/<auto-name>.
     if fmt == "md":
-        body = render_markdown(opp, route, legs, args.units, decision)
+        body = render_markdown(opp, route, legs, args.units, decision, scenarios)
         if out is None:
             print(body)
         elif out.is_dir():
@@ -147,13 +167,13 @@ def cmd_report(args):
             out.write_text(body, encoding="utf-8")
             print(f"wrote {out}")
     elif fmt == "html":
-        body = render_html(opp, route, legs, args.units, decision)
+        body = render_html(opp, route, legs, args.units, decision, scenarios)
         target = _resolve_target(out, opp, route, "html")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(body, encoding="utf-8")
         print(f"wrote {target}")
     elif fmt == "pdf":
-        body = render_html(opp, route, legs, args.units, decision)
+        body = render_html(opp, route, legs, args.units, decision, scenarios)
         target = _resolve_target(out, opp, route, "pdf")
         render_pdf(body, target)
         print(f"wrote {target}")
@@ -282,6 +302,33 @@ def cmd_proposals(args):
         conn.close()
 
 
+def cmd_scenarios(args):
+    """Print the 保守 / 中性 / 乐观 three-band verdict for a SKU."""
+    conn = db.connect()
+    try:
+        try:
+            opp, route, decision, legs, scenarios = decide_for_full(
+                conn, args.sku, args.units, args.route
+            )
+        except ValueError as e:
+            print(f"error: {e}", file=sys.stderr)
+            return 1
+        if args.json:
+            out = {
+                "sku": opp["sku"],
+                "name": opp["name"],
+                "route": route["name"],
+                "num_units": args.units,
+                "scenarios": [s.as_dict() for s in scenarios],
+            }
+            print(json.dumps(out, ensure_ascii=False, indent=2))
+            return 0
+        print(_print_decision(decision, opp, route, args.units, scenarios))
+        return 0
+    finally:
+        conn.close()
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -337,6 +384,13 @@ def build_parser() -> argparse.ArgumentParser:
                        help="shorthand for --format pdf")
     p_rep.add_argument("--out", help="output file path or directory (default: cwd)")
 
+    p_sc = sub.add_parser("scenarios", help="show 保守/中性/乐观 three-band verdict")
+    p_sc.add_argument("--sku", required=True)
+    p_sc.add_argument("--units", type=int, required=True)
+    p_sc.add_argument("--route", default="PVG-NRT-LAX-2N")
+    p_sc.add_argument("--json", action="store_true",
+                       help="emit machine-readable JSON instead of text")
+
     return p
 
 
@@ -353,6 +407,7 @@ def main(argv: list[str] | None = None) -> int:
         "freshness": cmd_freshness,
         "verify": cmd_verify,
         "proposals": cmd_proposals,
+        "scenarios": cmd_scenarios,
     }.get(args.cmd)
     if handler is None:
         return 2

@@ -24,6 +24,7 @@ from .refresh import outcome_as_dict, refresh_opportunity
 from .verify import outcome_as_dict as verify_outcome_as_dict, verify_opportunity
 from .report import (
     decide_for,
+    decide_for_full,
     render_html,
     render_markdown,
     render_pdf,
@@ -166,6 +167,7 @@ class DecisionResponse(BaseModel):
     legs: list[dict]
     num_units: int
     decision: dict
+    scenarios: list[dict] = []  # [保守, 中性, 乐观] ScenarioResult.as_dict()
 
 
 # ---------- helpers ----------
@@ -297,7 +299,9 @@ def decide(req: DecideRequest):
     conn = db.connect()
     try:
         try:
-            opp, route, decision, legs = decide_for(conn, req.sku, req.num_units, req.route)
+            opp, route, decision, legs, scenarios = decide_for_full(
+                conn, req.sku, req.num_units, req.route
+            )
         except ValueError as e:
             raise HTTPException(status_code=404, detail=str(e))
         db.record_decision(conn, opp["id"], route["id"], req.num_units, decision)
@@ -307,6 +311,7 @@ def decide(req: DecideRequest):
             "legs": [dict(lg) for lg in legs],
             "num_units": req.num_units,
             "decision": decision.as_dict(),
+            "scenarios": [s.as_dict() for s in scenarios],
         }
     finally:
         conn.close()
@@ -316,12 +321,14 @@ def _serve_report(sku: str, fmt: str, num_units: int = 5, route: str = "PVG-NRT-
     conn = db.connect()
     try:
         try:
-            opp, rt, decision, legs = decide_for(conn, sku, num_units, route)
+            opp, rt, decision, legs, scenarios = decide_for_full(
+                conn, sku, num_units, route
+            )
         except ValueError as e:
             raise HTTPException(status_code=404, detail=str(e))
         if fmt == "md":
             return Response(
-                content=render_markdown(opp, rt, legs, num_units, decision),
+                content=render_markdown(opp, rt, legs, num_units, decision, scenarios),
                 media_type="text/markdown; charset=utf-8",
                 headers={
                     "Content-Disposition": _content_disposition(
@@ -331,7 +338,7 @@ def _serve_report(sku: str, fmt: str, num_units: int = 5, route: str = "PVG-NRT-
             )
         if fmt == "html":
             return Response(
-                content=render_html(opp, rt, legs, num_units, decision),
+                content=render_html(opp, rt, legs, num_units, decision, scenarios),
                 media_type="text/html; charset=utf-8",
                 headers={
                     "Content-Disposition": _content_disposition(
@@ -340,7 +347,7 @@ def _serve_report(sku: str, fmt: str, num_units: int = 5, route: str = "PVG-NRT-
                 },
             )
         if fmt == "pdf":
-            html_str = render_html(opp, rt, legs, num_units, decision)
+            html_str = render_html(opp, rt, legs, num_units, decision, scenarios)
             tmp = Path("/tmp") / report_filename(sku, rt["dest_city"], "pdf")
             render_pdf(html_str, tmp)
             return FileResponse(
