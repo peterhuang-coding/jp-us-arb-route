@@ -158,19 +158,60 @@ ROUTE_LEGS: list[dict] = [
     {"seq": 6, "kind": "flight", "label": "NRT → PVG",          "cost_usd": 150.0, "duration_min": 200.0, "location": "Tokyo",        "notes": "回程"},
 ]
 
+# ---------- 2nd route (round 8): US-domestic regional connector ----------
+# LAX → SFO 1-night ferry for users who already bought in JP but need to
+# move inventory to the Bay Area resale market.  Trip-level costs are
+# ~$150 flight + $120 hotel vs $720 + $240 for the international route,
+# so per-trip break-even is far lower and even small-margin SKUs profit.
+
+ROUTE_REGIONAL: dict = {
+    "name": "LAX-SFO-1N",
+    "origin_city": "洛杉矶 LAX",
+    "dest_city": "旧金山 SFO",
+    "flight_cost_usd": 150.0,
+    "hotel_cost_usd": 120.0,
+    "other_cost_usd": 30.0,
+    "hours_available": 16.0,
+    "target_hourly_usd": 20.0,
+    "target_roi_pct": 15.0,
+    "min_roi_pct": 10.0,
+    "departure_date": "2026-09-16",
+    "source_url": "https://www.google.com/travel/flights",
+    "notes": "区域连接段:LAX→SFO 单程 1 晚,适合已完成国际采购、需在美西境内转运的 SKU。",
+}
+
+ROUTE_REGIONAL_LEGS: list[dict] = [
+    {"seq": 1, "kind": "flight", "label": "LAX → SFO",          "cost_usd": 150.0, "duration_min": 90.0,  "location": "Los Angeles", "notes": "AS 1949 / UA 522 区间"},
+    {"seq": 2, "kind": "hotel",  "label": "Bay Bridge Inn SFO 1N", "cost_usd": 120.0, "duration_min": 0.0,   "location": "San Francisco", "notes": "机场附近, 接送方便"},
+    {"seq": 3, "kind": "shop",   "label": "Japantown / eBay drop-off SFO", "cost_usd": 0.0, "duration_min": 120.0, "location": "San Francisco", "notes": "小批量二次采购或 eBay 寄售点"},
+    {"seq": 4, "kind": "flight", "label": "SFO → LAX",          "cost_usd": 150.0, "duration_min": 90.0,  "location": "San Francisco", "notes": "返程"},
+]
+
+ROUTES: list[dict] = [ROUTE, ROUTE_REGIONAL]
+ROUTES_BY_LEGS: dict[str, list[dict]] = {
+    ROUTE["name"]: ROUTE_LEGS,
+    ROUTE_REGIONAL["name"]: ROUTE_REGIONAL_LEGS,
+}
+
 
 def seed_all(conn) -> dict:
     """Insert seed data. Returns counts: {opportunities, routes, legs}."""
     opp_ids = []
     for opp in OPPORTUNITIES:
         opp_ids.append(db.upsert_opportunity(conn, opp))
-    route_id = db.upsert_route(conn, ROUTE)
-    db.add_route_legs(conn, route_id, ROUTE_LEGS)
+    route_ids = []
+    total_legs = 0
+    for r in ROUTES:
+        rid = db.upsert_route(conn, r)
+        route_ids.append(rid)
+        legs = ROUTES_BY_LEGS[r["name"]]
+        db.add_route_legs(conn, rid, legs)
+        total_legs += len(legs)
     return {
         "opportunities": len(opp_ids),
-        "routes": 1,
-        "legs": len(ROUTE_LEGS),
-        "route_id": route_id,
+        "routes": len(route_ids),
+        "legs": total_legs,
+        "route_ids": route_ids,
     }
 
 

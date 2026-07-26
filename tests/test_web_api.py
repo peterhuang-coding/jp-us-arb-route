@@ -13,7 +13,8 @@ from arb.web_api import app
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     """Per-test client backed by a tmp SQLite file.  Seeded with the canonical
-    6 SKUs + 1 route so the SPA's default selection works."""
+    6 SKUs + 2 routes (international PVG→LAX and regional LAX→SFO) so the
+    SPA's default selection works."""
     db_file = tmp_path / "db.sqlite"
     monkeypatch.setattr("arb.db.DB_PATH", db_file)
     conn = db.connect(db_file)
@@ -30,7 +31,7 @@ def test_health_returns_counts(client):
     body = r.json()
     assert body["ok"] is True
     assert body["opportunities"] == 6
-    assert body["routes"] == 1
+    assert body["routes"] == 2
 
 
 def test_list_opportunities(client):
@@ -50,9 +51,13 @@ def test_list_routes_includes_legs(client):
     r = client.get("/api/routes")
     assert r.status_code == 200
     body = r.json()
-    assert len(body) == 1
-    assert body[0]["name"] == "PVG-NRT-LAX-2N"
-    assert len(body[0]["legs"]) == 6
+    assert len(body) == 2
+    names = [b["name"] for b in body]
+    assert "PVG-NRT-LAX-2N" in names
+    assert "LAX-SFO-1N" in names
+    # Each seeded route should have at least 3 legs (flight/hotel/shop).
+    for r_data in body:
+        assert len(r_data["legs"]) >= 3
 
 
 def test_decide_post_returns_decision(client):

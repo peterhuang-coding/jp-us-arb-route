@@ -159,9 +159,12 @@ def upsert_opportunity(conn: sqlite3.Connection, opp: dict) -> int:
         f"INSERT INTO opportunities ({col_list}) VALUES ({placeholders}) "
         f"ON CONFLICT(sku) DO UPDATE SET {update_list}"
     )
-    cur = conn.execute(sql, [opp[c] for c in cols])
+    conn.execute(sql, [opp[c] for c in cols])
     conn.commit()
-    return cur.lastrowid or _fetch_id(conn, "opportunities", "sku", opp["sku"])
+    # Always look up the existing row's id — ``cur.lastrowid`` is unreliable
+    # after ON CONFLICT DO UPDATE (Python sqlite3 returns the prior autoinc
+    # counter rather than the actual row's PK).
+    return _fetch_id(conn, "opportunities", "sku", opp["sku"])
 
 
 def upsert_route(conn: sqlite3.Connection, route: dict) -> int:
@@ -173,9 +176,9 @@ def upsert_route(conn: sqlite3.Connection, route: dict) -> int:
         f"INSERT INTO routes ({col_list}) VALUES ({placeholders}) "
         f"ON CONFLICT(name) DO UPDATE SET {update_list}"
     )
-    cur = conn.execute(sql, [route[c] for c in cols])
+    conn.execute(sql, [route[c] for c in cols])
     conn.commit()
-    return cur.lastrowid or _fetch_id(conn, "routes", "name", route["name"])
+    return _fetch_id(conn, "routes", "name", route["name"])
 
 
 def add_route_legs(conn: sqlite3.Connection, route_id: int, legs: Iterable[dict]) -> None:

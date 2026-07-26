@@ -1,0 +1,228 @@
+"""Tests for the regional LAX-SFO-1N route + `arb routes` CLI command.
+
+Round 8 added a second route to the seed (US-domestic regional connector)
+so the user can see that route choice can flip a SKU's verdict from
+不建议 → 谨慎 when fixed trip costs drop from $1040 to $300.
+"""
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+
+import pytest
+
+
+def _run(*args, env_overrides=None):
+    """Invoke `python -m arb <args>` with the test DB env override."""
+    env = os.environ.copy()
+    if env_overrides:
+        env.update(env_overrides)
+    return subprocess.run(
+        [sys.executable, "-m", "arb", *args],
+        capture_output=True, text=True, env=env,
+    )
+
+
+@pytest.fixture
+def scratch_db(tmp_path, monkeypatch):
+    """Seed the standard 6 SKUs + 2 routes into a tmp DB.
+
+    Mirrors tests/test_cli.py::scratch_db but here we use the seed directly
+    via upsert (no subprocess) so this fixture stays fast and avoids
+    clobbering any pre-existing DB on disk.
+    """
+    db_file = tmp_path / "db.sqlite"
+    monkeypatch.setattr("arb.db.DB_PATH", db_file)
+    from arb import db, seed
+    conn = db.connect(db_file)
+    seed.seed_all(conn)
+    conn.close()
+    return db_file
+
+
+# ---------- seed contract: 2 routes in DB after seed_all() ----------
+
+def test_seed_all_inserts_two_routes():
+    from arb import db, seed
+    conn = db.connect_memory()
+    seed.seed_all(conn)
+    rows = conn.execute(
+        "SELECT name, origin_city, dest_city FROM routes ORDER BY id"
+    ).fetchall()
+    names = [r["name"] for r in rows]
+    assert "PVG-NRT-LAX-2N" in names
+    assert "LAX-SFO-1N" in names
+    # LAX-SFO-1N must have at least 4 legs (flight + hotel + shop + flight).
+    lax_sfo = [r for r in rows if r["name"] == "LAX-SFO-1N"][0]
+    legs = db.list_route_legs(
+        conn, conn.execute(
+            "SELECT id FROM routes WHERE name=?", ("LAX-SFO-1N",)
+        ).fetchone()["id"]
+    )
+    assert len(legs) >= 4
+
+
+def test_seed_all_idempotent_for_second_route():
+    """Re-running seed must not duplicate the regional route.
+
+    Regression: ``upsert_route`` previously returned a stale autoincrement
+    counter after ON CONFLICT DO UPDATE, which made the second seed call
+    pass a wrong route_id into ``add_route_legs`` and trip an FK violation.
+    """
+    from arb import db, seed
+    conn = db.connect_memory()
+    seed.seed_all(conn)
+    seed.seed_all(conn)  # must not raise
+    n = conn.execute("SELECT COUNT(*) FROM routes").fetchone()[0]
+    assert n == 2
+    # Route_legs count must also be stable across reseeds (no duplicates).
+    legs_n = conn.execute("SELECT COUNT(*) FROM route_legs").fetchone()[0]
+    assert legs_n == 10  # 6 (intl) + 4 (regional)
+
+
+def test_upsert_returns_correct_id_on_conflict():
+    """upsert_opportunity / upsert_route must return the existing row id,
+    not the stale autoincrement counter, on the second call."""
+    from arb import db
+    conn = db.connect_memory()
+    opp = dict(sku="X-1", name="v1", category="misc", source_market="JP",
+               target_market="US", purchase_price_usd=10.0, tariff_rate=0.0,
+               sell_price_usd=20.0, shipping_per_unit_usd=1.0,
+               platform_fee_rate=0.13, minutes_per_unit=10.0, success_rate=0.7,
+               purchase_source_url=None, sell_source_url=None, notes=None,
+               data_freshness_ts="2026-07-01", verified=0)
+    first = db.upsert_opportunity(conn, opp)
+    second = db.upsert_opportunity(conn, dict(opp, name="v2"))
+    assert first == second  # same row, not a stale autoinc value
+
+    route = dict(name="R-1", origin_city="A", dest_city="B",
+                 flight_cost_usd=10.0, hotel_cost_usd=10.0,
+                 other_cost_usd=0.0, hours_available=8.0,
+                 departure_date="2026-09-01", source_url="https://x")
+    rid1 = db.upsert_route(conn, route)
+    rid2 = db.upsert_route(conn, dict(route, flight_cost_usd=20.0))
+    assert rid1 == rid2
+
+
+# ---------- route economic profile ----------
+
+def test_regional_route_has_cheaper_fixed_cost_than_international():
+    """Fixed trip cost must drop dramatically from international to regional."""
+    from arb import db, seed
+    conn = db.connect_memory()
+    seed.seed_all(conn)
+    pvg = db.get_route(conn, "PVG-NRT-LAX-2N")
+    lax = db.get_route(conn, "LAX-SFO-1N")
+    pvg_fixed = pvg["flight_cost_usd"] + pvg["hotel_cost_usd"] + pvg["other_cost_usd"]
+    lax_fixed = lax["flight_cost_usd"] + lax["hotel_cost_usd"] + lax["other_cost_usd"]
+    assert pvg_fixed == 1040.0
+    assert lax_fixed == 300.0
+    # Regional must be strictly cheaper — that's the whole point.
+    assert lax_fixed < pvg_fixed / 3
+
+
+# ---------- route-flip behavior: regional flips SK-II from ❌ → ⚠️ ----------
+
+def test_skii_flips_to_warn_at_20u_with_regional_route():
+    """With the cheap regional route, 20× SK-II crosses break-even."""
+    from arb import db, seed
+    from arb.decision import judge, DecisionInputs
+    conn = db.connect_memory()
+    seed.seed_all(conn)
+    opp = db.get_opportunity(conn, "JP-SKII-FT230")
+    route_intl = db.get_route(conn, "PVG-NRT-LAX-2N")
+    route_reg = db.get_route(conn, "LAX-SFO-1N")
+    di_intl = DecisionInputs(
+        num_units=20,
+        purchase_price_usd=opp["purchase_price_usd"],
+        sell_price_usd=opp["sell_price_usd"],
+        tariff_rate=opp["tariff_rate"],
+        shipping_per_unit_usd=opp["shipping_per_unit_usd"],
+        platform_fee_rate=opp["platform_fee_rate"],
+        minutes_per_unit=opp["minutes_per_unit"],
+        flight_cost_usd=route_intl["flight_cost_usd"],
+        hotel_cost_usd=route_intl["hotel_cost_usd"],
+        other_trip_cost_usd=route_intl["other_cost_usd"],
+        hours_available=route_intl["hours_available"],
+        target_hourly_usd=route_intl["target_hourly_usd"],
+        target_roi_pct=route_intl["target_roi_pct"],
+        min_roi_pct=route_intl["min_roi_pct"],
+    )
+    di_reg = DecisionInputs(
+        num_units=20,
+        purchase_price_usd=opp["purchase_price_usd"],
+        sell_price_usd=opp["sell_price_usd"],
+        tariff_rate=opp["tariff_rate"],
+        shipping_per_unit_usd=opp["shipping_per_unit_usd"],
+        platform_fee_rate=opp["platform_fee_rate"],
+        minutes_per_unit=opp["minutes_per_unit"],
+        flight_cost_usd=route_reg["flight_cost_usd"],
+        hotel_cost_usd=route_reg["hotel_cost_usd"],
+        other_trip_cost_usd=route_reg["other_cost_usd"],
+        hours_available=route_reg["hours_available"],
+        target_hourly_usd=route_reg["target_hourly_usd"],
+        target_roi_pct=route_reg["target_roi_pct"],
+        min_roi_pct=route_reg["min_roi_pct"],
+    )
+    d_intl = judge(di_intl)
+    d_reg = judge(di_reg)
+    assert d_intl.level == "不建议"
+    # Regional flips verdict (warn or better — depending on margin tolerance).
+    assert d_reg.level in ("谨慎", "建议")
+    assert d_reg.net_profit_usd > d_intl.net_profit_usd
+
+
+# ---------- CLI: `arb routes` listing ----------
+
+def test_cli_routes_lists_both_routes(scratch_db):
+    out = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert out.returncode == 0, out.stderr
+    assert "PVG-NRT-LAX-2N" in out.stdout
+    assert "LAX-SFO-1N" in out.stdout
+    # Both routes must show fixed-cost summary line.
+    assert "固定 $" in out.stdout
+
+
+def test_cli_routes_add_inserts_new_route(scratch_db):
+    out = _run(
+        "routes", "--add",
+        "--name", "JFK-LAX-1N",
+        "--origin", "纽约 JFK",
+        "--dest", "洛杉矶 LAX",
+        "--flight", "200",
+        "--hotel", "150",
+        "--other", "40",
+        "--hours", "20",
+        "--depart", "2026-10-01",
+        "--notes", "美东 → 美西测试路线",
+        env_overrides={"ARB_DB_PATH": str(scratch_db)},
+    )
+    assert out.returncode == 0, out.stderr
+    payload = json.loads(out.stdout.strip().splitlines()[-1])
+    assert payload["name"] == "JFK-LAX-1N"
+    assert payload["inserted"] > 0
+    # Listing should now include the new route.
+    listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "JFK-LAX-1N" in listing.stdout
+
+
+def test_cli_routes_add_is_idempotent(scratch_db):
+    """Re-adding the same route name is a no-op, not a duplicate."""
+    base = [
+        "routes", "--add",
+        "--name", "JFK-LAX-1N",
+        "--origin", "纽约 JFK",
+        "--dest", "洛杉矶 LAX",
+        "--flight", "200",
+        "--hotel", "150",
+    ]
+    first = _run(*base, env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    second = _run(*base, env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert first.returncode == 0
+    assert second.returncode == 0
+    assert "already exists" in second.stdout
+    # Still exactly 3 routes (2 seeded + 1 added).
+    listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert listing.stdout.count("[") == 3

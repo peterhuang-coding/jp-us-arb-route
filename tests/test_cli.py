@@ -116,11 +116,11 @@ def test_report_writes_markdown(scratch_db, tmp_path):
 def test_health(scratch_db):
     out = _run("health")
     assert out.returncode == 0
-    # scratch_db seeds only the 6 whitelist SKUs (seed_all() inserts via
-    # upsert, so any pre-existing rows in the tmp DB are clobbered, but the
-    # tmp DB starts empty — see scratch_db fixture).
+    # scratch_db seeds only the 6 whitelist SKUs + 2 routes (seed_all()
+    # inserts via upsert, so any pre-existing rows in the tmp DB are
+    # clobbered, but the tmp DB starts empty — see scratch_db fixture).
     assert "opportunities: 6" in out.stdout
-    assert "routes: 1" in out.stdout
+    assert "routes: 2" in out.stdout
 
 
 def test_report_writes_html(scratch_db, tmp_path):

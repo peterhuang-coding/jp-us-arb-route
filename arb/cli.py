@@ -192,6 +192,63 @@ def cmd_seed(args):
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
 
+def cmd_routes(args):
+    """List routes in the DB (default), or insert a new route via --add.
+
+    Examples:
+        python -m arb routes
+        python -m arb routes --add --name LAX-SFO-1N --origin "洛杉矶 LAX" \\
+            --dest "旧金山 SFO" --flight 150 --hotel 120 --other 30 \\
+            --hours 16 --depart 2026-09-16
+    """
+    conn = db.connect()
+    try:
+        if args.add:
+            existing = db.get_route(conn, args.name)
+            if existing is not None:
+                print(f"route '{args.name}' already exists (id={existing['id']});"
+                      " no changes made")
+                return 0
+            new_route = dict(
+                name=args.name,
+                origin_city=args.origin,
+                dest_city=args.dest,
+                flight_cost_usd=args.flight,
+                hotel_cost_usd=args.hotel,
+                other_cost_usd=args.other,
+                hours_available=args.hours,
+                target_hourly_usd=20.0,
+                target_roi_pct=15.0,
+                min_roi_pct=10.0,
+                departure_date=args.depart,
+                source_url=args.source_url or "https://www.google.com/travel/flights",
+                notes=args.notes or "",
+            )
+            rid = db.upsert_route(conn, new_route)
+            print(json.dumps({"inserted": rid, "name": args.name}, ensure_ascii=False))
+            return 0
+        # default: list
+        routes = db.list_routes(conn)
+        if not routes:
+            print("no routes in DB; run `python -m arb seed` first")
+            return 0
+        for r in routes:
+            legs = db.list_route_legs(conn, r["id"])
+            total_min = sum(l["duration_min"] for l in legs)
+            fixed = r["flight_cost_usd"] + r["hotel_cost_usd"] + r["other_cost_usd"]
+            print(
+                f"  [{r['id']:>3}] {r['name']:18s} {r['origin_city']} → {r['dest_city']}\n"
+                f"        flight ${r['flight_cost_usd']:.0f}  hotel ${r['hotel_cost_usd']:.0f}  "
+                f"other ${r['other_cost_usd']:.0f}  (固定 ${fixed:.0f})  "
+                f"hours {r['hours_available']:.0f}h  legs={len(legs)} ({total_min:.0f}min)\n"
+                f"        target ROI {r['target_roi_pct']:.0f}%  min ROI {r['min_roi_pct']:.0f}%  "
+                f"depart {r['departure_date']}  url {r['source_url']}"
+            )
+        return 0
+    finally:
+        conn.close()
+
+
 def cmd_health(args):
     conn = db.connect()
     opps = db.list_opportunities(conn)
@@ -391,6 +448,26 @@ def build_parser() -> argparse.ArgumentParser:
     p_sc.add_argument("--json", action="store_true",
                        help="emit machine-readable JSON instead of text")
 
+    p_routes = sub.add_parser("routes", help="list routes (default) or --add a new route")
+    p_routes.add_argument("--add", action="store_true",
+                          help="insert a new route from CLI flags")
+    p_routes.add_argument("--name", help="route unique name (required with --add)")
+    p_routes.add_argument("--origin", help="origin city label, e.g. '洛杉矶 LAX'")
+    p_routes.add_argument("--dest", help="dest city label, e.g. '旧金山 SFO'")
+    p_routes.add_argument("--flight", type=float,
+                          help="flight cost USD (required with --add)")
+    p_routes.add_argument("--hotel", type=float,
+                          help="hotel cost USD (required with --add)")
+    p_routes.add_argument("--other", type=float, default=0.0,
+                          help="other cost USD (default 0)")
+    p_routes.add_argument("--hours", type=float, default=24.0,
+                          help="hours available for the trip (default 24)")
+    p_routes.add_argument("--depart", default=None,
+                          help="departure date YYYY-MM-DD (optional)")
+    p_routes.add_argument("--source-url", default=None,
+                          help="source URL for the flight/hotel prices")
+    p_routes.add_argument("--notes", default=None, help="route notes")
+
     return p
 
 
@@ -408,6 +485,7 @@ def main(argv: list[str] | None = None) -> int:
         "verify": cmd_verify,
         "proposals": cmd_proposals,
         "scenarios": cmd_scenarios,
+        "routes": cmd_routes,
     }.get(args.cmd)
     if handler is None:
         return 2
