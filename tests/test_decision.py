@@ -218,6 +218,10 @@ def test_invalid_inputs_rejected():
         judge(base_inputs(target_roi_pct=5.0, min_roi_pct=10.0))
     with pytest.raises(DecideError):
         judge(base_inputs(purchase_price_usd=-1.0))
+    with pytest.raises(DecideError):
+        judge(base_inputs(success_rate=-0.1))
+    with pytest.raises(DecideError):
+        judge(base_inputs(success_rate=1.1))
 
 
 def test_min_roi_zero_is_allowed():
@@ -240,6 +244,31 @@ def test_hand_calc_invariance_for_assets():
 def test_total_revenue_equals_units_times_post_fee_price():
     out = judge(base_inputs(num_units=5, sell_price_usd=100.0, platform_fee_rate=0.20))
     assert math.isclose(out.total_revenue_usd, 5 * 100.0 * 0.80, rel_tol=1e-9)
+
+
+def test_success_rate_scales_expected_revenue_and_breakeven():
+    full = judge(base_inputs(
+        num_units=5, sell_price_usd=300.0, platform_fee_rate=0.20,
+        success_rate=1.0,
+    ))
+    half = judge(base_inputs(
+        num_units=5, sell_price_usd=300.0, platform_fee_rate=0.20,
+        success_rate=0.5,
+    ))
+    assert half.total_revenue_usd == pytest.approx(full.total_revenue_usd * 0.5)
+    assert half.per_unit_revenue_usd == pytest.approx(full.per_unit_revenue_usd * 0.5)
+    assert half.breakeven_sell_price_usd == pytest.approx(
+        full.breakeven_sell_price_usd * 2.0
+    )
+    assert half.net_profit_usd < full.net_profit_usd
+
+
+def test_zero_success_rate_has_no_expected_revenue():
+    out = judge(base_inputs(success_rate=0.0))
+    assert out.total_revenue_usd == 0.0
+    assert out.net_profit_usd < 0.0
+    assert out.level == "不建议"
+    assert math.isinf(out.breakeven_sell_price_usd)
 
 
 def test_decision_reason_mentions_key_driver_when_negative():

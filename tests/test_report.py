@@ -226,3 +226,20 @@ def test_render_html_surfaces_pending_proposals(monkeypatch):
     assert "propose-box" in html_str
     assert "purchase_price_usd" in html_str
     assert "arb proposals apply" in html_str
+
+
+def test_report_uses_stored_success_rate_for_decision():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
+    assert abs(decision.total_revenue_usd - (5 * 20.0 * 0.87 * 0.7)) < 1e-9
+    assert decision.breakeven_sell_price_usd > 0
+    assert decision.level == "不建议"
+
+
+def test_report_surfaces_success_rate_in_markdown_and_html():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    assert "成功率: 70%" in report.render_markdown(opp, route, legs, 1, decision)
+    assert "成功率" in report.render_html(opp, route, legs, 1, decision)

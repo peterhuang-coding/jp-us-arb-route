@@ -59,6 +59,7 @@ def _print_decision(d, opp, route, num_units: int, scenarios=None) -> str:
         f"  商机: {opp['sku']} - {opp['name']}",
         f"  路线: {route['name']} ({route['origin_city']} → {route['dest_city']})",
         f"  数量: {num_units}",
+        f"  成功率: {opp['success_rate']*100:.0f}% (按预期售出比例折算)",
         f"  毛利率: ROI {d.roi_pct:.1f}%   单件净利润 ${d.per_unit_revenue_usd - d.per_unit_cost_usd:.2f}",
         f"  营收: ${d.total_revenue_usd:.2f}   成本: ${d.total_cost_usd:.2f}   "
         f"净利润: ${d.net_profit_usd:.2f}",

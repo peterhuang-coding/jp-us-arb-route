@@ -43,6 +43,7 @@ class DecisionInputs:
     target_hourly_usd: float = 20.0
     target_roi_pct: float = 15.0
     min_roi_pct: float = 10.0
+    success_rate: float = 1.0
 
 
 @dataclass(frozen=True)
@@ -73,7 +74,9 @@ def judge(inp: DecisionInputs) -> Decision:
         + inp.shipping_per_unit_usd
     )
     per_unit_time_cost = (inp.minutes_per_unit / 60.0) * inp.target_hourly_usd
-    per_unit_revenue = inp.sell_price_usd * (1.0 - inp.platform_fee_rate)
+    per_unit_revenue = (
+        inp.sell_price_usd * (1.0 - inp.platform_fee_rate) * inp.success_rate
+    )
 
     trip_cost = (
         inp.flight_cost_usd
@@ -92,12 +95,13 @@ def judge(inp: DecisionInputs) -> Decision:
 
     hours_used = (inp.num_units * inp.minutes_per_unit) / 60.0
 
-    denom = 1.0 - inp.platform_fee_rate
+    denom = (1.0 - inp.platform_fee_rate) * inp.success_rate
     if denom <= 0:
-        raise DecideError("platform_fee_rate must be < 1.0")
-    breakeven_sell = (
-        per_unit_cost_no_trip + per_unit_time_cost + (trip_cost / inp.num_units)
-    ) / denom
+        breakeven_sell = float("inf")
+    else:
+        breakeven_sell = (
+            per_unit_cost_no_trip + per_unit_time_cost + (trip_cost / inp.num_units)
+        ) / denom
 
     # ---------- level cascade (highest priority first) ----------
     if hours_used > inp.hours_available:
@@ -148,6 +152,10 @@ def _validate(inp: DecisionInputs) -> None:
     if inp.platform_fee_rate < 0 or inp.platform_fee_rate >= 1:
         raise DecideError(
             f"platform_fee_rate must be in [0, 1), got {inp.platform_fee_rate}"
+        )
+    if inp.success_rate < 0 or inp.success_rate > 1:
+        raise DecideError(
+            f"success_rate must be in [0, 1], got {inp.success_rate}"
         )
     if inp.tariff_rate < 0:
         raise DecideError(f"tariff_rate must be >= 0, got {inp.tariff_rate}")

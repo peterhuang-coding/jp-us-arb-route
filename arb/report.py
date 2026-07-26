@@ -36,6 +36,14 @@ def _format_money(x: float) -> str:
     return f"${x:,.2f}"
 
 
+def _success_rate(opp) -> float:
+    """Read success rate from dict-like rows while preserving legacy fixtures."""
+    try:
+        return float(opp["success_rate"])
+    except (KeyError, IndexError):
+        return 1.0
+
+
 def _safe_filename_part(s: str) -> str:
     """Strip path separators / whitespace for cross-platform filenames."""
     s = re.sub(r"[\\/:\s]+", "_", s.strip())
@@ -81,6 +89,7 @@ def decide_for_full(conn, sku: str, num_units: int, route_name: str):
         shipping_per_unit_usd=opp["shipping_per_unit_usd"],
         platform_fee_rate=opp["platform_fee_rate"],
         minutes_per_unit=opp["minutes_per_unit"],
+        success_rate=_success_rate(opp),
         flight_cost_usd=route["flight_cost_usd"],
         hotel_cost_usd=route["hotel_cost_usd"],
         other_trip_cost_usd=route["other_cost_usd"],
@@ -216,7 +225,7 @@ def render_markdown(
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
     pending = _pending_proposals(opp)
     unit_profit_no_trip = (
-        opp["sell_price_usd"] * (1 - opp["platform_fee_rate"])
+        opp["sell_price_usd"] * (1 - opp["platform_fee_rate"]) * _success_rate(opp)
         - opp["purchase_price_usd"] * (1 + opp["tariff_rate"])
         - opp["shipping_per_unit_usd"]
     )
@@ -241,6 +250,7 @@ def render_markdown(
     L.append(f"- 物流: {_format_money(opp['shipping_per_unit_usd'])}")
     L.append(f"- 平台抽成({opp['platform_fee_rate']*100:.0f}%): "
              f"{_format_money(opp['sell_price_usd']*opp['platform_fee_rate'])}")
+    L.append(f"- **成功率: {_success_rate(opp)*100:.0f}%** (按预期售出比例折算营收)")
     L.append(f"- **单件净利润(剥离时间/旅费前) {_format_money(unit_profit_no_trip)}**")
     L.append("")
     L.append("## 行程成本 (USD)")
@@ -362,6 +372,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     <tr><th>关税({tariff_pct}%)</th><td>{tariff_amt}</td></tr>
     <tr><th>物流</th><td>{shipping}</td></tr>
     <tr><th>平台抽成({fee_pct}%)</th><td>{fee_amt}</td></tr>
+    <tr><th>成功率</th><td>{success_rate}</td></tr>
     <tr class="total"><td>单件净利润(剥离时间/旅费前)</td><td>{unit_profit}</td></tr>
   </table>
 
@@ -488,7 +499,7 @@ def render_html(
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
     pending = _pending_proposals(opp)
     unit_profit_no_trip = (
-        opp["sell_price_usd"] * (1 - opp["platform_fee_rate"])
+        opp["sell_price_usd"] * (1 - opp["platform_fee_rate"]) * _success_rate(opp)
         - opp["purchase_price_usd"] * (1 + opp["tariff_rate"])
         - opp["shipping_per_unit_usd"]
     )
@@ -534,6 +545,7 @@ def render_html(
         shipping=_format_money(opp["shipping_per_unit_usd"]),
         fee_pct=f"{opp['platform_fee_rate']*100:.0f}",
         fee_amt=_format_money(opp["sell_price_usd"] * opp["platform_fee_rate"]),
+        success_rate=f"{_success_rate(opp)*100:.0f}%",
         unit_profit=_format_money(unit_profit_no_trip),
         flight_cost=_format_money(route["flight_cost_usd"]),
         hotel_cost=_format_money(route["hotel_cost_usd"]),

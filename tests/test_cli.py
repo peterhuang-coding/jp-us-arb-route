@@ -67,6 +67,7 @@ def test_decide_returns_decision(scratch_db):
     # Round 5: scenarios now part of decide output.
     assert "三档情景" in out.stdout
     assert "保守" in out.stdout and "中性" in out.stdout and "乐观" in out.stdout
+    assert "成功率: 50%" in out.stdout
 
 
 def test_decide_rejects_invalid_inputs(scratch_db):
