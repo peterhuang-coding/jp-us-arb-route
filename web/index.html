@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jp-us-arb-route — 单次出差决策</title>
+  <title>🌏 jp-us-arb-route · 跨境差价导购与决策平台</title>
   <link rel="stylesheet" href="style.css">
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="data-snapshot.js"></script>
 </head>
 <body x-data="app()" x-init="init()">
-  <header class="topbar">
+  <!-- ============================================================== -->
+  <!-- 1) STATUS BAR: logo · today's date · KPI counts · server dot  -->
+  <!-- ============================================================== -->
+  <header class="topbar" :class="{ 'is-offline': !serverOnline }">
     <div class="brand">
       <h1>🌏 jp-us-arb-route</h1>
-      <span class="subtitle">5 分钟做完"这次出差值不值得去赚这个钱"</span>
+      <span class="subtitle">跨境差价导购与决策平台 · 5 分钟决定这趟值不值得飞</span>
     </div>
-    <div class="params" @keydown.enter="refetch()">
+    <div class="routepicker" @keydown.enter="refetch()">
       <label>出发城市
         <select x-model="origin" :title="routes.map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
           <template x-for="r in routes" :key="r.name + '-origin'">
@@ -32,71 +36,178 @@
           </template>
         </select>
       </label>
-      <label>出行日期
-        <input type="date" x-model="departureDate">
-      </label>
-      <label>目标 ROI %
-        <input type="number" min="1" max="100" step="0.5" x-model.number="targetRoi">
-      </label>
-      <label>数量
-        <input type="number" min="1" max="500" x-model.number="numUnits">
-      </label>
-      <button class="primary" @click="refetch()" :disabled="loading">
-        <span x-show="!loading">刷新</span><span x-show="loading">…</span>
-      </button>
+    </div>
+    <div class="status-summary">
+      <span class="kpi"><strong x-text="opportunities.length"></strong> 商机</span>
+      <span class="kpi kpi-ok"><strong x-text="goCount()"></strong> 可推</span>
+      <span class="kpi kpi-warn"><strong x-text="alertCount()"></strong> 警告</span>
+      <span class="kpi kpi-muted"><strong x-text="pendingProposals"></strong> pending</span>
+      <span class="today">今日 <strong x-text="todayLabel"></strong></span>
+      <span class="server" :class="{ 'on': serverOnline, 'off': !serverOnline }"
+        :title="serverOnline ? 'API 在线' : 'API 离线 · 使用本地快照'">
+        <span class="dot"></span>
+        <span x-text="serverOnline ? '在线' : '离线'"></span>
+      </span>
     </div>
   </header>
 
-  <main class="layout">
-    <!-- LEFT: opportunity list -->
-    <aside class="opps">
-      <h2>商机清单 <span class="count" x-text="opportunities.length"></span></h2>
-      <div class="filter">
-        <input type="text" placeholder="过滤 (SKU / 名称 / 类目)" x-model="filter">
+  <!-- offline banner -->
+  <div class="offline-banner" x-show="!serverOnline && loaded">
+    ⚠️ API 离线,本页使用 <code x-text="snapshotAt"></code> 的快照数据。决策数字可能过时,建议本地启动 <code>python -m arb.web_api</code> 后刷新。
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 2) TODAY'S PICK: top recommendations (green / yellow / red)    -->
+  <!-- ============================================================== -->
+  <section class="picks-section">
+    <header class="section-head">
+      <h2>📌 今日 PICK <span class="hint">决策引擎高确定性建议</span></h2>
+      <span class="count-pill" x-text="picks.length + ' / ' + opportunities.length"></span>
+    </header>
+    <div class="picks-grid" x-show="picks.length">
+      <template x-for="p in picks" :key="p.sku">
+        <article class="pick-card" :class="'pick-' + p.tier"
+          @click="select(p.sku)" :title="'点击查看 ' + p.sku + ' 决策详情'">
+          <div class="pick-rank" x-text="p.rank"></div>
+          <div class="pick-body">
+            <div class="pick-head">
+              <span class="pick-tier-badge" x-text="p.tierLabel"></span>
+              <span class="pick-sku" x-text="p.sku"></span>
+            </div>
+            <h3 class="pick-name" x-text="p.name"></h3>
+            <div class="pick-prices">
+              <span class="price-buy">采购 $<span x-text="p.purchasePrice.toFixed(0)"></span></span>
+              <span class="arrow">→</span>
+              <span class="price-sell">售价 $<span x-text="p.sellPrice.toFixed(0)"></span></span>
+            </div>
+            <div class="pick-roi">
+              <span class="roi-num" x-text="p.roi.toFixed(0) + '%'"></span>
+              <span class="roi-label">ROI</span>
+            </div>
+            <div class="pick-meta">
+              <span><strong x-text="p.units"></strong> 件净赚 $<span x-text="p.net.toFixed(0)"></span></span>
+              <span class="pick-route" x-text="p.routeShort"></span>
+            </div>
+            <div class="pick-reason" x-text="p.reason"></div>
+            <button class="pick-cta" :class="'cta-' + p.tier"
+              @click.stop="select(p.sku)">GO →</button>
+          </div>
+        </article>
+      </template>
+    </div>
+    <div class="empty-picks" x-show="!picks.length">暂无推荐:全部商机都低于最低 ROI 阈值,建议调整目标。</div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 3) ALERTS (left) + OPPORTUNITY LIST (right)                    -->
+  <!-- ============================================================== -->
+  <section class="mid-grid">
+    <!-- 3a. ⚠️ Alerts sidebar -->
+    <aside class="alerts-pane">
+      <header class="section-head">
+        <h2>⚠️ 注意 <span class="hint">我需要注意什么</span></h2>
+        <span class="count-pill" x-text="alerts.length"></span>
+      </header>
+      <ul class="alerts-list">
+        <template x-for="a in alerts" :key="a.id">
+          <li class="alert-item" :class="'alert-' + a.severity">
+            <span class="alert-icon" x-text="a.icon"></span>
+            <div class="alert-body">
+              <div class="alert-title" x-text="a.title"></div>
+              <div class="alert-detail" x-text="a.detail"></div>
+              <a class="alert-link" href="#" x-show="a.sku" @click.prevent="select(a.sku)">查看商机 →</a>
+            </div>
+          </li>
+        </template>
+      </ul>
+
+      <!-- quick decision form -->
+      <div class="quick-decide">
+        <h3>🎛️ 快捷决策</h3>
+        <p class="quick-hint">调整数量 / 路线,实时重算当前商机</p>
+        <label>数量
+          <input type="number" min="1" max="500" x-model.number="numUnits">
+        </label>
+        <label>路线
+          <select x-model="routeName">
+            <template x-for="r in routes" :key="r.name">
+              <option :value="r.name" x-text="r.origin_city + ' → ' + r.dest_city + ' (固定 $' + routeFixed(r) + ')'"></option>
+            </template>
+          </select>
+        </label>
+        <button class="primary" @click="refetch()" :disabled="loading">
+          <span x-show="!loading">🔄 重新决策</span>
+          <span x-show="loading">…</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- 3b. Opportunity list -->
+    <section class="list-pane">
+      <header class="section-head">
+        <h2>📋 商机清单 <span class="hint">点击切换决策详情</span></h2>
+        <span class="count-pill" x-text="filtered().length + ' / ' + opportunities.length"></span>
+      </header>
+      <div class="filter-row">
+        <input type="text" placeholder="搜索 SKU / 名称 / 类目" x-model="filter">
+        <select x-model="filterCategory">
+          <option value="">所有类别</option>
+          <template x-for="c in uniqueCategories()" :key="c">
+            <option :value="c" x-text="c"></option>
+          </template>
+        </select>
+        <select x-model="filterStatus">
+          <option value="">所有状态</option>
+          <option value="建议">已验证</option>
+          <option value="谨慎">谨慎</option>
+          <option value="不建议">不建议</option>
+        </select>
       </div>
       <ul class="opp-list">
         <template x-for="o in filtered()" :key="o.sku">
           <li :class="{ active: selected === o.sku }" @click="select(o.sku)">
-            <div class="opp-head">
-              <span class="sku" x-text="o.sku"></span>
+            <div class="opp-row1">
+              <span class="opp-sku" x-text="o.sku"></span>
               <span class="badge" :class="badgeClass(detailCache[o.sku]?.decision?.level)"
                 x-text="badgeText(detailCache[o.sku]?.decision?.level)"></span>
+              <span class="opp-verified" :class="{ ok: o.verified }"
+                x-text="o.verified ? '✅' : '⚠️'"></span>
             </div>
             <div class="opp-name" x-text="o.name"></div>
-            <div class="opp-meta">
-              <span x-text="o.source_market + ' → ' + o.target_market"></span>
-            </div>
-            <div class="opp-numbers">
-              <span>采购 $<span x-text="o.purchase_price_usd.toFixed(0)"></span></span>
-              <span>售价 $<span x-text="o.sell_price_usd.toFixed(0)"></span></span>
-              <span x-show="detailCache[o.sku]?.decision">
+            <div class="opp-row2">
+              <span class="opp-cat" x-text="o.category"></span>
+              <span class="opp-prices">
+                $<span x-text="o.purchase_price_usd.toFixed(0)"></span>
+                → $<span x-text="o.sell_price_usd.toFixed(0)"></span>
+              </span>
+              <span class="opp-roi" x-show="detailCache[o.sku]?.decision"
+                :class="roiClass(detailCache[o.sku]?.decision?.roi_pct)">
                 ROI <strong x-text="(detailCache[o.sku].decision.roi_pct || 0).toFixed(1) + '%'"></strong>
               </span>
-            </div>
-            <div class="opp-footer">
-              <span class="verified" :class="{ 'verified': o.verified }">
-                <span x-text="o.verified ? '✅ 已验证' : '⚠️ 未验证'"></span>
-              </span>
-              <span class="ts">
-                <span class="fresh-badge" :class="freshClass(o)" x-show="o.freshness"
-                  x-text="o.freshness ? o.freshness.badge : ''"></span>
-                <span x-text="o.data_freshness_ts"></span>
+              <span class="opp-fresh">
+                <span class="fresh-badge" :class="freshClass({freshness: o.freshness})"
+                  x-show="o.freshness" x-text="o.freshness ? o.freshness.badge : ''"></span>
+                <span class="opp-ts" x-text="o.data_freshness_ts"></span>
               </span>
             </div>
           </li>
         </template>
         <li x-show="filtered().length === 0" class="empty">无匹配商机</li>
       </ul>
-    </aside>
+    </section>
+  </section>
 
-    <!-- RIGHT: detail pane -->
-    <section class="detail">
-      <div x-show="!selected" class="placeholder">
-        <p>← 点击左侧任一条商机查看路线详情 / 决策报告</p>
-      </div>
+  <!-- ============================================================== -->
+  <!-- 4) DECISION DETAIL: full-width selected opportunity            -->
+  <!-- ============================================================== -->
+  <section class="detail-section" id="detailSection">
+    <div x-show="!selected" class="placeholder">
+      ← 点击上方任一 PICK 卡 / 商机清单查看决策详情
+    </div>
 
-      <div x-show="selected && currentDetail" class="detail-content">
-        <header class="detail-header">
+    <div x-show="selected && currentDetail" class="detail-content">
+      <header class="detail-header">
+        <div class="detail-title">
           <h2 x-text="currentDetail.opp.name"></h2>
           <div class="detail-meta">
             <code x-text="currentDetail.opp.sku"></code>
@@ -104,123 +215,121 @@
             <span x-text="currentDetail.route.name"></span>
             <span>·</span>
             <span x-text="currentDetail.route.origin_city + ' → ' + currentDetail.route.dest_city"></span>
-          </div>
-          <div class="badges">
-            <span class="badge" :class="badgeClass(currentDetail.decision.level)"
-              x-text="badgeText(currentDetail.decision.level)"></span>
-            <span class="reason" x-text="currentDetail.decision.reason"></span>
-          </div>
-          <div class="actions">
-            <button @click="exportMd()">⬇ Markdown</button>
-            <button @click="exportHtml()">⬇ HTML</button>
-            <button @click="exportPdf()" class="primary">⬇ PDF</button>
-            <button @click="verifyOpportunity()" :disabled="verifying"
-              class="verify-btn"
-              :title="currentDetail.opp.verified
-                ? '已验证 · 重新抓取并比对 (容差 ±5%)'
-                : '抓取 URL 并与存储价格比对;容差内则标记为已验证,超出则 stage 提案待人工核对'">
-              <span x-show="!verifying">✓ 验证</span>
-              <span x-show="verifying">…</span>
-            </button>
-            <button @click="refreshOpportunity()" :disabled="refreshing"
-              class="refresh-btn"
-              :title="currentDetail.opp.freshness
-                ? currentDetail.opp.freshness.badge + ' · 点击重抓 URL 并更新 freshness_ts'
-                : '点击重抓 URL 并更新 freshness_ts'">
-              <span x-show="!refreshing">🔄 刷新</span>
-              <span x-show="refreshing">…</span>
-            </button>
-          </div>
-        </header>
-
-        <!-- key metrics -->
-        <div class="metrics">
-          <div class="metric">
-            <span class="m-label">ROI</span>
-            <span class="m-value" :class="roiClass(currentDetail.decision.roi_pct)"
-              x-text="currentDetail.decision.roi_pct.toFixed(1) + '%'"></span>
-          </div>
-          <div class="metric">
-            <span class="m-label">净利润</span>
-            <span class="m-value" :class="{ neg: currentDetail.decision.net_profit_usd < 0 }"
-              x-text="'$' + currentDetail.decision.net_profit_usd.toFixed(2)"></span>
-          </div>
-          <div class="metric">
-            <span class="m-label">总成本</span>
-            <span class="m-value" x-text="'$' + currentDetail.decision.total_cost_usd.toFixed(2)"></span>
-          </div>
-          <div class="metric">
-            <span class="m-label">盈亏平衡售价</span>
-            <span class="m-value" x-text="'$' + currentDetail.decision.breakeven_sell_price_usd.toFixed(2)"></span>
-          </div>
-          <div class="metric">
-            <span class="m-label">耗时</span>
-            <span class="m-value"
-              x-text="currentDetail.decision.hours_used.toFixed(1) + 'h / ' + currentDetail.route.hours_available.toFixed(1) + 'h'"></span>
-          </div>
-          <div class="metric">
-            <span class="m-label">数量</span>
-            <span class="m-value" x-text="currentDetail.num_units"></span>
+            <span>·</span>
+            <span x-text="currentDetail.num_units + ' 件'"></span>
           </div>
         </div>
+        <div class="actions">
+          <button @click="exportMd()" :disabled="!selected" title="下载 Markdown 决策报告">⬇ Markdown</button>
+          <button @click="exportHtml()" :disabled="!selected" title="下载 HTML 决策报告">⬇ HTML</button>
+          <button @click="exportPdf()" :disabled="!selected" class="primary" title="下载 PDF 决策报告">⬇ PDF</button>
+          <button @click="verifyOpportunity()" :disabled="verifying || !selected"
+            title="抓取 URL 并比对 (±5% 容差)">
+            <span x-show="!verifying">✓ 验证</span>
+            <span x-show="verifying">…</span>
+          </button>
+          <button @click="refreshOpportunity()" :disabled="refreshing || !selected"
+            title="重抓 URL 并更新 freshness_ts">
+            <span x-show="!refreshing">🔄 刷新</span>
+            <span x-show="refreshing">…</span>
+          </button>
+        </div>
+      </header>
 
-        <!-- three-band scenarios (Round 5) -->
-        <details open x-show="currentDetail.scenarios">
-          <summary>三档情景分析 (保守 / 中性 / 乐观)</summary>
-          <p class="scenario-intro">单一数字估算易高估收益。下表把售价、采购、机票/酒店、时薪做上下行扰动;中性等同当前决策。</p>
-          <table class="scenario-table">
-            <thead>
-              <tr>
-                <th>情景</th>
-                <th>净利润</th>
-                <th>ROI</th>
-                <th>等级</th>
-                <th>Δ ROI</th>
-                <th>Δ 净利</th>
+      <!-- level + reason banner -->
+      <div class="decision-banner" :class="'banner-' + bannerTier(currentDetail.decision.level)">
+        <span class="banner-badge" x-text="bannerLabel(currentDetail.decision.level)"></span>
+        <span class="banner-reason" x-text="currentDetail.decision.reason"></span>
+      </div>
+
+      <!-- ROI progress bar -->
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label">
+          <span>ROI <strong x-text="currentDetail.decision.roi_pct.toFixed(1) + '%'"></strong></span>
+          <span class="roi-bar-target">目标 <span x-text="(currentDetail.route.target_roi_pct || 15).toFixed(0) + '%'"></span></span>
+          <span class="roi-bar-min">最低 <span x-text="(currentDetail.route.min_roi_pct || 10).toFixed(0) + '%'"></span></span>
+        </div>
+        <div class="roi-bar">
+          <div class="roi-bar-target-mark" :style="'left:' + Math.min(100, (currentDetail.route.target_roi_pct || 15) * 2) + '%'"
+            :title="'目标 ' + (currentDetail.route.target_roi_pct || 15) + '%'"></div>
+          <div class="roi-bar-fill" :class="roiClass(currentDetail.decision.roi_pct)"
+            :style="'width:' + Math.max(2, Math.min(100, currentDetail.decision.roi_pct * 2)) + '%'"></div>
+        </div>
+        <div class="roi-bar-axis">
+          <span>-100%</span><span>0%</span><span>+50%</span>
+        </div>
+      </div>
+
+      <!-- 6-metric tiles -->
+      <div class="metrics">
+        <div class="metric">
+          <span class="m-label">ROI</span>
+          <span class="m-value" :class="roiClass(currentDetail.decision.roi_pct)"
+            x-text="currentDetail.decision.roi_pct.toFixed(1) + '%'"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">净利润</span>
+          <span class="m-value" :class="{ neg: currentDetail.decision.net_profit_usd < 0 }"
+            x-text="'$' + currentDetail.decision.net_profit_usd.toFixed(0)"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">总成本</span>
+          <span class="m-value" x-text="'$' + currentDetail.decision.total_cost_usd.toFixed(0)"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">盈亏平衡售价</span>
+          <span class="m-value" x-text="'$' + currentDetail.decision.breakeven_sell_price_usd.toFixed(0)"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">耗时</span>
+          <span class="m-value"
+            x-text="currentDetail.decision.hours_used.toFixed(1) + 'h / ' + currentDetail.route.hours_available.toFixed(1) + 'h'"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">数量</span>
+          <span class="m-value" x-text="currentDetail.num_units"></span>
+        </div>
+      </div>
+
+      <!-- three-band scenarios -->
+      <details open x-show="currentDetail.scenarios?.length">
+        <summary>📊 三档情景 (保守 / 中性 / 乐观)</summary>
+        <p class="scenario-intro">单一数字估算易高估收益。下表把售价、采购、机票/酒店、时薪做上下行扰动;中性等同当前决策。</p>
+        <table class="scenario-table">
+          <thead>
+            <tr>
+              <th>情景</th>
+              <th>净利润</th>
+              <th>ROI</th>
+              <th>等级</th>
+              <th>Δ ROI</th>
+              <th>Δ 净利</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="s in (currentDetail.scenarios || [])" :key="s.name">
+              <tr :class="scenarioRowClass(s)">
+                <td><strong x-text="s.name"></strong></td>
+                <td x-text="'$' + s.net_profit_usd.toFixed(0)"></td>
+                <td x-text="s.roi_pct.toFixed(1) + '%'"></td>
+                <td>
+                  <span class="badge" :class="badgeClass(s.level)" x-text="badgeText(s.level)"></span>
+                </td>
+                <td x-text="s.name === '中性' ? '—' : (s.delta_roi_pct >= 0 ? '+' : '') + s.delta_roi_pct.toFixed(1) + 'pp'"></td>
+                <td x-text="s.name === '中性' ? '—' : (s.delta_net_profit >= 0 ? '+' : '') + '$' + s.delta_net_profit.toFixed(0)"></td>
               </tr>
-            </thead>
-            <tbody>
-              <template x-for="s in (currentDetail.scenarios || [])" :key="s.name">
-                <tr :class="scenarioRowClass(s)">
-                  <td><strong x-text="s.name"></strong></td>
-                  <td x-text="'$' + s.net_profit_usd.toFixed(2)"></td>
-                  <td x-text="s.roi_pct.toFixed(1) + '%'"></td>
-                  <td>
-                    <span class="badge" :class="badgeClass(s.level)" x-text="badgeText(s.level)"></span>
-                  </td>
-                  <td x-text="s.name === '中性' ? '—' : (s.delta_roi_pct >= 0 ? '+' : '') + s.delta_roi_pct.toFixed(1) + 'pp'"></td>
-                  <td x-text="s.name === '中性' ? '—' : (s.delta_net_profit >= 0 ? '+' : '') + '$' + s.delta_net_profit.toFixed(2)"></td>
-                </tr>
-              </template>
-            </tbody>
-          </table>
-          <template x-for="s in (currentDetail.scenarios || []).filter(x => x.cross_check)" :key="'cc-' + s.name">
-            <div class="scenario-cross-check" x-text="s.cross_check"></div>
-          </template>
-        </details>
+            </template>
+          </tbody>
+        </table>
+        <template x-for="s in (currentDetail.scenarios || []).filter(x => x.cross_check)" :key="'cc-' + s.name">
+          <div class="scenario-cross-check" x-text="s.cross_check"></div>
+        </template>
+      </details>
 
-        <!-- cost breakdown -->
-        <details open>
-          <summary>单件成本明细 (USD)</summary>
-          <table>
-            <tr><th>采购价 (JP 免税)</th><td x-text="'$' + currentDetail.opp.purchase_price_usd.toFixed(2)"></td></tr>
-            <tr><th>关税</th><td x-text="'$' + (currentDetail.opp.purchase_price_usd * currentDetail.opp.tariff_rate).toFixed(2)"></td></tr>
-            <tr><th>物流</th><td x-text="'$' + currentDetail.opp.shipping_per_unit_usd.toFixed(2)"></td></tr>
-            <tr><th>平台抽成</th><td x-text="'$' + (currentDetail.opp.sell_price_usd * currentDetail.opp.platform_fee_rate).toFixed(2)"></td></tr>
-          </table>
-        </details>
-
-        <details open>
-          <summary>行程成本 (USD)</summary>
-          <table>
-            <tr><th>机票 (往返)</th><td x-text="'$' + currentDetail.route.flight_cost_usd.toFixed(2)"></td></tr>
-            <tr><th>酒店</th><td x-text="'$' + currentDetail.route.hotel_cost_usd.toFixed(2)"></td></tr>
-            <tr><th>其它</th><td x-text="'$' + currentDetail.route.other_cost_usd.toFixed(2)"></td></tr>
-          </table>
-        </details>
-
-        <details open>
-          <summary>行程时间线</summary>
+      <!-- route timeline + cost -->
+      <div class="detail-grid">
+        <details open class="timeline-block">
+          <summary>🛫 路线时间线</summary>
           <ol class="timeline">
             <template x-for="leg in currentDetail.legs" :key="leg.seq">
               <li>
@@ -235,16 +344,31 @@
           </ol>
         </details>
 
-        <details>
-          <summary>数据来源 / 风险提示</summary>
+        <details open class="cost-block">
+          <summary>💵 成本结构</summary>
           <table>
-            <tr><th>采购来源</th><td><a :href="currentDetail.opp.purchase_source_url || '#'" target="_blank"
-              x-text="currentDetail.opp.purchase_source_url || '未提供'"></a></td></tr>
-            <tr><th>目的市场来源</th><td><a :href="currentDetail.opp.sell_source_url || '#'" target="_blank"
-              x-text="currentDetail.opp.sell_source_url || '未提供'"></a></td></tr>
-            <tr><th>机票/酒店来源</th><td><a :href="currentDetail.route.source_url || '#'" target="_blank"
-              x-text="currentDetail.route.source_url || '未提供'"></a></td></tr>
-            <tr><th>数据更新时间</th><td>
+            <tr><th>单件采购价 (JP 免税)</th><td x-text="'$' + currentDetail.opp.purchase_price_usd.toFixed(2)"></td></tr>
+            <tr><th>关税</th><td x-text="'$' + (currentDetail.opp.purchase_price_usd * currentDetail.opp.tariff_rate).toFixed(2)"></td></tr>
+            <tr><th>单件物流</th><td x-text="'$' + currentDetail.opp.shipping_per_unit_usd.toFixed(2)"></td></tr>
+            <tr><th>平台抽成</th><td x-text="'$' + (currentDetail.opp.sell_price_usd * currentDetail.opp.platform_fee_rate).toFixed(2)"></td></tr>
+            <tr><th>机票 (往返)</th><td x-text="'$' + currentDetail.route.flight_cost_usd.toFixed(0)"></td></tr>
+            <tr><th>酒店</th><td x-text="'$' + currentDetail.route.hotel_cost_usd.toFixed(0)"></td></tr>
+            <tr><th>其它</th><td x-text="'$' + currentDetail.route.other_cost_usd.toFixed(0)"></td></tr>
+          </table>
+        </details>
+      </div>
+
+      <!-- sources + risk -->
+      <details>
+        <summary>📚 数据来源 / 风险提示</summary>
+        <table>
+          <tr><th>采购来源</th><td><a :href="currentDetail.opp.purchase_source_url || '#'" target="_blank"
+            x-text="currentDetail.opp.purchase_source_url || '未提供'"></a></td></tr>
+          <tr><th>目的市场来源</th><td><a :href="currentDetail.opp.sell_source_url || '#'" target="_blank"
+            x-text="currentDetail.opp.sell_source_url || '未提供'"></a></td></tr>
+          <tr><th>机票/酒店来源</th><td><a :href="currentDetail.route.source_url || '#'" target="_blank"
+            x-text="currentDetail.route.source_url || '未提供'"></a></td></tr>
+          <tr><th>数据更新时间</th><td>
             <span class="fresh-badge" :class="freshClass({freshness: currentDetail.opp.freshness})"
               x-show="currentDetail.opp.freshness"
               x-text="currentDetail.opp.freshness ? currentDetail.opp.freshness.badge : ''"></span>
@@ -252,70 +376,62 @@
             <span class="fresh-age" x-show="currentDetail.opp.freshness"
               x-text="currentDetail.opp.freshness ? '(' + freshAge(currentDetail.opp.freshness) + ')' : ''"></span>
           </td></tr>
-            <tr><th>SKU 备注</th><td x-text="currentDetail.opp.notes"></td></tr>
-          </table>
-          <div class="warn-box">
-            ⚠️ 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)。<br>
-            ⚠️ 品牌方限购政策可能随时调整;参考各 SKU 实际限购。<br>
-            ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
-            ⚠️ 数据新鲜度:
-            <span class="fresh-badge" :class="freshClass({freshness: currentDetail.opp.freshness})"
-              x-show="currentDetail.opp.freshness"
-              x-text="currentDetail.opp.freshness ? currentDetail.opp.freshness.badge : ''"></span>
-            <span x-show="currentDetail.opp.freshness"
-              x-text="currentDetail.opp.freshness ? '(' + freshAge(currentDetail.opp.freshness) + ')' : ''"></span>。
-          </div>
-          <div class="warn-box stale-box" x-show="currentDetail.opp.freshness?.is_stale">
-            ⚠️ 数据已陈旧:
-            <strong x-text="currentDetail.opp.freshness ? freshAge(currentDetail.opp.freshness) : ''"></strong>。
-            点击上方 "🔄 刷新" 按钮重抓 URL 并更新 freshness_ts(价格不会自动改写,需人工核对 price_hints)。
-          </div>
-          <div class="warn-box verify-box" x-show="lastVerify"
-            :class="{ ok: lastVerify && lastVerify.verified_now, drift: lastVerify && !lastVerify.verified_now && (lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id) }">
-            <template x-if="lastVerify">
+          <tr><th>SKU 备注</th><td x-text="currentDetail.opp.notes"></td></tr>
+        </table>
+        <div class="warn-box">
+          ⚠️ 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)。<br>
+          ⚠️ 品牌方限购政策可能随时调整;参考各 SKU 实际限购。<br>
+          ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
+        </div>
+        <div class="warn-box stale-box" x-show="currentDetail.opp.freshness?.is_stale">
+          ⚠️ 数据已陈旧:<strong x-text="currentDetail.opp.freshness ? freshAge(currentDetail.opp.freshness) : ''"></strong>。
+          点击上方 "🔄 刷新" 按钮重抓 URL 并更新 freshness_ts(价格不会自动改写,需人工核对 price_hints)。
+        </div>
+        <div class="warn-box verify-box" x-show="lastVerify"
+          :class="{ ok: lastVerify && lastVerify.verified_now, drift: lastVerify && !lastVerify.verified_now && (lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id) }">
+          <template x-if="lastVerify">
+            <div>
               <div>
-                <div>
-                  <strong>验证结果:</strong>
-                  <span x-show="lastVerify.verified_now">✅ 价格匹配容差 ±5%,已标记 <code>verified=1</code>。</span>
-                  <span x-show="!lastVerify.verified_now && (lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id)">
-                    ⚠️ 价格漂移超出容差,已 stage
-                    <span x-text="(lastVerify.purchase.proposal_id ? 1 : 0) + (lastVerify.sell.proposal_id ? 1 : 0)"></span>
-                    条提案(未自动覆盖)。
-                  </span>
-                  <span x-show="!lastVerify.verified_now && !lastVerify.purchase.proposal_id && !lastVerify.sell.proposal_id">
-                    ℹ️ <span x-text="lastVerify.message"></span>
-                  </span>
-                </div>
-                <div style="margin-top:6px;font-size:12px;color:var(--muted);"
-                  x-text="lastVerify.message"></div>
-                <template x-if="lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id">
-                  <div style="margin-top:8px;">
-                    <strong>待处理提案:</strong>
-                    <ul style="margin:4px 0 0 18px;padding:0;font-size:12px;">
-                      <template x-for="side in [lastVerify.purchase, lastVerify.sell].filter(s => s.proposal_id)" :key="side.field">
-                        <li>
-                          <code x-text="side.field"></code>:
-                          存储 <span x-text="'$' + side.stored_value.toFixed(2)"></span>
-                          → 建议 <span x-text="'$' + (side.extracted ? side.extracted.amount.toFixed(2) : '?')"></span>
-                          (<span x-text="side.extracted ? side.extracted.currency : '?'"></span> <span x-text="side.extracted ? side.extracted.raw : '?'"></span>,
-                          drift <span x-text="side.drift_pct !== null ? side.drift_pct.toFixed(2) + '%' : 'n/a'"></span>)
-                          — <span x-text="side.note"></span>
-                        </li>
-                      </template>
-                    </ul>
-                  </div>
-                </template>
+                <strong>验证结果:</strong>
+                <span x-show="lastVerify.verified_now">✅ 价格匹配容差 ±5%,已标记 <code>verified=1</code>。</span>
+                <span x-show="!lastVerify.verified_now && (lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id)">
+                  ⚠️ 价格漂移超出容差,已 stage
+                  <span x-text="(lastVerify.purchase.proposal_id ? 1 : 0) + (lastVerify.sell.proposal_id ? 1 : 0)"></span>
+                  条提案(未自动覆盖)。
+                </span>
+                <span x-show="!lastVerify.verified_now && !lastVerify.purchase.proposal_id && !lastVerify.sell.proposal_id">
+                  ℹ️ <span x-text="lastVerify.message"></span>
+                </span>
               </div>
-            </template>
-          </div>
-        </details>
-      </div>
-    </section>
-  </main>
+              <div style="margin-top:6px;font-size:12px;color:var(--muted);"
+                x-text="lastVerify.message"></div>
+              <template x-if="lastVerify.purchase.proposal_id || lastVerify.sell.proposal_id">
+                <div style="margin-top:8px;">
+                  <strong>待处理提案:</strong>
+                  <ul style="margin:4px 0 0 18px;padding:0;font-size:12px;">
+                    <template x-for="side in [lastVerify.purchase, lastVerify.sell].filter(s => s.proposal_id)" :key="side.field">
+                      <li>
+                        <code x-text="side.field"></code>:
+                        存储 <span x-text="'$' + side.stored_value.toFixed(2)"></span>
+                        → 建议 <span x-text="'$' + (side.extracted ? side.extracted.amount.toFixed(2) : '?')"></span>
+                        (<span x-text="side.extracted ? side.extracted.currency : '?'"></span> <span x-text="side.extracted ? side.extracted.raw : '?'"></span>,
+                        drift <span x-text="side.drift_pct !== null ? side.drift_pct.toFixed(2) + '%' : 'n/a'"></span>)
+                        — <span x-text="side.note"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+      </details>
+    </div>
+  </section>
 
   <footer class="footer">
     <span x-text="status"></span>
-    <span class="db">API: <a href="/docs">/docs</a> · DB: <span x-text="dbPath"></span></span>
+    <span class="db">API: <a href="/docs">/docs</a> · DB: <span x-text="dbPath"></span> · 快照: <span x-text="snapshotAt"></span></span>
   </footer>
 
   <script src="app.js"></script>
