@@ -139,3 +139,50 @@ def test_decide_records_to_db(client):
     rows = conn.execute("SELECT COUNT(*) AS c FROM decisions").fetchone()
     conn.close()
     assert rows["c"] >= 1
+
+
+def test_opportunities_attach_freshness_field(client):
+    """GET /api/opportunities must embed a 'freshness' verdict on each row."""
+    r = client.get("/api/opportunities")
+    assert r.status_code == 200
+    body = r.json()
+    assert len(body) >= 1
+    for o in body:
+        assert "freshness" in o
+        f = o["freshness"]
+        assert f["status"] in ("fresh", "aging", "stale", "missing", "future")
+        assert "badge" in f and "age_days" in f
+    # Seed ts is 2026-07-01; today is 2026-07-26 → 25 days old → "aging"
+    skii = next(o for o in body if o["sku"] == "JP-SKII-FT230")
+    assert skii["freshness"]["status"] == "aging"
+
+
+def test_refresh_unknown_sku_returns_404(client):
+    r = client.post("/api/opportunities/NOPE/refresh")
+    assert r.status_code == 200  # outcome payload includes message
+    body = r.json()
+    assert body["updated"] is False
+    assert "opportunity not found" in body["message"]
+
+
+def test_refresh_endpoint_returns_outcome_shape(client, monkeypatch):
+    """Stub the scraper so the refresh path is deterministic in tests."""
+    from arb import scraper
+    class _Stub:
+        ok = True
+        status = 200
+        final_url = "https://example.com"
+        content_type = "text/html"
+        bytes_read = 0
+        elapsed_ms = 1
+        robots_allowed = True
+        blocked_reason = None
+        text = "<html>USD 145.00</html>"
+    monkeypatch.setattr(scraper, "fetch_url", lambda *a, **kw: _Stub())
+    r = client.post("/api/opportunities/JP-SKII-FT230/refresh")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["sku"] == "JP-SKII-FT230"
+    assert body["updated"] is True
+    assert body["new_freshness_ts"] is not None
+    assert body["purchase"] is not None and body["purchase"]["ok"] is True

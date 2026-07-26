@@ -117,3 +117,28 @@ def test_serve_help_does_not_boot_server(scratch_db):
     assert out.returncode == 0
     assert "--host" in out.stdout
     assert "--port" in out.stdout
+
+
+def test_freshness_lists_all_opps_with_status(scratch_db):
+    """`freshness` (no SKU) must show a verdict line per opp."""
+    out = _run("freshness")
+    assert out.returncode == 0
+    # seed ts is 2026-07-01; today is 2026-07-26 → every row is "aging" (25 days)
+    assert "aging" in out.stdout
+    assert "临近复核" in out.stdout
+    for sku in ("JP-SKII-FT230", "JP-WS-YAMAZAKI12"):
+        assert sku in out.stdout
+
+
+def test_freshness_filters_to_one_sku(scratch_db):
+    out = _run("freshness", "--sku", "JP-SKII-FT230")
+    assert out.returncode == 0
+    assert "JP-SKII-FT230" in out.stdout
+    # should not include unrelated SKUs
+    assert "JP-WS-YAMAZAKI12" not in out.stdout
+
+
+def test_freshness_unknown_sku_errors(scratch_db):
+    out = _run("freshness", "--sku", "NOPE")
+    assert out.returncode != 0
+    assert "unknown sku" in out.stderr.lower()

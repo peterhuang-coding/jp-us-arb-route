@@ -73,7 +73,11 @@
               <span class="verified" :class="{ 'verified': o.verified }">
                 <span x-text="o.verified ? '✅ 已验证' : '⚠️ 未验证'"></span>
               </span>
-              <span class="ts" x-text="o.data_freshness_ts"></span>
+              <span class="ts">
+                <span class="fresh-badge" :class="freshClass(o)" x-show="o.freshness"
+                  x-text="o.freshness ? o.freshness.badge : ''"></span>
+                <span x-text="o.data_freshness_ts"></span>
+              </span>
             </div>
           </li>
         </template>
@@ -106,6 +110,14 @@
             <button @click="exportMd()">⬇ Markdown</button>
             <button @click="exportHtml()">⬇ HTML</button>
             <button @click="exportPdf()" class="primary">⬇ PDF</button>
+            <button @click="refreshOpportunity()" :disabled="refreshing"
+              class="refresh-btn"
+              :title="currentDetail.opp.freshness
+                ? currentDetail.opp.freshness.badge + ' · 点击重抓 URL 并更新 freshness_ts'
+                : '点击重抓 URL 并更新 freshness_ts'">
+              <span x-show="!refreshing">🔄 刷新</span>
+              <span x-show="refreshing">…</span>
+            </button>
           </div>
         </header>
 
@@ -185,14 +197,31 @@
               x-text="currentDetail.opp.sell_source_url || '未提供'"></a></td></tr>
             <tr><th>机票/酒店来源</th><td><a :href="currentDetail.route.source_url || '#'" target="_blank"
               x-text="currentDetail.route.source_url || '未提供'"></a></td></tr>
-            <tr><th>数据更新时间</th><td x-text="currentDetail.opp.data_freshness_ts"></td></tr>
+            <tr><th>数据更新时间</th><td>
+            <span class="fresh-badge" :class="freshClass({freshness: currentDetail.opp.freshness})"
+              x-show="currentDetail.opp.freshness"
+              x-text="currentDetail.opp.freshness ? currentDetail.opp.freshness.badge : ''"></span>
+            <span x-text="currentDetail.opp.data_freshness_ts"></span>
+            <span class="fresh-age" x-show="currentDetail.opp.freshness"
+              x-text="currentDetail.opp.freshness ? '(' + freshAge(currentDetail.opp.freshness) + ')' : ''"></span>
+          </td></tr>
             <tr><th>SKU 备注</th><td x-text="currentDetail.opp.notes"></td></tr>
           </table>
           <div class="warn-box">
             ⚠️ 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)。<br>
             ⚠️ 品牌方限购政策可能随时调整;参考各 SKU 实际限购。<br>
             ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
-            ⚠️ 数据超过 30 天将被标记 "陈旧待复核"。
+            ⚠️ 数据新鲜度:
+            <span class="fresh-badge" :class="freshClass({freshness: currentDetail.opp.freshness})"
+              x-show="currentDetail.opp.freshness"
+              x-text="currentDetail.opp.freshness ? currentDetail.opp.freshness.badge : ''"></span>
+            <span x-show="currentDetail.opp.freshness"
+              x-text="currentDetail.opp.freshness ? '(' + freshAge(currentDetail.opp.freshness) + ')' : ''"></span>。
+          </div>
+          <div class="warn-box stale-box" x-show="currentDetail.opp.freshness?.is_stale">
+            ⚠️ 数据已陈旧:
+            <strong x-text="currentDetail.opp.freshness ? freshAge(currentDetail.opp.freshness) : ''"></strong>。
+            点击上方 "🔄 刷新" 按钮重抓 URL 并更新 freshness_ts(价格不会自动改写,需人工核对 price_hints)。
           </div>
         </details>
       </div>

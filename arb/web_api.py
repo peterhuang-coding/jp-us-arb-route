@@ -19,7 +19,8 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import db
+from . import db, freshness
+from .refresh import outcome_as_dict, refresh_opportunity
 from .report import (
     decide_for,
     render_html,
@@ -78,6 +79,20 @@ class Opportunity(BaseModel):
     notes: Optional[str]
     data_freshness_ts: str
     verified: bool
+    freshness: Optional[dict] = None        # verdict embedded by /api/opportunities
+
+
+class RefreshResponse(BaseModel):
+    sku: str
+    name: str
+    previous_freshness_ts: Optional[str]
+    new_freshness_ts: Optional[str]
+    updated: bool
+    verdict_before: dict
+    verdict_after: Optional[dict]
+    purchase: Optional[dict]
+    sell: Optional[dict]
+    message: str
 
 
 class RouteSummary(BaseModel):
@@ -135,7 +150,26 @@ def health():
 def list_opportunities():
     conn = db.connect()
     try:
-        return [_row_to_opp(r) for r in db.list_opportunities(conn)]
+        opps = [_row_to_opp(r) for r in db.list_opportunities(conn)]
+        return freshness.attach(opps)  # type: ignore[return-value]
+    finally:
+        conn.close()
+
+
+@app.post("/api/opportunities/{sku}/refresh", response_model=RefreshResponse)
+def refresh_opportunity_endpoint(sku: str):
+    """Probe the opp's URLs and bump ``data_freshness_ts`` if both succeeded.
+
+    Prices are NOT auto-overwritten — V0 only refreshes the freshness stamp
+    so the UI can demote stale SKUs.  ``price_hints`` is returned so a human
+    can decide whether to manually update the opp's purchase / sell price.
+    """
+    conn = db.connect()
+    try:
+        outcome = refresh_opportunity(conn, sku)
+        if not outcome.message.startswith("opportunity not found"):
+            conn.commit()
+        return outcome_as_dict(outcome)
     finally:
         conn.close()
 

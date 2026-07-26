@@ -16,8 +16,9 @@ import json
 import sys
 from pathlib import Path
 
-from . import db
+from . import db, freshness
 from .decision import judge, DecideError, DecisionInputs
+from .refresh import outcome_as_dict, refresh_opportunity
 from .report import (
     decide_for,
     render_html,
@@ -190,6 +191,42 @@ def cmd_serve(args):
     return 0
 
 
+def cmd_refresh(args):
+    """Probe an opportunity's URLs and bump freshness_ts if reachable."""
+    conn = db.connect()
+    try:
+        outcome = refresh_opportunity(conn, args.sku)
+        if not outcome.message.startswith("opportunity not found"):
+            conn.commit()
+        d = outcome_as_dict(outcome)
+        print(json.dumps(d, ensure_ascii=False, indent=2))
+        return 0 if (d["updated"] or d["message"].startswith("opportunity not found")) else 1
+    finally:
+        conn.close()
+
+
+def cmd_freshness(args):
+    """Print the freshness verdict for one SKU (or all)."""
+    conn = db.connect()
+    try:
+        if args.sku:
+            opp = db.get_opportunity(conn, args.sku)
+            if opp is None:
+                print(f"error: unknown sku {args.sku!r}", file=sys.stderr)
+                return 1
+            opps = [opp]
+        else:
+            opps = db.list_opportunities(conn)
+        rows = freshness.attach([dict(o) for o in opps])
+        for r in rows:
+            f = r["freshness"]
+            print(f"  [{f['status']:7s}] {r['sku']:25s} "
+                  f"freshness_ts={f['freshness_ts']!s:10s} age={f['age_days']!s:4s}  {f['badge']}")
+        return 0
+    finally:
+        conn.close()
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -203,6 +240,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_serve = sub.add_parser("serve", help="launch FastAPI Web SPA on 127.0.0.1")
     p_serve.add_argument("--host", default="127.0.0.1")
     p_serve.add_argument("--port", type=int, default=8765)
+
+    p_refresh = sub.add_parser("refresh", help="re-probe an opp's URLs; bump freshness_ts if reachable")
+    p_refresh.add_argument("--sku", required=True)
+
+    p_fresh = sub.add_parser("freshness", help="show freshness verdict per opportunity")
+    p_fresh.add_argument("--sku", help="restrict to one SKU (default: all)")
 
     p_dec = sub.add_parser("decide", help="compute per-trip decision")
     p_dec.add_argument("--sku", required=True)
@@ -235,6 +278,8 @@ def main(argv: list[str] | None = None) -> int:
         "seed": cmd_seed,
         "health": cmd_health,
         "serve": cmd_serve,
+        "refresh": cmd_refresh,
+        "freshness": cmd_freshness,
     }.get(args.cmd)
     if handler is None:
         return 2

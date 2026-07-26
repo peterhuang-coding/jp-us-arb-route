@@ -7,7 +7,7 @@
 
 ---
 
-## V0 状态 (Round 2 已交付)
+## V0 状态 (Round 3 已交付)
 
 | # | 验收项 | 状态 |
 |---|---|---|
@@ -17,8 +17,9 @@
 | 4 | Markdown / PDF 导出 | ✅ Markdown + HTML + PDF (`arb/report.py`) |
 | 5 | 决策等级判定函数 + ≥ 10 条样例 | ✅ `arb.decision.judge`, 23 单元测试 |
 | 6 | SQLite 持久化 + CLI / Web 双入口 | ✅ SQLite (`data/db.sqlite`) + CLI (`python -m arb`) + API (`/api/*`) |
+| 7 | **数据新鲜度告警 + 半自动抓取 (Round 3)** | ✅ `arb.freshness` + `arb.scraper` + `arb.refresh`;30 天阈值 + `arb refresh --sku X` CLI + `POST /api/opportunities/{sku}/refresh` |
 
-**61 tests pass** (`pytest -v`) — 23 decision + 6 db + 11 cli + 9 report + 12 api.
+**116 tests pass** (`pytest -v`) — 23 decision + 6 db + 13 cli + 11 report + 17 api + 22 freshness + 17 scraper + 7 refresh.
 
 ---
 
@@ -38,6 +39,9 @@ python3 -m arb decide --sku JP-SKII-FT230 --units 5      # 文字决策
 python3 -m arb report --sku JP-SKII-FT230 --units 5 --md --out exports/
 python3 -m arb report --sku JP-SKII-FT230 --units 5 --pdf --out exports/
 python3 -m arb report --sku JP-SKII-FT230 --units 5 --html --out exports/
+python3 -m arb freshness                                # 所有商机新鲜度告警
+python3 -m arb freshness --sku JP-SKII-FT230            # 单条
+python3 -m arb refresh --sku JP-SKII-FT230               # 重抓 URL 并更新 freshness_ts
 python3 -m arb health                                   # DB 健康
 python3 -m arb serve --port 8765                        # 启动 Web SPA
 
@@ -80,9 +84,10 @@ python3 -m pytest -v
 | Method | Path | 用途 |
 |---|---|---|
 | GET | `/api/health` | DB 健康 + counts |
-| GET | `/api/opportunities` | 商机清单 JSON |
+| GET | `/api/opportunities` | 商机清单 JSON (每条嵌入 `freshness` 判定) |
 | GET | `/api/routes` | 路线清单(含 legs) JSON |
 | POST | `/api/decide` | 计算决策;body=`{sku, num_units, route?}` |
+| POST | `/api/opportunities/{sku}/refresh` | 重抓 URL,成功时刷新 `data_freshness_ts`;返回 `price_hints` (不自动覆盖价格) |
 | GET | `/api/report/{sku}.md` | Markdown 报告(attachment, RFC 5987 文件名) |
 | GET | `/api/report/{sku}.html` | HTML 报告 |
 | GET | `/api/report/{sku}.pdf` | 单页 PDF(Playwright Chromium) |
@@ -103,15 +108,21 @@ python3 -m pytest -v
 │   ├── decision.py        # 纯函数决策引擎 (无 I/O)
 │   ├── db.py              # SQLite schema + repository
 │   ├── seed.py            # 6 商机 + 1 路线种子数据
+│   ├── freshness.py       # 数据新鲜度判定 (Round 3)
+│   ├── scraper.py         # 安全 HTTP 抓取 + robots.txt (Round 3)
+│   ├── refresh.py         # 刷新协调 (Round 3)
 │   ├── report.py          # Markdown / HTML / PDF 共享渲染器
 │   ├── web_api.py         # FastAPI app (REST + 静态 SPA)
-│   └── cli.py             # list / decide / report / seed / health / serve
+│   └── cli.py             # list / decide / report / seed / health / serve / refresh / freshness
 ├── tests/
 │   ├── test_decision.py   # 23 个手算对照用例
 │   ├── test_db.py         # 6 个 schema + 仓储用例
-│   ├── test_cli.py        # 11 个 CLI 子进程用例 (含 md/html/pdf)
-│   ├── test_report.py     # 9 个 report 渲染器用例 (含真 PDF)
-│   └── test_web_api.py    # 12 个 FastAPI endpoint 用例
+│   ├── test_cli.py        # 13 个 CLI 子进程用例 (含 md/html/pdf/freshness)
+│   ├── test_report.py     # 11 个 report 渲染器用例 (含真 PDF + 新鲜度标记)
+│   ├── test_web_api.py    # 17 个 FastAPI endpoint 用例
+│   ├── test_freshness.py  # 22 个 freshness 判定用例
+│   ├── test_scraper.py    # 17 个 scraper 安全网测试
+│   └── test_refresh.py    # 7 个 refresh 协调用例
 ├── web/                   # 静态 SPA (Alpine.js)
 │   ├── index.html
 │   ├── app.js
@@ -157,11 +168,12 @@ ROI = 净利润 / 总成本 × 100%
 - **海关免税额**:US CBP $800 / 日方 ¥20,000,数据以出发日两国海关公告为准。
 - **品牌方限购**:每个商机 notes 字段记录限购数量,默认按单人额度算。
 - **法规风险**:仅服务个人非贸易自用;所有报告显式标注「非投资建议 / 个人使用,非商业再销售」。
+- **数据新鲜度 (Round 3)**:所有商机带 `data_freshness_ts`;>15 天标「🟡 临近复核」,>30 天标「⚠️ 陈旧待复核」。UI/CLI/PDF 都看得见;`arb refresh --sku X` 或 SPA 「🔄 刷新」按钮会重抓 URL,成功则更新 ts,**不自动覆盖价格**(返回 `price_hints` 给人工核对)。
 
 ---
 
 ## 下一轮计划
 
-- Round 3: 半自动抓取 (requests + BeautifulSoup, 限速,尊重 robots.txt);30 天陈旧度告警。
+- Round 3: ✅ 已交付 — `arb.freshness` (30 天阈值) + `arb.scraper` (stdlib-only, robots.txt + 限速) + `arb.refresh` 协调;POST `/api/opportunities/{sku}/refresh` + CLI `arb refresh`;UI/CLI/PDF 全链路显示新鲜度。
 - Round 4: eBay Buy API / Amazon PA-API 自动发现 (V1)。
 - Round 5: PWA / 移动端优化;Notion / Apple Notes 导出。

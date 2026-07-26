@@ -72,6 +72,34 @@ def test_render_markdown_uses_freshness_and_verified_labels():
     assert "未验证" in md  # verified=0 in fixture
 
 
+def test_render_markdown_surfaces_stale_warning(monkeypatch):
+    """Seed ts in the past > STALE_DAYS → report must include stale warning."""
+    import datetime as _dt
+    monkeypatch.setattr("arb.freshness._dt.date", _dt.date)
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    # Override ts to 2026-01-01; force today to 2026-07-26 (age 206 d → stale)
+    monkeypatch.setattr(
+        "arb.freshness.classify",
+        lambda ts, today=None, sku=None: type("V", (), {
+            "as_dict": lambda self: {
+                "sku": sku, "freshness_ts": ts, "today": "2026-07-26",
+                "age_days": 206, "status": "stale",
+                "badge": "⚠️ 陈旧待复核", "is_stale": True,
+            }
+        })(),
+    )
+    monkeypatch.setattr(
+        "arb.freshness.humanize_age",
+        lambda d: "206 天前",
+    )
+    md = report.render_markdown(opp, route, legs, 1, decision)
+    assert "陈旧待复核" in md
+    assert "206 天前" in md
+    assert "arb refresh" in md
+
+
 def test_render_html_contains_required_sections():
     conn = db.connect_memory()
     sku, rname = _seed_minimal(conn)
@@ -120,3 +148,40 @@ def test_render_pdf_writes_a_valid_pdf(tmp_path):
     assert target.exists()
     head = target.read_bytes()[:4]
     assert head == b"%PDF", f"expected PDF magic, got {head!r}"
+
+
+def test_render_html_embeds_freshness_badge():
+    """HTML report must include the freshness badge + age label."""
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    html_str = report.render_html(opp, route, legs, 1, decision)
+    assert "freshness-badge" in html_str
+    assert "data_freshness_ts" in html_str or "freshness-badge" in html_str
+    # Seed ts is 2026-07-01; today's date will make it aging (25d) by default.
+    assert "freshness-badge aging" in html_str or "freshness-badge stale" in html_str
+
+
+def test_render_html_warns_when_stale(monkeypatch):
+    """HTML report must show stale-box when freshness is stale."""
+    monkeypatch.setattr(
+        "arb.freshness.classify",
+        lambda ts, today=None, sku=None: type("V", (), {
+            "as_dict": lambda self: {
+                "sku": sku, "freshness_ts": ts, "today": "2026-07-26",
+                "age_days": 200, "status": "stale",
+                "badge": "⚠️ 陈旧待复核", "is_stale": True,
+            }
+        })(),
+    )
+    monkeypatch.setattr(
+        "arb.freshness.humanize_age",
+        lambda d: "200 天前",
+    )
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    html_str = report.render_html(opp, route, legs, 1, decision)
+    assert "stale-box" in html_str
+    assert "200 天前" in html_str
+    assert "arb refresh" in html_str

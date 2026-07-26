@@ -11,6 +11,7 @@ function app() {
   return {
     // ---- state ----
     loading: false,
+    refreshing: false,
     status: '',
     dbPath: '',
     opportunities: [],
@@ -156,6 +157,58 @@ function app() {
       if (roi >= (this.targetRoi - 5)) return 'warn';
       return 'bad';
     },
+    freshClass(o) {
+      // Map freshness.status -> CSS class for the badge pill.
+      const f = o && o.freshness;
+      if (!f) return '';
+      if (f.status === 'stale' || f.status === 'missing' || f.status === 'future') return 'stale';
+      return f.status;  // fresh | aging
+    },
+    freshAge(f) {
+      if (!f || f.age_days === null || f.age_days === undefined) return '未知';
+      const d = f.age_days;
+      if (d < 0) return `未来 ${-d} 天`;
+      if (d === 0) return '今天';
+      if (d === 1) return '昨天';
+      if (d < 30) return `${d} 天前`;
+      if (d < 365) return `${Math.floor(d/30)} 个月前`;
+      return `${Math.floor(d/365)} 年前`;
+    },
+
+    // ---- refresh flow ----
+    async refreshOpportunity() {
+      if (!this.selected) return;
+      this.refreshing = true;
+      try {
+        const sku = encodeURIComponent(this.selected);
+        const resp = await fetch(`/api/opportunities/${sku}/refresh`, {
+          method: 'POST',
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const out = await resp.json();
+        if (out.updated) {
+          // Bump freshness in the cached opp list so UI reflects immediately.
+          const idx = this.opportunities.findIndex(o => o.sku === this.selected);
+          if (idx >= 0) {
+            this.opportunities[idx].data_freshness_ts = out.new_freshness_ts;
+            this.opportunities[idx].freshness = out.verdict_after;
+          }
+          // The detail pane has its own snapshot of opp — patch it too.
+          if (this.detailCache[this.selected]) {
+            this.detailCache[this.selected].opp.data_freshness_ts = out.new_freshness_ts;
+            this.detailCache[this.selected].opp.freshness = out.verdict_after;
+          }
+          this.setStatus(`${this.selected} freshness_ts 已刷新 → ${out.new_freshness_ts}`);
+        } else {
+          this.setStatus(`刷新未生效: ${out.message}`, true);
+        }
+      } catch (e) {
+        this.setStatus('刷新失败: ' + e.message, true);
+      } finally {
+        this.refreshing = false;
+      }
+    },
+
     setStatus(msg, isError = false) {
       this.status = msg;
       this.errorMsg = isError ? msg : '';

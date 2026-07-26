@@ -17,7 +17,7 @@ import re
 from pathlib import Path
 from typing import Iterable, Optional
 
-from . import db
+from . import db, freshness
 from .decision import Decision, DecisionInputs, judge
 
 
@@ -79,8 +79,11 @@ def decide_for(conn, sku: str, num_units: int, route_name: str):
 
 def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str:
     icon, level_text, _ = _level_badge(decision.level)
-    freshness = opp["data_freshness_ts"]
+    freshness_ts = opp["data_freshness_ts"]
     verified = "✅ 已验证" if opp["verified"] else "⚠️ 未验证"
+    fv = freshness.classify(freshness_ts, sku=opp["sku"]).as_dict()
+    freshness_badge = fv["badge"]
+    freshness_age = freshness.humanize_age(fv["age_days"])
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
     unit_profit_no_trip = (
         opp["sell_price_usd"] * (1 - opp["platform_fee_rate"])
@@ -100,7 +103,7 @@ def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str
     L.append(f"- 采购来源: {opp['purchase_source_url'] or '未提供'}")
     L.append(f"- 目的市场来源: {opp['sell_source_url'] or '未提供'}")
     L.append(f"- 机票/酒店来源: {route['source_url'] or '未提供'}")
-    L.append(f"- 数据更新: {freshness}  ({verified})")
+    L.append(f"- 数据更新: {freshness_ts}  ({verified})  {freshness_badge} ({freshness_age})")
     L.append("")
     L.append("## 单件成本明细 (USD)")
     L.append(f"- 采购价(JP免税): {_format_money(opp['purchase_price_usd'])}")
@@ -137,7 +140,11 @@ def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str
     L.append("- 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)")
     L.append("- 品牌方限购政策可能随时调整;参考各 SKU 实际限购")
     L.append("- 本报告仅服务个人非贸易自用,不构成投资建议")
-    L.append("- 数据超过 30 天将被标记 '陈旧待复核'")
+    if fv["is_stale"]:
+        L.append(f"- ⚠️ **数据陈旧 ({freshness_age})** — 超过 30 天阈值,请运行 "
+                 f"`python -m arb refresh --sku {opp['sku']}` 重新核对价格,或人工更新 data_freshness_ts。")
+    else:
+        L.append(f"- 数据新鲜度: {freshness_badge} ({freshness_age})")
     L.append("")
     return "\n".join(L)
 
@@ -170,6 +177,12 @@ ol.timeline .leg-kind.shop   { background: #137333; }
 ol.timeline .leg-kind.transit { background: #5f6368; }
 ol.timeline .leg-notes { display: block; color: var(--muted); font-size: 12px; margin-left: 64px; }
 .warn-box { margin-top: 18px; padding: 12px 16px; border: 1px solid #fdd663; background: #fefff3; border-radius: 4px; font-size: 13px; color: var(--warn); }
+.warn-box.stale-box { background: #fde7e9; border-color: #c5221f; color: #c5221f; }
+.freshness-badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.freshness-badge.stale { background: #c5221f; color: #fff; }
+.freshness-badge.aging { background: #b06000; color: #fff; }
+.freshness-badge.fresh { background: #137333; color: #fff; }
+.freshness-age { color: var(--muted); font-size: 12px; }
 @media print { body { padding: 0; background: #fff; } .report { border: none; } }
 """
 
@@ -194,7 +207,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     <tr><th>采购来源</th><td>{purchase_source}</td></tr>
     <tr><th>目的市场来源</th><td>{sell_source}</td></tr>
     <tr><th>机票/酒店来源</th><td>{route_source}</td></tr>
-    <tr><th>数据更新</th><td>{freshness} ({verified})</td></tr>
+    <tr><th>数据更新</th><td>{freshness} ({verified}) — <span class="freshness-badge {stale_class}">{freshness_badge}</span> <span class="freshness-age">({freshness_age})</span></td></tr>
   </table>
 
   <h2>单件成本明细 (USD)</h2>
@@ -232,8 +245,9 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     ⚠️ 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)。<br>
     ⚠️ 品牌方限购政策可能随时调整;参考各 SKU 实际限购。<br>
     ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
-    ⚠️ 数据超过 30 天将被标记 "陈旧待复核"。
+    ⚠️ 数据新鲜度: <span class="freshness-badge {stale_class}">{freshness_badge}</span> ({freshness_age})。
   </div>
+  {stale_warning_html}
 </div>
 </body></html>"""
 
@@ -265,6 +279,16 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         - opp["purchase_price_usd"] * (1 + opp["tariff_rate"])
         - opp["shipping_per_unit_usd"]
     )
+    fv = freshness.classify(opp["data_freshness_ts"], sku=opp["sku"]).as_dict()
+    freshness_badge = fv["badge"]
+    freshness_age = freshness.humanize_age(fv["age_days"])
+    stale_class = "stale" if fv["status"] in ("stale", "missing", "future") else fv["status"]
+    stale_warning_html = (
+        f'<div class="warn-box stale-box">⚠️ 数据已 <strong>{freshness_age}</strong> '
+        f'({freshness_badge})。建议运行 <code>python -m arb refresh --sku '
+        f'{html.escape(opp["sku"])}</code> 重新核对价格。</div>'
+        if fv["is_stale"] else ""
+    )
     return _HTML_TEMPLATE.format(
         title=f"决策报告 — {opp['name']}",
         css=_HTML_CSS,
@@ -283,6 +307,10 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         route_source=html.escape(route["source_url"] or "未提供"),
         freshness=html.escape(opp["data_freshness_ts"]),
         verified="✅ 已验证" if opp["verified"] else "⚠️ 未验证",
+        stale_class=stale_class,
+        freshness_badge=freshness_badge,
+        freshness_age=freshness_age,
+        stale_warning_html=stale_warning_html,
         purchase_price=_format_money(opp["purchase_price_usd"]),
         tariff_pct=f"{opp['tariff_rate']*100:.0f}",
         tariff_amt=_format_money(opp["purchase_price_usd"] * opp["tariff_rate"]),
