@@ -1,0 +1,55 @@
+[
+  {
+    "name": "TradingView Desktop",
+    "url": "https://www.tradingview.com/desktop/",
+    "left_panel_pattern": "左侧以 Watchlist 为核心，按品种展示代码、最新价格和涨跌信息；支持跨设备同步 watchlists、布局和设置。桌面端强调多标签、多显示器工作区，以及通过标签联动同步当前品种。",
+    "right_panel_pattern": "右侧是高信息密度的品种详情与图表工作区，顶部保持当前 ticker 上下文；可在多个标签或显示器中同步品种，图表区域支持多图布局、叠加比较和跨屏十字光标联动。",
+    "interaction_ideas": [
+      "点击左侧商机行后更新右侧详情，同时保留当前筛选、滚动位置和选中高亮",
+      "支持↑↓键盘切换商机，Enter打开详情，Esc返回列表，适合高频桌面浏览",
+      "允许将多个商机加入临时对比组，在右侧并排展示路线时间、价格和关键指标",
+      "提供类似标签联动的模式：切换左侧商机时，右侧路线图、价格摘要和报告内容同步刷新",
+      "允许保存个人工作区布局，并在重新打开页面时恢复筛选、排序、选中项和右侧面板状态"
+    ],
+    "image_urls": [
+      "https://static.tradingview.com/static/bundles/tab-linking.ebba40a63297ef9a1b51.png",
+      "https://static.tradingview.com/static/bundles/app-view.cb6d45c43bcf89257771.png",
+      "https://static.tradingview.com/static/bundles/multi-monitors.46d0c68ffa16869dcea2.svg"
+    ],
+    "relevance": "适合借鉴桌面端高密度信息布局、左侧快速切换与右侧主视图联动。项目平台不需要金融终端级密度，建议保留清晰的价格与结论层级，减少同时展示的指标数量。"
+  },
+  {
+    "name": "Linear",
+    "url": "https://linear.app/features",
+    "left_panel_pattern": "列表视图采用结构化表格样式，支持按状态、负责人、优先级、标签、项目、周期、截止日期和自定义字段筛选；可进行多条件过滤、分组、排序，并保存个人或工作区级自定义视图。列表行通常带有状态、优先级、负责人和日期等状态指示。",
+    "right_panel_pattern": "点击列表项进入独立的 Detail 视图，详情页集中展示标题、描述、状态、负责人、优先级、项目归属、截止日期和关联工作；侧边区域可承载补充属性、评论、活动记录或子视图，适合在不丢失上下文的情况下深入查看单个项目。",
+    "interaction_ideas": [
+      "点击左侧行后在右侧打开详情面板，而不是整页跳转；再次点击其他行时仅替换右侧内容",
+      "提供多条件筛选器，并允许将当前筛选、排序和分组保存为“我的视图”或团队共享视图",
+      "在列表中显示可扫描的状态、优先级、负责人和截止日期，使用颜色或图标表达状态但不依赖颜色单独传达含义",
+      "支持从详情面板直接修改状态、负责人、优先级和标签，修改后即时更新左侧列表行",
+      "在右侧详情中固定顶部标题、当前决策状态和核心 KPI，向下滚动时保持“建议/谨慎/不建议”结论可见",
+      "支持将多个列表项加入批量选择模式，用于批量归档、标记、导出或加入对比报告"
+    ],
+    "image_urls": [
+      "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/307f4b99-b674-444b-0706-303b1a2db300/f=auto,dpr=2,fit=scale-down,metadata=none"
+    ],
+    "relevance": "最接近“左侧列表 + 右侧详情”的单页应用模式。可重点借鉴列表筛选状态的可保存性、属性信息的可扫描性和详情页内联编辑；决策报告可对应 Linear 的项目状态与更新区域。"
+  },
+  {
+    "name": "Smartsheet Dashboard + Grid View",
+    "url": "https://help.smartsheet.com/articles/1164997-create-a-dashboard-with-a-grid-view",
+    "left_panel_pattern": "Grid View 以表格行和列承载项目记录，支持从来源 Sheet 或 Report 生成视图；Dashboard 中可通过漏斗图标按列值过滤行，并结合底层 Sheet 或 Report 的既有过滤条件。",
+    "right_panel_pattern": "右侧可组合多个 Dashboard Widget，包括 Grid View、Chart、Report、Metric、Calendar 和 Shortcut。仪表盘过滤器可以影响多个组件，适合把列表选择与价格汇总、路线图、指标卡和决策结论放在同一桌面工作区。",
+    "interaction_ideas": [
+      "在左侧表格上方放置漏斗型过滤器，支持字段、运算符和值的组合，并提供清除全部筛选",
+      "允许一次添加多个过滤条件，点击Apply后统一刷新列表和右侧所有指标组件",
+      "将左侧当前选中商机作为右侧图表、价格卡和报告的联动条件，避免用户手动重复选择",
+      "右侧采用可组合卡片：顶部放整体价格和决策结论，中部放路线时间图，底部放证据明细和操作按钮",
+      "提供Dashboard级筛选与组件级筛选两层机制：前者控制全局范围，后者只影响单个列表或图表",
+      "为决策报告提供快捷操作入口，例如导出PDF、导出CSV、复制分享链接和生成只读快照"
+    ],
+    "image_urls": [],
+    "relevance": "适合借鉴“表格记录 + 多组件决策面板”的组合方式。对于出差商机平台，可把右侧组件限制为路线时间、总价、风险提示和建议结论，避免传统仪表盘过度堆叠图表。"
+  }
+]

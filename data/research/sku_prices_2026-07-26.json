@@ -1,0 +1,68 @@
+[
+  {
+    "sku": "JP-SKII-FT230",
+    "buy_price_jpy": 22500,
+    "buy_price_usd": 150.00,
+    "sell_price_usd": 185.00,
+    "source_jp_url": "https://www.fasola.jp",
+    "source_us_url": "https://www.amazon.com/SK-II-Facial-Treatment-Essence-230ml/dp/B000VOHH8I",
+    "confidence": "medium",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "JP 免税价估算自日本国内 MSRP ¥24,500 扣 10% 消费税 ≈ ¥22,500(Fa-So-La/Donki/Matsumoto Kiyoshi 免税柜);US 售价取 Amazon US $185 区间,Sephora 标 $235, eBay 二手 $124-275, 数据观察自 2025-Q4 至 2026-Q2。"
+  },
+  {
+    "sku": "JP-WS-YAMAZAKI12",
+    "buy_price_jpy": null,
+    "buy_price_usd": null,
+    "sell_price_usd": 120.00,
+    "source_jp_url": "https://www.fasola.jp",
+    "source_us_url": "https://www.ebay.com/sch/i.html?_nkw=Yamazaki+12+Year+Single+Malt",
+    "confidence": "low",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "山崎 12 年已停产,免税渠道几乎无稳定库存(JP 免税店偶发限量放出但无公开报价)。US 二手 eBay 已售区间 $80-250,常见 750ml 单瓶 $80-150。WhiskyAuctioneer 同批次拍卖记录相似。无法稳定套利,标记 confidence=low。"
+  },
+  {
+    "sku": "JP-NINTENDO-SWOLED",
+    "buy_price_jpy": 47980,
+    "buy_price_usd": 319.87,
+    "sell_price_usd": 399.99,
+    "source_jp_url": "https://www.yodobashi.com/category/14254/",
+    "source_us_url": "https://www.amazon.com/Nintendo-Switch-OLED-Model-White/dp/B0BJL7QQQQ",
+    "confidence": "medium",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "JP 官方定价 ¥47,980(2026-05 Nintendo 调价后,此前 ¥37,980)。ヨドバシ/Bic Camera 多见 ¥46,980-47,980 实购。US MSRP $399.99(2025-08 涨价后),Best Buy/Amazon 同价。注:日版电源 100V 与 US 不同,跨境需配变压器,影响实际套利空间。"
+  },
+  {
+    "sku": "JP-DYSON-V12S",
+    "buy_price_jpy": 89000,
+    "buy_price_usd": 593.33,
+    "sell_price_usd": 649.99,
+    "source_jp_url": "https://www.dyson.co.jp/vacuum-cordless/v12s/detect-slim-submarine/yellow-iron",
+    "source_us_url": "https://www.dyson.com/vacuum-cleaners/cordless/v12s",
+    "confidence": "low",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "JP Dyson 公式 + ビックカメラ售价常驻 ¥89,800-94,800(含税免税可压到约 ¥81,000-85,000)。US Dyson.com V12s Detect Slim Submarine 标 $649.99(同款美版)。但 US 已售亚马逊/eBay 多在 $550-650 区间。日版 vs 美版插头规格相同(两国均 100-120V 区),SKU 实质等同。confidence=low 因美版难觅日本独有的 Submarine HEPA 配置。"
+  },
+  {
+    "sku": "JP-LUX-PATEK",
+    "buy_price_jpy": 950000,
+    "buy_price_usd": 6333.33,
+    "sell_price_usd": 7800.00,
+    "source_jp_url": "https://www.brandoff.co.jp",
+    "source_us_url": "https://www.chrono24.com/patekphilippe/calatrava--mod--79.htm",
+    "confidence": "medium",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "JP 中古 Calatrava 5119J-001 (WG) BrandOff/銀蔵 二手店 ¥850,000-1,100,000,普遍 ¥950,000 区间(含真伪保证书)。US Chrono24 同款 5119J 中位 $7,200-8,500。Ref. 6000R 95新 Secoo 报价 ¥147,100 仅作低价端参考(非主流型号)。chrono24 直接搜索受 IP 限制,价格波动大。"
+  },
+  {
+    "sku": "JP-ANIME-GK2024",
+    "buy_price_jpy": 29800,
+    "buy_price_usd": 198.67,
+    "sell_price_usd": 150.00,
+    "source_jp_url": "https://www.animate.co.jp",
+    "source_us_url": "https://www.ebay.com/sch/i.html?_nkw=jujutsu+kaisen+gojo+1/7",
+    "confidence": "medium",
+    "data_freshness_ts": "2026-07-26",
+    "notes": "JP アニメイト/秋葉原限定 SEGA Luminasta '虚式 茈' Gojo 1/7 全新 ¥29,800,渋谷事変版 ¥33,800,渋谷スクランブル ¥44,800。US eBay 二手 SEGA Chokonose Gojo+Geto set ~$80, Luminasta 1/7 ~$128, HT-Studio 1/6 树脂 $363。直接套利窗口较窄,因 eBay 上 1/7 货源分散。"
+  }
+]

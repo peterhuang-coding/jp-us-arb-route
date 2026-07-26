@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import json
+import os
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
@@ -104,8 +105,17 @@ CREATE INDEX IF NOT EXISTS idx_proposed_status ON proposed_prices(status, opport
 # ---------- connection helpers ----------
 
 def connect(path: Optional[Path] = None) -> sqlite3.Connection:
-    """Open (and migrate) the production DB at path / DB_PATH."""
-    p = Path(path) if path else DB_PATH
+    """Open (and migrate) the production DB at path / DB_PATH.
+
+    Resolution order: explicit ``path`` arg → ``ARB_DB_PATH`` env var →
+    ``DB_PATH`` default.  Tests set ``ARB_DB_PATH`` so subprocess CLI runs
+    inside the test fixture use the tmp DB instead of the real one.
+    """
+    if path is None:
+        env = os.environ.get("ARB_DB_PATH")
+        p = Path(env) if env else DB_PATH
+    else:
+        p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(p)
     conn.row_factory = sqlite3.Row

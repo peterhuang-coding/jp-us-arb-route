@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import subprocess
 import sys
@@ -14,19 +15,36 @@ ROOT = Path(__file__).resolve().parent.parent
 
 @pytest.fixture
 def scratch_db(tmp_path, monkeypatch):
-    """Isolated DB so tests don't write to the real db.sqlite."""
+    """Isolated DB so tests don't write to the real db.sqlite.
+
+    Seeds in-process AND sets ``ARB_DB_PATH`` env var so subprocess CLI
+    calls inherit the tmp path via ``arb.db.connect``.
+    """
     db_file = tmp_path / "db.sqlite"
     monkeypatch.setattr("arb.db.DB_PATH", db_file)
-    # Run seed
-    subprocess.check_call([sys.executable, "-m", "arb", "seed"],
-                          cwd=ROOT, stdout=subprocess.DEVNULL)
+    monkeypatch.setenv("ARB_DB_PATH", str(db_file))
+    import arb.db as arb_db   # imported after monkeypatch
+    import arb.seed as arb_seed
+    conn = arb_db.connect(db_file)
+    try:
+        arb_seed.seed_all(conn)
+    finally:
+        conn.close()
     yield db_file
 
 
-def _run(*args):
+def _run(*args, env=None):
+    """Run the CLI as a subprocess with the scratch ARB_DB_PATH set.
+
+    Pass ``env=str(db_file)`` to override; otherwise inherits from
+    ``scratch_db``'s monkeypatched env.
+    """
+    full_env = os.environ.copy()
+    if env is not None:
+        full_env["ARB_DB_PATH"] = str(env)
     return subprocess.run(
         [sys.executable, "-m", "arb", *args],
-        cwd=ROOT, capture_output=True, text=True,
+        cwd=ROOT, capture_output=True, text=True, env=full_env,
     )
 
 
@@ -98,6 +116,9 @@ def test_report_writes_markdown(scratch_db, tmp_path):
 def test_health(scratch_db):
     out = _run("health")
     assert out.returncode == 0
+    # scratch_db seeds only the 6 whitelist SKUs (seed_all() inserts via
+    # upsert, so any pre-existing rows in the tmp DB are clobbered, but the
+    # tmp DB starts empty — see scratch_db fixture).
     assert "opportunities: 6" in out.stdout
     assert "routes: 1" in out.stdout
 
@@ -197,6 +218,7 @@ def test_proposals_help_runs(scratch_db):
 
 
 def test_proposals_list_empty_when_none_pending(scratch_db):
+    """Fresh tmp DB → 0 rows in proposed_prices."""
     out = _run("proposals")
     assert out.returncode == 0
     assert "no proposals" in out.stdout
