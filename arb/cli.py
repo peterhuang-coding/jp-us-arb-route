@@ -193,6 +193,41 @@ def cmd_seed(args):
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
 
+def _parse_leg_payload(raw: str) -> dict:
+    """Parse a single `--leg` JSON payload into a route_leg dict.
+
+    Required keys: ``kind``, ``label``, ``cost_usd``.  Optional keys
+    (``duration_min``, ``location``, ``notes``, ``seq``) default to
+    neutral values so callers can pass minimal payloads for short legs.
+
+    Raises ``argparse.ArgumentTypeError`` on bad JSON / missing fields so
+    argparse converts it to a clean CLI exit code 2 instead of a stack trace.
+    """
+    import argparse as _ap
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise _ap.ArgumentTypeError(f"--leg: invalid JSON ({e.msg} at pos {e.pos})")
+    if not isinstance(payload, dict):
+        raise _ap.ArgumentTypeError(
+            f"--leg: expected JSON object, got {type(payload).__name__}"
+        )
+    missing = [k for k in ("kind", "label", "cost_usd") if k not in payload]
+    if missing:
+        raise _ap.ArgumentTypeError(
+            f"--leg: missing required field(s): {', '.join(missing)}"
+        )
+    return dict(
+        seq=int(payload.get("seq", 0)),  # 0 sentinel — caller assigns real seq
+        kind=str(payload["kind"]),
+        label=str(payload["label"]),
+        cost_usd=float(payload["cost_usd"]),
+        duration_min=float(payload.get("duration_min", 0.0)),
+        location=str(payload.get("location", "")),
+        notes=str(payload.get("notes", "")),
+    )
+
+
 def cmd_routes(args):
     """List routes in the DB (default), or insert a new route via --add.
 
@@ -201,14 +236,38 @@ def cmd_routes(args):
         python -m arb routes --add --name LAX-SFO-1N --origin "洛杉矶 LAX" \\
             --dest "旧金山 SFO" --flight 150 --hotel 120 --other 30 \\
             --hours 16 --depart 2026-09-16
+        python -m arb routes --add --name JFK-LAX-1N --origin JFK --dest LAX \\
+            --flight 200 --hotel 150 \\
+            --leg '{"kind":"flight","label":"JFK → LAX","cost_usd":200,"duration_min":360}' \\
+            --leg '{"kind":"hotel","label":"LAX Hotel 1N","cost_usd":150,"duration_min":0}'
     """
     conn = db.connect()
     try:
         if args.add:
+            # Assign seq from the order of --leg flags on the command line.
+            # Callers can override via explicit "seq" in the JSON payload.
+            parsed_legs = []
+            for i, leg in enumerate(args.leg or [], start=1):
+                if not leg.get("seq"):
+                    leg = dict(leg, seq=i)
+                parsed_legs.append(leg)
             existing = db.get_route(conn, args.name)
             if existing is not None:
-                print(f"route '{args.name}' already exists (id={existing['id']});"
-                      " no changes made")
+                # Re-add WITHOUT --leg stays a no-op (Round 8 contract:
+                # "already exists; no changes made").  Re-add WITH --leg
+                # replaces the leg set so the user can iterate on a route.
+                if not parsed_legs:
+                    print(f"route '{args.name}' already exists (id={existing['id']});"
+                          " no changes made")
+                    return 0
+                rid = existing["id"]
+                _replace_route_legs(conn, rid, parsed_legs)
+                print(json.dumps({
+                    "updated": True,
+                    "id": rid,
+                    "name": args.name,
+                    "legs": len(parsed_legs),
+                }, ensure_ascii=False))
                 return 0
             new_route = dict(
                 name=args.name,
@@ -226,7 +285,13 @@ def cmd_routes(args):
                 notes=args.notes or "",
             )
             rid = db.upsert_route(conn, new_route)
-            print(json.dumps({"inserted": rid, "name": args.name}, ensure_ascii=False))
+            if parsed_legs:
+                db.add_route_legs(conn, rid, parsed_legs)
+            print(json.dumps({
+                "inserted": rid,
+                "name": args.name,
+                "legs": len(parsed_legs),
+            }, ensure_ascii=False))
             return 0
         # default: list
         routes = db.list_routes(conn)
@@ -248,6 +313,19 @@ def cmd_routes(args):
         return 0
     finally:
         conn.close()
+
+
+def _replace_route_legs(conn, route_id: int, legs: list[dict]) -> None:
+    """Delete every existing leg for a route, then insert the new set.
+
+    We delete first (instead of relying on ``INSERT OR REPLACE``) so that
+    *removed* legs (in the new payload) actually go away and a stale label
+    cannot linger on the route.
+    """
+    conn.execute("DELETE FROM route_legs WHERE route_id=?", (route_id,))
+    conn.commit()
+    if legs:
+        db.add_route_legs(conn, route_id, legs)
 
 
 def cmd_health(args):
@@ -468,6 +546,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_routes.add_argument("--source-url", default=None,
                           help="source URL for the flight/hotel prices")
     p_routes.add_argument("--notes", default=None, help="route notes")
+    p_routes.add_argument("--leg", action="append", type=_parse_leg_payload,
+                          default=[],
+                          help=("repeatable route leg as JSON, e.g. "
+                                "'{\"kind\":\"flight\",\"label\":\"JFK→LAX\","
+                                "\"cost_usd\":200,\"duration_min\":360}'. "
+                                "Order on the command line = leg seq."))
 
     return p
 

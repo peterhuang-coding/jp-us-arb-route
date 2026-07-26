@@ -10,6 +10,7 @@ import json
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -226,3 +227,182 @@ def test_cli_routes_add_is_idempotent(scratch_db):
     # Still exactly 3 routes (2 seeded + 1 added).
     listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
     assert listing.stdout.count("[") == 3
+
+
+# ---------- Round 11: --leg repeatable flag on `arb routes --add` ----------
+#
+# Round 8 left `arb routes --add` without a way to attach route_legs, so any
+# route inserted via the CLI started with 0 legs. Round 11 accepts a
+# repeatable --leg JSON payload, parses it, and calls db.add_route_legs so
+# CLI-inserted routes carry the same flight/hotel/shop schedule as the seed.
+
+def _add_with_legs(name, *legs_json, scratch_db, **route_kwargs):
+    """Invoke `arb routes --add` with one or more --leg JSON payloads."""
+    cmd = [
+        "routes", "--add",
+        "--name", name,
+        "--origin", route_kwargs.get("origin", "测试 ORIG"),
+        "--dest", route_kwargs.get("dest", "测试 DEST"),
+        "--flight", str(route_kwargs.get("flight", 100)),
+        "--hotel", str(route_kwargs.get("hotel", 50)),
+        "--other", str(route_kwargs.get("other", 0)),
+        "--hours", str(route_kwargs.get("hours", 12)),
+    ]
+    for leg in legs_json:
+        cmd.extend(["--leg", leg])
+    return _run(*cmd, env_overrides={"ARB_DB_PATH": str(scratch_db)})
+
+
+def test_cli_routes_add_with_single_leg_inserts_route_and_legs(scratch_db):
+    """--leg with a JSON payload persists the leg on the new route."""
+    leg = json.dumps({"kind": "flight", "label": "JFK → LAX",
+                       "cost_usd": 200.0, "duration_min": 360.0,
+                       "location": "New York"})
+    out = _add_with_legs("JFK-LAX-1N", leg, scratch_db=scratch_db)
+    assert out.returncode == 0, out.stderr
+
+    # Listing output must reflect the new legs count.
+    listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "JFK-LAX-1N" in listing.stdout
+    assert "legs=1" in listing.stdout
+
+
+def test_cli_routes_add_with_multiple_legs_inserts_in_order(scratch_db):
+    """Repeated --leg flags accumulate and preserve seq ordering."""
+    legs = [
+        json.dumps({"kind": "flight", "label": "JFK → LAX",
+                     "cost_usd": 200.0, "duration_min": 360.0}),
+        json.dumps({"kind": "hotel", "label": "LAX Hotel 1N",
+                     "cost_usd": 150.0, "duration_min": 0.0}),
+        json.dumps({"kind": "shop", "label": "Beverly Hills drop-off",
+                     "cost_usd": 0.0, "duration_min": 60.0}),
+        json.dumps({"kind": "flight", "label": "LAX → JFK",
+                     "cost_usd": 200.0, "duration_min": 360.0}),
+    ]
+    out = _add_with_legs("JFK-LAX-1N", *legs, scratch_db=scratch_db)
+    assert out.returncode == 0, out.stderr
+
+    listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "legs=4" in listing.stdout
+    # Listing must also reflect the cumulative duration (60min sum not relevant;
+    # 360+0+60+360 = 780 min).  Just assert total_min token is present.
+    assert "780min" in listing.stdout
+
+
+def test_cli_routes_add_leg_missing_required_field_exits_nonzero(scratch_db):
+    """A --leg JSON missing 'kind' is malformed and must fail loudly."""
+    bad_leg = json.dumps({"label": "no kind", "cost_usd": 100.0})
+    out = _add_with_legs("BAD-RT-1", bad_leg, scratch_db=scratch_db)
+    assert out.returncode != 0, out.stdout
+    # The error must mention which field is missing so the user can fix it.
+    assert "kind" in out.stderr.lower() or "kind" in out.stdout.lower()
+
+
+def test_cli_routes_add_leg_invalid_json_exits_nonzero(scratch_db):
+    """A --leg that isn't valid JSON must fail with a parse error."""
+    out = _add_with_legs("BAD-RT-2", "not-json-at-all", scratch_db=scratch_db)
+    assert out.returncode != 0
+    combined = (out.stderr + out.stdout).lower()
+    assert "json" in combined or "parse" in combined or "invalid" in combined
+
+
+def test_cli_routes_add_without_leg_flag_still_works(scratch_db):
+    """Backward compat: --add without --leg still inserts a 0-leg route."""
+    out = _run(
+        "routes", "--add",
+        "--name", "ZERO-LEGS",
+        "--origin", "X", "--dest", "Y",
+        "--flight", "50", "--hotel", "50",
+        env_overrides={"ARB_DB_PATH": str(scratch_db)},
+    )
+    assert out.returncode == 0, out.stderr
+    listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "ZERO-LEGS" in listing.stdout
+    assert "legs=0" in listing.stdout
+
+
+def test_cli_routes_add_with_existing_name_replaces_legs(scratch_db):
+    """Re-adding a route that already has legs replaces the leg set,
+    so the CLI is idempotent and a stale leg set never lingers."""
+    legs_v1 = [
+        json.dumps({"kind": "flight", "label": "v1 flight",
+                     "cost_usd": 100.0, "duration_min": 60.0}),
+    ]
+    legs_v2 = [
+        json.dumps({"kind": "flight", "label": "v2 flight A",
+                     "cost_usd": 200.0, "duration_min": 60.0}),
+        json.dumps({"kind": "flight", "label": "v2 flight B",
+                     "cost_usd": 200.0, "duration_min": 60.0}),
+    ]
+    out1 = _add_with_legs("REPLACE-RT", *legs_v1, scratch_db=scratch_db)
+    assert out1.returncode == 0, out1.stderr
+    listing1 = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "legs=1" in listing1.stdout
+
+    out2 = _add_with_legs("REPLACE-RT", *legs_v2, scratch_db=scratch_db)
+    assert out2.returncode == 0, out2.stderr
+    listing2 = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
+    assert "legs=2" in listing2.stdout
+    # Stale v1 label must be gone from the listing.
+    assert "v1 flight" not in listing2.stdout
+
+
+def test_cli_routes_add_legs_appear_in_decide_api():
+    """Legs added via the CLI must show up via db.list_route_legs so the SPA
+    timeline (which reads via /api/decide → decide_for → list_route_legs)
+    renders them.  End-to-end check: insert a fresh route via CLI, read back."""
+    from arb import db
+
+    # Use a dedicated tmp DB so this test doesn't mutate the project's DB.
+    import tempfile
+    tmp = tempfile.NamedTemporaryFile(suffix=".sqlite", delete=False)
+    tmp.close()
+    db_file = Path(tmp.name)
+
+    # Seed 2 routes so we have a baseline DB; we'll add a NEW route name so
+    # we exercise the insert (not replace) branch.
+    from arb import seed
+    conn = db.connect(db_file)
+    seed.seed_all(conn)
+    conn.close()
+
+    legs = [
+        json.dumps({"kind": "shop", "label": "CLI-added shop leg A",
+                     "cost_usd": 25.0, "duration_min": 30.0,
+                     "location": "Tokyo", "notes": "round 11 test"}),
+        json.dumps({"kind": "shop", "label": "CLI-added shop leg B",
+                     "cost_usd": 25.0, "duration_min": 30.0,
+                     "location": "Osaka"}),
+    ]
+    out = _add_with_legs("E2E-CLI-INSERT", *legs, scratch_db=db_file)
+    assert out.returncode == 0, out.stderr
+
+    conn = db.connect(db_file)
+    route_id = conn.execute(
+        "SELECT id FROM routes WHERE name=?", ("E2E-CLI-INSERT",)
+    ).fetchone()["id"]
+    post_legs = db.list_route_legs(conn, route_id)
+    conn.close()
+    assert len(post_legs) == 2
+    labels = [l["label"] for l in post_legs]
+    assert "CLI-added shop leg A" in labels
+    assert "CLI-added shop leg B" in labels
+    # Order is preserved by --leg positional order on the command line.
+    assert labels[0] == "CLI-added shop leg A"
+    assert labels[1] == "CLI-added shop leg B"
+    db_file.unlink(missing_ok=True)
+
+
+def test_parse_leg_payload_helper_accepts_minimal_payload():
+    """The shared parser should accept a 3-field payload (kind/label/cost)
+    and default duration to 0.0 / location & notes to empty strings."""
+    from arb.cli import _parse_leg_payload
+    out = _parse_leg_payload(json.dumps({
+        "kind": "transit", "label": "Tokyo → Kyoto", "cost_usd": 80.0,
+    }))
+    assert out["kind"] == "transit"
+    assert out["label"] == "Tokyo → Kyoto"
+    assert out["cost_usd"] == 80.0
+    assert out["duration_min"] == 0.0
+    assert out["location"] == ""
+    assert out["notes"] == ""
