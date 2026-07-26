@@ -154,6 +154,21 @@ function app() {
     badgeText(level) {
       return { '建议': '✅ 建议', '谨慎': '⚠️ 谨慎', '不建议': '❌ 不建议' }[level] || '—';
     },
+    routeFixed(r) {
+      // Trip-level fixed cost = flight + hotel + other.
+      // Surfaced in the routepicker so users see the round-8 lesson
+      // ("$300 regional vs $1040 international") without leaving the SPA.
+      const total = (r.flight_cost_usd || 0) + (r.hotel_cost_usd || 0) + (r.other_cost_usd || 0);
+      return '$' + total.toFixed(0);
+    },
+    routeFixedBreakdown(r) {
+      // Itemised breakdown for the routepicker subtitle / tooltip.
+      const parts = [];
+      parts.push(`机票 $${(r.flight_cost_usd || 0).toFixed(0)}`);
+      parts.push(`酒店 $${(r.hotel_cost_usd || 0).toFixed(0)}`);
+      if ((r.other_cost_usd || 0) > 0) parts.push(`其它 $${(r.other_cost_usd || 0).toFixed(0)}`);
+      return parts.join(' + ');
+    },
     roiClass(roi) {
       if (roi >= this.targetRoi) return 'ok';
       if (roi >= (this.targetRoi - 5)) return 'warn';

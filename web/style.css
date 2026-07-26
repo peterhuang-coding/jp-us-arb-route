@@ -72,6 +72,12 @@ a:hover { text-decoration: underline; }
 .params button.primary:hover { background: var(--primary-hover); }
 .params button.primary:disabled { background: var(--muted); cursor: wait; }
 
+/* Round 12: routepicker option preview — show the fixed trip cost
+   alongside the city so users see regional vs international at a glance.
+   Native <option> elements ignore most CSS, but `:has()` + selected
+   text-shadow lets us nudge a slightly bolder look on the closed select. */
+.params select { font-variant-numeric: tabular-nums; }
+
 /* ---- layout ---- */
 .layout {
   display: grid;

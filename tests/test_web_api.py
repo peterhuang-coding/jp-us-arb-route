@@ -366,3 +366,58 @@ def test_decide_uses_seeded_success_rate(client):
         baseline_decision["total_cost_usd"]
     )
     assert adjusted_decision["net_profit_usd"] < baseline_decision["net_profit_usd"]
+
+
+# ---------- Round 12: SPA routepicker shows fixed trip cost ----------
+
+def _spa_asset(path: str) -> str:
+    """Read a SPA static file from the repo's web/ directory."""
+    return (Path(__file__).resolve().parent.parent / "web" / path).read_text(
+        encoding="utf-8"
+    )
+
+
+def test_routepicker_exposes_route_fixed_helper():
+    """web/app.js must define routeFixed() so the dropdown can label
+    each option with the trip-level fixed cost."""
+    src = _spa_asset("app.js")
+    assert "routeFixed" in src, "app.js missing routeFixed helper"
+    # Sanity: the helper sums flight + hotel + other.
+    assert "flight_cost_usd" in src
+    assert "hotel_cost_usd" in src
+    assert "other_cost_usd" in src
+
+
+def test_routepicker_dropdown_options_show_fixed_cost():
+    """Both origin and dest <select>s must render their options with
+    a 固定 $X label, surfacing the round-8 cost lesson in the UI."""
+    html = _spa_asset("index.html")
+    # Two options per route row: origin picker and dest picker, each
+    # calls routeFixed(r) and emits the 固定 label.
+    assert html.count("routeFixed(") >= 4  # 2 selects × 2 uses (label + title)
+    assert "固定" in html, "index.html missing 固定 label"
+    # The dropdown must still set the city as the option value, so
+    # existing x-model bindings (origin / dest) keep working.
+    assert 'x-model="origin"' in html
+    assert 'x-model="dest"' in html
+
+
+def test_list_routes_payload_supports_route_fixed(client):
+    """The /api/routes payload must carry the three cost fields that
+    the SPA's routeFixed() helper sums.  Regression guard so future
+    schema changes keep the dropdown meaningful."""
+    r = client.get("/api/routes")
+    assert r.status_code == 200
+    body = r.json()
+    by_name = {b["name"]: b for b in body}
+    # Seed: 1 intl ($1040) + 1 regional ($300).
+    assert set(by_name) == {"PVG-NRT-LAX-2N", "LAX-SFO-1N"}
+    intl = by_name["PVG-NRT-LAX-2N"]
+    reg = by_name["LAX-SFO-1N"]
+    intl_fixed = intl["flight_cost_usd"] + intl["hotel_cost_usd"] + intl["other_cost_usd"]
+    reg_fixed = reg["flight_cost_usd"] + reg["hotel_cost_usd"] + reg["other_cost_usd"]
+    assert intl_fixed == pytest.approx(1040.0)
+    assert reg_fixed == pytest.approx(300.0)
+    # The whole point of round-12 (c): the two routes must look different
+    # in the picker, so the regional-vs-international split is visible.
+    assert intl_fixed > reg_fixed * 2

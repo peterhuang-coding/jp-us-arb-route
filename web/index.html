@@ -15,16 +15,20 @@
     </div>
     <div class="params" @keydown.enter="refetch()">
       <label>出发城市
-        <select x-model="origin">
-          <template x-for="r in routes" :key="r.name">
-            <option :value="r.origin_city" x-text="r.origin_city"></option>
+        <select x-model="origin" :title="routes.map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
+          <template x-for="r in routes" :key="r.name + '-origin'">
+            <option :value="r.origin_city"
+              :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
+              x-text="r.origin_city + ' · 固定 ' + routeFixed(r)"></option>
           </template>
         </select>
       </label>
       <label>目的城市
-        <select x-model="dest">
-          <template x-for="r in routes" :key="r.name">
-            <option :value="r.dest_city" x-text="r.dest_city"></option>
+        <select x-model="dest" :title="routes.map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
+          <template x-for="r in routes" :key="r.name + '-dest'">
+            <option :value="r.dest_city"
+              :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
+              x-text="r.dest_city + ' · 固定 ' + routeFixed(r)"></option>
           </template>
         </select>
       </label>
