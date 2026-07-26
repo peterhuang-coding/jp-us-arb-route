@@ -142,3 +142,47 @@ def test_freshness_unknown_sku_errors(scratch_db):
     out = _run("freshness", "--sku", "NOPE")
     assert out.returncode != 0
     assert "unknown sku" in out.stderr.lower()
+
+
+# ---------- Round 4: verify + proposals ----------
+
+def test_verify_unknown_sku_exits_nonzero(scratch_db):
+    out = _run("verify", "--sku", "NOPE")
+    assert out.returncode != 0
+    payload = json.loads(out.stdout)
+    assert payload["sku"] == "NOPE"
+    assert payload["verified_now"] is False
+    assert payload["message"].startswith("opportunity not found")
+
+
+def test_verify_help_runs(scratch_db):
+    out = _run("verify", "--help")
+    assert out.returncode == 0
+    assert "--tolerance" in out.stdout
+    assert "--dry-run" in out.stdout
+
+
+def test_proposals_help_runs(scratch_db):
+    out = _run("proposals", "--help")
+    assert out.returncode == 0
+    assert "apply" in out.stdout
+    assert "reject" in out.stdout
+
+
+def test_proposals_list_empty_when_none_pending(scratch_db):
+    out = _run("proposals")
+    assert out.returncode == 0
+    assert "no proposals" in out.stdout
+
+
+def test_proposals_filter_by_status(scratch_db):
+    out = _run("proposals", "--status", "applied")
+    assert out.returncode == 0
+
+
+def test_proposals_apply_invalid_id_exits_nonzero(scratch_db):
+    out = _run("proposals", "apply", "99999")
+    assert out.returncode != 0
+    payload = json.loads(out.stdout)
+    assert payload["applied"] is False
+    assert "not found" in payload["message"]

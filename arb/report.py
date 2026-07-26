@@ -85,6 +85,7 @@ def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str
     freshness_badge = fv["badge"]
     freshness_age = freshness.humanize_age(fv["age_days"])
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
+    pending = _pending_proposals(opp)
     unit_profit_no_trip = (
         opp["sell_price_usd"] * (1 - opp["platform_fee_rate"])
         - opp["purchase_price_usd"] * (1 + opp["tariff_rate"])
@@ -140,6 +141,14 @@ def render_markdown(opp, route, legs, num_units: int, decision: Decision) -> str
     L.append("- 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)")
     L.append("- 品牌方限购政策可能随时调整;参考各 SKU 实际限购")
     L.append("- 本报告仅服务个人非贸易自用,不构成投资建议")
+    if pending:
+        L.append("")
+        L.append("## 待人工核对的提案 (proposed_prices)")
+        for p in pending:
+            L.append(f"- [#{p['id']}] {p['field']}: 存储 ${p['stored_value']:.2f} → "
+                     f"建议 ${p['proposed_value']:.2f} ({p['detected_currency']} {p['detected_raw']!r}, "
+                     f"drift {p['drift_pct']:.2f}%) 来源: {p['source_url']}")
+        L.append(f"  → 接受:`arb proposals apply <id>`  拒绝:`arb proposals reject <id>`")
     if fv["is_stale"]:
         L.append(f"- ⚠️ **数据陈旧 ({freshness_age})** — 超过 30 天阈值,请运行 "
                  f"`python -m arb refresh --sku {opp['sku']}` 重新核对价格,或人工更新 data_freshness_ts。")
@@ -247,6 +256,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
     ⚠️ 数据新鲜度: <span class="freshness-badge {stale_class}">{freshness_badge}</span> ({freshness_age})。
   </div>
+  {pending_proposals_html}
   {stale_warning_html}
 </div>
 </body></html>"""
@@ -270,10 +280,68 @@ def _legs_html(legs: Iterable) -> str:
     return "\n".join(parts)
 
 
+# ---------- pending proposals (Round 4) ----------
+
+def _pending_proposals(opp) -> list[dict]:
+    """Read pending proposed_prices for the given opp row.
+
+    The opp dict only carries id / sku, so we open a short-lived connection
+    to read pending rows.  When the report is being rendered inside a test
+    that already holds an open conn we fall back to the opp's own attributes
+    (the proposal rows are stashed in ``opp['_pending_proposals']`` for tests).
+    """
+    extra = opp.get("_pending_proposals") if isinstance(opp, dict) else None
+    if extra is not None:
+        return list(extra)
+    opp_id = opp["id"] if hasattr(opp, "__getitem__") else opp.id
+    try:
+        conn = db.connect()
+        try:
+            rows = conn.execute(
+                "SELECT p.* FROM proposed_prices p "
+                "WHERE p.opportunity_id = ? AND p.status = 'pending' "
+                "ORDER BY p.detected_at DESC, p.id DESC",
+                (opp_id,),
+            ).fetchall()
+        finally:
+            conn.close()
+    except Exception:
+        return []
+    return [dict(r) for r in rows]
+
+
+def _pending_proposals_html(opp, pending: list[dict]) -> str:
+    if not pending:
+        return ""
+    rows_html = []
+    for p in pending:
+        rows_html.append(
+            f"<tr><td>#{p['id']}</td><td>{html.escape(p['field'])}</td>"
+            f"<td>${p['stored_value']:.2f}</td>"
+            f"<td>${p['proposed_value']:.2f} ({html.escape(p['detected_currency'])} "
+            f"{html.escape(repr(p['detected_raw']))})</td>"
+            f"<td>{p['drift_pct']:.2f}%</td>"
+            f"<td>{html.escape(p['source_url'] or '')}</td></tr>"
+        )
+    return (
+        '<div class="warn-box propose-box">'
+        '<strong>📋 待人工核对的提案 (proposed_prices)</strong> '
+        f'— {len(pending)} 条漂移超出容差,价格未自动覆盖。<br>'
+        '<table style="margin-top:6px;font-size:12px;">'
+        '<tr><th>ID</th><th>字段</th><th>存储</th><th>建议</th><th>drift</th><th>来源</th></tr>'
+        + "\n".join(rows_html) +
+        '</table>'
+        '<div style="margin-top:6px;font-size:12px;">接受:<code>arb proposals apply &lt;id&gt;</code> · '
+        '拒绝:<code>arb proposals reject &lt;id&gt;</code></div>'
+        '</div>'
+    )
+
+
 def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
     icon, level_text, _ = _level_badge(decision.level)
     badge_class = {"建议": "ok", "谨慎": "warn", "不建议": "bad"}[decision.level]
     trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
+    pending = _pending_proposals(opp)
     unit_profit_no_trip = (
         opp["sell_price_usd"] * (1 - opp["platform_fee_rate"])
         - opp["purchase_price_usd"] * (1 + opp["tariff_rate"])
@@ -289,6 +357,7 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         f'{html.escape(opp["sku"])}</code> 重新核对价格。</div>'
         if fv["is_stale"] else ""
     )
+    pending_proposals_html = _pending_proposals_html(opp, pending)
     return _HTML_TEMPLATE.format(
         title=f"决策报告 — {opp['name']}",
         css=_HTML_CSS,
@@ -331,6 +400,7 @@ def render_html(opp, route, legs, num_units: int, decision: Decision) -> str:
         hours_used=f"{decision.hours_used:.1f}h",
         hours_available=f"{route['hours_available']:.1f}h",
         breakeven=_format_money(decision.breakeven_sell_price_usd),
+        pending_proposals_html=pending_proposals_html,
     )
 
 

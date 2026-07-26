@@ -7,6 +7,7 @@ real path, or :func:`connect_memory` for unit tests).
 """
 from __future__ import annotations
 
+import datetime as _dt
 import json
 import sqlite3
 from contextlib import contextmanager
@@ -80,6 +81,23 @@ CREATE TABLE IF NOT EXISTS decisions (
 
 CREATE INDEX IF NOT EXISTS idx_route_legs_route ON route_legs(route_id);
 CREATE INDEX IF NOT EXISTS idx_decisions_opp ON decisions(opportunity_id);
+
+CREATE TABLE IF NOT EXISTS proposed_prices (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    opportunity_id    INTEGER NOT NULL REFERENCES opportunities(id) ON DELETE CASCADE,
+    field             TEXT NOT NULL,             -- 'purchase_price_usd' | 'sell_price_usd'
+    stored_value      REAL NOT NULL,             -- what was in DB when proposal was staged
+    proposed_value    REAL NOT NULL,             -- value extracted from the scrape
+    detected_currency TEXT NOT NULL,             -- currency of the detected hint ('USD', 'JPY', ...)
+    detected_raw      TEXT NOT NULL,             -- raw hint string (e.g., 'JPY 12800')
+    source_url        TEXT NOT NULL,             -- which URL the hint came from
+    drift_pct         REAL NOT NULL,             -- abs(proposed - stored) / stored * 100
+    status            TEXT NOT NULL DEFAULT 'pending',  -- 'pending' | 'applied' | 'rejected'
+    detected_at       TEXT NOT NULL DEFAULT (datetime('now')),
+    resolved_at       TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_proposed_status ON proposed_prices(status, opportunity_id);
 """
 
 
@@ -202,3 +220,100 @@ def record_decision(conn: sqlite3.Connection, opportunity_id: int, route_id: int
     )
     conn.commit()
     return cur.lastrowid
+
+
+# ---------- proposed_prices (Round 4) ----------
+
+def add_proposed_price(conn: sqlite3.Connection, opportunity_id: int,
+                       field: str, *, stored_value: float, proposed_value: float,
+                       detected_currency: str, detected_raw: str, source_url: str,
+                       drift_pct: float, status: str = "pending") -> int:
+    """Stage one proposed-price row.  Returns the new row id."""
+    if field not in ("purchase_price_usd", "sell_price_usd"):
+        raise ValueError(f"unsupported field: {field!r}")
+    cur = conn.execute(
+        "INSERT INTO proposed_prices "
+        "(opportunity_id, field, stored_value, proposed_value, detected_currency, "
+        " detected_raw, source_url, drift_pct, status) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (opportunity_id, field, stored_value, proposed_value, detected_currency,
+         detected_raw, source_url, drift_pct, status),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def list_proposed_prices(conn: sqlite3.Connection, *, sku: Optional[str] = None,
+                         status: Optional[str] = None) -> list[sqlite3.Row]:
+    """List proposal rows, joined with sku for convenience.  Filterable."""
+    sql = (
+        "SELECT p.*, o.sku AS sku FROM proposed_prices p "
+        "JOIN opportunities o ON o.id = p.opportunity_id "
+    )
+    clauses = []
+    params: list = []
+    if sku is not None:
+        clauses.append("o.sku = ?")
+        params.append(sku)
+    if status is not None:
+        clauses.append("p.status = ?")
+        params.append(status)
+    if clauses:
+        sql += "WHERE " + " AND ".join(clauses) + " "
+    sql += "ORDER BY p.detected_at DESC, p.id DESC"
+    return list(conn.execute(sql, params))
+
+
+def get_proposed_price(conn: sqlite3.Connection, proposal_id: int) -> Optional[sqlite3.Row]:
+    return conn.execute(
+        "SELECT p.*, o.sku AS sku FROM proposed_prices p "
+        "JOIN opportunities o ON o.id = p.opportunity_id WHERE p.id = ?",
+        (proposal_id,),
+    ).fetchone()
+
+
+def resolve_proposed_price(conn: sqlite3.Connection, proposal_id: int,
+                           action: str, *, today: Optional[str] = None) -> dict:
+    """Apply or reject a proposal.  Returns the resulting state.
+
+    ``action='apply'`` overwrites the opportunity's stored price and marks the
+    proposal as 'applied'.  ``action='reject'`` just marks it 'rejected'.
+    Returns ``{"applied": bool, "field": str|None, "new_value": float|None,
+    "proposal_status": str, "message": str}``.
+    """
+    if action not in ("apply", "reject"):
+        raise ValueError(f"action must be 'apply' or 'reject', got {action!r}")
+    row = conn.execute(
+        "SELECT p.*, o.sku AS sku FROM proposed_prices p "
+        "JOIN opportunities o ON o.id = p.opportunity_id WHERE p.id = ?",
+        (proposal_id,),
+    ).fetchone()
+    if row is None:
+        return {"applied": False, "proposal_status": None,
+                "field": None, "new_value": None,
+                "message": f"proposal {proposal_id} not found"}
+    if row["status"] != "pending":
+        return {"applied": False, "proposal_status": row["status"],
+                "field": row["field"], "new_value": None,
+                "message": f"proposal already {row['status']}"}
+    today_str = today or _dt.date.today().isoformat()
+    if action == "apply":
+        conn.execute(
+            f"UPDATE opportunities SET {row['field']} = ?, data_freshness_ts = ? WHERE id = ?",
+            (row["proposed_value"], today_str, row["opportunity_id"]),
+        )
+        new_status = "applied"
+    else:
+        new_status = "rejected"
+    conn.execute(
+        "UPDATE proposed_prices SET status = ?, resolved_at = ? WHERE id = ?",
+        (new_status, today_str, proposal_id),
+    )
+    conn.commit()
+    if action == "apply":
+        return {"applied": True, "proposal_status": "applied",
+                "field": row["field"], "new_value": row["proposed_value"],
+                "message": f"已将 {row['sku']} 的 {row['field']} 覆盖为 {row['proposed_value']:.2f} (来源 {row['source_url']})"}
+    return {"applied": False, "proposal_status": "rejected",
+            "field": row["field"], "new_value": None,
+            "message": f"已拒绝提案 {proposal_id} ({row['sku']} · {row['field']})"}

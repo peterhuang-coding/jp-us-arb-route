@@ -12,6 +12,7 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import json
 import sys
 from pathlib import Path
@@ -19,6 +20,7 @@ from pathlib import Path
 from . import db, freshness
 from .decision import judge, DecideError, DecisionInputs
 from .refresh import outcome_as_dict, refresh_opportunity
+from .verify import outcome_as_dict as verify_outcome_as_dict, verify_opportunity
 from .report import (
     decide_for,
     render_html,
@@ -227,6 +229,59 @@ def cmd_freshness(args):
         conn.close()
 
 
+def cmd_verify(args):
+    """Refresh an opportunity and compare scraped hints to stored prices.
+
+    When hints match within ``--tolerance`` (default 5%), mark the opp as
+    ``verified=1``.  When they drift beyond tolerance (or come back in a
+    different currency), stage a proposal in ``proposed_prices`` instead of
+    overwriting — the human is responsible for ``arb proposals apply`` / reject.
+    """
+    conn = db.connect()
+    try:
+        kwargs = {"today": _dt.date.today()}
+        if args.dry_run:
+            kwargs["auto_stage"] = False
+        if args.tolerance is not None:
+            kwargs["tolerance"] = args.tolerance
+        outcome = verify_opportunity(conn, args.sku, **kwargs)
+        if not outcome.message.startswith("opportunity not found"):
+            conn.commit()
+        d = verify_outcome_as_dict(outcome)
+        print(json.dumps(d, ensure_ascii=False, indent=2))
+        if outcome.message.startswith("opportunity not found"):
+            return 1
+        return 0 if (outcome.verified_now or outcome.purchase.proposal_id is not None
+                     or outcome.sell.proposal_id is not None) else 1
+    finally:
+        conn.close()
+
+
+def cmd_proposals(args):
+    """List / apply / reject proposed_prices rows."""
+    conn = db.connect()
+    try:
+        if args.action in ("apply", "reject"):
+            res = db.resolve_proposed_price(conn, args.id, args.action)
+            print(json.dumps(res, ensure_ascii=False, indent=2))
+            return 0 if res["applied"] or res["proposal_status"] == "rejected" else 1
+        # default: list
+        rows = db.list_proposed_prices(
+            conn, sku=args.sku, status=args.status,
+        )
+        if not rows:
+            print("no proposals match filter")
+            return 0
+        for r in rows:
+            print(f"  [{r['id']:>4}] {r['sku']:25s} {r['field']:22s} "
+                  f"stored=${r['stored_value']:.2f} → proposed=${r['proposed_value']:.2f} "
+                  f"({r['detected_currency']} drift={r['drift_pct']:.2f}%) "
+                  f"status={r['status']:8s} url={r['source_url']}")
+        return 0
+    finally:
+        conn.close()
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -246,6 +301,22 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_fresh = sub.add_parser("freshness", help="show freshness verdict per opportunity")
     p_fresh.add_argument("--sku", help="restrict to one SKU (default: all)")
+
+    p_verify = sub.add_parser("verify", help="refresh + compare hints to stored prices; mark verified or stage proposal")
+    p_verify.add_argument("--sku", required=True)
+    p_verify.add_argument("--tolerance", type=float, default=None,
+                          help="drift fraction allowed before staging a proposal (default 0.05)")
+    p_verify.add_argument("--dry-run", action="store_true",
+                          help="compute the verdict but do not insert proposed_prices rows")
+
+    p_prop = sub.add_parser("proposals", help="list / apply / reject proposed_prices rows")
+    p_prop.add_argument("--sku", help="filter list to one SKU")
+    p_prop.add_argument("--status", choices=["pending", "applied", "rejected"],
+                        help="filter list by status (default: all)")
+    p_prop.add_argument("action", nargs="?", choices=["apply", "reject"],
+                        help="apply or reject a specific proposal")
+    p_prop.add_argument("id", type=int, nargs="?",
+                        help="proposal id (required with apply/reject)")
 
     p_dec = sub.add_parser("decide", help="compute per-trip decision")
     p_dec.add_argument("--sku", required=True)
@@ -280,6 +351,8 @@ def main(argv: list[str] | None = None) -> int:
         "serve": cmd_serve,
         "refresh": cmd_refresh,
         "freshness": cmd_freshness,
+        "verify": cmd_verify,
+        "proposals": cmd_proposals,
     }.get(args.cmd)
     if handler is None:
         return 2

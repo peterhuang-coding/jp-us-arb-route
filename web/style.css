@@ -303,6 +303,9 @@ ol.timeline li::before {
   color: var(--warn);
   line-height: 1.6;
 }
+.warn-box.verify-box.ok { background: #e6f4ea; border-color: #137333; color: #137333; }
+.warn-box.verify-box.drift { background: #fde7e9; border-color: #c5221f; color: #c5221f; }
+.warn-box.propose-box { background: #fefff3; border-color: #fdd663; color: var(--warn); }
 
 /* ---- footer ---- */
 .footer {

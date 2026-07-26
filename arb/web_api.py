@@ -21,6 +21,7 @@ from pydantic import BaseModel, Field
 
 from . import db, freshness
 from .refresh import outcome_as_dict, refresh_opportunity
+from .verify import outcome_as_dict as verify_outcome_as_dict, verify_opportunity
 from .report import (
     decide_for,
     render_html,
@@ -92,6 +93,53 @@ class RefreshResponse(BaseModel):
     verdict_after: Optional[dict]
     purchase: Optional[dict]
     sell: Optional[dict]
+    message: str
+
+
+class VerifySideCheck(BaseModel):
+    field: str
+    stored_value: float
+    source_url: Optional[str]
+    extracted: Optional[dict]
+    drift_pct: Optional[float]
+    accepted: bool
+    proposal_id: Optional[int]
+    note: str
+
+
+class VerifyResponse(BaseModel):
+    sku: str
+    name: str
+    refresh_updated: bool
+    refreshed_at: Optional[str]
+    verified_now: bool
+    final_verified: bool
+    final_freshness_ts: Optional[str]
+    purchase: VerifySideCheck
+    sell: VerifySideCheck
+    message: str
+
+
+class ProposalRow(BaseModel):
+    id: int
+    sku: str
+    field: str
+    stored_value: float
+    proposed_value: float
+    detected_currency: str
+    detected_raw: str
+    source_url: str
+    drift_pct: float
+    status: str
+    detected_at: str
+    resolved_at: Optional[str] = None
+
+
+class ProposalResolveResponse(BaseModel):
+    applied: bool
+    proposal_status: Optional[str]
+    field: Optional[str]
+    new_value: Optional[float]
     message: str
 
 
@@ -170,6 +218,63 @@ def refresh_opportunity_endpoint(sku: str):
         if not outcome.message.startswith("opportunity not found"):
             conn.commit()
         return outcome_as_dict(outcome)
+    finally:
+        conn.close()
+
+
+@app.post("/api/opportunities/{sku}/verify", response_model=VerifyResponse)
+def verify_opportunity_endpoint(sku: str, dry_run: bool = False):
+    """Refresh + compare scraped price_hints to stored prices.
+
+    When both sides match within ±5% (or the override ``dry_run`` skips
+    proposal insertion), mark ``verified=1``.  When they drift beyond
+    tolerance, stage ``proposed_prices`` rows for human review instead of
+    overwriting.  Never auto-overwrites stored prices.
+    """
+    conn = db.connect()
+    try:
+        outcome = verify_opportunity(conn, sku, auto_stage=not dry_run)
+        if not outcome.message.startswith("opportunity not found"):
+            conn.commit()
+        return verify_outcome_as_dict(outcome)
+    finally:
+        conn.close()
+
+
+@app.get("/api/proposals", response_model=list[ProposalRow])
+def list_proposals(sku: Optional[str] = None, status: Optional[str] = None):
+    """List proposed_prices rows, optional filters by sku / status."""
+    conn = db.connect()
+    try:
+        return [dict(r) for r in db.list_proposed_prices(conn, sku=sku, status=status)]
+    finally:
+        conn.close()
+
+
+@app.post("/api/proposals/{proposal_id}/apply", response_model=ProposalResolveResponse)
+def apply_proposal(proposal_id: int):
+    """Apply a proposal: overwrite the stored price, mark proposal applied."""
+    conn = db.connect()
+    try:
+        res = db.resolve_proposed_price(conn, proposal_id, "apply")
+        conn.commit()
+        if res["applied"] is False and res["proposal_status"] is None:
+            raise HTTPException(status_code=404, detail=res["message"])
+        return res
+    finally:
+        conn.close()
+
+
+@app.post("/api/proposals/{proposal_id}/reject", response_model=ProposalResolveResponse)
+def reject_proposal(proposal_id: int):
+    """Reject a proposal: keep the stored price, mark proposal rejected."""
+    conn = db.connect()
+    try:
+        res = db.resolve_proposed_price(conn, proposal_id, "reject")
+        conn.commit()
+        if res["applied"] is False and res["proposal_status"] is None:
+            raise HTTPException(status_code=404, detail=res["message"])
+        return res
     finally:
         conn.close()
 

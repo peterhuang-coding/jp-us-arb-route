@@ -185,3 +185,44 @@ def test_render_html_warns_when_stale(monkeypatch):
     assert "stale-box" in html_str
     assert "200 天前" in html_str
     assert "arb refresh" in html_str
+
+
+def test_render_markdown_surfaces_pending_proposals(monkeypatch):
+    """Markdown report embeds pending proposed_prices banner when staged."""
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp = db.get_opportunity(conn, sku)
+    db.add_proposed_price(
+        conn, opp["id"], "sell_price_usd",
+        stored_value=145.0, proposed_value=200.0,
+        detected_currency="USD", detected_raw="USD 200.00",
+        source_url="https://example.com/us", drift_pct=37.93,
+    )
+    # Route the report helper's DB read through the test conn.
+    pending = [dict(r) for r in db.list_proposed_prices(conn, status="pending")]
+    monkeypatch.setattr(report, "_pending_proposals", lambda opp: pending)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    md = report.render_markdown(opp, route, legs, 1, decision)
+    assert "待人工核对的提案" in md
+    assert "arb proposals apply" in md
+    assert "sell_price_usd" in md
+
+
+def test_render_html_surfaces_pending_proposals(monkeypatch):
+    """HTML report embeds propose-box when proposals are pending."""
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp = db.get_opportunity(conn, sku)
+    db.add_proposed_price(
+        conn, opp["id"], "purchase_price_usd",
+        stored_value=85.0, proposed_value=95.0,
+        detected_currency="USD", detected_raw="USD 95.00",
+        source_url="https://example.com/jp", drift_pct=11.76,
+    )
+    pending = [dict(r) for r in db.list_proposed_prices(conn, status="pending")]
+    monkeypatch.setattr(report, "_pending_proposals", lambda opp: pending)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    html_str = report.render_html(opp, route, legs, 1, decision)
+    assert "propose-box" in html_str
+    assert "purchase_price_usd" in html_str
+    assert "arb proposals apply" in html_str

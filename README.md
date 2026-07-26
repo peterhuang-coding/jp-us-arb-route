@@ -7,7 +7,7 @@
 
 ---
 
-## V0 状态 (Round 3 已交付)
+## V0 状态 (Round 4 已交付)
 
 | # | 验收项 | 状态 |
 |---|---|---|
@@ -17,9 +17,10 @@
 | 4 | Markdown / PDF 导出 | ✅ Markdown + HTML + PDF (`arb/report.py`) |
 | 5 | 决策等级判定函数 + ≥ 10 条样例 | ✅ `arb.decision.judge`, 23 单元测试 |
 | 6 | SQLite 持久化 + CLI / Web 双入口 | ✅ SQLite (`data/db.sqlite`) + CLI (`python -m arb`) + API (`/api/*`) |
-| 7 | **数据新鲜度告警 + 半自动抓取 (Round 3)** | ✅ `arb.freshness` + `arb.scraper` + `arb.refresh`;30 天阈值 + `arb refresh --sku X` CLI + `POST /api/opportunities/{sku}/refresh` |
+| 7 | 数据新鲜度告警 + 半自动抓取 (Round 3) | ✅ `arb.freshness` + `arb.scraper` + `arb.refresh`;30 天阈值 + `arb refresh --sku X` CLI + `POST /api/opportunities/{sku}/refresh` |
+| 8 | **验证徽章 + 提案审批 (Round 4)** | ✅ `arb.verify` + `proposed_prices` 表;`arb verify --sku X` + `arb proposals [apply|reject <id>]` + `POST /api/opportunities/{sku}/verify`;±5% 容差内自动 verified,超容差或币种不匹配 stage 提案待人工 apply/reject |
 
-**116 tests pass** (`pytest -v`) — 23 decision + 6 db + 13 cli + 11 report + 17 api + 22 freshness + 17 scraper + 7 refresh.
+**155 tests pass** (`pytest -q`) — 23 decision + 6 db + 19 cli + 13 report + 25 api + 22 freshness + 17 scraper + 7 refresh + 24 verify.
 
 ---
 
@@ -42,6 +43,12 @@ python3 -m arb report --sku JP-SKII-FT230 --units 5 --html --out exports/
 python3 -m arb freshness                                # 所有商机新鲜度告警
 python3 -m arb freshness --sku JP-SKII-FT230            # 单条
 python3 -m arb refresh --sku JP-SKII-FT230               # 重抓 URL 并更新 freshness_ts
+python3 -m arb verify --sku JP-SKII-FT230                # 抓取并与存储价格比对 (±5% 容差)
+python3 -m arb verify --sku JP-SKII-FT230 --dry-run      # 只报告,不入 proposed_prices
+python3 -m arb proposals                                 # 列出所有提案
+python3 -m arb proposals --sku JP-SKII-FT230 --status pending
+python3 -m arb proposals apply 7                         # 接受提案 #7 (覆盖存储价格)
+python3 -m arb proposals reject 7                        # 拒绝提案 #7 (保持存储价格)
 python3 -m arb health                                   # DB 健康
 python3 -m arb serve --port 8765                        # 启动 Web SPA
 
@@ -88,6 +95,10 @@ python3 -m pytest -v
 | GET | `/api/routes` | 路线清单(含 legs) JSON |
 | POST | `/api/decide` | 计算决策;body=`{sku, num_units, route?}` |
 | POST | `/api/opportunities/{sku}/refresh` | 重抓 URL,成功时刷新 `data_freshness_ts`;返回 `price_hints` (不自动覆盖价格) |
+| POST | `/api/opportunities/{sku}/verify` | 抓取并比对 `purchase_price_usd` / `sell_price_usd` (±5% 容差);容差内标记 `verified=1`,超容差或币种不匹配 stage 提案 |
+| GET | `/api/proposals` | 提案清单(可 `?sku=...&status=pending`) |
+| POST | `/api/proposals/{id}/apply` | 接受提案(覆盖存储价格并刷新 freshness_ts) |
+| POST | `/api/proposals/{id}/reject` | 拒绝提案(保持存储价格) |
 | GET | `/api/report/{sku}.md` | Markdown 报告(attachment, RFC 5987 文件名) |
 | GET | `/api/report/{sku}.html` | HTML 报告 |
 | GET | `/api/report/{sku}.pdf` | 单页 PDF(Playwright Chromium) |
@@ -111,18 +122,20 @@ python3 -m pytest -v
 │   ├── freshness.py       # 数据新鲜度判定 (Round 3)
 │   ├── scraper.py         # 安全 HTTP 抓取 + robots.txt (Round 3)
 │   ├── refresh.py         # 刷新协调 (Round 3)
+│   ├── verify.py          # 验证徽章 + 提案 stage (Round 4)
 │   ├── report.py          # Markdown / HTML / PDF 共享渲染器
 │   ├── web_api.py         # FastAPI app (REST + 静态 SPA)
-│   └── cli.py             # list / decide / report / seed / health / serve / refresh / freshness
+│   └── cli.py             # list / decide / report / seed / health / serve / refresh / freshness / verify / proposals
 ├── tests/
 │   ├── test_decision.py   # 23 个手算对照用例
 │   ├── test_db.py         # 6 个 schema + 仓储用例
-│   ├── test_cli.py        # 13 个 CLI 子进程用例 (含 md/html/pdf/freshness)
-│   ├── test_report.py     # 11 个 report 渲染器用例 (含真 PDF + 新鲜度标记)
-│   ├── test_web_api.py    # 17 个 FastAPI endpoint 用例
+│   ├── test_cli.py        # 19 个 CLI 子进程用例 (含 md/html/pdf/freshness/verify/proposals)
+│   ├── test_report.py     # 13 个 report 渲染器用例 (含真 PDF + 新鲜度标记 + 提案 banner)
+│   ├── test_web_api.py    # 25 个 FastAPI endpoint 用例
 │   ├── test_freshness.py  # 22 个 freshness 判定用例
 │   ├── test_scraper.py    # 17 个 scraper 安全网测试
-│   └── test_refresh.py    # 7 个 refresh 协调用例
+│   ├── test_refresh.py    # 7 个 refresh 协调用例
+│   └── test_verify.py     # 24 个 verify + 提案审批用例 (Round 4)
 ├── web/                   # 静态 SPA (Alpine.js)
 │   ├── index.html
 │   ├── app.js
@@ -169,11 +182,13 @@ ROI = 净利润 / 总成本 × 100%
 - **品牌方限购**:每个商机 notes 字段记录限购数量,默认按单人额度算。
 - **法规风险**:仅服务个人非贸易自用;所有报告显式标注「非投资建议 / 个人使用,非商业再销售」。
 - **数据新鲜度 (Round 3)**:所有商机带 `data_freshness_ts`;>15 天标「🟡 临近复核」,>30 天标「⚠️ 陈旧待复核」。UI/CLI/PDF 都看得见;`arb refresh --sku X` 或 SPA 「🔄 刷新」按钮会重抓 URL,成功则更新 ts,**不自动覆盖价格**(返回 `price_hints` 给人工核对)。
+- **验证徽章 + 提案审批 (Round 4)**:`arb verify --sku X` 或 SPA 「✓ 验证」按钮抓取 URL,与存储价格 ±5% 容差比对;容差内自动 `verified=1`,超容差或币种不匹配则 stage 到 `proposed_prices` 表(不自动覆盖)。人工通过 `arb proposals apply|reject <id>` 或 `POST /api/proposals/{id}/{apply|reject}` 接受或拒绝提案(接受时同时覆盖价格并刷新 freshness_ts)。
 
 ---
 
 ## 下一轮计划
 
 - Round 3: ✅ 已交付 — `arb.freshness` (30 天阈值) + `arb.scraper` (stdlib-only, robots.txt + 限速) + `arb.refresh` 协调;POST `/api/opportunities/{sku}/refresh` + CLI `arb refresh`;UI/CLI/PDF 全链路显示新鲜度。
-- Round 4: eBay Buy API / Amazon PA-API 自动发现 (V1)。
-- Round 5: PWA / 移动端优化;Notion / Apple Notes 导出。
+- Round 4: ✅ 已交付 — `arb.verify` + `proposed_prices` 表;`arb verify --sku X` + `arb proposals apply|reject <id>` + `POST /api/opportunities/{sku}/verify`;±5% 容差内 `verified=1`,超容差或币种不匹配 stage 提案待人工审批;UI/CLI/PDF 全链路显示。
+- Round 5: eBay Buy API / Amazon PA-API 自动发现 (V1)。
+- Round 6: PWA / 移动端优化;Notion / Apple Notes 导出。

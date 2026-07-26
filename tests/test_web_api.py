@@ -186,3 +186,112 @@ def test_refresh_endpoint_returns_outcome_shape(client, monkeypatch):
     assert body["updated"] is True
     assert body["new_freshness_ts"] is not None
     assert body["purchase"] is not None and body["purchase"]["ok"] is True
+
+
+# ---------- Round 4: verify + proposals endpoints ----------
+
+def test_verify_endpoint_returns_shape(client, monkeypatch):
+    """Stub the scraper so verify can run without network."""
+    from arb import scraper
+    class _Stub:
+        ok = True
+        status = 200
+        final_url = "https://example.com"
+        content_type = "text/html"
+        bytes_read = 0
+        elapsed_ms = 1
+        robots_allowed = True
+        blocked_reason = None
+        text = "<html>USD 145.99</html>"
+    monkeypatch.setattr(scraper, "fetch_url", lambda *a, **kw: _Stub())
+    r = client.post("/api/opportunities/JP-SKII-FT230/verify")
+    assert r.status_code == 200
+    body = r.json()
+    assert set(body) >= {
+        "sku", "name", "refresh_updated", "verified_now",
+        "final_verified", "purchase", "sell", "message",
+    }
+
+
+def test_verify_unknown_sku_returns_404(client):
+    r = client.post("/api/opportunities/NOPE/verify")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["verified_now"] is False
+    assert body["message"].startswith("opportunity not found")
+
+
+def test_list_proposals_empty_by_default(client):
+    r = client.get("/api/proposals")
+    assert r.status_code == 200
+    assert r.json() == []
+
+
+def test_list_proposals_filter_by_sku_and_status(client, monkeypatch):
+    from arb import scraper, db
+    # Stage one proposal directly so the GET has something to return.
+    conn = db.connect()
+    opp = db.get_opportunity(conn, "JP-SKII-FT230")
+    pid = db.add_proposed_price(
+        conn, opp["id"], "sell_price_usd",
+        stored_value=145.0, proposed_value=200.0,
+        detected_currency="USD", detected_raw="USD 200.00",
+        source_url="https://example.com/us", drift_pct=37.93,
+    )
+    conn.close()
+    r = client.get("/api/proposals", params={"sku": "JP-SKII-FT230", "status": "pending"})
+    assert r.status_code == 200
+    rows = r.json()
+    assert len(rows) == 1
+    assert rows[0]["id"] == pid
+    assert rows[0]["sku"] == "JP-SKII-FT230"
+
+
+def test_apply_proposal_endpoint_overwrites_price(client):
+    from arb import db
+    conn = db.connect()
+    opp = db.get_opportunity(conn, "JP-SKII-FT230")
+    pid = db.add_proposed_price(
+        conn, opp["id"], "sell_price_usd",
+        stored_value=145.0, proposed_value=200.0,
+        detected_currency="USD", detected_raw="USD 200.00",
+        source_url="https://example.com/us", drift_pct=37.93,
+    )
+    conn.close()
+    r = client.post(f"/api/proposals/{pid}/apply")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["applied"] is True
+    assert body["new_value"] == 200.0
+    # DB updated
+    conn = db.connect()
+    row = db.get_opportunity(conn, "JP-SKII-FT230")
+    assert row["sell_price_usd"] == 200.0
+    conn.close()
+
+
+def test_reject_proposal_endpoint_keeps_price(client):
+    from arb import db
+    conn = db.connect()
+    opp = db.get_opportunity(conn, "JP-SKII-FT230")
+    pid = db.add_proposed_price(
+        conn, opp["id"], "sell_price_usd",
+        stored_value=145.0, proposed_value=200.0,
+        detected_currency="USD", detected_raw="USD 200.00",
+        source_url="https://example.com/us", drift_pct=37.93,
+    )
+    conn.close()
+    r = client.post(f"/api/proposals/{pid}/reject")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["applied"] is False
+    assert body["proposal_status"] == "rejected"
+    conn = db.connect()
+    row = db.get_opportunity(conn, "JP-SKII-FT230")
+    assert row["sell_price_usd"] == 145.0
+    conn.close()
+
+
+def test_apply_proposal_unknown_id_returns_404(client):
+    r = client.post("/api/proposals/99999/apply")
+    assert r.status_code == 404

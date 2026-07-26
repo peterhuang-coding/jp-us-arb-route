@@ -12,12 +12,14 @@ function app() {
     // ---- state ----
     loading: false,
     refreshing: false,
+    verifying: false,
     status: '',
     dbPath: '',
     opportunities: [],
     routes: [],
     selected: null,
     detailCache: {},          // sku -> full decide response
+    lastVerify: null,         // most-recent VerifyOutcome (for the detail pane)
     filter: '',
     origin: '上海 PVG',
     dest: '洛杉矶 LAX',
@@ -206,6 +208,48 @@ function app() {
         this.setStatus('刷新失败: ' + e.message, true);
       } finally {
         this.refreshing = false;
+      }
+    },
+
+    // ---- verify flow (Round 4) ----
+    async verifyOpportunity() {
+      if (!this.selected) return;
+      this.verifying = true;
+      try {
+        const sku = encodeURIComponent(this.selected);
+        const resp = await fetch(`/api/opportunities/${sku}/verify`, {
+          method: 'POST',
+        });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const out = await resp.json();
+        this.lastVerify = out;
+        // Patch the cached opp list with the new freshness + verified state.
+        const idx = this.opportunities.findIndex(o => o.sku === this.selected);
+        if (idx >= 0) {
+          if (out.final_freshness_ts) {
+            this.opportunities[idx].data_freshness_ts = out.final_freshness_ts;
+          }
+          this.opportunities[idx].verified = !!out.final_verified;
+        }
+        if (this.detailCache[this.selected]) {
+          if (out.final_freshness_ts) {
+            this.detailCache[this.selected].opp.data_freshness_ts = out.final_freshness_ts;
+          }
+          this.detailCache[this.selected].opp.verified = !!out.final_verified;
+        }
+        const proposalCount = (out.purchase.proposal_id ? 1 : 0) +
+                              (out.sell.proposal_id ? 1 : 0);
+        if (out.verified_now) {
+          this.setStatus(`${this.selected} 已验证 ✓ (容差内)`);
+        } else if (proposalCount > 0) {
+          this.setStatus(`${this.selected} 漂移超出容差,已 stage ${proposalCount} 条提案`);
+        } else {
+          this.setStatus(`${this.selected} ${out.message}`);
+        }
+      } catch (e) {
+        this.setStatus('验证失败: ' + e.message, true);
+      } finally {
+        this.verifying = false;
       }
     },
 
