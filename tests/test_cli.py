@@ -73,3 +73,47 @@ def test_health(scratch_db):
     assert out.returncode == 0
     assert "opportunities: 6" in out.stdout
     assert "routes: 1" in out.stdout
+
+
+def test_report_writes_html(scratch_db, tmp_path):
+    out = _run("report", "--sku", "JP-SKII-FT230", "--units", "5",
+               "--html", "--out", str(tmp_path))
+    assert out.returncode == 0, out.stderr
+    written = list(tmp_path.glob("*.html"))
+    assert written, f"no html file in {tmp_path} (stdout: {out.stdout!r})"
+    body = written[0].read_text(encoding="utf-8")
+    assert "<!DOCTYPE html>" in body
+    assert "决策报告" in body
+    assert "JP-SKII-FT230" in body
+
+
+def test_report_writes_pdf(scratch_db, tmp_path):
+    out = _run("report", "--sku", "JP-NINTENDO-SWOLED", "--units", "10",
+               "--pdf", "--out", str(tmp_path))
+    assert out.returncode == 0, out.stderr
+    written = list(tmp_path.glob("*.pdf"))
+    assert written, f"no pdf file in {tmp_path} (stdout: {out.stdout!r})"
+    head = written[0].read_bytes()[:4]
+    assert head == b"%PDF", f"bad PDF magic: {head!r}"
+
+
+def test_report_default_is_markdown(scratch_db, tmp_path):
+    out = _run("report", "--sku", "JP-DYSON-V12S", "--units", "3",
+               "--out", str(tmp_path / "r.md"))
+    assert out.returncode == 0
+    body = (tmp_path / "r.md").read_text(encoding="utf-8")
+    assert body.startswith("# 决策报告")
+
+
+def test_report_unknown_sku_exits_nonzero(scratch_db):
+    out = _run("report", "--sku", "NOPE", "--units", "1")
+    assert out.returncode != 0
+    assert "error" in out.stderr.lower() or "not found" in out.stderr.lower()
+
+
+def test_serve_help_does_not_boot_server(scratch_db):
+    """`serve --help` must not actually start uvicorn."""
+    out = _run("serve", "--help")
+    assert out.returncode == 0
+    assert "--host" in out.stdout
+    assert "--port" in out.stdout

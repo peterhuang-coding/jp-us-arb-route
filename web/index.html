@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jp-us-arb-route — 单次出差决策</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="app()" x-init="init()">
+  <header class="topbar">
+    <div class="brand">
+      <h1>🌏 jp-us-arb-route</h1>
+      <span class="subtitle">5 分钟做完"这次出差值不值得去赚这个钱"</span>
+    </div>
+    <div class="params" @keydown.enter="refetch()">
+      <label>出发城市
+        <select x-model="origin">
+          <template x-for="r in routes" :key="r.name">
+            <option :value="r.origin_city" x-text="r.origin_city"></option>
+          </template>
+        </select>
+      </label>
+      <label>目的城市
+        <select x-model="dest">
+          <template x-for="r in routes" :key="r.name">
+            <option :value="r.dest_city" x-text="r.dest_city"></option>
+          </template>
+        </select>
+      </label>
+      <label>出行日期
+        <input type="date" x-model="departureDate">
+      </label>
+      <label>目标 ROI %
+        <input type="number" min="1" max="100" step="0.5" x-model.number="targetRoi">
+      </label>
+      <label>数量
+        <input type="number" min="1" max="500" x-model.number="numUnits">
+      </label>
+      <button class="primary" @click="refetch()" :disabled="loading">
+        <span x-show="!loading">刷新</span><span x-show="loading">…</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: opportunity list -->
+    <aside class="opps">
+      <h2>商机清单 <span class="count" x-text="opportunities.length"></span></h2>
+      <div class="filter">
+        <input type="text" placeholder="过滤 (SKU / 名称 / 类目)" x-model="filter">
+      </div>
+      <ul class="opp-list">
+        <template x-for="o in filtered()" :key="o.sku">
+          <li :class="{ active: selected === o.sku }" @click="select(o.sku)">
+            <div class="opp-head">
+              <span class="sku" x-text="o.sku"></span>
+              <span class="badge" :class="badgeClass(detailCache[o.sku]?.decision?.level)"
+                x-text="badgeText(detailCache[o.sku]?.decision?.level)"></span>
+            </div>
+            <div class="opp-name" x-text="o.name"></div>
+            <div class="opp-meta">
+              <span x-text="o.source_market + ' → ' + o.target_market"></span>
+            </div>
+            <div class="opp-numbers">
+              <span>采购 $<span x-text="o.purchase_price_usd.toFixed(0)"></span></span>
+              <span>售价 $<span x-text="o.sell_price_usd.toFixed(0)"></span></span>
+              <span x-show="detailCache[o.sku]?.decision">
+                ROI <strong x-text="(detailCache[o.sku].decision.roi_pct || 0).toFixed(1) + '%'"></strong>
+              </span>
+            </div>
+            <div class="opp-footer">
+              <span class="verified" :class="{ 'verified': o.verified }">
+                <span x-text="o.verified ? '✅ 已验证' : '⚠️ 未验证'"></span>
+              </span>
+              <span class="ts" x-text="o.data_freshness_ts"></span>
+            </div>
+          </li>
+        </template>
+        <li x-show="filtered().length === 0" class="empty">无匹配商机</li>
+      </ul>
+    </aside>
+
+    <!-- RIGHT: detail pane -->
+    <section class="detail">
+      <div x-show="!selected" class="placeholder">
+        <p>← 点击左侧任一条商机查看路线详情 / 决策报告</p>
+      </div>
+
+      <div x-show="selected && currentDetail" class="detail-content">
+        <header class="detail-header">
+          <h2 x-text="currentDetail.opp.name"></h2>
+          <div class="detail-meta">
+            <code x-text="currentDetail.opp.sku"></code>
+            <span>·</span>
+            <span x-text="currentDetail.route.name"></span>
+            <span>·</span>
+            <span x-text="currentDetail.route.origin_city + ' → ' + currentDetail.route.dest_city"></span>
+          </div>
+          <div class="badges">
+            <span class="badge" :class="badgeClass(currentDetail.decision.level)"
+              x-text="badgeText(currentDetail.decision.level)"></span>
+            <span class="reason" x-text="currentDetail.decision.reason"></span>
+          </div>
+          <div class="actions">
+            <button @click="exportMd()">⬇ Markdown</button>
+            <button @click="exportHtml()">⬇ HTML</button>
+            <button @click="exportPdf()" class="primary">⬇ PDF</button>
+          </div>
+        </header>
+
+        <!-- key metrics -->
+        <div class="metrics">
+          <div class="metric">
+            <span class="m-label">ROI</span>
+            <span class="m-value" :class="roiClass(currentDetail.decision.roi_pct)"
+              x-text="currentDetail.decision.roi_pct.toFixed(1) + '%'"></span>
+          </div>
+          <div class="metric">
+            <span class="m-label">净利润</span>
+            <span class="m-value" :class="{ neg: currentDetail.decision.net_profit_usd < 0 }"
+              x-text="'$' + currentDetail.decision.net_profit_usd.toFixed(2)"></span>
+          </div>
+          <div class="metric">
+            <span class="m-label">总成本</span>
+            <span class="m-value" x-text="'$' + currentDetail.decision.total_cost_usd.toFixed(2)"></span>
+          </div>
+          <div class="metric">
+            <span class="m-label">盈亏平衡售价</span>
+            <span class="m-value" x-text="'$' + currentDetail.decision.breakeven_sell_price_usd.toFixed(2)"></span>
+          </div>
+          <div class="metric">
+            <span class="m-label">耗时</span>
+            <span class="m-value"
+              x-text="currentDetail.decision.hours_used.toFixed(1) + 'h / ' + currentDetail.route.hours_available.toFixed(1) + 'h'"></span>
+          </div>
+          <div class="metric">
+            <span class="m-label">数量</span>
+            <span class="m-value" x-text="currentDetail.num_units"></span>
+          </div>
+        </div>
+
+        <!-- cost breakdown -->
+        <details open>
+          <summary>单件成本明细 (USD)</summary>
+          <table>
+            <tr><th>采购价 (JP 免税)</th><td x-text="'$' + currentDetail.opp.purchase_price_usd.toFixed(2)"></td></tr>
+            <tr><th>关税</th><td x-text="'$' + (currentDetail.opp.purchase_price_usd * currentDetail.opp.tariff_rate).toFixed(2)"></td></tr>
+            <tr><th>物流</th><td x-text="'$' + currentDetail.opp.shipping_per_unit_usd.toFixed(2)"></td></tr>
+            <tr><th>平台抽成</th><td x-text="'$' + (currentDetail.opp.sell_price_usd * currentDetail.opp.platform_fee_rate).toFixed(2)"></td></tr>
+          </table>
+        </details>
+
+        <details open>
+          <summary>行程成本 (USD)</summary>
+          <table>
+            <tr><th>机票 (往返)</th><td x-text="'$' + currentDetail.route.flight_cost_usd.toFixed(2)"></td></tr>
+            <tr><th>酒店</th><td x-text="'$' + currentDetail.route.hotel_cost_usd.toFixed(2)"></td></tr>
+            <tr><th>其它</th><td x-text="'$' + currentDetail.route.other_cost_usd.toFixed(2)"></td></tr>
+          </table>
+        </details>
+
+        <details open>
+          <summary>行程时间线</summary>
+          <ol class="timeline">
+            <template x-for="leg in currentDetail.legs" :key="leg.seq">
+              <li>
+                <span class="leg-kind" :class="leg.kind" x-text="leg.kind"></span>
+                <strong x-text="leg.label"></strong>
+                <span class="leg-loc" x-text="leg.location || ''"></span>
+                · 耗时 <span x-text="leg.duration_min.toFixed(0) + 'min'"></span>
+                · 费用 <span x-text="'$' + leg.cost_usd.toFixed(0)"></span>
+                <div class="leg-notes" x-text="leg.notes" x-show="leg.notes"></div>
+              </li>
+            </template>
+          </ol>
+        </details>
+
+        <details>
+          <summary>数据来源 / 风险提示</summary>
+          <table>
+            <tr><th>采购来源</th><td><a :href="currentDetail.opp.purchase_source_url || '#'" target="_blank"
+              x-text="currentDetail.opp.purchase_source_url || '未提供'"></a></td></tr>
+            <tr><th>目的市场来源</th><td><a :href="currentDetail.opp.sell_source_url || '#'" target="_blank"
+              x-text="currentDetail.opp.sell_source_url || '未提供'"></a></td></tr>
+            <tr><th>机票/酒店来源</th><td><a :href="currentDetail.route.source_url || '#'" target="_blank"
+              x-text="currentDetail.route.source_url || '未提供'"></a></td></tr>
+            <tr><th>数据更新时间</th><td x-text="currentDetail.opp.data_freshness_ts"></td></tr>
+            <tr><th>SKU 备注</th><td x-text="currentDetail.opp.notes"></td></tr>
+          </table>
+          <div class="warn-box">
+            ⚠️ 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)。<br>
+            ⚠️ 品牌方限购政策可能随时调整;参考各 SKU 实际限购。<br>
+            ⚠️ 本报告仅服务个人非贸易自用,不构成投资建议;非商业再销售。<br>
+            ⚠️ 数据超过 30 天将被标记 "陈旧待复核"。
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span x-text="status"></span>
+    <span class="db">API: <a href="/docs">/docs</a> · DB: <span x-text="dbPath"></span></span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

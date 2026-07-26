@@ -1,10 +1,12 @@
-"""CLI entry point: list / decide / report / seed.
+"""CLI entry point: list / decide / report / seed / serve.
 
 Examples:
 
   python -m arb list
   python -m arb decide --sku JP-SKII-FT230 --units 5
   python -m arb report --sku JP-SKII-FT230 --units 5 --md
+  python -m arb report --sku JP-SKII-FT230 --units 5 --pdf --out exports/foo.pdf
+  python -m arb serve --port 8765
   python -m arb seed
 """
 from __future__ import annotations
@@ -15,7 +17,14 @@ import sys
 from pathlib import Path
 
 from . import db
-from .decision import DecisionInputs, judge, DecideError
+from .decision import judge, DecideError, DecisionInputs
+from .report import (
+    decide_for,
+    render_html,
+    render_markdown,
+    render_pdf,
+    report_filename,
+)
 
 
 # ---------- formatting ----------
@@ -55,97 +64,22 @@ def _print_decision(d, opp, route, num_units: int) -> str:
     return "\n".join(L)
 
 
-def _build_report_md(opp, route, legs, num_units: int, d) -> str:
-    freshness = opp["data_freshness_ts"]
-    verified = "✅ 已验证" if opp["verified"] else "⚠️ 未验证"
-    trip_cost = route["flight_cost_usd"] + route["hotel_cost_usd"] + route["other_cost_usd"]
-    unit_profit_no_trip = opp["sell_price_usd"] * (1 - opp["platform_fee_rate"]) \
-        - opp["purchase_price_usd"] * (1 + opp["tariff_rate"]) \
-        - opp["shipping_per_unit_usd"]
-
-    md = []
-    md.append(f"# 决策报告 — {opp['name']}")
-    md.append("")
-    md.append(f"- 商机 SKU: `{opp['sku']}`")
-    md.append(f"- 路线: {route['name']} ({route['origin_city']} → {route['dest_city']})")
-    md.append(f"- 出行日期: {route['departure_date'] or '未指定'}")
-    md.append(f"- 决策等级: **{_fmt_level(d.level)}**")
-    md.append(f"- 一句话理由: {d.reason}")
-    md.append("")
-    md.append("## 数据来源")
-    md.append(f"- 采购来源: {opp['purchase_source_url'] or '未提供'}")
-    md.append(f"- 目的市场来源: {opp['sell_source_url'] or '未提供'}")
-    md.append(f"- 机票/酒店来源: {route['source_url'] or '未提供'}")
-    md.append(f"- 数据更新: {freshness}  ({verified})")
-    md.append("")
-    md.append("## 单件成本明细 (USD)")
-    md.append(f"- 采购价(JP免税): ${opp['purchase_price_usd']:.2f}")
-    md.append(f"- 关税({opp['tariff_rate']*100:.0f}%): ${opp['purchase_price_usd']*opp['tariff_rate']:.2f}")
-    md.append(f"- 物流: ${opp['shipping_per_unit_usd']:.2f}")
-    md.append(f"- 平台抽成({opp['platform_fee_rate']*100:.0f}%): ${opp['sell_price_usd']*opp['platform_fee_rate']:.2f}")
-    md.append(f"- **单件净利润(剥离时间/旅费前) ${unit_profit_no_trip:.2f}**")
-    md.append("")
-    md.append("## 行程成本 (USD)")
-    md.append(f"- 机票(往返): ${route['flight_cost_usd']:.2f}")
-    md.append(f"- 酒店: ${route['hotel_cost_usd']:.2f}")
-    md.append(f"- 其它: ${route['other_cost_usd']:.2f}")
-    md.append(f"- **行程合计 ${trip_cost:.2f}**")
-    md.append("")
-    md.append("## 行程时间线")
-    for leg in legs:
-        md.append(f"{leg['seq']}. **{leg['label']}** ({leg['kind']}) — "
-                  f"{leg['location'] or ''} "
-                  f"耗时 {leg['duration_min']:.0f}min "
-                  f"费用 ${leg['cost_usd']:.0f}")
-        if leg["notes"]:
-            md.append(f"   - {leg['notes']}")
-    md.append("")
-    md.append("## 综合决策")
-    md.append(f"- 采购数量: {num_units}")
-    md.append(f"- 总营收: ${d.total_revenue_usd:.2f}")
-    md.append(f"- 总成本: ${d.total_cost_usd:.2f}")
-    md.append(f"- 净利润: ${d.net_profit_usd:.2f}")
-    md.append(f"- ROI: {d.roi_pct:.1f}%")
-    md.append(f"- 耗时: {d.hours_used:.1f}h / {route['hours_available']:.1f}h")
-    md.append(f"- 盈亏平衡售价: ${d.breakeven_sell_price_usd:.2f}")
-    md.append("")
-    md.append("## 风险与提示")
-    md.append("- 海关政策以出发日两国海关公告为准 (US CBP $800 / 日方 ¥20,000 免税额,未验证)")
-    md.append("- 品牌方限购政策可能随时调整;参考各 SKU 实际限购")
-    md.append("- 本报告仅服务个人非贸易自用,不构成投资建议")
-    md.append("- 数据超过 30 天将被标记 '陈旧待复核'")
-    md.append("")
-    return "\n".join(md)
+def _resolve_target(out: Path | None, opp, route, ext: str) -> Path:
+    """Pick a write target: --out as file path, --out as existing dir, or auto."""
+    if out is None:
+        return Path("exports") / report_filename(opp["sku"], route["dest_city"], ext)
+    if out.is_dir():
+        return out / report_filename(opp["sku"], route["dest_city"], ext)
+    return out
 
 
 # ---------- shared runner ----------
 
-def _decide(conn, sku: str, units: int, route_name: str) -> tuple:
-    opp = db.get_opportunity(conn, sku)
-    if opp is None:
-        raise SystemExit(f"opp not found: {sku}")
-    route = db.get_route(conn, route_name)
-    if route is None:
-        raise SystemExit(f"route not found: {route_name}")
-    di = DecisionInputs(
-        num_units=units,
-        purchase_price_usd=opp["purchase_price_usd"],
-        sell_price_usd=opp["sell_price_usd"],
-        tariff_rate=opp["tariff_rate"],
-        shipping_per_unit_usd=opp["shipping_per_unit_usd"],
-        platform_fee_rate=opp["platform_fee_rate"],
-        minutes_per_unit=opp["minutes_per_unit"],
-        flight_cost_usd=route["flight_cost_usd"],
-        hotel_cost_usd=route["hotel_cost_usd"],
-        other_trip_cost_usd=route["other_cost_usd"],
-        hours_available=route["hours_available"],
-        target_hourly_usd=route["target_hourly_usd"],
-        target_roi_pct=route["target_roi_pct"],
-        min_roi_pct=route["min_roi_pct"],
-    )
-    d = judge(di)
-    db.record_decision(conn, opp["id"], route["id"], units, d)
-    return opp, route, d
+def _decide(conn, sku: str, units: int, route_name: str):
+    """Backward-compatible helper: returns (opp, route, decision) tuple."""
+    opp, route, decision, _legs = decide_for(conn, sku, units, route_name)
+    db.record_decision(conn, opp["id"], route["id"], units, decision)
+    return opp, route, decision
 
 
 # ---------- commands ----------
@@ -177,18 +111,56 @@ def cmd_decide(args):
 
 
 def cmd_report(args):
+    """Render the decision report in --md / --html / --pdf format.
+
+    Default behavior is unchanged from Round 1: Markdown to stdout or --out file.
+    Use --html or --pdf for the new formats.  Output filename follows the brief:
+    `jp-us-arb_<date>_<sku>_<dest>.<ext>`.  If --out is a directory, auto-name;
+    if it's a file path, write to that path.
+    """
     conn = db.connect()
-    opp, route, d = _decide(conn, args.sku, args.units, args.route)
-    legs = db.list_route_legs(conn, route["id"])
-    md = _build_report_md(opp, route, legs, args.units, d)
-    if args.out:
-        out_path = Path(args.out)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(md, encoding="utf-8")
-        print(f"wrote {out_path}")
+    try:
+        opp, route, decision, legs = decide_for(conn, args.sku, args.units, args.route)
+    except ValueError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+
+    fmt = args.format
+    out = Path(args.out) if args.out else None
+
+    # Resolve target: --out can be a file path or an existing directory.
+    # No --out for md -> stdout; for html/pdf -> exports/<auto-name>.
+    if fmt == "md":
+        body = render_markdown(opp, route, legs, args.units, decision)
+        if out is None:
+            print(body)
+        elif out.is_dir():
+            target = out / report_filename(opp["sku"], route["dest_city"], "md")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(body, encoding="utf-8")
+            print(f"wrote {target}")
+        else:
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(body, encoding="utf-8")
+            print(f"wrote {out}")
+    elif fmt == "html":
+        body = render_html(opp, route, legs, args.units, decision)
+        target = _resolve_target(out, opp, route, "html")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(body, encoding="utf-8")
+        print(f"wrote {target}")
+    elif fmt == "pdf":
+        body = render_html(opp, route, legs, args.units, decision)
+        target = _resolve_target(out, opp, route, "pdf")
+        render_pdf(body, target)
+        print(f"wrote {target}")
     else:
-        print(md)
+        print(f"error: unsupported format {fmt!r}", file=sys.stderr)
+        return 2
+
+    db.record_decision(conn, opp["id"], route["id"], args.units, decision)
     conn.close()
+    return 0
 
 
 def cmd_seed(args):
@@ -205,6 +177,19 @@ def cmd_health(args):
     conn.close()
 
 
+def cmd_serve(args):
+    """Launch the FastAPI app on 127.0.0.1:<port>.  Blocks until SIGINT."""
+    try:
+        import uvicorn
+    except ImportError:
+        print("error: uvicorn is required for `serve`.  pip install uvicorn fastapi",
+              file=sys.stderr)
+        return 1
+    from .web_api import app
+    uvicorn.run(app, host=args.host, port=args.port, log_level="info")
+    return 0
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -215,16 +200,28 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("seed", help="seed 6 whitelist opportunities + 1 route")
     sub.add_parser("health", help="DB health check")
 
+    p_serve = sub.add_parser("serve", help="launch FastAPI Web SPA on 127.0.0.1")
+    p_serve.add_argument("--host", default="127.0.0.1")
+    p_serve.add_argument("--port", type=int, default=8765)
+
     p_dec = sub.add_parser("decide", help="compute per-trip decision")
     p_dec.add_argument("--sku", required=True)
     p_dec.add_argument("--units", type=int, required=True)
     p_dec.add_argument("--route", default="PVG-NRT-LAX-2N")
 
-    p_rep = sub.add_parser("report", help="emit Markdown decision report")
+    p_rep = sub.add_parser("report", help="emit decision report (md / html / pdf)")
     p_rep.add_argument("--sku", required=True)
     p_rep.add_argument("--units", type=int, required=True)
     p_rep.add_argument("--route", default="PVG-NRT-LAX-2N")
-    p_rep.add_argument("--out", help="output file path (default: stdout)")
+    p_rep.add_argument("--format", choices=["md", "html", "pdf"], default="md",
+                       help="output format (default md)")
+    p_rep.add_argument("--md", action="store_const", const="md", dest="format",
+                       help="shorthand for --format md")
+    p_rep.add_argument("--html", action="store_const", const="html", dest="format",
+                       help="shorthand for --format html")
+    p_rep.add_argument("--pdf", action="store_const", const="pdf", dest="format",
+                       help="shorthand for --format pdf")
+    p_rep.add_argument("--out", help="output file path or directory (default: cwd)")
 
     return p
 
@@ -237,15 +234,16 @@ def main(argv: list[str] | None = None) -> int:
         "report": cmd_report,
         "seed": cmd_seed,
         "health": cmd_health,
+        "serve": cmd_serve,
     }.get(args.cmd)
     if handler is None:
         return 2
     try:
-        handler(args)
+        rc = handler(args)
+        return 0 if rc is None else rc
     except DecideError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
-    return 0
 
 
 if __name__ == "__main__":

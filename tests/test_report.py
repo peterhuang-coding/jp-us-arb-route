@@ -1,0 +1,122 @@
+"""Tests for the shared Markdown / HTML / PDF report renderer."""
+from __future__ import annotations
+
+from arb import db, report
+
+
+def _seed_minimal(conn):
+    opp = dict(
+        sku="RPT-001", name="Test Item", category="misc",
+        source_market="JP", target_market="US",
+        purchase_price_usd=10.0, tariff_rate=0.0,
+        sell_price_usd=20.0, shipping_per_unit_usd=1.0,
+        platform_fee_rate=0.13, minutes_per_unit=10.0,
+        success_rate=0.7, purchase_source_url="https://example.com/jp",
+        sell_source_url="https://example.com/us", notes="note",
+        data_freshness_ts="2026-07-01", verified=0,
+    )
+    db.upsert_opportunity(conn, opp)
+    rid = db.upsert_route(conn, dict(
+        name="RPT-RT", origin_city="PVG", dest_city="LAX",
+        flight_cost_usd=100.0, hotel_cost_usd=100.0, other_cost_usd=0.0,
+        hours_available=32.0, target_hourly_usd=20.0,
+        target_roi_pct=15.0, min_roi_pct=10.0,
+        departure_date="2026-09-01", source_url="https://flights.example.com",
+        notes="",
+    ))
+    db.add_route_legs(conn, rid, [
+        dict(seq=1, kind="flight", label="PVG->NRT", cost_usd=50.0,
+             duration_min=120.0, location="PVG", notes="outbound"),
+        dict(seq=2, kind="flight", label="NRT->LAX", cost_usd=50.0,
+             duration_min=300.0, location="NRT", notes=""),
+        dict(seq=3, kind="hotel", label="LA hotel", cost_usd=100.0,
+             duration_min=0.0, location="LAX", notes=""),
+        dict(seq=4, kind="flight", label="LAX->NRT", cost_usd=50.0,
+             duration_min=300.0, location="LAX", notes=""),
+        dict(seq=5, kind="flight", label="NRT->PVG", cost_usd=50.0,
+             duration_min=120.0, location="NRT", notes="home"),
+    ])
+    return opp["sku"], "RPT-RT"
+
+
+def test_decide_for_returns_four_tuple():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
+    assert opp["sku"] == sku
+    assert route["name"] == rname
+    assert decision.level in ("建议", "谨慎", "不建议")
+    assert len(legs) == 5
+
+
+def test_render_markdown_contains_required_sections():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
+    md = report.render_markdown(opp, route, legs, 5, decision)
+    for h in ("# 决策报告", "## 数据来源", "## 单件成本明细",
+              "## 行程成本", "## 行程时间线", "## 综合决策",
+              "## 风险与提示"):
+        assert h in md, f"missing section: {h}"
+    assert sku in md
+    assert "https://example.com/jp" in md
+    assert "https://flights.example.com" in md
+
+
+def test_render_markdown_uses_freshness_and_verified_labels():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 1, rname)
+    md = report.render_markdown(opp, route, legs, 1, decision)
+    assert "2026-07-01" in md
+    assert "未验证" in md  # verified=0 in fixture
+
+
+def test_render_html_contains_required_sections():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
+    html = report.render_html(opp, route, legs, 5, decision)
+    assert "<!DOCTYPE html>" in html
+    assert "决策报告" in html
+    for s in ("单件成本明细", "行程成本", "行程时间线",
+              "综合决策", "数据来源", "warn-box"):
+        assert s in html
+    # All 5 legs rendered
+    assert html.count('class="leg-kind ') == 5
+
+
+def test_render_html_uses_leg_kind_classes():
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
+    html = report.render_html(opp, route, legs, 5, decision)
+    assert 'class="leg-kind flight"' in html
+    assert 'class="leg-kind hotel"' in html
+
+
+def test_report_filename_includes_date_sku_dest():
+    name = report.report_filename("JP-SKII-FT230", "洛杉矶 LAX", "md")
+    assert name.startswith("jp-us-arb_")
+    assert "JP-SKII-FT230" in name
+    assert "洛杉矶_LAX" in name or "_LAX" in name
+    assert name.endswith(".md")
+
+
+def test_report_filename_sanitizes_path_separators():
+    name = report.report_filename("JP/TEST", "Foo/Bar", "pdf")
+    assert "/" not in name.replace("jp-us-arb_", "").rsplit(".", 1)[0].split("_", 2)[2]
+    assert name.endswith(".pdf")
+
+
+def test_render_pdf_writes_a_valid_pdf(tmp_path):
+    """Real PDF render via playwright (slowest test in the suite)."""
+    conn = db.connect_memory()
+    sku, rname = _seed_minimal(conn)
+    opp, route, decision, legs = report.decide_for(conn, sku, 3, rname)
+    html_str = report.render_html(opp, route, legs, 3, decision)
+    target = tmp_path / "out.pdf"
+    report.render_pdf(html_str, target)
+    assert target.exists()
+    head = target.read_bytes()[:4]
+    assert head == b"%PDF", f"expected PDF magic, got {head!r}"
