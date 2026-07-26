@@ -322,3 +322,47 @@ def test_reject_proposal_endpoint_keeps_price(client):
 def test_apply_proposal_unknown_id_returns_404(client):
     r = client.post("/api/proposals/99999/apply")
     assert r.status_code == 404
+
+
+def test_decide_uses_seeded_success_rate(client):
+    """The seeded success rate must flow through /api/decide revenue."""
+    sku = "JP-SKII-FT230"
+    payload = {"sku": sku, "num_units": 5, "route": "PVG-NRT-LAX-2N"}
+
+    baseline_response = client.post("/api/decide", json=payload)
+    assert baseline_response.status_code == 200
+    baseline = baseline_response.json()
+    baseline_decision = baseline["decision"]
+    baseline_opp = baseline["opp"]
+    success_rate = baseline_opp["success_rate"]
+
+    assert success_rate == pytest.approx(0.85)
+    expected_revenue = (
+        payload["num_units"]
+        * baseline_opp["sell_price_usd"]
+        * (1.0 - baseline_opp["platform_fee_rate"])
+        * success_rate
+    )
+    assert baseline_decision["total_revenue_usd"] == pytest.approx(expected_revenue)
+
+    conn = db.connect(db.DB_PATH)
+    conn.execute(
+        "UPDATE opportunities SET success_rate=? WHERE sku=?",
+        (0.5, sku),
+    )
+    conn.commit()
+    conn.close()
+
+    adjusted_response = client.post("/api/decide", json=payload)
+    assert adjusted_response.status_code == 200
+    adjusted = adjusted_response.json()
+    adjusted_decision = adjusted["decision"]
+
+    assert adjusted["opp"]["success_rate"] == pytest.approx(0.5)
+    assert adjusted_decision["total_revenue_usd"] == pytest.approx(
+        baseline_decision["total_revenue_usd"] * (0.5 / success_rate)
+    )
+    assert adjusted_decision["total_cost_usd"] == pytest.approx(
+        baseline_decision["total_cost_usd"]
+    )
+    assert adjusted_decision["net_profit_usd"] < baseline_decision["net_profit_usd"]
