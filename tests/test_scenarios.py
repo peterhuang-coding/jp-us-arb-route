@@ -49,11 +49,12 @@ from arb.scenarios import (
 # ---------- helpers ----------
 
 def base_inputs(**overrides) -> DecisionInputs:
-    """Healthy baseline: 2x SK-II PITERA 230ml (same shape as test_decision)."""
+    """Healthy baseline: 2x SK-II PITERA 230ml under self-use (same shape as test_decision)."""
     d = dict(
         num_units=2,
         purchase_price_usd=85.0,
-        sell_price_usd=140.0,
+        sell_price_usd=140.0,        # legacy, used as fallback for home_price_usd
+        home_price_usd=140.0,        # self-use baseline (CN-equivalent retail)
         tariff_rate=0.0,
         shipping_per_unit_usd=4.0,
         platform_fee_rate=0.13,
@@ -62,7 +63,7 @@ def base_inputs(**overrides) -> DecisionInputs:
         hotel_cost_usd=240.0,
         other_trip_cost_usd=80.0,
         hours_available=32.0,
-        target_hourly_usd=20.0,
+        target_hourly_usd=0.0,        # no time cost under payback model
         target_roi_pct=15.0,
         min_roi_pct=10.0,
     )
@@ -157,97 +158,98 @@ def test_conservative_worse_than_neutral_in_happy_path():
 # ---------- hand-calculated scenarios ----------
 
 def test_hand_calc_conservative_scenario():
-    """Hand-compute conservative ROI for the baseline.
+    """Hand-compute conservative scenario for the baseline under payback model.
 
     Cons shifts:
-      sell_price_factor = 0.90 → sell 126.0  → per_unit_rev = 126.0 * 0.87 = 109.62
+      home_price_factor (sell_price_factor in shifts) = 0.90 → home 126.0
       purchase_factor   = 1.05 → purchase 89.25
       shipping_factor   = 1.10 → shipping 4.4
       flight_factor     = 1.10 → flight 792.0
       hotel_factor      = 1.10 → hotel 264.0
-      hourly_factor     = 1.20 → target_hourly 24.0
+      hourly_factor     = 1.20 → no effect (target_hourly=0 in baseline)
 
     per_unit_cost_no_trip = 89.25 + 0 + 4.4 = 93.65
-    per_unit_time_cost    = (20/60) * 24 = 8.0
+    per_unit_savings      = 126.0 - 93.65 = 32.35
     trip_cost = 792 + 264 + 80 = 1136
-    2 units: rev=219.24, cost=93.65*2 + 1136 + 8*2 = 1339.30
-    net_profit = -1120.06
+    2 units: total_savings=64.70, trip_net_value = 64.70 - 1136 = -1071.30
     """
     inp = base_inputs()
     res = summarize(inp)
     cons = res[0]
     neu = res[1]
-    # per_unit_revenue & per_unit_cost encode the shifted values
-    assert cons.decision.per_unit_revenue_usd == pytest.approx(109.62)
+    # Under payback model, per_unit_revenue_usd = per_unit_savings_usd
+    assert cons.decision.per_unit_revenue_usd == pytest.approx(32.35)
     assert cons.decision.per_unit_cost_usd == pytest.approx(93.65)
-    # net_profit_usd & roi_pct come from judge(); baseline is unprofitable.
-    assert cons.decision.net_profit_usd < 0
-    assert cons.decision.roi_pct < 0
+    # trip_net_value_usd is negative; payback is far below 100%
+    assert cons.decision.trip_net_value_usd < 0
+    assert cons.decision.payback_rate_pct < 100.0
     # hours_used is invariant to monetary shifts
     assert cons.decision.hours_used == pytest.approx(neu.decision.hours_used)
     # Conservative worse than neutral on the happy path
-    assert cons.decision.net_profit_usd < neu.decision.net_profit_usd
+    assert cons.decision.trip_net_value_usd < neu.decision.trip_net_value_usd
+    assert cons.decision.payback_rate_pct < neu.decision.payback_rate_pct
 
 
 def test_hand_calc_optimistic_scenario():
-    """Hand-compute optimistic ROI for the baseline.
+    """Hand-compute optimistic scenario for the baseline under payback model.
 
     Opt shifts:
-      sell_price_factor  = 1.05 → sell 147.0 → per_unit_rev = 147 * 0.87 = 127.89
+      home_price_factor  = 1.05 → home 147.0
       purchase_factor    = 0.97 → purchase 82.45
       flight_factor      = 0.95 → flight 684.0
       hotel_factor       = 0.95 → hotel 228.0
-      target_hourly      = 0.90 → 18.0
+      hourly_factor      = 0.90 → no effect
 
     per_unit_cost_no_trip = 82.45 + 0 + 4 = 86.45
-    per_unit_time_cost    = (20/60) * 18 = 6.0
+    per_unit_savings      = 147.0 - 86.45 = 60.55
     trip_cost = 684 + 228 + 80 = 992
-    2 units: rev=255.78, cost=86.45*2 + 992 + 6*2 = 1176.90
-    net_profit = -921.12
+    2 units: total_savings=121.10, trip_net_value = 121.10 - 992 = -870.90
     """
     inp = base_inputs()
     res = summarize(inp)
     opt = res[2]
     cons = res[0]
-    assert opt.decision.per_unit_revenue_usd == pytest.approx(127.89)
+    assert opt.decision.per_unit_revenue_usd == pytest.approx(60.55)
     assert opt.decision.per_unit_cost_usd == pytest.approx(86.45)
-    assert opt.decision.net_profit_usd < 0
-    assert opt.decision.roi_pct < 0
-    # Optimistic net profit must be better than conservative
-    assert opt.decision.net_profit_usd > cons.decision.net_profit_usd
+    assert opt.decision.trip_net_value_usd < 0
+    # Optimistic must beat conservative
+    assert opt.decision.trip_net_value_usd > cons.decision.trip_net_value_usd
+    assert opt.decision.payback_rate_pct > cons.decision.payback_rate_pct
 
 
 # ---------- cross-check downgrade hint ----------
 
 def test_cross_check_warning_when_conservative_level_worse():
-    """A '建议' baseline whose 保守 falls to a stricter level must carry a warning.
+    """A '建议' baseline whose 保守 drops to a stricter level must carry a warning.
 
-    Baseline is tuned so neutral lands at "建议" (ROI ~25%) but conservative
-    shifts drive it below min_roi_pct (10%) → "不建议".
+    Under the payback model, conservative shifts (-10% home, +10% trip) reduce
+    payback by ~18% (0.9/1.1). To get a 建议→谨慎 drop we set neutral just
+    above 100%; conservative lands at ~90% → 谨慎.
     """
     inp = base_inputs(
-        sell_price_usd=400.0,
-        purchase_price_usd=200.0,
-        shipping_per_unit_usd=4.0,
-        flight_cost_usd=100.0,
-        hotel_cost_usd=50.0,
-        other_trip_cost_usd=0.0,
-        target_hourly_usd=0.0,         # no time cost to keep math clean
+        home_price_usd=300.0,
+        purchase_price_usd=20.0,
+        shipping_per_unit_usd=2.0,
+        flight_cost_usd=200.0,
+        hotel_cost_usd=200.0,
+        other_trip_cost_usd=100.0,
         minutes_per_unit=20.0,
     )
     res = summarize(inp)
     cons, neu, opt = res
-    # Confirm neutral is "建议"
+    # Neutral payback = 2*(300-20-2) / 500 = 556/500 = 111.2% → 建议
     assert neu.decision.level == "建议", (
-        f"expected 中性 → 建议, got {neu.decision.level} (roi={neu.decision.roi_pct:.1f}%)"
+        f"expected 中性 → 建议, got {neu.decision.level} "
+        f"(payback={neu.decision.payback_rate_pct:.1f}%)"
     )
-    # Confirm conservative flipped to "不建议"
-    assert cons.decision.level == "不建议", (
-        f"expected 保守 → 不建议, got {cons.decision.level} (roi={cons.decision.roi_pct:.1f}%)"
+    # Conservative payback = 2*(270-20-2.2) / 550 = 495.6/550 = 90.1% → 谨慎
+    assert cons.decision.level == "谨慎", (
+        f"expected 保守 → 谨慎, got {cons.decision.level} "
+        f"(payback={cons.decision.payback_rate_pct:.1f}%)"
     )
     # Cross-check must surface the downgrade
     assert "保守" in cons.cross_check
-    assert "降级" in cons.cross_check or "不建议" in cons.cross_check
+    assert "降级" in cons.cross_check or "谨慎" in cons.cross_check
 
 
 def test_cross_check_empty_when_levels_agree():

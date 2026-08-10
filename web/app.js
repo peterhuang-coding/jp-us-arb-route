@@ -30,6 +30,7 @@ function app() {
     opportunities: [],
     routes: [],
     detailCache: {},          // sku -> full decide response
+    baskets: {},              // routeName -> BasketResponse
     lastVerify: null,
     pendingProposals: 0,
 
@@ -46,6 +47,9 @@ function app() {
     // ---- derived ----
     get currentDetail() {
       return this.selected ? (this.detailCache[this.selected] || null) : null;
+    },
+    get currentBasket() {
+      return this.routeName ? (this.baskets[this.routeName] || null) : null;
     },
 
     filtered() {
@@ -70,7 +74,7 @@ function app() {
       return Array.from(set).sort();
     },
 
-    // ---- PICK computation (Top 4 by ROI at num_units=50 over default route) ----
+    // ---- PICK computation (Top 4 by payback_rate_pct, Round 13 model) ----
     get picks() {
       if (!this.opportunities.length) return [];
       const route = this.currentRoute();
@@ -88,14 +92,15 @@ function app() {
         return null;
       }).filter(x => x !== null);
 
-      // Sort: positive ROI first (by ROI desc), then negative ROI (by closest-to-zero)
+      // Sort: highest payback_rate_pct first. Infinity > finite.
       scored.sort((a, b) => {
-        const ar = a.d.roi_pct, br = b.d.roi_pct;
-        const aPos = ar >= 0, bPos = br >= 0;
-        if (aPos && !bPos) return -1;
-        if (!aPos && bPos) return 1;
-        if (aPos) return br - ar;
-        return br - ar;  // both negative: closest-to-zero first
+        const ar = a.d.payback_rate_pct ?? a.d.roi_pct;
+        const br = b.d.payback_rate_pct ?? b.d.roi_pct;
+        const aInf = !isFinite(ar), bInf = !isFinite(br);
+        if (aInf && !bInf) return -1;
+        if (!aInf && bInf) return 1;
+        if (aInf && bInf) return 0;
+        return br - ar;
       });
 
       const top = scored.slice(0, 4);
@@ -103,8 +108,12 @@ function app() {
     },
 
     formatPick(opp, decision, route, rank) {
-      const roi = decision.roi_pct;
-      const tier = roi >= 15 ? 'go' : (roi >= 0 ? 'watch' : 'skip');
+      // Round 13: thresholds are payback-based, not ROI-based.
+      // GO if payback >= 100%, WATCH if >= 50%, else SKIP.
+      const payback = decision.payback_rate_pct ?? decision.roi_pct;
+      const tier = !isFinite(payback) || payback >= 100
+        ? 'go'
+        : (payback >= 50 ? 'watch' : 'skip');
       const tierLabel = tier === 'go' ? '🟢 GO' : tier === 'watch' ? '🟡 WATCH' : '🔴 SKIP';
       return {
         rank,
@@ -112,7 +121,8 @@ function app() {
         name: opp.name,
         purchasePrice: opp.purchase_price_usd,
         sellPrice: opp.sell_price_usd,
-        roi,
+        roi: decision.roi_pct,
+        payback,
         net: decision.net_profit_usd,
         units: this.numUnits,
         routeShort: route ? `${route.origin_city.split(' ')[0]}→${route.dest_city.split(' ')[0]}` : '',
@@ -120,6 +130,14 @@ function app() {
         tierLabel,
         reason: decision.reason,
       };
+    },
+
+    // ---- Payback badge color (reused by metric tile + basket summary) ----
+    paybackClass(pct) {
+      if (pct === undefined || pct === null) return '';
+      if (!isFinite(pct) || pct >= 100) return 'payback-go';
+      if (pct >= 50) return 'payback-watch';
+      return 'payback-skip';
     },
 
     // ---- ALERTS computation ----
@@ -261,6 +279,39 @@ function app() {
 
       // Pre-decide top 4 at numUnits=50 in background so PICK + ROI badges render fast.
       this.warmupDecisions();
+
+      // Load the 5000元 basket for the default route. Round 13.
+      if (this.serverOnline) {
+        this.loadBasket(this.routeName);
+      }
+    },
+
+    // ---- Round 13: 5000元 optimal basket (POST /api/basket) ----
+    async loadBasket(routeName) {
+      if (!routeName) return;
+      try {
+        const r = await fetch('/api/basket', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            budget_cny: 5000,
+            customs_limit_cny: 5000,
+            route: routeName,
+          }),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const body = await r.json();
+        this.baskets = { ...this.baskets, [routeName]: body };
+        this.setStatus(`🛒 购物清单已更新 (${body.picks.length} 条 SKU, 回本率 ${isFinite(body.payback_rate_pct) ? body.payback_rate_pct.toFixed(0) : '∞'}%)`);
+      } catch (e) {
+        // Silently skip — basket is a nice-to-have, not critical.
+      }
+    },
+
+    // Route dropdown changed — refresh basket and re-warmup.
+    async onRouteChange() {
+      this.refetch();
+      if (this.serverOnline) this.loadBasket(this.routeName);
     },
 
     hydrateFromSnapshot() {

@@ -228,13 +228,18 @@ def test_render_html_surfaces_pending_proposals(monkeypatch):
     assert "arb proposals apply" in html_str
 
 
-def test_report_uses_stored_success_rate_for_decision():
+def test_report_uses_home_price_for_decision():
+    """Under the self-use payback model, total_savings_usd = num_units * (home - purchase - shipping)."""
     conn = db.connect_memory()
     sku, rname = _seed_minimal(conn)
     opp, route, decision, legs = report.decide_for(conn, sku, 5, rname)
-    assert abs(decision.total_revenue_usd - (5 * 20.0 * 0.87 * 0.7)) < 1e-9
+    # seed has purchase=10, sell=20 (used as home fallback), shipping=1
+    # per_unit_savings = 20 - 10 - 0 - 1 = 9; 5 units = 45
+    assert abs(decision.total_savings_usd - 5 * 9.0) < 1e-9
+    # trip_cost = 200, payback = 45/200 = 22.5%
     assert decision.breakeven_sell_price_usd > 0
     assert decision.level == "不建议"
+    assert decision.payback_rate_pct < 50.0
 
 
 def test_report_surfaces_success_rate_in_markdown_and_html():

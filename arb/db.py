@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS opportunities (
     notes                 TEXT,
     data_freshness_ts     TEXT NOT NULL,
     verified              INTEGER NOT NULL DEFAULT 0,
+    home_price_cny        REAL,
+    unit_volume_ml        REAL,
+    max_units_per_trip    INTEGER NOT NULL DEFAULT 50,
     created_at            TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -52,6 +55,7 @@ CREATE TABLE IF NOT EXISTS routes (
     target_hourly_usd REAL NOT NULL DEFAULT 20.0,
     target_roi_pct  REAL NOT NULL DEFAULT 15.0,
     min_roi_pct     REAL NOT NULL DEFAULT 10.0,
+    cn_to_usd_fx    REAL NOT NULL DEFAULT 0.14,
     departure_date  TEXT,
     source_url      TEXT,
     notes           TEXT,
@@ -102,6 +106,49 @@ CREATE INDEX IF NOT EXISTS idx_proposed_status ON proposed_prices(status, opport
 """
 
 
+# ---------- idempotent column migration (Round 13) ----------
+
+# Schema additions after the initial DDL. Each value is the column DDL
+# fragment that follows ``ALTER TABLE <table> ADD COLUMN <name>``. Must be
+# a constant ``DEFAULT`` so SQLite permits ``NOT NULL`` for new columns.
+# To add a new column: append it here, and add the same line to SCHEMA
+# above for fresh installs.  Both must agree.
+_EXPECTED_COLUMNS: dict[str, dict[str, str]] = {
+    "opportunities": {
+        "home_price_cny": "REAL",                              # self-use baseline (天猫/中免/日上)
+        "unit_volume_ml": "REAL",                              # physical size hint, display only
+        "max_units_per_trip": "INTEGER NOT NULL DEFAULT 50",   # per-SKU carry cap
+    },
+    "routes": {
+        "cn_to_usd_fx": "REAL NOT NULL DEFAULT 0.14",          # CNY→USD for self-use pricing
+    },
+}
+
+
+def _table_columns(conn: sqlite3.Connection, table: str) -> set[str]:
+    """Return the set of column names currently defined on ``table``."""
+    rows = conn.execute(f"PRAGMA table_info({table})").fetchall()
+    return {r["name"] for r in rows}
+
+
+def _ensure_columns(conn: sqlite3.Connection, table: str, expected: dict[str, str]) -> None:
+    """Idempotently add any missing columns from ``expected`` to ``table``.
+
+    Each value in ``expected`` is the DDL fragment that follows the column
+    name, e.g. ``"REAL NOT NULL DEFAULT 0.14"``.  Safe to call on every
+    connect() — no-op when the column already exists.
+    """
+    existing = _table_columns(conn, table)
+    added = False
+    for col, ddl in expected.items():
+        if col in existing:
+            continue
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {ddl}")
+        added = True
+    if added:
+        conn.commit()
+
+
 # ---------- connection helpers ----------
 
 def connect(path: Optional[Path] = None) -> sqlite3.Connection:
@@ -122,6 +169,8 @@ def connect(path: Optional[Path] = None) -> sqlite3.Connection:
     conn.execute("PRAGMA foreign_keys = ON")
     conn.execute("PRAGMA journal_mode = WAL")
     conn.executescript(SCHEMA)
+    for table, expected in _EXPECTED_COLUMNS.items():
+        _ensure_columns(conn, table, expected)
     conn.commit()
     return conn
 
@@ -132,6 +181,8 @@ def connect_memory() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    for table, expected in _EXPECTED_COLUMNS.items():
+        _ensure_columns(conn, table, expected)
     conn.commit()
     return conn
 

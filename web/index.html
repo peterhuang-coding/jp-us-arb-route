@@ -57,7 +57,74 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- 2) TODAY'S PICK: top recommendations (green / yellow / red)    -->
+  <!-- 2) 5000元 购物清单 (Round 13: basket solver)                   -->
+  <!-- ============================================================== -->
+  <section class="basket-section" x-show="currentBasket">
+    <header class="section-head">
+      <h2>🛒 5000元 最优购物清单 <span class="hint">有界 0/1 背包 DP · 按节省/日元密度排序</span></h2>
+      <span class="count-pill" x-text="currentBasket ? (currentBasket.picks.length + ' 条 SKU') : '—'"></span>
+    </header>
+    <div class="basket-summary" x-show="currentBasket">
+      <div class="metric small">
+        <span class="m-label">总花费</span>
+        <span class="m-value" x-text="'¥' + (currentBasket?.total_spend_cny || 0).toFixed(0)"></span>
+      </div>
+      <div class="metric small">
+        <span class="m-label">总节省</span>
+        <span class="m-value" x-text="'¥' + (currentBasket?.total_savings_cny || 0).toFixed(0)"></span>
+      </div>
+      <div class="metric small">
+        <span class="m-label">回本率</span>
+        <span class="m-value"
+          :class="paybackClass(currentBasket?.payback_rate_pct)"
+          x-text="(isFinite(currentBasket?.payback_rate_pct) ? currentBasket.payback_rate_pct.toFixed(1) : '∞') + '%'"></span>
+      </div>
+      <div class="metric small">
+        <span class="m-label">剩余预算</span>
+        <span class="m-value" x-text="'¥' + (currentBasket?.leftover_cny || 0).toFixed(0)"></span>
+      </div>
+      <div class="metric small">
+        <span class="m-label">海关余量</span>
+        <span class="m-value" x-text="'¥' + (currentBasket?.customs_headroom_cny || 0).toFixed(0)"></span>
+      </div>
+    </div>
+    <div class="basket-table-wrap" x-show="currentBasket?.picks?.length">
+      <table class="basket-table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>名称</th>
+            <th>类目</th>
+            <th class="num">数量</th>
+            <th class="num">日单价¥</th>
+            <th class="num">中国参考¥</th>
+            <th class="num">节省¥/件</th>
+            <th class="num">小计¥</th>
+            <th class="num">累计节省¥</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="(p, i) in (currentBasket?.picks || [])" :key="p.sku">
+            <tr @click="select(p.sku)" style="cursor:pointer">
+              <td x-text="p.sku"></td>
+              <td x-text="p.name"></td>
+              <td x-text="p.category"></td>
+              <td class="num" x-text="p.num_units"></td>
+              <td class="num" x-text="p.jp_price_per_unit_cny.toFixed(0)"></td>
+              <td class="num" x-text="p.home_price_per_unit_cny.toFixed(0)"></td>
+              <td class="num" x-text="p.savings_per_unit_cny.toFixed(0)"></td>
+              <td class="num" x-text="p.subtotal_cny.toFixed(0)"></td>
+              <td class="num" x-text="p.total_savings_cny.toFixed(0)"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint" x-show="currentBasket?.skipped_skus?.length"
+      x-text="'⚠️ 跳过 ' + (currentBasket?.skipped_skus?.length || 0) + ' 条:无 home_price_cny 或单件节省≤0'"></p>
+  </section>
+
+  <!-- 3) TODAY'S PICK: top recommendations (green / yellow / red)    -->
   <!-- ============================================================== -->
   <section class="picks-section">
     <header class="section-head">
@@ -81,8 +148,8 @@
               <span class="price-sell">售价 $<span x-text="p.sellPrice.toFixed(0)"></span></span>
             </div>
             <div class="pick-roi">
-              <span class="roi-num" x-text="p.roi.toFixed(0) + '%'"></span>
-              <span class="roi-label">ROI</span>
+              <span class="roi-num" x-text="(isFinite(p.payback) ? p.payback.toFixed(0) : '∞') + '%'"></span>
+              <span class="roi-label">回本率</span>
             </div>
             <div class="pick-meta">
               <span><strong x-text="p.units"></strong> 件净赚 $<span x-text="p.net.toFixed(0)"></span></span>
@@ -129,7 +196,7 @@
           <input type="number" min="1" max="500" x-model.number="numUnits">
         </label>
         <label>路线
-          <select x-model="routeName">
+          <select x-model="routeName" @change="onRouteChange()">
             <template x-for="r in routes" :key="r.name">
               <option :value="r.name" x-text="r.origin_city + ' → ' + r.dest_city + ' (固定 $' + routeFixed(r) + ')'"></option>
             </template>
@@ -288,6 +355,24 @@
         <div class="metric">
           <span class="m-label">数量</span>
           <span class="m-value" x-text="currentDetail.num_units"></span>
+        </div>
+      </div>
+
+      <!-- 3 new payback tiles (Round 13) -->
+      <div class="metrics">
+        <div class="metric highlight">
+          <span class="m-label">回本率</span>
+          <span class="m-value" :class="paybackClass(currentDetail.decision.payback_rate_pct)"
+            x-text="(isFinite(currentDetail.decision.payback_rate_pct) ? currentDetail.decision.payback_rate_pct.toFixed(1) : '∞') + '%'"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">行程净值</span>
+          <span class="m-value" :class="{ neg: currentDetail.decision.trip_net_value_usd < 0 }"
+            x-text="'$' + currentDetail.decision.trip_net_value_usd.toFixed(0)"></span>
+        </div>
+        <div class="metric">
+          <span class="m-label">累计节省</span>
+          <span class="m-value" x-text="'$' + currentDetail.decision.total_savings_usd.toFixed(0)"></span>
         </div>
       </div>
 

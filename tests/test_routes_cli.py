@@ -127,7 +127,7 @@ def test_regional_route_has_cheaper_fixed_cost_than_international():
 # ---------- route-flip behavior: regional flips SK-II from ❌ → ⚠️ ----------
 
 def test_skii_flips_to_warn_at_20u_with_regional_route():
-    """With the cheap regional route, 20× SK-II crosses break-even."""
+    """With the cheap regional route, 20× SK-II under payback model improves."""
     from arb import db, seed
     from arb.decision import judge, DecisionInputs
     conn = db.connect_memory()
@@ -135,10 +135,14 @@ def test_skii_flips_to_warn_at_20u_with_regional_route():
     opp = db.get_opportunity(conn, "JP-SKII-FT230")
     route_intl = db.get_route(conn, "PVG-NRT-LAX-2N")
     route_reg = db.get_route(conn, "LAX-SFO-1N")
+    # SK-II seed has max_units_per_trip=6 (daily purchase limit).
+    # Use a 6-unit scenario for both routes and check that regional flips verdict.
     di_intl = DecisionInputs(
-        num_units=20,
+        num_units=6,
         purchase_price_usd=opp["purchase_price_usd"],
         sell_price_usd=opp["sell_price_usd"],
+        home_price_usd=(opp["home_price_cny"] * route_intl["cn_to_usd_fx"]
+                        if opp["home_price_cny"] is not None else None),
         tariff_rate=opp["tariff_rate"],
         shipping_per_unit_usd=opp["shipping_per_unit_usd"],
         platform_fee_rate=opp["platform_fee_rate"],
@@ -150,11 +154,14 @@ def test_skii_flips_to_warn_at_20u_with_regional_route():
         target_hourly_usd=route_intl["target_hourly_usd"],
         target_roi_pct=route_intl["target_roi_pct"],
         min_roi_pct=route_intl["min_roi_pct"],
+        max_units_per_trip=opp["max_units_per_trip"],
     )
     di_reg = DecisionInputs(
-        num_units=20,
+        num_units=6,
         purchase_price_usd=opp["purchase_price_usd"],
         sell_price_usd=opp["sell_price_usd"],
+        home_price_usd=(opp["home_price_cny"] * route_reg["cn_to_usd_fx"]
+                        if opp["home_price_cny"] is not None else None),
         tariff_rate=opp["tariff_rate"],
         shipping_per_unit_usd=opp["shipping_per_unit_usd"],
         platform_fee_rate=opp["platform_fee_rate"],
@@ -166,13 +173,16 @@ def test_skii_flips_to_warn_at_20u_with_regional_route():
         target_hourly_usd=route_reg["target_hourly_usd"],
         target_roi_pct=route_reg["target_roi_pct"],
         min_roi_pct=route_reg["min_roi_pct"],
+        max_units_per_trip=opp["max_units_per_trip"],
     )
     d_intl = judge(di_intl)
     d_reg = judge(di_reg)
+    # 6 units × ($154 home - $85 purchase - $4 shipping) = $390 savings
+    # intl $1040 trip: payback 37.5% → 不建议
+    # regional $300 trip: payback 130% → 建议
     assert d_intl.level == "不建议"
-    # Regional flips verdict (warn or better — depending on margin tolerance).
-    assert d_reg.level in ("谨慎", "建议")
-    assert d_reg.net_profit_usd > d_intl.net_profit_usd
+    assert d_reg.level == "建议"
+    assert d_reg.trip_net_value_usd > d_intl.trip_net_value_usd
 
 
 # ---------- CLI: `arb routes` listing ----------

@@ -8,12 +8,15 @@ Examples:
   python -m arb report --sku JP-SKII-FT230 --units 5 --pdf --out exports/foo.pdf
   python -m arb serve --port 8765
   python -m arb seed
+  python -m arb basket --budget 5000 --customs 5000 --json
+  python -m arb flight --origin PVG --dest LAX --date 2026-09-15 --json
 """
 from __future__ import annotations
 
 import argparse
 import datetime as _dt
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -29,6 +32,8 @@ from .report import (
     render_pdf,
     report_filename,
 )
+from .basket import solve_basket, item_from_opportunity
+from .flight_price import search_flights, outcome_as_dict as flight_outcome_as_dict
 
 
 # ---------- formatting ----------
@@ -59,12 +64,12 @@ def _print_decision(d, opp, route, num_units: int, scenarios=None) -> str:
         f"  商机: {opp['sku']} - {opp['name']}",
         f"  路线: {route['name']} ({route['origin_city']} → {route['dest_city']})",
         f"  数量: {num_units}",
-        f"  成功率: {opp['success_rate']*100:.0f}% (按预期售出比例折算)",
-        f"  毛利率: ROI {d.roi_pct:.1f}%   单件净利润 ${d.per_unit_revenue_usd - d.per_unit_cost_usd:.2f}",
-        f"  营收: ${d.total_revenue_usd:.2f}   成本: ${d.total_cost_usd:.2f}   "
-        f"净利润: ${d.net_profit_usd:.2f}",
+        f"  成功率: {opp['success_rate']*100:.0f}% (自用默认 100%,此字段保留向后兼容)",
+        f"  回本率: {d.payback_rate_pct:.1f}%  行程净值: ${d.trip_net_value_usd:,.2f}  "
+        f"累计节省: ${d.total_savings_usd:,.2f}",
+        f"  行程成本: ${d.total_cost_usd:,.2f}  ROI: {d.roi_pct:.1f}%",
         f"  耗时: {d.hours_used:.1f}h / {route['hours_available']:.1f}h",
-        f"  盈亏平衡售价: ${d.breakeven_sell_price_usd:.2f}",
+        f"  盈亏平衡中国参考价: ${d.breakeven_sell_price_usd:.2f}",
     ]
     if scenarios:
         L.append("")
@@ -465,6 +470,145 @@ def cmd_scenarios(args):
         conn.close()
 
 
+def cmd_basket(args):
+    """Solve the optimal shopping basket within budget + customs cap (default 5000元)."""
+    conn = db.connect()
+    try:
+        route = db.get_route(conn, args.route)
+        if route is None:
+            print(f"error: route not found: {args.route}", file=sys.stderr)
+            return 1
+        fx = float(route["cn_to_usd_fx"]) if "cn_to_usd_fx" in route.keys() else 0.14
+        opps = db.list_opportunities(conn)
+        items = [item_from_opportunity(dict(o), fx_rate=fx) for o in opps]
+        trip_cost_usd = (
+            float(route["flight_cost_usd"])
+            + float(route["hotel_cost_usd"])
+            + float(route["other_cost_usd"])
+        )
+        sol = solve_basket(
+            items,
+            budget_cny=args.budget,
+            customs_limit_cny=args.customs,
+            trip_cost_usd=trip_cost_usd,
+            fx_rate=fx,
+        )
+        if args.json:
+            out = {
+                "route": route["name"],
+                "fx_rate": sol.fx_rate,
+                "budget_cny": sol.budget_cny,
+                "customs_limit_cny": sol.customs_limit_cny,
+                "trip_cost_usd": sol.trip_cost_usd,
+                "total_spend_cny": sol.total_spend_cny,
+                "total_savings_cny": sol.total_savings_cny,
+                "payback_rate_pct": sol.payback_rate_pct,
+                "leftover_cny": sol.leftover_cny,
+                "customs_headroom_cny": sol.customs_headroom_cny,
+                "algorithm": sol.algorithm,
+                "notes": sol.notes,
+                "skipped_skus": sol.skipped_skus,
+                "picks": [
+                    {
+                        "sku": p.sku,
+                        "name": p.name,
+                        "category": p.category,
+                        "num_units": p.num_units,
+                        "jp_price_per_unit_cny": p.jp_price_per_unit_cny,
+                        "home_price_per_unit_cny": p.home_price_per_unit_cny,
+                        "savings_per_unit_cny": p.savings_per_unit_cny,
+                        "subtotal_cny": p.subtotal_cny,
+                        "total_savings_cny": p.total_savings_cny,
+                    }
+                    for p in sol.picks
+                ],
+            }
+            print(json.dumps(out, ensure_ascii=False, indent=2))
+            return 0
+        # human-readable text
+        print(f"=== 购物清单求解 (5000元 额度) ===")
+        print(f"路线: {route['name']}  行程成本: ${trip_cost_usd:.0f}  "
+              f"FX: {fx:.4f} USD/CNY  预算 ¥{args.budget:.0f}  海关额度 ¥{args.customs:.0f}")
+        print()
+        if not sol.picks:
+            print("(无可用 SKU)")
+        else:
+            print(f"{'SKU':<22} {'数量':>4} {'日单价¥':>10} {'中国¥':>10} {'节省¥':>10} {'小计¥':>10} {'累计节省¥':>12}")
+            cum = 0.0
+            for p in sol.picks:
+                cum += p.total_savings_cny
+                print(f"{p.sku:<22} {p.num_units:>4} "
+                      f"{p.jp_price_per_unit_cny:>10.1f} {p.home_price_per_unit_cny:>10.1f} "
+                      f"{p.savings_per_unit_cny:>10.1f} {p.subtotal_cny:>10.1f} {cum:>12.1f}")
+        print()
+        print(f"总花费: ¥{sol.total_spend_cny:.1f}  总节省: ¥{sol.total_savings_cny:.1f}")
+        if math.isinf(sol.payback_rate_pct):
+            print(f"回本率: ∞  (行程成本为 0)")
+        else:
+            print(f"回本率: {sol.payback_rate_pct:.1f}%")
+        print(f"剩余预算: ¥{sol.leftover_cny:.1f}  海关余量: ¥{sol.customs_headroom_cny:.1f}")
+        if sol.skipped_skus:
+            print()
+            print(f"跳过 {len(sol.skipped_skus)} 条 (无中国参考价 或 单件节省≤0):")
+            for s in sol.skipped_skus[:5]:
+                print(f"  - {s}")
+            if len(sol.skipped_skus) > 5:
+                print(f"  ... 共 {len(sol.skipped_skus)} 条")
+        return 0
+    finally:
+        conn.close()
+
+
+def cmd_flight(args):
+    """Query Amadeus Self-Service Flight Offers Search (Round 14, half-auto)."""
+    # Resolve creds from env so a missing one is reported once with a clear message.
+    import os
+    cid = os.environ.get("AMADEUS_CLIENT_ID")
+    cs = os.environ.get("AMADEUS_CLIENT_SECRET")
+    if not cid or not cs:
+        print(
+            "error: AMADEUS_CLIENT_ID/AMADEUS_CLIENT_SECRET not set. "
+            "Register at https://developers.amadeus.com/ and export the test-env credentials.",
+            file=sys.stderr,
+        )
+        return 1
+    outcome = search_flights(
+        args.origin, args.dest, args.date,
+        adults=args.adults, cabin=args.cabin, currency=args.currency,
+        use_cache=not args.no_cache,
+    )
+    if args.json:
+        print(json.dumps(flight_outcome_as_dict(outcome), ensure_ascii=False, indent=2))
+        return 0 if outcome.ok else 2
+    # Human-readable
+    if not outcome.ok:
+        print(f"error: {outcome.blocked_reason}", file=sys.stderr)
+        print(f"({outcome.message})", file=sys.stderr)
+        return 2
+    if not outcome.offers:
+        print(f"=== {outcome.origin} → {outcome.dest} {outcome.date} "
+              f"({outcome.cabin}, {outcome.adults} pax) ===")
+        print("(no offers returned)")
+        return 0
+    print(f"=== {outcome.origin} → {outcome.dest} {outcome.date} "
+          f"({outcome.cabin}, {outcome.adults} pax)  {outcome.message} ===")
+    if outcome.cached:
+        print("(cached)")
+    print()
+    print(f"{'#':<3} {'价格':>10} {'航司':>5} {'经停':>4}  行程")
+    for i, off in enumerate(outcome.offers, 1):
+        seg_strs = []
+        for seg in off.segments[:4]:
+            d, a = seg.get("departure_iata"), seg.get("arrival_iata")
+            seg_strs.append(f"{d}→{a} ({seg.get('carrier')}{seg.get('flight_number')})")
+        if len(off.segments) > 4:
+            seg_strs.append(f"...+{len(off.segments) - 4}")
+        print(f"{i:<3} {off.price_total:>8.2f} {off.currency:<3} "
+              f"{(off.validating_carrier or '-'):>5} {off.num_stops:>4}  "
+              f"{' / '.join(seg_strs)}")
+    return 0
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -527,6 +671,35 @@ def build_parser() -> argparse.ArgumentParser:
     p_sc.add_argument("--json", action="store_true",
                        help="emit machine-readable JSON instead of text")
 
+    p_basket = sub.add_parser("basket", help="solve 5000元 额度内最优购物清单 (有界 0/1 背包)")
+    p_basket.add_argument("--budget", type=float, default=5000.0,
+                          help="总预算 (元,默认 5000)")
+    p_basket.add_argument("--customs", type=float, default=5000.0,
+                          help="海关免税额度 (元,默认 5000)")
+    p_basket.add_argument("--route", default="PVG-NRT-LAX-2N",
+                          help="对应路线 (决定 FX 与行程成本)")
+    p_basket.add_argument("--json", action="store_true",
+                          help="emit machine-readable JSON instead of text")
+
+    p_flight = sub.add_parser(
+        "flight",
+        help="query Amadeus Self-Service Flight Offers Search (half-auto, not persisted)",
+    )
+    p_flight.add_argument("--origin", required=True, help="IATA origin, e.g. PVG")
+    p_flight.add_argument("--dest", required=True, help="IATA dest, e.g. LAX")
+    p_flight.add_argument("--date", required=True, help="departure date YYYY-MM-DD")
+    p_flight.add_argument("--adults", type=int, default=1, help="passenger count (default 1)")
+    p_flight.add_argument(
+        "--cabin", default="ECONOMY",
+        choices=["ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"],
+        help="cabin class (default ECONOMY)",
+    )
+    p_flight.add_argument("--currency", default="USD", help="price currency (default USD)")
+    p_flight.add_argument("--no-cache", action="store_true",
+                          help="bypass the in-memory cache (default: cache 10min)")
+    p_flight.add_argument("--json", action="store_true",
+                          help="emit machine-readable JSON instead of text")
+
     p_routes = sub.add_parser("routes", help="list routes (default) or --add a new route")
     p_routes.add_argument("--add", action="store_true",
                           help="insert a new route from CLI flags")
@@ -571,6 +744,8 @@ def main(argv: list[str] | None = None) -> int:
         "proposals": cmd_proposals,
         "scenarios": cmd_scenarios,
         "routes": cmd_routes,
+        "basket": cmd_basket,
+        "flight": cmd_flight,
     }.get(args.cmd)
     if handler is None:
         return 2

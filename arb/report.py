@@ -74,6 +74,9 @@ def decide_for_full(conn, sku: str, num_units: int, route_name: str):
       * scenarios: list of 3 ScenarioResult [保守, 中性, 乐观]. The middle one
         is numerically identical to ``decision`` so existing callers that
         rely on the single Decision keep their guarantees.
+
+    Round 13: also pulls ``home_price_cny`` (with USD fallback) and the
+    per-SKU ``max_units_per_trip`` so the payback model can run.
     """
     opp = db.get_opportunity(conn, sku)
     if opp is None:
@@ -81,10 +84,15 @@ def decide_for_full(conn, sku: str, num_units: int, route_name: str):
     route = db.get_route(conn, route_name)
     if route is None:
         raise ValueError(f"route not found: {route_name}")
+    fx = float(route["cn_to_usd_fx"]) if "cn_to_usd_fx" in route.keys() else 0.14
+    home_cny = opp["home_price_cny"] if "home_price_cny" in opp.keys() else None
+    home_usd = home_cny * fx if home_cny is not None else None
+    max_units_cap = int(opp["max_units_per_trip"]) if "max_units_per_trip" in opp.keys() else 50
     di = DecisionInputs(
         num_units=num_units,
         purchase_price_usd=opp["purchase_price_usd"],
         sell_price_usd=opp["sell_price_usd"],
+        home_price_usd=home_usd,
         tariff_rate=opp["tariff_rate"],
         shipping_per_unit_usd=opp["shipping_per_unit_usd"],
         platform_fee_rate=opp["platform_fee_rate"],
@@ -97,6 +105,7 @@ def decide_for_full(conn, sku: str, num_units: int, route_name: str):
         target_hourly_usd=route["target_hourly_usd"],
         target_roi_pct=route["target_roi_pct"],
         min_roi_pct=route["min_roi_pct"],
+        max_units_per_trip=max_units_cap,
     )
     scenarios = scenarios_summarize(di)
     decision = scenarios[1].decision  # 中性 band = canonical judge() result
@@ -269,12 +278,13 @@ def render_markdown(
     L.append("")
     L.append("## 综合决策")
     L.append(f"- 采购数量: {num_units}")
-    L.append(f"- 总营收: {_format_money(decision.total_revenue_usd)}")
-    L.append(f"- 总成本: {_format_money(decision.total_cost_usd)}")
-    L.append(f"- 净利润: {_format_money(decision.net_profit_usd)}")
-    L.append(f"- ROI: {decision.roi_pct:.1f}%")
+    L.append(f"- 累计节省: {_format_money(decision.total_savings_usd)}")
+    L.append(f"- 行程成本: {_format_money(decision.total_cost_usd)}")
+    L.append(f"- 行程净值: {_format_money(decision.trip_net_value_usd)}")
+    L.append(f"- **回本率: {decision.payback_rate_pct:.1f}%**")
+    L.append(f"- ROI(行程净值/行程成本): {decision.roi_pct:.1f}%")
     L.append(f"- 耗时: {decision.hours_used:.1f}h / {route['hours_available']:.1f}h")
-    L.append(f"- 盈亏平衡售价: {_format_money(decision.breakeven_sell_price_usd)}")
+    L.append(f"- 盈亏平衡中国参考价: {_format_money(decision.breakeven_sell_price_usd)}")
     L.append("")
     if scenarios:
         L.append(_scenario_block_markdown(opp, route, scenarios))
@@ -390,12 +400,13 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
   <h2>综合决策</h2>
   <table>
     <tr><th>采购数量</th><td>{num_units}</td></tr>
-    <tr><th>总营收</th><td>{total_revenue}</td></tr>
-    <tr><th>总成本</th><td>{total_cost}</td></tr>
-    <tr><th>净利润</th><td>{net_profit}</td></tr>
-    <tr class="total"><td>ROI</td><td>{roi_pct}</td></tr>
+    <tr><th>累计节省</th><td>{total_savings}</td></tr>
+    <tr><th>行程成本</th><td>{total_cost}</td></tr>
+    <tr><th>行程净值</th><td>{trip_net_value}</td></tr>
+    <tr class="total"><td>回本率</td><td><strong>{payback_rate_pct}</strong></td></tr>
+    <tr><th>ROI(行程净值/行程成本)</th><td>{roi_pct}</td></tr>
     <tr><th>耗时</th><td>{hours_used} / {hours_available}</td></tr>
-    <tr><th>盈亏平衡售价</th><td>{breakeven}</td></tr>
+    <tr><th>盈亏平衡中国参考价</th><td>{breakeven}</td></tr>
   </table>
 
   <div class="warn-box">
@@ -553,9 +564,11 @@ def render_html(
         trip_total=_format_money(trip_cost),
         legs_html=_legs_html(legs),
         num_units=num_units,
-        total_revenue=_format_money(decision.total_revenue_usd),
+        total_savings=_format_money(decision.total_savings_usd),
         total_cost=_format_money(decision.total_cost_usd),
-        net_profit=_format_money(decision.net_profit_usd),
+        trip_net_value=_format_money(decision.trip_net_value_usd),
+        net_profit=_format_money(decision.net_profit_usd),  # legacy alias
+        payback_rate_pct=f"{decision.payback_rate_pct:.1f}%",
         roi_pct=f"{decision.roi_pct:.1f}%",
         hours_used=f"{decision.hours_used:.1f}h",
         hours_available=f"{route['hours_available']:.1f}h",

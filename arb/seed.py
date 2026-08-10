@@ -32,6 +32,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "每人每日限购 6 瓶;常温运输;海关申报免税额内。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 1100.0,     # 天猫国际 / 中免日上 常见价
+        "unit_volume_ml": 230.0,
+        "max_units_per_trip": 6,      # 每人每日限购
     },
     {
         "sku": "JP-WS-YAMAZAKI12",
@@ -51,6 +54,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "酒类随身行李 100ml 限制;必须托运;抵达后当地零售价稳定。需年满 21 岁。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 1800.0,     # 中免 / 京东国际 (常比美 eBay 便宜)
+        "unit_volume_ml": 700.0,
+        "max_units_per_trip": 2,      # 托运 + 重量限制
     },
     {
         "sku": "JP-NINTENDO-SWOLED",
@@ -70,6 +76,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "日本版只能在日亚账号激活 eShop;美区游戏机玩家会买日本限定色。需注意 100V 插座差异。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 2200.0,     # 京东 / 天猫国际 主机价格
+        "unit_volume_ml": None,
+        "max_units_per_trip": 2,      # 体积 + 海关
     },
     {
         "sku": "JP-DYSON-V12S",
@@ -89,6 +98,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "100V 仕様注意;美国版 110V 几乎无差;海外保証カード可在日美通用。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 5500.0,     # 天猫 Dyson 官方旗舰
+        "unit_volume_ml": None,
+        "max_units_per_trip": 1,      # 大件,1 台就占满额度
     },
     {
         "sku": "JP-LUX-PATEK",
@@ -108,6 +120,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "中高价值二手表;必须 eBay Authenticity Guarantee 渠道;需真品证书 + 盒子。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 70000.0,    # 二手 / 中免 (中国二手表市场活跃)
+        "unit_volume_ml": None,
+        "max_units_per_trip": 1,      # 1 块就够贵
     },
     {
         "sku": "JP-ANIME-GK2024",
@@ -127,6 +142,9 @@ OPPORTUNITIES: list[dict] = [
         "notes": "限定编号会影响价差;未拆封状态加分;日本限定货更有溢价。",
         "data_freshness_ts": "2026-07-01",
         "verified": 0,
+        "home_price_cny": 1500.0,     # animate中国 / 淘宝代购
+        "unit_volume_ml": None,
+        "max_units_per_trip": 2,
     },
 ]
 
@@ -144,6 +162,7 @@ ROUTE: dict = {
     "target_hourly_usd": 20.0,
     "target_roi_pct": 15.0,
     "min_roi_pct": 10.0,
+    "cn_to_usd_fx": 0.14,            # CNY→USD for self-use pricing
     "departure_date": "2026-09-15",
     "source_url": "https://www.google.com/travel/flights",
     "notes": "示例路线:上海→成田→洛杉矶,2 晚酒店,4 段飞行+1 个采购点。",
@@ -175,6 +194,7 @@ ROUTE_REGIONAL: dict = {
     "target_hourly_usd": 20.0,
     "target_roi_pct": 15.0,
     "min_roi_pct": 10.0,
+    "cn_to_usd_fx": 0.14,
     "departure_date": "2026-09-16",
     "source_url": "https://www.google.com/travel/flights",
     "notes": "区域连接段:LAX→SFO 单程 1 晚,适合已完成国际采购、需在美西境内转运的 SKU。",

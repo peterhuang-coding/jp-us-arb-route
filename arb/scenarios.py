@@ -79,6 +79,10 @@ class ScenarioResult:
             "delta_roi_pct": self.delta_roi_pct,
             "delta_net_profit": self.delta_net_profit,
             "cross_check": self.cross_check,
+            # Round 13: payback-specific fields
+            "total_savings_usd": self.decision.total_savings_usd,
+            "trip_net_value_usd": self.decision.trip_net_value_usd,
+            "payback_rate_pct": self.decision.payback_rate_pct,
         }
         return d
 
@@ -163,11 +167,19 @@ def apply_shifts(inp: DecisionInputs, shifts: ScenarioShifts) -> DecisionInputs:
 
     Re-runs DecisionInputs validation via judge() downstream — invalid combos
     (e.g. zeroed price) will surface as DecideError from judge().
+
+    Under the payback model, ``sell_price_factor`` semantically scales the
+    self-use home price — so it is applied to both ``sell_price_usd`` and
+    ``home_price_usd`` (when set).  This keeps the resale-ROI intent for
+    legacy callers while also moving the home-price baseline.
     """
+    home_factor = shifts.sell_price_factor
+    new_home = inp.home_price_usd * home_factor if inp.home_price_usd is not None else None
     return replace(
         inp,
         purchase_price_usd=inp.purchase_price_usd * shifts.purchase_price_factor,
         sell_price_usd=inp.sell_price_usd * shifts.sell_price_factor,
+        home_price_usd=new_home,
         tariff_rate=inp.tariff_rate * shifts.tariff_factor,
         shipping_per_unit_usd=inp.shipping_per_unit_usd * shifts.shipping_factor,
         flight_cost_usd=inp.flight_cost_usd * shifts.flight_factor,

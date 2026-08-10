@@ -1,49 +1,53 @@
 """Unit tests for the pure decision engine.
 
-SPEC (locked before implementation):
+SPEC (Round 13: flipped from resale ROI to self-use trip payback):
 
 Per-trip inputs:
   num_units                : int   >= 1
   purchase_price_usd       : float per unit (tax-exclusive price tag in Japan)
-  sell_price_usd           : float per unit (US-side target listing price)
-  tariff_rate              : 0..1, applied to purchase_price_usd when crossing US CBP
-                             under personal-use exemption this is 0 when total
-                             purchase_value <= $800 per traveler per day.
+  home_price_usd           : float per unit (what you'd pay at home in China)
+                             — the self-use baseline. None falls back to sell_price_usd.
+  tariff_rate              : 0..1, applied to purchase_price_usd
   shipping_per_unit_usd    : float
-  platform_fee_rate        : 0..1, applied to sell_price_usd (eBay/Amazon referral)
+  platform_fee_rate        : 0..1, unused under self-use but kept for API stability
   minutes_per_unit         : float, including queue, transit, listings
-  flight_cost_usd          : float, round-trip PEK/PVG/SHA -> NRT/HND -> LAX/SFO
+  flight_cost_usd          : float, round-trip
   hotel_cost_usd           : float, full stay
   other_trip_cost_usd      : float (transit, food, misc., default 0)
   hours_available          : float, user total time budget for the whole trip
-  target_hourly_usd        : float, user's opportunity cost of time
-  target_roi_pct           : float, default 15.0
-  min_roi_pct              : float, default 10.0
+  target_hourly_usd        : 0 (no longer used; default 0)
+  max_units_per_trip       : int, per-SKU carry cap (default 50)
+  target_roi_pct / min_roi_pct: legacy, unused but still validated
 
 Outputs:
   level                    : "建议" | "谨慎" | "不建议"
   reason                   : str, one short sentence
-  roi_pct                  : float, net_profit / total_cost * 100
-  net_profit_usd           : float
-  total_cost_usd           : float (purchase + tariff + shipping + trip + time)
-  breakeven_sell_price_usd : float, sell_price making net_profit = 0
+  roi_pct                  : float, trip_net_value / trip_cost * 100 (legacy field)
+  net_profit_usd           : float (alias for trip_net_value_usd)
+  total_cost_usd           : float (trip_cost only — the threshold)
+  total_revenue_usd        : float (alias for total_savings_usd)
+  breakeven_sell_price_usd : float (breakeven home price in USD)
   hours_used               : float, (num_units * minutes_per_unit) / 60
+  per_unit_cost_usd        : float, purchase + tariff + shipping
+  per_unit_revenue_usd     : float, per_unit_savings_usd
+  total_savings_usd        : float, per_unit_savings * num_units  (new)
+  trip_net_value_usd       : float, total_savings - trip_cost    (new)
+  payback_rate_pct         : float, total_savings / trip_cost * 100  (new)
 
 Rules:
-  trip_cost_usd = flight_cost_usd + hotel_cost_usd + other_trip_cost_usd
+  trip_cost = flight_cost_usd + hotel_cost_usd + other_trip_cost_usd
   per_unit_cost_no_trip = purchase_price_usd + purchase_price_usd*tariff_rate + shipping
-  per_unit_time_cost_usd = (minutes_per_unit / 60) * target_hourly_usd
-  per_unit_revenue_usd = sell_price_usd * (1 - platform_fee_rate)
-  total_revenue_usd = per_unit_revenue_usd * num_units
-  total_cost_usd = per_unit_cost_no_trip * num_units + trip_cost + per_unit_time_cost_usd * num_units
-  net_profit_usd = total_revenue_usd - total_cost_usd
-  roi_pct = (net_profit_usd / total_cost_usd) * 100 if total_cost_usd > 0 else 0
-  breakeven_sell_price_usd = (per_unit_cost_no_trip + per_unit_time_cost_usd + trip_cost/num_units) / (1 - platform_fee_rate)
+  per_unit_savings_usd = home_price_usd - per_unit_cost_no_trip
+  total_savings = per_unit_savings * num_units
+  trip_net_value = total_savings - trip_cost
+  payback_rate_pct = (total_savings / trip_cost) * 100 if trip_cost > 0 else 0
+  roi_pct (legacy) = (trip_net_value / trip_cost) * 100 if trip_cost > 0 else 0
+  breakeven_sell_price_usd = per_unit_cost_no_trip + trip_cost/num_units
 
 Level precedence (highest first):
-  1. hours_used > hours_available OR net_profit_usd <= 0  -> "不建议"
-  2. roi_pct <  min_roi_pct                                -> "不建议"
-  3. roi_pct <  target_roi_pct                             -> "谨慎"
+  1. num_units > max_units_per_trip                       -> "不建议"
+  2. payback_rate_pct < 50                                -> "不建议"
+  3. payback_rate_pct < 100                               -> "谨慎"
   4. otherwise                                             -> "建议"
 """
 from __future__ import annotations
@@ -57,152 +61,162 @@ from arb.decision import DecisionInputs, judge, DecideError
 # ---------- helpers ----------
 
 def base_inputs(**overrides):
-    """Healthy baseline: 2x SK-II PITERA 230ml, classic happy path."""
+    """Healthy baseline: 2x SK-II PITERA 230ml. Under self-use, China
+    retail (≈$140) is barely above Japan ($85 + $4 shipping) so
+    2 units don't clear a $1040 trip → '不建议' is the expected verdict."""
     d = dict(
         num_units=2,
         purchase_price_usd=85.0,
-        sell_price_usd=140.0,
+        sell_price_usd=140.0,        # legacy field, used as fallback when home_price_usd is None
+        home_price_usd=140.0,        # self-use baseline
         tariff_rate=0.0,
         shipping_per_unit_usd=4.0,
-        platform_fee_rate=0.13,
+        platform_fee_rate=0.13,      # unused for self-use, kept for compat
         minutes_per_unit=20.0,
         flight_cost_usd=720.0,
         hotel_cost_usd=240.0,
         other_trip_cost_usd=80.0,
         hours_available=32.0,
-        target_hourly_usd=20.0,
-        target_roi_pct=15.0,
-        min_roi_pct=10.0,
+        target_hourly_usd=0.0,       # no opportunity cost
+        target_roi_pct=15.0,         # legacy, unused
+        min_roi_pct=10.0,            # legacy, unused
+        success_rate=1.0,            # self-use = 1.0
+        max_units_per_trip=50,
     )
     d.update(overrides)
     return DecisionInputs(**d)
 
 
-def per_unit_time_cost(minutes: float, hourly: float) -> float:
-    return (minutes / 60.0) * hourly
-
-
 # ---------- core happy path ----------
 
-def test_healthy_baseline_returns_recommend_etc():
-    """Two units of SK-II cannot clear $1040 trip cost — must be '不建议'."""
+def test_healthy_baseline_returns_not_recommend_small_volume():
+    """2 units of SK-II cannot clear $1040 trip cost → '不建议'."""
     out = judge(base_inputs())
     assert out.level == "不建议"
-    assert out.net_profit_usd < 0
+    assert out.trip_net_value_usd < 0
+    assert out.payback_rate_pct < 100.0
 
 
-def test_high_volume_units_pushes_to_cautious():
-    """At num_units=80, ROI lands between 10% and 15% -> '谨慎'."""
-    out = judge(base_inputs(num_units=80))
-    assert out.level == "谨慎"
-    assert 10.0 <= out.roi_pct < 15.0
-
-
-def test_recommend_above_target_roi():
-    """At num_units=110 with hours_available=40, ROI > 15% and time fits -> '建议'."""
-    out = judge(base_inputs(num_units=110, hours_available=40.0))
+def test_high_volume_units_pushes_to_recommend():
+    """At num_units=40 (under the 50 cap), savings cover the trip by ~2x → 建议."""
+    out = judge(base_inputs(num_units=40, max_units_per_trip=50))
     assert out.level == "建议"
-    assert out.roi_pct >= 15.0
+    # payback_rate_pct should be high (savings >> trip cost at this volume)
+    assert out.payback_rate_pct > 100.0
+
+
+def test_recommend_when_payback_exceeds_100():
+    """num_units=5 with a much higher home_price_usd → 建议."""
+    out = judge(base_inputs(num_units=5, home_price_usd=500.0))
+    assert out.level == "建议"
+    assert out.payback_rate_pct >= 100.0
+    assert out.trip_net_value_usd > 0
 
 
 # ---------- level semantics ----------
 
-def test_cautious_between_min_and_target_roi():
-    out = judge(base_inputs(num_units=85))
-    assert min(10.0, 15.0) <= out.roi_pct <= 15.0
+def test_cautious_between_50_and_100_payback():
+    """Choose inputs where savings land 50% < payback < 100%."""
+    # per_unit_savings = home - purchase - shipping = 200 - 85 - 4 = 111
+    # 8 units × 111 = 888. trip_cost = 1040. payback = 85.4%
+    out = judge(base_inputs(num_units=8, home_price_usd=200.0))
+    assert 50.0 <= out.payback_rate_pct < 100.0
     assert out.level == "谨慎"
 
 
-def test_not_recommend_when_roi_below_min_threshold():
-    out = judge(base_inputs(num_units=20, flight_cost_usd=2500, hotel_cost_usd=900))
+def test_not_recommend_when_payback_below_50():
+    """High trip cost, low home price → payback < 50%."""
+    out = judge(base_inputs(
+        num_units=2, home_price_usd=120.0,
+        flight_cost_usd=2500.0, hotel_cost_usd=900.0,
+    ))
+    # per_unit_savings = 120-85-4 = 31. 2 units = 62. trip = 3480. payback ≈ 1.8%
     assert out.level == "不建议"
-    assert out.roi_pct < 10.0
+    assert out.payback_rate_pct < 50.0
 
 
-def test_not_recommend_when_net_profit_negative():
-    out = judge(base_inputs(num_units=1))
-    assert out.net_profit_usd < 0
+def test_not_recommend_when_num_units_exceeds_carry_cap():
+    out = judge(base_inputs(num_units=200, home_price_usd=500.0))
+    # 200 > max_units_per_trip=50 → 不建议 regardless of payback
     assert out.level == "不建议"
-
-
-def test_not_recommend_when_hours_exceed_budget():
-    out = judge(base_inputs(num_units=60, minutes_per_unit=60.0))
-    assert out.hours_used > 32.0
-    assert out.level == "不建议"
+    assert "携带上限" in out.reason
 
 
 # ---------- breakeven + math ----------
 
-def test_breakeven_makes_profit_zero():
-    out = judge(base_inputs(num_units=2))
-    per_unit_cost_no_trip = 85.0 + 0.0 + 4.0
-    per_unit_time = per_unit_time_cost(20.0, 20.0)
-    trip_per_unit = (720.0 + 240.0 + 80.0) / 2.0
-    expected_be = (per_unit_cost_no_trip + per_unit_time + trip_per_unit) / (1 - 0.13)
-    assert math.isclose(out.breakeven_sell_price_usd, expected_be, rel_tol=1e-9)
+def test_breakeven_makes_trip_net_value_zero():
+    """At home_price = breakeven, trip_net_value_usd is exactly 0."""
+    # Compute baseline, then ask for the same units at the breakeven home price.
+    bi = base_inputs()
+    base = judge(bi)
+    edge = judge(base_inputs(num_units=bi.num_units, home_price_usd=base.breakeven_sell_price_usd))
+    # home_price_usd = per_unit_cost + trip_cost/num_units → savings = trip_cost → net = 0
+    assert math.isclose(edge.trip_net_value_usd, 0.0, abs_tol=1e-6)
 
 
-def test_breakeven_inverse_property():
-    """At sell_price = breakeven, net_profit is exactly 0 (definition)."""
+def test_monotonic_savings_in_home_price():
+    """trip_net_value_usd must increase monotonically as home_price rises."""
     base = judge(base_inputs())
-    edge = judge(base_inputs(num_units=base_inputs().num_units,
-                             sell_price_usd=base.breakeven_sell_price_usd))
-    assert math.isclose(edge.net_profit_usd, 0.0, abs_tol=1e-6)
-
-
-def test_monotonic_profit_in_sell_price():
-    """Profit must increase monotonically as sell_price rises above breakeven."""
-    base = judge(base_inputs())
-    be = base.breakeven_sell_price_usd
-    a = judge(base_inputs(sell_price_usd=be + 1.0)).net_profit_usd
-    b = judge(base_inputs(sell_price_usd=be + 50.0)).net_profit_usd
-    c = judge(base_inputs(sell_price_usd=be + 200.0)).net_profit_usd
+    a = judge(base_inputs(home_price_usd=base.breakeven_sell_price_usd + 1.0)).trip_net_value_usd
+    b = judge(base_inputs(home_price_usd=base.breakeven_sell_price_usd + 50.0)).trip_net_value_usd
+    c = judge(base_inputs(home_price_usd=base.breakeven_sell_price_usd + 200.0)).trip_net_value_usd
     assert a < b < c
 
 
-def test_total_cost_includes_trip_and_time():
+def test_total_cost_usd_equals_trip_cost_only():
+    """Under payback model, total_cost_usd is the trip cost, not amortized."""
     n = 2
     out = judge(base_inputs(num_units=n))
-    per_unit_cost_no_trip = 85.0 + 0.0 + 4.0
-    per_unit_time = per_unit_time_cost(20.0, 20.0)
-    expected = (
-        n * per_unit_cost_no_trip
-        + 720.0 + 240.0 + 80.0
-        + n * per_unit_time
-    )
+    expected = 720.0 + 240.0 + 80.0
     assert math.isclose(out.total_cost_usd, expected, rel_tol=1e-9)
 
 
-def test_zero_platform_fee_simplifies_revenue():
-    out = judge(base_inputs(platform_fee_rate=0.0, num_units=20))
-    assert math.isclose(out.total_revenue_usd, 20 * 140.0, rel_tol=1e-9)
-    assert out.net_profit_usd < 0
+def test_total_savings_equals_units_times_per_unit_savings():
+    out = judge(base_inputs(num_units=5, home_price_usd=200.0))
+    per_unit_savings = 200.0 - 85.0 - 4.0
+    assert math.isclose(out.total_savings_usd, 5 * per_unit_savings, rel_tol=1e-9)
 
 
-def test_tariff_rate_applied_to_purchase_price():
-    out = judge(base_inputs(num_units=50, tariff_rate=0.10, sell_price_usd=200.0))
-    assert out.level == "建议"
-    per_unit_cost_no_trip = 85.0 + 85.0 * 0.10 + 4.0
-    per_unit_time = per_unit_time_cost(20.0, 20.0)
-    expected_total_cost = 50 * per_unit_cost_no_trip + 1040.0 + 50 * per_unit_time
-    assert math.isclose(out.total_cost_usd, expected_total_cost, rel_tol=1e-9)
+def test_tariff_rate_reduces_savings():
+    """Higher tariff → smaller per_unit_savings → lower payback."""
+    no_tariff = judge(base_inputs(num_units=20, home_price_usd=200.0, tariff_rate=0.0))
+    with_tariff = judge(base_inputs(num_units=20, home_price_usd=200.0, tariff_rate=0.20))
+    assert with_tariff.total_savings_usd < no_tariff.total_savings_usd
+    assert with_tariff.payback_rate_pct < no_tariff.payback_rate_pct
+
+
+def test_shipping_per_unit_reduces_savings():
+    no_ship = judge(base_inputs(num_units=10, home_price_usd=200.0, shipping_per_unit_usd=0.0))
+    with_ship = judge(base_inputs(num_units=10, home_price_usd=200.0, shipping_per_unit_usd=8.0))
+    assert with_ship.total_savings_usd < no_ship.total_savings_usd
 
 
 # ---------- edge cases + validation ----------
 
-def test_roi_extreme_high_still_recommend():
-    """Need hours_used < hours_available AND ROI > target."""
-    out = judge(base_inputs(num_units=200, sell_price_usd=500.0, hours_available=200.0))
+def test_payback_extreme_high_still_recommend():
+    """A single expensive unit that wipes the trip cost + nets profit → 建议."""
+    out = judge(base_inputs(num_units=1, home_price_usd=5000.0, max_units_per_trip=10))
     assert out.level == "建议"
-    assert out.roi_pct > 100.0
+    assert out.payback_rate_pct > 100.0
 
 
-def test_zero_trip_cost_is_valid():
-    out = judge(base_inputs(num_units=2, flight_cost_usd=0, hotel_cost_usd=0, other_trip_cost_usd=0))
-    per_unit_cost_no_trip = 85.0 + 0.0 + 4.0
-    per_unit_time = per_unit_time_cost(20.0, 20.0)
-    expected = 2 * per_unit_cost_no_trip + 2 * per_unit_time
-    assert math.isclose(out.total_cost_usd, expected, rel_tol=1e-9)
+def test_zero_trip_cost_yields_infinite_payback():
+    out = judge(base_inputs(
+        num_units=2, home_price_usd=200.0,
+        flight_cost_usd=0, hotel_cost_usd=0, other_trip_cost_usd=0,
+    ))
+    # trip_cost is 0; savings > 0 → payback is inf
+    assert math.isinf(out.payback_rate_pct)
+    assert out.level == "建议"
+
+
+def test_home_price_falls_back_to_sell_price_when_none():
+    """Backward compat: home_price_usd=None uses sell_price_usd."""
+    out = judge(base_inputs(home_price_usd=None, sell_price_usd=180.0))
+    # Should treat home=180 same as if we'd set home_price_usd=180.0
+    ref = judge(base_inputs(home_price_usd=180.0))
+    assert math.isclose(out.total_savings_usd, ref.total_savings_usd, rel_tol=1e-9)
+    assert math.isclose(out.payback_rate_pct, ref.payback_rate_pct, rel_tol=1e-9)
 
 
 def test_invalid_inputs_rejected():
@@ -222,10 +236,13 @@ def test_invalid_inputs_rejected():
         judge(base_inputs(success_rate=-0.1))
     with pytest.raises(DecideError):
         judge(base_inputs(success_rate=1.1))
+    with pytest.raises(DecideError):
+        judge(base_inputs(max_units_per_trip=0))
 
 
-def test_min_roi_zero_is_allowed():
-    out = judge(base_inputs(num_units=2, min_roi_pct=0.0))
+def test_zero_target_hourly_is_allowed():
+    """target_hourly_usd=0 is the new default — must validate."""
+    out = judge(base_inputs(target_hourly_usd=0.0))
     assert out.level in ("建议", "谨慎", "不建议")
 
 
@@ -235,53 +252,16 @@ def test_reason_is_short_string():
     assert 5 <= len(out.reason) <= 200
 
 
-def test_hand_calc_invariance_for_assets():
-    out = judge(base_inputs(num_units=10, sell_price_usd=200.0))
-    assert out.net_profit_usd < 0
-    assert out.level == "不建议"
-
-
-def test_total_revenue_equals_units_times_post_fee_price():
-    out = judge(base_inputs(num_units=5, sell_price_usd=100.0, platform_fee_rate=0.20))
-    assert math.isclose(out.total_revenue_usd, 5 * 100.0 * 0.80, rel_tol=1e-9)
-
-
-def test_success_rate_scales_expected_revenue_and_breakeven():
-    full = judge(base_inputs(
-        num_units=5, sell_price_usd=300.0, platform_fee_rate=0.20,
-        success_rate=1.0,
-    ))
-    half = judge(base_inputs(
-        num_units=5, sell_price_usd=300.0, platform_fee_rate=0.20,
-        success_rate=0.5,
-    ))
-    assert half.total_revenue_usd == pytest.approx(full.total_revenue_usd * 0.5)
-    assert half.per_unit_revenue_usd == pytest.approx(full.per_unit_revenue_usd * 0.5)
-    assert half.breakeven_sell_price_usd == pytest.approx(
-        full.breakeven_sell_price_usd * 2.0
-    )
-    assert half.net_profit_usd < full.net_profit_usd
-
-
-def test_zero_success_rate_has_no_expected_revenue():
-    out = judge(base_inputs(success_rate=0.0))
-    assert out.total_revenue_usd == 0.0
-    assert out.net_profit_usd < 0.0
-    assert out.level == "不建议"
-    assert math.isinf(out.breakeven_sell_price_usd)
-
-
-def test_decision_reason_mentions_key_driver_when_negative():
-    out = judge(base_inputs(num_units=1))
-    assert out.reason
-    # Reason mentions one of the cost/time drivers
-    assert any(k in out.reason for k in ("成本", "时间", "ROI", "利润", "机票", "酒店"))
-
-
-def test_decision_reason_mentions_roi_when_recommend():
-    out = judge(base_inputs(num_units=200, sell_price_usd=500.0, hours_available=200.0))
+def test_decision_reason_mentions_payback_when_recommend():
+    out = judge(base_inputs(num_units=1, home_price_usd=5000.0, max_units_per_trip=10))
     assert out.level == "建议"
-    assert "ROI" in out.reason or "利润" in out.reason
+    assert "回本率" in out.reason or "净赚" in out.reason
+
+
+def test_decision_reason_mentions_payback_when_not_recommend():
+    out = judge(base_inputs())
+    assert out.level == "不建议"
+    assert "回本率" in out.reason or "不值得" in out.reason
 
 
 def test_decision_serializes_to_dict():
@@ -293,4 +273,19 @@ def test_decision_serializes_to_dict():
         "level", "reason", "roi_pct", "net_profit_usd", "total_cost_usd",
         "total_revenue_usd", "breakeven_sell_price_usd", "hours_used",
         "per_unit_cost_usd", "per_unit_revenue_usd",
+        "total_savings_usd", "trip_net_value_usd", "payback_rate_pct",
     }
+
+
+def test_payback_rate_formula_holds():
+    """payback_rate_pct == total_savings_usd / trip_cost_usd * 100."""
+    out = judge(base_inputs(num_units=10, home_price_usd=250.0))
+    expected = out.total_savings_usd / out.total_cost_usd * 100.0
+    assert math.isclose(out.payback_rate_pct, expected, rel_tol=1e-9)
+
+
+def test_trip_net_value_formula_holds():
+    """trip_net_value_usd == total_savings - trip_cost."""
+    out = judge(base_inputs(num_units=10, home_price_usd=250.0))
+    expected = out.total_savings_usd - out.total_cost_usd
+    assert math.isclose(out.trip_net_value_usd, expected, rel_tol=1e-9)

@@ -30,6 +30,7 @@ from .report import (
     render_pdf,
     report_filename,
 )
+from .basket import solve_basket, item_from_opportunity
 
 
 def _content_disposition(filename: str) -> str:
@@ -373,6 +374,96 @@ def report_html(sku: str, num_units: int = 5, route: str = "PVG-NRT-LAX-2N"):
 @app.get("/api/report/{sku}.pdf")
 def report_pdf(sku: str, num_units: int = 5, route: str = "PVG-NRT-LAX-2N"):
     return _serve_report(sku, "pdf", num_units, route)
+
+
+# ---------- Round 13: 5000元 optimal basket ----------
+
+class BasketRequest(BaseModel):
+    budget_cny: float = Field(5000.0, ge=0)
+    customs_limit_cny: float = Field(5000.0, ge=0)
+    route: str = "PVG-NRT-LAX-2N"
+
+
+class BasketPickOut(BaseModel):
+    sku: str
+    name: str
+    category: str
+    num_units: int
+    jp_price_per_unit_cny: float
+    home_price_per_unit_cny: float
+    savings_per_unit_cny: float
+    subtotal_cny: float
+    total_savings_cny: float
+
+
+class BasketResponse(BaseModel):
+    route: str
+    fx_rate: float
+    budget_cny: float
+    customs_limit_cny: float
+    trip_cost_usd: float
+    total_spend_cny: float
+    total_savings_cny: float
+    payback_rate_pct: float
+    leftover_cny: float
+    customs_headroom_cny: float
+    algorithm: str
+    notes: list[str]
+    skipped_skus: list[str]
+    picks: list[BasketPickOut]
+
+
+@app.post("/api/basket", response_model=BasketResponse)
+def basket(req: BasketRequest):
+    conn = db.connect()
+    try:
+        route = db.get_route(conn, req.route)
+        if route is None:
+            raise HTTPException(status_code=404, detail=f"route not found: {req.route}")
+        fx = float(route["cn_to_usd_fx"]) if "cn_to_usd_fx" in route.keys() else 0.14
+        opps = db.list_opportunities(conn)
+        items = [item_from_opportunity(dict(o), fx_rate=fx) for o in opps]
+        trip_cost_usd = (
+            float(route["flight_cost_usd"])
+            + float(route["hotel_cost_usd"])
+            + float(route["other_cost_usd"])
+        )
+        sol = solve_basket(
+            items,
+            budget_cny=req.budget_cny,
+            customs_limit_cny=req.customs_limit_cny,
+            trip_cost_usd=trip_cost_usd,
+            fx_rate=fx,
+        )
+        return BasketResponse(
+            route=route["name"],
+            fx_rate=sol.fx_rate,
+            budget_cny=sol.budget_cny,
+            customs_limit_cny=sol.customs_limit_cny,
+            trip_cost_usd=sol.trip_cost_usd,
+            total_spend_cny=sol.total_spend_cny,
+            total_savings_cny=sol.total_savings_cny,
+            payback_rate_pct=sol.payback_rate_pct,
+            leftover_cny=sol.leftover_cny,
+            customs_headroom_cny=sol.customs_headroom_cny,
+            algorithm=sol.algorithm,
+            notes=sol.notes,
+            skipped_skus=sol.skipped_skus,
+            picks=[
+                BasketPickOut(
+                    sku=p.sku, name=p.name, category=p.category,
+                    num_units=p.num_units,
+                    jp_price_per_unit_cny=p.jp_price_per_unit_cny,
+                    home_price_per_unit_cny=p.home_price_per_unit_cny,
+                    savings_per_unit_cny=p.savings_per_unit_cny,
+                    subtotal_cny=p.subtotal_cny,
+                    total_savings_cny=p.total_savings_cny,
+                )
+                for p in sol.picks
+            ],
+        )
+    finally:
+        conn.close()
 
 
 # ---------- static SPA mounted last so /api/* wins ----------

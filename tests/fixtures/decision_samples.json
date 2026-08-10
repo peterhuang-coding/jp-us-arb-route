@@ -1,172 +1,103 @@
 [
   {
-    "name": "happy-path-high-roi",
+    "name": "payback-way-above-100-recommend",
     "inputs": {
       "num_units": 10,
       "purchase_price_usd": 50.0,
       "sell_price_usd": 120.0,
       "tariff_rate": 0.0,
       "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
+      "platform_fee_rate": 0.0,
       "minutes_per_unit": 10.0,
       "flight_cost_usd": 100.0,
       "hotel_cost_usd": 50.0,
       "other_trip_cost_usd": 0.0,
       "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
+      "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "建议",
-      "roi_pct": 50.0,
-      "net_profit_usd": 360.0,
-      "breakeven_sell_price_usd": 80.0,
-      "reason_contains": "高于目标"
+      "roi_pct": 333.3,
+      "net_profit_usd": 500.0,
+      "payback_rate_pct": 433.3,
+      "total_savings_usd": 650.0,
+      "trip_net_value_usd": 500.0,
+      "breakeven_sell_price_usd": 70.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "low-roi-positive-cautious",
+    "name": "payback-50-to-100-cautious",
     "inputs": {
-      "num_units": 10,
-      "purchase_price_usd": 50.0,
-      "sell_price_usd": 89.6,
+      "num_units": 5,
+      "purchase_price_usd": 100.0,
+      "sell_price_usd": 130.0,
       "tariff_rate": 0.0,
       "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
+      "platform_fee_rate": 0.0,
       "minutes_per_unit": 10.0,
       "flight_cost_usd": 100.0,
       "hotel_cost_usd": 50.0,
       "other_trip_cost_usd": 0.0,
       "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
+      "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "谨慎",
-      "roi_pct": 12.0,
-      "net_profit_usd": 86.4,
-      "breakeven_sell_price_usd": 80.0,
-      "reason_contains": "勉强可行"
+      "roi_pct": -16.67,
+      "net_profit_usd": -25.0,
+      "payback_rate_pct": 83.33,
+      "total_savings_usd": 125.0,
+      "trip_net_value_usd": -25.0,
+      "breakeven_sell_price_usd": 135.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "below-min-roi-positive",
+    "name": "payback-below-50-not-recommend",
     "inputs": {
-      "num_units": 10,
+      "num_units": 2,
       "purchase_price_usd": 50.0,
-      "sell_price_usd": 84.0,
+      "sell_price_usd": 70.0,
       "tariff_rate": 0.0,
       "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 10.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
       "flight_cost_usd": 100.0,
       "hotel_cost_usd": 50.0,
       "other_trip_cost_usd": 0.0,
       "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
+      "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "不建议",
-      "roi_pct": 5.0,
-      "net_profit_usd": 36.0,
-      "breakeven_sell_price_usd": 80.0,
-      "reason_contains": "低于最低阈值"
+      "roi_pct": -80.0,
+      "net_profit_usd": -120.0,
+      "payback_rate_pct": 20.0,
+      "total_savings_usd": 30.0,
+      "trip_net_value_usd": -120.0,
+      "breakeven_sell_price_usd": 130.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "zero-profit-at-breakeven",
+    "name": "payback-exactly-100-recommend",
     "inputs": {
-      "num_units": 10,
-      "purchase_price_usd": 50.0,
+      "num_units": 3,
+      "purchase_price_usd": 30.0,
       "sell_price_usd": 80.0,
       "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 10.0,
-      "flight_cost_usd": 100.0,
-      "hotel_cost_usd": 50.0,
-      "other_trip_cost_usd": 0.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
-      "target_roi_pct": 15.0,
-      "min_roi_pct": 10.0
-    },
-    "expected": {
-      "level": "不建议",
-      "roi_pct": 0.0,
-      "net_profit_usd": 0.0,
-      "breakeven_sell_price_usd": 80.0,
-      "reason_contains": "负利润"
-    }
-  },
-  {
-    "name": "negative-profit-sell-below-cost",
-    "inputs": {
-      "num_units": 10,
-      "purchase_price_usd": 50.0,
-      "sell_price_usd": 70.0,
-      "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 10.0,
-      "flight_cost_usd": 100.0,
-      "hotel_cost_usd": 50.0,
-      "other_trip_cost_usd": 0.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
-      "target_roi_pct": 15.0,
-      "min_roi_pct": 10.0
-    },
-    "expected": {
-      "level": "不建议",
-      "roi_pct": -12.5,
-      "net_profit_usd": -90.0,
-      "breakeven_sell_price_usd": 80.0,
-      "reason_contains": "负利润"
-    }
-  },
-  {
-    "name": "hours-overflow-despite-profit",
-    "inputs": {
-      "num_units": 10,
-      "purchase_price_usd": 50.0,
-      "sell_price_usd": 150.0,
-      "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 120.0,
-      "flight_cost_usd": 100.0,
-      "hotel_cost_usd": 50.0,
-      "other_trip_cost_usd": 0.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 12.0,
-      "target_roi_pct": 15.0,
-      "min_roi_pct": 10.0
-    },
-    "expected": {
-      "level": "不建议",
-      "roi_pct": 43.617021,
-      "net_profit_usd": 410.0,
-      "breakeven_sell_price_usd": 104.444444,
-      "reason_contains": "超出可用"
-    }
-  },
-  {
-    "name": "tariff-free-route",
-    "inputs": {
-      "num_units": 5,
-      "purchase_price_usd": 40.0,
-      "sell_price_usd": 70.0,
-      "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 0.0,
-      "flight_cost_usd": 0.0,
-      "hotel_cost_usd": 0.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 50.0,
+      "hotel_cost_usd": 100.0,
       "other_trip_cost_usd": 0.0,
       "hours_available": 5.0,
       "target_hourly_usd": 0.0,
@@ -175,40 +106,164 @@
     },
     "expected": {
       "level": "建议",
-      "roi_pct": 40.0,
-      "net_profit_usd": 90.0,
-      "breakeven_sell_price_usd": 50.0,
-      "reason_contains": "高于目标"
+      "roi_pct": 0.0,
+      "net_profit_usd": 0.0,
+      "payback_rate_pct": 100.0,
+      "total_savings_usd": 150.0,
+      "trip_net_value_usd": 0.0,
+      "breakeven_sell_price_usd": 80.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "tariff-five-percent",
+    "name": "payback-just-below-50-not-recommend",
     "inputs": {
-      "num_units": 10,
+      "num_units": 2,
       "purchase_price_usd": 100.0,
-      "sell_price_usd": 180.0,
-      "tariff_rate": 0.05,
-      "shipping_per_unit_usd": 5.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 30.0,
-      "flight_cost_usd": 100.0,
+      "sell_price_usd": 112.0,
+      "tariff_rate": 0.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 60.0,
+      "hotel_cost_usd": 0.0,
+      "other_trip_cost_usd": 0.0,
+      "hours_available": 5.0,
+      "target_hourly_usd": 0.0,
+      "target_roi_pct": 15.0,
+      "min_roi_pct": 10.0
+    },
+    "expected": {
+      "level": "不建议",
+      "roi_pct": -60.0,
+      "net_profit_usd": -36.0,
+      "payback_rate_pct": 40.0,
+      "total_savings_usd": 24.0,
+      "trip_net_value_usd": -36.0,
+      "breakeven_sell_price_usd": 130.0,
+      "reason_contains": "回本率"
+    }
+  },
+  {
+    "name": "carry-cap-exceeded",
+    "inputs": {
+      "num_units": 60,
+      "purchase_price_usd": 10.0,
+      "sell_price_usd": 100.0,
+      "tariff_rate": 0.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 1.0,
+      "flight_cost_usd": 50.0,
       "hotel_cost_usd": 50.0,
       "other_trip_cost_usd": 0.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 20.0,
+      "hours_available": 100.0,
+      "target_hourly_usd": 0.0,
+      "target_roi_pct": 15.0,
+      "min_roi_pct": 10.0,
+      "max_units_per_trip": 50
+    },
+    "expected": {
+      "level": "不建议",
+      "roi_pct": 5300.0,
+      "net_profit_usd": 5300.0,
+      "payback_rate_pct": 5400.0,
+      "total_savings_usd": 5400.0,
+      "trip_net_value_usd": 5300.0,
+      "breakeven_sell_price_usd": 11.0,
+      "reason_contains": "携带上限"
+    }
+  },
+  {
+    "name": "zero-trip-cost-infinite-payback",
+    "inputs": {
+      "num_units": 2,
+      "purchase_price_usd": 50.0,
+      "sell_price_usd": 100.0,
+      "tariff_rate": 0.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 1.0,
+      "flight_cost_usd": 0.0,
+      "hotel_cost_usd": 0.0,
+      "other_trip_cost_usd": 0.0,
+      "hours_available": 1.0,
+      "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "建议",
-      "roi_pct": 20.0,
-      "net_profit_usd": 270.0,
-      "breakeven_sell_price_usd": 150.0,
-      "reason_contains": "高于目标"
+      "roi_pct": 0.0,
+      "net_profit_usd": 100.0,
+      "payback_rate_pct": "inf",
+      "total_savings_usd": 100.0,
+      "trip_net_value_usd": 100.0,
+      "breakeven_sell_price_usd": 50.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "single-unit-high-margin",
+    "name": "tariff-10-reduces-savings",
+    "inputs": {
+      "num_units": 5,
+      "purchase_price_usd": 100.0,
+      "sell_price_usd": 150.0,
+      "tariff_rate": 0.10,
+      "shipping_per_unit_usd": 5.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 50.0,
+      "hotel_cost_usd": 50.0,
+      "other_trip_cost_usd": 0.0,
+      "hours_available": 5.0,
+      "target_hourly_usd": 0.0,
+      "target_roi_pct": 15.0,
+      "min_roi_pct": 10.0
+    },
+    "expected": {
+      "level": "建议",
+      "roi_pct": 75.0,
+      "net_profit_usd": 75.0,
+      "payback_rate_pct": 175.0,
+      "total_savings_usd": 175.0,
+      "trip_net_value_usd": 75.0,
+      "breakeven_sell_price_usd": 135.0,
+      "reason_contains": "回本率"
+    }
+  },
+  {
+    "name": "home-price-overrides-sell",
+    "inputs": {
+      "num_units": 3,
+      "purchase_price_usd": 50.0,
+      "sell_price_usd": 80.0,
+      "home_price_usd": 200.0,
+      "tariff_rate": 0.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 100.0,
+      "hotel_cost_usd": 50.0,
+      "other_trip_cost_usd": 0.0,
+      "hours_available": 5.0,
+      "target_hourly_usd": 0.0,
+      "target_roi_pct": 15.0,
+      "min_roi_pct": 10.0
+    },
+    "expected": {
+      "level": "建议",
+      "roi_pct": 200.0,
+      "net_profit_usd": 300.0,
+      "payback_rate_pct": 300.0,
+      "total_savings_usd": 450.0,
+      "trip_net_value_usd": 300.0,
+      "breakeven_sell_price_usd": 100.0,
+      "reason_contains": "回本率"
+    }
+  },
+  {
+    "name": "single-unit-edge",
     "inputs": {
       "num_units": 1,
       "purchase_price_usd": 20.0,
@@ -227,88 +282,71 @@
     },
     "expected": {
       "level": "建议",
-      "roi_pct": 150.0,
+      "roi_pct": 0.0,
       "net_profit_usd": 30.0,
+      "payback_rate_pct": "inf",
+      "total_savings_usd": 30.0,
+      "trip_net_value_usd": 30.0,
       "breakeven_sell_price_usd": 20.0,
-      "reason_contains": "净利润"
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "bulk-fifty-units",
-    "inputs": {
-      "num_units": 50,
-      "purchase_price_usd": 30.0,
-      "sell_price_usd": 60.0,
-      "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 2.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 6.0,
-      "flight_cost_usd": 200.0,
-      "hotel_cost_usd": 100.0,
-      "other_trip_cost_usd": 50.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 20.0,
-      "target_roi_pct": 15.0,
-      "min_roi_pct": 10.0
-    },
-    "expected": {
-      "level": "建议",
-      "roi_pct": 31.707317,
-      "net_profit_usd": 650.0,
-      "breakeven_sell_price_usd": 45.555556,
-      "reason_contains": "高于目标"
-    }
-  },
-  {
-    "name": "very-high-roi-over-100",
+    "name": "breakeven-savings-equals-trip",
     "inputs": {
       "num_units": 4,
       "purchase_price_usd": 10.0,
-      "sell_price_usd": 50.0,
+      "sell_price_usd": 60.0,
       "tariff_rate": 0.0,
       "shipping_per_unit_usd": 0.0,
-      "platform_fee_rate": 0.1,
-      "minutes_per_unit": 0.0,
-      "flight_cost_usd": 0.0,
-      "hotel_cost_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 100.0,
+      "hotel_cost_usd": 100.0,
       "other_trip_cost_usd": 0.0,
-      "hours_available": 1.0,
+      "hours_available": 5.0,
       "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "建议",
-      "roi_pct": 350.0,
-      "net_profit_usd": 140.0,
-      "breakeven_sell_price_usd": 11.111111,
-      "reason_contains": "高于目标"
+      "roi_pct": 0.0,
+      "net_profit_usd": 0.0,
+      "payback_rate_pct": 100.0,
+      "total_savings_usd": 200.0,
+      "trip_net_value_usd": 0.0,
+      "breakeven_sell_price_usd": 60.0,
+      "reason_contains": "回本率"
     }
   },
   {
-    "name": "breakeven-sanity-near-zero-roi",
+    "name": "negative-savings-not-recommend",
     "inputs": {
-      "num_units": 8,
-      "purchase_price_usd": 25.0,
-      "sell_price_usd": 55.05,
+      "num_units": 5,
+      "purchase_price_usd": 100.0,
+      "sell_price_usd": 80.0,
       "tariff_rate": 0.0,
-      "shipping_per_unit_usd": 3.0,
-      "platform_fee_rate": 0.2,
-      "minutes_per_unit": 15.0,
-      "flight_cost_usd": 64.0,
-      "hotel_cost_usd": 32.0,
+      "shipping_per_unit_usd": 0.0,
+      "platform_fee_rate": 0.0,
+      "minutes_per_unit": 5.0,
+      "flight_cost_usd": 100.0,
+      "hotel_cost_usd": 100.0,
       "other_trip_cost_usd": 0.0,
-      "hours_available": 10.0,
-      "target_hourly_usd": 16.0,
+      "hours_available": 5.0,
+      "target_hourly_usd": 0.0,
       "target_roi_pct": 15.0,
       "min_roi_pct": 10.0
     },
     "expected": {
       "level": "不建议",
-      "roi_pct": 0.090909,
-      "net_profit_usd": 0.32,
-      "breakeven_sell_price_usd": 55.0,
-      "reason_contains": "低于最低阈值"
+      "roi_pct": -150.0,
+      "net_profit_usd": -300.0,
+      "payback_rate_pct": -50.0,
+      "total_savings_usd": -100.0,
+      "trip_net_value_usd": -300.0,
+      "breakeven_sell_price_usd": 140.0,
+      "reason_contains": "回本率"
     }
   }
 ]
