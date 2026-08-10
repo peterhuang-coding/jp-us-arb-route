@@ -609,6 +609,153 @@ def cmd_flight(args):
     return 0
 
 
+# ---------- backfill (Round 15) ----------
+
+# Validation bounds for home_price_cny.  ¥0 is allowed only as an explicit
+# marker meaning "no China reference price" (basket will skip with reason);
+# any non-zero value must be reasonable.  ¥100k cap blocks accidental
+# comma/shift typos (e.g. typing 1500 vs 15000).
+_MIN_PRICE = 0.0
+_MAX_PRICE = 100000.0
+_MIN_MAX_UNITS = 1
+
+
+def _coerce_backfill_rows(payload) -> list[dict]:
+    """Normalize the JSON payload into a list of row dicts.
+
+    Accepts either a list of dicts or a single dict (single-row shorthand).
+    Each returned row has at minimum ``sku`` and ``home_price_cny`` keys;
+    optional keys ``max_units_per_trip`` and ``source`` are preserved if
+    present.  Raises ValueError on type-shape mismatch.
+    """
+    if isinstance(payload, dict):
+        payload = [payload]
+    if not isinstance(payload, list):
+        raise ValueError(f"payload must be a list or dict, got {type(payload).__name__}")
+    rows = []
+    for i, raw in enumerate(payload):
+        if not isinstance(raw, dict):
+            raise ValueError(f"row #{i} must be a dict, got {type(raw).__name__}")
+        if "sku" not in raw or "home_price_cny" not in raw:
+            raise ValueError(f"row #{i} missing required key 'sku' or 'home_price_cny'")
+        if isinstance(raw.get("sku"), str) and not raw["sku"].strip():
+            raise ValueError(f"row #{i} sku must be a non-empty string")
+        rows.append(dict(raw))  # shallow copy
+    return rows
+
+
+def _validate_backfill_row(row: dict) -> str | None:
+    """Return None if the row is valid, else a human-readable reason string."""
+    sku = row.get("sku")
+    if not isinstance(sku, str) or not sku.strip():
+        return "sku must be a non-empty string"
+    price = row.get("home_price_cny")
+    if not isinstance(price, (int, float)):
+        return "home_price_cny must be a number"
+    if price < _MIN_PRICE or price > _MAX_PRICE:
+        return f"home_price_cny {price} out of bounds [{_MIN_PRICE}, {_MAX_PRICE}]"
+    if "max_units_per_trip" in row:
+        mu = row["max_units_per_trip"]
+        if not isinstance(mu, int) or mu < _MIN_MAX_UNITS:
+            return f"max_units_per_trip must be int >= {_MIN_MAX_UNITS}, got {mu!r}"
+    return None
+
+
+def cmd_backfill_home_prices(args):
+    """Batch-update ``home_price_cny`` (and optionally ``max_units_per_trip``).
+
+    Reads a JSON payload (list of dicts, or single dict) from ``--file`` or
+    stdin.  Each row needs ``sku`` and ``home_price_cny``; ``max_units_per_trip``
+    and ``source`` are optional.  Validation errors skip individual rows; the
+    transaction is per-row so a later bad row does not block earlier good ones.
+    By default rows are committed; ``--dry-run`` parses + validates only.
+    Prints a JSON or human report of updated / skipped rows.
+    """
+    if args.file:
+        with open(args.file, "r", encoding="utf-8") as fh:
+            payload_text = fh.read()
+    else:
+        payload_text = sys.stdin.read()
+    try:
+        payload = json.loads(payload_text) if payload_text.strip() else []
+    except json.JSONDecodeError as e:
+        print(f"error: invalid JSON in backfill payload: {e}", file=sys.stderr)
+        return 2
+    try:
+        rows = _coerce_backfill_rows(payload)
+    except ValueError as e:
+        print(f"error: invalid backfill payload: {e}", file=sys.stderr)
+        return 2
+
+    conn = db.connect()
+    today = _dt.date.today().isoformat()
+    updated: list[dict] = []
+    skipped: list[dict] = []
+
+    with db.tx(conn):
+        for row in rows:
+            sku = row["sku"]
+            reason = _validate_backfill_row(row)
+            if reason:
+                skipped.append({"sku": sku, "reason": reason})
+                continue
+            existing = db.get_opportunity(conn, sku)
+            if existing is None:
+                skipped.append({"sku": sku, "reason": "sku not found in DB"})
+                continue
+            new_price = float(row["home_price_cny"])
+            old_price = existing["home_price_cny"]
+            old_max = existing["max_units_per_trip"]
+            patch: dict = {"home_price_cny": new_price,
+                           "data_freshness_ts": today}
+            new_max: int | None = None
+            if "max_units_per_trip" in row:
+                new_max = int(row["max_units_per_trip"])
+                patch["max_units_per_trip"] = new_max
+            if args.dry_run:
+                updated.append({
+                    "sku": sku,
+                    "old_home_price_cny": old_price,
+                    "new_home_price_cny": new_price,
+                    "old_max_units_per_trip": old_max,
+                    "new_max_units_per_trip": new_max,
+                    "dry_run": True,
+                })
+                continue
+            conn.execute(
+                "UPDATE opportunities SET home_price_cny = ?, "
+                "max_units_per_trip = COALESCE(?, max_units_per_trip), "
+                "data_freshness_ts = ? WHERE sku = ?",
+                (new_price,
+                 int(row["max_units_per_trip"]) if "max_units_per_trip" in row else None,
+                 today, sku),
+            )
+            updated.append({
+                "sku": sku,
+                "old_home_price_cny": old_price,
+                "new_home_price_cny": new_price,
+                "old_max_units_per_trip": old_max,
+                "new_max_units_per_trip": new_max,
+            })
+
+    if args.dry_run:
+        conn.rollback()
+    report = {"updated": updated, "skipped": skipped,
+              "dry_run": bool(args.dry_run), "today": today}
+    if args.json:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        print(f"[{'DRY-RUN ' if args.dry_run else ''}backfill-home-prices] "
+              f"{len(updated)} updated, {len(skipped)} skipped  (today={today})")
+        for u in updated:
+            old = f"{u['old_home_price_cny']}" if u['old_home_price_cny'] is not None else "NULL"
+            new = f"{u['new_home_price_cny']}"
+            print(f"  ✓ {u['sku']:30s} home_price_cny {old} -> {new}")
+        for s in skipped:
+            print(f"  ✗ {s['sku']:30s} {s['reason']}")
+    return 0 if not skipped else 1 if not args.dry_run and not updated else 0
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -700,6 +847,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_flight.add_argument("--json", action="store_true",
                           help="emit machine-readable JSON instead of text")
 
+    p_backfill = sub.add_parser(
+        "backfill-home-prices",
+        help="batch-set home_price_cny (and optionally max_units_per_trip) from JSON on stdin or --file",
+    )
+    p_backfill.add_argument("--file", default=None,
+                           help="read JSON from this path instead of stdin")
+    p_backfill.add_argument("--dry-run", action="store_true",
+                           help="parse + validate but do not write to DB")
+    p_backfill.add_argument("--json", action="store_true",
+                           help="emit machine-readable JSON report")
+
     p_routes = sub.add_parser("routes", help="list routes (default) or --add a new route")
     p_routes.add_argument("--add", action="store_true",
                           help="insert a new route from CLI flags")
@@ -746,6 +904,7 @@ def main(argv: list[str] | None = None) -> int:
         "routes": cmd_routes,
         "basket": cmd_basket,
         "flight": cmd_flight,
+        "backfill-home-prices": cmd_backfill_home_prices,
     }.get(args.cmd)
     if handler is None:
         return 2
