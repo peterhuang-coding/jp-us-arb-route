@@ -1,6 +1,6 @@
 /* Auto-generated snapshot at 2026-07-26T13:50:00Z - 42 SKUs, decision nested */
 var EMBEDDED_DATA = {
-  "snapshot_at": "2026-08-12T04:02:56Z",
+  "snapshot_at": "2026-08-12T04:18:08Z",
   "opportunities": [
     {
       "id": 1,

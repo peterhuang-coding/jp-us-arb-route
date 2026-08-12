@@ -72,6 +72,8 @@ CREATE TABLE IF NOT EXISTS route_legs (
     duration_min    REAL NOT NULL DEFAULT 0.0,
     location        TEXT,
     notes           TEXT,
+    depart_at       TEXT,           -- ISO8601 local time ('YYYY-MM-DDTHH:MM'); nullable for non-timed legs
+    arrive_at       TEXT,           -- ISO8601 local time; = depart_at + duration_min (server-computed when both set)
     UNIQUE(route_id, seq)
 );
 
@@ -121,6 +123,13 @@ _EXPECTED_COLUMNS: dict[str, dict[str, str]] = {
     },
     "routes": {
         "cn_to_usd_fx": "REAL NOT NULL DEFAULT 0.14",          # CNY→USD for self-use pricing
+    },
+    "route_legs": {
+        # Round 17: per-leg timestamps for itinerary rendering.
+        # Both nullable TEXT (ISO8601). arrive_at is server-derived from
+        # depart_at + duration_min when both are populated.
+        "depart_at": "TEXT",
+        "arrive_at": "TEXT",
     },
 }
 
@@ -381,3 +390,73 @@ def resolve_proposed_price(conn: sqlite3.Connection, proposal_id: int,
     return {"applied": False, "proposal_status": "rejected",
             "field": row["field"], "new_value": None,
             "message": f"已拒绝提案 {proposal_id} ({row['sku']} · {row['field']})"}
+
+
+# ---------- route leg timing (Round 17) ----------
+
+def _parse_iso_min(s: str) -> int:
+    """Parse an ISO local datetime 'YYYY-MM-DDTHH:MM[:SS]' into total minutes
+    since 1970-01-01 00:00 LOCAL (naive — purely for arithmetic, never
+    compared to wall-clock UTC).
+    """
+    from datetime import datetime
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M"):
+        try:
+            dt = datetime.strptime(s, fmt)
+            # Use (dt - epoch).total_seconds() via epoch-as-naive: pick 1970-01-01 as anchor.
+            epoch = datetime(1970, 1, 1)
+            return int((dt - epoch).total_seconds() // 60)
+        except ValueError:
+            continue
+    raise ValueError(f"unparseable ISO time: {s!r}")
+
+
+def _fmt_iso_min(mins: int) -> str:
+    """Format minutes-since-naive-epoch back to 'YYYY-MM-DDTHH:MM'."""
+    from datetime import datetime, timedelta
+    dt = datetime(1970, 1, 1) + timedelta(minutes=mins)
+    return dt.strftime("%Y-%m-%dT%H:%M")
+
+
+def backfill_route_leg_times(conn, route_id: int) -> int:
+    """Stamp depart_at / arrive_at on every leg of ``route_id`` by walking
+    forward from ``routes.departure_date`` + 09:00 (assumed local) and
+    accumulating ``duration_min`` per leg.  Hotel/shop/transit legs with
+    duration_min == 0 leave depart_at NULL (only arrive_at is set as a
+    checkpoint marker so the next leg's wall-clock keeps advancing).
+
+    Idempotent: re-running overwrites existing timestamps.  Returns the
+    number of legs touched.
+    """
+    row = conn.execute("SELECT name, departure_date FROM routes WHERE id=?",
+                       (route_id,)).fetchone()
+    if row is None:
+        raise ValueError(f"route id {route_id} not found")
+    depart_date = row["departure_date"]
+    if not depart_date:
+        raise ValueError(f"route {row['name']!r} has no departure_date set")
+    legs = list_route_legs(conn, route_id)
+    if not legs:
+        return 0
+    cursor_min = _parse_iso_min(f"{depart_date}T09:00")
+    touched = 0
+    for leg in legs:
+        dur = float(leg["duration_min"])
+        if dur <= 0:
+            conn.execute(
+                "UPDATE route_legs SET depart_at=NULL, arrive_at=? WHERE id=?",
+                (_fmt_iso_min(cursor_min), leg["id"]),
+            )
+            touched += 1
+            continue
+        depart = _fmt_iso_min(cursor_min)
+        arrive_min = cursor_min + int(dur)
+        arrive = _fmt_iso_min(arrive_min)
+        conn.execute(
+            "UPDATE route_legs SET depart_at=?, arrive_at=? WHERE id=?",
+            (depart, arrive, leg["id"]),
+        )
+        cursor_min = arrive_min
+        touched += 1
+    conn.commit()
+    return touched

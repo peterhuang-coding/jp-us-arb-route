@@ -452,6 +452,7 @@
             <template x-for="leg in currentDetail.legs" :key="leg.seq">
               <li>
                 <span class="leg-kind" :class="leg.kind" x-text="leg.kind"></span>
+                <span class="leg-time" x-text="legTimeLabel(leg)"></span>
                 <strong x-text="leg.label"></strong>
                 <span class="leg-loc" x-text="leg.location || ''"></span>
                 · 耗时 <span x-text="leg.duration_min.toFixed(0) + 'min'"></span>

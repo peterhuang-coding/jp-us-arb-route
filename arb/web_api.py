@@ -57,6 +57,24 @@ app = FastAPI(
 )
 
 
+@app.on_event("startup")
+def _backfill_leg_times() -> None:
+    """Stamp depart_at / arrive_at on every route's legs that has
+    departure_date set.  Skips silently when no departure_date (legacy
+    routes that the user hasn't filled in yet)."""
+    from .db import backfill_route_leg_times, connect, list_routes
+    conn = connect()
+    try:
+        for r in list_routes(conn):
+            try:
+                backfill_route_leg_times(conn, r["id"])
+            except ValueError:
+                # No departure_date → skip; user must fill manually.
+                pass
+    finally:
+        conn.close()
+
+
 # ---------- request / response models ----------
 
 class DecideRequest(BaseModel):

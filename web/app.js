@@ -638,6 +638,26 @@ function app() {
       this.status = msg;
     },
 
+    legTimeLabel(leg) {
+      // Format leg.depart_at / arrive_at ('YYYY-MM-DDTHH:MM' or null) into a
+      // compact "[09-15 09:00 → 12:20]" label.  Falls back gracefully when
+      // either timestamp is missing (e.g. pre-Round-17 snapshots, hotel legs).
+      if (leg.depart_at && leg.arrive_at) {
+        const dDay = leg.depart_at.split('T')[0];
+        const aDay = leg.arrive_at.split('T')[0];
+        const dTime = leg.depart_at.split('T')[1];
+        const aTime = leg.arrive_at.split('T')[1];
+        if (dDay === aDay) {
+          return `[${dDay.slice(5)} ${dTime} → ${aTime}]`;
+        }
+        return `[${dDay.slice(5)} ${dTime} → ${aDay.slice(5)} ${aTime}]`;
+      }
+      if (leg.arrive_at) {
+        return `[→ ${leg.arrive_at.split('T')[1] || leg.arrive_at}]`;
+      }
+      return '';
+    },
+
     async searchFlight() {
       if (!this.serverOnline) {
         this.flightResult = { ok: false, hint: 'API 离线,无法查机票' };
