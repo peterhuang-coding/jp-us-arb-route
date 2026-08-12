@@ -36,6 +36,14 @@ function app() {
 
     // ---- form state ----
     selected: null,
+
+    // ---- flight lookup (Round 16) ----
+    flightOrigin: 'PVG',
+    flightDest: 'LAX',
+    flightDate: new Date().toISOString().slice(0, 10),
+    flightLoading: false,
+    flightResult: null,
+    flightHint: '',
     filter: '',
     filterCategory: '',
     filterStatus: '',
@@ -628,6 +636,31 @@ function app() {
 
     setStatus(msg, isError = false) {
       this.status = msg;
+    },
+
+    async searchFlight() {
+      if (!this.serverOnline) {
+        this.flightResult = { ok: false, hint: 'API 离线,无法查机票' };
+        return;
+      }
+      if (!this.flightOrigin || !this.flightDest || !this.flightDate) {
+        this.flightResult = { ok: false, hint: '请填 IATA 机场三字码和日期' };
+        return;
+      }
+      this.flightLoading = true;
+      this.flightResult = null;
+      try {
+        const url = `/api/flight?origin=${encodeURIComponent(this.flightOrigin)}`
+          + `&dest=${encodeURIComponent(this.flightDest)}`
+          + `&date=${encodeURIComponent(this.flightDate)}`;
+        const resp = await fetch(url);
+        const body = await resp.json();
+        this.flightResult = body;
+      } catch (e) {
+        this.flightResult = { ok: false, hint: '网络错误: ' + (e.message || e) };
+      } finally {
+        this.flightLoading = false;
+      }
     },
   };
 }

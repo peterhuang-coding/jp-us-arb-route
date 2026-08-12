@@ -31,6 +31,7 @@ from .report import (
     report_filename,
 )
 from .basket import solve_basket, item_from_opportunity
+from .flight_price import search_flights, outcome_as_dict as flight_outcome_as_dict
 
 
 def _content_disposition(filename: str) -> str:
@@ -464,6 +465,46 @@ def basket(req: BasketRequest):
         )
     finally:
         conn.close()
+
+
+# ---------- Round 16: Amadeus flight search (live if creds, else stub) ----------
+
+@app.get("/api/flight")
+def flight(origin: str, dest: str, date: str,
+           adults: int = 1, cabin: str = "ECONOMY",
+           currency: str = "USD"):
+    """Proxy Amadeus Flight Offers Search.
+
+    Returns 503 if AMADEUS_CLIENT_ID / AMADEUS_CLIENT_SECRET are unset
+    (still includes a ``reason`` field so the SPA can render an instructive
+    message instead of a generic error).
+    """
+    import os
+    cid = os.environ.get("AMADEUS_CLIENT_ID")
+    cs = os.environ.get("AMADEUS_CLIENT_SECRET")
+    if not cid or not cs:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "ok": False,
+                "reason": "AMADEUS_CLIENT_ID/AMADEUS_CLIENT_SECRET not set",
+                "hint": ("Register at https://developers.amadeus.com/ and export "
+                         "the test-env credentials, then restart the server."),
+                "origin": origin.upper(),
+                "dest": dest.upper(),
+                "date": date,
+                "offers": [],
+            },
+        )
+    outcome = search_flights(
+        origin.upper(), dest.upper(), date,
+        adults=adults, cabin=cabin, currency=currency,
+        use_cache=True,
+    )
+    payload = flight_outcome_as_dict(outcome)
+    if not outcome.ok:
+        return JSONResponse(status_code=502, content=payload)
+    return payload
 
 
 # ---------- static SPA mounted last so /api/* wins ----------

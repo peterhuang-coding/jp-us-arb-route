@@ -37,6 +37,39 @@
         </select>
       </label>
     </div>
+    <div class="flightlookup" @keydown.enter="searchFlight()">
+      <label>✈️ 实时机票
+        <input type="text" x-model="flightOrigin" placeholder="PVG" maxlength="3" style="width:3.5em;text-transform:uppercase">
+        <span>→</span>
+        <input type="text" x-model="flightDest" placeholder="LAX" maxlength="3" style="width:3.5em;text-transform:uppercase">
+        <input type="date" x-model="flightDate" :min="today">
+        <button @click="searchFlight()" :disabled="flightLoading"
+          :title="flightHint || '点击查询 Amadeus 实时报价 (需 AMADEUS_CLIENT_ID/SECRET)'"
+          x-text="flightLoading ? '查询中…' : '查价'"></button>
+      </label>
+      <div class="flight-result" x-show="flightResult" x-cloak>
+        <template x-if="flightResult && flightResult.ok === false">
+          <div class="flight-stub">
+            <strong>⚠️ 未配置凭证</strong>
+            <small x-text="flightResult.hint || '设置 AMADEUS_CLIENT_ID/SECRET 后重启 server'"></small>
+          </div>
+        </template>
+        <template x-if="flightResult && flightResult.ok !== false && flightResult.offers">
+          <div class="flight-offers">
+            <small>Top <span x-text="flightResult.offers.length"></span> 报价</small>
+            <ol>
+              <template x-for="(off, i) in flightResult.offers.slice(0, 3)" :key="i">
+                <li>
+                  <strong x-text="off.currency + ' ' + off.price_total.toFixed(0)"></strong>
+                  <span x-text="(off.validating_carrier || '-') + ' · ' + off.num_stops + ' 段 · ' + off.itinerary_summary"></span>
+                </li>
+              </template>
+            </ol>
+            <small x-show="flightResult.cached" class="muted">(cached)</small>
+          </div>
+        </template>
+      </div>
+    </div>
     <div class="status-summary">
       <span class="kpi"><strong x-text="opportunities.length"></strong> 商机</span>
       <span class="kpi kpi-ok"><strong x-text="goCount()"></strong> 可推</span>

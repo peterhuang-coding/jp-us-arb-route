@@ -1,6 +1,6 @@
 /* Auto-generated snapshot at 2026-07-26T13:50:00Z - 42 SKUs, decision nested */
 var EMBEDDED_DATA = {
-  "snapshot_at": "2026-07-26T13:50:00Z",
+  "snapshot_at": "2026-08-12T04:02:56Z",
   "opportunities": [
     {
       "id": 1,
@@ -921,1603 +921,2232 @@ var EMBEDDED_DATA = {
       "created_at": "2026-07-26 03:43:23"
     }
   ],
-  "reports": {
-    "JP-SKII-FT230": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1039.72 USD,负利润,无意义出差。",
-          "roi_pct": -86.59,
-          "net_profit_usd": -1039.72,
-          "total_cost_usd": 1200.67,
-          "total_revenue_usd": 160.95,
-          "breakeven_sell_price_usd": 1380.08,
-          "hours_used": 0.33
+  "reports":     {
+        "JP-SKII-FT230": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 8.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -91.6919423076923,
+                    "net_profit_usd": -953.5962,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 86.40380000000005,
+                    "breakeven_sell_price_usd": 1194.0,
+                    "hours_used": 0.3333333333333333,
+                    "per_unit_cost_usd": 154.0,
+                    "per_unit_revenue_usd": 86.40380000000005,
+                    "total_savings_usd": 86.40380000000005,
+                    "trip_net_value_usd": -953.5962,
+                    "payback_rate_pct": 8.308057692307697
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 41.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -58.45971153846151,
+                    "net_profit_usd": -607.9809999999998,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 432.01900000000023,
+                    "breakeven_sell_price_usd": 362.0,
+                    "hours_used": 1.6666666666666667,
+                    "per_unit_cost_usd": 154.0,
+                    "per_unit_revenue_usd": 86.40380000000005,
+                    "total_savings_usd": 432.01900000000023,
+                    "trip_net_value_usd": -607.9809999999998,
+                    "payback_rate_pct": 41.54028846153848
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 415.4% ≥ 100%,行程完全回本,净赚 $3,280.19 USD。",
+                    "roi_pct": 315.40288461538483,
+                    "net_profit_usd": 3280.1900000000023,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4320.190000000002,
+                    "breakeven_sell_price_usd": 174.8,
+                    "hours_used": 16.666666666666668,
+                    "per_unit_cost_usd": 154.0,
+                    "per_unit_revenue_usd": 86.40380000000005,
+                    "total_savings_usd": 4320.190000000002,
+                    "trip_net_value_usd": 3280.1900000000023,
+                    "payback_rate_pct": 415.40288461538483
+                }
+            }
+        },
+        "JP-WS-YAMAZAKI12": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 -3.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -102.98676923076924,
+                    "net_profit_usd": -1071.0624,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": -31.062399999999997,
+                    "breakeven_sell_price_usd": 1227.0,
+                    "hours_used": 0.5833333333333334,
+                    "per_unit_cost_usd": 187.0,
+                    "per_unit_revenue_usd": -31.062399999999997,
+                    "total_savings_usd": -31.062399999999997,
+                    "trip_net_value_usd": -1071.0624,
+                    "payback_rate_pct": -2.98676923076923
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 -14.9% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -114.93384615384615,
+                    "net_profit_usd": -1195.312,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": -155.31199999999998,
+                    "breakeven_sell_price_usd": 395.0,
+                    "hours_used": 2.9166666666666665,
+                    "per_unit_cost_usd": 187.0,
+                    "per_unit_revenue_usd": -31.062399999999997,
+                    "total_savings_usd": -155.31199999999998,
+                    "trip_net_value_usd": -1195.312,
+                    "payback_rate_pct": -14.933846153846153
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 -149.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -249.3384615384615,
+                    "net_profit_usd": -2593.12,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": -1553.12,
+                    "breakeven_sell_price_usd": 207.8,
+                    "hours_used": 29.166666666666668,
+                    "per_unit_cost_usd": 187.0,
+                    "per_unit_revenue_usd": -31.062399999999997,
+                    "total_savings_usd": -1553.12,
+                    "trip_net_value_usd": -2593.12,
+                    "payback_rate_pct": -149.33846153846153
+                }
+            }
+        },
+        "JP-NINTENDO-SWOLED": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 17.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -82.50871153846154,
+                    "net_profit_usd": -858.0906,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 181.9094,
+                    "breakeven_sell_price_usd": 1377.87,
+                    "hours_used": 0.6666666666666666,
+                    "per_unit_cost_usd": 337.87,
+                    "per_unit_revenue_usd": 181.9094,
+                    "total_savings_usd": 181.9094,
+                    "trip_net_value_usd": -858.0906,
+                    "payback_rate_pct": 17.491288461538463
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 87.5% 介于 50–100% 之间,行程部分回本,净支出 $130.45。",
+                    "roi_pct": -12.543557692307688,
+                    "net_profit_usd": -130.45299999999997,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 909.547,
+                    "breakeven_sell_price_usd": 545.87,
+                    "hours_used": 3.3333333333333335,
+                    "per_unit_cost_usd": 337.87,
+                    "per_unit_revenue_usd": 181.9094,
+                    "total_savings_usd": 909.547,
+                    "trip_net_value_usd": -130.45299999999997,
+                    "payback_rate_pct": 87.4564423076923
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 874.6% ≥ 100%,行程完全回本,净赚 $8,055.47 USD。",
+                    "roi_pct": 774.5644230769232,
+                    "net_profit_usd": 8055.470000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 9095.470000000001,
+                    "breakeven_sell_price_usd": 358.67,
+                    "hours_used": 33.333333333333336,
+                    "per_unit_cost_usd": 337.87,
+                    "per_unit_revenue_usd": 181.9094,
+                    "total_savings_usd": 9095.470000000001,
+                    "trip_net_value_usd": 8055.470000000001,
+                    "payback_rate_pct": 874.5644230769232
+                }
+            }
+        },
+        "JP-DYSON-V12S": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 21.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -78.23851923076923,
+                    "net_profit_usd": -813.6805999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 226.3194000000001,
+                    "breakeven_sell_price_usd": 1658.33,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 618.33,
+                    "per_unit_revenue_usd": 226.3194000000001,
+                    "total_savings_usd": 226.3194000000001,
+                    "trip_net_value_usd": -813.6805999999999,
+                    "payback_rate_pct": 21.76148076923078
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 108.8% ≥ 100%,行程完全回本,净赚 $91.60 USD。",
+                    "roi_pct": 8.807403846153889,
+                    "net_profit_usd": 91.59700000000043,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1131.5970000000004,
+                    "breakeven_sell_price_usd": 826.33,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 618.33,
+                    "per_unit_revenue_usd": 226.3194000000001,
+                    "total_savings_usd": 1131.5970000000004,
+                    "trip_net_value_usd": 91.59700000000043,
+                    "payback_rate_pct": 108.80740384615389
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1088.1% ≥ 100%,行程完全回本,净赚 $10,275.97 USD。",
+                    "roi_pct": 988.074038461539,
+                    "net_profit_usd": 10275.970000000005,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 11315.970000000005,
+                    "breakeven_sell_price_usd": 639.13,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 618.33,
+                    "per_unit_revenue_usd": 226.3194000000001,
+                    "total_savings_usd": 11315.970000000005,
+                    "trip_net_value_usd": 10275.970000000005,
+                    "payback_rate_pct": 1088.074038461539
+                }
+            }
+        },
+        "JP-LUX-PATEK": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 359.9% ≥ 100%,行程完全回本,净赚 $2,702.61 USD。",
+                    "roi_pct": 259.8667307692309,
+                    "net_profit_usd": 2702.6140000000014,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 3742.6140000000014,
+                    "breakeven_sell_price_usd": 7433.33,
+                    "hours_used": 3.0,
+                    "per_unit_cost_usd": 6393.33,
+                    "per_unit_revenue_usd": 3742.6140000000014,
+                    "total_savings_usd": 3742.6140000000014,
+                    "trip_net_value_usd": 2702.6140000000014,
+                    "payback_rate_pct": 359.8667307692309
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1799.3% ≥ 100%,行程完全回本,净赚 $17,673.07 USD。",
+                    "roi_pct": 1699.3336538461544,
+                    "net_profit_usd": 17673.070000000007,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 18713.070000000007,
+                    "breakeven_sell_price_usd": 6601.33,
+                    "hours_used": 15.0,
+                    "per_unit_cost_usd": 6393.33,
+                    "per_unit_revenue_usd": 3742.6140000000014,
+                    "total_savings_usd": 18713.070000000007,
+                    "trip_net_value_usd": 17673.070000000007,
+                    "payback_rate_pct": 1799.3336538461544
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 17993.3% ≥ 100%,行程完全回本,净赚 $186,090.70 USD。",
+                    "roi_pct": 17893.336538461546,
+                    "net_profit_usd": 186090.70000000007,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 187130.70000000007,
+                    "breakeven_sell_price_usd": 6414.13,
+                    "hours_used": 150.0,
+                    "per_unit_cost_usd": 6393.33,
+                    "per_unit_revenue_usd": 3742.6140000000014,
+                    "total_savings_usd": 187130.70000000007,
+                    "trip_net_value_usd": 186090.70000000007,
+                    "payback_rate_pct": 17993.336538461546
+                }
+            }
+        },
+        "JP-ANIME-GK2024": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 14.2% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -85.75192307692308,
+                    "net_profit_usd": -891.8199999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 148.18000000000004,
+                    "breakeven_sell_price_usd": 1266.67,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 226.67,
+                    "per_unit_revenue_usd": 148.18000000000004,
+                    "total_savings_usd": 148.18000000000004,
+                    "trip_net_value_usd": -891.8199999999999,
+                    "payback_rate_pct": 14.248076923076928
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 71.2% 介于 50–100% 之间,行程部分回本,净支出 $299.10。",
+                    "roi_pct": -28.759615384615365,
+                    "net_profit_usd": -299.0999999999998,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 740.9000000000002,
+                    "breakeven_sell_price_usd": 434.66999999999996,
+                    "hours_used": 2.0833333333333335,
+                    "per_unit_cost_usd": 226.67,
+                    "per_unit_revenue_usd": 148.18000000000004,
+                    "total_savings_usd": 740.9000000000002,
+                    "trip_net_value_usd": -299.0999999999998,
+                    "payback_rate_pct": 71.24038461538463
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 712.4% ≥ 100%,行程完全回本,净赚 $6,369.00 USD。",
+                    "roi_pct": 612.4038461538463,
+                    "net_profit_usd": 6369.000000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 7409.000000000002,
+                    "breakeven_sell_price_usd": 247.47,
+                    "hours_used": 20.833333333333332,
+                    "per_unit_cost_usd": 226.67,
+                    "per_unit_revenue_usd": 148.18000000000004,
+                    "total_savings_usd": 7409.000000000002,
+                    "trip_net_value_usd": 6369.000000000002,
+                    "payback_rate_pct": 712.4038461538463
+                }
+            }
+        },
+        "JP-PKMN-151-BB": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 19.7% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -80.29826923076922,
+                    "net_profit_usd": -835.102,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 204.89800000000002,
+                    "breakeven_sell_price_usd": 1090.0,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 50.0,
+                    "per_unit_revenue_usd": 204.89800000000002,
+                    "total_savings_usd": 204.89800000000002,
+                    "trip_net_value_usd": -835.102,
+                    "payback_rate_pct": 19.70173076923077
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 98.5% 介于 50–100% 之间,行程部分回本,净支出 $15.51。",
+                    "roi_pct": -1.4913461538461312,
+                    "net_profit_usd": -15.509999999999764,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1024.4900000000002,
+                    "breakeven_sell_price_usd": 258.0,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 50.0,
+                    "per_unit_revenue_usd": 204.89800000000002,
+                    "total_savings_usd": 1024.4900000000002,
+                    "trip_net_value_usd": -15.509999999999764,
+                    "payback_rate_pct": 98.50865384615388
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 985.1% ≥ 100%,行程完全回本,净赚 $9,204.90 USD。",
+                    "roi_pct": 885.0865384615386,
+                    "net_profit_usd": 9204.900000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 10244.900000000001,
+                    "breakeven_sell_price_usd": 70.8,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 50.0,
+                    "per_unit_revenue_usd": 204.89800000000002,
+                    "total_savings_usd": 10244.900000000001,
+                    "trip_net_value_usd": 9204.900000000001,
+                    "payback_rate_pct": 985.0865384615386
+                }
+            }
+        },
+        "JP-CDPB-SERUM-40": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 14.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -85.22303846153847,
+                    "net_profit_usd": -886.3195999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 153.68040000000008,
+                    "breakeven_sell_price_usd": 1185.2,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 145.2,
+                    "per_unit_revenue_usd": 153.68040000000008,
+                    "total_savings_usd": 153.68040000000008,
+                    "trip_net_value_usd": -886.3195999999999,
+                    "payback_rate_pct": 14.776961538461547
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 73.9% 介于 50–100% 之间,行程部分回本,净支出 $271.60。",
+                    "roi_pct": -26.11519230769227,
+                    "net_profit_usd": -271.5979999999996,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 768.4020000000004,
+                    "breakeven_sell_price_usd": 353.2,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 145.2,
+                    "per_unit_revenue_usd": 153.68040000000008,
+                    "total_savings_usd": 768.4020000000004,
+                    "trip_net_value_usd": -271.5979999999996,
+                    "payback_rate_pct": 73.88480769230773
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 738.8% ≥ 100%,行程完全回本,净赚 $6,644.02 USD。",
+                    "roi_pct": 638.8480769230773,
+                    "net_profit_usd": 6644.020000000004,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 7684.020000000004,
+                    "breakeven_sell_price_usd": 166.0,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 145.2,
+                    "per_unit_revenue_usd": 153.68040000000008,
+                    "total_savings_usd": 7684.020000000004,
+                    "trip_net_value_usd": 6644.020000000004,
+                    "payback_rate_pct": 738.8480769230773
+                }
+            }
+        },
+        "JP-ANIME-USJ-NEZ": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 19.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -80.53798076923077,
+                    "net_profit_usd": -837.595,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 202.40500000000003,
+                    "breakeven_sell_price_usd": 1075.0,
+                    "hours_used": 0.75,
+                    "per_unit_cost_usd": 35.0,
+                    "per_unit_revenue_usd": 202.40500000000003,
+                    "total_savings_usd": 202.40500000000003,
+                    "trip_net_value_usd": -837.595,
+                    "payback_rate_pct": 19.462019230769233
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "购买数量 5 超过单 SKU 携带上限 3。",
+                    "roi_pct": -2.6899038461538374,
+                    "net_profit_usd": -27.97499999999991,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1012.0250000000001,
+                    "breakeven_sell_price_usd": 243.0,
+                    "hours_used": 3.75,
+                    "per_unit_cost_usd": 35.0,
+                    "per_unit_revenue_usd": 202.40500000000003,
+                    "total_savings_usd": 1012.0250000000001,
+                    "trip_net_value_usd": -27.97499999999991,
+                    "payback_rate_pct": 97.31009615384616
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "购买数量 50 超过单 SKU 携带上限 3。",
+                    "roi_pct": 873.1009615384617,
+                    "net_profit_usd": 9080.250000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 10120.250000000002,
+                    "breakeven_sell_price_usd": 55.8,
+                    "hours_used": 37.5,
+                    "per_unit_cost_usd": 35.0,
+                    "per_unit_revenue_usd": 202.40500000000003,
+                    "total_savings_usd": 10120.250000000002,
+                    "trip_net_value_usd": 9080.250000000002,
+                    "payback_rate_pct": 973.1009615384617
+                }
+            }
+        },
+        "JP-HADALABO-PREM-400": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 1.6% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -98.38292307692308,
+                    "net_profit_usd": -1023.1824,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 16.8176,
+                    "breakeven_sell_price_usd": 1066.0,
+                    "hours_used": 0.25,
+                    "per_unit_cost_usd": 26.0,
+                    "per_unit_revenue_usd": 16.8176,
+                    "total_savings_usd": 16.8176,
+                    "trip_net_value_usd": -1023.1824,
+                    "payback_rate_pct": 1.6170769230769229
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 8.1% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -91.91461538461539,
+                    "net_profit_usd": -955.912,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 84.088,
+                    "breakeven_sell_price_usd": 234.0,
+                    "hours_used": 1.25,
+                    "per_unit_cost_usd": 26.0,
+                    "per_unit_revenue_usd": 16.8176,
+                    "total_savings_usd": 84.088,
+                    "trip_net_value_usd": -955.912,
+                    "payback_rate_pct": 8.085384615384616
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 80.9% 介于 50–100% 之间,行程部分回本,净支出 $199.12。",
+                    "roi_pct": -19.146153846153858,
+                    "net_profit_usd": -199.12000000000012,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 840.8799999999999,
+                    "breakeven_sell_price_usd": 46.8,
+                    "hours_used": 12.5,
+                    "per_unit_cost_usd": 26.0,
+                    "per_unit_revenue_usd": 16.8176,
+                    "total_savings_usd": 840.8799999999999,
+                    "trip_net_value_usd": -199.12000000000012,
+                    "payback_rate_pct": 80.85384615384615
+                }
+            }
+        },
+        "JP-POLA-BA-CREAM-50": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 25.1% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -74.85771153846153,
+                    "net_profit_usd": -778.5201999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 261.47980000000007,
+                    "breakeven_sell_price_usd": 1278.82,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 238.82,
+                    "per_unit_revenue_usd": 261.47980000000007,
+                    "total_savings_usd": 261.47980000000007,
+                    "trip_net_value_usd": -778.5201999999999,
+                    "payback_rate_pct": 25.14228846153847
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 125.7% ≥ 100%,行程完全回本,净赚 $267.40 USD。",
+                    "roi_pct": 25.71144230769234,
+                    "net_profit_usd": 267.39900000000034,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1307.3990000000003,
+                    "breakeven_sell_price_usd": 446.82,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 238.82,
+                    "per_unit_revenue_usd": 261.47980000000007,
+                    "total_savings_usd": 1307.3990000000003,
+                    "trip_net_value_usd": 267.39900000000034,
+                    "payback_rate_pct": 125.71144230769234
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1257.1% ≥ 100%,行程完全回本,净赚 $12,033.99 USD。",
+                    "roi_pct": 1157.1144230769232,
+                    "net_profit_usd": 12033.990000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 13073.990000000003,
+                    "breakeven_sell_price_usd": 259.62,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 238.82,
+                    "per_unit_revenue_usd": 261.47980000000007,
+                    "total_savings_usd": 13073.990000000003,
+                    "trip_net_value_usd": 12033.990000000003,
+                    "payback_rate_pct": 1257.1144230769232
+                }
+            }
+        },
+        "JP-SUQQU-LOOSEPOWDER-13": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 6.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -93.49326923076923,
+                    "net_profit_usd": -972.3299999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 67.67000000000002,
+                    "breakeven_sell_price_usd": 1091.33,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 51.33,
+                    "per_unit_revenue_usd": 67.67000000000002,
+                    "total_savings_usd": 67.67000000000002,
+                    "trip_net_value_usd": -972.3299999999999,
+                    "payback_rate_pct": 6.50673076923077
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 32.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -67.46634615384615,
+                    "net_profit_usd": -701.6499999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 338.3500000000001,
+                    "breakeven_sell_price_usd": 259.33,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 51.33,
+                    "per_unit_revenue_usd": 67.67000000000002,
+                    "total_savings_usd": 338.3500000000001,
+                    "trip_net_value_usd": -701.6499999999999,
+                    "payback_rate_pct": 32.533653846153854
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 325.3% ≥ 100%,行程完全回本,净赚 $2,343.50 USD。",
+                    "roi_pct": 225.33653846153854,
+                    "net_profit_usd": 2343.500000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 3383.500000000001,
+                    "breakeven_sell_price_usd": 72.13,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 51.33,
+                    "per_unit_revenue_usd": 67.67000000000002,
+                    "total_savings_usd": 3383.500000000001,
+                    "trip_net_value_usd": 2343.500000000001,
+                    "payback_rate_pct": 325.33653846153857
+                }
+            }
+        },
+        "JP-SUQQU-CUSHION-01": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 7.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -92.24865384615384,
+                    "net_profit_usd": -959.386,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 80.61400000000002,
+                    "breakeven_sell_price_usd": 1099.33,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 59.33,
+                    "per_unit_revenue_usd": 80.61400000000002,
+                    "total_savings_usd": 80.61400000000002,
+                    "trip_net_value_usd": -959.386,
+                    "payback_rate_pct": 7.751346153846156
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 38.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -61.243269230769215,
+                    "net_profit_usd": -636.9299999999998,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 403.0700000000001,
+                    "breakeven_sell_price_usd": 267.33,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 59.33,
+                    "per_unit_revenue_usd": 80.61400000000002,
+                    "total_savings_usd": 403.0700000000001,
+                    "trip_net_value_usd": -636.9299999999998,
+                    "payback_rate_pct": 38.75673076923078
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 387.6% ≥ 100%,行程完全回本,净赚 $2,990.70 USD。",
+                    "roi_pct": 287.56730769230774,
+                    "net_profit_usd": 2990.7000000000007,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4030.7000000000007,
+                    "breakeven_sell_price_usd": 80.13,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 59.33,
+                    "per_unit_revenue_usd": 80.61400000000002,
+                    "total_savings_usd": 4030.7000000000007,
+                    "trip_net_value_usd": 2990.7000000000007,
+                    "payback_rate_pct": 387.56730769230774
+                }
+            }
+        },
+        "JP-ALBION-DERMA-40": {
+            "1": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 53.8% 介于 50–100% 之间,行程部分回本,净支出 $480.12。",
+                    "roi_pct": -46.16524999999999,
+                    "net_profit_usd": -480.1185999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 559.8814000000001,
+                    "breakeven_sell_price_usd": 1201.33,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 161.33,
+                    "per_unit_revenue_usd": 559.8814000000001,
+                    "total_savings_usd": 559.8814000000001,
+                    "trip_net_value_usd": -480.1185999999999,
+                    "payback_rate_pct": 53.83475000000001
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 269.2% ≥ 100%,行程完全回本,净赚 $1,759.41 USD。",
+                    "roi_pct": 169.17375000000007,
+                    "net_profit_usd": 1759.4070000000006,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2799.4070000000006,
+                    "breakeven_sell_price_usd": 369.33000000000004,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 161.33,
+                    "per_unit_revenue_usd": 559.8814000000001,
+                    "total_savings_usd": 2799.4070000000006,
+                    "trip_net_value_usd": 1759.4070000000006,
+                    "payback_rate_pct": 269.1737500000001
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 2691.7% ≥ 100%,行程完全回本,净赚 $26,954.07 USD。",
+                    "roi_pct": 2591.7375,
+                    "net_profit_usd": 26954.070000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 27994.070000000003,
+                    "breakeven_sell_price_usd": 182.13000000000002,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 161.33,
+                    "per_unit_revenue_usd": 559.8814000000001,
+                    "total_savings_usd": 27994.070000000003,
+                    "trip_net_value_usd": 26954.070000000003,
+                    "payback_rate_pct": 2691.7375
+                }
+            }
+        },
+        "JP-THREE-HADAH-100": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 9.1% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -90.90311538461539,
+                    "net_profit_usd": -945.3924,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 94.6076,
+                    "breakeven_sell_price_usd": 1101.33,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 61.33,
+                    "per_unit_revenue_usd": 94.6076,
+                    "total_savings_usd": 94.6076,
+                    "trip_net_value_usd": -945.3924,
+                    "payback_rate_pct": 9.096884615384617
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 45.5% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -54.51557692307693,
+                    "net_profit_usd": -566.962,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 473.038,
+                    "breakeven_sell_price_usd": 269.33,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 61.33,
+                    "per_unit_revenue_usd": 94.6076,
+                    "total_savings_usd": 473.038,
+                    "trip_net_value_usd": -566.962,
+                    "payback_rate_pct": 45.48442307692308
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 454.8% ≥ 100%,行程完全回本,净赚 $3,690.38 USD。",
+                    "roi_pct": 354.84423076923076,
+                    "net_profit_usd": 3690.38,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4730.38,
+                    "breakeven_sell_price_usd": 82.13,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 61.33,
+                    "per_unit_revenue_usd": 94.6076,
+                    "total_savings_usd": 4730.38,
+                    "trip_net_value_usd": 3690.38,
+                    "payback_rate_pct": 454.84423076923076
+                }
+            }
+        },
+        "JP-SHISEIDO-FSLX-REGEN-50": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 15.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -85.014,
+                    "net_profit_usd": -884.1456,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 155.85440000000006,
+                    "breakeven_sell_price_usd": 1248.0,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 208.0,
+                    "per_unit_revenue_usd": 155.85440000000006,
+                    "total_savings_usd": 155.85440000000006,
+                    "trip_net_value_usd": -884.1456,
+                    "payback_rate_pct": 14.986000000000004
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 74.9% 介于 50–100% 之间,行程部分回本,净支出 $260.73。",
+                    "roi_pct": -25.069999999999975,
+                    "net_profit_usd": -260.7279999999997,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 779.2720000000003,
+                    "breakeven_sell_price_usd": 416.0,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 208.0,
+                    "per_unit_revenue_usd": 155.85440000000006,
+                    "total_savings_usd": 779.2720000000003,
+                    "trip_net_value_usd": -260.7279999999997,
+                    "payback_rate_pct": 74.93000000000004
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 749.3% ≥ 100%,行程完全回本,净赚 $6,752.72 USD。",
+                    "roi_pct": 649.3000000000003,
+                    "net_profit_usd": 6752.720000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 7792.720000000003,
+                    "breakeven_sell_price_usd": 228.8,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 208.0,
+                    "per_unit_revenue_usd": 155.85440000000006,
+                    "total_savings_usd": 7792.720000000003,
+                    "trip_net_value_usd": 6752.720000000003,
+                    "payback_rate_pct": 749.3000000000003
+                }
+            }
+        },
+        "JP-THREE-HADAH-LOTION-30": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 4.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -95.7405,
+                    "net_profit_usd": -995.7012,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 44.2988,
+                    "breakeven_sell_price_usd": 1073.67,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 33.67,
+                    "per_unit_revenue_usd": 44.2988,
+                    "total_savings_usd": 44.2988,
+                    "trip_net_value_usd": -995.7012,
+                    "payback_rate_pct": 4.2595
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 21.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -78.7025,
+                    "net_profit_usd": -818.506,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 221.494,
+                    "breakeven_sell_price_usd": 241.67000000000002,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 33.67,
+                    "per_unit_revenue_usd": 44.2988,
+                    "total_savings_usd": 221.494,
+                    "trip_net_value_usd": -818.506,
+                    "payback_rate_pct": 21.2975
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 213.0% ≥ 100%,行程完全回本,净赚 $1,174.94 USD。",
+                    "roi_pct": 112.97500000000001,
+                    "net_profit_usd": 1174.94,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2214.94,
+                    "breakeven_sell_price_usd": 54.47,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 33.67,
+                    "per_unit_revenue_usd": 44.2988,
+                    "total_savings_usd": 2214.94,
+                    "trip_net_value_usd": 1174.94,
+                    "payback_rate_pct": 212.975
+                }
+            }
+        },
+        "JP-POLA-BA-LOTION-120": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 3.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -97.02373076923077,
+                    "net_profit_usd": -1009.0468,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 30.95320000000001,
+                    "breakeven_sell_price_usd": 1126.0,
+                    "hours_used": 0.08333333333333333,
+                    "per_unit_cost_usd": 86.0,
+                    "per_unit_revenue_usd": 30.95320000000001,
+                    "total_savings_usd": 30.95320000000001,
+                    "trip_net_value_usd": -1009.0468,
+                    "payback_rate_pct": 2.9762692307692316
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 14.9% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -85.11865384615383,
+                    "net_profit_usd": -885.2339999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 154.76600000000005,
+                    "breakeven_sell_price_usd": 294.0,
+                    "hours_used": 0.4166666666666667,
+                    "per_unit_cost_usd": 86.0,
+                    "per_unit_revenue_usd": 30.95320000000001,
+                    "total_savings_usd": 154.76600000000005,
+                    "trip_net_value_usd": -885.2339999999999,
+                    "payback_rate_pct": 14.88134615384616
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 148.8% ≥ 100%,行程完全回本,净赚 $507.66 USD。",
+                    "roi_pct": 48.81346153846159,
+                    "net_profit_usd": 507.66000000000054,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1547.6600000000005,
+                    "breakeven_sell_price_usd": 106.8,
+                    "hours_used": 4.166666666666667,
+                    "per_unit_cost_usd": 86.0,
+                    "per_unit_revenue_usd": 30.95320000000001,
+                    "total_savings_usd": 1547.6600000000005,
+                    "trip_net_value_usd": 507.66000000000054,
+                    "payback_rate_pct": 148.8134615384616
+                }
+            }
+        },
+        "JP-KAPITAL-BORO-JKT": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 49.2% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -50.80123076923078,
+                    "net_profit_usd": -528.3328,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 511.6672,
+                    "breakeven_sell_price_usd": 1360.0,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 320.0,
+                    "per_unit_revenue_usd": 511.6672,
+                    "total_savings_usd": 511.6672,
+                    "trip_net_value_usd": -528.3328,
+                    "payback_rate_pct": 49.19876923076923
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 246.0% ≥ 100%,行程完全回本,净赚 $1,518.34 USD。",
+                    "roi_pct": 145.99384615384614,
+                    "net_profit_usd": 1518.3359999999998,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2558.336,
+                    "breakeven_sell_price_usd": 528.0,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 320.0,
+                    "per_unit_revenue_usd": 511.6672,
+                    "total_savings_usd": 2558.336,
+                    "trip_net_value_usd": 1518.3359999999998,
+                    "payback_rate_pct": 245.99384615384614
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 2459.9% ≥ 100%,行程完全回本,净赚 $24,543.36 USD。",
+                    "roi_pct": 2359.9384615384615,
+                    "net_profit_usd": 24543.36,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 25583.36,
+                    "breakeven_sell_price_usd": 340.8,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 320.0,
+                    "per_unit_revenue_usd": 511.6672,
+                    "total_savings_usd": 25583.36,
+                    "trip_net_value_usd": 24543.36,
+                    "payback_rate_pct": 2459.9384615384615
+                }
+            }
+        },
+        "JP-CDG-PLAY-CTN": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 28.1% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -71.90240384615385,
+                    "net_profit_usd": -747.785,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 292.21500000000003,
+                    "breakeven_sell_price_usd": 1460.0,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 420.0,
+                    "per_unit_revenue_usd": 292.21500000000003,
+                    "total_savings_usd": 292.21500000000003,
+                    "trip_net_value_usd": -747.785,
+                    "payback_rate_pct": 28.097596153846155
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 140.5% ≥ 100%,行程完全回本,净赚 $421.08 USD。",
+                    "roi_pct": 40.487980769230795,
+                    "net_profit_usd": 421.0750000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1461.0750000000003,
+                    "breakeven_sell_price_usd": 628.0,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 420.0,
+                    "per_unit_revenue_usd": 292.21500000000003,
+                    "total_savings_usd": 1461.0750000000003,
+                    "trip_net_value_usd": 421.0750000000003,
+                    "payback_rate_pct": 140.4879807692308
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1404.9% ≥ 100%,行程完全回本,净赚 $13,570.75 USD。",
+                    "roi_pct": 1304.8798076923078,
+                    "net_profit_usd": 13570.750000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 14610.750000000002,
+                    "breakeven_sell_price_usd": 440.8,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 420.0,
+                    "per_unit_revenue_usd": 292.21500000000003,
+                    "total_savings_usd": 14610.750000000002,
+                    "trip_net_value_usd": 13570.750000000002,
+                    "payback_rate_pct": 1404.8798076923078
+                }
+            }
+        },
+        "JP-HUMANMADE-TEE-GRAPHIC": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 26.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -73.1576923076923,
+                    "net_profit_usd": -760.8399999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 279.16,
+                    "breakeven_sell_price_usd": 1096.7,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 56.7,
+                    "per_unit_revenue_usd": 279.16,
+                    "total_savings_usd": 279.16,
+                    "trip_net_value_usd": -760.8399999999999,
+                    "payback_rate_pct": 26.842307692307692
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 134.2% ≥ 100%,行程完全回本,净赚 $355.80 USD。",
+                    "roi_pct": 34.211538461538474,
+                    "net_profit_usd": 355.8000000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1395.8000000000002,
+                    "breakeven_sell_price_usd": 264.7,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 56.7,
+                    "per_unit_revenue_usd": 279.16,
+                    "total_savings_usd": 1395.8000000000002,
+                    "trip_net_value_usd": 355.8000000000002,
+                    "payback_rate_pct": 134.21153846153848
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "购买数量 50 超过单 SKU 携带上限 5。",
+                    "roi_pct": 1242.1153846153848,
+                    "net_profit_usd": 12918.000000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 13958.000000000002,
+                    "breakeven_sell_price_usd": 77.5,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 56.7,
+                    "per_unit_revenue_usd": 279.16,
+                    "total_savings_usd": 13958.000000000002,
+                    "trip_net_value_usd": 12918.000000000002,
+                    "payback_rate_pct": 1342.1153846153848
+                }
+            }
+        },
+        "JP-SACAI-NIKE-LDW": {
+            "1": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 53.9% 介于 50–100% 之间,行程部分回本,净支出 $478.95。",
+                    "roi_pct": -46.05261538461537,
+                    "net_profit_usd": -478.94719999999984,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 561.0528000000002,
+                    "breakeven_sell_price_usd": 1171.67,
+                    "hours_used": 0.25,
+                    "per_unit_cost_usd": 131.67000000000002,
+                    "per_unit_revenue_usd": 561.0528000000002,
+                    "total_savings_usd": 561.0528000000002,
+                    "trip_net_value_usd": -478.94719999999984,
+                    "payback_rate_pct": 53.94738461538463
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 269.7% ≥ 100%,行程完全回本,净赚 $1,765.26 USD。",
+                    "roi_pct": 169.73692307692318,
+                    "net_profit_usd": 1765.264000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2805.264000000001,
+                    "breakeven_sell_price_usd": 339.67,
+                    "hours_used": 1.25,
+                    "per_unit_cost_usd": 131.67000000000002,
+                    "per_unit_revenue_usd": 561.0528000000002,
+                    "total_savings_usd": 2805.264000000001,
+                    "trip_net_value_usd": 1765.264000000001,
+                    "payback_rate_pct": 269.7369230769232
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 2697.4% ≥ 100%,行程完全回本,净赚 $27,012.64 USD。",
+                    "roi_pct": 2597.3692307692313,
+                    "net_profit_usd": 27012.640000000007,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 28052.640000000007,
+                    "breakeven_sell_price_usd": 152.47000000000003,
+                    "hours_used": 12.5,
+                    "per_unit_cost_usd": 131.67000000000002,
+                    "per_unit_revenue_usd": 561.0528000000002,
+                    "total_savings_usd": 28052.640000000007,
+                    "trip_net_value_usd": 27012.640000000007,
+                    "payback_rate_pct": 2697.3692307692313
+                }
+            }
+        },
+        "JP-CE-CAVEMPT-TEE": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 23.1% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -76.90361538461539,
+                    "net_profit_usd": -799.7976,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 240.2024,
+                    "breakeven_sell_price_usd": 1118.67,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 78.67,
+                    "per_unit_revenue_usd": 240.2024,
+                    "total_savings_usd": 240.2024,
+                    "trip_net_value_usd": -799.7976,
+                    "payback_rate_pct": 23.096384615384615
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 115.5% ≥ 100%,行程完全回本,净赚 $161.01 USD。",
+                    "roi_pct": 15.481923076923094,
+                    "net_profit_usd": 161.01200000000017,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1201.0120000000002,
+                    "breakeven_sell_price_usd": 286.67,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 78.67,
+                    "per_unit_revenue_usd": 240.2024,
+                    "total_savings_usd": 1201.0120000000002,
+                    "trip_net_value_usd": 161.01200000000017,
+                    "payback_rate_pct": 115.48192307692308
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1154.8% ≥ 100%,行程完全回本,净赚 $10,970.12 USD。",
+                    "roi_pct": 1054.819230769231,
+                    "net_profit_usd": 10970.12,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 12010.12,
+                    "breakeven_sell_price_usd": 99.47,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 78.67,
+                    "per_unit_revenue_usd": 240.2024,
+                    "total_savings_usd": 12010.12,
+                    "trip_net_value_usd": 10970.12,
+                    "payback_rate_pct": 1154.819230769231
+                }
+            }
+        },
+        "JP-UNDERCOVER-ANATOMIC": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 39.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -60.16126923076922,
+                    "net_profit_usd": -625.6771999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 414.3228000000002,
+                    "breakeven_sell_price_usd": 1493.33,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 453.33,
+                    "per_unit_revenue_usd": 414.3228000000002,
+                    "total_savings_usd": 414.3228000000002,
+                    "trip_net_value_usd": -625.6771999999999,
+                    "payback_rate_pct": 39.83873076923079
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 199.2% ≥ 100%,行程完全回本,净赚 $1,031.61 USD。",
+                    "roi_pct": 99.19365384615394,
+                    "net_profit_usd": 1031.614000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2071.614000000001,
+                    "breakeven_sell_price_usd": 661.3299999999999,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 453.33,
+                    "per_unit_revenue_usd": 414.3228000000002,
+                    "total_savings_usd": 2071.614000000001,
+                    "trip_net_value_usd": 1031.614000000001,
+                    "payback_rate_pct": 199.19365384615392
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1991.9% ≥ 100%,行程完全回本,净赚 $19,676.14 USD。",
+                    "roi_pct": 1891.9365384615394,
+                    "net_profit_usd": 19676.14000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 20716.14000000001,
+                    "breakeven_sell_price_usd": 474.13,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 453.33,
+                    "per_unit_revenue_usd": 414.3228000000002,
+                    "total_savings_usd": 20716.14000000001,
+                    "trip_net_value_usd": 19676.14000000001,
+                    "payback_rate_pct": 1991.9365384615394
+                }
+            }
+        },
+        "JP-VISVIM-ICT-JUMPER": {
+            "1": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 65.3% 介于 50–100% 之间,行程部分回本,净支出 $361.32。",
+                    "roi_pct": -34.74259615384615,
+                    "net_profit_usd": -361.323,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 678.677,
+                    "breakeven_sell_price_usd": 1593.33,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 553.33,
+                    "per_unit_revenue_usd": 678.677,
+                    "total_savings_usd": 678.677,
+                    "trip_net_value_usd": -361.323,
+                    "payback_rate_pct": 65.25740384615385
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 326.3% ≥ 100%,行程完全回本,净赚 $2,353.39 USD。",
+                    "roi_pct": 226.28701923076923,
+                    "net_profit_usd": 2353.385,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 3393.385,
+                    "breakeven_sell_price_usd": 761.33,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 553.33,
+                    "per_unit_revenue_usd": 678.677,
+                    "total_savings_usd": 3393.385,
+                    "trip_net_value_usd": 2353.385,
+                    "payback_rate_pct": 326.28701923076926
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 3262.9% ≥ 100%,行程完全回本,净赚 $32,893.85 USD。",
+                    "roi_pct": 3162.870192307692,
+                    "net_profit_usd": 32893.85,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 33933.85,
+                    "breakeven_sell_price_usd": 574.13,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 553.33,
+                    "per_unit_revenue_usd": 678.677,
+                    "total_savings_usd": 33933.85,
+                    "trip_net_value_usd": 32893.85,
+                    "payback_rate_pct": 3262.8701923076924
+                }
+            }
+        },
+        "JP-WTAPS-MILITARY-JERSEY": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 30.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -69.96778846153846,
+                    "net_profit_usd": -727.665,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 312.33500000000004,
+                    "breakeven_sell_price_usd": 1140.0,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 100.0,
+                    "per_unit_revenue_usd": 312.33500000000004,
+                    "total_savings_usd": 312.33500000000004,
+                    "trip_net_value_usd": -727.665,
+                    "payback_rate_pct": 30.03221153846154
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 150.2% ≥ 100%,行程完全回本,净赚 $521.68 USD。",
+                    "roi_pct": 50.16105769230771,
+                    "net_profit_usd": 521.6750000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1561.6750000000002,
+                    "breakeven_sell_price_usd": 308.0,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 100.0,
+                    "per_unit_revenue_usd": 312.33500000000004,
+                    "total_savings_usd": 1561.6750000000002,
+                    "trip_net_value_usd": 521.6750000000002,
+                    "payback_rate_pct": 150.1610576923077
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1501.6% ≥ 100%,行程完全回本,净赚 $14,576.75 USD。",
+                    "roi_pct": 1401.6105769230771,
+                    "net_profit_usd": 14576.750000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 15616.750000000002,
+                    "breakeven_sell_price_usd": 120.8,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 100.0,
+                    "per_unit_revenue_usd": 312.33500000000004,
+                    "total_savings_usd": 15616.750000000002,
+                    "trip_net_value_usd": 14576.750000000002,
+                    "payback_rate_pct": 1501.6105769230771
+                }
+            }
+        },
+        "JP-SONY-GM2-2470-28": {
+            "1": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 89.3% 介于 50–100% 之间,行程部分回本,净支出 $111.30。",
+                    "roi_pct": -10.702288461538432,
+                    "net_profit_usd": -111.30379999999968,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 928.6962000000003,
+                    "breakeven_sell_price_usd": 2869.0,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 1829.0,
+                    "per_unit_revenue_usd": 928.6962000000003,
+                    "total_savings_usd": 928.6962000000003,
+                    "trip_net_value_usd": -111.30379999999968,
+                    "payback_rate_pct": 89.29771153846157
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 446.5% ≥ 100%,行程完全回本,净赚 $3,603.48 USD。",
+                    "roi_pct": 346.48855769230784,
+                    "net_profit_usd": 3603.4810000000016,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4643.481000000002,
+                    "breakeven_sell_price_usd": 2037.0,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 1829.0,
+                    "per_unit_revenue_usd": 928.6962000000003,
+                    "total_savings_usd": 4643.481000000002,
+                    "trip_net_value_usd": 3603.4810000000016,
+                    "payback_rate_pct": 446.4885576923079
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 4464.9% ≥ 100%,行程完全回本,净赚 $45,394.81 USD。",
+                    "roi_pct": 4364.885576923078,
+                    "net_profit_usd": 45394.81000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 46434.81000000001,
+                    "breakeven_sell_price_usd": 1849.8,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 1829.0,
+                    "per_unit_revenue_usd": 928.6962000000003,
+                    "total_savings_usd": 46434.81000000001,
+                    "trip_net_value_usd": 45394.81000000001,
+                    "payback_rate_pct": 4464.885576923078
+                }
+            }
+        },
+        "JP-SONY-GM2-70200-28": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 116.6% ≥ 100%,行程完全回本,净赚 $172.46 USD。",
+                    "roi_pct": 16.582326923076973,
+                    "net_profit_usd": 172.45620000000054,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1212.4562000000005,
+                    "breakeven_sell_price_usd": 3185.0,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 2145.0,
+                    "per_unit_revenue_usd": 1212.4562000000005,
+                    "total_savings_usd": 1212.4562000000005,
+                    "trip_net_value_usd": 172.45620000000054,
+                    "payback_rate_pct": 116.58232692307698
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 582.9% ≥ 100%,行程完全回本,净赚 $5,022.28 USD。",
+                    "roi_pct": 482.91163461538486,
+                    "net_profit_usd": 5022.281000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 6062.281000000003,
+                    "breakeven_sell_price_usd": 2353.0,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 2145.0,
+                    "per_unit_revenue_usd": 1212.4562000000005,
+                    "total_savings_usd": 6062.281000000003,
+                    "trip_net_value_usd": 5022.281000000003,
+                    "payback_rate_pct": 582.9116346153849
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 5829.1% ≥ 100%,行程完全回本,净赚 $59,582.81 USD。",
+                    "roi_pct": 5729.116346153849,
+                    "net_profit_usd": 59582.81000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 60622.81000000003,
+                    "breakeven_sell_price_usd": 2165.8,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 2145.0,
+                    "per_unit_revenue_usd": 1212.4562000000005,
+                    "total_savings_usd": 60622.81000000003,
+                    "trip_net_value_usd": 59582.81000000003,
+                    "payback_rate_pct": 5829.116346153849
+                }
+            }
+        },
+        "JP-CANON-RF-70200-28": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 126.2% ≥ 100%,行程完全回本,净赚 $272.50 USD。",
+                    "roi_pct": 26.202326923076953,
+                    "net_profit_usd": 272.5042000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1312.5042000000003,
+                    "breakeven_sell_price_usd": 2965.0,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 1925.0,
+                    "per_unit_revenue_usd": 1312.5042000000003,
+                    "total_savings_usd": 1312.5042000000003,
+                    "trip_net_value_usd": 272.5042000000003,
+                    "payback_rate_pct": 126.20232692307695
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 631.0% ≥ 100%,行程完全回本,净赚 $5,522.52 USD。",
+                    "roi_pct": 531.0116346153848,
+                    "net_profit_usd": 5522.521000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 6562.521000000002,
+                    "breakeven_sell_price_usd": 2133.0,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 1925.0,
+                    "per_unit_revenue_usd": 1312.5042000000003,
+                    "total_savings_usd": 6562.521000000002,
+                    "trip_net_value_usd": 5522.521000000002,
+                    "payback_rate_pct": 631.0116346153848
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 6310.1% ≥ 100%,行程完全回本,净赚 $64,585.21 USD。",
+                    "roi_pct": 6210.116346153848,
+                    "net_profit_usd": 64585.21000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 65625.21000000002,
+                    "breakeven_sell_price_usd": 1945.8,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 1925.0,
+                    "per_unit_revenue_usd": 1312.5042000000003,
+                    "total_savings_usd": 65625.21000000002,
+                    "trip_net_value_usd": 64585.21000000002,
+                    "payback_rate_pct": 6310.116346153848
+                }
+            }
+        },
+        "JP-SONY-GM-135-18": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 49.8% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -50.15323076923074,
+                    "net_profit_usd": -521.5935999999997,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 518.4064000000003,
+                    "breakeven_sell_price_usd": 2678.33,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 1638.33,
+                    "per_unit_revenue_usd": 518.4064000000003,
+                    "total_savings_usd": 518.4064000000003,
+                    "trip_net_value_usd": -521.5935999999997,
+                    "payback_rate_pct": 49.84676923076926
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 249.2% ≥ 100%,行程完全回本,净赚 $1,552.03 USD。",
+                    "roi_pct": 149.2338461538463,
+                    "net_profit_usd": 1552.0320000000015,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2592.0320000000015,
+                    "breakeven_sell_price_usd": 1846.33,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 1638.33,
+                    "per_unit_revenue_usd": 518.4064000000003,
+                    "total_savings_usd": 2592.0320000000015,
+                    "trip_net_value_usd": 1552.0320000000015,
+                    "payback_rate_pct": 249.23384615384632
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 2492.3% ≥ 100%,行程完全回本,净赚 $24,880.32 USD。",
+                    "roi_pct": 2392.338461538463,
+                    "net_profit_usd": 24880.320000000014,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 25920.320000000014,
+                    "breakeven_sell_price_usd": 1659.1299999999999,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 1638.33,
+                    "per_unit_revenue_usd": 518.4064000000003,
+                    "total_savings_usd": 25920.320000000014,
+                    "trip_net_value_usd": 24880.320000000014,
+                    "payback_rate_pct": 2492.338461538463
+                }
+            }
+        },
+        "JP-CANON-RF-50-12": {
+            "1": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 83.3% 介于 50–100% 之间,行程部分回本,净支出 $173.97。",
+                    "roi_pct": -16.728249999999978,
+                    "net_profit_usd": -173.97379999999976,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 866.0262000000002,
+                    "breakeven_sell_price_usd": 2931.67,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 1891.67,
+                    "per_unit_revenue_usd": 866.0262000000002,
+                    "total_savings_usd": 866.0262000000002,
+                    "trip_net_value_usd": -173.97379999999976,
+                    "payback_rate_pct": 83.27175000000003
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 416.4% ≥ 100%,行程完全回本,净赚 $3,290.13 USD。",
+                    "roi_pct": 316.3587500000001,
+                    "net_profit_usd": 3290.131000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4330.131000000001,
+                    "breakeven_sell_price_usd": 2099.67,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 1891.67,
+                    "per_unit_revenue_usd": 866.0262000000002,
+                    "total_savings_usd": 4330.131000000001,
+                    "trip_net_value_usd": 3290.131000000001,
+                    "payback_rate_pct": 416.3587500000001
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 4163.6% ≥ 100%,行程完全回本,净赚 $42,261.31 USD。",
+                    "roi_pct": 4063.5875000000015,
+                    "net_profit_usd": 42261.31000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 43301.31000000001,
+                    "breakeven_sell_price_usd": 1912.47,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 1891.67,
+                    "per_unit_revenue_usd": 866.0262000000002,
+                    "total_savings_usd": 43301.31000000001,
+                    "trip_net_value_usd": 42261.31000000001,
+                    "payback_rate_pct": 4163.5875000000015
+                }
+            }
+        },
+        "JP-CANON-R5-BODY": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 201.3% ≥ 100%,行程完全回本,净赚 $1,053.82 USD。",
+                    "roi_pct": 101.32871153846159,
+                    "net_profit_usd": 1053.8186000000005,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2093.8186000000005,
+                    "breakeven_sell_price_usd": 3198.33,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 2158.33,
+                    "per_unit_revenue_usd": 2093.8186000000005,
+                    "total_savings_usd": 2093.8186000000005,
+                    "trip_net_value_usd": 1053.8186000000005,
+                    "payback_rate_pct": 201.32871153846156
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1006.6% ≥ 100%,行程完全回本,净赚 $9,429.09 USD。",
+                    "roi_pct": 906.643557692308,
+                    "net_profit_usd": 9429.093000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 10469.093000000003,
+                    "breakeven_sell_price_usd": 2366.33,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 2158.33,
+                    "per_unit_revenue_usd": 2093.8186000000005,
+                    "total_savings_usd": 10469.093000000003,
+                    "trip_net_value_usd": 9429.093000000003,
+                    "payback_rate_pct": 1006.643557692308
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 10066.4% ≥ 100%,行程完全回本,净赚 $103,650.93 USD。",
+                    "roi_pct": 9966.435576923079,
+                    "net_profit_usd": 103650.93000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 104690.93000000002,
+                    "breakeven_sell_price_usd": 2179.13,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 2158.33,
+                    "per_unit_revenue_usd": 2093.8186000000005,
+                    "total_savings_usd": 104690.93000000002,
+                    "trip_net_value_usd": 103650.93000000002,
+                    "payback_rate_pct": 10066.435576923079
+                }
+            }
+        },
+        "JP-DJI-MINI4PRO-FMC": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 18.7% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -81.26184615384614,
+                    "net_profit_usd": -845.1231999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 194.87680000000012,
+                    "breakeven_sell_price_usd": 1851.67,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 811.67,
+                    "per_unit_revenue_usd": 194.87680000000012,
+                    "total_savings_usd": 194.87680000000012,
+                    "trip_net_value_usd": -845.1231999999999,
+                    "payback_rate_pct": 18.738153846153857
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 93.7% 介于 50–100% 之间,行程部分回本,净支出 $65.62。",
+                    "roi_pct": -6.309230769230713,
+                    "net_profit_usd": -65.61599999999942,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 974.3840000000006,
+                    "breakeven_sell_price_usd": 1019.67,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 811.67,
+                    "per_unit_revenue_usd": 194.87680000000012,
+                    "total_savings_usd": 974.3840000000006,
+                    "trip_net_value_usd": -65.61599999999942,
+                    "payback_rate_pct": 93.69076923076929
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 936.9% ≥ 100%,行程完全回本,净赚 $8,703.84 USD。",
+                    "roi_pct": 836.9076923076929,
+                    "net_profit_usd": 8703.840000000006,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 9743.840000000006,
+                    "breakeven_sell_price_usd": 832.4699999999999,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 811.67,
+                    "per_unit_revenue_usd": 194.87680000000012,
+                    "total_savings_usd": 9743.840000000006,
+                    "trip_net_value_usd": 8703.840000000006,
+                    "payback_rate_pct": 936.9076923076929
+                }
+            }
+        },
+        "JP-LEICA-M11": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 286.7% ≥ 100%,行程完全回本,净赚 $1,941.78 USD。",
+                    "roi_pct": 186.70976923076944,
+                    "net_profit_usd": 1941.781600000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 2981.781600000002,
+                    "breakeven_sell_price_usd": 8398.33,
+                    "hours_used": 0.5,
+                    "per_unit_cost_usd": 7358.33,
+                    "per_unit_revenue_usd": 2981.781600000002,
+                    "total_savings_usd": 2981.781600000002,
+                    "trip_net_value_usd": 1941.781600000002,
+                    "payback_rate_pct": 286.70976923076944
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1433.5% ≥ 100%,行程完全回本,净赚 $13,868.91 USD。",
+                    "roi_pct": 1333.548846153847,
+                    "net_profit_usd": 13868.90800000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 14908.90800000001,
+                    "breakeven_sell_price_usd": 7566.33,
+                    "hours_used": 2.5,
+                    "per_unit_cost_usd": 7358.33,
+                    "per_unit_revenue_usd": 2981.781600000002,
+                    "total_savings_usd": 14908.90800000001,
+                    "trip_net_value_usd": 13868.90800000001,
+                    "payback_rate_pct": 1433.548846153847
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 14335.5% ≥ 100%,行程完全回本,净赚 $148,049.08 USD。",
+                    "roi_pct": 14235.488461538473,
+                    "net_profit_usd": 148049.0800000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 149089.0800000001,
+                    "breakeven_sell_price_usd": 7379.13,
+                    "hours_used": 25.0,
+                    "per_unit_cost_usd": 7358.33,
+                    "per_unit_revenue_usd": 2981.781600000002,
+                    "total_savings_usd": 149089.0800000001,
+                    "trip_net_value_usd": 148049.0800000001,
+                    "payback_rate_pct": 14335.488461538473
+                }
+            }
+        },
+        "JP-PKMN-151-ETB": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 9.4% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -90.59948076923077,
+                    "net_profit_usd": -942.2346,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 97.76540000000001,
+                    "breakeven_sell_price_usd": 1103.67,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 63.67,
+                    "per_unit_revenue_usd": 97.76540000000001,
+                    "total_savings_usd": 97.76540000000001,
+                    "trip_net_value_usd": -942.2346,
+                    "payback_rate_pct": 9.400519230769232
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 47.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -52.997403846153844,
+                    "net_profit_usd": -551.173,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 488.82700000000006,
+                    "breakeven_sell_price_usd": 271.67,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 63.67,
+                    "per_unit_revenue_usd": 97.76540000000001,
+                    "total_savings_usd": 488.82700000000006,
+                    "trip_net_value_usd": -551.173,
+                    "payback_rate_pct": 47.00259615384616
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 470.0% ≥ 100%,行程完全回本,净赚 $3,848.27 USD。",
+                    "roi_pct": 370.02596153846156,
+                    "net_profit_usd": 3848.2700000000004,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 4888.27,
+                    "breakeven_sell_price_usd": 84.47,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 63.67,
+                    "per_unit_revenue_usd": 97.76540000000001,
+                    "total_savings_usd": 4888.27,
+                    "trip_net_value_usd": 3848.2700000000004,
+                    "payback_rate_pct": 470.0259615384616
+                }
+            }
+        },
+        "JP-PKMN-151-SR": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 26.0% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -73.96061538461538,
+                    "net_profit_usd": -769.1904,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 270.80960000000005,
+                    "breakeven_sell_price_usd": 1245.0,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 205.0,
+                    "per_unit_revenue_usd": 270.80960000000005,
+                    "total_savings_usd": 270.80960000000005,
+                    "trip_net_value_usd": -769.1904,
+                    "payback_rate_pct": 26.03938461538462
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 130.2% ≥ 100%,行程完全回本,净赚 $314.05 USD。",
+                    "roi_pct": 30.1969230769231,
+                    "net_profit_usd": 314.04800000000023,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1354.0480000000002,
+                    "breakeven_sell_price_usd": 413.0,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 205.0,
+                    "per_unit_revenue_usd": 270.80960000000005,
+                    "total_savings_usd": 1354.0480000000002,
+                    "trip_net_value_usd": 314.04800000000023,
+                    "payback_rate_pct": 130.1969230769231
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1302.0% ≥ 100%,行程完全回本,净赚 $12,500.48 USD。",
+                    "roi_pct": 1201.969230769231,
+                    "net_profit_usd": 12500.480000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 13540.480000000003,
+                    "breakeven_sell_price_usd": 225.8,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 205.0,
+                    "per_unit_revenue_usd": 270.80960000000005,
+                    "total_savings_usd": 13540.480000000003,
+                    "trip_net_value_usd": 12500.480000000003,
+                    "payback_rate_pct": 1301.969230769231
+                }
+            }
+        },
+        "JP-PKMN-ANCIENT": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 15.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -84.73926923076922,
+                    "net_profit_usd": -881.2883999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 158.71160000000003,
+                    "breakeven_sell_price_usd": 1102.2,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 62.2,
+                    "per_unit_revenue_usd": 158.71160000000003,
+                    "total_savings_usd": 158.71160000000003,
+                    "trip_net_value_usd": -881.2883999999999,
+                    "payback_rate_pct": 15.260730769230774
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 76.3% 介于 50–100% 之间,行程部分回本,净支出 $246.44。",
+                    "roi_pct": -23.696346153846132,
+                    "net_profit_usd": -246.44199999999978,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 793.5580000000002,
+                    "breakeven_sell_price_usd": 270.2,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 62.2,
+                    "per_unit_revenue_usd": 158.71160000000003,
+                    "total_savings_usd": 793.5580000000002,
+                    "trip_net_value_usd": -246.44199999999978,
+                    "payback_rate_pct": 76.30365384615386
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 763.0% ≥ 100%,行程完全回本,净赚 $6,895.58 USD。",
+                    "roi_pct": 663.0365384615386,
+                    "net_profit_usd": 6895.580000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 7935.580000000002,
+                    "breakeven_sell_price_usd": 83.0,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 62.2,
+                    "per_unit_revenue_usd": 158.71160000000003,
+                    "total_savings_usd": 7935.580000000002,
+                    "trip_net_value_usd": 6895.580000000002,
+                    "payback_rate_pct": 763.0365384615386
+                }
+            }
+        },
+        "JP-PKMN-SV-AMA": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 17.6% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -82.4005,
+                    "net_profit_usd": -856.9652,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 183.03480000000002,
+                    "breakeven_sell_price_usd": 1094.87,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 183.03480000000002,
+                    "total_savings_usd": 183.03480000000002,
+                    "trip_net_value_usd": -856.9652,
+                    "payback_rate_pct": 17.599500000000003
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 88.0% 介于 50–100% 之间,行程部分回本,净支出 $124.83。",
+                    "roi_pct": -12.00249999999999,
+                    "net_profit_usd": -124.82599999999991,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 915.1740000000001,
+                    "breakeven_sell_price_usd": 262.87,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 183.03480000000002,
+                    "total_savings_usd": 915.1740000000001,
+                    "trip_net_value_usd": -124.82599999999991,
+                    "payback_rate_pct": 87.9975
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 880.0% ≥ 100%,行程完全回本,净赚 $8,111.74 USD。",
+                    "roi_pct": 779.9750000000001,
+                    "net_profit_usd": 8111.740000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 9151.740000000002,
+                    "breakeven_sell_price_usd": 75.67,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 183.03480000000002,
+                    "total_savings_usd": 9151.740000000002,
+                    "trip_net_value_usd": 8111.740000000002,
+                    "payback_rate_pct": 879.9750000000001
+                }
+            }
+        },
+        "JP-PKMN-SV-CRS": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 12.7% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -87.30238461538461,
+                    "net_profit_usd": -907.9448,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 132.0552,
+                    "breakeven_sell_price_usd": 1094.87,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 132.0552,
+                    "total_savings_usd": 132.0552,
+                    "trip_net_value_usd": -907.9448,
+                    "payback_rate_pct": 12.697615384615386
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "谨慎",
+                    "reason": "回本率 63.5% 介于 50–100% 之间,行程部分回本,净支出 $379.72。",
+                    "roi_pct": -36.51192307692307,
+                    "net_profit_usd": -379.72399999999993,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 660.2760000000001,
+                    "breakeven_sell_price_usd": 262.87,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 132.0552,
+                    "total_savings_usd": 660.2760000000001,
+                    "trip_net_value_usd": -379.72399999999993,
+                    "payback_rate_pct": 63.48807692307693
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 634.9% ≥ 100%,行程完全回本,净赚 $5,562.76 USD。",
+                    "roi_pct": 534.8807692307693,
+                    "net_profit_usd": 5562.76,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 6602.76,
+                    "breakeven_sell_price_usd": 75.67,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 54.87,
+                    "per_unit_revenue_usd": 132.0552,
+                    "total_savings_usd": 6602.76,
+                    "trip_net_value_usd": 5562.76,
+                    "payback_rate_pct": 634.8807692307693
+                }
+            }
+        },
+        "JP-PKMN-SV-SLP": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 3.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -96.66261538461538,
+                    "net_profit_usd": -1005.2912,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 34.708800000000004,
+                    "breakeven_sell_price_usd": 1059.67,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 19.67,
+                    "per_unit_revenue_usd": 34.708800000000004,
+                    "total_savings_usd": 34.708800000000004,
+                    "trip_net_value_usd": -1005.2912,
+                    "payback_rate_pct": 3.337384615384616
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 16.7% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -83.31307692307692,
+                    "net_profit_usd": -866.456,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 173.544,
+                    "breakeven_sell_price_usd": 227.67000000000002,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 19.67,
+                    "per_unit_revenue_usd": 34.708800000000004,
+                    "total_savings_usd": 173.544,
+                    "trip_net_value_usd": -866.456,
+                    "payback_rate_pct": 16.686923076923076
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 166.9% ≥ 100%,行程完全回本,净赚 $695.44 USD。",
+                    "roi_pct": 66.8692307692308,
+                    "net_profit_usd": 695.4400000000003,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1735.4400000000003,
+                    "breakeven_sell_price_usd": 40.47,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 19.67,
+                    "per_unit_revenue_usd": 34.708800000000004,
+                    "total_savings_usd": 1735.4400000000003,
+                    "trip_net_value_usd": 695.4400000000003,
+                    "payback_rate_pct": 166.8692307692308
+                }
+            }
+        },
+        "JP-PKMN-PSA": {
+            "1": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 186.0% ≥ 100%,行程完全回本,净赚 $894.18 USD。",
+                    "roi_pct": 85.97923076923078,
+                    "net_profit_usd": 894.1840000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1934.1840000000002,
+                    "breakeven_sell_price_usd": 1145.0,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 105.0,
+                    "per_unit_revenue_usd": 1934.1840000000002,
+                    "total_savings_usd": 1934.1840000000002,
+                    "trip_net_value_usd": 894.1840000000002,
+                    "payback_rate_pct": 185.9792307692308
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "购买数量 5 超过单 SKU 携带上限 2。",
+                    "roi_pct": 829.896153846154,
+                    "net_profit_usd": 8630.920000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 9670.920000000002,
+                    "breakeven_sell_price_usd": 313.0,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 105.0,
+                    "per_unit_revenue_usd": 1934.1840000000002,
+                    "total_savings_usd": 9670.920000000002,
+                    "trip_net_value_usd": 8630.920000000002,
+                    "payback_rate_pct": 929.896153846154
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "购买数量 50 超过单 SKU 携带上限 2。",
+                    "roi_pct": 9198.961538461539,
+                    "net_profit_usd": 95669.20000000001,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 96709.20000000001,
+                    "breakeven_sell_price_usd": 125.8,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 105.0,
+                    "per_unit_revenue_usd": 1934.1840000000002,
+                    "total_savings_usd": 96709.20000000001,
+                    "trip_net_value_usd": 95669.20000000001,
+                    "payback_rate_pct": 9298.961538461539
+                }
+            }
+        },
+        "JP-PKMN-SEALED": {
+            "1": {
+                "decision": {
+                    "level": "不建议",
+                    "reason": "回本率 24.3% < 50%,购物只能覆盖不到一半行程,不值得为这点差价跑一趟。",
+                    "roi_pct": -75.6576923076923,
+                    "net_profit_usd": -786.8399999999999,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 253.16000000000005,
+                    "breakeven_sell_price_usd": 1211.67,
+                    "hours_used": 0.16666666666666666,
+                    "per_unit_cost_usd": 171.67,
+                    "per_unit_revenue_usd": 253.16000000000005,
+                    "total_savings_usd": 253.16000000000005,
+                    "trip_net_value_usd": -786.8399999999999,
+                    "payback_rate_pct": 24.342307692307696
+                }
+            },
+            "5": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 121.7% ≥ 100%,行程完全回本,净赚 $225.80 USD。",
+                    "roi_pct": 21.711538461538478,
+                    "net_profit_usd": 225.80000000000018,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 1265.8000000000002,
+                    "breakeven_sell_price_usd": 379.66999999999996,
+                    "hours_used": 0.8333333333333334,
+                    "per_unit_cost_usd": 171.67,
+                    "per_unit_revenue_usd": 253.16000000000005,
+                    "total_savings_usd": 1265.8000000000002,
+                    "trip_net_value_usd": 225.80000000000018,
+                    "payback_rate_pct": 121.71153846153848
+                }
+            },
+            "50": {
+                "decision": {
+                    "level": "建议",
+                    "reason": "回本率 1217.1% ≥ 100%,行程完全回本,净赚 $11,618.00 USD。",
+                    "roi_pct": 1117.1153846153848,
+                    "net_profit_usd": 11618.000000000002,
+                    "total_cost_usd": 1040.0,
+                    "total_revenue_usd": 12658.000000000002,
+                    "breakeven_sell_price_usd": 192.47,
+                    "hours_used": 8.333333333333334,
+                    "per_unit_cost_usd": 171.67,
+                    "per_unit_revenue_usd": 253.16000000000005,
+                    "total_savings_usd": 12658.000000000002,
+                    "trip_net_value_usd": 11618.000000000002,
+                    "payback_rate_pct": 1217.1153846153848
+                }
+            }
         }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1038.58 USD,负利润,无意义出差。",
-          "roi_pct": -56.34,
-          "net_profit_usd": -1038.58,
-          "total_cost_usd": 1843.33,
-          "total_revenue_usd": 804.75,
-          "breakeven_sell_price_usd": 423.75,
-          "hours_used": 1.67
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1025.83 USD,负利润,无意义出差。",
-          "roi_pct": -11.31,
-          "net_profit_usd": -1025.83,
-          "total_cost_usd": 9073.33,
-          "total_revenue_usd": 8047.5,
-          "breakeven_sell_price_usd": 208.58,
-          "hours_used": 16.67
-        }
-      }
-    },
-    "JP-WS-YAMAZAKI12": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1134.27 USD,负利润,无意义出差。",
-          "roi_pct": -91.57,
-          "net_profit_usd": -1134.27,
-          "total_cost_usd": 1238.67,
-          "total_revenue_usd": 104.4,
-          "breakeven_sell_price_usd": 1423.75,
-          "hours_used": 0.58
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1511.33 USD,负利润,无意义出差。",
-          "roi_pct": -74.33,
-          "net_profit_usd": -1511.33,
-          "total_cost_usd": 2033.33,
-          "total_revenue_usd": 522.0,
-          "breakeven_sell_price_usd": 467.43,
-          "hours_used": 2.92
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -5753.33 USD,负利润,无意义出差。",
-          "roi_pct": -52.43,
-          "net_profit_usd": -5753.33,
-          "total_cost_usd": 10973.33,
-          "total_revenue_usd": 5220.0,
-          "breakeven_sell_price_usd": 252.26,
-          "hours_used": 29.17
-        }
-      }
-    },
-    "JP-NINTENDO-SWOLED": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1043.21 USD,负利润,无意义出差。",
-          "roi_pct": -74.99,
-          "net_profit_usd": -1043.21,
-          "total_cost_usd": 1391.2,
-          "total_revenue_usd": 347.99,
-          "breakeven_sell_price_usd": 1599.08,
-          "hours_used": 0.67
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1056.06 USD,负利润,无意义出差。",
-          "roi_pct": -37.77,
-          "net_profit_usd": -1056.06,
-          "total_cost_usd": 2796.02,
-          "total_revenue_usd": 1739.96,
-          "breakeven_sell_price_usd": 642.76,
-          "hours_used": 3.33
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "预计耗时 33.3h 超出可用 32.0h,行程不可行。",
-          "roi_pct": -6.45,
-          "net_profit_usd": -1200.6,
-          "total_cost_usd": 18600.17,
-          "total_revenue_usd": 17399.57,
-          "breakeven_sell_price_usd": 427.59,
-          "hours_used": 33.33
-        }
-      }
-    },
-    "JP-DYSON-V12S": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1102.84 USD,负利润,无意义出差。",
-          "roi_pct": -66.1,
-          "net_profit_usd": -1102.84,
-          "total_cost_usd": 1668.33,
-          "total_revenue_usd": 565.49,
-          "breakeven_sell_price_usd": 1917.62,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1354.19 USD,负利润,无意义出差。",
-          "roi_pct": -32.38,
-          "net_profit_usd": -1354.19,
-          "total_cost_usd": 4181.65,
-          "total_revenue_usd": 2827.46,
-          "breakeven_sell_price_usd": 961.3,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -4181.94 USD,负利润,无意义出差。",
-          "roi_pct": -12.88,
-          "net_profit_usd": -4181.94,
-          "total_cost_usd": 32456.5,
-          "total_revenue_usd": 28274.57,
-          "breakeven_sell_price_usd": 746.13,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-LUX-PATEK": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -707.33 USD,负利润,无意义出差。",
-          "roi_pct": -9.44,
-          "net_profit_usd": -707.33,
-          "total_cost_usd": 7493.33,
-          "total_revenue_usd": 6786.0,
-          "breakeven_sell_price_usd": 8613.02,
-          "hours_used": 3.0
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 1.9% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 1.87,
-          "net_profit_usd": 623.35,
-          "total_cost_usd": 33306.65,
-          "total_revenue_usd": 33930.0,
-          "breakeven_sell_price_usd": 7656.7,
-          "hours_used": 15.0
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "预计耗时 150.0h 超出可用 32.0h,行程不可行。",
-          "roi_pct": 4.82,
-          "net_profit_usd": 15593.5,
-          "total_cost_usd": 323706.5,
-          "total_revenue_usd": 339300.0,
-          "breakeven_sell_price_usd": 7441.53,
-          "hours_used": 150.0
-        }
-      }
-    },
-    "JP-ANIME-GK2024": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1144.50 USD,负利润,无意义出差。",
-          "roi_pct": -89.76,
-          "net_profit_usd": -1144.5,
-          "total_cost_usd": 1275.0,
-          "total_revenue_usd": 130.5,
-          "breakeven_sell_price_usd": 1465.52,
-          "hours_used": 0.42
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1562.52 USD,负利润,无意义出差。",
-          "roi_pct": -70.54,
-          "net_profit_usd": -1562.52,
-          "total_cost_usd": 2215.02,
-          "total_revenue_usd": 652.5,
-          "breakeven_sell_price_usd": 509.2,
-          "hours_used": 2.08
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -6265.17 USD,负利润,无意义出差。",
-          "roi_pct": -48.98,
-          "net_profit_usd": -6265.17,
-          "total_cost_usd": 12790.17,
-          "total_revenue_usd": 6525.0,
-          "breakeven_sell_price_usd": 294.03,
-          "hours_used": 20.83
-        }
-      }
-    },
-    "JP-PKMN-151-BB": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -969.50 USD,负利润,无意义出差。",
-          "roi_pct": -88.14,
-          "net_profit_usd": -969.5,
-          "total_cost_usd": 1100.0,
-          "total_revenue_usd": 130.5,
-          "breakeven_sell_price_usd": 1264.37,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -687.50 USD,负利润,无意义出差。",
-          "roi_pct": -51.31,
-          "net_profit_usd": -687.5,
-          "total_cost_usd": 1340.0,
-          "total_revenue_usd": 652.5,
-          "breakeven_sell_price_usd": 308.05,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 61.5% 高于目标 15.0%,净利润 2485.00 USD。",
-          "roi_pct": 61.51,
-          "net_profit_usd": 2485.0,
-          "total_cost_usd": 4040.0,
-          "total_revenue_usd": 6525.0,
-          "breakeven_sell_price_usd": 92.87,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-CDPB-SERUM-40": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -995.10 USD,负利润,无意义出差。",
-          "roi_pct": -83.26,
-          "net_profit_usd": -995.1,
-          "total_cost_usd": 1195.2,
-          "total_revenue_usd": 200.1,
-          "breakeven_sell_price_usd": 1373.79,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -815.50 USD,负利润,无意义出差。",
-          "roi_pct": -44.91,
-          "net_profit_usd": -815.5,
-          "total_cost_usd": 1816.0,
-          "total_revenue_usd": 1000.5,
-          "breakeven_sell_price_usd": 417.47,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 13.7% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 13.69,
-          "net_profit_usd": 1205.0,
-          "total_cost_usd": 8800.0,
-          "total_revenue_usd": 10005.0,
-          "breakeven_sell_price_usd": 202.3,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-ANIME-USJ-NEZ": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1007.35 USD,负利润,无意义出差。",
-          "roi_pct": -92.42,
-          "net_profit_usd": -1007.35,
-          "total_cost_usd": 1090.0,
-          "total_revenue_usd": 82.65,
-          "breakeven_sell_price_usd": 1252.87,
-          "hours_used": 0.75
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -876.75 USD,负利润,无意义出差。",
-          "roi_pct": -67.97,
-          "net_profit_usd": -876.75,
-          "total_cost_usd": 1290.0,
-          "total_revenue_usd": 413.25,
-          "breakeven_sell_price_usd": 296.55,
-          "hours_used": 3.75
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "预计耗时 37.5h 超出可用 32.0h,行程不可行。",
-          "roi_pct": 16.74,
-          "net_profit_usd": 592.5,
-          "total_cost_usd": 3540.0,
-          "total_revenue_usd": 4132.5,
-          "breakeven_sell_price_usd": 81.38,
-          "hours_used": 37.5
-        }
-      }
-    },
-    "JP-HADALABO-PREM-400": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1042.33 USD,负利润,无意义出差。",
-          "roi_pct": -97.32,
-          "net_profit_usd": -1042.33,
-          "total_cost_usd": 1071.0,
-          "total_revenue_usd": 28.67,
-          "breakeven_sell_price_usd": 1231.03,
-          "hours_used": 0.25
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1051.67 USD,负利润,无意义出差。",
-          "roi_pct": -88.01,
-          "net_profit_usd": -1051.67,
-          "total_cost_usd": 1195.0,
-          "total_revenue_usd": 143.33,
-          "breakeven_sell_price_usd": 274.71,
-          "hours_used": 1.25
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1156.67 USD,负利润,无意义出差。",
-          "roi_pct": -44.66,
-          "net_profit_usd": -1156.67,
-          "total_cost_usd": 2590.0,
-          "total_revenue_usd": 1433.33,
-          "breakeven_sell_price_usd": 59.54,
-          "hours_used": 12.5
-        }
-      }
-    },
-    "JP-POLA-BA-CREAM-50": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -895.49 USD,负利润,无意义出差。",
-          "roi_pct": -69.93,
-          "net_profit_usd": -895.49,
-          "total_cost_usd": 1280.49,
-          "total_revenue_usd": 385.0,
-          "breakeven_sell_price_usd": 1280.49,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -317.43 USD,负利润,无意义出差。",
-          "roi_pct": -14.16,
-          "net_profit_usd": -317.43,
-          "total_cost_usd": 2242.43,
-          "total_revenue_usd": 1925.0,
-          "breakeven_sell_price_usd": 448.49,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 47.3% 高于目标 15.0%,净利润 6185.67 USD。",
-          "roi_pct": 47.35,
-          "net_profit_usd": 6185.67,
-          "total_cost_usd": 13064.33,
-          "total_revenue_usd": 19250.0,
-          "breakeven_sell_price_usd": 261.29,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-SUQQU-LOOSEPOWDER-13": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1020.00 USD,负利润,无意义出差。",
-          "roi_pct": -93.32,
-          "net_profit_usd": -1020.0,
-          "total_cost_usd": 1093.0,
-          "total_revenue_usd": 73.0,
-          "breakeven_sell_price_usd": 1093.0,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -939.98 USD,负利润,无意义出差。",
-          "roi_pct": -72.03,
-          "net_profit_usd": -939.98,
-          "total_cost_usd": 1304.98,
-          "total_revenue_usd": 365.0,
-          "breakeven_sell_price_usd": 261.0,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -39.83 USD,负利润,无意义出差。",
-          "roi_pct": -1.08,
-          "net_profit_usd": -39.83,
-          "total_cost_usd": 3689.83,
-          "total_revenue_usd": 3650.0,
-          "breakeven_sell_price_usd": 73.8,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-SUQQU-CUSHION-01": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1001.00 USD,负利润,无意义出差。",
-          "roi_pct": -90.92,
-          "net_profit_usd": -1001.0,
-          "total_cost_usd": 1101.0,
-          "total_revenue_usd": 100.0,
-          "breakeven_sell_price_usd": 1101.0,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -844.98 USD,负利润,无意义出差。",
-          "roi_pct": -62.82,
-          "net_profit_usd": -844.98,
-          "total_cost_usd": 1344.98,
-          "total_revenue_usd": 500.0,
-          "breakeven_sell_price_usd": 269.0,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 22.3% 高于目标 15.0%,净利润 910.17 USD。",
-          "roi_pct": 22.25,
-          "net_profit_usd": 910.17,
-          "total_cost_usd": 4089.83,
-          "total_revenue_usd": 5000.0,
-          "breakeven_sell_price_usd": 81.8,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-ALBION-DERMA-40": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -648.00 USD,负利润,无意义出差。",
-          "roi_pct": -53.87,
-          "net_profit_usd": -648.0,
-          "total_cost_usd": 1203.0,
-          "total_revenue_usd": 555.0,
-          "breakeven_sell_price_usd": 1203.0,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 49.6% 高于目标 15.0%,净利润 920.02 USD。",
-          "roi_pct": 49.6,
-          "net_profit_usd": 920.02,
-          "total_cost_usd": 1854.98,
-          "total_revenue_usd": 2775.0,
-          "breakeven_sell_price_usd": 371.0,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 202.0% 高于目标 15.0%,净利润 18560.17 USD。",
-          "roi_pct": 201.96,
-          "net_profit_usd": 18560.17,
-          "total_cost_usd": 9189.83,
-          "total_revenue_usd": 27750.0,
-          "breakeven_sell_price_usd": 183.8,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-THREE-HADAH-100": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -983.00 USD,负利润,无意义出差。",
-          "roi_pct": -89.12,
-          "net_profit_usd": -983.0,
-          "total_cost_usd": 1103.0,
-          "total_revenue_usd": 120.0,
-          "breakeven_sell_price_usd": 1103.0,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -754.98 USD,负利润,无意义出差。",
-          "roi_pct": -55.72,
-          "net_profit_usd": -754.98,
-          "total_cost_usd": 1354.98,
-          "total_revenue_usd": 600.0,
-          "breakeven_sell_price_usd": 271.0,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 43.2% 高于目标 15.0%,净利润 1810.17 USD。",
-          "roi_pct": 43.2,
-          "net_profit_usd": 1810.17,
-          "total_cost_usd": 4189.83,
-          "total_revenue_usd": 6000.0,
-          "breakeven_sell_price_usd": 83.8,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-SHISEIDO-FSLX-REGEN-50": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -969.67 USD,负利润,无意义出差。",
-          "roi_pct": -77.59,
-          "net_profit_usd": -969.67,
-          "total_cost_usd": 1249.67,
-          "total_revenue_usd": 280.0,
-          "breakeven_sell_price_usd": 1249.67,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -688.33 USD,负利润,无意义出差。",
-          "roi_pct": -32.96,
-          "net_profit_usd": -688.33,
-          "total_cost_usd": 2088.33,
-          "total_revenue_usd": 1400.0,
-          "breakeven_sell_price_usd": 417.67,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 21.5% 高于目标 15.0%,净利润 2476.67 USD。",
-          "roi_pct": 21.49,
-          "net_profit_usd": 2476.67,
-          "total_cost_usd": 11523.33,
-          "total_revenue_usd": 14000.0,
-          "breakeven_sell_price_usd": 230.47,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-THREE-HADAH-LOTION-30": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1015.34 USD,负利润,无意义出差。",
-          "roi_pct": -94.42,
-          "net_profit_usd": -1015.34,
-          "total_cost_usd": 1075.34,
-          "total_revenue_usd": 60.0,
-          "breakeven_sell_price_usd": 1075.34,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -916.68 USD,负利润,无意义出差。",
-          "roi_pct": -75.34,
-          "net_profit_usd": -916.68,
-          "total_cost_usd": 1216.68,
-          "total_revenue_usd": 300.0,
-          "breakeven_sell_price_usd": 243.34,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 6.9% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 6.88,
-          "net_profit_usd": 193.17,
-          "total_cost_usd": 2806.83,
-          "total_revenue_usd": 3000.0,
-          "breakeven_sell_price_usd": 56.14,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-POLA-BA-LOTION-120": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1037.67 USD,负利润,无意义出差。",
-          "roi_pct": -92.02,
-          "net_profit_usd": -1037.67,
-          "total_cost_usd": 1127.67,
-          "total_revenue_usd": 90.0,
-          "breakeven_sell_price_usd": 1127.67,
-          "hours_used": 0.08
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1028.33 USD,负利润,无意义出差。",
-          "roi_pct": -69.56,
-          "net_profit_usd": -1028.33,
-          "total_cost_usd": 1478.33,
-          "total_revenue_usd": 450.0,
-          "breakeven_sell_price_usd": 295.67,
-          "hours_used": 0.42
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -923.33 USD,负利润,无意义出差。",
-          "roi_pct": -17.03,
-          "net_profit_usd": -923.33,
-          "total_cost_usd": 5423.33,
-          "total_revenue_usd": 4500.0,
-          "breakeven_sell_price_usd": 108.47,
-          "hours_used": 4.17
-        }
-      }
-    },
-    "JP-KAPITAL-BORO-JKT": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -890.13 USD,负利润,无意义出差。",
-          "roi_pct": -65.29,
-          "net_profit_usd": -890.13,
-          "total_cost_usd": 1363.33,
-          "total_revenue_usd": 473.2,
-          "breakeven_sell_price_usd": 1498.17,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -290.67 USD,负利润,无意义出差。",
-          "roi_pct": -10.94,
-          "net_profit_usd": -290.67,
-          "total_cost_usd": 2656.67,
-          "total_revenue_usd": 2366.0,
-          "breakeven_sell_price_usd": 583.88,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 37.5% 高于目标 15.0%,净利润 6453.33 USD。",
-          "roi_pct": 37.5,
-          "net_profit_usd": 6453.33,
-          "total_cost_usd": 17206.67,
-          "total_revenue_usd": 23660.0,
-          "breakeven_sell_price_usd": 378.17,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-CDG-PLAY-CTN": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1031.08 USD,负利润,无意义出差。",
-          "roi_pct": -70.46,
-          "net_profit_usd": -1031.08,
-          "total_cost_usd": 1463.33,
-          "total_revenue_usd": 432.25,
-          "breakeven_sell_price_usd": 1608.06,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -995.42 USD,负利润,无意义出差。",
-          "roi_pct": -31.53,
-          "net_profit_usd": -995.42,
-          "total_cost_usd": 3156.67,
-          "total_revenue_usd": 2161.25,
-          "breakeven_sell_price_usd": 693.77,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -594.17 USD,负利润,无意义出差。",
-          "roi_pct": -2.68,
-          "net_profit_usd": -594.17,
-          "total_cost_usd": 22206.67,
-          "total_revenue_usd": 21612.5,
-          "breakeven_sell_price_usd": 488.06,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-HUMANMADE-TEE-GRAPHIC": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -990.83 USD,负利润,无意义出差。",
-          "roi_pct": -90.07,
-          "net_profit_usd": -990.83,
-          "total_cost_usd": 1100.03,
-          "total_revenue_usd": 109.2,
-          "breakeven_sell_price_usd": 1208.83,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -794.17 USD,负利润,无意义出差。",
-          "roi_pct": -59.26,
-          "net_profit_usd": -794.17,
-          "total_cost_usd": 1340.17,
-          "total_revenue_usd": 546.0,
-          "breakeven_sell_price_usd": 294.54,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 35.1% 高于目标 15.0%,净利润 1418.33 USD。",
-          "roi_pct": 35.09,
-          "net_profit_usd": 1418.33,
-          "total_cost_usd": 4041.67,
-          "total_revenue_usd": 5460.0,
-          "breakeven_sell_price_usd": 88.83,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-SACAI-NIKE-LDW": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -826.32 USD,负利润,无意义出差。",
-          "roi_pct": -70.23,
-          "net_profit_usd": -826.32,
-          "total_cost_usd": 1176.67,
-          "total_revenue_usd": 350.35,
-          "breakeven_sell_price_usd": 1293.04,
-          "hours_used": 0.25
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 1.6% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 1.65,
-          "net_profit_usd": 28.4,
-          "total_cost_usd": 1723.35,
-          "total_revenue_usd": 1751.75,
-          "breakeven_sell_price_usd": 378.76,
-          "hours_used": 1.25
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 122.5% 高于目标 15.0%,净利润 9644.00 USD。",
-          "roi_pct": 122.49,
-          "net_profit_usd": 9644.0,
-          "total_cost_usd": 7873.5,
-          "total_revenue_usd": 17517.5,
-          "breakeven_sell_price_usd": 173.04,
-          "hours_used": 12.5
-        }
-      }
-    },
-    "JP-CE-CAVEMPT-TEE": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -990.05 USD,负利润,无意义出差。",
-          "roi_pct": -88.24,
-          "net_profit_usd": -990.05,
-          "total_cost_usd": 1122.0,
-          "total_revenue_usd": 131.95,
-          "breakeven_sell_price_usd": 1232.97,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -790.27 USD,负利润,无意义出差。",
-          "roi_pct": -54.5,
-          "net_profit_usd": -790.27,
-          "total_cost_usd": 1450.02,
-          "total_revenue_usd": 659.75,
-          "breakeven_sell_price_usd": 318.68,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 28.4% 高于目标 15.0%,净利润 1457.33 USD。",
-          "roi_pct": 28.35,
-          "net_profit_usd": 1457.33,
-          "total_cost_usd": 5140.17,
-          "total_revenue_usd": 6597.5,
-          "breakeven_sell_price_usd": 112.97,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-UNDERCOVER-ANATOMIC": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -932.46 USD,负利润,无意义出差。",
-          "roi_pct": -62.3,
-          "net_profit_usd": -932.46,
-          "total_cost_usd": 1496.66,
-          "total_revenue_usd": 564.2,
-          "breakeven_sell_price_usd": 1644.68,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -502.32 USD,负利润,无意义出差。",
-          "roi_pct": -15.11,
-          "net_profit_usd": -502.32,
-          "total_cost_usd": 3323.32,
-          "total_revenue_usd": 2821.0,
-          "breakeven_sell_price_usd": 730.4,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 18.2% 高于目标 15.0%,净利润 4336.83 USD。",
-          "roi_pct": 18.17,
-          "net_profit_usd": 4336.83,
-          "total_cost_usd": 23873.17,
-          "total_revenue_usd": 28210.0,
-          "breakeven_sell_price_usd": 524.68,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-VISVIM-ICT-JUMPER": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -936.91 USD,负利润,无意义出差。",
-          "roi_pct": -58.68,
-          "net_profit_usd": -936.91,
-          "total_cost_usd": 1596.66,
-          "total_revenue_usd": 659.75,
-          "breakeven_sell_price_usd": 1754.58,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -524.57 USD,负利润,无意义出差。",
-          "roi_pct": -13.72,
-          "net_profit_usd": -524.57,
-          "total_cost_usd": 3823.32,
-          "total_revenue_usd": 3298.75,
-          "breakeven_sell_price_usd": 840.29,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 14.2% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 14.25,
-          "net_profit_usd": 4114.33,
-          "total_cost_usd": 28873.17,
-          "total_revenue_usd": 32987.5,
-          "breakeven_sell_price_usd": 634.58,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-WTAPS-MILITARY-JERSEY": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -993.18 USD,负利润,无意义出差。",
-          "roi_pct": -86.87,
-          "net_profit_usd": -993.18,
-          "total_cost_usd": 1143.33,
-          "total_revenue_usd": 150.15,
-          "breakeven_sell_price_usd": 1256.41,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -805.92 USD,负利润,无意义出差。",
-          "roi_pct": -51.77,
-          "net_profit_usd": -805.92,
-          "total_cost_usd": 1556.67,
-          "total_revenue_usd": 750.75,
-          "breakeven_sell_price_usd": 342.12,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 21.0% 高于目标 15.0%,净利润 1300.83 USD。",
-          "roi_pct": 20.96,
-          "net_profit_usd": 1300.83,
-          "total_cost_usd": 6206.67,
-          "total_revenue_usd": 7507.5,
-          "breakeven_sell_price_usd": 136.41,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-SONY-GM2-2470-28": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -763.92 USD,负利润,无意义出差。",
-          "roi_pct": -26.53,
-          "net_profit_usd": -763.92,
-          "total_cost_usd": 2879.0,
-          "total_revenue_usd": 2115.08,
-          "breakeven_sell_price_usd": 3129.35,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 3.3% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 3.33,
-          "net_profit_usd": 340.4,
-          "total_cost_usd": 10235.0,
-          "total_revenue_usd": 10575.4,
-          "breakeven_sell_price_usd": 2225.0,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 13.7% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 13.73,
-          "net_profit_usd": 12764.0,
-          "total_cost_usd": 92990.0,
-          "total_revenue_usd": 105754.0,
-          "breakeven_sell_price_usd": 2021.52,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-SONY-GM2-70200-28": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -619.92 USD,负利润,无意义出差。",
-          "roi_pct": -19.4,
-          "net_profit_usd": -619.92,
-          "total_cost_usd": 3195.0,
-          "total_revenue_usd": 2575.08,
-          "breakeven_sell_price_usd": 3472.83,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 9.0% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 8.98,
-          "net_profit_usd": 1060.4,
-          "total_cost_usd": 11815.0,
-          "total_revenue_usd": 12875.4,
-          "breakeven_sell_price_usd": 2568.48,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 18.4% 高于目标 15.0%,净利润 19964.00 USD。",
-          "roi_pct": 18.35,
-          "net_profit_usd": 19964.0,
-          "total_cost_usd": 108790.0,
-          "total_revenue_usd": 128754.0,
-          "breakeven_sell_price_usd": 2365.0,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-CANON-RF-70200-28": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -491.92 USD,负利润,无意义出差。",
-          "roi_pct": -16.54,
-          "net_profit_usd": -491.92,
-          "total_cost_usd": 2975.0,
-          "total_revenue_usd": 2483.08,
-          "breakeven_sell_price_usd": 3233.7,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 15.9% 高于目标 15.0%,净利润 1700.40 USD。",
-          "roi_pct": 15.87,
-          "net_profit_usd": 1700.4,
-          "total_cost_usd": 10715.0,
-          "total_revenue_usd": 12415.4,
-          "breakeven_sell_price_usd": 2329.35,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 27.0% 高于目标 15.0%,净利润 26364.00 USD。",
-          "roi_pct": 26.96,
-          "net_profit_usd": 26364.0,
-          "total_cost_usd": 97790.0,
-          "total_revenue_usd": 124154.0,
-          "breakeven_sell_price_usd": 2125.87,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-SONY-GM-135-18": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1034.17 USD,负利润,无意义出差。",
-          "roi_pct": -38.47,
-          "net_profit_usd": -1034.17,
-          "total_cost_usd": 2688.33,
-          "total_revenue_usd": 1654.16,
-          "breakeven_sell_price_usd": 2922.1,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1010.85 USD,负利润,无意义出差。",
-          "roi_pct": -10.89,
-          "net_profit_usd": -1010.85,
-          "total_cost_usd": 9281.65,
-          "total_revenue_usd": 8270.8,
-          "breakeven_sell_price_usd": 2017.75,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -748.50 USD,负利润,无意义出差。",
-          "roi_pct": -0.9,
-          "net_profit_usd": -748.5,
-          "total_cost_usd": 83456.5,
-          "total_revenue_usd": 82708.0,
-          "breakeven_sell_price_usd": 1814.27,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-CANON-RF-50-12": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -826.59 USD,负利润,无意义出差。",
-          "roi_pct": -28.1,
-          "net_profit_usd": -826.59,
-          "total_cost_usd": 2941.67,
-          "total_revenue_usd": 2115.08,
-          "breakeven_sell_price_usd": 3197.47,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 0.3% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 0.26,
-          "net_profit_usd": 27.05,
-          "total_cost_usd": 10548.35,
-          "total_revenue_usd": 10575.4,
-          "breakeven_sell_price_usd": 2293.12,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 10.0% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 10.02,
-          "net_profit_usd": 9630.5,
-          "total_cost_usd": 96123.5,
-          "total_revenue_usd": 105754.0,
-          "breakeven_sell_price_usd": 2089.64,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-CANON-R5-BODY": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 6.1% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 6.07,
-          "net_profit_usd": 194.75,
-          "total_cost_usd": 3208.33,
-          "total_revenue_usd": 3403.08,
-          "breakeven_sell_price_usd": 3487.32,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 43.2% 高于目标 15.0%,净利润 5133.75 USD。",
-          "roi_pct": 43.21,
-          "net_profit_usd": 5133.75,
-          "total_cost_usd": 11881.65,
-          "total_revenue_usd": 17015.4,
-          "breakeven_sell_price_usd": 2582.97,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 55.5% 高于目标 15.0%,净利润 60697.50 USD。",
-          "roi_pct": 55.45,
-          "net_profit_usd": 60697.5,
-          "total_cost_usd": 109456.5,
-          "total_revenue_usd": 170154.0,
-          "breakeven_sell_price_usd": 2379.49,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-DJI-MINI4PRO-FMC": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -979.39 USD,负利润,无意义出差。",
-          "roi_pct": -52.61,
-          "net_profit_usd": -979.39,
-          "total_cost_usd": 1861.67,
-          "total_revenue_usd": 882.28,
-          "breakeven_sell_price_usd": 2023.55,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -736.95 USD,负利润,无意义出差。",
-          "roi_pct": -14.31,
-          "net_profit_usd": -736.95,
-          "total_cost_usd": 5148.35,
-          "total_revenue_usd": 4411.4,
-          "breakeven_sell_price_usd": 1119.21,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 4.7% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 4.73,
-          "net_profit_usd": 1990.5,
-          "total_cost_usd": 42123.5,
-          "total_revenue_usd": 44114.0,
-          "breakeven_sell_price_usd": 915.73,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-LEICA-M11": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -132.93 USD,负利润,无意义出差。",
-          "roi_pct": -1.58,
-          "net_profit_usd": -132.93,
-          "total_cost_usd": 8408.33,
-          "total_revenue_usd": 8275.4,
-          "breakeven_sell_price_usd": 9139.49,
-          "hours_used": 0.5
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 9.2% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 9.23,
-          "net_profit_usd": 3495.35,
-          "total_cost_usd": 37881.65,
-          "total_revenue_usd": 41377.0,
-          "breakeven_sell_price_usd": 8235.14,
-          "hours_used": 2.5
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 12.0% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 11.99,
-          "net_profit_usd": 44313.5,
-          "total_cost_usd": 369456.5,
-          "total_revenue_usd": 413770.0,
-          "breakeven_sell_price_usd": 8031.66,
-          "hours_used": 25.0
-        }
-      }
-    },
-    "JP-PKMN-151-ETB": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1024.35 USD,负利润,无意义出差。",
-          "roi_pct": -92.53,
-          "net_profit_usd": -1024.35,
-          "total_cost_usd": 1107.0,
-          "total_revenue_usd": 82.65,
-          "breakeven_sell_price_usd": 1272.42,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -961.77 USD,负利润,无意义出差。",
-          "roi_pct": -69.95,
-          "net_profit_usd": -961.77,
-          "total_cost_usd": 1375.02,
-          "total_revenue_usd": 413.25,
-          "breakeven_sell_price_usd": 316.1,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -257.67 USD,负利润,无意义出差。",
-          "roi_pct": -5.87,
-          "net_profit_usd": -257.67,
-          "total_cost_usd": 4390.17,
-          "total_revenue_usd": 4132.5,
-          "breakeven_sell_price_usd": 100.92,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-151-SR": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1004.73 USD,负利润,无意义出差。",
-          "roi_pct": -80.49,
-          "net_profit_usd": -1004.73,
-          "total_cost_usd": 1248.33,
-          "total_revenue_usd": 243.6,
-          "breakeven_sell_price_usd": 1434.87,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -863.67 USD,负利润,无意义出差。",
-          "roi_pct": -41.49,
-          "net_profit_usd": -863.67,
-          "total_cost_usd": 2081.67,
-          "total_revenue_usd": 1218.0,
-          "breakeven_sell_price_usd": 478.54,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "ROI 6.3% 低于最低阈值 10.0%,不值得冒险。",
-          "roi_pct": 6.31,
-          "net_profit_usd": 723.33,
-          "total_cost_usd": 11456.67,
-          "total_revenue_usd": 12180.0,
-          "breakeven_sell_price_usd": 263.37,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-ANCIENT": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -992.43 USD,负利润,无意义出差。",
-          "roi_pct": -89.77,
-          "net_profit_usd": -992.43,
-          "total_cost_usd": 1105.53,
-          "total_revenue_usd": 113.1,
-          "breakeven_sell_price_usd": 1270.73,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -802.17 USD,负利润,无意义出差。",
-          "roi_pct": -58.65,
-          "net_profit_usd": -802.17,
-          "total_cost_usd": 1367.67,
-          "total_revenue_usd": 565.5,
-          "breakeven_sell_price_usd": 314.41,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 31.0% 高于目标 15.0%,净利润 1338.33 USD。",
-          "roi_pct": 31.0,
-          "net_profit_usd": 1338.33,
-          "total_cost_usd": 4316.67,
-          "total_revenue_usd": 5655.0,
-          "breakeven_sell_price_usd": 99.23,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-SV-AMA": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -976.40 USD,负利润,无意义出差。",
-          "roi_pct": -88.91,
-          "net_profit_usd": -976.4,
-          "total_cost_usd": 1098.2,
-          "total_revenue_usd": 121.8,
-          "breakeven_sell_price_usd": 1262.3,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -722.02 USD,负利润,无意义出差。",
-          "roi_pct": -54.25,
-          "net_profit_usd": -722.02,
-          "total_cost_usd": 1331.02,
-          "total_revenue_usd": 609.0,
-          "breakeven_sell_price_usd": 305.98,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 54.2% 高于目标 15.0%,净利润 2139.83 USD。",
-          "roi_pct": 54.17,
-          "net_profit_usd": 2139.83,
-          "total_cost_usd": 3950.17,
-          "total_revenue_usd": 6090.0,
-          "breakeven_sell_price_usd": 90.81,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-SV-CRS": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1002.50 USD,负利润,无意义出差。",
-          "roi_pct": -91.29,
-          "net_profit_usd": -1002.5,
-          "total_cost_usd": 1098.2,
-          "total_revenue_usd": 95.7,
-          "breakeven_sell_price_usd": 1262.3,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -852.52 USD,负利润,无意义出差。",
-          "roi_pct": -64.05,
-          "net_profit_usd": -852.52,
-          "total_cost_usd": 1331.02,
-          "total_revenue_usd": 478.5,
-          "breakeven_sell_price_usd": 305.98,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 21.1% 高于目标 15.0%,净利润 834.83 USD。",
-          "roi_pct": 21.13,
-          "net_profit_usd": 834.83,
-          "total_cost_usd": 3950.17,
-          "total_revenue_usd": 4785.0,
-          "breakeven_sell_price_usd": 90.81,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-SV-SLP": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1035.16 USD,负利润,无意义出差。",
-          "roi_pct": -97.38,
-          "net_profit_usd": -1035.16,
-          "total_cost_usd": 1063.0,
-          "total_revenue_usd": 27.84,
-          "breakeven_sell_price_usd": 1221.84,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -1015.82 USD,负利润,无意义出差。",
-          "roi_pct": -87.95,
-          "net_profit_usd": -1015.82,
-          "total_cost_usd": 1155.02,
-          "total_revenue_usd": 139.2,
-          "breakeven_sell_price_usd": 265.52,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -798.17 USD,负利润,无意义出差。",
-          "roi_pct": -36.44,
-          "net_profit_usd": -798.17,
-          "total_cost_usd": 2190.17,
-          "total_revenue_usd": 1392.0,
-          "breakeven_sell_price_usd": 50.35,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-PSA": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -104.33 USD,负利润,无意义出差。",
-          "roi_pct": -9.09,
-          "net_profit_usd": -104.33,
-          "total_cost_usd": 1148.33,
-          "total_revenue_usd": 1044.0,
-          "breakeven_sell_price_usd": 1319.92,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 230.0% 高于目标 15.0%,净利润 3638.33 USD。",
-          "roi_pct": 230.03,
-          "net_profit_usd": 3638.33,
-          "total_cost_usd": 1581.67,
-          "total_revenue_usd": 5220.0,
-          "breakeven_sell_price_usd": 363.6,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "建议",
-          "reason": "ROI 708.5% 高于目标 15.0%,净利润 45743.33 USD。",
-          "roi_pct": 708.47,
-          "net_profit_usd": 45743.33,
-          "total_cost_usd": 6456.67,
-          "total_revenue_usd": 52200.0,
-          "breakeven_sell_price_usd": 148.43,
-          "hours_used": 8.33
-        }
-      }
-    },
-    "JP-PKMN-SEALED": {
-      "1": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -997.50 USD,负利润,无意义出差。",
-          "roi_pct": -82.1,
-          "net_profit_usd": -997.5,
-          "total_cost_usd": 1215.0,
-          "total_revenue_usd": 217.5,
-          "breakeven_sell_price_usd": 1396.56,
-          "hours_used": 0.17
-        }
-      },
-      "5": {
-        "decision": {
-          "level": "不建议",
-          "reason": "扣除机票/酒店/时间成本后净利润为 -827.52 USD,负利润,无意义出差。",
-          "roi_pct": -43.21,
-          "net_profit_usd": -827.52,
-          "total_cost_usd": 1915.02,
-          "total_revenue_usd": 1087.5,
-          "breakeven_sell_price_usd": 440.23,
-          "hours_used": 0.83
-        }
-      },
-      "50": {
-        "decision": {
-          "level": "谨慎",
-          "reason": "ROI 11.1% 介于 10.0% 与 15.0% 之间,勉强可行,可考虑压缩机票/酒店成本。",
-          "roi_pct": 11.08,
-          "net_profit_usd": 1084.83,
-          "total_cost_usd": 9790.17,
-          "total_revenue_usd": 10875.0,
-          "breakeven_sell_price_usd": 225.06,
-          "hours_used": 8.33
-        }
-      }
     }
-  },
-  "pending_proposals_count": 0
 };
