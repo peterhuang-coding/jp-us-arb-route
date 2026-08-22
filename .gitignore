@@ -1,9 +1,11 @@
 data/*.db
 data/*.db-journal
+data/*.sqlite*
 exports/*.pdf
 exports/*.md
 __pycache__/
 .venv/
 node_modules/
 .DS_Store
+.claude/worktrees/
 
