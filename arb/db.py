@@ -285,6 +285,28 @@ CREATE TABLE IF NOT EXISTS quota_windows (
 );
 
 CREATE INDEX IF NOT EXISTS idx_order_status_status ON order_status(status);
+
+CREATE TABLE IF NOT EXISTS execution_orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sku TEXT NOT NULL,
+    leg TEXT NOT NULL DEFAULT 'D',            -- 'D' 电商带过去 | 'E' 哥们仓
+    qty INTEGER NOT NULL DEFAULT 1,
+    state TEXT NOT NULL DEFAULT 'created',
+    sell_platform TEXT NOT NULL DEFAULT 'dryrun',
+    buy_platform TEXT NOT NULL DEFAULT 'dryrun',
+    sell_ext_id TEXT,                          -- 销售平台上架后的外部 ID
+    buy_ext_id TEXT,                           -- 采购平台下单后的外部 ID
+    sell_price_cny REAL NOT NULL DEFAULT 0,    -- 卖给买家的价格
+    buy_price_cny REAL,                        -- 采购价(比价后写入)
+    ship_cost_cny REAL NOT NULL DEFAULT 0,     -- 运费预估
+    buyer_paid_cny REAL NOT NULL DEFAULT 0,    -- 买家已付(预收确认)
+    buy_source_url TEXT,                       -- 采购货源链接(比价选中)
+    tracking TEXT,                             -- 发货物流单号
+    error TEXT,                                -- 最近一次异常信息
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 """
 
 
@@ -1188,3 +1210,60 @@ def add_quota_entry(conn, entry_date, entry_cny, trip_id=None, notes=None):
     )
     conn.commit()
     return cur.lastrowid
+
+
+# ---------- M0: execution_orders (执行环订单) ----------
+
+def create_execution_order(conn: sqlite3.Connection, row: dict) -> int:
+    """Insert one execution order.  Unknown keys are ignored."""
+    fields = ("sku", "leg", "qty", "state", "sell_platform", "buy_platform",
+              "sell_ext_id", "buy_ext_id", "sell_price_cny", "buy_price_cny",
+              "ship_cost_cny", "buyer_paid_cny", "buy_source_url", "tracking", "error")
+    values = {k: row[k] for k in fields if k in row}
+    cols = ", ".join(values)
+    marks = ", ".join("?" for _ in values)
+    cur = conn.execute(
+        f"INSERT INTO execution_orders ({cols}) VALUES ({marks})",
+        tuple(values.values()),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def get_execution_order(conn: sqlite3.Connection, order_id: int) -> sqlite3.Row | None:
+    return conn.execute(
+        "SELECT * FROM execution_orders WHERE id = ?", (order_id,)
+    ).fetchone()
+
+
+def update_execution_order(conn: sqlite3.Connection, order_id: int, **fields) -> None:
+    """Patch any subset of columns; bumps updated_at."""
+    if not fields:
+        return
+    fields = {**fields, "updated_at": _dt.datetime.now().isoformat(timespec="seconds")}
+    assigns = ", ".join(f"{k} = ?" for k in fields)
+    conn.execute(
+        f"UPDATE execution_orders SET {assigns} WHERE id = ?",
+        (*fields.values(), order_id),
+    )
+    conn.commit()
+
+
+def list_execution_orders(conn: sqlite3.Connection, state: str | None = None) -> list[sqlite3.Row]:
+    sql = "SELECT * FROM execution_orders"
+    params: tuple = ()
+    if state is not None:
+        sql += " WHERE state = ?"
+        params = (state,)
+    sql += " ORDER BY id ASC"
+    return list(conn.execute(sql, params))
+
+
+def sum_paid_cny_on(conn: sqlite3.Connection, date_iso: str) -> float:
+    """当日已 PAID 订单的采购款累计(限额守卫用)."""
+    row = conn.execute(
+        "SELECT COALESCE(SUM(buy_price_cny), 0) AS total FROM execution_orders "
+        "WHERE state = 'paid' AND date(updated_at) = date(?)",
+        (date_iso,),
+    ).fetchone()
+    return round(float(row["total"]), 2)
