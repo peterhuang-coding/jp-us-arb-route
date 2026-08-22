@@ -37,6 +37,8 @@ def check_pay(order: dict, cfg: PayConfig, paid_today_cny: float) -> PayDecision
     ship = float(order.get("ship_cost_cny") or 0)
     buyer_paid = float(order.get("buyer_paid_cny") or 0)
 
+    if buy_price <= 0:
+        reasons.append("采购价缺失或非正")
     if buy_price > cfg.per_order_limit_cny:
         reasons.append(f"单笔 ¥{buy_price:.2f} 超过上限 ¥{cfg.per_order_limit_cny:.2f}")
     if paid_today_cny + buy_price > cfg.daily_limit_cny:

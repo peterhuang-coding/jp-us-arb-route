@@ -38,3 +38,8 @@ def test_check_pay_blocks_over_daily_limit():
 def test_check_pay_blocks_non_positive_margin():
     d = check_pay(order(buy=300.0, ship=650.0, paid=950.0), CFG, paid_today_cny=0.0)
     assert not d.allowed and any("毛利" in r for r in d.reasons)
+
+
+def test_check_pay_blocks_missing_buy_price():
+    d = check_pay(order(buy=None), CFG, paid_today_cny=0.0)
+    assert not d.allowed and any("采购价" in r for r in d.reasons)

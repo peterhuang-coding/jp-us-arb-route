@@ -41,7 +41,8 @@ NEXT_STATE: dict[OrderState, OrderState | None] = {
 }
 
 # WAREHOUSED 状态的展示名按 leg 区分.
-WAREHOUSE_LABELS = {"D": "国内仓", "E": "哥们仓"}
+# D = CN→海外(电商带过去), E = 海外→CN(哥们仓)
+WAREHOUSE_LABELS: dict[str, str] = {"D": "国内仓", "E": "哥们仓"}
 
 STATE_LABELS: dict[OrderState, str] = {
     OrderState.CREATED: "已创建",
