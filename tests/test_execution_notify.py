@@ -39,3 +39,12 @@ def test_pushplus_without_token_skips(monkeypatch, capsys):
     monkeypatch.delenv("PUSHPLUS_TOKEN", raising=False)
     PushPlusNotifier(token=None).send("t", "b")
     assert "未配置" in capsys.readouterr().err
+
+
+def test_pushplus_swallows_network_error(monkeypatch, capsys):
+    def fake_urlopen_fail(req, timeout=None):
+        raise OSError("connection refused")
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen_fail)
+    PushPlusNotifier(token="tok123").send("t", "b")  # 不应抛出
+    assert "推送失败" in capsys.readouterr().err

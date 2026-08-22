@@ -42,5 +42,8 @@ class PushPlusNotifier:
             data=payload,
             headers={"Content-Type": "application/json"},
         )
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            resp.read()
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                resp.read()
+        except OSError as exc:  # URLError / HTTPError / socket 超时均为 OSError 子类
+            print(f"[notify] 推送失败: {exc}", file=sys.stderr)
