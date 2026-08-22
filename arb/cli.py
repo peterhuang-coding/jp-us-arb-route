@@ -20,7 +20,7 @@ import math
 import sys
 from pathlib import Path
 
-from . import db, freshness
+from . import db, freshness, prices, alerts, tax_codes
 from .decision import judge, DecideError, DecisionInputs
 from .refresh import outcome_as_dict, refresh_opportunity
 from .verify import outcome_as_dict as verify_outcome_as_dict, verify_opportunity
@@ -380,7 +380,8 @@ def cmd_freshness(args):
             opps = [opp]
         else:
             opps = db.list_opportunities(conn)
-        rows = freshness.attach([dict(o) for o in opps])
+        today = _dt.date.fromisoformat(args.today) if getattr(args, "today", None) else None
+        rows = freshness.attach([dict(o) for o in opps], today=today)
         for r in rows:
             f = r["freshness"]
             print(f"  [{f['status']:7s}] {r['sku']:25s} "
@@ -775,6 +776,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_fresh = sub.add_parser("freshness", help="show freshness verdict per opportunity")
     p_fresh.add_argument("--sku", help="restrict to one SKU (default: all)")
+    p_fresh.add_argument("--today", help="pretend today is YYYY-MM-DD (deterministic verdicts)")
 
     p_verify = sub.add_parser("verify", help="refresh + compare hints to stored prices; mark verified or stage proposal")
     p_verify.add_argument("--sku", required=True)
@@ -884,7 +886,251 @@ def build_parser() -> argparse.ArgumentParser:
                                 "\"cost_usd\":200,\"duration_min\":360}'. "
                                 "Order on the command line = leg seq."))
 
+    # Round 24: prices (F1 — 跨源价采集 + F2 — 报警)
+    p_prices = sub.add_parser("prices", help="Fetch + list competitor prices + alerts")
+    prices_sub = p_prices.add_subparsers(dest="prices_cmd", required=True)
+    p_prices_fetch = prices_sub.add_parser("fetch", help="fetch one (sku, source) snapshot")
+    p_prices_fetch.add_argument("--sku", required=True)
+    p_prices_fetch.add_argument("--source", required=True, choices=list(prices.SUPPORTED_SOURCES))
+    p_prices_fetch.add_argument("--json", action="store_true")
+    p_prices_all = prices_sub.add_parser("fetch-all", help="fetch all 6 whitelist SKUs")
+    p_prices_all.add_argument("--json", action="store_true")
+    p_prices_list = prices_sub.add_parser("list", help="list competitor_prices snapshots")
+    p_prices_list.add_argument("--sku")
+    p_prices_list.add_argument("--source", choices=list(prices.SUPPORTED_SOURCES))
+    p_prices_list.add_argument("--days", type=int)
+    p_prices_list.add_argument("--json", action="store_true")
+    p_prices_alerts = prices_sub.add_parser("alerts", help="evaluate price alerts")
+    p_prices_alerts.add_argument("--sku")
+    p_prices_alerts.add_argument("--setup", action="store_true",
+                                  help="seed default 6 SKU × 4 sources alerts")
+    p_prices_alerts.add_argument("--threshold-pct", type=float, default=5.0)
+    p_prices_alerts.add_argument("--json", action="store_true")
+
+    # Round 24: quota (F3 — ¥5,000 / ¥1,000 入境额度)
+    p_quota = sub.add_parser("quota", help="Track ¥5,000 / ¥1,000 入境额度")
+    quota_sub = p_quota.add_subparsers(dest="quota_cmd", required=True)
+    p_quota_add = quota_sub.add_parser("add", help="record one entry")
+    p_quota_add.add_argument("--date", required=True, help="entry date YYYY-MM-DD")
+    p_quota_add.add_argument("--sku", required=True)
+    p_quota_add.add_argument("--qty", type=int, required=True)
+    p_quota_add.add_argument("--unit-cny", type=float, required=True)
+    p_quota_add.add_argument("--trip", help="trip label, e.g. 2026-09 PEK-NRT")
+    p_quota_list = quota_sub.add_parser("list", help="list entries")
+    p_quota_list.add_argument("--since", help="filter from date YYYY-MM-DD")
+    p_quota_list.add_argument("--sku")
+    p_quota_list.add_argument("--json", action="store_true")
+    p_quota_summary = quota_sub.add_parser("summary", help="rolling 7/15/30 day summary")
+    p_quota_summary.add_argument("--as-of", help="as of date YYYY-MM-DD (default today)")
+    p_quota_summary.add_argument("--json", action="store_true")
+
+    # Round 24: returns (F4 — 退货 + 月度毛利)
+    p_returns = sub.add_parser("returns", help="Record returns + monthly margin")
+    returns_sub = p_returns.add_subparsers(dest="returns_cmd", required=True)
+    p_returns_add = returns_sub.add_parser("add", help="record one sale (with optional return)")
+    p_returns_add.add_argument("--sku", required=True)
+    p_returns_add.add_argument("--sold-at", required=True, help="YYYY-MM-DD")
+    p_returns_add.add_argument("--sold-cny", type=float, required=True)
+    p_returns_add.add_argument("--channel", help="闲鱼 / 朋友圈 / 小红书 / etc.")
+    p_returns_add.add_argument("--returned-at", help="YYYY-MM-DD if returned")
+    p_returns_add.add_argument("--refund-cny", type=float)
+    p_returns_add.add_argument("--restocking-cny", type=float, default=0.0)
+    p_returns_list = returns_sub.add_parser("list", help="list returns")
+    p_returns_list.add_argument("--sku")
+    p_returns_list.add_argument("--returned-only", action="store_true")
+    p_returns_list.add_argument("--json", action="store_true")
+    p_returns_margin = returns_sub.add_parser("margin", help="monthly margin rollup")
+    p_returns_margin.add_argument("--month", required=True, help="YYYY-MM")
+    p_returns_margin.add_argument("--json", action="store_true")
+
+    # Round 24: tax (F5 — 6 SKU HS 码 + 红黄绿)
+    p_tax = sub.add_parser("tax", help="HS code + tax rate + 红黄绿 for 6 whitelist SKUs")
+    tax_sub = p_tax.add_subparsers(dest="tax_cmd", required=True)
+    p_tax_list = tax_sub.add_parser("list", help="list all 6 SKUs")
+    p_tax_list.add_argument("--json", action="store_true")
+    p_tax_get = tax_sub.add_parser("get", help="get one SKU")
+    p_tax_get.add_argument("--sku", required=True)
+    p_tax_get.add_argument("--json", action="store_true")
+
     return p
+
+
+# ---------- Round 24: cmd_prices (F1 + F2) ----------
+
+def cmd_prices(args):
+    sub = args.prices_cmd
+    conn = db.connect()
+    try:
+        if sub == "fetch":
+            row = prices.fetch_one(conn, args.sku, args.source)
+            if args.json:
+                print(json.dumps(row, ensure_ascii=False, indent=2))
+            else:
+                print(f"  {row['sku']:25s} @ {row['source']:10s} "
+                      f"¥{row['price_jpy']:>9.0f} JPY / ¥{row['price_cny']:>7.2f} CNY  "
+                      f"(FX {row['fx_rate_at_fetch']:.2f})  {row['fetched_at']}")
+            return 0
+        if sub == "fetch-all":
+            rows = prices.fetch_all(conn)
+            if args.json:
+                print(json.dumps(rows, ensure_ascii=False, indent=2))
+            else:
+                print(f"  fetched {len(rows)} snapshots")
+                for r in rows:
+                    print(f"  {r['sku']:25s} @ {r['source']:10s} ¥{r['price_jpy']:>9.0f} JPY / ¥{r['price_cny']:>7.2f} CNY")
+            return 0
+        if sub == "list":
+            rows = db.list_competitor_prices(conn, sku=args.sku, source=args.source, days=args.days)
+            if args.json:
+                print(json.dumps([dict(r) for r in rows], ensure_ascii=False, indent=2))
+            else:
+                for r in rows:
+                    print(f"  {r['sku']:25s} @ {r['source']:10s} "
+                          f"¥{r['price_jpy']:>9.0f} JPY / ¥{r['price_cny']:>7.2f} CNY  {r['fetched_at']}")
+            return 0
+        if sub == "alerts":
+            if args.setup:
+                n = alerts.setup_default_alerts(conn, threshold_pct=args.threshold_pct)
+                print(f"  seeded {n} default alerts ({args.threshold_pct}% threshold)")
+                return 0
+            triggered = alerts.evaluate_alerts(conn, sku=args.sku)
+            if args.json:
+                print(json.dumps(triggered, ensure_ascii=False, indent=2))
+            else:
+                if not triggered:
+                    print("  no alerts triggered")
+                for t in triggered:
+                    arrow = "📈" if t["diff_pct"] > 0 else "📉"
+                    print(f"  {arrow} {t['sku']} @ {t['source']}: "
+                          f"¥{t['snapshot_cny']:.0f} vs ¥{t['stored_cny']:.0f} "
+                          f"({t['diff_pct']:+.1f}%, 阈值 {t['threshold_pct']:.0f}%)")
+            return 0
+        return 2
+    finally:
+        conn.close()
+
+
+# ---------- Round 24: cmd_quota (F3) ----------
+
+def cmd_quota(args):
+    sub = args.quota_cmd
+    conn = db.connect()
+    try:
+        if sub == "add":
+            row_id = db.record_quota_entry(conn, dict(
+                entry_date=args.date, sku=args.sku, quantity=args.qty,
+                unit_price_cny=args.unit_cny, trip_label=args.trip,
+            ))
+            print(f"  recorded entry #{row_id}: {args.sku} ×{args.qty} @ ¥{args.unit_cny:.0f} on {args.date}")
+            return 0
+        if sub == "list":
+            rows = db.list_quota_entries(conn, since=args.since, sku=args.sku)
+            if args.json:
+                print(json.dumps([dict(r) for r in rows], ensure_ascii=False, indent=2))
+            else:
+                for r in rows:
+                    print(f"  {r['entry_date']}  {r['sku']:25s} ×{r['quantity']:<3} "
+                          f"@ ¥{r['unit_price_cny']:>7.2f}  = ¥{r['subtotal_cny']:>8.2f}  "
+                          f"{r['trip_label'] or ''}")
+            return 0
+        if sub == "summary":
+            summary = db.quota_summary(conn, as_of=getattr(args, "as_of", None))
+            if args.json:
+                print(json.dumps(summary, ensure_ascii=False, indent=2))
+            else:
+                print(f"  as_of: {summary['as_of']}")
+                print(f"  recent entry: {summary['recent_entry_date']}")
+                limit = summary["limit_cny"]
+                warn = " ⚠️ 二次入境!" if summary["is_repeat_within_15d"] else ""
+                print(f"  limit: ¥{limit:.0f}{warn}")
+                print(f"  headroom: ¥{summary['headroom_cny']:.0f}")
+                print(f"  7d: ¥{summary['window_7d_cny']:.0f}  "
+                      f"15d: ¥{summary['window_15d_cny']:.0f}  "
+                      f"30d: ¥{summary['window_30d_cny']:.0f}")
+            return 0
+        return 2
+    finally:
+        conn.close()
+
+
+# ---------- Round 24: cmd_returns (F4) ----------
+
+def cmd_returns(args):
+    sub = args.returns_cmd
+    conn = db.connect()
+    try:
+        if sub == "add":
+            row_id = db.record_return(conn, dict(
+                sku=args.sku, sold_at=args.sold_at,
+                sold_price_cny=args.sold_cny, sold_channel=args.channel,
+                returned_at=args.returned_at, refund_cny=args.refund_cny,
+                restocking_cost_cny=args.restocking_cny,
+            ))
+            print(f"  recorded return #{row_id}")
+            return 0
+        if sub == "list":
+            rows = db.list_returns(conn, sku=args.sku, returned_only=args.returned_only)
+            if args.json:
+                print(json.dumps([dict(r) for r in rows], ensure_ascii=False, indent=2))
+            else:
+                for r in rows:
+                    ret = r["returned_at"] or "—"
+                    print(f"  {r['sku']:25s} sold {r['sold_at']} ¥{r['sold_price_cny']:>7.0f} "
+                          f"@ {r['sold_channel'] or '—':8s}  returned: {ret}")
+            return 0
+        if sub == "margin":
+            res = db.monthly_margin(conn, args.month)
+            if args.json:
+                print(json.dumps(res, ensure_ascii=False, indent=2))
+            else:
+                t = res["totals"]
+                print(f"  {args.month} margin rollup:")
+                print(f"    units_sold: {t['units_sold']}  "
+                      f"return_count: {t['return_count']}  "
+                      f"return_rate: {t['return_count']/t['units_sold']*100 if t['units_sold'] else 0:.1f}%")
+                print(f"    gross_revenue: ¥{t['gross_revenue_cny']:.0f}  "
+                      f"refund: ¥{t['refund_cny']:.0f}  "
+                      f"restocking: ¥{t['restocking_cny']:.0f}")
+                print(f"    est_purchase: ¥{t['est_purchase_cny']:.0f}  "
+                      f"est_tax: ¥{t['est_tax_cny']:.0f}")
+                print(f"    NET: ¥{t['net_cny']:.0f}")
+            return 0
+        return 2
+    finally:
+        conn.close()
+
+
+# ---------- Round 24: cmd_tax (F5) ----------
+
+def cmd_tax(args):
+    sub = args.tax_cmd
+    if sub == "list":
+        rows = tax_codes.summary_table()
+        if args.json:
+            print(json.dumps(rows, ensure_ascii=False, indent=2))
+        else:
+            for r in rows:
+                color = {"green": "🟢", "yellow": "🟡", "red": "🔴"}.get(r["projection_color"], "⚪")
+                banned = " ❌ 不予免税" if r["is_banned_20"] else ""
+                print(f"  {color} {r['sku']:25s} HS {r['hs_code']}  "
+                      f"行邮 {r['row_postal_rate']*100:>4.0f}%  "
+                      f"跨境电商 {r['cross_border_rate']*100:>4.1f}%{banned}")
+                print(f"      {r['hs_desc_zh']}  参考价 ¥{r['ref_price_cny']:.0f}")
+        return 0
+    if sub == "get":
+        info = tax_codes.get_tax_info(args.sku)
+        if info is None:
+            print(f"error: sku {args.sku!r} not in whitelist", file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(info, ensure_ascii=False, indent=2))
+        else:
+            color = {"green": "🟢", "yellow": "🟡", "red": "🔴"}.get(info["projection_color"], "⚪")
+            print(f"  {color} {args.sku}")
+            for k, v in info.items():
+                print(f"      {k}: {v}")
+        return 0
+    return 2
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -905,6 +1151,10 @@ def main(argv: list[str] | None = None) -> int:
         "basket": cmd_basket,
         "flight": cmd_flight,
         "backfill-home-prices": cmd_backfill_home_prices,
+        "prices": cmd_prices,
+        "quota": cmd_quota,
+        "returns": cmd_returns,
+        "tax": cmd_tax,
     }.get(args.cmd)
     if handler is None:
         return 2

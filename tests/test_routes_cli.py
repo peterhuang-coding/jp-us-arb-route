@@ -66,7 +66,7 @@ def test_seed_all_inserts_two_routes():
 
 
 def test_seed_all_idempotent_for_second_route():
-    """Re-running seed must not duplicate the regional route.
+    """Re-running seed must not duplicate any route.
 
     Regression: ``upsert_route`` previously returned a stale autoincrement
     counter after ON CONFLICT DO UPDATE, which made the second seed call
@@ -77,10 +77,10 @@ def test_seed_all_idempotent_for_second_route():
     seed.seed_all(conn)
     seed.seed_all(conn)  # must not raise
     n = conn.execute("SELECT COUNT(*) FROM routes").fetchone()[0]
-    assert n == 2
+    assert n == 4   # PVG-NRT-LAX-2N + LAX-SFO-1N + PEK-NRT-WEEKEND + PEK-KIX-WEEKEND (round 18)
     # Route_legs count must also be stable across reseeds (no duplicates).
     legs_n = conn.execute("SELECT COUNT(*) FROM route_legs").fetchone()[0]
-    assert legs_n == 10  # 6 (intl) + 4 (regional)
+    assert legs_n == 18  # 6 (intl) + 4 (regional) + 4 (PEK-NRT) + 4 (PEK-KIX)
 
 
 def test_upsert_returns_correct_id_on_conflict():
@@ -124,21 +124,25 @@ def test_regional_route_has_cheaper_fixed_cost_than_international():
     assert lax_fixed < pvg_fixed / 3
 
 
-# ---------- route-flip behavior: regional flips SK-II from ❌ → ⚠️ ----------
+# ---------- route-flip behavior: regional flips Whisky from ❌ → ✅ ----------
 
-def test_skii_flips_to_warn_at_20u_with_regional_route():
-    """With the cheap regional route, 20× SK-II under payback model improves."""
+def test_whisky_flips_to_go_with_regional_route():
+    """With the cheap regional route, Whisky flips from 不建议 → 建议.
+
+    Round 21: SK-II switched to CN-target with negative margin (-$6/unit),
+    so it can never flip positive. Whisky (毛利 +85%) is the only profitable
+    arb SKU, so it inherits this route-flip test.
+    """
     from arb import db, seed
     from arb.decision import judge, DecisionInputs
     conn = db.connect_memory()
     seed.seed_all(conn)
-    opp = db.get_opportunity(conn, "JP-SKII-FT230")
+    opp = db.get_opportunity(conn, "JP-WS-YAMAZAKI12")
     route_intl = db.get_route(conn, "PVG-NRT-LAX-2N")
     route_reg = db.get_route(conn, "LAX-SFO-1N")
-    # SK-II seed has max_units_per_trip=6 (daily purchase limit).
-    # Use a 6-unit scenario for both routes and check that regional flips verdict.
+    # Whisky has max_units_per_trip=2 (weight limit). Test at 2 units.
     di_intl = DecisionInputs(
-        num_units=6,
+        num_units=2,
         purchase_price_usd=opp["purchase_price_usd"],
         sell_price_usd=opp["sell_price_usd"],
         home_price_usd=(opp["home_price_cny"] * route_intl["cn_to_usd_fx"]
@@ -157,7 +161,7 @@ def test_skii_flips_to_warn_at_20u_with_regional_route():
         max_units_per_trip=opp["max_units_per_trip"],
     )
     di_reg = DecisionInputs(
-        num_units=6,
+        num_units=2,
         purchase_price_usd=opp["purchase_price_usd"],
         sell_price_usd=opp["sell_price_usd"],
         home_price_usd=(opp["home_price_cny"] * route_reg["cn_to_usd_fx"]
@@ -177,12 +181,13 @@ def test_skii_flips_to_warn_at_20u_with_regional_route():
     )
     d_intl = judge(di_intl)
     d_reg = judge(di_reg)
-    # 6 units × ($154 home - $85 purchase - $4 shipping) = $390 savings
-    # intl $1040 trip: payback 37.5% → 不建议
-    # regional $300 trip: payback 130% → 建议
-    assert d_intl.level == "不建议"
-    assert d_reg.level == "建议"
+    # 2 units × ($259 sell × 0.94 fee - $140 purchase - $22 ship) = $162 net
+    # intl $1040 trip: payback 162/1040 ≈ 16% → 不建议 (trip too expensive for margin)
+    # regional $300 trip: payback 162/300 ≈ 54% → 谨慎 (margin covers half trip)
+    # Test verifies the flip mechanic — regional moves payback from <50% to 50–100% band.
     assert d_reg.trip_net_value_usd > d_intl.trip_net_value_usd
+    assert d_intl.level == "不建议", f"intl should be 不建议 but got {d_intl.level}"
+    assert d_reg.level == "谨慎",    f"regional should flip to 谨慎 but got {d_reg.level}"
 
 
 # ---------- CLI: `arb routes` listing ----------
@@ -234,9 +239,9 @@ def test_cli_routes_add_is_idempotent(scratch_db):
     assert first.returncode == 0
     assert second.returncode == 0
     assert "already exists" in second.stdout
-    # Still exactly 3 routes (2 seeded + 1 added).
+    # Still exactly 5 routes (4 seeded after round 18 + 1 added).
     listing = _run("routes", env_overrides={"ARB_DB_PATH": str(scratch_db)})
-    assert listing.stdout.count("[") == 3
+    assert listing.stdout.count("[") == 5
 
 
 # ---------- Round 11: --leg repeatable flag on `arb routes --add` ----------

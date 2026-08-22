@@ -117,11 +117,12 @@ def test_report_writes_markdown(scratch_db, tmp_path):
 def test_health(scratch_db):
     out = _run("health")
     assert out.returncode == 0
-    # scratch_db seeds only the 6 whitelist SKUs + 2 routes (seed_all()
-    # inserts via upsert, so any pre-existing rows in the tmp DB are
-    # clobbered, but the tmp DB starts empty — see scratch_db fixture).
+    # scratch_db seeds only the 6 whitelist SKUs + 4 routes (round 18 added
+    # PEK-NRT-WEEKEND + PEK-KIX-WEEKEND). seed_all() inserts via upsert, so
+    # any pre-existing rows in the tmp DB are clobbered, but the tmp DB
+    # starts empty — see scratch_db fixture.
     assert "opportunities: 6" in out.stdout
-    assert "routes: 2" in out.stdout
+    assert "routes: 4" in out.stdout
 
 
 def test_report_writes_html(scratch_db, tmp_path):
@@ -170,9 +171,9 @@ def test_serve_help_does_not_boot_server(scratch_db):
 
 def test_freshness_lists_all_opps_with_status(scratch_db):
     """`freshness` (no SKU) must show a verdict line per opp."""
-    out = _run("freshness")
+    out = _run("freshness", "--today", "2026-07-26")
     assert out.returncode == 0
-    # seed ts is 2026-07-01; today is 2026-07-26 → every row is "aging" (25 days)
+    # seed ts is 2026-07-01; --today 2026-07-26 → every row is "aging" (25 days)
     assert "aging" in out.stdout
     assert "临近复核" in out.stdout
     for sku in ("JP-SKII-FT230", "JP-WS-YAMAZAKI12"):

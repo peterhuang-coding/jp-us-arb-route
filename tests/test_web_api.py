@@ -31,7 +31,7 @@ def test_health_returns_counts(client):
     body = r.json()
     assert body["ok"] is True
     assert body["opportunities"] == 6
-    assert body["routes"] == 2
+    assert body["routes"] == 4   # PVG-NRT-LAX-2N, LAX-SFO-1N, PEK-NRT-WEEKEND, PEK-KIX-WEEKEND (round 18)
 
 
 def test_list_opportunities(client):
@@ -51,10 +51,12 @@ def test_list_routes_includes_legs(client):
     r = client.get("/api/routes")
     assert r.status_code == 200
     body = r.json()
-    assert len(body) == 2
+    assert len(body) == 4   # 2 original + PEK-NRT-WEEKEND + PEK-KIX-WEEKEND (round 18)
     names = [b["name"] for b in body]
     assert "PVG-NRT-LAX-2N" in names
     assert "LAX-SFO-1N" in names
+    assert "PEK-NRT-WEEKEND" in names
+    assert "PEK-KIX-WEEKEND" in names
     # Each seeded route should have at least 3 legs (flight/hotel/shop).
     for r_data in body:
         assert len(r_data["legs"]) >= 3
@@ -168,8 +170,18 @@ def test_decide_records_to_db(client):
     assert rows["c"] >= 1
 
 
-def test_opportunities_attach_freshness_field(client):
+def test_opportunities_attach_freshness_field(client, monkeypatch):
     """GET /api/opportunities must embed a 'freshness' verdict on each row."""
+    import datetime as _dt
+
+    from arb import freshness as F
+
+    class _FakeDate(_dt.date):
+        @classmethod
+        def today(cls):
+            return cls(2026, 7, 26)
+
+    monkeypatch.setattr(F._dt, "date", _FakeDate)
     r = client.get("/api/opportunities")
     assert r.status_code == 200
     body = r.json()
@@ -179,7 +191,7 @@ def test_opportunities_attach_freshness_field(client):
         f = o["freshness"]
         assert f["status"] in ("fresh", "aging", "stale", "missing", "future")
         assert "badge" in f and "age_days" in f
-    # Seed ts is 2026-07-01; today is 2026-07-26 → 25 days old → "aging"
+    # Seed ts is 2026-07-01; fake today 2026-07-26 → 25 days old → "aging"
     skii = next(o for o in body if o["sku"] == "JP-SKII-FT230")
     assert skii["freshness"]["status"] == "aging"
 
@@ -261,9 +273,9 @@ def test_list_proposals_filter_by_sku_and_status(client, monkeypatch):
     opp = db.get_opportunity(conn, "JP-SKII-FT230")
     pid = db.add_proposed_price(
         conn, opp["id"], "sell_price_usd",
-        stored_value=145.0, proposed_value=200.0,
+        stored_value=133.0, proposed_value=200.0,
         detected_currency="USD", detected_raw="USD 200.00",
-        source_url="https://example.com/us", drift_pct=37.93,
+        source_url="https://example.com/us", drift_pct=50.38,
     )
     conn.close()
     r = client.get("/api/proposals", params={"sku": "JP-SKII-FT230", "status": "pending"})
@@ -280,9 +292,9 @@ def test_apply_proposal_endpoint_overwrites_price(client):
     opp = db.get_opportunity(conn, "JP-SKII-FT230")
     pid = db.add_proposed_price(
         conn, opp["id"], "sell_price_usd",
-        stored_value=145.0, proposed_value=200.0,
+        stored_value=133.0, proposed_value=200.0,
         detected_currency="USD", detected_raw="USD 200.00",
-        source_url="https://example.com/us", drift_pct=37.93,
+        source_url="https://example.com/us", drift_pct=50.38,
     )
     conn.close()
     r = client.post(f"/api/proposals/{pid}/apply")
@@ -303,9 +315,9 @@ def test_reject_proposal_endpoint_keeps_price(client):
     opp = db.get_opportunity(conn, "JP-SKII-FT230")
     pid = db.add_proposed_price(
         conn, opp["id"], "sell_price_usd",
-        stored_value=145.0, proposed_value=200.0,
+        stored_value=133.0, proposed_value=200.0,
         detected_currency="USD", detected_raw="USD 200.00",
-        source_url="https://example.com/us", drift_pct=37.93,
+        source_url="https://example.com/us", drift_pct=50.38,
     )
     conn.close()
     r = client.post(f"/api/proposals/{pid}/reject")
@@ -315,7 +327,7 @@ def test_reject_proposal_endpoint_keeps_price(client):
     assert body["proposal_status"] == "rejected"
     conn = db.connect()
     row = db.get_opportunity(conn, "JP-SKII-FT230")
-    assert row["sell_price_usd"] == 145.0
+    assert row["sell_price_usd"] == 133.0
     conn.close()
 
 
@@ -384,8 +396,8 @@ def test_list_routes_payload_supports_route_fixed(client):
     assert r.status_code == 200
     body = r.json()
     by_name = {b["name"]: b for b in body}
-    # Seed: 1 intl ($1040) + 1 regional ($300).
-    assert set(by_name) == {"PVG-NRT-LAX-2N", "LAX-SFO-1N"}
+    # Round 18 seed: 2 original + PEK-NRT-WEEKEND + PEK-KIX-WEEKEND.
+    assert set(by_name) == {"PVG-NRT-LAX-2N", "LAX-SFO-1N", "PEK-NRT-WEEKEND", "PEK-KIX-WEEKEND"}
     intl = by_name["PVG-NRT-LAX-2N"]
     reg = by_name["LAX-SFO-1N"]
     intl_fixed = intl["flight_cost_usd"] + intl["hotel_cost_usd"] + intl["other_cost_usd"]
