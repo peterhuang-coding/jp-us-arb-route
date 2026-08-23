@@ -943,6 +943,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_returns_margin.add_argument("--month", required=True, help="YYYY-MM")
     p_returns_margin.add_argument("--json", action="store_true")
 
+    # Round 25 / M0: execution (执行环 dry-run)
+    p_exec = sub.add_parser("execution", help="执行环订单流水线 (M0: dry-run)")
+    exec_sub = p_exec.add_subparsers(dest="execution_cmd", required=True)
+    p_exec_demo = exec_sub.add_parser("demo", help="内存库跑通 🅳/🅴 两条 demo 订单全链路")
+    p_exec_list = exec_sub.add_parser("list", help="列出执行环订单(真实库)")
+    p_exec_list.add_argument("--json", action="store_true")
+
     # Round 24: tax (F5 — 6 SKU HS 码 + 红黄绿)
     p_tax = sub.add_parser("tax", help="HS code + tax rate + 红黄绿 for 6 whitelist SKUs")
     tax_sub = p_tax.add_subparsers(dest="tax_cmd", required=True)
@@ -1100,6 +1107,60 @@ def cmd_returns(args):
         conn.close()
 
 
+# ---------- Round 25 / M0: cmd_execution ----------
+
+def cmd_execution(args):
+    from arb.execution.adapters.dryrun import DryRunBuyAdapter, DryRunSellAdapter
+    from arb.execution.notify import NullNotifier
+    from arb.execution.payguard import PayConfig
+    from arb.execution.pipeline import Pipeline
+
+    sub = args.execution_cmd
+    if sub == "demo":
+        conn = db.connect_memory()
+        try:
+            for row in (
+                dict(sku="JP-SKII-FT230", leg="D",
+                     sell_price_cny=950.0, ship_cost_cny=30.0),
+                dict(sku="JP-HUMANMADE-TEE-GRAPHIC", leg="E",
+                     sell_price_cny=700.0, ship_cost_cny=20.0),
+            ):
+                db.create_execution_order(conn, row)
+            pipeline = Pipeline(
+                sell=DryRunSellAdapter(), buy=DryRunBuyAdapter(),
+                notifier=NullNotifier(), cfg=PayConfig(), dry_run=True,
+            )
+            for result in pipeline.run_all(conn):
+                chain = result["chain"]
+                # tick 结果记录的是"目标态": 首跳的 transition 含初始态,
+                # 终态 tick 会重复记录一次 completed — 展示时补头去尾
+                start = chain[0].get("transition", "").split(" → ")[0]
+                states = ([start] if start else []) + [
+                    r["state"] for r in chain if not r.get("terminal")
+                ]
+                if not states:
+                    states = [chain[-1]["state"]]
+                print(f"  order #{result['order_id']}: " + " → ".join(states))
+            return 0
+        finally:
+            conn.close()
+    if sub == "list":
+        conn = db.connect()
+        try:
+            rows = db.list_execution_orders(conn)
+            if args.json:
+                print(json.dumps([dict(r) for r in rows], ensure_ascii=False, indent=2))
+            else:
+                for r in rows:
+                    print(f"  #{r['id']:3d} {r['sku']:25s} leg={r['leg']} "
+                          f"{r['state']:16s} sell=¥{r['sell_price_cny']:>7.2f} "
+                          f"buy=¥{(r['buy_price_cny'] or 0):>7.2f}")
+            return 0
+        finally:
+            conn.close()
+    return 2
+
+
 # ---------- Round 24: cmd_tax (F5) ----------
 
 def cmd_tax(args):
@@ -1154,6 +1215,7 @@ def main(argv: list[str] | None = None) -> int:
         "prices": cmd_prices,
         "quota": cmd_quota,
         "returns": cmd_returns,
+        "execution": cmd_execution,
         "tax": cmd_tax,
     }.get(args.cmd)
     if handler is None:

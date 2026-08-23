@@ -1220,6 +1220,8 @@ def create_execution_order(conn: sqlite3.Connection, row: dict) -> int:
               "sell_ext_id", "buy_ext_id", "sell_price_cny", "buy_price_cny",
               "ship_cost_cny", "buyer_paid_cny", "buy_source_url", "tracking", "error")
     values = {k: row[k] for k in fields if k in row}
+    if not values:
+        raise ValueError("create_execution_order: row 没有可插入字段")
     cols = ", ".join(values)
     marks = ", ".join("?" for _ in values)
     cur = conn.execute(

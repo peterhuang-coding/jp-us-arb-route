@@ -13,6 +13,11 @@ def conn():
     c.close()
 
 
+def test_create_rejects_empty_row(conn):
+    with pytest.raises(ValueError):
+        db.create_execution_order(conn, {})
+
+
 def test_create_and_get_roundtrip(conn):
     oid = db.create_execution_order(conn, dict(
         sku="JP-SKII-FT230", leg="D", sell_price_cny=950.0))
