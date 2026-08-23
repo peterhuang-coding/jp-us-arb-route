@@ -1252,7 +1252,7 @@ git commit -m "feat(execution): M0 CLI — execution demo/list + 全链路 dry-r
 
 ## 完成定义（M0 Done）
 
-- [ ] `python3 -m pytest -q` 全绿（327 旧 + 26 新）
-- [ ] `python3 -m arb execution demo` 输出两条完整状态链到 completed
-- [ ] 异常路径有测试覆盖：买家未付款等待、超限转 awaiting_human + 推送
-- [ ] spec §5 状态机、§6 适配器接口、§7 限额守卫、§8 推送、§10 dry-run 均有对应实现与测试
+- [x] `python3 -m pytest -q` 全绿（327 旧 + 29 新 = 356 passed）
+- [x] `python3 -m arb execution demo` 输出两条完整状态链到 completed
+- [x] 异常路径有测试覆盖：买家未付款等待、超限转 awaiting_human + 推送
+- [x] spec §5 状态机、§6 适配器接口、§7 限额守卫、§8 推送、§10 dry-run 均有对应实现与测试
