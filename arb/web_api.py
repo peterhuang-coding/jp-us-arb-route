@@ -916,6 +916,49 @@ def delete_trip_item_endpoint(item_id: int):
     finally:
         conn.close()
 
+
+# ---------- SKU 反馈标注 (面板简化: 用户 re 商机机制) ----------
+
+class FeedbackIn(BaseModel):
+    sku: str
+    status: str            # 'ok' 能卖 | 'bad' 不OK(从推荐排除)
+    reason: str = ""
+
+
+@app.get("/api/feedback", response_model=list[dict])
+def feedback_list():
+    conn = db.connect()
+    try:
+        return [dict(r) for r in db.list_sku_feedback(conn)]
+    finally:
+        conn.close()
+
+
+@app.post("/api/feedback", response_model=dict)
+def feedback_set(req: FeedbackIn):
+    if req.status not in ("ok", "bad"):
+        raise HTTPException(status_code=422, detail="status must be 'ok' or 'bad'")
+    conn = db.connect()
+    try:
+        db.upsert_sku_feedback(conn, req.sku, req.status, req.reason.strip()[:200])
+        row = conn.execute(
+            "SELECT * FROM sku_feedback WHERE sku = ?", (req.sku,)
+        ).fetchone()
+        return dict(row)
+    finally:
+        conn.close()
+
+
+@app.delete("/api/feedback/{sku}", response_model=dict)
+def feedback_delete(sku: str):
+    conn = db.connect()
+    try:
+        db.delete_sku_feedback(conn, sku)
+        return {"deleted": sku}
+    finally:
+        conn.close()
+
+
 # ---------- Round 24 static SPA mounted last so /api/* wins ----------
 
 if WEB_DIR.exists():

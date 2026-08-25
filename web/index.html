@@ -237,7 +237,7 @@
     <div class="tm-result" x-show="tripMode === 'booked' && dpsPicks.length" x-cloak>
       <h3>💰 这趟带回来 ROI 最高：</h3>
       <table class="tm-table">
-        <thead><tr><th>#</th><th>买什么</th><th>单件净利</th><th>ROI</th><th>带几件</th></tr></thead>
+        <thead><tr><th>#</th><th>买什么</th><th>单件净利</th><th>ROI</th><th>带几件</th><th>标注</th></tr></thead>
         <tbody>
           <template x-for="(p, i) in dpsPicks" :key="'tm-' + p.sku">
             <tr>
@@ -246,8 +246,25 @@
               <td x-text="'$' + p.unitNet.toFixed(0)"></td>
               <td class="tm-roi" :class="roiClass(p.roiPct)" x-text="p.roiPct.toFixed(0) + '%'"></td>
               <td x-text="p.numUnits + ' 件'"></td>
+              <td class="tm-fb">
+                <button class="fb-mini ok" :class="{ on: feedback[p.sku]?.status === 'ok' }"
+                  @click="fbMark(p.sku, 'ok')" title="标注: 能卖">👍</button>
+                <button class="fb-mini bad" @click="fbPick(p.sku)" title="标注: 不OK(附原因)">👎</button>
+              </td>
             </tr>
           </template>
+          <tr x-show="fbPickerSku" class="tm-fb-row">
+            <td colspan="6">
+              <span class="tm-fb-sku">👎 <code x-text="fbPickerSku"></code> 为什么不OK？</span>
+              <template x-for="r in fbPresets" :key="'fbp-' + r">
+                <button class="fb-chip" :class="{ on: fbReason === r }" @click="fbPreset(r)" x-text="r"></button>
+              </template>
+              <input type="text" class="tm-input fb-reason-input" x-model="fbReason"
+                placeholder="或自己写一句…" @keydown.enter="fbSave(fbPickerSku)">
+              <button class="fb-save" @click="fbSave(fbPickerSku)">确认排除</button>
+              <button class="fb-cancel" @click="fbPickerSku = null">取消</button>
+            </td>
+          </tr>
         </tbody>
       </table>
       <div class="tm-footer">
@@ -263,6 +280,18 @@
         </span>
       </div>
       <p class="tm-note">清单按转售口径 ROI 排序(含平台费/关税/物流)；真净赚已扣个人成本(请假/住宿)。</p>
+      <details class="tm-excluded" x-show="excludedList.length" x-cloak>
+        <summary>🚫 已排除 <span x-text="excludedList.length"></span> 条(你标过不OK) · 点开看原因</summary>
+        <ul>
+          <template x-for="f in excludedList" :key="'ex-' + f.sku">
+            <li>
+              <code x-text="f.sku"></code>
+              <span class="tm-ex-reason" x-text="f.reason || '未填原因'"></span>
+              <button class="fb-mini undo" @click="fbClear(f.sku)" title="撤销标注, 恢复推荐">↩ 撤销</button>
+            </li>
+          </template>
+        </ul>
+      </details>
     </div>
     <p class="tm-empty" x-show="tripMode === 'booked' && !dpsPicks.length" x-cloak>
       当前路线下暂无可用 SKU 数据 — 去「更多工具」里看看商机列表。
@@ -1083,13 +1112,21 @@
       </div>
       <ul class="opp-list">
         <template x-for="o in filtered()" :key="o.sku">
-          <li :class="{ active: selected === o.sku }" @click="select(o.sku)">
+          <li :class="{ active: selected === o.sku, 'fb-bad': isBad(o.sku) }" @click="select(o.sku)">
             <div class="opp-row1">
               <span class="opp-sku" x-text="o.sku"></span>
               <span class="badge" :class="badgeClass(detailCache[o.sku]?.decision?.level)"
                 x-text="badgeText(detailCache[o.sku]?.decision?.level)"></span>
               <span class="opp-verified" :class="{ ok: o.verified }"
                 x-text="o.verified ? '✅' : '⚠️'"></span>
+              <span class="fb-btns" @click.stop>
+                <button class="fb-mini ok" :class="{ on: feedback[o.sku]?.status === 'ok' }"
+                  @click="fbMark(o.sku, 'ok')" title="标注: 能卖">👍</button>
+                <button class="fb-mini bad" :class="{ on: isBad(o.sku) }"
+                  @click="fbPick(o.sku)" title="标注: 不OK(附原因)">👎</button>
+                <button class="fb-mini undo" x-show="feedback[o.sku]"
+                  @click="fbClear(o.sku)" title="撤销标注">↩</button>
+              </span>
             </div>
             <div class="opp-name" x-text="o.name"></div>
             <div class="opp-row2">

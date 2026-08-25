@@ -73,6 +73,12 @@ function app() {
     tripMode: 'none',         // 'none' 还没定行程 | 'booked' 已定好行程
     tripCostCny: 6000,        // 已定行程时: 一个人交通成本(CNY), 覆盖路线表固定成本
 
+    // ---- 反馈标注 (re 商机机制) ----
+    feedback: {},             // sku -> {status:'ok'|'bad', reason, updated_at}
+    fbPickerSku: null,        // 正在选原因的 SKU(👎 弹出)
+    fbReason: '',             // 原因输入框内容
+    fbPresets: ['卖不动', '利润太低', '竞争太大', '禁售风险', '物流麻烦', '渠道不符'],
+
     // ---- derived ----
     get currentDetail() {
       return this.selected ? (this.detailCache[this.selected] || null) : null;
@@ -284,6 +290,15 @@ function app() {
         fetch('/api/evidence')
           .then(r => r.ok ? r.json() : [])
           .then(rows => { this.evidence = Array.isArray(rows) ? rows : []; })
+          .catch(() => {});
+        // 反馈标注 (re 商机): 加载已有标注, 用于过滤推荐
+        fetch('/api/feedback')
+          .then(r => r.ok ? r.json() : [])
+          .then(rows => {
+            const m = {};
+            (Array.isArray(rows) ? rows : []).forEach(f => { m[f.sku] = f; });
+            this.feedback = m;
+          })
           .catch(() => {});
       }
 
@@ -605,7 +620,8 @@ function app() {
           purchaseChannels: Array.isArray(o.purchase_channels) ? o.purchase_channels : [],
           sellChannels:     Array.isArray(o.sell_channels)     ? o.sell_channels     : [],
         };
-      }).filter(p => p.roiPct > 0 && p.purchaseChannels.length && p.sellChannels.length);
+      }).filter(p => p.roiPct > 0 && p.purchaseChannels.length && p.sellChannels.length)
+        .filter(p => !this.isBad(p.sku));   // re 商机: 被标「不OK」的进不了推荐
       scored.sort((a, b) => b.roiPct - a.roiPct);
       return scored.slice(0, 6);
     },
@@ -634,6 +650,61 @@ function app() {
         if (raw.startsWith('http')) hrefs.add(raw);  // 站内锚点(#开头)不打开新标签
       });
       hrefs.forEach(url => window.open(url, '_blank'));
+    },
+
+    // ---- 反馈标注 (re 商机机制) ----
+    isBad(sku) {
+      const f = this.feedback[sku];
+      return !!(f && f.status === 'bad');
+    },
+
+    get excludedList() {
+      return Object.values(this.feedback).filter(f => f.status === 'bad');
+    },
+
+    fbPick(sku) {
+      this.fbPickerSku = this.fbPickerSku === sku ? null : sku;
+      this.fbReason = '';
+    },
+
+    fbPreset(reason) {
+      this.fbReason = reason;
+    },
+
+    async fbSave(sku) {
+      await this.fbMark(sku, 'bad', this.fbReason);
+      this.fbPickerSku = null;
+      this.fbReason = '';
+    },
+
+    async fbMark(sku, status, reason = '') {
+      try {
+        const r = await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sku, status, reason }),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const f = await r.json();
+        this.feedback = { ...this.feedback, [sku]: f };
+        this.setStatus(status === 'bad'
+          ? `🚫 已标注不OK: ${sku} — ${f.reason || '未填原因'}`
+          : `✅ 已标注能卖: ${sku}`);
+      } catch (e) {
+        this.setStatus('标注保存失败: ' + e.message, true);
+      }
+    },
+
+    async fbClear(sku) {
+      try {
+        await fetch('/api/feedback/' + encodeURIComponent(sku), { method: 'DELETE' });
+        const next = { ...this.feedback };
+        delete next[sku];
+        this.feedback = next;
+        this.setStatus('↩️ 已撤销标注: ' + sku);
+      } catch (e) {
+        this.setStatus('撤销失败: ' + e.message, true);
+      }
     },
 
     get dpsTripFixed() {

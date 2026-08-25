@@ -307,6 +307,13 @@ CREATE TABLE IF NOT EXISTS execution_orders (
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+CREATE TABLE IF NOT EXISTS sku_feedback (
+    sku TEXT PRIMARY KEY,
+    status TEXT NOT NULL DEFAULT 'bad',        -- 'ok' 能卖 | 'bad' 不OK(从推荐排除)
+    reason TEXT NOT NULL DEFAULT '',           -- 原因: 预设标签或自定义文字
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 """
 
 
@@ -1269,3 +1276,30 @@ def sum_paid_cny_on(conn: sqlite3.Connection, date_iso: str) -> float:
         (date_iso,),
     ).fetchone()
     return round(float(row["total"]), 2)
+
+
+# ---------- SKU 反馈标注 (面板简化: 用户 re 商机机制) ----------
+
+def list_sku_feedback(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    """全部反馈标注, 最新在前."""
+    return list(conn.execute(
+        "SELECT * FROM sku_feedback ORDER BY updated_at DESC"
+    ))
+
+
+def upsert_sku_feedback(conn: sqlite3.Connection, sku: str,
+                        status: str, reason: str = "") -> None:
+    """插入或覆盖一条标注. status: 'ok' | 'bad'."""
+    conn.execute(
+        "INSERT INTO sku_feedback (sku, status, reason, updated_at) "
+        "VALUES (?, ?, ?, ?) "
+        "ON CONFLICT(sku) DO UPDATE SET status = excluded.status, "
+        "reason = excluded.reason, updated_at = excluded.updated_at",
+        (sku, status, reason, _dt.datetime.now().isoformat(timespec="seconds")),
+    )
+    conn.commit()
+
+
+def delete_sku_feedback(conn: sqlite3.Connection, sku: str) -> None:
+    conn.execute("DELETE FROM sku_feedback WHERE sku = ?", (sku,))
+    conn.commit()
