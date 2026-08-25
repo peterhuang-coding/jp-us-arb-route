@@ -2604,3 +2604,21 @@ ol.timeline li::before {
   height: 32px; padding: 0 12px; border-radius: 6px; font-size: 12.5px;
   display: inline-flex; align-items: center; gap: 4px;
 }
+
+/* 一键点开按钮 — 放在 h3/h4 标题行内 */
+.open-all-btn {
+  display: inline-flex; align-items: center; gap: 3px;
+  height: 26px; padding: 0 10px; margin-left: 10px;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  background: var(--card); color: var(--primary);
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  vertical-align: middle;
+}
+.open-all-btn:hover { background: #e8f0fe; border-color: var(--primary); }
+
+/* 看什么表: 4 列显式宽度(覆盖 simple-table 的 nth-child 规则) */
+.simple-table.watch-table td:nth-child(1) { width: 14%; text-align: left; padding-left: 16px; }
+.simple-table.watch-table td:nth-child(2) { width: 20%; text-align: left; }
+.simple-table.watch-table td:nth-child(3) { width: auto; text-align: left; }
+.simple-table.watch-table td:nth-child(4) { width: 26%; text-align: left; padding-right: 12px; }
+.simple-table.watch-table td.links a { padding: 2px 6px; font-size: 11.5px; }

@@ -616,6 +616,26 @@ function app() {
       return (Number(this.tripCostCny) || 0) * fx;
     },
 
+    // ---- 面板简化: 站内锚点先展开「更多工具」, 再让浏览器跳转 ----
+    openTools() {
+      const d = this.$refs.moreTools;
+      if (d) d.open = true;
+    },
+
+    // ---- 面板简化: 一键点开 — 把按钮所在 h3/h4 后面那张表的所有外链全打开 ----
+    openAllLinks(btn) {
+      let node = btn.parentElement.nextElementSibling;
+      let guard = 0;
+      while (node && node.tagName !== 'TABLE' && guard++ < 4) node = node.nextElementSibling;
+      if (!node || node.tagName !== 'TABLE') return;
+      const hrefs = new Set();
+      node.querySelectorAll('a[href]').forEach(a => {
+        const raw = a.getAttribute('href') || '';
+        if (raw.startsWith('http')) hrefs.add(raw);  // 站内锚点(#开头)不打开新标签
+      });
+      hrefs.forEach(url => window.open(url, '_blank'));
+    },
+
     get dpsTripFixed() {
       if (this.tripMode === 'booked' && Number(this.tripCostCny) > 0) return this.tripCostUsd();
       const r = this.routes.find(x => x.name === this.routeName);
