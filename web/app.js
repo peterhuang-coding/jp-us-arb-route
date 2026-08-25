@@ -69,6 +69,10 @@ function app() {
     asyncMode: false,         // false = 现场同步买优先(sync → async → ship)
     shopStopsOpen: false,     // trip banner 采购行的 Day-by-Day stops 折叠/展开
 
+    // ---- M1 panel: 行程状态卡(首页决策入口) ----
+    tripMode: 'none',         // 'none' 还没定行程 | 'booked' 已定好行程
+    tripCostCny: 6000,        // 已定行程时: 一个人交通成本(CNY), 覆盖路线表固定成本
+
     // ---- derived ----
     get currentDetail() {
       return this.selected ? (this.detailCache[this.selected] || null) : null;
@@ -606,7 +610,14 @@ function app() {
       return scored.slice(0, 6);
     },
 
+    // 行程状态卡: 已定行程时用用户填的交通成本(CNY×fx)覆盖路线表固定成本
+    tripCostUsd() {
+      const fx = this.routes.find(x => x.name === this.routeName)?.cn_to_usd_fx || 0.14;
+      return (Number(this.tripCostCny) || 0) * fx;
+    },
+
     get dpsTripFixed() {
+      if (this.tripMode === 'booked' && Number(this.tripCostCny) > 0) return this.tripCostUsd();
       const r = this.routes.find(x => x.name === this.routeName);
       if (!r) return 0;
       return (Number(r.flight_cost_usd || 0)

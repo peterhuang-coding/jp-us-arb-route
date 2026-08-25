@@ -2555,3 +2555,52 @@ ol.timeline li::before {
   .topbar { flex-wrap: wrap; }
   .routepicker, .flightlookup { width: 100%; }
 }
+
+/* ===== 面板简化 (2026-08-25): 行程状态卡 + 更多工具折叠 + 对齐修补 ===== */
+[x-cloak] { display: none !important; }
+
+/* 更多工具折叠区(默认收起) */
+.more-tools { margin: 0 0 28px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); box-shadow: var(--shadow); }
+.more-tools > summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 15px; list-style: none; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; user-select: none; }
+.more-tools > summary::-webkit-details-marker { display: none; }
+.more-tools > summary::before { content: "▸"; display: inline-block; transition: transform 0.15s ease; color: var(--muted); font-size: 13px; }
+.more-tools[open] > summary::before { transform: rotate(90deg); }
+.more-tools > summary .hint { font-weight: 400; color: var(--muted); font-size: 12px; }
+.tools-inner { padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 18px; }
+
+/* 行程状态卡 — 首页决策入口 */
+.trip-mode-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px 16px 16px; margin-bottom: 16px; }
+.tm-options { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0 12px; }
+.tm-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; font-size: 14px; transition: border-color .15s, background .15s; }
+.tm-radio input { accent-color: var(--primary); }
+.tm-radio.on { border-color: var(--primary); background: #e8f0fe; font-weight: 600; }
+.tm-cost { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; font-size: 14px; }
+.tm-input { width: 7em; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 15px; font-weight: 600; }
+.tm-hint { color: var(--muted); font-size: 12.5px; }
+.tm-result h3 { margin: 12px 0 8px; font-size: 15px; }
+.tm-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.tm-table th { text-align: left; color: var(--muted); font-weight: 500; font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.tm-table td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
+.tm-name { font-weight: 600; }
+.tm-table td.ok { color: var(--ok); font-weight: 700; }
+.tm-table td.warn { color: var(--warn); font-weight: 700; }
+.tm-table td.bad { color: var(--bad); font-weight: 700; }
+.tm-table tr:last-child td { border-bottom: none; }
+.tm-footer { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin: 10px 0 6px; font-size: 13.5px; }
+.tm-footer .sep { color: var(--muted); }
+.tm-footer strong { font-size: 15px; }
+.tm-footer .ok { color: var(--ok); }
+.tm-footer .warn { color: var(--warn); }
+.tm-footer .bad { color: var(--bad); }
+.tm-note { color: var(--muted); font-size: 12px; margin: 0; }
+.tm-empty { color: var(--muted); font-size: 13px; margin: 10px 0; }
+
+/* 对齐修补: trip-row 图标与文字垂直居中(baseline → center) */
+.trip-row { align-items: center; }
+.trip-icon { display: inline-flex; align-items: center; justify-content: center; }
+
+/* 按钮统一: 同高同内边距 */
+.weekend-toggle, .refresh-btn, .async-toggle {
+  height: 32px; padding: 0 12px; border-radius: 6px; font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 4px;
+}

@@ -14,167 +14,12 @@
 <body x-data="app()" x-init="init()">
 
   <!-- ============================================================== -->
-  <!-- 1.7) 实时搜索 T2 — buyee + eBay sold + Amazon JP               -->
-  <!-- ============================================================== -->
-  <section class="live-search-section" x-data="liveSearch()" x-init="lsInit()">
-    <header class="section-head">
-      <h2>🔎 实时搜索
-        <span class="hint">输入 SKU 关键字 — 同时搜 buyee / eBay sold / Amazon JP</span>
-      </h2>
-    </header>
-    <div class="ls-input-row">
-      <input type="text" x-model="lsQuery" placeholder="如:pokemon 151 booster box"
-        @keydown.enter="lsSearch()">
-      <button class="primary" @click="lsSearch()" :disabled="lsLoading">
-        <span x-text="lsLoading ? '搜索中…' : '🔍 搜索'"></span>
-      </button>
-    </div>
-
-    <div class="ls-results" x-show="lsResults.buyee !== undefined || lsResults.error">
-      <!-- Buyee -->
-      <div class="ls-source" x-show="lsResults.buyee">
-        <h4>🛒 buyee.jp</h4>
-        <ul x-show="lsResults.buyee && lsResults.buyee.ok">
-          <template x-for="item in (lsResults.buyee?.items || []).slice(0, 5)" :key="item.url">
-            <li>
-              <a :href="item.url" target="_blank" x-text="item.title"></a>
-              <span class="ls-price" x-text="'¥' + (item.price_jpy || 0).toLocaleString()"></span>
-            </li>
-          </template>
-        </ul>
-        <p class="ls-blocked" x-show="lsResults.buyee && lsResults.buyee.blocked">
-          ⚠️ <span x-text="lsResults.buyee?.reason"></span><br>
-          <small>→ 浏览器打开 search URL → View Source → 粘贴到下方</small>
-        </p>
-      </div>
-      <!-- eBay sold -->
-      <div class="ls-source" x-show="lsResults.ebay_sold">
-        <h4>📊 eBay 已售(参考价)</h4>
-        <ul x-show="lsResults.ebay_sold && lsResults.ebay_sold.ok">
-          <template x-for="item in (lsResults.ebay_sold?.items || []).slice(0, 5)" :key="item.url">
-            <li>
-              <a :href="item.url" target="_blank" x-text="item.title"></a>
-              <span class="ls-price" x-text="'$' + (item.price_usd || 0).toFixed(0)"></span>
-            </li>
-          </template>
-        </ul>
-        <p class="ls-blocked" x-show="lsResults.ebay_sold && lsResults.ebay_sold.blocked">
-          ⚠️ <span x-text="lsResults.ebay_sold?.reason"></span>
-        </p>
-      </div>
-      <!-- Amazon JP -->
-      <div class="ls-source" x-show="lsResults.amazon_jp">
-        <h4>🛍️ Amazon JP</h4>
-        <ul x-show="lsResults.amazon_jp && lsResults.amazon_jp.ok">
-          <template x-for="item in (lsResults.amazon_jp?.items || []).slice(0, 5)" :key="item.url">
-            <li>
-              <a :href="item.url" target="_blank" x-text="item.title"></a>
-              <span class="ls-price" x-text="'¥' + (item.price_jpy || 0).toLocaleString()"></span>
-            </li>
-          </template>
-        </ul>
-        <p class="ls-blocked" x-show="lsResults.amazon_jp && lsResults.amazon_jp.blocked">
-          ⚠️ <span x-text="lsResults.amazon_jp?.reason"></span>
-        </p>
-      </div>
-      <div class="ls-error" x-show="lsResults.error" x-text="'❌ ' + lsResults.error"></div>
-    </div>
-
-    <!-- Paste-URL fallback: when search engine blocked our bot -->
-    <details class="ls-paste" x-show="hasBlocked()">
-      <summary>📋 粘贴 HTML 提取(被反爬时备用)</summary>
-      <p class="ls-hint">
-        1) 浏览器打开 search URL → 右键 View Source → Ctrl+A / Cmd+A 全选 → 复制<br>
-        2) 粘贴到下方 → 选来源类型 → 点提取
-      </p>
-      <div class="ls-paste-row">
-        <select x-model="lsPasteSource">
-          <option value="auto">auto-detect</option>
-          <option value="buyee">buyee.jp</option>
-          <option value="ebay">eBay sold</option>
-          <option value="amazon_jp">Amazon JP</option>
-        </select>
-        <button @click="lsExtract()" :disabled="lsPasteLoading || !lsPasteHtml.trim()">
-          <span x-text="lsPasteLoading ? '提取中…' : '🔧 提取'"></span>
-        </button>
-      </div>
-      <textarea x-model="lsPasteHtml" rows="6" placeholder="粘贴 HTML 源码..."
-        style="width:100%;font-family:monospace;font-size:11px;padding:8px;"></textarea>
-      <div class="ls-paste-out" x-show="lsPasteResult?.items?.length">
-        <p>✅ 提取到 <strong x-text="lsPasteResult?.count"></strong> 条</p>
-        <ul>
-          <template x-for="item in (lsPasteResult?.items || []).slice(0, 10)" :key="item.url">
-            <li>
-              <span x-text="item.title"></span>
-              <span class="ls-price" x-text="item.price_jpy ? ('¥' + item.price_jpy.toLocaleString()) : ('$' + (item.price_usd || 0).toFixed(0))"></span>
-            </li>
-          </template>
-        </ul>
-      </div>
-      <div class="ls-error" x-show="lsPasteResult?.reason" x-text="'❌ ' + lsPasteResult.reason"></div>
-    </details>
-  </section>
-
-  <!-- ============================================================== -->
   <!-- 1) STATUS BAR: logo · today's date · KPI counts · server dot  -->
   <!-- ============================================================== -->
   <header class="topbar" :class="{ 'is-offline': !serverOnline }">
     <div class="brand">
       <h1>🌏 jp-us-arb-route</h1>
       <span class="subtitle">跨境差价导购与决策平台 · 5 分钟决定这趟值不值得飞</span>
-    </div>
-    <div class="routepicker" @keydown.enter="refetch()">
-      <label>出发城市
-        <select x-model="origin" :title="visibleRoutes().map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
-          <template x-for="r in visibleRoutes()" :key="r.name + '-origin'">
-            <option :value="r.origin_city"
-              :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
-              x-text="r.origin_city + (weekendMatch(r) ? ' 🌙' : '') + ' · 固定 ' + routeFixed(r)"></option>
-          </template>
-        </select>
-      </label>
-      <label>目的城市
-        <select x-model="dest" :title="visibleRoutes().map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
-          <template x-for="r in visibleRoutes()" :key="r.name + '-dest'">
-            <option :value="r.dest_city"
-              :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
-              x-text="r.dest_city + (weekendMatch(r) ? ' 🌙' : '') + ' · 固定 ' + routeFixed(r)"></option>
-          </template>
-        </select>
-      </label>
-    </div>
-    <div class="flightlookup" @keydown.enter="searchFlight()">
-      <label>✈️ 实时机票
-        <input type="text" x-model="flightOrigin" placeholder="PVG" maxlength="3" style="width:3.5em;text-transform:uppercase">
-        <span>→</span>
-        <input type="text" x-model="flightDest" placeholder="LAX" maxlength="3" style="width:3.5em;text-transform:uppercase">
-        <input type="date" x-model="flightDate" :min="today">
-        <button @click="searchFlight()" :disabled="flightLoading"
-          :title="flightHint || '点击查询 Amadeus 实时报价 (需 AMADEUS_CLIENT_ID/SECRET)'"
-          x-text="flightLoading ? '查询中…' : '查价'"></button>
-      </label>
-      <div class="flight-result" x-show="flightResult" x-cloak>
-        <template x-if="flightResult && flightResult.ok === false">
-          <div class="flight-stub">
-            <strong>⚠️ 未配置凭证</strong>
-            <small x-text="flightResult.hint || '设置 AMADEUS_CLIENT_ID/SECRET 后重启 server'"></small>
-          </div>
-        </template>
-        <template x-if="flightResult && flightResult.ok !== false && flightResult.offers">
-          <div class="flight-offers">
-            <small>Top <span x-text="flightResult.offers.length"></span> 报价</small>
-            <ol>
-              <template x-for="(off, i) in flightResult.offers.slice(0, 3)" :key="i">
-                <li>
-                  <strong x-text="off.currency + ' ' + off.price_total.toFixed(0)"></strong>
-                  <span x-text="(off.validating_carrier || '-') + ' · ' + off.num_stops + ' 段 · ' + off.itinerary_summary"></span>
-                </li>
-              </template>
-            </ol>
-            <small x-show="flightResult.cached" class="muted">(cached)</small>
-          </div>
-        </template>
-      </div>
     </div>
     <div class="status-summary">
       <span class="kpi"><strong x-text="opportunities.length"></strong> 商机</span>
@@ -330,6 +175,232 @@
       </ul>
     </details>
   </section>
+
+  <!-- ============================================================== -->
+  <!-- 1.6) 行程状态卡 — 首页决策入口: 没行程 / 已定行程+交通成本→ROI   -->
+  <!-- ============================================================== -->
+  <section class="trip-mode-card">
+    <header class="section-head">
+      <h2>✈️ 这趟怎么定？</h2>
+    </header>
+    <div class="tm-options">
+      <label class="tm-radio" :class="{ on: tripMode === 'none' }">
+        <input type="radio" name="tripMode" value="none" x-model="tripMode">
+        <span>🧭 还没定行程 — 先看「今日买什么」</span>
+      </label>
+      <label class="tm-radio" :class="{ on: tripMode === 'booked' }">
+        <input type="radio" name="tripMode" value="booked" x-model="tripMode">
+        <span>🛫 已定好行程 — 算这趟带什么回来</span>
+      </label>
+    </div>
+
+    <div class="tm-cost" x-show="tripMode === 'booked'" x-cloak>
+      <label>一个人交通成本 ¥
+        <input type="number" min="0" step="100" x-model.number="tripCostCny" class="tm-input">
+      </label>
+      <span class="tm-hint" x-show="Number(tripCostCny) > 0">
+        ≈ $<span x-text="tripCostUsd().toFixed(0)"></span>，回本要净赚这么多
+      </span>
+    </div>
+
+    <div class="tm-result" x-show="tripMode === 'booked' && dpsPicks.length" x-cloak>
+      <h3>💰 这趟带回来 ROI 最高：</h3>
+      <table class="tm-table">
+        <thead><tr><th>#</th><th>买什么</th><th>单件净利</th><th>ROI</th><th>带几件</th></tr></thead>
+        <tbody>
+          <template x-for="(p, i) in dpsPicks" :key="'tm-' + p.sku">
+            <tr>
+              <td x-text="i + 1"></td>
+              <td class="tm-name" x-text="p.name"></td>
+              <td x-text="'$' + p.unitNet.toFixed(0)"></td>
+              <td class="tm-roi" :class="roiClass(p.roiPct)" x-text="p.roiPct.toFixed(0) + '%'"></td>
+              <td x-text="p.numUnits + ' 件'"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="tm-footer">
+        <span>搬运净赚 <strong x-text="'$' + dpsTotalNet.toFixed(0)"></strong></span>
+        <span class="sep">·</span>
+        <span>回本率
+          <strong :class="dpsPayback >= 100 ? 'ok' : (dpsPayback >= 50 ? 'warn' : 'bad')"
+            x-text="dpsPayback.toFixed(0) + '%'"></strong>
+        </span>
+        <span class="sep">·</span>
+        <span>真净赚
+          <strong :class="dpsTrueNet > 0 ? 'ok' : 'bad'" x-text="'$' + dpsTrueNet.toFixed(0)"></strong>
+        </span>
+      </div>
+      <p class="tm-note">清单按转售口径 ROI 排序(含平台费/关税/物流)；真净赚已扣个人成本(请假/住宿)。</p>
+    </div>
+    <p class="tm-empty" x-show="tripMode === 'booked' && !dpsPicks.length" x-cloak>
+      当前路线下暂无可用 SKU 数据 — 去「更多工具」里看看商机列表。
+    </p>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 更多工具 — 折叠区(默认收起): 路线/机票 · 实时搜索 · 库存 · 行程   -->
+  <!-- 搬运清单 · 额度最优 · 主推 · 预警 · 全部 SKU                     -->
+  <!-- ============================================================== -->
+  <details class="more-tools" id="moreTools">
+    <summary>🔧 更多工具
+      <span class="hint">路线/机票 · 实时搜索 · 库存 · 行程规划 · 搬运清单 · 额度 · 主推 · 预警 · 全部 SKU</span>
+    </summary>
+    <div class="tools-inner">
+
+      <div class="routepicker" @keydown.enter="refetch()">
+        <label>出发城市
+          <select x-model="origin" :title="visibleRoutes().map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
+            <template x-for="r in visibleRoutes()" :key="r.name + '-origin'">
+              <option :value="r.origin_city"
+                :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
+                x-text="r.origin_city + (weekendMatch(r) ? ' 🌙' : '') + ' · 固定 ' + routeFixed(r)"></option>
+            </template>
+          </select>
+        </label>
+        <label>目的城市
+          <select x-model="dest" :title="visibleRoutes().map(r => r.origin_city + ' → ' + r.dest_city + ' · 固定 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')').join('\n')">
+            <template x-for="r in visibleRoutes()" :key="r.name + '-dest'">
+              <option :value="r.dest_city"
+                :title="'固定成本 ' + routeFixed(r) + ' (' + routeFixedBreakdown(r) + ')'"
+                x-text="r.dest_city + (weekendMatch(r) ? ' 🌙' : '') + ' · 固定 ' + routeFixed(r)"></option>
+            </template>
+          </select>
+        </label>
+      </div>
+
+      <div class="flightlookup" @keydown.enter="searchFlight()">
+        <label>✈️ 实时机票
+          <input type="text" x-model="flightOrigin" placeholder="PVG" maxlength="3" style="width:3.5em;text-transform:uppercase">
+          <span>→</span>
+          <input type="text" x-model="flightDest" placeholder="LAX" maxlength="3" style="width:3.5em;text-transform:uppercase">
+          <input type="date" x-model="flightDate" :min="todayLabel">
+          <button @click="searchFlight()" :disabled="flightLoading"
+            :title="flightHint || '点击查询 Amadeus 实时报价 (需 AMADEUS_CLIENT_ID/SECRET)'"
+            x-text="flightLoading ? '查询中…' : '查价'"></button>
+        </label>
+        <div class="flight-result" x-show="flightResult" x-cloak>
+          <template x-if="flightResult && flightResult.ok === false">
+            <div class="flight-stub">
+              <strong>⚠️ 未配置凭证</strong>
+              <small x-text="flightResult.hint || '设置 AMADEUS_CLIENT_ID/SECRET 后重启 server'"></small>
+            </div>
+          </template>
+          <template x-if="flightResult && flightResult.ok !== false && flightResult.offers">
+            <div class="flight-offers">
+              <small>Top <span x-text="flightResult.offers.length"></span> 报价</small>
+              <ol>
+                <template x-for="(off, i) in flightResult.offers.slice(0, 3)" :key="i">
+                  <li>
+                    <strong x-text="off.currency + ' ' + off.price_total.toFixed(0)"></strong>
+                    <span x-text="(off.validating_carrier || '-') + ' · ' + off.num_stops + ' 段 · ' + off.itinerary_summary"></span>
+                  </li>
+                </template>
+              </ol>
+              <small x-show="flightResult.cached" class="muted">(cached)</small>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <section class="live-search-section" x-data="liveSearch()" x-init="lsInit()">
+        <header class="section-head">
+          <h2>🔎 实时搜索
+            <span class="hint">输入 SKU 关键字 — 同时搜 buyee / eBay sold / Amazon JP</span>
+          </h2>
+        </header>
+        <div class="ls-input-row">
+          <input type="text" x-model="lsQuery" placeholder="如:pokemon 151 booster box"
+            @keydown.enter="lsSearch()">
+          <button class="primary" @click="lsSearch()" :disabled="lsLoading">
+            <span x-text="lsLoading ? '搜索中…' : '🔍 搜索'"></span>
+          </button>
+        </div>
+
+        <div class="ls-results" x-show="lsResults.buyee !== undefined || lsResults.error">
+          <!-- Buyee -->
+          <div class="ls-source" x-show="lsResults.buyee">
+            <h4>🛒 buyee.jp</h4>
+            <ul x-show="lsResults.buyee && lsResults.buyee.ok">
+              <template x-for="item in (lsResults.buyee?.items || []).slice(0, 5)" :key="item.url">
+                <li>
+                  <a :href="item.url" target="_blank" x-text="item.title"></a>
+                  <span class="ls-price" x-text="'¥' + (item.price_jpy || 0).toLocaleString()"></span>
+                </li>
+              </template>
+            </ul>
+            <p class="ls-blocked" x-show="lsResults.buyee && lsResults.buyee.blocked">
+              ⚠️ <span x-text="lsResults.buyee?.reason"></span><br>
+              <small>→ 浏览器打开 search URL → View Source → 粘贴到下方</small>
+            </p>
+          </div>
+          <!-- eBay sold -->
+          <div class="ls-source" x-show="lsResults.ebay_sold">
+            <h4>📊 eBay 已售(参考价)</h4>
+            <ul x-show="lsResults.ebay_sold && lsResults.ebay_sold.ok">
+              <template x-for="item in (lsResults.ebay_sold?.items || []).slice(0, 5)" :key="item.url">
+                <li>
+                  <a :href="item.url" target="_blank" x-text="item.title"></a>
+                  <span class="ls-price" x-text="'$' + (item.price_usd || 0).toFixed(0)"></span>
+                </li>
+              </template>
+            </ul>
+            <p class="ls-blocked" x-show="lsResults.ebay_sold && lsResults.ebay_sold.blocked">
+              ⚠️ <span x-text="lsResults.ebay_sold?.reason"></span>
+            </p>
+          </div>
+          <!-- Amazon JP -->
+          <div class="ls-source" x-show="lsResults.amazon_jp">
+            <h4>🛍️ Amazon JP</h4>
+            <ul x-show="lsResults.amazon_jp && lsResults.amazon_jp.ok">
+              <template x-for="item in (lsResults.amazon_jp?.items || []).slice(0, 5)" :key="item.url">
+                <li>
+                  <a :href="item.url" target="_blank" x-text="item.title"></a>
+                  <span class="ls-price" x-text="'¥' + (item.price_jpy || 0).toLocaleString()"></span>
+                </li>
+              </template>
+            </ul>
+            <p class="ls-blocked" x-show="lsResults.amazon_jp && lsResults.amazon_jp.blocked">
+              ⚠️ <span x-text="lsResults.amazon_jp?.reason"></span>
+            </p>
+          </div>
+          <div class="ls-error" x-show="lsResults.error" x-text="'❌ ' + lsResults.error"></div>
+        </div>
+
+        <!-- Paste-URL fallback: when search engine blocked our bot -->
+        <details class="ls-paste" x-show="hasBlocked()">
+          <summary>📋 粘贴 HTML 提取(被反爬时备用)</summary>
+          <p class="ls-hint">
+            1) 浏览器打开 search URL → 右键 View Source → Ctrl+A / Cmd+A 全选 → 复制<br>
+            2) 粘贴到下方 → 选来源类型 → 点提取
+          </p>
+          <div class="ls-paste-row">
+            <select x-model="lsPasteSource">
+              <option value="auto">auto-detect</option>
+              <option value="buyee">buyee.jp</option>
+              <option value="ebay">eBay sold</option>
+              <option value="amazon_jp">Amazon JP</option>
+            </select>
+            <button @click="lsExtract()" :disabled="lsPasteLoading || !lsPasteHtml.trim()">
+              <span x-text="lsPasteLoading ? '提取中…' : '🔧 提取'"></span>
+            </button>
+          </div>
+          <textarea x-model="lsPasteHtml" rows="6" placeholder="粘贴 HTML 源码..."
+            style="width:100%;font-family:monospace;font-size:11px;padding:8px;"></textarea>
+          <div class="ls-paste-out" x-show="lsPasteResult?.items?.length">
+            <p>✅ 提取到 <strong x-text="lsPasteResult?.count"></strong> 条</p>
+            <ul>
+              <template x-for="item in (lsPasteResult?.items || []).slice(0, 10)" :key="item.url">
+                <li>
+                  <span x-text="item.title"></span>
+                  <span class="ls-price" x-text="item.price_jpy ? ('¥' + item.price_jpy.toLocaleString()) : ('$' + (item.price_usd || 0).toFixed(0))"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+          <div class="ls-error" x-show="lsPasteResult?.reason" x-text="'❌ ' + lsPasteResult.reason"></div>
+        </details>
+      </section>
 
   <!-- ============================================================== -->
   <!-- 1.56) 我的库存 (Round 25) — 哥们仓 + 在途 + 已上架              -->
@@ -1014,6 +1085,9 @@
       </ul>
     </section>
   </section>
+
+    </div>
+  </details>
 
   <!-- ============================================================== -->
   <!-- 4) DECISION DETAIL: full-width selected opportunity            -->
