@@ -1376,14 +1376,38 @@ function app() {
       return cost > 0 ? net / cost * 100 : 0;
     },
 
+    // 品类粗桶: 数据里的 category 每件货都不同, 按关键词聚合才有图谱意义
+    graphBucket(category, name) {
+      const text = ((category || '') + ' ' + (name || '')).toLowerCase();
+      const rules = [
+        ['卡牌/宝可梦', ['pokemon', 'psa', 'booster', 'charizard', '宝可梦', '卡牌', 'card'], false],
+        ['手办/动漫周边', ['手办', '一番赏', 'kuji', 'figure', 'anime', 'demon', 'slayer',
+          'one piece', '海贼', '鬼灭', '咒术', '高达', 'gundam', '周边', 'popcorn', 'usj'], false],
+        ['药妆/美妆', ['药妆', '资生堂', 'sk-ii', 'sk2', '安耐晒', 'albion', 'cream',
+          'pabron', '感冒药', '化妆品', 'elixir', '美妆'], false],
+        ['小家电', ['dyson', '吹风机', '牙刷', '家电'], false],
+        ['保温杯/水具', ['保温', '象印', 'zojirushi', '水杯', 'thermos'], false],
+        ['中古/游戏机', ['中古', 'ps vita', 'ps5', 'switch', 'game boy', '游戏机', 'hard off'], false],
+        ['游戏周边', ['nintendo', 'famicom', '手柄', 'controller', '任天堂', 'plush', '毛绒', 'fit'], false],
+        ['服饰/潮牌', ['tee', 'human made', '服饰', 'sneaker', 'nike', 'sacai', '衣服', '卫衣'], false],
+        ['数字SKU', ['steam', 'itunes', 'eshop', '礼品卡', '会员', 'psn', 'spotify', '漫画'], false],
+        ['文创/礼品', ['茶', '瓷器', '丝绸', '玉', '折扇', '梳', '铜镜', '毛笔', '字画', '结', '礼盒'], false],
+        ['免税酒(红线)', ['spirits', 'whisky', '威士忌', '山崎', '響', '白州'], true],
+        ['烟(红线)', ['烟', '烟草', '雪茄'], true],
+      ];
+      for (const [label, kws, banned] of rules) {
+        if (kws.some(k => text.includes(k))) return { label, banned };
+      }
+      return { label: '其他', banned: false };
+    },
+
     get categoryGraph() {
-      const banned = ['spirits', 'whisky', '威士忌', '酒', '烟', '烟草', '肉', '水果', '种子', '假名牌'];
       const cats = {};
-      const add = (key, name, roiPct, fbStatus, kind) => {
-        const c = cats[key] || (cats[key] = {
-          key, name: name || key, skus: [], roiSum: 0, roiN: 0, ok: 0, bad: 0,
-          banned: banned.some(t =>
-            (name || '').toLowerCase().includes(t) || (key || '').toLowerCase().includes(t)),
+      const add = (category, name, roiPct, fbStatus, kind) => {
+        const { label, banned } = this.graphBucket(category, name);
+        const c = cats[label] || (cats[label] = {
+          key: label, name: label, skus: [], roiSum: 0, roiN: 0,
+          ok: 0, bad: 0, banned,
         });
         c.skus.push({ name, roiPct, fbStatus, kind });
         if (roiPct != null && isFinite(roiPct)) { c.roiSum += roiPct; c.roiN += 1; }
@@ -1391,12 +1415,12 @@ function app() {
         if (fbStatus === 'bad') c.bad += 1;
       };
       (this.opportunities || []).forEach(o => {
-        add(o.category || '未分类', o.name, this.oppRoi(o),
+        add(o.category || '', o.name, this.oppRoi(o),
             this.feedback[o.sku]?.status || null, 'opp');
       });
       (this.candidates || []).forEach(c => {
         if (c.status !== 'candidate' && c.status !== 'testing') return;
-        add(c.category || '未分类', c.name, this.candRoi(c), null, 'cand');
+        add(c.category || '', c.name, this.candRoi(c), null, 'cand');
       });
       return Object.values(cats).map(c => {
         const avg = c.roiN ? c.roiSum / c.roiN : 0;
