@@ -959,6 +959,89 @@ def feedback_delete(sku: str):
         conn.close()
 
 
+# ---------- SKU 实测闭环 (候选池 → 实测 → 能卖/淘汰) ----------
+
+class CandidateIn(BaseModel):
+    sku: str | None = None
+    name: str
+    category: str = ""
+    buy_price_usd: float = 0.0
+    sell_price_usd: float = 0.0
+    source_market: str = ""
+    target_market: str = ""
+    evidence: list[dict] = []
+    reason: str = ""
+
+
+class CandidateStatusIn(BaseModel):
+    status: str            # testing | ok | bad | candidate
+    reason: str = ""
+
+
+def _candidate_out(row) -> dict:
+    d = dict(row)
+    try:
+        d["evidence"] = json.loads(d.get("evidence") or "[]")
+    except (ValueError, TypeError):
+        d["evidence"] = []
+    return d
+
+
+@app.get("/api/candidates", response_model=list[dict])
+def candidates_list(status: Optional[str] = None):
+    conn = db.connect()
+    try:
+        return [_candidate_out(r) for r in db.list_sku_candidates(conn, status)]
+    finally:
+        conn.close()
+
+
+@app.post("/api/candidates", response_model=dict)
+def candidates_create(req: CandidateIn):
+    conn = db.connect()
+    try:
+        cid = db.create_sku_candidate(conn, {
+            "sku": req.sku, "name": req.name, "category": req.category,
+            "buy_price_usd": req.buy_price_usd, "sell_price_usd": req.sell_price_usd,
+            "source_market": req.source_market, "target_market": req.target_market,
+            "evidence": req.evidence, "reason": req.reason,
+        })
+        row = conn.execute(
+            "SELECT * FROM sku_candidates WHERE id = ?", (cid,)
+        ).fetchone()
+        return _candidate_out(row)
+    finally:
+        conn.close()
+
+
+@app.post("/api/candidates/{cid}/status", response_model=dict)
+def candidates_status(cid: int, req: CandidateStatusIn):
+    if req.status not in ("candidate", "testing", "ok", "bad"):
+        raise HTTPException(
+            status_code=422,
+            detail="status must be one of candidate/testing/ok/bad",
+        )
+    conn = db.connect()
+    try:
+        if req.status == "ok":
+            row = db.promote_candidate(conn, cid, req.reason.strip()[:200])
+            if row is None:
+                raise HTTPException(status_code=404, detail=f"candidate {cid} not found")
+        else:
+            row = conn.execute(
+                "SELECT * FROM sku_candidates WHERE id = ?", (cid,)
+            ).fetchone()
+            if row is None:
+                raise HTTPException(status_code=404, detail=f"candidate {cid} not found")
+            db.set_candidate_status(conn, cid, req.status, req.reason.strip()[:200])
+            row = conn.execute(
+                "SELECT * FROM sku_candidates WHERE id = ?", (cid,)
+            ).fetchone()
+        return _candidate_out(row)
+    finally:
+        conn.close()
+
+
 # ---------- Round 24 static SPA mounted last so /api/* wins ----------
 
 if WEB_DIR.exists():

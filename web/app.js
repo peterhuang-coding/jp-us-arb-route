@@ -79,6 +79,9 @@ function app() {
     fbReason: '',             // 原因输入框内容
     fbPresets: ['卖不动', '利润太低', '竞争太大', '禁售风险', '物流麻烦', '渠道不符'],
 
+    // ---- SKU 实测闭环: 候选池 ----
+    candidates: [],           // [{id, name, status: candidate|testing|ok|bad, ...}]
+
     // ---- derived ----
     get currentDetail() {
       return this.selected ? (this.detailCache[this.selected] || null) : null;
@@ -299,6 +302,11 @@ function app() {
             (Array.isArray(rows) ? rows : []).forEach(f => { m[f.sku] = f; });
             this.feedback = m;
           })
+          .catch(() => {});
+        // SKU 实测闭环: 候选池
+        fetch('/api/candidates')
+          .then(r => r.ok ? r.json() : [])
+          .then(rows => { this.candidates = Array.isArray(rows) ? rows : []; })
           .catch(() => {});
       }
 
@@ -704,6 +712,45 @@ function app() {
         this.setStatus('↩️ 已撤销标注: ' + sku);
       } catch (e) {
         this.setStatus('撤销失败: ' + e.message, true);
+      }
+    },
+
+    // ---- SKU 实测闭环: 候选池 ----
+    get candActive() {
+      return this.candidates.filter(c => c.status === 'candidate' || c.status === 'testing');
+    },
+    get candBad() {
+      return this.candidates.filter(c => c.status === 'bad');
+    },
+    get candOk() {
+      return this.candidates.filter(c => c.status === 'ok');
+    },
+    candRoi(c) {
+      if (!c || !(Number(c.buy_price_usd) > 0)) return 0;
+      return (Number(c.sell_price_usd) - Number(c.buy_price_usd)) / Number(c.buy_price_usd) * 100;
+    },
+    async candStatus(cid, status, reason = '') {
+      try {
+        const r = await fetch('/api/candidates/' + cid + '/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status, reason }),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const updated = await r.json();
+        this.candidates = this.candidates.map(c => c.id === cid ? updated : c);
+        if (status === 'ok') {
+          // 转正后立刻刷新商机, 让新 SKU 进 ROI 推荐
+          const opps = await fetch('/api/opportunities').then(x => x.ok ? x.json() : null);
+          if (opps) this.opportunities = opps;
+          this.setStatus('✅ 候选转正, 已进商机池: ' + updated.name);
+        } else if (status === 'bad') {
+          this.setStatus('❌ 已淘汰候选: ' + updated.name);
+        } else if (status === 'testing') {
+          this.setStatus('🛍 去实测: ' + updated.name + ' — 买回来试完回来标 👍/👎');
+        }
+      } catch (e) {
+        this.setStatus('候选状态更新失败: ' + e.message, true);
       }
     },
 

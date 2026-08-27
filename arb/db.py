@@ -314,6 +314,22 @@ CREATE TABLE IF NOT EXISTS sku_feedback (
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+CREATE TABLE IF NOT EXISTS sku_candidates (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sku TEXT,                                  -- 转正后回填 opportunities.sku
+    name TEXT NOT NULL,
+    category TEXT NOT NULL DEFAULT '',
+    buy_price_usd REAL NOT NULL DEFAULT 0,     -- 参考进价
+    sell_price_usd REAL NOT NULL DEFAULT 0,    -- 参考卖价
+    source_market TEXT NOT NULL DEFAULT '',    -- 在哪买
+    target_market TEXT NOT NULL DEFAULT '',    -- 卖到哪
+    evidence TEXT NOT NULL DEFAULT '[]',       -- JSON: [{label, url, side: 'buy'|'sell'}]
+    status TEXT NOT NULL DEFAULT 'candidate',  -- candidate | testing | ok | bad
+    reason TEXT NOT NULL DEFAULT '',           -- bad 时的淘汰原因
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 """
 
 
@@ -1303,3 +1319,106 @@ def upsert_sku_feedback(conn: sqlite3.Connection, sku: str,
 def delete_sku_feedback(conn: sqlite3.Connection, sku: str) -> None:
     conn.execute("DELETE FROM sku_feedback WHERE sku = ?", (sku,))
     conn.commit()
+
+
+# ---------- SKU 实测闭环 (候选池 → 实测 → 能卖/淘汰) ----------
+
+CANDIDATE_FIELDS = ("sku", "name", "category", "buy_price_usd", "sell_price_usd",
+                    "source_market", "target_market", "evidence", "status", "reason")
+
+
+def list_sku_candidates(conn: sqlite3.Connection,
+                        status: str | None = None) -> list[sqlite3.Row]:
+    """候选列表, 新到旧. status 可选过滤."""
+    sql = "SELECT * FROM sku_candidates"
+    params: tuple = ()
+    if status is not None:
+        sql += " WHERE status = ?"
+        params = (status,)
+    sql += " ORDER BY id DESC"
+    return list(conn.execute(sql, params))
+
+
+def create_sku_candidate(conn: sqlite3.Connection, row: dict) -> int:
+    """Insert one candidate. Unknown keys ignored. evidence 传 list 自动 JSON 化."""
+    values = {k: row[k] for k in CANDIDATE_FIELDS if k in row}
+    if "name" not in values:
+        raise ValueError("create_sku_candidate: name 必填")
+    if isinstance(values.get("evidence"), list):
+        values["evidence"] = json.dumps(values["evidence"], ensure_ascii=False)
+    cols = ", ".join(values)
+    marks = ", ".join("?" for _ in values)
+    cur = conn.execute(
+        f"INSERT INTO sku_candidates ({cols}) VALUES ({marks})",
+        tuple(values.values()),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def set_candidate_status(conn: sqlite3.Connection, cid: int,
+                         status: str, reason: str = "") -> None:
+    conn.execute(
+        "UPDATE sku_candidates SET status = ?, reason = ?, "
+        "updated_at = ? WHERE id = ?",
+        (status, reason,
+         _dt.datetime.now().isoformat(timespec="seconds"), cid),
+    )
+    conn.commit()
+
+
+def promote_candidate(conn: sqlite3.Connection, cid: int,
+                      reason: str = "") -> sqlite3.Row | None:
+    """转正: 候选写入 opportunities(带渠道), 状态置 ok 并回填 sku.
+    候选已带 sku 且已存在同名 opportunity 时跳过写入(幂等)."""
+    row = conn.execute(
+        "SELECT * FROM sku_candidates WHERE id = ?", (cid,)
+    ).fetchone()
+    if row is None:
+        return None
+
+    sku = row["sku"] or f"CAND-{cid}"
+    evidence = []
+    try:
+        evidence = json.loads(row["evidence"] or "[]")
+    except (ValueError, TypeError):
+        evidence = []
+
+    buy_urls = [e.get("url", "") for e in evidence
+                if e.get("side") == "buy" and e.get("url")]
+    sell_urls = [e.get("url", "") for e in evidence
+                 if e.get("side") == "sell" and e.get("url")]
+
+    exists = conn.execute(
+        "SELECT 1 FROM opportunities WHERE sku = ?", (sku,)
+    ).fetchone()
+    if exists is None:
+        purchase_channels = json.dumps(
+            [{"name": row["source_market"] or "货源", "url": buy_urls[0] if buy_urls else "",
+              "type": "offline", "fulfillment": "sync", "anchor": True}],
+            ensure_ascii=False,
+        )
+        sell_channels = json.dumps(
+            [{"name": row["target_market"] or "销售渠道", "url": sell_urls[0] if sell_urls else "",
+              "type": "offline", "fulfillment": "sync", "anchor": True}],
+            ensure_ascii=False,
+        )
+        conn.execute(
+            "INSERT INTO opportunities (sku, name, category, source_market, target_market, "
+            "purchase_price_usd, sell_price_usd, purchase_source_url, sell_source_url, "
+            "notes, data_freshness_ts, verified, purchase_channels, sell_channels) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?)",
+            (sku, row["name"], row["category"] or "候选转正",
+             row["source_market"] or "JP", row["target_market"] or "eBay",
+             row["buy_price_usd"], row["sell_price_usd"],
+             buy_urls[0] if buy_urls else "",
+             sell_urls[0] if sell_urls else "",
+             "候选转正(用户实测能卖)",
+             _dt.date.today().isoformat(),
+             purchase_channels, sell_channels),
+        )
+
+    set_candidate_status(conn, cid, "ok", reason)
+    return conn.execute(
+        "SELECT * FROM sku_candidates WHERE id = ?", (cid,)
+    ).fetchone()

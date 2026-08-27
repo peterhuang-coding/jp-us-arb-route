@@ -959,6 +959,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_tax_get.add_argument("--sku", required=True)
     p_tax_get.add_argument("--json", action="store_true")
 
+    # SKU 实测闭环: 候选池
+    p_cand = sub.add_parser("candidates", help="SKU 实测闭环候选池 (找SKU→实测→能卖/淘汰)")
+    cand_sub = p_cand.add_subparsers(dest="candidates_cmd", required=True)
+    p_cand_import = cand_sub.add_parser("import", help="从 JSON 文件批量导入候选")
+    p_cand_import.add_argument("file", help="JSON 数组文件: [{name, category?, buy_price_usd, sell_price_usd, source_market?, target_market?, evidence?, sku?}]")
+    p_cand_list = cand_sub.add_parser("list", help="列出候选")
+    p_cand_list.add_argument("--status", choices=["candidate", "testing", "ok", "bad"])
+    p_cand_list.add_argument("--json", action="store_true")
+
     return p
 
 
@@ -1109,6 +1118,38 @@ def cmd_returns(args):
 
 # ---------- Round 25 / M0: cmd_execution ----------
 
+def cmd_candidates(args):
+    """SKU 实测闭环: 候选池 import/list."""
+    sub = args.candidates_cmd
+    conn = db.connect()
+    try:
+        if sub == "import":
+            with open(args.file, encoding="utf-8") as f:
+                items = json.load(f)
+            created = []
+            for row in items:
+                if not isinstance(row, dict) or not row.get("name"):
+                    print(f"skip 缺 name: {row}", file=sys.stderr)
+                    continue
+                cid = db.create_sku_candidate(conn, row)
+                created.append(cid)
+            print(f"导入 {len(created)} 条候选 (IDs: {created})")
+            return 0
+        if sub == "list":
+            rows = db.list_sku_candidates(conn, status=args.status)
+            for r in rows:
+                status_icon = {"candidate": "🎯", "testing": "🛍", "ok": "✅", "bad": "❌"}.get(r["status"], "·")
+                print(f"  #{r['id']} {status_icon} [{r['status']}] {r['name']} "
+                      f"进${r['buy_price_usd']:.0f}→卖${r['sell_price_usd']:.0f} "
+                      f"({r['source_market']} → {r['target_market']})")
+                if r["reason"]:
+                    print(f"        理由: {r['reason']}")
+            return 0
+    finally:
+        conn.close()
+    return 2
+
+
 def cmd_execution(args):
     from arb.execution.adapters.dryrun import DryRunBuyAdapter, DryRunSellAdapter
     from arb.execution.notify import NullNotifier
@@ -1217,6 +1258,7 @@ def main(argv: list[str] | None = None) -> int:
         "returns": cmd_returns,
         "execution": cmd_execution,
         "tax": cmd_tax,
+        "candidates": cmd_candidates,
     }.get(args.cmd)
     if handler is None:
         return 2

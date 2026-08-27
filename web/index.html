@@ -299,6 +299,83 @@
   </section>
 
   <!-- ============================================================== -->
+  <!-- SKU 实测闭环: 候选池 — 我找的货, 等你实测 (找SKU→实测→能卖/淘汰)  -->
+  <!-- ============================================================== -->
+  <section class="cand-section">
+    <header class="section-head">
+      <h2>🎯 候选 SKU
+        <span class="hint">我找的货 · 你拿去实测 — 能卖转正进推荐, 不OK淘汰</span>
+      </h2>
+      <span class="count-pill" x-text="candActive.length + ' 条待实测'"></span>
+    </header>
+
+    <div class="cand-grid" x-show="candActive.length" x-cloak>
+      <template x-for="c in candActive" :key="'cand-' + c.id">
+        <article class="cand-card" :class="{ testing: c.status === 'testing' }">
+          <div class="cand-head">
+            <h3 x-text="c.name"></h3>
+            <span class="cand-status" :class="c.status"
+              x-text="c.status === 'testing' ? '🛍 实测中' : '🎯 候选'"></span>
+          </div>
+          <div class="cand-meta">
+            <span class="cand-cat" x-text="c.category || '未分类'"></span>
+            <span class="cand-route" x-show="c.source_market || c.target_market"
+              x-text="c.source_market + ' → ' + c.target_market"></span>
+          </div>
+          <div class="cand-numbers">
+            <span>参考进价 $<strong x-text="Number(c.buy_price_usd).toFixed(0)"></strong></span>
+            <span>参考卖价 $<strong x-text="Number(c.sell_price_usd).toFixed(0)"></strong></span>
+            <span class="cand-roi" :class="roiClass(candRoi(c))"
+              x-text="'ROI ' + candRoi(c).toFixed(0) + '%'"></span>
+          </div>
+          <div class="cand-evidence" x-show="c.evidence && c.evidence.length">
+            <template x-for="ev in (c.evidence || [])" :key="'ev-' + c.id + '-' + (ev.label || '')">
+              <a :href="ev.url" target="_blank" rel="noopener"
+                :title="ev.label" x-text="(ev.side === 'buy' ? '🛒' : '📊') + ' ' + (ev.label || '链接')"></a>
+            </template>
+          </div>
+          <div class="cand-actions">
+            <button x-show="c.status === 'candidate'" class="cand-btn testing"
+              @click="candStatus(c.id, 'testing')">🛍 去实测</button>
+            <button x-show="c.status === 'testing'" class="cand-btn ok"
+              @click="candStatus(c.id, 'ok', '实测能卖')">👍 实测能卖 · 转正</button>
+            <button x-show="c.status === 'testing'" class="cand-btn bad"
+              @click="candStatus(c.id, 'bad', '实测不OK')">👎 实测不OK · 淘汰</button>
+            <button x-show="c.status === 'candidate'" class="cand-btn bad"
+              @click="candStatus(c.id, 'bad', '调研后放弃')">👎 放弃</button>
+          </div>
+        </article>
+      </template>
+    </div>
+    <p class="tm-empty" x-show="!candActive.length && !candBad.length && !candOk.length" x-cloak>
+      候选池是空的 — 等 Claude 扫完货就往里填。
+    </p>
+
+    <details class="tm-excluded" x-show="candBad.length" x-cloak>
+      <summary>❌ 已淘汰 <span x-text="candBad.length"></span> 条 · 点开可撤销</summary>
+      <ul>
+        <template x-for="c in candBad" :key="'cbad-' + c.id">
+          <li>
+            <span x-text="c.name"></span>
+            <span class="tm-ex-reason" x-text="c.reason || '未填原因'"></span>
+            <button class="fb-mini undo" @click="candStatus(c.id, 'candidate')"
+              title="撤销淘汰, 回到候选">↩ 撤销</button>
+          </li>
+        </template>
+      </ul>
+    </details>
+
+    <details class="tm-excluded ok" x-show="candOk.length" x-cloak>
+      <summary>✅ 已转正 <span x-text="candOk.length"></span> 条 — 已进商机池/ROI 推荐</summary>
+      <ul>
+        <template x-for="c in candOk" :key="'cok-' + c.id">
+          <li><span x-text="c.name"></span><span class="tm-ex-reason" x-text="c.sku || ''"></span></li>
+        </template>
+      </ul>
+    </details>
+  </section>
+
+  <!-- ============================================================== -->
   <!-- 更多工具 — 折叠区(默认收起): 路线/机票 · 实时搜索 · 库存 · 行程   -->
   <!-- 搬运清单 · 额度最优 · 主推 · 预警 · 全部 SKU                     -->
   <!-- ============================================================== -->

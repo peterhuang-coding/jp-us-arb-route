@@ -2666,3 +2666,37 @@ ol.timeline li::before {
 .tm-ex-reason { color: var(--muted); flex: 1; }
 li.fb-bad { opacity: 0.55; background: var(--accent); }
 li.fb-bad .opp-name { text-decoration: line-through; }
+
+/* SKU 实测闭环: 候选池 */
+.cand-section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px 16px 16px; margin-bottom: 16px; }
+.cand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 12px 0; }
+.cand-card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.cand-card.testing { border-color: var(--primary); background: #f5f9ff; }
+.cand-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.cand-head h3 { font-size: 14px; margin: 0; line-height: 1.4; }
+.cand-status { font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.cand-status.candidate { background: var(--accent); color: var(--warn); }
+.cand-status.testing { background: #e8f0fe; color: var(--primary); }
+.cand-meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.cand-numbers { font-size: 12.5px; display: flex; gap: 12px; flex-wrap: wrap; }
+.cand-numbers strong { font-size: 14px; }
+.cand-roi { font-weight: 700; }
+.cand-roi.ok { color: var(--ok); }
+.cand-roi.warn { color: var(--warn); }
+.cand-roi.bad { color: var(--bad); }
+.cand-evidence { display: flex; gap: 8px; flex-wrap: wrap; }
+.cand-evidence a {
+  font-size: 12px; text-decoration: none; color: var(--primary);
+  border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px;
+}
+.cand-evidence a:hover { border-color: var(--primary); background: #f5f9ff; }
+.cand-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.cand-btn {
+  height: 28px; padding: 0 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--line-strong); background: var(--card);
+}
+.cand-btn.testing { border-color: var(--primary); color: var(--primary); }
+.cand-btn.ok { border-color: var(--ok); color: var(--ok); }
+.cand-btn.bad { border-color: var(--bad); color: var(--bad); }
+.cand-btn:hover { filter: brightness(0.97); }
+.tm-excluded.ok summary { color: var(--ok); }
