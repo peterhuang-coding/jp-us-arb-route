@@ -1364,6 +1364,51 @@ function app() {
       this.syncStaticExcluded();
     },
 
+    // ---- 推荐图谱 (品类卡片矩阵) ----
+    oppRoi(o) {
+      const buy = Number(o.purchase_price_usd || 0);
+      const sell = Number(o.sell_price_usd || 0);
+      const fee = Number(o.platform_fee_rate || 0);
+      const tar = Number(o.tariff_rate || 0);
+      const ship = Number(o.shipping_per_unit_usd || 0);
+      const cost = buy * (1 + tar) + ship;
+      const net = sell * (1 - fee) - cost;
+      return cost > 0 ? net / cost * 100 : 0;
+    },
+
+    get categoryGraph() {
+      const banned = ['spirits', 'whisky', '威士忌', '酒', '烟', '烟草', '肉', '水果', '种子', '假名牌'];
+      const cats = {};
+      const add = (key, name, roiPct, fbStatus, kind) => {
+        const c = cats[key] || (cats[key] = {
+          key, name: name || key, skus: [], roiSum: 0, roiN: 0, ok: 0, bad: 0,
+          banned: banned.some(t =>
+            (name || '').toLowerCase().includes(t) || (key || '').toLowerCase().includes(t)),
+        });
+        c.skus.push({ name, roiPct, fbStatus, kind });
+        if (roiPct != null && isFinite(roiPct)) { c.roiSum += roiPct; c.roiN += 1; }
+        if (fbStatus === 'ok') c.ok += 1;
+        if (fbStatus === 'bad') c.bad += 1;
+      };
+      (this.opportunities || []).forEach(o => {
+        add(o.category || '未分类', o.name, this.oppRoi(o),
+            this.feedback[o.sku]?.status || null, 'opp');
+      });
+      (this.candidates || []).forEach(c => {
+        if (c.status !== 'candidate' && c.status !== 'testing') return;
+        add(c.category || '未分类', c.name, this.candRoi(c), null, 'cand');
+      });
+      return Object.values(cats).map(c => {
+        const avg = c.roiN ? c.roiSum / c.roiN : 0;
+        c.sellScore = Math.max(0, Math.min(100, avg));
+        c.attitude = c.ok > 0 ? '想卖'
+          : (c.bad > 0 && c.bad >= c.ok) ? '不碰' : '未标';
+        c.verdict = (c.banned || c.attitude === '不碰') ? '不碰'
+          : (c.attitude === '想卖' || c.sellScore >= 70) ? '该碰' : '待验证';
+        return c;
+      }).sort((a, b) => b.sellScore - a.sellScore);
+    },
+
     bindRowStatusClicks() {
       document.addEventListener('click', (e) => {
         const fbBtn = e.target.closest && e.target.closest('.fb-row-bad');

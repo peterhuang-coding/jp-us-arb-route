@@ -388,6 +388,56 @@
   </section>
 
   <!-- ============================================================== -->
+  <!-- 推荐图谱 — 品类卡片矩阵: 什么好卖 / 我关心什么 / 该碰不该碰        -->
+  <!-- ============================================================== -->
+  <section class="graph-section">
+    <header class="section-head">
+      <h2>📊 推荐图谱
+        <span class="hint">好卖度 = 转售口径平均 ROI(封顶100) · 结论综合你的标注与红线</span>
+      </h2>
+      <span class="count-pill" x-text="categoryGraph.length + ' 个品类'"></span>
+    </header>
+    <div class="graph-grid">
+      <template x-for="cat in categoryGraph" :key="'g-' + cat.key">
+        <article class="graph-card"
+          :class="cat.verdict === '该碰' ? 'gv-green' : (cat.verdict === '不碰' ? 'gv-red' : 'gv-yellow')">
+          <div class="graph-head">
+            <h3 x-text="cat.name"></h3>
+            <span class="graph-verdict"
+              :class="cat.verdict === '该碰' ? 'gv-green' : (cat.verdict === '不碰' ? 'gv-red' : 'gv-yellow')"
+              x-text="cat.verdict === '该碰' ? '🟢 该碰' : (cat.verdict === '不碰' ? '🔴 不碰' : '🟡 待验证')"></span>
+          </div>
+          <div class="graph-bar" :title="'平均 ROI ' + cat.sellScore.toFixed(0) + '%'">
+            <div class="graph-fill" :style="'width:' + cat.sellScore + '%'"></div>
+          </div>
+          <div class="graph-meta">
+            <span x-text="'好卖度 ' + cat.sellScore.toFixed(0) + '%'"></span>
+            <span x-text="cat.skus.length + ' 个 SKU'"></span>
+            <span class="graph-att"
+              :class="cat.attitude === '想卖' ? 'att-ok' : (cat.attitude === '不碰' ? 'att-bad' : '')"
+              x-text="'你: ' + (cat.attitude === '想卖' ? '想卖 ✓' : cat.attitude === '不碰' ? '不碰 ✗' : '未标')"></span>
+          </div>
+          <details class="graph-skus">
+            <summary x-text="'▸ 点开看 ' + cat.skus.length + ' 个 SKU'"></summary>
+            <ul>
+              <template x-for="s in cat.skus" :key="'gs-' + cat.key + '-' + s.name">
+                <li>
+                  <span class="gsku-name" x-text="s.name"></span>
+                  <span class="gsku-roi" x-show="s.roiPct != null"
+                    x-text="'ROI ' + s.roiPct.toFixed(0) + '%'"></span>
+                  <span class="gsku-fb" x-show="s.fbStatus"
+                    x-text="s.fbStatus === 'ok' ? '👍' : '👎'"></span>
+                  <span class="gsku-kind" x-show="s.kind === 'cand'">🎯候选</span>
+                </li>
+              </template>
+            </ul>
+          </details>
+        </article>
+      </template>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
   <!-- 更多工具 — 折叠区(默认收起): 路线/机票 · 实时搜索 · 库存 · 行程   -->
   <!-- 搬运清单 · 额度最优 · 主推 · 预警 · 全部 SKU                     -->
   <!-- ============================================================== -->
