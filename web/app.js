@@ -82,6 +82,9 @@ function app() {
     // ---- SKU 实测闭环: 候选池 ----
     candidates: [],           // [{id, name, status: candidate|testing|ok|bad, ...}]
 
+    // ---- 静态拆表行的「不推」标记 ----
+    staticExcluded: [],       // 被标 👎 不推 的静态行 slug 列表
+
     // ---- derived ----
     get currentDetail() {
       return this.selected ? (this.detailCache[this.selected] || null) : null;
@@ -301,6 +304,7 @@ function app() {
             const m = {};
             (Array.isArray(rows) ? rows : []).forEach(f => { m[f.sku] = f; });
             this.feedback = m;
+            this.applyStaticRowFeedback();
           })
           .catch(() => {});
         // SKU 实测闭环: 候选池
@@ -1253,7 +1257,8 @@ function app() {
           this._rowSkuMap[slug] = rawText;
           const td = document.createElement('td');
           td.className = 'row-status-cell';
-          td.innerHTML = `<button type="button" class="row-status-btn" data-slug="${slug}" data-status="待下单">待下单</button>`;
+          td.innerHTML = `<button type="button" class="row-status-btn" data-slug="${slug}" data-status="待下单">待下单</button>
+            <button type="button" class="fb-row-bad" data-slug="${slug}" title="标记: 这个以后不推">👎 不推</button>`;
           tr.appendChild(td);
         });
       });
@@ -1324,8 +1329,49 @@ function app() {
       } catch (e) { console.warn('cycleRowStatus sync failed:', e); }
     },
 
+    // ---- 静态拆表行的「不推」标记 (前台反馈 → 后台执行) ----
+    async markRowNotPush(btn) {
+      const slug = btn.getAttribute('data-slug');
+      const tr = btn.closest('tr');
+      if (!slug || !tr) return;
+      await this.fbMark(slug, 'bad', '手动标记不推');
+      tr.classList.add('fb-bad-row');
+      this.syncStaticExcluded();
+    },
+
+    async unhideStaticRow(slug) {
+      await this.fbClear(slug);
+      document.querySelectorAll('.simple-table tr.fb-bad-row').forEach(tr => {
+        const b = tr.querySelector('.fb-row-bad');
+        if (b && b.getAttribute('data-slug') === slug) tr.classList.remove('fb-bad-row');
+      });
+      this.syncStaticExcluded();
+    },
+
+    syncStaticExcluded() {
+      const slugs = [...document.querySelectorAll('.simple-table tr.fb-bad-row .fb-row-bad')]
+        .map(b => b.getAttribute('data-slug'))
+        .filter(Boolean);
+      this.staticExcluded = [...new Set(slugs)];
+    },
+
+    applyStaticRowFeedback() {
+      // 已持久化的「不推」标注 → 隐藏对应静态行
+      document.querySelectorAll('.simple-table .fb-row-bad').forEach(btn => {
+        const slug = btn.getAttribute('data-slug');
+        if (this.isBad(slug)) btn.closest('tr').classList.add('fb-bad-row');
+      });
+      this.syncStaticExcluded();
+    },
+
     bindRowStatusClicks() {
       document.addEventListener('click', (e) => {
+        const fbBtn = e.target.closest && e.target.closest('.fb-row-bad');
+        if (fbBtn) {
+          e.preventDefault();
+          this.markRowNotPush(fbBtn);
+          return;
+        }
         const btn = e.target.closest && e.target.closest('.row-status-btn');
         if (!btn) return;
         e.preventDefault();

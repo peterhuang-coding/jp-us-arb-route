@@ -2667,6 +2667,16 @@ ol.timeline li::before {
 li.fb-bad { opacity: 0.55; background: var(--accent); }
 li.fb-bad .opp-name { text-decoration: line-through; }
 
+/* 静态拆表行的「不推」标记 */
+tr.fb-bad-row { display: none; }
+.fb-row-bad {
+  margin-left: 6px; height: 22px; padding: 0 8px;
+  border: 1px solid var(--line-strong); border-radius: 6px;
+  background: var(--card); font-size: 11.5px; cursor: pointer;
+}
+.fb-row-bad:hover { border-color: var(--bad); color: var(--bad); }
+#staticExcluded li span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; flex: 1; }
+
 /* SKU 实测闭环: 候选池 */
 .cand-section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px 16px 16px; margin-bottom: 16px; }
 .cand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 12px 0; }

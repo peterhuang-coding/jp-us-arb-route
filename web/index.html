@@ -204,6 +204,18 @@
         <li>象牙 / 玳瑁 / 野生动物制品 — 走私罪</li>
         <li>假名牌(LV / Gucci / Nike)— 知识产权</li>
       </ul>
+
+      <details class="tm-excluded" id="staticExcluded" x-show="staticExcluded.length" x-cloak>
+        <summary>🚫 已不推 <span x-text="staticExcluded.length"></span> 行(你标过) · 点开可恢复</summary>
+        <ul>
+          <template x-for="slug in staticExcluded" :key="'se-' + slug">
+            <li>
+              <span x-text="slug"></span>
+              <button class="fb-mini undo" @click="unhideStaticRow(slug)" title="恢复这行">↩ 恢复</button>
+            </li>
+          </template>
+        </ul>
+      </details>
     </details>
   </section>
 
