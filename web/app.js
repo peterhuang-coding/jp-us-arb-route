@@ -1444,6 +1444,9 @@ function app() {
     },
 
     bindRowStatusClicks() {
+      // Alpine 会执行两次 x-init → 守卫防止监听器双注册(👎 一开一关的根因)
+      if (this._rowClicksBound) return;
+      this._rowClicksBound = true;
       document.addEventListener('click', (e) => {
         const okBtn = e.target.closest && e.target.closest('.fb-row-ok');
         if (okBtn) {
