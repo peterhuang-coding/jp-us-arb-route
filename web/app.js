@@ -685,6 +685,7 @@ function app() {
 
     async fbSave(sku) {
       await this.fbMark(sku, 'bad', this.fbReason);
+      this.hideStaticRowIfPresent(sku);
       this.fbPickerSku = null;
       this.fbReason = '';
     },
@@ -699,6 +700,14 @@ function app() {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         const f = await r.json();
         this.feedback = { ...this.feedback, [sku]: f };
+        // 同步静态拆表行的视觉状态
+        document.querySelectorAll('.simple-table tr .fb-row-bad').forEach(btn => {
+          if (btn.getAttribute('data-slug') !== sku) return;
+          const tr = btn.closest('tr');
+          tr.classList.toggle('fb-ok-row', status === 'ok');
+          tr.classList.remove('fb-bad-row');
+        });
+        if (status === 'bad') this.syncStaticExcluded();
         this.setStatus(status === 'bad'
           ? `🚫 已标注不OK: ${sku} — ${f.reason || '未填原因'}`
           : `✅ 已标注能卖: ${sku}`);
@@ -1258,7 +1267,8 @@ function app() {
           const td = document.createElement('td');
           td.className = 'row-status-cell';
           td.innerHTML = `<button type="button" class="row-status-btn" data-slug="${slug}" data-status="待下单">待下单</button>
-            <button type="button" class="fb-row-bad" data-slug="${slug}" title="标记: 这个以后不推">👎 不推</button>`;
+            <button type="button" class="fb-row-ok" data-slug="${slug}" title="标注: 好, 想卖">👍</button>
+            <button type="button" class="fb-row-bad" data-slug="${slug}" title="标注: 坏, 附原因">👎</button>`;
           tr.appendChild(td);
         });
       });
@@ -1330,12 +1340,10 @@ function app() {
     },
 
     // ---- 静态拆表行的「不推」标记 (前台反馈 → 后台执行) ----
-    async markRowNotPush(btn) {
-      const slug = btn.getAttribute('data-slug');
-      const tr = btn.closest('tr');
-      if (!slug || !tr) return;
-      await this.fbMark(slug, 'bad', '手动标记不推');
-      tr.classList.add('fb-bad-row');
+    hideStaticRowIfPresent(sku) {
+      document.querySelectorAll('.simple-table tr .fb-row-bad').forEach(btn => {
+        if (btn.getAttribute('data-slug') === sku) btn.closest('tr').classList.add('fb-bad-row');
+      });
       this.syncStaticExcluded();
     },
 
@@ -1356,10 +1364,12 @@ function app() {
     },
 
     applyStaticRowFeedback() {
-      // 已持久化的「不推」标注 → 隐藏对应静态行
+      // 已持久化的标注 → 静态行隐藏(bad)或绿标(ok)
       document.querySelectorAll('.simple-table .fb-row-bad').forEach(btn => {
         const slug = btn.getAttribute('data-slug');
-        if (this.isBad(slug)) btn.closest('tr').classList.add('fb-bad-row');
+        const tr = btn.closest('tr');
+        if (this.isBad(slug)) tr.classList.add('fb-bad-row');
+        if (this.feedback[slug]?.status === 'ok') tr.classList.add('fb-ok-row');
       });
       this.syncStaticExcluded();
     },
@@ -1435,10 +1445,16 @@ function app() {
 
     bindRowStatusClicks() {
       document.addEventListener('click', (e) => {
+        const okBtn = e.target.closest && e.target.closest('.fb-row-ok');
+        if (okBtn) {
+          e.preventDefault();
+          this.fbMark(okBtn.getAttribute('data-slug'), 'ok');
+          return;
+        }
         const fbBtn = e.target.closest && e.target.closest('.fb-row-bad');
         if (fbBtn) {
           e.preventDefault();
-          this.markRowNotPush(fbBtn);
+          this.fbPick(fbBtn.getAttribute('data-slug'));   // 弹出全局原因选择条
           return;
         }
         const btn = e.target.closest && e.target.closest('.row-status-btn');

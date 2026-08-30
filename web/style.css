@@ -2667,15 +2667,28 @@ ol.timeline li::before {
 li.fb-bad { opacity: 0.55; background: var(--accent); }
 li.fb-bad .opp-name { text-decoration: line-through; }
 
-/* 静态拆表行的「不推」标记 */
+/* 静态拆表行的评价标记: 👍好 / 👎坏(附原因) */
 tr.fb-bad-row { display: none; }
-.fb-row-bad {
+tr.fb-ok-row { background: var(--ok-bg) !important; }
+tr.fb-ok-row td:first-child::after { content: " ✓"; color: var(--ok); font-weight: 700; }
+.fb-row-bad, .fb-row-ok {
   margin-left: 6px; height: 22px; padding: 0 8px;
   border: 1px solid var(--line-strong); border-radius: 6px;
   background: var(--card); font-size: 11.5px; cursor: pointer;
 }
 .fb-row-bad:hover { border-color: var(--bad); color: var(--bad); }
+.fb-row-ok:hover { border-color: var(--ok); color: var(--ok); }
 #staticExcluded li span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; flex: 1; }
+
+/* 全局评价原因选择条 (点任何 👎 底部弹出) */
+.fb-picker-bar {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 999;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  max-width: 760px; width: calc(100% - 32px);
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18); padding: 10px 14px;
+}
+.fb-picker-bar .fb-reason-input { width: 14em; height: 26px; font-size: 12.5px; padding: 4px 8px; border: 1px solid var(--line-strong); border-radius: 6px; }
 
 /* SKU 实测闭环: 候选池 */
 .cand-section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px 16px 16px; margin-bottom: 16px; }

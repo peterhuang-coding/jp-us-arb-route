@@ -40,6 +40,18 @@
     ⚠️ API 离线,本页使用 <code x-text="snapshotAt"></code> 的快照数据。决策数字可能过时,建议本地启动 <code>python -m arb.web_api</code> 后刷新。
   </div>
 
+  <!-- 全局评价原因选择条 — 任何列表点 👎 都会在底部弹出 -->
+  <div class="fb-picker-bar" x-show="fbPickerSku" x-cloak>
+    <span class="tm-fb-sku">👎 <code x-text="fbPickerSku"></code> 为什么不OK？</span>
+    <template x-for="r in fbPresets" :key="'fbp-' + r">
+      <button class="fb-chip" :class="{ on: fbReason === r }" @click="fbPreset(r)" x-text="r"></button>
+    </template>
+    <input type="text" class="fb-reason-input" x-model="fbReason"
+      placeholder="或自己写一句…" @keydown.enter="fbSave(fbPickerSku)">
+    <button class="fb-save" @click="fbSave(fbPickerSku)">确认排除</button>
+    <button class="fb-cancel" @click="fbPickerSku = null">取消</button>
+  </div>
+
   <!-- ============================================================== -->
   <!-- 1.55) 今日买什么 — 按 daily ops 三层:看 → 拆 → 不买           -->
   <!--      Round 25+: 不再按品类分(CN/JP/现场/数字),                 -->
@@ -265,18 +277,6 @@
               </td>
             </tr>
           </template>
-          <tr x-show="fbPickerSku" class="tm-fb-row">
-            <td colspan="6">
-              <span class="tm-fb-sku">👎 <code x-text="fbPickerSku"></code> 为什么不OK？</span>
-              <template x-for="r in fbPresets" :key="'fbp-' + r">
-                <button class="fb-chip" :class="{ on: fbReason === r }" @click="fbPreset(r)" x-text="r"></button>
-              </template>
-              <input type="text" class="tm-input fb-reason-input" x-model="fbReason"
-                placeholder="或自己写一句…" @keydown.enter="fbSave(fbPickerSku)">
-              <button class="fb-save" @click="fbSave(fbPickerSku)">确认排除</button>
-              <button class="fb-cancel" @click="fbPickerSku = null">取消</button>
-            </td>
-          </tr>
         </tbody>
       </table>
       <div class="tm-footer">
