@@ -330,6 +330,127 @@ CREATE TABLE IF NOT EXISTS sku_candidates (
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+-- =====================================================================
+-- Phase 0 (Opportunity model): 统一机会对象. 全新增, 旧表一律不改.
+-- 状态机见 arb/opp/state.py; 证据分类见 arb/opp/evidence.py.
+-- =====================================================================
+
+-- 统一商品身份. item_key 为规范 SKU; 阶段0 item_key = legacy sku.
+CREATE TABLE IF NOT EXISTS opp_items (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_key        TEXT NOT NULL UNIQUE,
+    name            TEXT,
+    category        TEXT,
+    brand           TEXT,
+    series          TEXT,
+    spec_json       TEXT NOT NULL DEFAULT '{}',   -- 规格: 货号/颜色/尺寸/版本/地区/成色/包装
+    merge_status    TEXT NOT NULL DEFAULT 'active',  -- active | suspect | manual_review | merged
+    merged_into     TEXT,                          -- 被合并到的 item_key
+    notes           TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at      TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+-- 平台/外部 ID → item_key 映射 (SKU 归一). 规格不一致或置信度不足时
+-- merge_status='manual_review', 不允许自动合并 (PRD 4.2).
+CREATE TABLE IF NOT EXISTS item_aliases (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_key        TEXT NOT NULL,
+    platform        TEXT NOT NULL,                 -- 'ebay' | 'mercari' | 'xianyu' | 'legacy' | ...
+    external_id     TEXT NOT NULL,
+    external_name   TEXT,
+    spec_json       TEXT NOT NULL DEFAULT '{}',
+    confidence      REAL NOT NULL DEFAULT 0.5,     -- 0..1; < 0.8 不自动合并
+    merge_status    TEXT NOT NULL DEFAULT 'pending',  -- pending | auto | manual_review | rejected
+    source_url      TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE(platform, external_id)
+);
+CREATE INDEX IF NOT EXISTS idx_item_aliases_item ON item_aliases(item_key);
+
+-- 机会实例: 一个 item 可有多个 case (价差/抢购, 不同时间窗).
+-- 金额一律 CNY; 缺数据留 NULL, 禁止臆造或强行 USD 换算 (arb/opp/finance.py).
+CREATE TABLE IF NOT EXISTS opp_cases (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_key        TEXT NOT NULL,
+    opp_type        TEXT NOT NULL DEFAULT 'spread',   -- 'spread' | 'raffle'
+    status          TEXT NOT NULL DEFAULT 'discovered',  -- 11 态, 见 arb/opp/state.py
+    status_reason   TEXT NOT NULL DEFAULT '',
+    leg             TEXT,                            -- 五条 Leg 降级为属性
+    route_id        INTEGER,
+    trip_id         INTEGER,
+    est_buy_cny         REAL,
+    est_exit_cny        REAL,
+    est_net_profit_cny  REAL,
+    margin_pct          REAL,
+    sell_cycle_days     REAL,
+    capital_occupation_cny REAL,
+    success_prob        REAL,
+    evidence_grade      TEXT,                        -- 'A' | 'B' | 'C' | 'D'
+    event_at        TEXT,                            -- 抢购型: 发售事件时间
+    mechanism       TEXT,                            -- 抢购型: 抽签/先到先得...
+    eligibility     TEXT,                            -- 抢购型: 资格要求
+    discovered_at   TEXT,
+    qualified_at    TEXT,
+    ready_at        TEXT,
+    participating_at TEXT,
+    acquired_at     TEXT,
+    failed_at       TEXT,
+    listed_at       TEXT,
+    sold_at         TEXT,
+    settled_at      TEXT,
+    rejected_at     TEXT,
+    expired_at      TEXT,
+    actual_buy_cny      REAL,                        -- 结算实际值
+    actual_exit_cny     REAL,
+    actual_net_profit_cny REAL,
+    actual_fees_cny     REAL,
+    capital_days        REAL,
+    forecast_error_cny  REAL,
+    origin          TEXT NOT NULL DEFAULT 'manual',  -- 'manual' | 'legacy-backfill'
+    created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE(item_key, opp_type)
+);
+CREATE INDEX IF NOT EXISTS idx_opp_cases_status ON opp_cases(status);
+CREATE INDEX IF NOT EXISTS idx_opp_cases_item ON opp_cases(item_key);
+
+-- 统一证据表 (6 类: retail/bid/buyback/sold/ask/rumor).
+-- 旧 evidence_log / competitor_prices 由 opp-backfill 派生而来.
+CREATE TABLE IF NOT EXISTS evidence (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_key        TEXT NOT NULL,
+    kind            TEXT NOT NULL,                   -- retail | bid | buyback | sold | ask | rumor
+    side            TEXT NOT NULL,                   -- 'buy' | 'sell'
+    source_kind     TEXT NOT NULL DEFAULT 'manual',  -- official | marketplace | private | manual
+    source_ref      TEXT NOT NULL DEFAULT '',        -- 渠道/平台名 (独立性判定)
+    source_url      TEXT,
+    price_cny       REAL,                            -- NULL = 无价线索 (rumor/热度)
+    confidence      REAL NOT NULL DEFAULT 0.5,
+    observed_at     TEXT NOT NULL,                   -- ISO8601 完整时间戳
+    expires_at      TEXT,
+    payload_json    TEXT NOT NULL DEFAULT '{}',
+    created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE(item_key, kind, side, source_kind, source_ref, observed_at)
+);
+CREATE INDEX IF NOT EXISTS idx_evidence_item ON evidence(item_key);
+CREATE INDEX IF NOT EXISTS idx_evidence_kind_side ON evidence(kind, side);
+
+-- 漏斗事件流: 每次状态转移一行 (append-only; backfill 行以 event_source 标记).
+CREATE TABLE IF NOT EXISTS opp_status_events (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    case_id         INTEGER NOT NULL REFERENCES opp_cases(id) ON DELETE CASCADE,
+    item_key        TEXT NOT NULL,
+    from_status     TEXT,
+    to_status       TEXT NOT NULL,
+    reason          TEXT NOT NULL DEFAULT '',
+    event_source    TEXT NOT NULL DEFAULT 'manual',  -- 'manual' | 'backfill'
+    occurred_at     TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_opp_events_case ON opp_status_events(case_id);
+CREATE INDEX IF NOT EXISTS idx_opp_events_item ON opp_status_events(item_key);
+
 """
 
 
