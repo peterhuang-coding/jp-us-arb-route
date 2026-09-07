@@ -11,13 +11,14 @@ ready 无历史审批对应物, 一律不回填; participating/failed/expired �
 """
 from __future__ import annotations
 
-import statistics
 from typing import Optional
 
 from . import finance
 from .evidence import (
+    EXECUTABLE_EXIT_KINDS,
     EvidenceKind,
     classify_price_type,
+    expiry_for,
     normalize_observed_at,
     source_kind_for,
 )
@@ -71,9 +72,15 @@ def derive_evidence(conn, item_key: str) -> list[dict]:
                 "source_ref": e["channel_name"],
                 "source_url": e["source_url"],
                 "price_cny": e["price_cny"],
+                # 双币: evidence_log 本身已是 CNY, 原始币种即 CNY.
+                "original_amount": e["price_cny"],
+                "original_currency": "CNY",
+                "fx_rate": None,
                 "confidence": conf,
                 "observed_at": observed,
-                "expires_at": None,
+                # exit 类证据 72h 过期; 历史数据 observed 很早 → 已过期 (预期).
+                "expires_at": (expiry_for(observed)
+                               if kind in EXECUTABLE_EXIT_KINDS else None),
                 "payload_json": {
                     "legacy_table": "evidence_log",
                     "legacy_price_type": e["price_type"],
@@ -94,9 +101,13 @@ def derive_evidence(conn, item_key: str) -> list[dict]:
                 "source_ref": c["source"],
                 "source_url": c["url"],
                 "price_cny": c["price_cny"],
+                # 双币快照: 原始 JPY 价 + 抓取时汇率, CNY 为报告币.
+                "original_amount": c["price_jpy"],
+                "original_currency": "JPY" if c["price_jpy"] is not None else None,
+                "fx_rate": c["fx_rate_at_fetch"],
                 "confidence": conf,
                 "observed_at": observed,
-                "expires_at": None,
+                "expires_at": None,                # ask 仅锚点, 不参与 72h 过期
                 "payload_json": {
                     "legacy_table": "competitor_prices",
                     "price_jpy": c["price_jpy"],
@@ -109,13 +120,6 @@ def derive_evidence(conn, item_key: str) -> list[dict]:
 
 
 # ---------- 信号收集 ----------
-
-def _median(xs: list[float]) -> Optional[float]:
-    xs = [x for x in xs if x is not None]
-    if not xs:
-        return None
-    return round(statistics.median(xs), 2)
-
 
 def derive_case(conn, item_key: str, evidences: Optional[list[dict]] = None) -> dict:
     """派生单个 item 的 opp_item + opp_case + events. 返回 dict."""
@@ -295,13 +299,16 @@ def derive_case(conn, item_key: str, evidences: Optional[list[dict]] = None) -> 
     buy_retail = [e["price_cny"] for e in evs
                   if e["side"] == "buy" and e["kind"] == EvidenceKind.RETAIL.value
                   and e["price_cny"] is not None]
-    exec_exit = [e["price_cny"] for e in evs
-                 if e["side"] == "sell"
-                 and e["kind"] in {k.value for k in (
-                     EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD)}
-                 and e["price_cny"] is not None]
     est_buy = round(min(buy_retail), 2) if buy_retail else None
-    est_exit = _median(exec_exit)
+    # 可执行退出价: 优先级 buyback > bid > sold 中位数 (样本量入 case);
+    # ask 仅锚点, rumor/heat 不计.
+    exit_pricing = finance.executable_exit_value(evs)
+    est_exit = exit_pricing["value_cny"]
+    if est_exit is not None:
+        status_reason += (f"; 退出定价={exit_pricing['kind']} 中位数 ¥{est_exit} "
+                          f"(n={exit_pricing['sample_count']})")
+    if exit_pricing["anchor_ask_cny"] is not None:
+        status_reason += f"; ask 锚点 ¥{exit_pricing['anchor_ask_cny']} (仅参考不作收入)"
     # 费用/周期 legacy 无 CNY 数据 → 净利/利润率/占用/周期一律 NULL (不臆造).
     actual_buy = min((i["acquired_cny"] for i in inventory
                       if i["acquired_cny"] is not None), default=None)
@@ -321,6 +328,7 @@ def derive_case(conn, item_key: str, evidences: Optional[list[dict]] = None) -> 
     cap_days = finance.capital_days(acquired_date, settle_date)
 
     # --- 证据门槛复算 (新口径; dry-run 预期管理用, 不改变回填状态) ---
+    # as_of=现在: 历史 bid/buyback/sold 多已过 72h, ready 必然不满足 (预期).
     q = evaluate_qualified(evs)
     rdy = evaluate_ready(evs, human_confirmed=False)
     grade = finance.evidence_grade(q.supply_count, q.exit_signal_count,
@@ -336,6 +344,8 @@ def derive_case(conn, item_key: str, evidences: Optional[list[dict]] = None) -> 
         "trip_id": None,
         "est_buy_cny": est_buy,
         "est_exit_cny": est_exit,
+        "est_exit_kind": exit_pricing["kind"],
+        "est_exit_sample_count": exit_pricing["sample_count"] or None,
         "est_net_profit_cny": None,
         "margin_pct": None,
         "sell_cycle_days": None,
@@ -375,9 +385,43 @@ def derive_case(conn, item_key: str, evidences: Optional[list[dict]] = None) -> 
         "supply_count": q.supply_count,
         "exit_signal_count": q.exit_signal_count,
         "has_executable_exit": rdy.has_executable_exit,
+        "expired_exit_count": rdy.expired_exit_count,
         "only_weak_exit": rdy.only_weak_exit,
         "evidence_grade": grade,
     }
 
     return {"item": item, "evidence": evs, "case": case,
             "events": events, "gate_check": gate_check}
+
+
+# ---------- 证据过期 → ready 回退 (PRD §5.2 / 总控复核④) ----------
+
+def find_expired_demotions(conn, as_of=None) -> list[dict]:
+    """扫描 status='ready' 的 case, 复算 ready 门槛.
+
+    可执行退出证据 (bid/buyback/sold) 全部过期 (默认 72h) → 应退回
+    qualified. 纯读, 返回 [{"case_id","item_key","reasons"}]; 落库由
+    调用方 (阶段1 的 sync tick / CLI) 执行转移并写 opp_status_events.
+    """
+    import datetime as _dt
+    from .evidence import is_expired
+    as_of_dt = as_of or _dt.datetime.now()
+    exec_kinds = {k.value for k in EXECUTABLE_EXIT_KINDS}
+    out: list[dict] = []
+    for c in conn.execute("SELECT * FROM opp_cases WHERE status='ready'"):
+        exec_evs = [dict(r) for r in conn.execute(
+            "SELECT * FROM evidence WHERE item_key=? AND side='sell' "
+            "AND kind IN ('bid','buyback','sold') ORDER BY observed_at",
+            (c["item_key"],),
+        )]
+        fresh = [e for e in exec_evs if not is_expired(e.get("expires_at"), as_of_dt)]
+        if exec_evs and not fresh:
+            out.append({
+                "case_id": c["id"],
+                "item_key": c["item_key"],
+                "reasons": [
+                    f"可执行退出证据 {len(exec_evs)} 条全部过期 (72h TTL), ready→qualified"
+                ],
+                "expired_exit_count": len(exec_evs),
+            })
+    return out

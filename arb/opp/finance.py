@@ -8,8 +8,9 @@
 """
 from __future__ import annotations
 
+import statistics
 from datetime import date, datetime
-from typing import Optional
+from typing import Iterable, Optional
 
 
 def _num(v) -> Optional[float]:
@@ -103,6 +104,56 @@ def forecast_error_cny(est_net_profit_cny: Optional[float],
     if est is None or act is None:
         return None
     return round(act - est, 2)
+
+
+def executable_exit_value(evidences: Iterable[dict], *,
+                          max_age_days: Optional[int] = None,
+                          as_of=None) -> dict:
+    """可执行退出价口径 (总控交叉复核③): 优先级 buyback > bid > sold.
+
+    同类型取同规格近 N 天 (max_age_days) 价格中位数, 记录样本量;
+    ask 仅作锚点 (单独返回, 永不作预计收入); rumor/heat 不计.
+    返回 {"value_cny", "kind", "sample_count", "anchor_ask_cny", "ask_count"}.
+    全部缺失 → value_cny=None (缺数据留 NULL, 不臆造).
+
+    evidences 元素需含 kind/side/price_cny, 可选 observed_at.
+    """
+    as_of_date = _parse_date(as_of) or date.today()
+    groups: dict[str, list[float]] = {"buyback": [], "bid": [], "sold": []}
+    ask_prices: list[float] = []
+    for e in evidences:
+        get = e.get if hasattr(e, "get") else (lambda k, d=None: e[k] if k in e.keys() else d)
+        if get("side") != "sell":
+            continue
+        kind = str(get("kind", ""))
+        price = _num(get("price_cny"))
+        if price is None:
+            continue
+        if max_age_days is not None:
+            d = _parse_date(get("observed_at"))
+            if d is None or (as_of_date - d).days > max_age_days:
+                continue
+        if kind in groups:
+            groups[kind].append(price)
+        elif kind == "ask":
+            ask_prices.append(price)
+
+    for kind in ("buyback", "bid", "sold"):
+        if groups[kind]:
+            return {
+                "value_cny": round(statistics.median(groups[kind]), 2),
+                "kind": kind,
+                "sample_count": len(groups[kind]),
+                "anchor_ask_cny": round(statistics.median(ask_prices), 2) if ask_prices else None,
+                "ask_count": len(ask_prices),
+            }
+    return {
+        "value_cny": None,
+        "kind": None,
+        "sample_count": 0,
+        "anchor_ask_cny": round(statistics.median(ask_prices), 2) if ask_prices else None,
+        "ask_count": len(ask_prices),
+    }
 
 
 def evidence_grade(supply_count: int, exit_signal_count: int,

@@ -54,7 +54,8 @@ def build_plan(conn) -> dict:
         "notes": [
             "ready/participating/failed/expired 无历史对应物, 不回填",
             "est_net_profit/margin/资金占用: legacy 无 CNY 费用数据, 留 NULL (不做 USD 换算)",
-            "bid/rumor 无历史源, 属预期缺口 (阶段1 补)",
+            "bid/heat/official_event/rumor 无历史源, 属预期缺口 (阶段1 补)",
+            "退出价口径 buyback>bid>sold 中位数+样本量; ask 仅锚点; exit 证据 72h TTL",
             "月份粒度证据 observed_at 取月初, confidence 降为 0.6",
         ],
     }
@@ -75,14 +76,20 @@ def _upsert_item(conn, item: dict) -> None:
 
 
 def _insert_evidence(conn, ev: dict) -> None:
-    """按完整去重键 INSERT OR IGNORE — 重跑不产生重复行."""
+    """按完整去重键 INSERT OR IGNORE — 重跑不产生重复行. 双币列缺省 NULL."""
     conn.execute(
         "INSERT OR IGNORE INTO evidence "
         "(item_key, kind, side, source_kind, source_ref, source_url, "
-        " price_cny, confidence, observed_at, expires_at, payload_json) "
+        " price_cny, original_amount, original_currency, fx_rate, "
+        " confidence, observed_at, expires_at, payload_json) "
         "VALUES (:item_key, :kind, :side, :source_kind, :source_ref, :source_url, "
-        " :price_cny, :confidence, :observed_at, :expires_at, :payload_json)",
-        {**ev, "payload_json": json.dumps(ev["payload_json"], ensure_ascii=False)},
+        " :price_cny, :original_amount, :original_currency, :fx_rate, "
+        " :confidence, :observed_at, :expires_at, :payload_json)",
+        {
+            "original_amount": None, "original_currency": None, "fx_rate": None,
+            **ev,
+            "payload_json": json.dumps(ev["payload_json"], ensure_ascii=False),
+        },
     )
 
 
