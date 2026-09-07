@@ -58,6 +58,10 @@ app = FastAPI(
     version="0.2.0",
 )
 
+# 阶段0: Opportunity 统一模型只读端点 (/api/opp/*). 新表零写入路径.
+from .opp.api import router as _opp_router  # noqa: E402
+app.include_router(_opp_router)
+
 
 @app.on_event("startup")
 def _backfill_leg_times() -> None:

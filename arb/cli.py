@@ -757,6 +757,53 @@ def cmd_backfill_home_prices(args):
     return 0 if not skipped else 1 if not args.dry_run and not updated else 0
 
 
+def cmd_opp_backfill(args):
+    """阶段0: 旧表 → opp_items/evidence/opp_cases/opp_status_events 派生.
+
+    默认 dry-run (零写入, 只打印派生预览); --apply 才真实写入.
+    幂等可重跑; origin='manual' 的手工 case 不被覆盖.
+    """
+    from .opp import backfill as opp_backfill
+    conn = db.connect()
+    try:
+        report = opp_backfill.run(conn, dry_run=not args.apply)
+    finally:
+        conn.close()
+
+    if args.json:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        return 0
+
+    mode = "APPLY" if args.apply else "DRY-RUN"
+    pc = report["plan_counts"]
+    print(f"[{mode} opp-backfill] items={pc['items']} evidence={pc['evidence']} "
+          f"cases={pc['cases']} events={pc['events']}")
+    print("  by status: " + ", ".join(f"{k}={v}" for k, v in
+          sorted(pc["by_status"].items())))
+    print("  by evidence kind: " + ", ".join(f"{k}={v}" for k, v in
+          sorted(pc["by_evidence_kind"].items())))
+    if report.get("written"):
+        w = report["written"]
+        print(f"  written: items={w['items']} evidence_new={w['evidence_new']} "
+              f"cases ins/upd/skip={w['cases_inserted']}/{w['cases_updated']}/"
+              f"{w['cases_skipped_manual']} events={w['events']}")
+    # 新口径门槛复算 (预期管理: legacy verified 在新证据门槛下可能降级)
+    gate = report["gate_checks"]
+    legacy_q = sum(1 for g in gate if g["legacy_verified"])
+    new_q = sum(1 for g in gate if g["qualified_gate_ok"])
+    new_ready = sum(1 for g in gate if g["ready_gate_ok"])
+    weak = [g["item_key"] for g in gate if g["only_weak_exit"]]
+    print(f"  gate re-check: legacy verified={legacy_q}, "
+          f"new qualified={new_q}, new ready(含人工确认项)={new_ready}")
+    if weak:
+        print(f"  only-ask/rumor (ready 拒绝): {', '.join(weak)}")
+    for note in report["notes"]:
+        print(f"  note: {note}")
+    if not args.apply:
+        print("  dry-run 未写入; 确认预览后加 --apply 执行 (正式回填前请先备份).")
+    return 0
+
+
 # ---------- main ----------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -967,6 +1014,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_cand_list = cand_sub.add_parser("list", help="列出候选")
     p_cand_list.add_argument("--status", choices=["candidate", "testing", "ok", "bad"])
     p_cand_list.add_argument("--json", action="store_true")
+
+    # 阶段0 (Opportunity model): 旧表→新表派生回填. 默认 dry-run,
+    # 显式 --apply 才写入; 不挂 connect(), 只能手动触发.
+    p_oppbf = sub.add_parser(
+        "opp-backfill",
+        help="阶段0: 旧表→opp_items/evidence/opp_cases 派生 (默认 dry-run 预览)")
+    p_oppbf.add_argument("--apply", action="store_true",
+                         help="真实写入新表 (默认只预览, 零写入)")
+    p_oppbf.add_argument("--json", action="store_true")
 
     return p
 
@@ -1259,6 +1315,7 @@ def main(argv: list[str] | None = None) -> int:
         "execution": cmd_execution,
         "tax": cmd_tax,
         "candidates": cmd_candidates,
+        "opp-backfill": cmd_opp_backfill,
     }.get(args.cmd)
     if handler is None:
         return 2
