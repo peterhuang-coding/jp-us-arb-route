@@ -381,6 +381,8 @@ CREATE TABLE IF NOT EXISTS opp_cases (
     trip_id         INTEGER,
     est_buy_cny         REAL,
     est_exit_cny        REAL,
+    est_exit_kind       TEXT,                        -- 定价依据: buyback|bid|sold (优先级)
+    est_exit_sample_count INTEGER,                   -- 定价样本量
     est_net_profit_cny  REAL,
     margin_pct          REAL,
     sell_cycle_days     REAL,
@@ -415,20 +417,24 @@ CREATE TABLE IF NOT EXISTS opp_cases (
 CREATE INDEX IF NOT EXISTS idx_opp_cases_status ON opp_cases(status);
 CREATE INDEX IF NOT EXISTS idx_opp_cases_item ON opp_cases(item_key);
 
--- 统一证据表 (6 类: retail/bid/buyback/sold/ask/rumor).
+-- 统一证据表 (8 类: official_event/retail/bid/buyback/sold/ask/heat/rumor).
 -- 旧 evidence_log / competitor_prices 由 opp-backfill 派生而来.
+-- 双币: 存原始金额/币种 + 抓取时 fx 快照 + CNY 报告币金额; 不做事后汇率换算.
 CREATE TABLE IF NOT EXISTS evidence (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     item_key        TEXT NOT NULL,
-    kind            TEXT NOT NULL,                   -- retail | bid | buyback | sold | ask | rumor
+    kind            TEXT NOT NULL,                   -- official_event|retail|bid|buyback|sold|ask|heat|rumor
     side            TEXT NOT NULL,                   -- 'buy' | 'sell'
     source_kind     TEXT NOT NULL DEFAULT 'manual',  -- official | marketplace | private | manual
     source_ref      TEXT NOT NULL DEFAULT '',        -- 渠道/平台名 (独立性判定)
     source_url      TEXT,
-    price_cny       REAL,                            -- NULL = 无价线索 (rumor/热度)
+    price_cny       REAL,                            -- CNY 报告币金额; NULL = 无价线索
+    original_amount REAL,                            -- 源币种原始价 (如 JPY)
+    original_currency TEXT,                          -- 'CNY' | 'JPY' | ...
+    fx_rate         REAL,                            -- 抓取时汇率快照 (original per CNY)
     confidence      REAL NOT NULL DEFAULT 0.5,
     observed_at     TEXT NOT NULL,                   -- ISO8601 完整时间戳
-    expires_at      TEXT,
+    expires_at      TEXT,                            -- exit 类 (bid/buyback/sold) 默认 observed+72h
     payload_json    TEXT NOT NULL DEFAULT '{}',
     created_at      TEXT NOT NULL DEFAULT (datetime('now')),
     UNIQUE(item_key, kind, side, source_kind, source_ref, observed_at)
