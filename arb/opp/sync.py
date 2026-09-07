@@ -2,7 +2,7 @@
 
 backfill.py 负责编排/落库; 本模块只从旧表读信号, 产出:
   - item 主数据 (opp_items 行)
-  - evidence 行 (6 类映射后)
+  - evidence 行 (8 类映射后)
   - case 行 (11 态 + CNY 口径字段, 缺数 NULL)
   - status events (漏斗事件流)
 
