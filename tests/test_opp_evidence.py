@@ -32,9 +32,11 @@ def test_kind_sets():
     for k in (EvidenceKind.ASK, EvidenceKind.HEAT, EvidenceKind.RUMOR,
               EvidenceKind.RETAIL, EvidenceKind.OFFICIAL_EVENT):
         assert k not in EXECUTABLE_EXIT_KINDS
-    # qualified 认可的退出/需求信号: bid/buyback/sold/heat (ask 仅锚点, rumor 不计)
+    # qualified 认可的退出价格或需求信号: bid/buyback/sold/ask/heat/rumor
+    # (ask 弱锚点、rumor 最弱需求线索, 均计入入池计数; ready 才严格排除)
     assert QUALIFIED_SIGNAL_KINDS == {
-        EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD, EvidenceKind.HEAT}
+        EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD,
+        EvidenceKind.ASK, EvidenceKind.HEAT, EvidenceKind.RUMOR}
     # 供给: official_event + retail
     assert SUPPLY_KINDS == {EvidenceKind.OFFICIAL_EVENT, EvidenceKind.RETAIL}
 

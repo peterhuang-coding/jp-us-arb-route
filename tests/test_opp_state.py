@@ -106,26 +106,34 @@ def test_qualified_gate_requires_supply_and_two_independent_signals():
     assert r.ok, r.reasons
 
 
-def test_qualified_gate_ask_does_not_count_as_signal():
-    # ask (挂单) 仅锚点: 两个不同渠道的 ask 也凑不够 2 个信号
+def test_qualified_gate_weak_ask_rumor_count_as_signals():
+    # PRD §3.4: qualified 要 ≥2 个相互独立的退出价格或需求信号.
+    # ask (弱锚点) / rumor (最弱线索) 计入 qualified 入池计数 (仅 ready 才排除).
     r = evaluate_qualified([
         _ev("retail", "buy", "免税店"),
         _ev("ask", "sell", "闲鱼"),
         _ev("ask", "sell", "得物"),
     ])
-    assert not r.ok
-    assert r.exit_signal_count == 0
+    assert r.ok, r.reasons
+    assert r.exit_signal_count == 2
 
-
-def test_qualified_gate_rumor_does_not_count():
-    # rumor 私域传闻待核验, 不计入门槛
+    # rumor (需求线索, 不绑定 sell 侧) + sold 不同来源 → 2 个独立信号
     r = evaluate_qualified([
         _ev("retail", "buy", "免税店"),
         _ev("rumor", "sell", "微信群A"),
         _ev("sold", "sell", "得物", expires_at=FUTURE),
     ])
-    assert not r.ok
-    assert r.exit_signal_count == 1
+    assert r.ok, r.reasons
+    assert r.exit_signal_count == 2
+
+    # heat 需求信号不限买卖侧
+    r = evaluate_qualified([
+        _ev("retail", "buy", "免税店"),
+        _ev("heat", "demand", "小红书热度"),
+        _ev("ask", "sell", "得物"),
+    ])
+    assert r.ok, r.reasons
+    assert r.exit_signal_count == 2
 
 
 def test_qualified_gate_same_source_counts_once():
@@ -159,7 +167,7 @@ def test_ready_gate_rejects_ask_heat_rumor_only():
         ]
         r = evaluate_ready(evs)
         assert not r.ok, weak_kind
-    # 两个 ask: qualified 也过不了 (ask 不计信号)
+    # 两个 ask: qualified 能过 (弱信号计入), 但 ready 仍拒绝 (only_weak)
     r = evaluate_ready([
         _ev("retail", "buy", "免税店"),
         _ev("ask", "sell", "闲鱼"),
@@ -189,6 +197,15 @@ def test_ready_gate_requires_fresh_bid_buyback_sold():
     assert not r2.ok
     assert r2.expired_exit_count == 1
     assert any("过期" in x for x in r2.reasons)
+
+    # legacy 证据 expires_at=NULL (月份粒度) → 阶段0 不套用 72h 新鲜度判断,
+    # 存在 sold 即算可执行退出 (NULL 不惩罚; TTL 降级是阶段1 实时逻辑).
+    legacy = base + [_ev("sold", "sell", "得物", expires_at=None)]
+    r3 = evaluate_ready(legacy, net_profit_cny=100.0, min_net_profit_cny=50.0,
+                        human_confirmed=True)
+    assert r3.ok, r3.reasons
+    assert r3.expired_exit_count == 0
+    assert r3.has_executable_exit
 
 
 def test_ready_gate_buyback_and_bid_also_pass():

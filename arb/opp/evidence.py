@@ -8,7 +8,7 @@
 - sold:    历史成交 (可信成交价)
 - ask:     卖家挂单/挂牌/标价 (仅作锚点, 不得直接作为预计收入)
 - heat:    热度/需求信号 (只算需求, 永远不作收入)
-- rumor:   私域传闻/聊天线索 (仅待核验, 不计入门槛)
+- rumor:   私域传闻/聊天线索 (仅待核验; 计入 qualified 需求线索, 不可支撑 ready)
 
 旧 evidence_log.price_type 混中英 8 种, 映射规则:
   tax-free / retail                → retail
@@ -49,9 +49,12 @@ EXECUTABLE_EXIT_KINDS: frozenset[EvidenceKind] = frozenset(
     {EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD}
 )
 
-# qualified 门槛认可的退出/需求信号 (ask 仅锚点不计; rumor 待核验不计).
+# qualified 门槛认可的退出/需求信号 (PRD §3.4: ≥2 个相互独立的退出价格或需求信号).
+# ask (挂单价, 弱锚点) 与 rumor (私域线索, 最弱) 计入 qualified 入池计数;
+# ready 门槛另用 EXECUTABLE_EXIT_KINDS 严格口径 (新鲜 bid/buyback/sold).
 QUALIFIED_SIGNAL_KINDS: frozenset[EvidenceKind] = frozenset(
-    {EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD, EvidenceKind.HEAT}
+    {EvidenceKind.BID, EvidenceKind.BUYBACK, EvidenceKind.SOLD,
+     EvidenceKind.ASK, EvidenceKind.HEAT, EvidenceKind.RUMOR}
 )
 
 # 供给侧证据 (官方事件 或 可验证零售供给).

@@ -5,11 +5,12 @@
 
 门槛口径 (8 类证据):
 - qualified: ≥1 官方事件/可验证零售供给 (official_event/retail, buy 侧)
-  + ≥2 个相互独立来源的退出/需求信号 (bid/buyback/sold/heat; ask 仅锚点,
-  rumor 待核验, 均不计) + 规格可匹配.
-- ready: 在 qualified 之上, 必须含新鲜 (未过 72h) 的 bid/buyback/sold
-  至少一条; ask/heat/rumor 单独不能进 ready (heat 永远不作收入);
-  净利阈值 + 人工确认.
+  + ≥2 个相互独立来源的退出价格或需求信号 (sell 侧 bid/buyback/sold/ask,
+  需求侧 heat/rumor; ask 为弱锚点、rumor 最弱, 均计入入池计数) + 规格可匹配.
+- ready: 在 qualified 之上, 必须含 bid/buyback/sold 至少一条 (ask/heat/rumor
+  单独不能进 ready, heat 永远不作收入) + 净利阈值 + 人工确认. 证据 72h 过期
+  回退属阶段1 实时摄入逻辑 (阶段1 全时间戳证据带 expires_at); 阶段0 legacy
+  月份粒度证据 expires_at 一律 NULL, NULL 不套用新鲜度判断, 不因此惩罚 legacy.
 """
 from __future__ import annotations
 
@@ -60,6 +61,9 @@ TERMINAL_STATUSES: frozenset[OppStatus] = frozenset(
 
 # 合法转移表. 回退边: 证据过期 ready→qualified、qualified→discovered
 # (PRD §5.2); 下架回库 listed→acquired; 买家取消/退款 sold→listed.
+# 注: 「证据过期自动 ready→qualified」属阶段1 实时摄入逻辑 (全时间戳新证据
+# 带 72h expires_at); 阶段0 legacy 回填证据为月份粒度, expires_at 一律
+# NULL, 不做运行时过期降级 (见 sync.py).
 TRANSITIONS: dict[OppStatus, frozenset[OppStatus]] = {
     OppStatus.DISCOVERED: frozenset(
         {OppStatus.QUALIFIED, OppStatus.REJECTED, OppStatus.EXPIRED}
@@ -133,21 +137,29 @@ class GateResult:
     ok: bool
     reasons: list[str] = field(default_factory=list)
     supply_count: int = 0
-    exit_signal_count: int = 0          # 独立来源数 (bid/buyback/sold/heat)
-    has_executable_exit: bool = False  # 含新鲜 bid/buyback/sold
-    expired_exit_count: int = 0         # 已过期的 bid/buyback/sold 条数
+    exit_signal_count: int = 0          # 独立来源数 (bid/buyback/sold/ask/heat/rumor)
+    has_executable_exit: bool = False  # 含 bid/buyback/sold (未显式过期)
+    expired_exit_count: int = 0         # 显式过期的 bid/buyback/sold 条数
     only_weak_exit: bool = False        # 仅 ask/heat/rumor (无任何可执行退出)
+
+
+# 需求信号不绑定买卖侧 (heat/rumor 描述需求, 不是报价).
+_DEMAND_SIGNAL_VALS: frozenset[str] = frozenset(
+    {EvidenceKind.HEAT.value, EvidenceKind.RUMOR.value}
+)
 
 
 def _signal_source(e: dict) -> Optional[str]:
     """退出/需求信号的独立来源标识; 非信号返回 None.
 
-    只认 bid/buyback/sold/heat (ask 仅锚点, rumor 待核验, 都不计).
-    同一 source_ref 只计一次 (相互独立).
+    qualified 门槛 (PRD §3.4 "退出价格或需求信号"):
+      - 退出价格 (sell 侧): bid/buyback/sold/ask —— ask 为弱锚点仍计入;
+      - 需求信号: heat/rumor (不限 side), rumor 最弱.
+    同一 source_ref 只计一次 (相互独立). ready 门槛另见 evaluate_ready.
     """
-    if e["side"] != "sell":
-        return None
-    if e["kind"] in {k.value for k in QUALIFIED_SIGNAL_KINDS}:
+    if e["kind"] in _DEMAND_SIGNAL_VALS:
+        return e["source_ref"] or f"anon:{e['kind']}"
+    if e["side"] == "sell" and e["kind"] in {k.value for k in QUALIFIED_SIGNAL_KINDS}:
         return e["source_ref"] or f"anon:{e['kind']}"
     return None
 
@@ -164,7 +176,7 @@ def evaluate_qualified(evidences: Iterable[dict], *,
         reasons.append(f"官方事件/可验证零售供给证据不足: {len(supply)} < {QUALIFIED_MIN_SUPPLY}")
     if len(exit_sources) < QUALIFIED_MIN_EXIT_SIGNALS:
         reasons.append(
-            f"独立退出/需求信号不足 (仅认 bid/buyback/sold/heat): "
+            f"独立退出/需求信号不足 (bid/buyback/sold/ask/heat/rumor, 同来源去重): "
             f"{len(exit_sources)} < {QUALIFIED_MIN_EXIT_SIGNALS}"
         )
     if not specs_match:
@@ -186,9 +198,12 @@ def evaluate_ready(evidences: Iterable[dict], *,
                    as_of: Optional[_dt.datetime] = None) -> GateResult:
     """ready 门槛 (qualified 之上的额外要求):
 
-    - 必须存在新鲜 (未过 expires_at, 默认 72h) 的 bid/buyback/sold;
+    - 必须存在可执行退出证据 bid/buyback/sold (sell 侧);
       ask/heat/rumor 单独一律拒绝 —— 挂单价/热度/传闻不得作为预计收入.
-    - 可执行退出证据全部过期 → 退回待验证 (qualified).
+    - 新鲜度 (72h TTL) 属阶段1 实时摄入逻辑: 阶段1 全时间戳新证据带
+      expires_at, 过期触发 ready→qualified 回退; 阶段0 legacy 回填证据为
+      月份粒度, expires_at 一律 NULL —— NULL 视为「不套用新鲜度判断」
+      (is_expired(NULL)=False), 不因缺 TTL 惩罚 legacy.
     - 预计净利润超过用户阈值 (阈值未给跳过; 净利缺失留 NULL 不臆造).
     - 资格/预算/时间窗口人工确认.
     """
@@ -198,6 +213,7 @@ def evaluate_ready(evidences: Iterable[dict], *,
 
     exec_kind_vals = {k.value for k in EXECUTABLE_EXIT_KINDS}
     exec_evs = [e for e in evs if e["side"] == "sell" and e["kind"] in exec_kind_vals]
+    # 显式过期才排除; expires_at 缺失 (legacy/手工) 不过期, 不惩罚.
     fresh_exec = [e for e in exec_evs if not is_expired(e["expires_at"], as_of)]
     expired_n = len(exec_evs) - len(fresh_exec)
     weak = [e for e in evs if e["side"] == "sell"

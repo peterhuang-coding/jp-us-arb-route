@@ -53,9 +53,10 @@ def build_plan(conn) -> dict:
         },
         "notes": [
             "ready/participating/failed/expired 无历史对应物, 不回填",
-            "est_net_profit/margin/资金占用: legacy 无 CNY 费用数据, 留 NULL (不做 USD 换算)",
+            "est_* 财务字段 + evidence 双币列 (original_*/fx_rate): legacy 一律 NULL, 不强行估算/换算",
             "bid/heat/official_event/rumor 无历史源, 属预期缺口 (阶段1 补)",
-            "退出价口径 buyback>bid>sold 中位数+样本量; ask 仅锚点; exit 证据 72h TTL",
+            "退出价口径 buyback>bid>sold 中位数+样本量已作 finance 函数保留, 阶段1 实时证据使用; legacy 不套用",
+            "legacy 月份粒度证据 expires_at 一律 NULL; 72h TTL + ready→qualified 降级属阶段1 实时摄入",
             "月份粒度证据 observed_at 取月初, confidence 降为 0.6",
         ],
     }
