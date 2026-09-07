@@ -1,12 +1,13 @@
 """阶段0: Opportunity 11 态状态机 + 转移 + 证据门槛 + 规格归一."""
 from __future__ import annotations
 
+import datetime as _dt
+
 import pytest
 
 from arb.opp.state import (
     ALL_STATUSES,
     TERMINAL_STATUSES,
-    FUNNEL_RANK,
     OppStatus,
     IllegalTransition,
     can_transition,
@@ -21,8 +22,7 @@ from arb.opp.state import (
 
 def test_eleven_states_complete():
     assert len(ALL_STATUSES) == 11
-    values = {s.value for s in ALL_STATUSES}
-    assert values == {
+    assert {s.value for s in ALL_STATUSES} == {
         "discovered", "qualified", "ready", "participating", "acquired",
         "failed", "listed", "sold", "settled", "rejected", "expired",
     }
@@ -38,12 +38,11 @@ def test_legal_funnel_transitions():
     path = ["discovered", "qualified", "ready", "participating",
             "acquired", "listed", "sold", "settled"]
     for a, b in zip(path, path[1:]):
-        assert can_transition(a, b), f"{a} → {b} should be legal"
-        require_transition(a, b)  # must not raise
+        assert can_transition(a, b)
+        require_transition(a, b)
 
 
 def test_illegal_skip_ahead_transitions():
-    # 不能跳级
     assert not can_transition("discovered", "settled")
     assert not can_transition("discovered", "ready")
     assert not can_transition("qualified", "acquired")
@@ -55,15 +54,11 @@ def test_illegal_skip_ahead_transitions():
 def test_terminal_states_have_no_outgoing():
     for t in TERMINAL_STATUSES:
         assert can_transition(t, "discovered") is False
-        assert can_transition(t, t.value) is False
 
 
-def test_evidence_expiry_rollback():
-    # PRD §5.2: 关键证据过期, ready 自动回退待验证 (qualified),
-    # qualified 可回退 discovered.
+def test_evidence_expiry_rollback_edges():
     assert can_transition("ready", "qualified")
     assert can_transition("qualified", "discovered")
-    # listed 下架回库存; sold 买家取消回 listed
     assert can_transition("listed", "acquired")
     assert can_transition("sold", "listed")
 
@@ -77,112 +72,161 @@ def test_participating_outcomes():
 
 # ---------- 证据门槛 ----------
 
-def _ev(kind, side, source_ref, confidence=0.8):
+FUTURE = "2099-01-01T00:00:00"   # 新鲜证据
+
+def _ev(kind, side, source_ref, *, expires_at=None, confidence=0.8):
     return {"kind": kind, "side": side, "source_ref": source_ref,
-            "source_kind": "marketplace", "confidence": confidence}
+            "source_kind": "marketplace", "confidence": confidence,
+            "expires_at": expires_at}
 
 
 def test_qualified_gate_requires_supply_and_two_independent_signals():
-    # 空证据
     r = evaluate_qualified([])
-    assert not r.ok
-    assert len(r.reasons) == 2
+    assert not r.ok and len(r.reasons) == 2
 
-    # 只有 1 个官方供给, 0 退出信号
+    # 1 供给 + 0 退出信号
     r = evaluate_qualified([_ev("retail", "buy", "免税店")])
-    assert not r.ok
-    assert r.supply_count == 1 and r.exit_signal_count == 0
+    assert not r.ok and r.supply_count == 1 and r.exit_signal_count == 0
 
-    # 1 供给 + 2 个独立退出信号 (不同来源)
+    # 1 供给 + 2 个独立退出信号 (bid/buyback/sold/heat 之一, 不同来源)
     r = evaluate_qualified([
         _ev("retail", "buy", "免税店"),
-        _ev("ask", "sell", "闲鱼"),
-        _ev("sold", "sell", "得物"),
+        _ev("sold", "sell", "得物", expires_at=FUTURE),
+        _ev("heat", "sell", "小红书热度"),
     ])
     assert r.ok, r.reasons
     assert r.supply_count == 1 and r.exit_signal_count == 2
 
+    # official_event 也算供给
+    r = evaluate_qualified([
+        _ev("official_event", "buy", "泡泡玛特官方"),
+        _ev("bid", "sell", "千岛买盘", expires_at=FUTURE),
+        _ev("sold", "sell", "闲鱼成交", expires_at=FUTURE),
+    ])
+    assert r.ok, r.reasons
 
-def test_qualified_gate_same_source_counts_once():
-    # 同一渠道两条挂单只算 1 个独立信号
+
+def test_qualified_gate_ask_does_not_count_as_signal():
+    # ask (挂单) 仅锚点: 两个不同渠道的 ask 也凑不够 2 个信号
     r = evaluate_qualified([
         _ev("retail", "buy", "免税店"),
         _ev("ask", "sell", "闲鱼"),
-        _ev("ask", "sell", "闲鱼"),
+        _ev("ask", "sell", "得物"),
+    ])
+    assert not r.ok
+    assert r.exit_signal_count == 0
+
+
+def test_qualified_gate_rumor_does_not_count():
+    # rumor 私域传闻待核验, 不计入门槛
+    r = evaluate_qualified([
+        _ev("retail", "buy", "免税店"),
+        _ev("rumor", "sell", "微信群A"),
+        _ev("sold", "sell", "得物", expires_at=FUTURE),
     ])
     assert not r.ok
     assert r.exit_signal_count == 1
 
 
-def test_qualified_gate_rumor_counts_as_demand_signal():
+def test_qualified_gate_same_source_counts_once():
     r = evaluate_qualified([
         _ev("retail", "buy", "免税店"),
-        _ev("rumor", "sell", "微信群A"),
-        _ev("ask", "sell", "闲鱼"),
+        _ev("sold", "sell", "得物", expires_at=FUTURE),
+        _ev("bid", "sell", "得物", expires_at=FUTURE),
     ])
-    assert r.ok
+    assert not r.ok
+    assert r.exit_signal_count == 1
 
 
-def test_ready_gate_rejects_ask_only_and_rumor_only():
-    ask_only = [
+def test_qualified_gate_specs_mismatch_blocks():
+    ok_evs = [
+        _ev("retail", "buy", "免税店"),
+        _ev("sold", "sell", "得物", expires_at=FUTURE),
+        _ev("bid", "sell", "闲鱼", expires_at=FUTURE),
+    ]
+    assert evaluate_qualified(ok_evs, specs_match=True).ok
+    r = evaluate_qualified(ok_evs, specs_match=False)
+    assert not r.ok
+    assert any("规格" in x for x in r.reasons)
+
+
+def test_ready_gate_rejects_ask_heat_rumor_only():
+    for weak_kind in ("ask", "heat", "rumor"):
+        evs = [
+            _ev("retail", "buy", "免税店"),
+            _ev(weak_kind, "sell", "渠道A"),
+            _ev(weak_kind, "sell", "渠道B"),
+        ]
+        r = evaluate_ready(evs)
+        assert not r.ok, weak_kind
+    # 两个 ask: qualified 也过不了 (ask 不计信号)
+    r = evaluate_ready([
         _ev("retail", "buy", "免税店"),
         _ev("ask", "sell", "闲鱼"),
         _ev("ask", "sell", "得物"),
-    ]
-    r = evaluate_ready(ask_only)
-    assert not r.ok
-    assert r.only_weak_exit
-    assert any("ask/rumor" in reason for reason in r.reasons)
+    ])
+    assert not r.ok and r.only_weak_exit
 
-    rumor_only = [
+
+def test_ready_gate_requires_fresh_bid_buyback_sold():
+    base = [
         _ev("retail", "buy", "免税店"),
-        _ev("rumor", "sell", "微信群A"),
-        _ev("rumor", "sell", "微信群B"),
+        _ev("ask", "sell", "闲鱼"),
+        _ev("heat", "sell", "小红书"),
     ]
-    r2 = evaluate_ready(rumor_only)
+    # 新鲜 sold → 证据项过
+    fresh = base + [_ev("sold", "sell", "得物", expires_at=FUTURE)]
+    r = evaluate_ready(fresh, net_profit_cny=100.0, min_net_profit_cny=50.0,
+                       human_confirmed=True)
+    assert r.ok, r.reasons
+    assert r.has_executable_exit
+
+    # 过期 sold → 退回待验证
+    as_of = _dt.datetime(2099, 6, 1)
+    expired = base + [_ev("sold", "sell", "得物", expires_at=FUTURE)]
+    r2 = evaluate_ready(expired, net_profit_cny=100.0, min_net_profit_cny=50.0,
+                        human_confirmed=True, as_of=as_of)
     assert not r2.ok
-    assert r2.only_weak_exit
+    assert r2.expired_exit_count == 1
+    assert any("过期" in x for x in r2.reasons)
 
 
-def test_ready_gate_accepts_bid_buyback_sold():
-    for kind in ("bid", "buyback", "sold"):
+def test_ready_gate_buyback_and_bid_also_pass():
+    for kind in ("bid", "buyback"):
         evs = [
             _ev("retail", "buy", "免税店"),
             _ev("ask", "sell", "闲鱼"),
-            _ev(kind, "sell", "退出渠道"),
+            _ev(kind, "sell", "退出渠道", expires_at=FUTURE),
+            _ev("heat", "sell", "小红书热度"),   # 第 2 个独立需求信号
         ]
         r = evaluate_ready(evs, net_profit_cny=100.0, min_net_profit_cny=50.0,
                            human_confirmed=True)
         assert r.ok, (kind, r.reasons)
-        assert r.has_executable_exit
 
 
 def test_ready_gate_profit_and_human_confirmation():
-    evs = [_ev("retail", "buy", "免税店"), _ev("sold", "sell", "得物"),
-           _ev("bid", "sell", "闲鱼")]
-    # 利润低于阈值
+    evs = [_ev("retail", "buy", "免税店"),
+           _ev("sold", "sell", "得物", expires_at=FUTURE),
+           _ev("bid", "sell", "闲鱼", expires_at=FUTURE)]
     r = evaluate_ready(evs, net_profit_cny=10.0, min_net_profit_cny=50.0,
                        human_confirmed=True)
-    assert not r.ok
-    assert any("阈值" in x for x in r.reasons)
-    # 缺人工确认
+    assert not r.ok and any("阈值" in x for x in r.reasons)
     r = evaluate_ready(evs, net_profit_cny=100.0, min_net_profit_cny=50.0,
                        human_confirmed=False)
-    assert not r.ok
-    assert any("人工确认" in x for x in r.reasons)
-    # 净利缺失 (NULL) 且给了阈值 → 不臆造
+    assert not r.ok and any("人工确认" in x for x in r.reasons)
     r = evaluate_ready(evs, net_profit_cny=None, min_net_profit_cny=50.0,
                        human_confirmed=True)
-    assert not r.ok
-    assert any("净利润缺失" in x for x in r.reasons)
+    assert not r.ok and any("净利润缺失" in x for x in r.reasons)
 
 
 def test_gate_accepts_partial_dicts():
-    # 缺省键 (如 sqlite Row 缺列) 走 default, 不抛异常
+    # 缺省键 (sqlite Row 缺列) 走 default, 不抛异常
     r = evaluate_qualified([
         {"kind": "retail", "side": "buy"},
-        {"kind": "ask", "side": "sell", "source_ref": "闲鱼"},
-        {"kind": "sold", "side": "sell", "source_ref": "得物"},
+        {"kind": "sold", "side": "sell", "source_ref": "得物",
+         "expires_at": FUTURE},
+        {"kind": "bid", "side": "sell", "source_ref": "闲鱼",
+         "expires_at": FUTURE},
     ])
     assert r.ok
 
@@ -193,10 +237,8 @@ def test_specs_conflict_detects_mismatch():
     a = {"brand": "Pokemon", "model": "151", "version": "日版"}
     b = {"brand": "Pokemon", "model": "151", "version": "国版"}
     assert specs_conflict(a, b) is True
-    # 缺维度不算冲突
     c = {"brand": "Pokemon", "model": "151"}
     assert specs_conflict(a, c) is False
-    # 完全一致
     d = {"brand": "pokemon", "model": " 151", "version": "日版"}
     assert specs_conflict(a, d) is False
 
@@ -204,10 +246,7 @@ def test_specs_conflict_detects_mismatch():
 def test_alias_merge_decision():
     spec_a = {"brand": "Pokemon", "version": "日版"}
     spec_b = {"brand": "Pokemon", "version": "日版"}
-    # 高置信 + 规格一致 → 自动
     assert alias_merge_decision(0.9, spec_a, spec_b) == "auto"
-    # 置信度不足 → 人工
     assert alias_merge_decision(AUTO_MERGE_MIN_CONFIDENCE - 0.01, spec_a, spec_b) == "manual_review"
-    # 规格不一致 → 即使高置信也人工 (不允许自动合并)
     spec_c = {"brand": "Pokemon", "version": "国版"}
     assert alias_merge_decision(0.99, spec_a, spec_c) == "manual_review"

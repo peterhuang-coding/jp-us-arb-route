@@ -48,6 +48,41 @@ def test_forecast_error():
     assert finance.forecast_error_cny(300, None) is None
 
 
+def test_executable_exit_priority_buyback_over_bid_over_sold():
+    def ev(kind, price, side="sell"):
+        return {"kind": kind, "side": side, "price_cny": price, "observed_at": "2026-09-01"}
+    # buyback 存在 → 用 buyback 中位数
+    r = finance.executable_exit_value([
+        ev("sold", 1300), ev("bid", 1250), ev("buyback", 1100), ev("buyback", 1120)])
+    assert r["kind"] == "buyback" and r["sample_count"] == 2
+    assert r["value_cny"] == 1110.0
+    # 无 buyback 有 bid → bid
+    r = finance.executable_exit_value([ev("sold", 1300), ev("bid", 1250), ev("bid", 1270)])
+    assert r["kind"] == "bid" and r["sample_count"] == 2 and r["value_cny"] == 1260.0
+    # 只有 sold → sold 中位数
+    r = finance.executable_exit_value([ev("sold", 1300), ev("sold", 1400)])
+    assert r["kind"] == "sold" and r["sample_count"] == 2 and r["value_cny"] == 1350.0
+
+
+def test_executable_exit_ask_is_anchor_only_and_rumor_heat_ignored():
+    r = finance.executable_exit_value([
+        {"kind": "ask", "side": "sell", "price_cny": 2000, "observed_at": "2026-09-01"},
+        {"kind": "rumor", "side": "sell", "price_cny": 5000, "observed_at": "2026-09-01"},
+        {"kind": "heat", "side": "sell", "price_cny": None, "observed_at": "2026-09-01"},
+    ])
+    assert r["value_cny"] is None and r["kind"] is None
+    assert r["anchor_ask_cny"] == 2000.0 and r["ask_count"] == 1
+
+
+def test_executable_exit_max_age_filter():
+    evs = [
+        {"kind": "sold", "side": "sell", "price_cny": 1300, "observed_at": "2026-01-01"},
+        {"kind": "sold", "side": "sell", "price_cny": 1500, "observed_at": "2026-09-05"},
+    ]
+    r = finance.executable_exit_value(evs, max_age_days=30, as_of="2026-09-08")
+    assert r["sample_count"] == 1 and r["value_cny"] == 1500.0
+
+
 def test_evidence_grade():
     assert finance.evidence_grade(1, 2, True) == "A"
     assert finance.evidence_grade(1, 2, False) == "B"

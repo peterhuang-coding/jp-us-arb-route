@@ -107,6 +107,11 @@ def test_new_tables_exist():
     for t in ("opp_items", "item_aliases", "opp_cases", "evidence", "opp_status_events"):
         cols = db._table_columns(conn, t)
         assert "id" in cols
+    # 双币列 + 72h 过期列
+    ev_cols = db._table_columns(conn, "evidence")
+    assert {"original_amount", "original_currency", "fx_rate", "expires_at"} <= ev_cols
+    case_cols = db._table_columns(conn, "opp_cases")
+    assert {"est_exit_kind", "est_exit_sample_count"} <= case_cols
     conn.close()
 
 
@@ -168,6 +173,17 @@ def test_apply_maps_evidence_kinds(legacy_conn):
     snap = kinds[("ask", "buy", "amazon_jp")]
     assert snap["observed_at"] == "2026-09-01T10:00:00"
     assert snap["confidence"] == 0.8
+    # 双币: evidence_log 本币 CNY; competitor 存 JPY 原始价 + fx 快照
+    assert row["original_currency"] == "CNY"
+    assert row["original_amount"] == 900.0
+    assert snap["original_currency"] == "JPY"
+    assert snap["original_amount"] == 20000.0
+    assert snap["fx_rate"] == 20.8
+    assert snap["price_cny"] == 960.0
+    # 72h TTL: sold/buyback 带 expires_at; ask 不带
+    sold = kinds[("sold", "sell", "得物")]
+    assert sold["expires_at"] == "2026-08-04T00:00:00"
+    assert kinds[("ask", "sell", "闲鱼")]["expires_at"] is None
 
 
 def test_apply_statuses_and_reasons(legacy_conn):
@@ -218,10 +234,13 @@ def test_apply_finance_nulls_and_actuals(legacy_conn):
         assert c["forecast_error_cny"] is None, key
     # est_buy 来自 buy 侧 retail CNY 证据 (非 USD 换算)
     assert cases["SKU-QUAL"]["est_buy_cny"] == 900.0
-    # est_exit 来自可执行退出 (sold/buyback) 中位数: 1100/1300 → 1200
-    assert cases["SKU-QUAL"]["est_exit_cny"] == 1200.0
-    # 仅挂单的 SKU-WEAK 无 bid/buyback/sold → est_exit NULL
+    # est_exit 优先级 buyback > bid > sold: buyback 1100 (n=1) 胜出
+    assert cases["SKU-QUAL"]["est_exit_cny"] == 1100.0
+    assert cases["SKU-QUAL"]["est_exit_kind"] == "buyback"
+    assert cases["SKU-QUAL"]["est_exit_sample_count"] == 1
+    # 仅挂单的 SKU-WEAK 无 bid/buyback/sold → est_exit NULL (ask 仅锚点)
     assert cases["SKU-WEAK"]["est_exit_cny"] is None
+    assert cases["SKU-WEAK"]["est_exit_kind"] is None
     # settled 实际值: buy=800, exit=950, refund=950 → 950-950-0-800 = -800
     sett = cases["SKU-SET"]
     assert sett["actual_buy_cny"] == 800.0
@@ -233,14 +252,49 @@ def test_apply_finance_nulls_and_actuals(legacy_conn):
 
 
 def test_apply_gate_check_reports_downgrade(legacy_conn):
-    # 新门槛复算: SKU-WEAK 仅挂单 → qualified 门可过 (2 独立 ask),
-    # ready 门必拒 (only_weak_exit); SKU-QUAL 有 sold/buyback → ready 证据项过.
+    # 新门槛复算: SKU-WEAK 仅挂单 (ask 不计信号) → qualified/ready 均不过;
+    # SKU-QUAL 有 sold+buyback 两个独立信号 → qualified 过, 但历史证据已过
+    # 72h TTL → fresh 可执行退出为 0, ready 不过.
     report = backfill.run(legacy_conn, dry_run=True)
     gates = {g["item_key"]: g for g in report["gate_checks"]}
     assert gates["SKU-WEAK"]["only_weak_exit"] is True
-    assert gates["SKU-WEAK"]["ready_gate_ok"] is False
-    assert gates["SKU-QUAL"]["has_executable_exit"] is True
+    assert gates["SKU-WEAK"]["qualified_gate_ok"] is False
+    assert gates["SKU-WEAK"]["exit_signal_count"] == 0
+    assert gates["SKU-QUAL"]["qualified_gate_ok"] is True
+    assert gates["SKU-QUAL"]["exit_signal_count"] == 2
+    assert gates["SKU-QUAL"]["has_executable_exit"] is False   # 已过期
+    assert gates["SKU-QUAL"]["expired_exit_count"] == 2
     assert gates["SKU-DISC"]["qualified_gate_ok"] is False
+
+
+def test_find_expired_demotions(legacy_conn):
+    """ready case 的可执行退出证据全部过期 → 应退回 qualified (PRD §5.2)."""
+    import datetime as _dt
+    backfill.run(legacy_conn, dry_run=False)
+    # 人工建一个 ready case (SKU-DISC 原本只有 buy retail)
+    legacy_conn.execute(
+        "INSERT INTO opp_cases (item_key,opp_type,status,origin,status_reason) "
+        "VALUES ('SKU-DISC','raffle','ready','manual','人工批准')")
+    legacy_conn.commit()
+
+    def add_ev(kind, observed, expires):
+        legacy_conn.execute(
+            "INSERT INTO evidence (item_key,kind,side,source_kind,source_ref,"
+            "price_cny,confidence,observed_at,expires_at) "
+            "VALUES ('SKU-DISC',?,'sell','marketplace','渠道X',1000,0.8,?,?)",
+            (kind, observed, expires))
+
+    add_ev("sold", "2026-08-01T00:00:00", "2026-08-04T00:00:00")  # 已过期
+    legacy_conn.commit()
+    as_of = _dt.datetime(2026, 9, 8)
+    demotions = sync.find_expired_demotions(legacy_conn, as_of=as_of)
+    assert len(demotions) == 1 and demotions[0]["item_key"] == "SKU-DISC"
+    assert demotions[0]["expired_exit_count"] == 1
+
+    # 补一条新鲜 buyback → 不再降级
+    add_ev("buyback", "2026-09-07T00:00:00", "2026-09-10T00:00:00")
+    legacy_conn.commit()
+    assert sync.find_expired_demotions(legacy_conn, as_of=as_of) == []
 
 
 # ---------- 幂等 ----------
