@@ -62,6 +62,11 @@ app = FastAPI(
 from .opp.api import router as _opp_router  # noqa: E402
 app.include_router(_opp_router)
 
+from .sourcing import router as _sourcing_router  # noqa: E402
+app.include_router(_sourcing_router)
+from .day_plans import router as _day_plans_router  # noqa: E402
+app.include_router(_day_plans_router)
+
 
 @app.on_event("startup")
 def _backfill_leg_times() -> None:

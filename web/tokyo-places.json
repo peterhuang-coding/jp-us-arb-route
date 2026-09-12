@@ -1,0 +1,5 @@
+[
+  {"id":"tokyo-station","name":"东京站","area":"丸之内 / 八重洲","lat":35.68124,"lng":139.76713,"address":"東京都千代田区丸の内1丁目 東京駅","open":"00:00","close":"23:59","note":"车站附近参考点；出发前选择实际出口","source":"https://www.jreast.co.jp/estation/stations/1039.html","checked_at":"2026-09-12"},
+  {"id":"mita-ueno","name":"mita sneakers","area":"上野 / 阿美横町","lat":35.70998,"lng":139.77466,"address":"東京都台東区上野4-7-8 アメ横センタービル 1F 路面店","open":"11:00","weekend_open":"10:00","close":"19:30","note":"地址附近参考点；元日及第三周三休息，临时休业需出发前复核；官网鞋款售罄，门店库存未知","source":"https://www.mita-sneakers.co.jp/pages/company","checked_at":"2026-09-12","product_urls":["https://www.mita-sneakers.co.jp/products/1183c102-002","https://www.mita-sneakers.co.jp/products/1203a610-020"]},
+  {"id":"pokemon-dx","name":"Pokémon Center Tokyo DX","area":"日本桥","lat":35.68029,"lng":139.77427,"address":"東京都中央区日本橋2-11-2 日本橋髙島屋S.C.東館5F","open":"10:30","close":"21:00","note":"官方地图附近参考点；5F 门店，入场与当天库存另核","source":"https://shop.pokemon.co.jp/ja/shop/pokemoncenter-tokyodx/","checked_at":"2026-09-12","product_urls":["https://www.pokemoncenter-online.com/4521329333687.html"]}
+]

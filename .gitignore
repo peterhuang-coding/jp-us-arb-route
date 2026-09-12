@@ -8,4 +8,5 @@ __pycache__/
 node_modules/
 .DS_Store
 .claude/worktrees/
-
+.playwright-cli/
+output/playwright/

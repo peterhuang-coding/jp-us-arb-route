@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>经营工作流 · 东京买手台</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23315fce'/%3E%3Ctext x='6' y='25' fill='white' font-size='26'%3E↗%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/sourcing.css?v=20260911-2">
+  <link rel="stylesheet" href="/workflow.css?v=20260912-1">
+  <script type="module" src="/workflow.js?v=20260912-1"></script>
+</head>
+<body class="workflow-page">
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="东京买手台首页"><span class="brand-mark">↗</span><span>东京买手台<small>JP / CN · SOURCING DESK</small></span></a>
+    <nav aria-label="主导航"><a class="nav-on" href="/workflow.html" aria-current="page">经营工作流</a><a href="/#market-board">今日买卖</a><a href="/#day-planner">东京地图</a><a href="/#catalog">选品观察池</a></nav>
+    <a class="workflow-back" href="/">返回买手台 ↗</a>
+  </header>
+  <main class="workflow-main">
+    <section class="workflow-intro" aria-labelledby="workflow-title">
+      <div><p class="eyebrow">THE RESALE WORKFLOW</p><h1 id="workflow-title">一件货，<br>从发现到回款。</h1><p>先弄清卖给谁、净收多少，再决定买什么、去哪买。<br>点开每一步，看要拿到的结果、AI 分工和下一步动作。</p></div>
+      <div class="workflow-context"><span>本次经营范围</span><strong>东京采购 → 国内销售</strong><p>2026.10.02 — 10.07<br>得物 / 闲鱼 · 经营资金 ¥10,000</p><small>先验证一个熟悉品类，再扩大货盘。</small></div>
+    </section>
+
+    <section class="workflow-now" aria-labelledby="now-title">
+      <div class="now-copy"><span class="workflow-dot" aria-hidden="true"></span><div><p class="eyebrow">现在先做这一件</p><h2 id="now-title">正在核对已保存的资料…</h2><p id="now-description">流程图可以先看；经营进度将在连接后显示。</p></div></div>
+      <button id="show-next" class="primary">查看这一步 ↓</button>
+    </section>
+
+    <section class="workflow-map" aria-label="从确认销路到回款复盘的六步流程">
+      <div class="workflow-map-head"><p>线索可以来自买家，也可以来自货源。<strong>买入前，先把两端核实。</strong></p><span>点击步骤查看详情</span></div>
+      <nav id="workflow-steps" class="workflow-steps" aria-label="选择经营步骤"></nav>
+      <div class="workflow-loop"><span aria-hidden="true">↶</span><p><strong>每次回款与滞销，都更新下一次的收购标准。</strong> 记录实际净利、持货天数和人工耗时。</p></div>
+    </section>
+
+    <section id="workflow-detail" class="workflow-detail" aria-labelledby="detail-title" tabindex="-1"></section>
+
+    <section class="workflow-progress" aria-labelledby="progress-title">
+      <div class="workflow-progress-heading"><div><p class="eyebrow">SAVED EVIDENCE</p><h2 id="progress-title">我们实际做到哪了</h2></div><button id="workflow-refresh" class="text-button">刷新已保存资料 ↻</button></div>
+      <div id="workflow-metrics" class="workflow-metrics" aria-live="polite"></div>
+      <p id="workflow-connection" class="workflow-data-note" role="status">正在读取观察池与日计划…</p>
+      <p class="workflow-data-note">只统计已保存的观察项与实购批次，不包含未保存修改。当前未连接平台实时成交、自动监控或自动上架；“AI 可辅助”是分工说明。</p>
+    </section>
+
+    <section class="workflow-principle"><div><p class="eyebrow">WHAT TO IMPROVE</p><h2>提效，最后看这三个结果。</h2></div><div><strong>核验一个机会用了多久</strong><p>计入找资料、核对和纠错。</p></div><div><strong>一笔交易实际赚了多少</strong><p>扣采购、平台、物流、税费与售后。</p></div><div><strong>资金多久能收回来</strong><p>未售库存与占用资金一起看。</p></div></section>
+  </main>
+  <footer><span>东京买手台 · 流程说明与已保存资料</span><a href="/#catalog">从一个具体商品开始 ↗</a></footer>
+  <noscript>流程需要 JavaScript 展示。经营顺序：确认销路 → 算收购上限 → 定向找货 → 核验采购 → 上架卖出 → 回款复盘。</noscript>
+</body>
+</html>

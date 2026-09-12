@@ -377,11 +377,11 @@ def test_routepicker_exposes_route_fixed_helper():
 def test_routepicker_dropdown_options_show_fixed_cost():
     """Both origin and dest <select>s must render their options with
     a 固定 $X label, surfacing the round-8 cost lesson in the UI."""
-    html = _spa_asset("index.html")
+    html = _spa_asset("legacy.html")
     # Two options per route row: origin picker and dest picker, each
     # calls routeFixed(r) and emits the 固定 label.
     assert html.count("routeFixed(") >= 4  # 2 selects × 2 uses (label + title)
-    assert "固定" in html, "index.html missing 固定 label"
+    assert "固定" in html, "legacy.html missing 固定 label"
     # The dropdown must still set the city as the option value, so
     # existing x-model bindings (origin / dest) keep working.
     assert 'x-model="origin"' in html
