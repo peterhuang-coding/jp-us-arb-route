@@ -12,6 +12,8 @@
 
 产品边界、竞品、国内数据源和 MacBook Pro / Mac mini 分工见[证据驱动买入决策卡](docs/research/证据驱动买入决策卡.md)，后续任务见[证据驱动买入决策卡实施计划](docs/superpowers/plans/证据驱动买入决策卡实施计划.md)。
 
+下一轮市场扫描进一步对比了 eBay Product Research、SellerAmp、Keepa、盯潮、Sole Retriever、Amazon Seller、Seller Ledger、List Perfectly 和 StockX，建议优先补流动性、机会事件漏斗与逐笔回款，详见[转售工具市场实践与下一轮功能建议](docs/research/转售工具市场实践与下一轮功能建议.md)。
+
 验证：
 
 ```bash
