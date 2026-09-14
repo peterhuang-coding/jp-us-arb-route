@@ -83,25 +83,27 @@ export function deskBasket(items,days,now=new Date()){
  const b=basket(remaining,10000-committed,3000,now),extraKnown=days.every(d=>known(d.extra_cny));
  return {...b,committed,ready:b.ready&&extraKnown,unknown:b.unknown||!extraKnown};
 }
-export function totals(s,days,planned,research=false){
+export function totals(s,days,planned,research=false,now=new Date()){
  const merged=allDays(s,days),today=(s.records||[]).filter(r=>r.status==='bought'),records=merged.flatMap(d=>(d.records||[]).filter(r=>r.status==='bought'));
  const costs=rs=>rs.reduce((n,r)=>n+r.cost_cny,0),nets=rs=>rs.every(r=>recordNet(r)!==null)?rs.reduce((n,r)=>n+recordNet(r),0):null;
- const plannedCost=planned.reduce((n,i)=>n+diagnose(i).cost*i.quote.units,0),plannedNet=planned.reduce((n,i)=>n+i.quote.net_cny*i.quote.units,0);
+ const plannedRows=planned.map(i=>({item:i,diagnosis:diagnose(i,now)}));
+ const plannedCost=plannedRows.every(x=>x.diagnosis.cost!==null)?plannedRows.reduce((n,x)=>n+x.diagnosis.cost*x.item.quote.units,0):null;
+ const plannedNet=plannedRows.every(x=>x.diagnosis.exitEvidence)?plannedRows.reduce((n,x)=>n+x.diagnosis.exitEvidence.net_cny*x.item.quote.units,0):null;
  const extraKnown=known(s.extra_cny),allExtraKnown=merged.every(d=>known(d.extra_cny));
  const tripExtra=merged.reduce((n,d)=>n+(d.extra_cny||0),0);
- const cost=extraKnown&&!research?round(costs(today)+s.extra_cny+plannedCost):null;
- const net=nets(today)!==null&&!research?round(nets(today)+plannedNet):null;
- const tripCost=allExtraKnown&&!research?round(costs(records)+tripExtra+plannedCost):null;
- const tripNet=nets(records)!==null&&!research?round(nets(records)+plannedNet):null;
+ const cost=extraKnown&&plannedCost!==null&&!research?round(costs(today)+s.extra_cny+plannedCost):null;
+ const net=nets(today)!==null&&plannedNet!==null&&!research?round(nets(today)+plannedNet):null;
+ const tripCost=allExtraKnown&&plannedCost!==null&&!research?round(costs(records)+tripExtra+plannedCost):null;
+ const tripNet=nets(records)!==null&&plannedNet!==null&&!research?round(nets(records)+plannedNet):null;
  const profit=cost!==null&&net!==null?round(net-cost):null,tripProfit=tripCost!==null&&tripNet!==null?round(tripNet-tripCost):null;
  return {cost,net,profit,roi:cost>0&&profit!==null?round(profit/cost*100):null,tripCost,tripNet,tripProfit,tripROI:tripCost>0&&tripProfit!==null?round(tripProfit/tripCost*100):null,
   recordedCost:round(costs(records)),todayRecordedCost:round(costs(today)),settled:round(records.reduce((n,r)=>n+(r.actual_net_cny||0),0)),
-  remaining:round(10000-3000-costs(records)-tripExtra-plannedCost),plannedCost:round(plannedCost),extraKnown:allExtraKnown};
+  remaining:plannedCost===null?null:round(10000-3000-costs(records)-tripExtra-plannedCost),plannedCost:plannedCost===null?null:round(plannedCost),extraKnown:allExtraKnown};
 }
 export function planDay(items,s,days,places,mode='buy',now=new Date()){
  const exclusions=[],allRecords=allDays(s,days).flatMap(d=>d.records||[]),closedToday=new Set((s.records||[]).map(r=>r.item_id));
  const active=items.filter(i=>!i.archived&&(!s.candidate_ids||s.candidate_ids.includes(i.id))&&!closedToday.has(i.id));
- const base={items:[],route:{stops:[],finish:minute(s.start_time),travel:0},nodes:[],exclusions,forecast:totals(s,days,[],mode==='research'),error:'',mode,future:s.date>japanDate(now)};
+ const base={items:[],route:{stops:[],finish:minute(s.start_time),travel:0},nodes:[],exclusions,forecast:totals(s,days,[],mode==='research',now),error:'',mode,future:s.date>japanDate(now)};
  if(minute(s.end_time)<=minute(s.start_time))return {...base,error:'结束时间需要晚于开始时间'};
  if(active.length>10)return {...base,error:'最多同时比较 10 个商品，请在“参与规划”中减少候选。'};
  const eligible=[];
@@ -145,5 +147,5 @@ export function planDay(items,s,days,places,mode='buy',now=new Date()){
  const route=best.route;
  const stops=route.stops.map(n=>({...n,items:n.items.filter(i=>selectedIds.has(i.id))}));
  for(const e of eligible)if(!selectedIds.has(e.item.id))exclusions.push({item:e.item,reason:mode==='buy'?'预算、时窗或净利润组合不占优':'当天时间内未排入'});
- return {...base,items:selected,nodes,route:{...route,stops},exclusions,forecast:totals(s,days,mode==='research'?[]:selected,mode==='research')};
+ return {...base,items:selected,nodes,route:{...route,stops},exclusions,forecast:totals(s,days,mode==='research'?[]:selected,mode==='research',now)};
 }

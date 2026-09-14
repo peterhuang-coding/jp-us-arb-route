@@ -4,7 +4,7 @@ import {planDay, routeTable, totals, resolveVisit, defaultSettings, navURL, desk
 const now=new Date('2026-10-02T08:00:00+09:00');
 const places=[{id:'base',name:'起点',lat:35.68,lng:139.76,open:'00:00',close:'23:59'}, {id:'a',name:'店 A',lat:35.69,lng:139.76,open:'10:30',close:'18:00'}, {id:'b',name:'店 B',lat:35.70,lng:139.77,open:'10:00',close:'19:00'}];
 const settings=()=>({...defaultSettings(),date:'2026-10-02',start:places[0],end:places[0],extra_cny:0,limit_cny:7000,travel:{}});
-const item=(id,place,cost,net,units=1)=>({id,name:id,code:id,color:'黑',size:'27',source_url:'https://example.com/'+id,source_name:place,channel:'得物',quote:{buy_jpy:cost*20,fx:.05,extra_cny:0,net_cny:net,target_profit:1,units,checked_at:'2026-10-02',evidence_at:'2026-10-02',evidence_kind:'sold',evidence:'测试成交',stock:true,delivery:true,tax:true,seller:true},visit:{place_id:place,mode:'store',duration_min:30}});
+const item=(id,place,cost,net,units=1)=>({id,name:id,code:id,color:'黑',size:'27',source_url:'https://example.com/'+id,source_name:place,channel:'得物',quote:{buy_jpy:cost*20,fx:.05,extra_cny:0,net_cny:net,target_profit:1,units,checked_at:'2026-10-02',evidence_at:'2026-10-02',evidence_kind:'sold',evidence:'旧摘要',evidence_records:[{id:'ev-'+id,kind:'sold',channel:'得物',amount_cny:net,amount_basis:'net',fees_cny:null,observed_at:'2026-10-02T06:00:00+08:00',source_ref:'测试成交',source_url:'https://example.com/evidence/'+id,note:'',code:id,color:'黑',size:'27'}],stock:true,delivery:true,tax:true,seller:true},visit:{place_id:place,mode:'store',duration_min:30}});
 const plan=(items,s=settings(),days=[],mode='buy')=>planDay(items,s,days,places,mode,now);
 test('chooses the most profitable affordable combination, not highest ROI',()=>{
  const p=plan([item('x','a',4000,4800),item('y','b',3500,4250),item('z','b',3000,3600)]);
@@ -18,7 +18,7 @@ test('closing and return deadline exclude an infeasible store',()=>{
  const s=settings();s.end_time='10:40'; assert.equal(plan([item('x','a',100,200)],s).items.length,0);
 });
 test('unqualified products appear in research routes without made up ROI',()=>{
- const i=item('x','a',100,200);i.quote.net_cny=null;
+ const i=item('x','a',100,200);i.quote.evidence_records=[];
  assert.equal(plan([i]).items.length,0);
  const p=plan([i],settings(),[],'research'); assert.equal(p.route.stops.length,1); assert.equal(p.forecast.profit,null);assert.equal(p.forecast.roi,null);
 });

@@ -1,4 +1,4 @@
-import {diagnose,recent} from './sourcing-model.mjs';
+import {diagnose} from './sourcing-model.mjs';
 const cash=n=>Math.round(n*100)/100;
 export function buyDecision(item,remaining,now=new Date()){
  const d=diagnose(item,now),kind=item.deal?.kind||'retail';
@@ -15,14 +15,14 @@ export function sellDecisions(items,days,now=new Date()){
  const results=[];
  for(const day of days)for(const r of day.records||[]){
   if(r.status!=='bought'||r.actual_net_cny!==null&&r.actual_net_cny!==undefined||/^(TEST[-_]|DEMO[-_])/i.test(r.code||''))continue;
-  const item=items.find(i=>i.id===r.item_id),q=item?.quote;
+  const item=items.find(i=>i.id===r.item_id),q=item?.quote,d=item?diagnose(item,now):null;
   const base={record:r,date:day.date,item,state:'review',proceeds:null,profit:null,targetNet:null,reason:'核对库存规格与可用销售报价'};
   if(!item||!['code','color','size','channel'].every(k=>r[k]&&r[k]===item[k])){results.push(base);continue;}
   base.targetNet=cash(r.cost_cny+q.target_profit*r.units);
-  if(!q.seller||!recent(q.evidence_at,now)||!['sold','offer','order'].includes(q.evidence_kind)||!q.evidence?.trim()||!(q.net_cny>0)){
+  if(!q.seller||!d?.exitEvidence){
    results.push({...base,reason:'补充近 72 小时的同款成交/有效需求和卖家费用，挂牌价不足以建议出手'});continue;
   }
-  const proceeds=cash(q.net_cny*r.units),profit=cash(proceeds-r.cost_cny);
+  const proceeds=cash(d.exitEvidence.net_cny*r.units),profit=cash(proceeds-r.cost_cny);
   results.push({...base,proceeds,profit,state:profit>=q.target_profit*r.units?'sell':'review',reason:profit>=q.target_profit*r.units?'当前保守净收入已达到每件利润目标，可考虑出手':profit<0?'当前报价低于成本，先确定可接受的止损线':'当前净收入低于目标，需重新判断售价或利润目标'});
  }
  return results.sort((a,b)=>(a.state==='sell'?-1:1)-(b.state==='sell'?-1:1)||(b.profit??-Infinity)-(a.profit??-Infinity));

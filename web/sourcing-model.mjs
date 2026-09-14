@@ -1,10 +1,37 @@
 const money = n => Math.round(n * 100) / 100;
 const valid = (n, zero = false) => typeof n === 'number' && Number.isFinite(n) && (zero ? n >= 0 : n > 0);
+const actionableKinds = new Set(['sold', 'offer', 'order']);
 export function recent(date, now) {
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
   const at = new Date(`${date}T00:00:00+08:00`);
   const age = now - at;
   return Number.isFinite(age) && age >= 0 && age <= 72 * 3600000;
+}
+function evidenceNet(evidence) {
+  if (!valid(evidence?.amount_cny)) return null;
+  if (evidence.amount_basis === 'gross') {
+    if (!valid(evidence.fees_cny, true) || evidence.fees_cny >= evidence.amount_cny) return null;
+    return money(evidence.amount_cny - evidence.fees_cny);
+  }
+  return evidence.amount_basis === 'net' ? money(evidence.amount_cny) : null;
+}
+export function currentExitEvidence(item, now = new Date()) {
+  const exact = value => String(value || '').trim().toLowerCase();
+  const records = (item.quote?.evidence_records || []).map(evidence => {
+    const hasTimezone = /(Z|[+-]\d{2}:\d{2})$/i.test(String(evidence.observed_at || ''));
+    const observed = new Date(hasTimezone ? evidence.observed_at : '');
+    const age = now - observed;
+    const specsMatch = ['code', 'color', 'size'].every(key => exact(evidence[key]) && exact(evidence[key]) === exact(item[key]));
+    return {...evidence, net_cny:evidenceNet(evidence), age, specsMatch};
+  });
+  const validRecords = records.filter(evidence => evidence.net_cny !== null
+    && evidence.channel === item.channel
+    && actionableKinds.has(evidence.kind)
+    && evidence.source_ref?.trim()
+    && evidence.specsMatch
+    && Number.isFinite(evidence.age) && evidence.age >= 0 && evidence.age <= 72 * 3600000);
+  validRecords.sort((a,b) => a.net_cny - b.net_cny || new Date(b.observed_at) - new Date(a.observed_at));
+  return {selected:validRecords[0] || null, validRecords, records};
 }
 export function purchaseQuote(item) {
   const q={...item.quote},a=item.deal;
@@ -16,10 +43,11 @@ export function purchaseQuote(item) {
 }
 export function invalidateQuote(q) {
   return {...q, stock:false, delivery:false, tax:false, seller:false,
-    checked_at:null, evidence_at:null, evidence_kind:'unknown', evidence:''};
+    checked_at:null, net_cny:null, evidence_at:null, evidence_kind:'unknown', evidence:''};
 }
 export function diagnose(item, now = new Date()) {
-  const q = purchaseQuote(item), blockers = [];
+  const q = purchaseQuote(item), exit = currentExitEvidence(item, now), blockers = [];
+  q.net_cny = exit.selected?.net_cny ?? null;
   if (![item.code, item.color, item.size].every(x => x?.trim())) blockers.push('补全货号、配色和尺码');
   if (!item.source_url || !item.source_name) blockers.push('补全具体采购链接和店名');
   const costsKnown = valid(q.buy_jpy) && valid(q.fx) && valid(q.extra_cny, true);
@@ -29,10 +57,8 @@ export function diagnose(item, now = new Date()) {
   const maxBuyJPY = netKnown && valid(q.extra_cny, true) && valid(q.fx) && valid(q.target_profit)
     ? Math.floor((q.net_cny - q.extra_cny - q.target_profit) / q.fx) : null;
   if (!costsKnown) blockers.push('补全实际买价、汇率和其余成本');
-  if (!netKnown) blockers.push('核实国内卖出净收入');
+  if (!netKnown) blockers.push(exit.records.length ? '更新同渠道、同规格且近 72 小时的销售依据' : '添加带来源的同规格成交或真实需求依据');
   if (!recent(q.checked_at, now)) blockers.push('更新近 72 小时的采购核价');
-  if (!['sold', 'offer', 'order'].includes(q.evidence_kind) || !q.evidence?.trim()) blockers.push('补充同规格成交或真实需求依据');
-  if (!recent(q.evidence_at, now)) blockers.push('更新近 72 小时的销售依据');
   if (!q.stock) blockers.push('确认同规格可买库存');
   if (!q.delivery) blockers.push('确认东京取货和回国发货期限');
   if (!q.tax) blockers.push('核实商业转售税费并计入成本');
@@ -50,6 +76,7 @@ export function diagnose(item, now = new Date()) {
     if(maxBuyJPY!==null&&valid(a.fee_pct,true)&&valid(a.fixed_jpy,true))maxBidJPY=Math.floor((maxBuyJPY-a.fixed_jpy)/(1+a.fee_pct/100));
   }
   return {cost, profit, maxBuyJPY, maxBidJPY, blockers, ready: blockers.length === 0,
+    exitEvidence:exit.selected, validExitEvidenceCount:exit.validRecords.length,
     stressProfit: cost !== null && netKnown ? money(q.net_cny * 0.9 - cost) : null};
 }
 export function basket(items, budget = 10000, reserve = 3000, now = new Date()) {

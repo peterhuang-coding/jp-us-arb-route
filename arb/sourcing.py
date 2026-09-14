@@ -14,6 +14,62 @@ from . import db
 
 router = APIRouter(prefix='/api/sourcing', tags=['sourcing'])
 
+EXIT_EVIDENCE_TTL = dt.timedelta(hours=72)
+
+
+class SaleEvidence(BaseModel):
+    """One observed domestic exit price for an exact product specification."""
+
+    model_config = ConfigDict(extra='forbid', allow_inf_nan=False)
+    id: str = Field(default_factory=lambda: uuid4().hex, min_length=1, max_length=100)
+    kind: Literal['ask', 'sold', 'offer', 'order']
+    channel: Literal['得物', '闲鱼']
+    amount_cny: float = Field(..., gt=0)
+    amount_basis: Literal['net', 'gross'] = 'net'
+    fees_cny: float | None = Field(None, ge=0)
+    observed_at: dt.datetime
+    source_ref: str = Field(..., min_length=1, max_length=500)
+    source_url: str = Field('', max_length=2000)
+    note: str = Field('', max_length=1000)
+    code: str = Field('', max_length=100)
+    color: str = Field('', max_length=100)
+    size: str = Field('', max_length=100)
+
+    @field_validator('observed_at')
+    @classmethod
+    def aware_observed_at(cls, value):
+        if value.utcoffset() is None:
+            raise ValueError('销售依据时间须注明时区，中国平台为 +08:00')
+        return value
+
+    @field_validator('source_url')
+    @classmethod
+    def safe_source_url(cls, value):
+        from urllib.parse import urlparse
+        if value and (urlparse(value).scheme not in ('http', 'https') or not urlparse(value).netloc):
+            raise ValueError('销售依据链接须以 http:// 或 https:// 开头')
+        return value
+
+    @field_validator('source_ref')
+    @classmethod
+    def nonblank_source_ref(cls, value):
+        if not value.strip():
+            raise ValueError('销售依据来源说明不能为空')
+        return value.strip()
+
+    @model_validator(mode='after')
+    def gross_amount_has_fees(self):
+        if self.amount_basis == 'gross' and self.fees_cny is None:
+            raise ValueError('销售毛额必须填写平台费、物流等销售侧扣款；确实没有才填 0')
+        if self.amount_basis == 'gross' and self.fees_cny is not None and self.fees_cny >= self.amount_cny:
+            raise ValueError('销售侧扣款必须小于销售毛额')
+        return self
+
+    def net_amount(self) -> float:
+        if self.amount_basis == 'net':
+            return round(self.amount_cny, 2)
+        return round(self.amount_cny - float(self.fees_cny or 0), 2)
+
 
 class Quote(BaseModel):
     model_config = ConfigDict(extra='forbid', allow_inf_nan=False)
@@ -27,6 +83,7 @@ class Quote(BaseModel):
     evidence_at: dt.date | None = None
     evidence_kind: Literal['unknown', 'ask', 'sold', 'offer', 'order'] = 'unknown'
     evidence: str = Field('', max_length=2000)
+    evidence_records: list[SaleEvidence] = Field(default_factory=list, max_length=100)
     stock: bool = False
     delivery: bool = False
     tax: bool = False
@@ -117,6 +174,48 @@ class Item(BaseModel):
             raise ValueError('请填写商品名')
         return value.strip()
 
+    @model_validator(mode='after')
+    def derive_exit_price_from_evidence(self):
+        """Make traceable evidence authoritative over the legacy manual net field."""
+        seen: set[str] = set()
+        for evidence in self.quote.evidence_records:
+            if evidence.id in seen:
+                raise ValueError('销售依据 id 不能重复')
+            seen.add(evidence.id)
+
+        now = dt.datetime.now(dt.timezone.utc)
+        actionable: list[SaleEvidence] = []
+        for evidence in self.quote.evidence_records:
+            exact_spec = all(
+                getattr(evidence, key).strip().lower() == getattr(self, key).strip().lower()
+                and bool(getattr(self, key).strip())
+                for key in ('code', 'color', 'size')
+            )
+            age = now - evidence.observed_at.astimezone(dt.timezone.utc)
+            if (
+                exact_spec
+                and evidence.channel == self.channel
+                and evidence.kind in {'sold', 'offer', 'order'}
+                and dt.timedelta(0) <= age <= EXIT_EVIDENCE_TTL
+            ):
+                actionable.append(evidence)
+
+        if actionable:
+            selected = min(actionable, key=lambda evidence: evidence.net_amount())
+            self.quote.net_cny = selected.net_amount()
+            self.quote.evidence_kind = selected.kind
+            self.quote.evidence_at = selected.observed_at.date()
+            self.quote.evidence = selected.source_ref
+        else:
+            # Legacy free-text evidence remains visible in stored JSON, but it cannot
+            # silently qualify a new purchase decision without a traceable record.
+            self.quote.net_cny = None
+            self.quote.evidence_kind = 'unknown'
+            self.quote.evidence_at = None
+            self.quote.evidence = ''
+            self.selected = False
+        return self
+
 
 def connection():
     conn = db.connect()
@@ -141,7 +240,10 @@ def connection():
 def list_items():
     conn = connection()
     try:
-        return [json.loads(row['payload']) for row in conn.execute('SELECT payload FROM sourcing_watchlist ORDER BY rowid')]
+        # Revalidate on every read so evidence that has naturally expired cannot
+        # leave a stale derived net amount in API responses.
+        return [Item(**json.loads(row['payload'])).model_dump(mode='json')
+                for row in conn.execute('SELECT payload FROM sourcing_watchlist ORDER BY rowid')]
     finally:
         conn.close()
 

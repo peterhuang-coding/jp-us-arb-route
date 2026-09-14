@@ -1,4 +1,4 @@
-import {diagnose, recent} from './sourcing-model.mjs';
+import {diagnose} from './sourcing-model.mjs';
 import {buyDecision} from './market-decisions.mjs';
 import {deskBasket, remainingPurchase} from './tokyo-planner.mjs';
 
@@ -84,8 +84,7 @@ const realRecord = r => r.status === 'bought' && !/^(TEST[-_]|DEMO[-_])/i.test(r
 function summarize(items, days, now = new Date()) {
   const active = items.filter(i => !i.archived);
   const sales = active.filter(i => [i.code, i.color, i.size].every(s => s?.trim())
-    && i.quote.seller && i.quote.net_cny > 0 && recent(i.quote.evidence_at, now)
-    && ['sold','offer','order'].includes(i.quote.evidence_kind) && i.quote.evidence?.trim());
+    && i.quote.seller && diagnose(i, now).exitEvidence);
   const ceilings = sales.filter(i => diagnose(i, now).maxBuyJPY > 0);
   const records = days.flatMap(d => d.records || []);
   const purchases = records.filter(realRecord);
