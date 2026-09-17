@@ -1,5 +1,9 @@
 # jp-us-arb-route — CN/JP 跨境代购决策引擎
 
+## 得物 → StockX 选品研究（2026-09-18）
+
+[17 个货号的研究清单](docs/research/2026-09-18-dewu-stockx-sku-screen.md) 包含雨云、K14、1906R、XT-6、HOKA、Nike/Jordan 与 Samba 的准确款号、规格线索、条件成本预算和淘汰理由，附 [18 条规格记录 CSV](docs/research/2026-09-18-dewu-stockx-sku-screen.csv)。优先补雨云与 K14 奶油黑的双边报价；全部价格仍为有抓取年龄的公开索引，未取得得物同码现价及中国卖家净结算，不作为实盘采购推荐。
+
 ## 产品方向与昼夜协作（2026-09-15）
 
 [Notion 决策台](https://www.notion.so/3db3285284df810fb0c7da33632b7a05) 集中保存五个可选择的研究方向：销路净价、准确规格找货、东京采购路线、逐笔回款与刊登助手。每张卡有问题、有限实验、交付物和继续投入条件，详见 [调研待办](docs/product-research-backlog.md)。
