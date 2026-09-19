@@ -1,8 +1,21 @@
 const money = n => Math.round(n * 100) / 100;
 const valid = (n, zero = false) => typeof n === 'number' && Number.isFinite(n) && (zero ? n >= 0 : n > 0);
 const actionableKinds = new Set(['sold', 'offer', 'order']);
+function possibleCalendarDate(year, month, day) {
+  if ([year, month, day].some(value => !Number.isInteger(value))) return false;
+  const lastDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  return month >= 1 && month <= 12 && day >= 1 && day <= lastDay;
+}
+function possibleDateString(date) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(date || ''));
+  return !!match && possibleCalendarDate(Number(match[1]), Number(match[2]), Number(match[3]));
+}
+function possibleTimestamp(value) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})[T ]/i.exec(String(value || ''));
+  return !!match && possibleCalendarDate(Number(match[1]), Number(match[2]), Number(match[3]));
+}
 export function recent(date, now) {
-  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+  if (!possibleDateString(date)) return false;
   const at = new Date(`${date}T00:00:00+08:00`);
   const age = now - at;
   return Number.isFinite(age) && age >= 0 && age <= 72 * 3600000;
@@ -19,7 +32,7 @@ export function currentExitEvidence(item, now = new Date()) {
   const exact = value => String(value || '').trim().toLowerCase();
   const records = (item.quote?.evidence_records || []).map(evidence => {
     const hasTimezone = /(Z|[+-]\d{2}:\d{2})$/i.test(String(evidence.observed_at || ''));
-    const observed = new Date(hasTimezone ? evidence.observed_at : '');
+    const observed = new Date(hasTimezone && possibleTimestamp(evidence.observed_at) ? evidence.observed_at : '');
     const age = now - observed;
     const specsMatch = ['code', 'color', 'size'].every(key => exact(evidence[key]) && exact(evidence[key]) === exact(item[key]));
     return {...evidence, net_cny:evidenceNet(evidence), age, specsMatch};
