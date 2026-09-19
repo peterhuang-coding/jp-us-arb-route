@@ -8,19 +8,29 @@
 """
 from __future__ import annotations
 
+import math
 import statistics
 from datetime import date, datetime
 from typing import Iterable, Optional
 
 
 def _num(v) -> Optional[float]:
-    if v is None:
+    if v is None or isinstance(v, bool):
         return None
     try:
         f = float(v)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
-    return f
+    return f if math.isfinite(f) else None
+
+
+def _nonnegative_num(v) -> Optional[float]:
+    value = _num(v)
+    return value if value is not None and value >= 0 else None
+
+
+def _finite_round(value: float) -> Optional[float]:
+    return round(value, 2) if math.isfinite(value) else None
 
 
 def net_profit_cny(*, buy_cny: Optional[float], exit_cny: Optional[float],
@@ -30,36 +40,39 @@ def net_profit_cny(*, buy_cny: Optional[float], exit_cny: Optional[float],
                    other_cny: Optional[float] = 0.0) -> Optional[float]:
     """单件净利 = 退出价 - 采购价 - 平台费 - 运费 - 税 - 其他.
 
-    buy/exit 任一缺失 → None (无法计算, 不臆造). 费用项缺失按 0 处理
-    (调用方知道没有该项费用时才传 None/0; 未知费用应显式传 None 之外的
-    方式 —— 阶段0 backfill 不掌握费用, 直接不算净利).
+    金额缺失或无效 → None (无法计算, 不臆造). 费用参数省略时保留默认 0;
+    费用未知须显式传 None, 确认没有该项费用才传 0.
     """
-    buy = _num(buy_cny)
-    exit_ = _num(exit_cny)
+    buy = _nonnegative_num(buy_cny)
+    exit_ = _nonnegative_num(exit_cny)
     if buy is None or exit_ is None:
         return None
-    fee = (_num(platform_fee_cny) or 0.0) + (_num(ship_cny) or 0.0) \
-        + (_num(tax_cny) or 0.0) + (_num(other_cny) or 0.0)
-    return round(exit_ - buy - fee, 2)
+    fees = [_nonnegative_num(value) for value in
+            (platform_fee_cny, ship_cny, tax_cny, other_cny)]
+    if any(value is None for value in fees):
+        return None
+    return _finite_round(exit_ - buy - sum(fees))
 
 
 def margin_pct(net_profit_cny: Optional[float], buy_cny: Optional[float]) -> Optional[float]:
-    """利润率 = 净利 / 采购成本 × 100. 任一缺失或成本为 0 → None."""
+    """利润率 = 净利 / 采购成本 × 100. 任一缺失或成本非正 → None."""
     net = _num(net_profit_cny)
     buy = _num(buy_cny)
-    if net is None or not buy:
+    if net is None or buy is None or buy <= 0:
         return None
-    return round(net / buy * 100, 2)
+    return _finite_round(net / buy * 100)
 
 
 def capital_occupation_cny(buy_cny: Optional[float], qty: int = 1,
                            inbound_ship_cny: Optional[float] = 0.0) -> Optional[float]:
-    """资金占用 = (单件采购 + 入境物流) × 数量. 采购价缺失 → None."""
-    buy = _num(buy_cny)
-    if buy is None:
+    """资金占用 = (单件采购 + 入境物流) × 正整数数量. 缺失或无效 → None."""
+    buy = _nonnegative_num(buy_cny)
+    inbound = _nonnegative_num(inbound_ship_cny)
+    quantity = _num(qty)
+    if (buy is None or inbound is None or quantity is None
+            or quantity <= 0 or not quantity.is_integer()):
         return None
-    qty = int(qty or 1)
-    return round((buy + (_num(inbound_ship_cny) or 0.0)) * qty, 2)
+    return _finite_round((buy + inbound) * quantity)
 
 
 def _parse_date(v) -> Optional[date]:
@@ -103,7 +116,7 @@ def forecast_error_cny(est_net_profit_cny: Optional[float],
     act = _num(actual_net_profit_cny)
     if est is None or act is None:
         return None
-    return round(act - est, 2)
+    return _finite_round(act - est)
 
 
 def executable_exit_value(evidences: Iterable[dict], *,
@@ -127,11 +140,11 @@ def executable_exit_value(evidences: Iterable[dict], *,
             continue
         kind = str(get("kind", ""))
         price = _num(get("price_cny"))
-        if price is None:
+        if price is None or price <= 0:
             continue
         if max_age_days is not None:
             d = _parse_date(get("observed_at"))
-            if d is None or (as_of_date - d).days > max_age_days:
+            if d is None or not 0 <= (as_of_date - d).days <= max_age_days:
                 continue
         if kind in groups:
             groups[kind].append(price)
@@ -140,18 +153,21 @@ def executable_exit_value(evidences: Iterable[dict], *,
 
     for kind in ("buyback", "bid", "sold"):
         if groups[kind]:
+            value = _finite_round(statistics.median(groups[kind]))
+            if value is None:
+                continue
             return {
-                "value_cny": round(statistics.median(groups[kind]), 2),
+                "value_cny": value,
                 "kind": kind,
                 "sample_count": len(groups[kind]),
-                "anchor_ask_cny": round(statistics.median(ask_prices), 2) if ask_prices else None,
+                "anchor_ask_cny": _finite_round(statistics.median(ask_prices)) if ask_prices else None,
                 "ask_count": len(ask_prices),
             }
     return {
         "value_cny": None,
         "kind": None,
         "sample_count": 0,
-        "anchor_ask_cny": round(statistics.median(ask_prices), 2) if ask_prices else None,
+        "anchor_ask_cny": _finite_round(statistics.median(ask_prices)) if ask_prices else None,
         "ask_count": len(ask_prices),
     }
 

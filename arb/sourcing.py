@@ -17,6 +17,12 @@ router = APIRouter(prefix='/api/sourcing', tags=['sourcing'])
 EXIT_EVIDENCE_TTL = dt.timedelta(hours=72)
 
 
+def _reject_bool(value):
+    if isinstance(value, bool):
+        raise ValueError('布尔值不能作为金额、数量或百分比')
+    return value
+
+
 class SaleEvidence(BaseModel):
     """One observed domestic exit price for an exact product specification."""
 
@@ -34,6 +40,11 @@ class SaleEvidence(BaseModel):
     code: str = Field('', max_length=100)
     color: str = Field('', max_length=100)
     size: str = Field('', max_length=100)
+
+    @field_validator('amount_cny', 'fees_cny', mode='before')
+    @classmethod
+    def money_is_not_bool(cls, value):
+        return _reject_bool(value)
 
     @field_validator('observed_at')
     @classmethod
@@ -89,6 +100,11 @@ class Quote(BaseModel):
     tax: bool = False
     seller: bool = False
 
+    @field_validator('buy_jpy', 'fx', 'extra_cny', 'net_cny', 'target_profit', 'units', mode='before')
+    @classmethod
+    def numeric_input_is_not_bool(cls, value):
+        return _reject_bool(value)
+
 
 class Visit(BaseModel):
     model_config = ConfigDict(extra='forbid', allow_inf_nan=False)
@@ -125,6 +141,11 @@ class Deal(BaseModel):
     observed_at: dt.datetime | None = None
     ends_at: dt.datetime | None = None
 
+    @field_validator('current_jpy', 'increment_jpy', 'fee_pct', 'fixed_jpy', mode='before')
+    @classmethod
+    def money_is_not_bool(cls, value):
+        return _reject_bool(value)
+
     @field_validator('observed_at', 'ends_at')
     @classmethod
     def aware_time(cls, value):
@@ -158,6 +179,11 @@ class Item(BaseModel):
     visit: Visit = Field(default_factory=Visit)
     deal: Deal = Field(default_factory=Deal)
     updated_at: str = ''
+
+    @field_validator('reference_jpy', mode='before')
+    @classmethod
+    def money_is_not_bool(cls, value):
+        return _reject_bool(value)
 
     @field_validator('source_url', 'store_url', 'image_url')
     @classmethod

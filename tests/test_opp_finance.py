@@ -16,7 +16,7 @@ def test_net_profit_full_inputs():
 def test_net_profit_missing_inputs_returns_none():
     assert finance.net_profit_cny(buy_cny=None, exit_cny=1500) is None
     assert finance.net_profit_cny(buy_cny=1000, exit_cny=None) is None
-    # 费用缺失按 0 (调用方明确无该费用), 但 buy/exit 缺就一定是 None
+    # 费用参数省略保留默认 0；未知费用应显式传 None，buy/exit 缺失也返回 None
     assert finance.net_profit_cny(buy_cny=1000, exit_cny=1500) == 500.0
 
 
