@@ -9,15 +9,17 @@ weight is JP purchase price in CNY per unit, value is per-unit savings
 (home CNY − JP CNY − tariff − shipping, all converted to CNY). Capacity
 is min(budget, customs_limit) — both are hard caps.
 
-Algorithm: classic DP.  For 42 SKUs × 50 unit cap × 5000 capacity, the
-state table is (43 × 5001) ≈ 215K cells; each cell transition considers
-up to max_units options.  Total ops ≈ 10.5M; runs in <1s in CPython.
-Reconstruction walks the table backward picking optimal unit counts.
+The solver uses an exact sparse Pareto frontier in the decimal-string monetary
+values supplied by the caller. It never rounds item costs to whole CNY. Work
+and state limits raise ValueError rather than return an approximate basket.
+Worst-case state growth is exponential; runtime depends on the input.
 """
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from decimal import Decimal
+from fractions import Fraction
 from typing import Iterable, Optional
 
 
@@ -88,6 +90,31 @@ def _item_to_pick(item: BasketItem, num_units: int) -> BasketPick:
     )
 
 
+def _finite_number(x) -> bool:
+    """Return True only for finite, non-boolean int/float-like numeric inputs."""
+    if isinstance(x, bool) or not isinstance(x, (int, float)):
+        return False
+    try:
+        return math.isfinite(float(x))
+    except (OverflowError, TypeError):
+        return False
+
+
+def _prune(states: dict[Fraction, tuple[Fraction, tuple[tuple[int, int], ...]]]):
+    """Remove states dominated by another no-more-costly, at-least-valuable state."""
+    ordered = sorted(states.items(), key=lambda kv: (kv[0], -kv[1][0]))
+    kept: dict[Fraction, tuple[Fraction, tuple[tuple[int, int], ...]]] = {}
+    best_value: Fraction | None = None
+
+    for cost, payload in ordered:
+        value = payload[0]
+        # Costs are sorted ascending; retain only record-high values.
+        if best_value is None or value > best_value:
+            kept[cost] = payload
+            best_value = value
+
+    return kept
+
 def solve_basket(
     items: Iterable[BasketItem],
     *,
@@ -96,132 +123,175 @@ def solve_basket(
     trip_cost_usd: float = 0.0,
     fx_rate: float = 0.14,
 ) -> BasketSolution:
-    """Solve the bounded 0/1 knapsack for the optimal shopping basket.
-
-    Parameters
-    ----------
-    items : iterable of BasketItem
-        Already-converted items. The caller (typically ``basket_for_route``
-        below) handles DB → BasketItem conversion.
-    budget_cny : float
-        How much you are willing to spend in JP, in CNY.
-    customs_limit_cny : float
-        Regulatory cap (Chinese入境 5000元 by default).  Hard cap.
-    trip_cost_usd : float
-        Trip cost in USD, used to compute payback rate.
-    fx_rate : float
-        USD↔CNY rate (default 0.14 USD per CNY, i.e. 1 CNY ≈ 0.14 USD).
-    """
+    """Solve the bounded knapsack with an exact, bounded sparse DP frontier."""
     notes: list[str] = []
     skipped: list[str] = []
-    eligible: list[BasketItem] = []
+
+    for name, value in (
+        ("budget_cny", budget_cny),
+        ("customs_limit_cny", customs_limit_cny),
+        ("trip_cost_usd", trip_cost_usd),
+        ("fx_rate", fx_rate),
+    ):
+        if not _finite_number(value):
+            raise ValueError(f"{name} must be a finite number")
+
+    if fx_rate <= 0:
+        raise ValueError("fx_rate must be positive")
+    if trip_cost_usd < 0:
+        raise ValueError("trip_cost_usd must be non-negative")
+
+    def empty(notes_out: list[str]) -> BasketSolution:
+        return BasketSolution(
+            picks=[],
+            total_spend_cny=0.0,
+            total_savings_cny=0.0,
+            budget_cny=budget_cny,
+            customs_limit_cny=customs_limit_cny,
+            fx_rate=fx_rate,
+            trip_cost_usd=trip_cost_usd,
+            payback_rate_pct=0.0,
+            leftover_cny=float(budget_cny),
+            customs_headroom_cny=float(customs_limit_cny),
+            capacity_used_cny=0.0,
+            algorithm="dp-bounded-knapsack",
+            notes=notes_out,
+            skipped_skus=skipped,
+        )
+
+    if budget_cny <= 0 or customs_limit_cny <= 0:
+        return empty(["budget 和 customs_limit 都为 0"])
+
+    cap_value = min(budget_cny, customs_limit_cny)
+    cap_frac = Fraction(Decimal(str(cap_value)))
+    eligible: list[tuple[BasketItem, Fraction, Fraction, int]] = []
+
     for it in items:
-        if it.home_price_per_unit_cny <= 0 or it.jp_price_per_unit_cny <= 0:
-            skipped.append(f"{it.sku}: missing price")
+        reason = None
+        if (
+            not _finite_number(it.jp_price_per_unit_cny)
+            or not _finite_number(it.home_price_per_unit_cny)
+            or not _finite_number(it.savings_per_unit_cny)
+        ):
+            reason = "missing price"
+        elif not isinstance(it.max_units, int) or isinstance(it.max_units, bool):
+            reason = "max_units must be an integer quantity"
+        elif it.home_price_per_unit_cny <= 0 or it.jp_price_per_unit_cny <= 0:
+            reason = "missing price"
+        elif it.savings_per_unit_cny <= 0:
+            reason = f"savings_per_unit_cny={it.savings_per_unit_cny:.2f} ≤ 0"
+        elif it.max_units < 1:
+            reason = "max_units < 1"
+
+        if reason:
+            skipped.append(f"{it.sku}: {reason}")
             continue
-        if it.savings_per_unit_cny <= 0:
-            skipped.append(f"{it.sku}: savings_per_unit_cny={it.savings_per_unit_cny:.2f} ≤ 0")
-            continue
-        if it.max_units < 1:
-            skipped.append(f"{it.sku}: max_units < 1")
-            continue
-        eligible.append(it)
+
+        cost = Fraction(Decimal(str(it.jp_price_per_unit_cny)))
+        value = Fraction(Decimal(str(it.savings_per_unit_cny)))
+        # Fraction floor division is exact even for very small finite costs.
+        bound = min(it.max_units, cap_frac // cost)
+        eligible.append((it, cost, value, bound))
 
     if not eligible:
-        return BasketSolution(
-            picks=[],
-            total_spend_cny=0.0,
-            total_savings_cny=0.0,
-            budget_cny=budget_cny,
-            customs_limit_cny=customs_limit_cny,
-            fx_rate=fx_rate,
-            trip_cost_usd=trip_cost_usd,
-            payback_rate_pct=0.0,
-            leftover_cny=budget_cny,
-            customs_headroom_cny=customs_limit_cny,
-            capacity_used_cny=0.0,
-            algorithm="dp-bounded-knapsack",
-            notes=["无符合条件 SKU"],
-            skipped_skus=skipped,
-        )
+        return empty(["无符合条件 SKU"])
 
-    # The capacity is the harder of the two caps. We track both for reporting.
-    capacity = int(min(budget_cny, customs_limit_cny))
-    if capacity <= 0:
-        return BasketSolution(
-            picks=[],
-            total_spend_cny=0.0,
-            total_savings_cny=0.0,
-            budget_cny=budget_cny,
-            customs_limit_cny=customs_limit_cny,
-            fx_rate=fx_rate,
-            trip_cost_usd=trip_cost_usd,
-            payback_rate_pct=0.0,
-            leftover_cny=budget_cny,
-            customs_headroom_cny=customs_limit_cny,
-            capacity_used_cny=0.0,
-            algorithm="dp-bounded-knapsack",
-            notes=["budget 和 customs_limit 都为 0"],
-            skipped_skus=skipped,
-        )
+    MAX_STATES = 50_000
+    MAX_TRANSITIONS = 2_000_000
 
-    n = len(eligible)
-    # dp[i][w] = max savings using first i items (0..i) with total spend ≤ w.
-    # Stored as a flat list of size (n+1) * (capacity+1).
-    W = capacity
-    INF_NEG = float("-inf")
-    dp: list[list[float]] = [[INF_NEG] * (W + 1) for _ in range(n + 1)]
-    for w in range(W + 1):
-        dp[0][w] = 0.0
+    # Exact sparse DP.  A state maps spend -> (savings, choices), where choices
+    # is a tuple of (eligible-item-index, quantity) pairs, not a flat tuple.
+    State = tuple[Fraction, tuple[tuple[int, int], ...]]
+    frontier: dict[Fraction, State] = {Fraction(0): (Fraction(0), ())}
+    transitions = 0
 
-    # We also need to know how many units of each item were chosen.
-    # choice[i][w] = best k (0..max_units) for item i (1-indexed) at weight w.
-    choice: list[list[int]] = [[0] * (W + 1) for _ in range(n + 1)]
+    for idx, (_, cost, value, bound) in enumerate(eligible):
+        if bound <= 0:
+            continue
 
-    for i in range(1, n + 1):
-        item = eligible[i - 1]
-        cost = int(round(item.jp_price_per_unit_cny))   # weights in integer CNY
-        value = item.savings_per_unit_cny
-        max_k = min(item.max_units, W // max(cost, 1))
-        for w in range(W + 1):
-            best_val = dp[i - 1][w]            # take 0
-            best_k = 0
-            # Try taking k=1..max_k of this item, if it fits
-            for k in range(1, max_k + 1):
-                if k * cost > w:
+        candidates: dict[Fraction, State] = dict(frontier)
+        old_states = list(frontier.items())
+
+        for old_cost, (old_value, old_choice) in old_states:
+            for qty in range(1, bound + 1):
+                new_cost = old_cost + cost * qty
+
+                # Feasibility is checked before consuming the transition/state
+                # budget; qty only increases cost, so later qty cannot fit.
+                if new_cost > cap_frac:
                     break
-                cand = dp[i - 1][w - k * cost] + k * value
-                if cand > best_val:
-                    best_val = cand
-                    best_k = k
-            dp[i][w] = best_val
-            choice[i][w] = best_k
 
-    # Reconstruct at the full capacity.
-    units_per_item = [0] * n
-    w = W
-    for i in range(n, 0, -1):
-        k = choice[i][w]
-        units_per_item[i - 1] = k
-        w -= k * int(round(eligible[i - 1].jp_price_per_unit_cny))
+                transitions += 1
+                if transitions > MAX_TRANSITIONS:
+                    raise ValueError(
+                        "exact basket solve could not complete within configured "
+                        "state/transition bounds"
+                    )
 
-    # Build pick list (drop zero-unit picks)
+                existing = candidates.get(new_cost)
+                if existing is None and len(candidates) >= MAX_STATES:
+                    raise ValueError(
+                        "exact basket solve could not complete within configured "
+                        "state/transition bounds"
+                    )
+
+                new_value = old_value + value * qty
+
+                # Strict improvement only: deterministic first equal-value state.
+                if existing is None or new_value > existing[0]:
+                    candidates[new_cost] = (
+                        new_value,
+                        old_choice + ((idx, qty),),
+                    )
+
+        frontier = _prune(candidates)
+        if len(frontier) > MAX_STATES:
+            raise ValueError(
+                "exact basket solve could not complete within configured "
+                "state/transition bounds"
+            )
+
+    best_cost = Fraction(0)
+    best_value = Fraction(0)
+    best_choice: tuple[tuple[int, int], ...] = ()
+    for cost, (value, choice) in frontier.items():
+        if value > best_value or (value == best_value and cost < best_cost):
+            best_cost = cost
+            best_value = value
+            best_choice = choice
+
+    units_per_item = [0] * len(eligible)
+    for idx, qty in best_choice:
+        units_per_item[idx] = qty
+
     picks = [
         _item_to_pick(it, units_per_item[idx])
-        for idx, it in enumerate(eligible)
+        for idx, (it, _, _, _) in enumerate(eligible)
         if units_per_item[idx] > 0
     ]
-    # Sort by savings density desc so the report reads well.
-    picks.sort(key=lambda p: p.savings_per_unit_cny / p.jp_price_per_unit_cny, reverse=True)
+    # Existing reporting order: decreasing savings density.
+    picks.sort(
+        key=lambda p: p.savings_per_unit_cny / p.jp_price_per_unit_cny,
+        reverse=True,
+    )
 
-    total_spend = sum(p.subtotal_cny for p in picks)
-    total_savings = sum(p.total_savings_cny for p in picks)
+    # Derive float reports from the exact selected Fraction state rather than
+    # summing binary floats or relying on Decimal context rounding.
+    try:
+        total_spend = float(best_cost)
+        total_savings = float(best_value)
+    except OverflowError as exc:
+        raise ValueError("selected basket produced a non-finite monetary total") from exc
+    if not math.isfinite(total_spend) or not math.isfinite(total_savings):
+        raise ValueError("selected basket produced a non-finite monetary total")
 
-    # Payback rate: total_savings in CNY, trip_cost in USD → convert.
     if trip_cost_usd > 0:
-        trip_cost_cny = trip_cost_usd / fx_rate if fx_rate > 0 else 0.0
-        payback = (total_savings / trip_cost_cny * 100.0) if trip_cost_cny > 0 else 0.0
+        trip_cost_cny = trip_cost_usd / fx_rate
+        payback = (
+            total_savings / trip_cost_cny * 100.0 if trip_cost_cny > 0 else 0.0
+        )
     elif total_savings > 0:
+        # Intentional zero-trip infinite payback for a profitable basket.
         payback = float("inf")
     else:
         payback = 0.0
@@ -235,8 +305,8 @@ def solve_basket(
         fx_rate=fx_rate,
         trip_cost_usd=trip_cost_usd,
         payback_rate_pct=payback,
-        leftover_cny=budget_cny - total_spend,
-        customs_headroom_cny=customs_limit_cny - total_spend,
+        leftover_cny=float(budget_cny) - total_spend,
+        customs_headroom_cny=float(customs_limit_cny) - total_spend,
         capacity_used_cny=total_spend,
         algorithm="dp-bounded-knapsack",
         notes=notes,
