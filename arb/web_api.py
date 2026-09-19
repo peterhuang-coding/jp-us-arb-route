@@ -19,7 +19,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from . import db, freshness, prices, alerts, tax_codes
 from .refresh import outcome_as_dict, refresh_opportunity
@@ -477,6 +477,13 @@ class BasketRequest(BaseModel):
     budget_cny: float = Field(5000.0, ge=0)
     customs_limit_cny: float = Field(5000.0, ge=0)
     route: str = "PVG-NRT-LAX-2N"
+
+    @field_validator("budget_cny", "customs_limit_cny", mode="before")
+    @classmethod
+    def reject_bool_before_float_coercion(cls, value):
+        if isinstance(value, bool):
+            raise ValueError("value must be a number, not a boolean")
+        return value
 
 
 class BasketPickOut(BaseModel):
