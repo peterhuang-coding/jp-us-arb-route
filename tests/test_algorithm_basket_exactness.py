@@ -84,16 +84,17 @@ def _assert_optimal(solution, items, cap_text):
 
 
 @pytest.mark.parametrize(
-    ("cost_text", "max_units", "cap_text", "expected_units"),
+    ("cost_text", "max_units", "cap_text", "expected_units", "saving_text"),
     [
-        ("1.49", 3, "2.00", 1),
-        ("1.51", 2, "3.02", 2),
-        ("0.34", 2, "0.68", 2),
-        ("0.0049", 3, "0.01", 2),
+        ("1.49", 3, "2.00", 1, "1"),
+        ("1.51", 2, "3.02", 2, "1"),
+        ("0.34", 2, "0.68", 2, "1"),
+        ("0.0049", 3, "0.01", 2, "1"),
+        ("1.00", 1, "1.00", 1, "0.1"),
     ],
 )
-def test_sub_yuan_rounding_counterexamples(cost_text, max_units, cap_text, expected_units):
-    items = [_item("ONLY", Decimal(cost_text), Decimal("1"), max_units)]
+def test_sub_yuan_rounding_counterexamples(cost_text, max_units, cap_text, expected_units, saving_text):
+    items = [_item("ONLY", Decimal(cost_text), Decimal(saving_text), max_units)]
     solution = solve_basket(
         items,
         budget_cny=float(cap_text),

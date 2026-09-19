@@ -487,13 +487,17 @@ def cmd_basket(args):
             + float(route["hotel_cost_usd"])
             + float(route["other_cost_usd"])
         )
-        sol = solve_basket(
-            items,
-            budget_cny=args.budget,
-            customs_limit_cny=args.customs,
-            trip_cost_usd=trip_cost_usd,
-            fx_rate=fx,
-        )
+        try:
+            sol = solve_basket(
+                items,
+                budget_cny=args.budget,
+                customs_limit_cny=args.customs,
+                trip_cost_usd=trip_cost_usd,
+                fx_rate=fx,
+            )
+        except ValueError as e:
+            print(f"error: {e}", file=sys.stderr)
+            return 1
         if args.json:
             out = {
                 "route": route["name"],

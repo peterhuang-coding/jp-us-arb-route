@@ -523,13 +523,16 @@ def basket(req: BasketRequest):
             + float(route["hotel_cost_usd"])
             + float(route["other_cost_usd"])
         )
-        sol = solve_basket(
-            items,
-            budget_cny=req.budget_cny,
-            customs_limit_cny=req.customs_limit_cny,
-            trip_cost_usd=trip_cost_usd,
-            fx_rate=fx,
-        )
+        try:
+            sol = solve_basket(
+                items,
+                budget_cny=req.budget_cny,
+                customs_limit_cny=req.customs_limit_cny,
+                trip_cost_usd=trip_cost_usd,
+                fx_rate=fx,
+            )
+        except ValueError as e:
+            raise HTTPException(status_code=422, detail=str(e))
         return BasketResponse(
             route=route["name"],
             fx_rate=sol.fx_rate,
