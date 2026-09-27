@@ -1,0 +1,509 @@
+{
+  "run_id": "SPREAD-20260928-CC-CONTINUE-1",
+  "collected_local_date": "2026-09-28",
+  "source_access_window": "07:22-07:25 Asia/Shanghai, web parser and indexed results; source cache ages retained per entry",
+  "scope": "Japan procurement to mainland China resale; four source targets, not four fully verified SKU variants",
+  "evidence": {
+    "books": {
+      "collected_at_utc": "2026-09-27T23:23:37.721812+00:00",
+      "scope": "Japan procurement to mainland China resale; arts books and streetwear smallgoods only",
+      "records": [
+        {
+          "id": "B1",
+          "title": "新世紀SM画報 新装版",
+          "identity": "9784309272993",
+          "edition": "2012-01-24; A4 variant;128 pages",
+          "sources": [
+            {
+              "url": "https://www.kawade.co.jp/np/isbn/9784309272993/",
+              "access": "web.open",
+              "cache_age": "last month",
+              "facts": "Publisher list price 3080 JPY incl tax; 品切・重版未定. Current seller stock/condition/shipping unknown."
+            }
+          ]
+        },
+        {
+          "id": "B2",
+          "title": "40周年記念 丸尾画報DXI改",
+          "identity": "9784309922263",
+          "edition": "2021-05-25; B5;232 pages",
+          "sources": [
+            {
+              "url": "https://www.kawade.co.jp/np/isbn/9784309922263/",
+              "access": "web.open",
+              "cache_age": "last month",
+              "facts": "Publisher list price 4400 JPY incl tax; 品切. Do not infer all retailers out of stock."
+            },
+            {
+              "url": "https://books.rakuten.co.jp/rb/16685031/",
+              "access": "indexed search",
+              "cache_age": "4 weeks ago",
+              "facts": "4400 JPY incl tax, Japan free shipping shown; parsed snippet does not confirm availability."
+            }
+          ]
+        }
+      ],
+      "domestic_search_result": "Queries by title/identifier produced no verified mainland same-spec buyer/30-day sale evidence; this is not zero sales. Foreign market listings do not establish mainland demand.",
+      "already_processed_exclusion_titles": [
+        "横尾忠則《遺作集》2024复刻版",
+        "宇野亞喜良《恋の迷宮》2018复刻豆本",
+        "空山基 GYNOIDS SUBLIME",
+        "樋口裕子 CIRCUS 直笔签名本",
+        "深瀬昌久 SASUKE（日文版）",
+        "深瀬昌久 YOKO（2025复刊）",
+        "森山大道《記録》No.62",
+        "The Unseen Saul Leiter 日文版",
+        "Saul Leiter: The Centennial Retrospective 日文版",
+        "AQUIRAX UNO 2024展览图录",
+        "Stüssy 8 Ball Keychain Black",
+        "Stüssy Boxer Briefs 3 Pack Grey Heather",
+        "Stüssy Crew Socks 3 Pack White",
+        "Stüssy SS Link Keychain Silver",
+        "Stüssy Spinning Dice Keychain Silver",
+        "BAPE ABC CAMO Smartphone Shoulder Strap Green",
+        "BAPE 1ST CAMO AirPods Pro 2 Case Yellow",
+        "BAPE ABC CAMO AirPods Pro 3 Case Green",
+        "BABY MILO Plush AirPods Pro Holder Brown",
+        "Sanrio × HYSTERIC GLAMOUR MY STRAWBERRY运动袜"
+      ],
+      "rules": [
+        "Source cache age is distinct from access time; do not claim fresh live stock from cached pages.",
+        "Same ISBN may differ in signature/printing/condition/accessories; exact brand style needs color/size.",
+        "No credible P or complete K: profit, ROI, sales margin, max buy all null.",
+        "Unknown past model requests are isolated; do not redo Stussy five-target diagnosis."
+      ]
+    },
+    "smallgoods": {
+      "collected_at_utc": "2026-09-27T23:23:37.722438+00:00",
+      "scope": "Japan procurement to mainland China resale; arts books and streetwear smallgoods only",
+      "records": [
+        {
+          "id": "S1",
+          "title": "WACKO MARIA BOXER BRIEFS",
+          "identity": null,
+          "source_id": "official store detail/6224",
+          "sources": [
+            {
+              "url": "https://wackomaria-paradisetokyo.jp/detail/6224",
+              "access": "web.open",
+              "cache_age": "2 weeks ago",
+              "facts": "Shows JPY6000; tax status unspecified; Select/Select, QTY and ADD TO CART; material cotton96 polyurethane4; size guide M/L/XL. No selected color-size stock, no pack count, no brand style code verified. Do not infer 3-pack from initial search terms."
+            }
+          ]
+        },
+        {
+          "id": "S2",
+          "title": "UNDERCOVER transfer print pouch",
+          "identity": "UC2F1P94",
+          "sources": [
+            {
+              "url": "https://www.boomerang-online.jp/fs/frontier/c/UNDER-COVER/1/1?sort=03",
+              "access": "web.open/find",
+              "cache_age": "today",
+              "facts": "Category listing shows UC2F1P94 5500JPY incl tax. Full variant/stock/Japan shipping/condition not verified; store-wide 10000JPY free-shipping banner is not this single-item shipping cost."
+            }
+          ]
+        }
+      ],
+      "domestic_search_result": "Queries by title/identifier produced no verified mainland same-spec buyer/30-day sale evidence; this is not zero sales. Foreign market listings do not establish mainland demand.",
+      "already_processed_exclusion_titles": [
+        "横尾忠則《遺作集》2024复刻版",
+        "宇野亞喜良《恋の迷宮》2018复刻豆本",
+        "空山基 GYNOIDS SUBLIME",
+        "樋口裕子 CIRCUS 直笔签名本",
+        "深瀬昌久 SASUKE（日文版）",
+        "深瀬昌久 YOKO（2025复刊）",
+        "森山大道《記録》No.62",
+        "The Unseen Saul Leiter 日文版",
+        "Saul Leiter: The Centennial Retrospective 日文版",
+        "AQUIRAX UNO 2024展览图录",
+        "Stüssy 8 Ball Keychain Black",
+        "Stüssy Boxer Briefs 3 Pack Grey Heather",
+        "Stüssy Crew Socks 3 Pack White",
+        "Stüssy SS Link Keychain Silver",
+        "Stüssy Spinning Dice Keychain Silver",
+        "BAPE ABC CAMO Smartphone Shoulder Strap Green",
+        "BAPE 1ST CAMO AirPods Pro 2 Case Yellow",
+        "BAPE ABC CAMO AirPods Pro 3 Case Green",
+        "BABY MILO Plush AirPods Pro Holder Brown",
+        "Sanrio × HYSTERIC GLAMOUR MY STRAWBERRY运动袜"
+      ],
+      "rules": [
+        "Source cache age is distinct from access time; do not claim fresh live stock from cached pages.",
+        "Same ISBN may differ in signature/printing/condition/accessories; exact brand style needs color/size.",
+        "No credible P or complete K: profit, ROI, sales margin, max buy all null.",
+        "Unknown past model requests are isolated; do not redo Stussy five-target diagnosis."
+      ]
+    }
+  },
+  "adopted_diagnoses": [
+    {
+      "id": "B1",
+      "identity": "9784309272993",
+      "evidence_urls": [
+        "https://www.kawade.co.jp/np/isbn/9784309272993/"
+      ],
+      "decision": "保留待证：继续取证，暂不采购",
+      "reasons": [
+        "出版社页面（缓存时间为上月）载明定价3080日元含税、状态“品切・重版未定”，该出版社当时缺货且重印未定，不能推定绝版或零售渠道均缺货；缓存页不能当作实时库存结论。",
+        "现有证据不含任何在销卖家的库存、品相、运费信息，无法形成可采购的完整成本K。",
+        "按书名/标识的既有检索未获大陆同规格（同ISBN/印次/品相）买家或30天成交证据；境外市场挂牌不能证明大陆需求，且“未发现”不等于零销量。",
+        "无可信人民币成交价P，亦无完整成本，故利润、ROI、销售利润率、最高买价均无据可填，保持null。"
+      ],
+      "missing_fields": [
+        "大陆同ISBN、同印次/品相的在售报价与30天成交记录（人民币）",
+        "大陆主动求购或需求讨论信号",
+        "日本当前可购渠道、实时库存、品相及含日本国内运费的到手价",
+        "日本二手实现价（Yahoo!オークション落札相場、メルカリ等成交记录）",
+        "跨境运输、关税、代理等完整成本构成",
+        "可信成交价P及净利、全成本ROI、销售利润率、最高买价"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "B2",
+      "identity": "9784309922263",
+      "evidence_urls": [
+        "https://www.kawade.co.jp/np/isbn/9784309922263/",
+        "https://books.rakuten.co.jp/rb/16685031/"
+      ],
+      "decision": "保留待证：继续取证，优先核验乐天可用性，暂不采购",
+      "reasons": [
+        "出版社页面载明定价4400日元含税、状态“品切”；证据同时明示不能据此推定所有零售商均无货。",
+        "乐天图书索引片段（缓存时间4周前）显示4400日元含税、日本国内免运费，但片段不确认实时可下单或库存，供给状态仅为待核验假设。",
+        "按书名/标识的既有检索未获大陆同规格买家或30天成交证据；境外挂牌不构成大陆需求证据，缺证据不等于无需求。",
+        "无可信人民币成交价P，且实际采购价、品相、运费与跨境成本均未确认，六项财务字段无依据，保持null。"
+      ],
+      "missing_fields": [
+        "乐天条目实时可下单状态与库存数量（索引片段未确认）",
+        "其他日本零售商及二手渠道（駿河屋、ブックオフ、メルカリ等）同ISBN报价与品相",
+        "大陆同ISBN、同印次/品相的在售报价与30天成交记录（人民币）",
+        "大陆主动求购或需求讨论信号",
+        "含日本国内运费及跨境运输、关税、代理的完整成本K",
+        "可信成交价P及净利、全成本ROI、销售利润率、最高买价"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S1",
+      "identity": null,
+      "evidence_urls": [
+        "https://wackomaria-paradisetokyo.jp/detail/6224"
+      ],
+      "decision": "证据不足，暂缓采购，列入下一轮大陆优先取证",
+      "reasons": [
+        "唯一证据为品牌官方详情页缓存（约2周前）：标价 JPY 6,000，但税込/税抜未注明，不能据此确定采购价。",
+        "页面仅给出材质（棉96%、聚氨酯4%）与 M/L/XL 尺码表；颜色×尺码实时库存、品牌正式款号、单包件数均未验证，不得由早期检索词推断为3条装。",
+        "按标题/标识检索未发现大陆同规格买家或近30天成交证据；无证据不等于无成交，境外挂牌也不能证明大陆需求。",
+        "无可信大陆出手价 P 与完整成本 K，按规则利润、ROI、销售利润率、最高买入价六项一律留空。"
+      ],
+      "missing_fields": [
+        "价格税态（税込/税抜）与实际结算价",
+        "品牌正式款号、颜色×尺码组合及实时在售库存",
+        "单包件数（单件装或套装）",
+        "日本国内运费等采购地到手成本",
+        "大陆同规格近30天成交价/在售价及需求量证据",
+        "进口环节税费、物流、平台等完整成本（须实证，不臆测）"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S2",
+      "identity": "UC2F1P94",
+      "evidence_urls": [
+        "https://www.boomerang-online.jp/fs/frontier/c/UNDER-COVER/1/1?sort=03"
+      ],
+      "decision": "证据不足，暂缓采购，列入下一轮大陆优先取证",
+      "reasons": [
+        "证据为零售商 boomerang-online 分类列表（当日缓存/find 入口），显示款号 UC2F1P94、税込 JPY 5,500；但非商品详情页，变体、库存、日本国内运费、品相成色均未核实。",
+        "店内满 JPY 10,000 免运费横幅属店铺级规则，不是该单品运费，不能计作单件物流成本。",
+        "按标题/款号检索未发现大陆同规格买家或近30天成交证据；境外市场列表不构成大陆需求证明。",
+        "无可信大陆出手价 P 与完整成本 K，六项财务字段按规则全部留空。"
+      ],
+      "missing_fields": [
+        "商品详情页确认（实物图、材质、尺寸、附件）",
+        "颜色/变体、实时库存与品相成色（新品或中古）",
+        "该单品实际日本国内运费",
+        "大陆同款（UC2F1P94 或同转印 pouch）近30天成交价/在售价及需求证据",
+        "进口税费、跨境物流、平台费用等完整成本（须实证）"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    }
+  ],
+  "search_queue": [
+    {
+      "target": "B1 大陆二手挂牌量价",
+      "query": "新世紀SM画報 新装版",
+      "preferred_source": "孔夫子旧书网（站内搜索）",
+      "exact_identity_disambiguation": "以ISBN 9784309272993、河出書房新社2012-01-24新装版、A4、128页为准；排除同题旧版、散页、复印与盗版，要求店铺页可见版权页信息。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B1 大陆C2C成交/需求热度",
+      "query": "新世紀SM画報",
+      "preferred_source": "闲鱼（站内搜索），淘宝作对照",
+      "exact_identity_disambiguation": "凭ISBN 9784309272993与“新装版”字样确认；只读取现有公开版权页图，缺少则身份待核，不能联系卖家，排除非新装版及周边、复印本。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B1 大陆主动求购信号（相邻假设）",
+      "query": "新世紀SM画報 求购",
+      "preferred_source": "小红书、豆瓣、微博（依次站内搜索）",
+      "exact_identity_disambiguation": "须出现完整书名且能与ISBN 9784309272993相互印证；仅评论内容、无购买意向的笔记不计为需求。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B2 大陆二手挂牌量价",
+      "query": "40周年記念 丸尾画報DXI改",
+      "preferred_source": "孔夫子旧书网（站内搜索）",
+      "exact_identity_disambiguation": "以ISBN 9784309922263、2021-05-25、B5、232页、40周年記念为准；“DXI改”须与早期丸尾画報系列及非改订DX版区分。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B2 大陆C2C成交/需求热度",
+      "query": "丸尾画報 DXI改",
+      "preferred_source": "闲鱼（站内搜索），淘宝作对照",
+      "exact_identity_disambiguation": "凭ISBN 9784309922263与“40周年記念”确认；排除明信片、贴纸、切页与复印盗版。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B2 大陆主动求购信号（相邻假设）",
+      "query": "丸尾画報DXI改 收",
+      "preferred_source": "小红书、豆瓣、微博（依次站内搜索）",
+      "exact_identity_disambiguation": "求购对象须可对应ISBN 9784309922263（40周年記念、DXI改）；泛指丸尾周边或其他画集的帖子不计。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B1 日本二手实现价",
+      "query": "9784309272993",
+      "preferred_source": "Yahoo!オークション落札相場，辅以メルカリ、Amazon.co.jp中古",
+      "exact_identity_disambiguation": "ISBN精确匹配9784309272993（新装版）；落札商品须记录品相、附件与日本国内运费，排除商品説明にISBN記載のない同名品。",
+      "reason": "比较零售残存新品与二手来源，不能从出版社缺货推断只能买二手；历史成交仅是参考，实际可采购成本需当前货源报价。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "B2 日本实时供给与二手价",
+      "query": "9784309922263",
+      "preferred_source": "楽天ブックス商品页，辅以駿河屋、ブックオフ、メルカリ、Yahoo!オークション",
+      "exact_identity_disambiguation": "ISBN精确匹配9784309922263（40周年記念 丸尾画報DXI改，2021，B5，232页）；二手记录品相分级并与新品报价分列。",
+      "reason": "补充同规格大陆挂牌/需求线索，或日本可执行货源；身份与事件日期需分别核验，收藏/想要/讨论不能替代成交，出版社缺货不代表全网缺货。",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；遇登录/验证即停。需求窗口近30天，过期求购只留历史线索。单样本不证明持续需求；无命中只说明本次覆盖。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S1 大陆成交与在售价（最高优先）",
+      "query": "WACKO MARIA 内裤（备选：WACKO MARIA 平角裤）",
+      "preferred_source": "闲鱼，其次小红书",
+      "exact_identity_disambiguation": "限标题或详情明确为 WACKO MARIA 品牌 boxer briefs，材质棉96%/聚氨酯4%、M/L/XL；排除 Stüssy/BAPE 等他牌及多品牌混卖套装",
+      "reason": "优先补大陆同规格出手价与真实需求，这是当前最关键缺口",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S1 大陆社交侧需求旁证",
+      "query": "WACKO MARIA 内裤 上身",
+      "preferred_source": "小红书",
+      "exact_identity_disambiguation": "同品牌平角裤相关笔记，排除卫衣、袜子等无关品类",
+      "reason": "作为相邻假设评估讨论度与求购意向；笔记本身不计作成交证据",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S1 款号、税态、件数与库存核实",
+      "query": "WACKO MARIA BOXER BRIEFS（备选日语：ワコマリア ボクサーパンツ）",
+      "preferred_source": "WACKO MARIA 官方网店",
+      "exact_identity_disambiguation": "以 detail/6224 对应商品为准，核对正式款号、税込表记与单包件数",
+      "reason": "缓存已约2周，须排除把单件装误判为3条装，并确认价格税态与在售状态",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S1 日本本土二手供给价旁证",
+      "query": "WACKO MARIA ボクサーパンツ",
+      "preferred_source": "Mercari，其次 Rakuten",
+      "exact_identity_disambiguation": "须先核实 detail/6224 的正式款号、配色、件数，再严格配对 boxer briefs，排除联名图案款及其他品类",
+      "reason": "仅用于日本本土采购成本侧旁证，不能当作大陆出手价",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S2 大陆成交与在售价（最高优先）",
+      "query": "UNDERCOVER UC2F1P94（备选：UNDERCOVER 转印 小包、高桥盾 收纳包）",
+      "preferred_source": "闲鱼，其次小红书",
+      "exact_identity_disambiguation": "必须款号 UC2F1P94 且配色、规格、品相相符；只有外观近似的条目单列身份待核；排除其他 UNDERCOVER 包款、钱包",
+      "reason": "验证款号在国内是否可被买家识别，并取得大陆出手价证据",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S2 商品详情、库存与单品运费核实",
+      "query": "UC2F1P94",
+      "preferred_source": "boomerang-online 商品详情页，其次 UNDERCOVER 官方渠道",
+      "exact_identity_disambiguation": "款号严格一致 UC2F1P94",
+      "reason": "分类列表缓存不足以确认变体、库存、品相与单品运费（单件未达到横幅免运门槛）",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    },
+    {
+      "target": "S2 日本本土挂牌价与成色旁证",
+      "query": "アンダーカバー UC2F1P94 ポーチ",
+      "preferred_source": "Mercari、Yahoo!ショッピング",
+      "exact_identity_disambiguation": "款号 UC2F1P94、配色及规格均一致；外观相似但缺号仅为待核线索，排除钱包、双肩包等他型",
+      "reason": "旁证日本本土供给价与常见品相成色，仅作成本侧参考",
+      "stop_condition": "每项最多3次公开页面访问并受全轮40次上限约束；登录或验证门禁即停；样本只说明所见范围，挂牌不替代成交。",
+      "status": "queued_unverified"
+    }
+  ],
+  "review": {
+    "run_id": "SPREAD-20260928-CC-CONTINUE-1",
+    "delegatable_packages": 2,
+    "actual_cc_jobs": 2,
+    "raw_passed": 0,
+    "partially_adopted": 2,
+    "fully_accepted": 0,
+    "new_unknown": 0,
+    "primary_work": "public source collection, scheduling, independent verification and targeted factual corrections",
+    "retry_calls": 0,
+    "wave_count": 1,
+    "packages": [
+      {
+        "lane": "books",
+        "task_id": "jp-cc-continue-20260928-books-a1",
+        "raw_status": "blocked",
+        "blockers": [
+          "claude final result was not success"
+        ],
+        "parent_status": "partially_adopted",
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "requested": {
+          "thinking_enabled": true,
+          "reasoning_effort": "high",
+          "model": "doubao-seed-evolving"
+        },
+        "native_usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87176,
+          "inference_geo": "",
+          "input_tokens": 32656,
+          "iterations": [],
+          "output_tokens": 16993,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "elapsed_seconds": 281.627,
+        "permission_denial_count": 3,
+        "actual_scope_violations": [],
+        "accepted_record_count": 2,
+        "accepted_queue_count": 8,
+        "corrections": [
+          "publisher stockout not out-of-print/all retailers stockout",
+          "no contacting sellers",
+          "30 day evidence window restored",
+          "queue access limits and exact matching strengthened",
+          "unsupported platform dominance and wants-as-transactions claims removed"
+        ],
+        "reviewed_at_utc": "2026-09-27T23:30:17.349435+00:00"
+      },
+      {
+        "lane": "smallgoods",
+        "task_id": "jp-cc-continue-20260928-smallgoods-a1",
+        "raw_status": "invalid_output",
+        "blockers": [
+          "report.changed_files out of scope"
+        ],
+        "parent_status": "partially_adopted",
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "requested": {
+          "thinking_enabled": true,
+          "reasoning_effort": "high",
+          "model": "doubao-seed-evolving"
+        },
+        "native_usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55120,
+          "inference_geo": "",
+          "input_tokens": 21400,
+          "iterations": [],
+          "output_tokens": 9477,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "elapsed_seconds": 154.259,
+        "permission_denial_count": 1,
+        "actual_scope_violations": [],
+        "accepted_record_count": 2,
+        "accepted_queue_count": 7,
+        "corrections": [
+          "queue visit cap tightened; exact identity cannot be replaced by visual similarity; unsupported plain-color inference removed"
+        ],
+        "reviewed_at_utc": "2026-09-27T23:30:17.350296+00:00"
+      }
+    ],
+    "qualified_candidates": 0,
+    "notes": [
+      "Explicit high effort was requested. Returned usage exposes thinking_tokens=0; it does not verify server reasoning intensity.",
+      "Usage fields preserved separately; client estimated USD is not charged package cost.",
+      "No further wave dispatched after failed raw receipts; both processes collected; existing useful outputs reused."
+    ]
+  },
+  "qualified_candidates": 0
+}
