@@ -1,0 +1,222 @@
+{
+  "run_id": "SPREAD-20260927-PREVIEW-1",
+  "observed_window": "2026-09-27 19:33–19:35 Asia/Shanghai",
+  "source": "Primary agent web search/open and native browser; public field paraphrases, not model-discovered data.",
+  "fx": {
+    "cny_per_jpy": "0.043",
+    "kind": "illustrative_only_not_current_payment_rate"
+  },
+  "books": {
+    "target": {
+      "isbn": "9784047260856",
+      "title": "丸尾末広／江戸川乱歩 芋虫",
+      "format": "physical Japanese comic",
+      "binding_confirmation": null
+    },
+    "evidence": [
+      {
+        "id": "B1",
+        "url": "https://www.mottainaihonpo.com/shop/Item/bkjnbcykvhw3vyyg",
+        "method": "web open",
+        "observed_at": "2026-09-27T19:33:00+08:00",
+        "type": "retail_ask",
+        "isbn": "9784047260856",
+        "price": 2086,
+        "currency": "JPY",
+        "tax_included": true,
+        "japan_shipping": 0,
+        "condition": "中古 良い",
+        "stock_signal": "add-to-cart entry and quantity input 1; no remaining-stock count verified",
+        "dispatch": "usually within 24h, not guaranteed travel delivery",
+        "accessory_note": "obi may be absent; not a specific physical-item photo",
+        "sales_event_time": null
+      },
+      {
+        "id": "B2",
+        "url": "https://book.kongfz.com/498429/8858931978",
+        "method": "native browser DOM; web open failed",
+        "observed_at": "2026-09-27T19:34:00+08:00",
+        "type": "seller_ask",
+        "isbn": "9784047260856",
+        "price": 360,
+        "currency": "CNY",
+        "condition": "九品",
+        "binding_claim": "精装",
+        "listed_at": "2025-09-24",
+        "publication": "2009-10",
+        "stock_signal": "one item offered",
+        "shipping_note": "8 CNY is default Beijing destination example, not user location or resale expense",
+        "bad_metadata": "1260 CNY list-price and school-textbook category inconsistent with the product; do not use",
+        "sales_event_time": null
+      },
+      {
+        "id": "B3",
+        "url": "https://search.kongfz.com/product/?keyword=9784047260856&dataType=0",
+        "method": "native search UI",
+        "observed_at": "2026-09-27T19:34:00+08:00",
+        "type": "search_scope",
+        "result": "one current offer, B2 only; no lower competing exact ISBN surfaced in this query; not whole-market coverage"
+      },
+      {
+        "id": "B4",
+        "url": "https://search.kongfz.com/product/?dataType=1&keyword=9784047260856",
+        "method": "native browser after selecting sold filter",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "access_block",
+        "result": "login iframe says please sign in before search; background list first stale then 0 results placeholder",
+        "verified_sold_count": null,
+        "verified_sales": null
+      },
+      {
+        "id": "B5",
+        "url": "https://www.kinokuniya.co.jp/f/dsg-01-9784047260856",
+        "method": "web open; retrieved snapshot marked crawled 7 months ago",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "retailer_metadata_snapshot",
+        "product_code": "9784047260856",
+        "physical_order_message": "not accepting web orders",
+        "display_price": 1320,
+        "display_price_label": "electronic-edition price",
+        "currency": "JPY",
+        "format": "physical catalog page with ebook cross-reference",
+        "current_stock_verified": false
+      },
+      {
+        "id": "B6",
+        "url": "https://www.kinokuniya.co.jp/f/dsg-08-9985064364",
+        "method": "web open; retrieved snapshot marked crawled last year",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "digital_offer_snapshot",
+        "isbn_field": "9784047260856",
+        "format": "ebook",
+        "price": 1320,
+        "currency": "JPY",
+        "release": "2014-12",
+        "current_stock_verified": false
+      }
+    ],
+    "missing": [
+      "current mainland same-version executed sales or valid buyer offer",
+      "physical edition/binding/accessories/condition comparability",
+      "FX/payment, cross-border shipping, tax, platform fees, domestic fulfillment and aftersales costs",
+      "travel receipt conditions and relevant content/sales/import eligibility"
+    ],
+    "history": "Earlier same-day work already had B1/B2 asks. New preview adds explicit electronic-format comparison and fresh access-mode observation; repeated asks are not new deals.",
+    "full_cost": null,
+    "conservative_sale_price": null,
+    "profit": null,
+    "roi": null,
+    "sales_net_margin": null,
+    "max_purchase_price": null
+  },
+  "smallgoods": {
+    "target": {
+      "brand": "HYSTERIC GLAMOUR",
+      "style": "02261CU01",
+      "name": "HYSTERIC WOMAN SCORPION boxer briefs",
+      "variants": [
+        "black/FREE",
+        "khaki/FREE",
+        "blue/FREE"
+      ]
+    },
+    "evidence": [
+      {
+        "id": "G1",
+        "url": "https://zozo.jp/shop/hystericglamour/goods/101453450/",
+        "method": "web open current page",
+        "observed_at": "2026-09-27T19:33:00+08:00",
+        "type": "retail_ask",
+        "price": 7700,
+        "currency": "JPY",
+        "tax_included": true,
+        "japan_shipping": 330,
+        "free_shipping_threshold_jpy": 12000,
+        "variants": [
+          {
+            "color": "black",
+            "size": "FREE (M equivalent)",
+            "stock": 0
+          },
+          {
+            "color": "khaki",
+            "size": "FREE (M equivalent)",
+            "stock": 4
+          },
+          {
+            "color": "blue",
+            "size": "FREE (M equivalent)",
+            "stock": 1
+          }
+        ],
+        "stock_is_page_claim": true,
+        "returns": "not eligible for returns/exchanges",
+        "same_day_delivery": false,
+        "gender": "men",
+        "zozo_inquiry_id": "102453450",
+        "url_goods_id": "101453450",
+        "brand_style_on_visible_page": null
+      },
+      {
+        "id": "G2",
+        "url": "https://www.hystericglamour.jp/wp/wp-content/uploads/TAB72.pdf",
+        "method": "fresh search index; direct web open failed",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "brand_catalog_index",
+        "index_text": "02261CU01 / JPY7700",
+        "limitations": "Previous research linked style/name; current PDF detail inaccessible, do not call this new full-page identity verification."
+      },
+      {
+        "id": "G3",
+        "url": "https://intl.8division.com/product/hysteric-woman-scorpion-boxer-brief-black/64106/",
+        "method": "fresh search index only; direct open failed",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "foreign_search_lead",
+        "market": "Korea",
+        "index_age": "5 months",
+        "index_product": "Hysteric Woman Scorpion Boxer Brief (Black)",
+        "search_list_price": 100000,
+        "currency": "KRW",
+        "search_stock_label": "sold out",
+        "limitations": "Retail listing/sold-out label, not transaction. Not mainland-China exit; color black differs from available khaki/blue."
+      },
+      {
+        "id": "G4",
+        "url": null,
+        "method": "web search",
+        "observed_at": "2026-09-27T19:35:00+08:00",
+        "type": "limited_search_scope",
+        "queries": [
+          "\"02261CU01\" 中国 闲鱼 得物",
+          "\"02261CU01\" 闲鱼 得物 HYSTERIC",
+          "\"HYSTERIC WOMAN SCORPION\" 内裤 中国 价格"
+        ],
+        "result": "No directly matching mainland executable sale/offer verified in these queries. No logged-in Dewu/Xianyu price retrieved; absence of results is not zero sales."
+      }
+    ],
+    "history": "Earlier research already had ZOZO prices and variant counts, and KREAM black without observed sales; not new deals. Preview adds returns restriction and foreign index/failed-fetch diagnostics.",
+    "full_cost": null,
+    "conservative_sale_price": null,
+    "profit": null,
+    "roi": null,
+    "sales_net_margin": null,
+    "max_purchase_price": null
+  },
+  "result": {
+    "qualified": 0,
+    "items_reviewed": 2,
+    "variants_reviewed": 4,
+    "physical_book": "research_only",
+    "black_FREE": "blocked_out_of_stock",
+    "khaki_FREE": "research_only",
+    "blue_FREE": "research_only",
+    "full_cost": null,
+    "profit": null
+  },
+  "validation": {
+    "manual_run": true,
+    "scheduler_trigger_tested": false,
+    "production_data_written": false,
+    "raw_model_output_importable": false
+  }
+}
