@@ -1,0 +1,198 @@
+{
+  "observed_date": "2026-09-27",
+  "timezone": "Asia/Shanghai",
+  "observed_window": "18:20–18:43",
+  "scope": "日本采购→中国大陆转售；新证据和历史9/26挂牌分开。挂牌不等于成交。",
+  "fx": {
+    "value": "0.043",
+    "unit": "CNY/JPY",
+    "kind": "illustrative_only_not_current_payment_quote"
+  },
+  "items": [
+    {
+      "id": "9784047260856",
+      "name": "丸尾末広《芋虫》日文2009版",
+      "jp": {
+        "url": "https://www.mottainaihonpo.com/shop/Item/bkjnbcykvhw3vyyg",
+        "price_jpy": 2086,
+        "shipping_jpy": 0,
+        "condition": "中古 良い",
+        "stock": "数量1/加购入口，未锁货",
+        "dispatch": "通常24小时，非旅期送达承诺",
+        "caveat": "书衣有，书腰可能无，图片非特定实物"
+      },
+      "cn": {
+        "url": "https://book.kongfz.com/498429/8858931978",
+        "price_cny": 360,
+        "condition": "九品",
+        "stock": "仅1件在售",
+        "listed_date": "2025-09-24",
+        "isbn": "9784047260856",
+        "notes": "商品字段精装/2009年10月/Enterbrain。网页定价1260元和小学教辅分类异常，不采用。运费8元为默认北京示例，不是用户地址。"
+      },
+      "secondary_jp": {
+        "url": "https://jp.mercari.com/shops/product/oexn3rRhZUBnA2VS7w3J2b",
+        "price_jpy": 2314,
+        "stock": "良い 残り1点",
+        "notes": "同一家もったいない本舗跨渠道，不能算独立货源或两份库存"
+      },
+      "publisher": "https://www.kadokawa.co.jp/product/200909000074/",
+      "publisher_store": "https://store.kadokawa.co.jp/shop/g/g200909000074/",
+      "publisher_status": "1320日元缺货，不能用定价算可采购利润",
+      "decision": "新增双边中古挂牌差，先核需求和品相。非可直接采购项。",
+      "missing": [
+        "近30天国内同版成交或有效买方报价",
+        "实物版权页/品相/书腰匹配",
+        "完整成本",
+        "内容/平台销售/入境条件",
+        "旅期收件条件"
+      ],
+      "verified_profit": null
+    },
+    {
+      "id": "9784861526916",
+      "name": "新装復刻版 変体英文字図案集",
+      "jp": {
+        "url": "https://shop.seigensha.com/products/978-4-86152-691-6",
+        "price_jpy": 1870,
+        "shipping_jpy": 660,
+        "condition": "新品",
+        "dispatch": "3–4工作日，不指定送达日",
+        "shipping_rule": "日本普通地区每单660，满5500免运"
+      },
+      "cn": {
+        "url": "https://book.kongfz.com/258816/10330901775",
+        "price_cny": 108,
+        "condition": "九五品",
+        "stock": "仅1件在售",
+        "listed_date": "2026-08-02",
+        "isbn": "9784861526916"
+      },
+      "cn_more": [
+        {
+          "url": "https://book.kongfz.com/159394/6134640891",
+          "price": 120,
+          "condition": "九品",
+          "listed": "2023-08-03"
+        },
+        {
+          "url": "https://book.kongfz.com/635639/5496551862",
+          "price": 156,
+          "condition": "九品",
+          "listed": "2022-12-28"
+        }
+      ],
+      "historical_asks": "9/26当当304/382元，https://product.dangdang.com/627894042.html，未9/27重新刷新。",
+      "decision": "降级：日本单本采购小计已约108.79元，中国九五品挂牌108元。品相不完全相同，不推断新品绝无机会；高挂牌不能当退出价。",
+      "verified_profit": null
+    },
+    {
+      "id": "9784047281424",
+      "name": "丸尾末広《瓶詰の地獄》日文漫画版",
+      "jp": {
+        "url": "https://www.mottainaihonpo.com/shop/Item/bktmx0zbn30wt6qi",
+        "price_jpy": 1002,
+        "shipping_jpy": 0,
+        "condition": "中古 良い",
+        "stock": "数量1/加购入口",
+        "dispatch": "通常24小时"
+      },
+      "cn": null,
+      "query": "孔网准确ISBN9/27在售0结果；这不是全平台没有货，也不是销量0。",
+      "publisher": "https://www.kadokawa.co.jp/product/201203000690/",
+      "decision": "只有日本货源，不能声称国内价差。不能混同梦野久作原著9784041366141或繁中版9786263156562。",
+      "verified_profit": null
+    },
+    {
+      "id": "9784047264168",
+      "name": "乱歩パノラマ 丸尾末広画集",
+      "jp": {
+        "url": "https://www.kosho.or.jp/products/detail.php?product_id=595336970",
+        "price_jpy": 2500,
+        "shipping_jpy": 380,
+        "condition": "中古良好，2010初版，封套书腰",
+        "stock": "加购入口",
+        "notes": "智新堂书店位于千叶市川；运费显示380但卖家称会按实际重核，380只是暂定。"
+      },
+      "cn": null,
+      "query": "孔网ISBN及乱步全景未取得匹配挂牌；不代表零销量。",
+      "decision": "只有日本货源，无双边价差；不排东京店存路线。",
+      "verified_profit": null
+    },
+    {
+      "id": "9784757739697",
+      "name": "パノラマ島綺譚",
+      "jp": {
+        "url": "https://www.mottainaihonpo.com/shop/Item/bkmxw5foehx9mc3q",
+        "stock": "详情明确品切れ中",
+        "list_price_jpy": 903
+      },
+      "cn": null,
+      "decision": "列表903日元但详情缺货，淘汰当前采购。",
+      "verified_profit": null
+    },
+    {
+      "id": "02261CU01",
+      "name": "HYSTERIC WOMAN SCORPION男式平角内裤",
+      "jp": {
+        "url": "https://zozo.jp/shop/hystericglamour/goods/101453450/",
+        "price_jpy": 7700,
+        "shipping_jpy": 330,
+        "stock": "同日上轮卡其4/蓝1/黑缺货，未逐变体重新锁货",
+        "size": "FREE，M相当"
+      },
+      "brand_identity_source": "https://www.hystericglamour.jp/wp/wp-content/uploads/TAB72.pdf",
+      "kream": {
+        "url": "https://kream.co.kr/products/1052066",
+        "color": "Black",
+        "model": "02261CU01",
+        "instant_buy": "无",
+        "completed_trades": "页面未展示已完成交易",
+        "notes": "韩国不是大陆，不能推断中国无销量；发行价7700日元不是二手成交价。黑色不能与卡其/蓝混价。"
+      },
+      "cn": null,
+      "decision": "没有取得大陆价差；继续降级，不能类推克罗心内裤已赚就会赚。",
+      "correction": "ZOZO URL商品ID101453450和問い合わせ番号102453450是不同字段，不构成冲突。",
+      "verified_profit": null
+    }
+  ],
+  "constraints": [
+    "全部verified_profit=null；没有合格50%项；日本采购小计不是K。",
+    "孔网已售登录门禁，未拿到交易记录；店铺完成率不可当SKU销量。",
+    "不笼统说用户从未赚钱；其两单是用户报告经验，具体账本未知。",
+    "不能说查遍全平台；闲鱼/得物本人当前成交与净回款未取得。",
+    "不联系、不购物、不上架；不新增后台执行。"
+  ],
+  "calculation": {
+    "fx_cny_per_jpy": "0.043",
+    "fx_kind": "illustrative_not_current_payment_quote",
+    "rounding": "half_up_2dp",
+    "japan_subtotals": [
+      {
+        "id": "9784047260856",
+        "jpy": "2086",
+        "cny": "89.70"
+      },
+      {
+        "id": "9784861526916",
+        "jpy": "2530",
+        "cny": "108.79"
+      },
+      {
+        "id": "9784047281424",
+        "jpy": "1002",
+        "cny": "43.09"
+      },
+      {
+        "id": "02261CU01",
+        "jpy": "8030",
+        "cny": "345.29"
+      }
+    ],
+    "full_cost": null,
+    "profit": null,
+    "roi": null,
+    "sales_net_margin": null,
+    "max_purchase_price": null
+  }
+}
