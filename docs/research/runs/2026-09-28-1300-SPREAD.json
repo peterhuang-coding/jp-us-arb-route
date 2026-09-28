@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "run_id": "SPREAD-20260928-1300",
+  "triggered_at": "2026-09-28T05:00:37.793Z",
+  "observed_window_utc": [
+    "2026-09-28T05:02:08.581701+00:00",
+    "2026-09-28T05:06:51.854958+00:00"
+  ],
+  "scope": "Japan procurement to mainland China resale; art/photo books and streetwear underwear/small accessories only",
+  "source_request_counts": {
+    "search_queries": 18,
+    "web_open_requests": 12,
+    "web_click_requests": 1,
+    "web_find_requests": 4,
+    "ordinary_http_get": 3,
+    "conservative_total": 38
+  },
+  "mainland_query_count_across_all_four_targets": 13,
+  "target_count": 4,
+  "new_named_style_count": 1,
+  "qualified_candidates": 0,
+  "source_evidence": [
+    {
+      "id": "B1",
+      "identity": "9784309272993",
+      "title": "新世紀SM画報 2012新装版",
+      "sources": [
+        {
+          "source_id": "B1-id",
+          "url": "https://www.hanmoto.com/bd/isbn/9784309272993",
+          "access_method": "web.open/find",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "1.1 years",
+          "market": "JP",
+          "seller_key": null,
+          "facts": {
+            "isbn13": "9784309272993",
+            "isbn10": "4309272991",
+            "edition_date": "2012-01",
+            "pages": 127,
+            "publisher": "河出書房新社",
+            "bibliography_updated": "2016-08-19",
+            "publisher_stock": "unknown",
+            "note": "Previous publisher page states 128 pages; preserve discrepancy, not proof of different edition."
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "B1-ask",
+          "url": "https://jp.mercari.com/shops/product/qQh4LHPGnGRCEgYTifN3e6",
+          "access_method": "web.open",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "today",
+          "market": "JP",
+          "seller_key": "mercari-shops:various-station",
+          "facts": {
+            "identifier_in_description": "4309272991",
+            "price": 13500,
+            "currency": "JPY",
+            "price_type": "asking",
+            "tax_included": null,
+            "japan_shipping": "included per seller",
+            "stock_claim": "1 remaining",
+            "condition": "used with visible wear; scratches/dirt/writing may exist",
+            "listing_age_text": "over half year",
+            "dispatch_days": [
+              8,
+              14
+            ],
+            "seller_parallel_listing": "may be unavailable because sold on another channel",
+            "specific_print_signature_accessories": null,
+            "delivery_by_travel_return": null
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "B1-cn",
+          "url": "https://search.kongfz.com/product/?keyword=9784309272993&dataType=0",
+          "access_method": "web.open",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": null,
+          "market": "CN",
+          "seller_key": null,
+          "facts": {
+            "result": "tool inaccessible; no price/transaction extracted"
+          },
+          "sale_event_at": null
+        }
+      ]
+    },
+    {
+      "id": "B2",
+      "identity": "9784309922263",
+      "title": "40周年 丸尾画報DXI改",
+      "sources": [
+        {
+          "source_id": "B2-id",
+          "url": "https://www.hanmoto.com/bd/isbn/9784309922263",
+          "access_method": "indexed search + web.open/find",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "search yesterday; open last month",
+          "market": "JP",
+          "seller_key": null,
+          "facts": {
+            "isbn": "9784309922263",
+            "pages": 232,
+            "list_price_jpy_incl_tax": 4400,
+            "indexed_weight_g": 620,
+            "weight_adoption": "unverified: not recovered by opened-page find, do not use for shipping cost",
+            "stock": null
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "B2-tw",
+          "url": "https://www.ruten.com.tw/item/22116850798278/",
+          "access_method": "indexed search + web.open",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "index last month; open today",
+          "market": "TW",
+          "seller_key": "ruten:ACG-bookstore",
+          "facts": {
+            "listing_title_identifier": "9784309922263",
+            "indexed_asking_price": 1350,
+            "indexed_currency": "TWD",
+            "indexed_stock_field": 5,
+            "indexed_type": "preorder",
+            "indexed_delivery": "2027/12 shown; seller generic text 3-5 weeks, conflict unresolved",
+            "indexed_sales_field": 0,
+            "current_open": "login required with no product price parsed",
+            "rule": "Index is neither current payable price nor mainland demand; stock field not physical stock proof; sales 0 cannot generalize"
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "B2-cn",
+          "url": "https://search.kongfz.com/product/?keyword=9784309922263&dataType=0",
+          "access_method": "web.open",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": null,
+          "market": "CN",
+          "seller_key": null,
+          "facts": {
+            "result": "tool inaccessible; no price/transaction extracted"
+          },
+          "sale_event_at": null
+        }
+      ]
+    },
+    {
+      "id": "S1",
+      "identity": "WMGP-BR10",
+      "title": "WACKO MARIA BOXER BRIEFS BLACK; official detail/6224 mapping pending",
+      "sources": [
+        {
+          "source_id": "S1-relax",
+          "url": "https://www.relaxweb.net/?pid=189246759",
+          "access_method": "ordinary HTTP GET + public product JSON",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "direct response",
+          "market": "JP",
+          "seller_key": "relaxweb:PA01068557",
+          "facts": {
+            "observed_at_utc": "2026-09-28T05:04:11.127863+00:00",
+            "style": "WMGP-BR10",
+            "color": "BLACK",
+            "asking_price_jpy_ex_tax": 6000,
+            "asking_price_jpy_incl_tax": 6600,
+            "variants": [
+              {
+                "size": "L",
+                "stock_num": 1
+              },
+              {
+                "size": "XL",
+                "stock_num": 1
+              }
+            ],
+            "total_stock_claim": 2,
+            "pack_count": null,
+            "material": "COTTON96 POLYURETHANE4",
+            "japan_shipping": "general parcel550JPY below threshold; optional small-packet360JPY only if eligible; eligibility for this item not confirmed; free-shipping threshold text conflicts10000/11000",
+            "payment_fulfilment": "seller says stock-confirmation before payment guidance; delivery date unknown",
+            "returns": "no buyer-convenience size exchanges; defects procedure conditions apply",
+            "retailer_location": "Niigata, not Tokyo",
+            "claim_not_reservation": true
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "S1-official",
+          "url": "https://wackomaria-paradisetokyo.jp/detail/6224",
+          "access_method": "ordinary HTTP GET",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "direct response",
+          "market": "JP",
+          "seller_key": "wacko-official",
+          "facts": {
+            "observed_at_utc": "2026-09-28T05:04:12.150649+00:00",
+            "displayed_price_jpy": 6000,
+            "tax_status": null,
+            "color_option": "BLACK",
+            "size_selector": "disabled until color interaction; selected stock unverified",
+            "formal_style": null,
+            "pack_count": null,
+            "note": "No WMGP string; matching retailer to this official page not proved by similar material/size chart. Do not infer a pack size or call displayed 6000 tax-inclusive."
+          },
+          "sale_event_at": null
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "identity": "UC2F1P94",
+      "title": "UNDERCOVER pouch BLACK F",
+      "sources": [
+        {
+          "source_id": "S2-makes",
+          "url": "https://www.makes.jp/c/UNDER-COVER_w/UC2F1P94",
+          "access_method": "ordinary HTTP GET + public JSON-LD",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "direct response",
+          "market": "JP",
+          "seller_key": "makes:Carnation",
+          "facts": {
+            "observed_at_utc": "2026-09-28T05:04:11.126891+00:00",
+            "style": "UC2F1P94",
+            "color": "BLACK",
+            "size": "F",
+            "price_jpy_incl_tax": 5500,
+            "price_type": "asking",
+            "stock_claim": "JSON-LD InStock; variant BLACK/F with cart button",
+            "stock_quantity": null,
+            "condition_claim": "NewCondition JSON-LD",
+            "material": "polyester100 percent",
+            "dimensions": "width8 height12 per seller table, unit not explicitly parsed in table",
+            "japan_shipping": null,
+            "stock_shared_with_store": true,
+            "fulfilment": "may cancel after payment due shared stock; no promised date",
+            "retailer_store": "Carnation, Tokyo location not established"
+          },
+          "sale_event_at": null
+        },
+        {
+          "source_id": "S2-brand",
+          "url": "https://undercoverism.com/gender/item/detail/1_2_UC2F1P94_1/",
+          "access_method": "web.open",
+          "observed_window_utc": [
+            "2026-09-28T05:02:08.581701+00:00",
+            "2026-09-28T05:06:51.854958+00:00"
+          ],
+          "cache_age": "2 weeks",
+          "market": "JP",
+          "seller_key": "undercover-official",
+          "facts": {
+            "style": "UC2F1P94",
+            "color": "BLACK",
+            "size": "F",
+            "dimensions_cm": [
+              7.5,
+              12
+            ],
+            "material": "PVC pouch; brass zipper; 100%polyvinylchloride/100%polyurethane, partly brass",
+            "price": null,
+            "parsed_inventory_text": "generic ONLY1/SOLDOUT/COMINGSOON and region restriction mixed; cannot identify selected live stock",
+            "store_finder": "parsed x marks at Aoyama/NoiseLab/Shinsaibashi; cached not live stock verification",
+            "conflict": "retailer material/dimensions differ, cannot silently pick one or claim counterfeit"
+          },
+          "sale_event_at": null
+        }
+      ]
+    }
+  ],
+  "adopted_diagnoses": [
+    {
+      "id": "B1",
+      "identity": "9784309272993",
+      "source_ids": [
+        "B1-id",
+        "B1-ask",
+        "B1-cn"
+      ],
+      "decision": "本轮不采购；保留研究线索，非商品无利润或永久停止判断",
+      "reasons": [
+        "本轮四个目标合计13次大陆定向检索未取得本款有效买方报价或近30天可复核同款成交；不是单款13次，覆盖有限，不代表销量或需求为零。",
+        "日本侧B1-ask仅为Mercari Shops要价13500日元（含税未知，卖家称日本运费已含），挂牌逾半年、库存声明仅1件且可能已在他渠道售出；要价与库存声明不构成成交或可购保证。",
+        "书目源B1-id缓存约1.1年，出版社库存未知；页数127与旧出版社页128存在差异，仅保留冲突，不据此推断为不同版本。",
+        "卖家称8-14天发货，无具体印次/签名/附件及交付方式证据；缓存与挂牌不得升级为实时成交或交付确认。"
+      ],
+      "missing_fields": [
+        "大陆近30天同版本/品相成交或当前有效买方报价，以及可核低价竞争；受阻入口需恢复依据或新公开来源",
+        "大陆真实需求量与低价竞争价格",
+        "日本实际可购库存、含税总价与采购可得性",
+        "核重、跨境运费、关税等完整履约成本"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "B2",
+      "identity": "9784309922263",
+      "source_ids": [
+        "B2-id",
+        "B2-tw",
+        "B2-cn"
+      ],
+      "decision": "本轮不采购；保留研究线索，非商品无利润或永久停止判断",
+      "reasons": [
+        "本轮四个目标合计13次大陆定向检索未取得本款有效买方报价或近30天可复核同款成交；不是单款13次，覆盖有限，不代表销量或需求为零。",
+        "B2-tw露天1350台币为预购商品的索引要价而非现付价：当前打开需登录且无价格解析；库存字段5非实物库存证明，销量0不可外推为需求。",
+        "交付冲突未解决：索引显示2027/12，卖家通用文案称3-5周；预购非现货，不能据此确认交付时间。",
+        "日本B2-id仅见定价4400日元含税、232页，库存null；620g为索引重量且打开页未取回，明确不得用于运费测算。"
+      ],
+      "missing_fields": [
+        "大陆近30天同款成交价、有效需求与竞争价格",
+        "日本现货可购报价与实际库存（非台湾预购渠道）",
+        "有可靠来源的重量或实测重量、跨境运费、适用税费等完整履约成本"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S1",
+      "identity": "WMGP-BR10",
+      "source_ids": [
+        "S1-relax",
+        "S1-official"
+      ],
+      "decision": "本轮不采购；保留研究线索，非商品无利润或永久停止判断",
+      "reasons": [
+        "本轮四个目标合计13次大陆定向检索未取得本款有效买方报价或近30天可复核同款成交；不是单款13次，覆盖有限，不代表销量或需求为零。",
+        "S1-relax的6000日元不含税/6600含税仅为挂牌要价；L、XL各1件为卖家库存声明、非预留非成交，付款前需库存确认、交付日期未知；小包360日元资格未确认，免邮门槛10000/11000文字冲突。",
+        "S1-official的detail/6224页面无WMGP货号，仅凭材质/尺码相似不能证明与WMGP-BR10为同一商品，映射保持pending；其显示6000日元税况不明，尺码选择器未交互、所选库存未验证。",
+        "卖家位于新潟而非东京，不支持买家个人原因的尺码换货；大陆进口与完整履约成本仍缺项，挂牌与页面观察不能升级为成交或交付。"
+      ],
+      "missing_fields": [
+        "大陆有效买家或近30天同款成交/求购证据及大陆竞争价格带",
+        "WMGP-BR10与官方detail/6224的确定性货号映射",
+        "单包件数、目标尺码和品相；服饰尺码未知，不推定用户可穿",
+        "已知商品含税挂牌6600日元，另需适用日本运费、跨境/税费及其余完整成本、库存确认与发货窗口",
+        "可信售价、完整采购成本等六项财务数据"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S2",
+      "identity": "UC2F1P94",
+      "source_ids": [
+        "S2-makes",
+        "S2-brand"
+      ],
+      "decision": "本轮不采购；保留研究线索，非商品无利润或永久停止判断",
+      "reasons": [
+        "本轮四个目标合计13次大陆定向检索未取得本款有效买方报价或近30天可复核同款成交；不是单款13次，覆盖有限，不代表销量或需求为零。",
+        "S2-makes的5500日元含税为挂牌要价；JSON-LD的InStock/NewCondition仅为卖家声明，库存数量未知且与门店共享，付款后仍可能取消、无承诺交期，日本运费缺失，门店东京位置未证实。",
+        "来源冲突保留：S2-makes称聚酯100%、表列宽8高12（单位未明确解析）；S2-brand（约2周缓存）称PVC/PU、部分黄铜，7.5×12cm；不能择一，也不能据此断言假货。",
+        "S2-brand为两周前缓存，ONLY1/SOLDOUT/COMINGSOON与区域限制文字混杂，无法识别所选实时库存；门店定位标记非实时库存验证，挂牌与缓存均不构成成交或交付。"
+      ],
+      "missing_fields": [
+        "大陆有效买家或近30天同款成交/求购证据及大陆竞争价格带",
+        "材质与尺寸冲突的可靠原始依据（聚酯 vs PVC/PU、8×12单位待核 vs 7.5×12cm）",
+        "库存确认、日本运费及发货窗口；共享库存取消风险仍应保留，不要求保证绝不取消",
+        "可信售价、完整采购成本等六项财务数据"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    }
+  ],
+  "next_actions": {
+    "books": [
+      "后续优先选择有新公开证据入口的大陆精确ISBN/版本检索。挂牌仅用于竞争比较；成交或当前有效买方报价才可支持保守销售金额。旧受阻访问方式不因新slot重复。",
+      "若国内需求成立，再补日本可购含税价、库存及履约成本；B2重量可用可靠来源或实测，未核620g不计成本。台湾页面只作排除反例，不扩为采购路线。"
+    ],
+    "smallgoods": [
+      "下轮若有未处理且可访问的大陆精确货号/规格证据入口，继续优先取证；本轮无可信退出依据则暂不采购。路径停止按连续3个已完成研究轮无新增证据规则，不因本轮缺需求永久停止。",
+      "大陆需求成立后，再以公开来源补S1单包件数/目标尺码及官方货号映射、适用运费与交期；S2材质尺寸冲突、共享库存与运费。受阻入口需恢复依据，不联系卖家。"
+    ]
+  },
+  "financial_policy": "All six fields unknown unless credible mainland P and complete K supported; asking prices/foreign markets are not P.",
+  "packages": [
+    {
+      "task_id": "jp-spread-20260928-1300-books-a1",
+      "outcome": "accepted_with_changes",
+      "raw_status": "verifying",
+      "raw_returncode": 0,
+      "raw_receipt_sha256": "6890e31d3375d384848f0a73cdddff93bb2e3fcf2ffbda46cc42b15979208927",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 28384,
+        "inference_geo": "",
+        "input_tokens": 13133,
+        "iterations": [],
+        "output_tokens": 6439,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-09-28T05:07:27.744584+00:00",
+      "finished_at": "2026-09-28T05:09:25.324516+00:00",
+      "elapsed_seconds": 117.577,
+      "parent_recheck_exit_code": 0,
+      "corrections": [
+        "澄清13次大陆检索是四目标合计覆盖；不代表每款13次。",
+        "将不采购判定限定在本轮证据，不延伸为永久停止。",
+        "删除台湾采购路径后续动作；保持日本采购到大陆范围。",
+        "不要求只有实测重量；明确挂牌不能支持退出金额。"
+      ],
+      "raw_business_hashes": [
+        {
+          "path": "research.json",
+          "sha256": "764556209cd0b1f8c9cf2b9c8498a1414a012a61a9e32c6ab439012ec779dd6d"
+        },
+        {
+          "path": "brief.md",
+          "sha256": "63f1e235f1042ebb647be638fdac669c154d99a088c09cce45d06457ff86f0fe"
+        }
+      ],
+      "adopted_business_hashes": {
+        "research.json": "c6fcb51379a5c3bd69b025af5965d23801ff7c0013e341456d93d90093e32ed5",
+        "brief.md": "916932aedcbfd7d3901cd020d63ea3cea0db76561ef1f359692ebfaba1f6bdc7"
+      }
+    },
+    {
+      "task_id": "jp-spread-20260928-1300-smallgoods-a1",
+      "outcome": "accepted_with_changes",
+      "raw_status": "verifying",
+      "raw_returncode": 0,
+      "raw_receipt_sha256": "4d82358431454a46273bcad9f65f0bc323284e22875b57db7ea500335c5e10f1",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 44568,
+        "inference_geo": "",
+        "input_tokens": 15623,
+        "iterations": [],
+        "output_tokens": 8785,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-09-28T05:07:27.744522+00:00",
+      "finished_at": "2026-09-28T05:10:11.165123+00:00",
+      "elapsed_seconds": 163.418,
+      "parent_recheck_exit_code": 0,
+      "corrections": [
+        "澄清13次大陆检索是四目标合计覆盖；不代表每款13次。",
+        "将不采购判定限定在本轮证据，不延伸为永久停止。",
+        "补单包件数/目标尺码/品相缺口；已知含税价与完整成本区分。",
+        "删除无需求即终止研究表述，恢复既定三轮无增量规则。",
+        "完整保留PVC/PU及单位冲突，不要求库存绝对保证。",
+        "不采用Edit可直接创建文件的泛化记忆。"
+      ],
+      "raw_business_hashes": [
+        {
+          "path": "research.json",
+          "sha256": "a747b1d21940e0442ee021a731f0f088d354a5a79ca1e9b600bfcd7b077519a9"
+        },
+        {
+          "path": "brief.md",
+          "sha256": "35e5e50244438d6968bb8124a8884c0cb24607ff0b737fd3551985930331ecdb"
+        }
+      ],
+      "adopted_business_hashes": {
+        "research.json": "abebbf53a343572bd39ab1156b2c89f9883d99ca99341ed7d3ab06df8458e7ef",
+        "brief.md": "8cb0a472a342629abc6f4a1dd92c0a290da65c84605330c0aa7bf819f8219526"
+      }
+    }
+  ],
+  "review": {
+    "all_records_checked": 4,
+    "peak_parallel_verified": 2,
+    "raw_semantic_auto_adoption": false,
+    "new_unknown": 0,
+    "old_unknown_not_replayed": 4,
+    "quality_correction_calls": 0,
+    "waves": 1,
+    "extra_paid_fallback_calls": 0,
+    "total_native_usage": {
+      "input_tokens": 28756,
+      "cache_read_input_tokens": 72952,
+      "output_tokens": 15224
+    },
+    "source_validation": {
+      "raw_stock_json": {
+        "style": "WMGP-BR10",
+        "incl_tax": 6600,
+        "variant_claims": [
+          [
+            "L",
+            1
+          ],
+          [
+            "XL",
+            1
+          ]
+        ]
+      },
+      "isbn10_to13": {
+        "input": "4309272991",
+        "output": "9784309272993"
+      },
+      "source_sha256": {
+        "wacko.html": "e275e532ca9ab2f3ff8a0943175b2f09cf93ee40d2803977b5cf1a54f2259839",
+        "makes.html": "0fea22d7d81de2d080b545d1ff59cbda66f2d6992bdce00942186fe600c1430a",
+        "relax.html": "95dab4fd732288e63fd039f7469cb467378194e6a761ea48c7e046915a6da5ac"
+      },
+      "input_fingerprints_not_seen_in_previous_runs": true,
+      "raw_pages_kept_local_only": true,
+      "actual_purchase_or_cart_calls": 0,
+      "checked_at": "2026-09-28T05:08:25.287566+00:00"
+    },
+    "limitations": [
+      "Stock fields are seller declarations, not reservation.",
+      "Search coverage does not estimate platform total sales or zero demand.",
+      "Internal thinking behavior not confirmed by requested setting.",
+      "No demonstrated resell profit or measured time savings."
+    ],
+    "reviewed_at": "2026-09-28T05:15:13.036555+00:00"
+  }
+}
