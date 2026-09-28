@@ -1,0 +1,566 @@
+{
+  "run_id": "SPREAD-20260929-0100",
+  "slot_local": "2026-09-29 01:00 Asia/Shanghai",
+  "observed_date_local": "2026-09-29",
+  "triggered_at": "2026-09-28T17:01:10.110Z",
+  "scope": "Japan procurement to mainland China resale; artbooks and streetwear underwear/smallgoods",
+  "target_count": 4,
+  "new_named_sku_count": 0,
+  "qualified_candidates": 0,
+  "source_request_counts": {
+    "run_id": "SPREAD-20260929-0100",
+    "queries": 11,
+    "web_open": 1,
+    "ordinary_get": 10,
+    "total": 22,
+    "targets": [
+      "B05",
+      "B06",
+      "S1",
+      "S2"
+    ],
+    "new_named_skus": 0,
+    "note": "one local requests import failure made no HTTP call, excluded; UC category missing SKU led observed brand link then detail; count is requests not independent sources"
+  },
+  "queries": [
+    {
+      "q": "\"9784865411362\" 中国 价格"
+    },
+    {
+      "q": "\"9784865411966\" 淘宝 当当 京东"
+    },
+    {
+      "q": "\"WACKO MARIA\" \"内裤\" 求购"
+    },
+    {
+      "q": "\"UC2F1P94\" 中国 闲鱼"
+    },
+    {
+      "q": "深濑昌久 萨斯克 SASUKE 日文 原版 价格",
+      "domains": [
+        "jd.com",
+        "dangdang.com",
+        "kongfz.com"
+      ]
+    },
+    {
+      "q": "深濑昌久 洋子 2025 复刻",
+      "domains": [
+        "jd.com",
+        "dangdang.com",
+        "kongfz.com"
+      ]
+    },
+    {
+      "q": "\"WACKO MARIA\" \"内裤\"",
+      "domains": [
+        "xiaohongshu.com",
+        "weibo.com",
+        "goofish.com"
+      ]
+    },
+    {
+      "q": "\"UNDERCOVER\" \"UC2F1P94\"",
+      "domains": [
+        "taobao.com",
+        "jd.com",
+        "goofish.com"
+      ]
+    },
+    {
+      "q": "\"WMGP-BR10\" 中国 价格"
+    },
+    {
+      "q": "\"UC2F1P94\" 转印 小包 价格"
+    },
+    {
+      "q": "\"9784865411966\" \"京东\""
+    }
+  ],
+  "records": [
+    {
+      "id": "B05",
+      "identity": "深濑昌久 SASUKE 日文版 ISBN9784865411362；签名/印次/赠品须分开",
+      "source_ids": [
+        "B05-CN-SEARCH",
+        "B05-TSITE-GIFT",
+        "B05-TSITE-REPRINT"
+      ],
+      "decision": "待核，尚未验证合格：大陆同版可信P缺失；日本新来源为旧缓存且当前403，赠品/印次信息不完整，不能认定两页实物不同或相互冲突。",
+      "reasons": [
+        "[B05-CN-SEARCH] 大陆仅重现当当406元/5评论旧列表缓存且无ISBN，hooos 252元促销9/27已到期，均非本轮新报价或成交；同版可信大陆售价未知，不能以评论或挂牌推需求。",
+        "[B05-TSITE-GIFT] 约2个月搜索缓存：代官山蔦屋5500JPY含税、免日本邮费、附トートバッグ购入特典、売り切れ，192页260×185mm精装；当前GET 403，不重试不绕过，不能标为今日价格库存。",
+        "[B05-TSITE-REPRINT] 约3个月搜索缓存：银座蔦屋5500JPY含税、2025年6月第2版、加购模板，本页未明确赠品故不能推定无赠品；两页同ISBN但信息覆盖不同，须分别记录并核实；不能推定印次或赠品必然不同。",
+        "缓存、挂牌与评论均不构成实时成交或交付；大陆同规格当前需求/竞争、日本实时可购价与库存及总履约成本均缺，六财务字段无证据可填。"
+      ],
+      "missing_fields": [
+        "大陆同规格的有效买方报价或近期可复核成交参照；挂牌另用于竞争分析",
+        "同规格需求证据及时间窗、卖家去重信息；成交笔数不足保留范围限制",
+        "日本当前可购买含税价、实时库存与发货/到达范围",
+        "进口税费、日本及国际段运费、履约时效"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "new_facts": "新日本跨来源印次/赠品区分；不是新实时供给，不能高挂牌或评论算收益。",
+      "sources": [
+        {
+          "source_id": "B05-CN-SEARCH",
+          "url": "https://shop.dangdang.com/20487/list.html",
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "search_cache",
+          "facts": "搜索再次返回旧当当406元/5评论列表缓存，无ISBN；与9/27既有输入相同，不算本轮新增报价或成交。tao.hooos旧252促销9/27到期，非本轮重新核价。大陆同版可信P未知。",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "B05-TSITE-GIFT",
+          "url": "https://store.tsite.jp/item-detail/art/33298.html",
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "search_cache_then_get_403",
+          "facts": "搜索缓存约2个月：代官山蔦屋5500JPY含税免日本邮费，購入特典トートバッグ付き，ISBN9784865411362，売り切れ；192页260×185mm精装。当前GET403，不重试/绕过，不标今日价格库存。",
+          "cache_age": "约2个月",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "B05-TSITE-REPRINT",
+          "url": "https://store.tsite.jp/item-detail/art/22877.html?refs=GooglePLA",
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "search_cache_then_get_403",
+          "facts": "搜索缓存约3个月：银座蔦屋5500JPY含税免日本邮费，2025年6月第2版，ISBN9784865411362，192页260×185mm精装，加购模板。当前GET403，当前价格库存未知；本页未明确赠品，不能推定无赠品。",
+          "cache_age": "约3个月",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        }
+      ],
+      "sale_event_time": null,
+      "mainland_verified_transaction_count": null,
+      "sell_through_rate": null,
+      "seller_dedup_keys": [],
+      "sell_through_time": null
+    },
+    {
+      "id": "B06",
+      "identity": "深濑昌久 YOKO 日文2025复刊 ISBN9784865411966",
+      "source_ids": [
+        "B06-JD-LIST",
+        "B06-JD-DETAIL",
+        "B06-KINO-CACHE"
+      ],
+      "decision": "待核，尚未验证合格：大陆列表缺价和卖家标识，详情页为空壳；日本新来源库存事件是8/28旧缓存，当前可履约状态未核。",
+      "reasons": [
+        "[B06-JD-LIST] 北京时间9/29 01:04 GET 200列表原页标题含精确ISBN9784865411966、日文原版、全新塑封当天发、7+条评论及详情链接；但price strong为空、店铺ID停留在模板变量未解析，发货声明未独立验证，评论无时间窗、不是成交。",
+        "[B06-JD-DETAIL] 详情页GET 200仅返回京东通用标题与安全风险脚本，正文无目标ISBN、商品或价格，属空壳页面；HTTP200不等于有效商品页，不绕过验证。",
+        "[B06-KINO-CACHE] 约1个月搜索缓存：纪伊国屋7150JPY含税、2025/04、168页B5变判；在库1注明时间2026-08-28 18:11，不是今日库存，普通1—2日出库不保证到达，缓存称可免运店取、不附店铺专属特典、书腰可能缺失；当前均未重新确认；当前GET超时，未再重查。",
+        "大陆价格、成交与卖家身份均未坐实，日本无实时库存与交付保证；缓存与挂牌不升级为成交或交付，六财务字段无证据支持。"
+      ],
+      "missing_fields": [
+        "大陆同规格有效买方报价或近期可复核成交；7+评论仅为无时间窗线索",
+        "大陆卖家去重标识与同规格竞争挂牌",
+        "日本当前实时库存、含税价与能否送达/店取的确认",
+        "进口税费、各段运费与总履约成本、时效"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "new_facts": "当前大陆JD列表精确ISBN及原页地址；无成交/价格/有效库存；对日本新增书目缓存。",
+      "sources": [
+        {
+          "source_id": "B06-JD-LIST",
+          "url": "https://www.jd.com/hprm/171314396c6f784a1113.html",
+          "observed_at": "2026-09-28T17:04:24.964034+00:00",
+          "method": "ordinary_https_get_200",
+          "facts": "当前列表标题含ISBN9784865411966、日文原版、全新塑封当天发，7+条评论，链接item.jd.com/10073730602984.html；price strong为空，店铺标识未解析（模板$wareInfo.shop_id）。标题发货声明未独立验证，评论无时间窗不是成交。",
+          "price": null,
+          "seller_key": null,
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "B06-JD-DETAIL",
+          "url": "https://item.jd.com/10073730602984.html",
+          "observed_at": "2026-09-28T17:09:02.929626+00:00",
+          "method": "ordinary_https_get_200_shell",
+          "facts": "只返回京东通用标题/安全风险脚本，正文无目标ISBN或商品、价格；HTTP200不等于有效商品页，不绕过验证。",
+          "price": null,
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "B06-KINO-CACHE",
+          "url": "https://www.kinokuniya.co.jp/f/dsg-01-9784865411966",
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "search_cache_then_get_timeout",
+          "facts": "搜索缓存约1个月：7150JPY含税，2025/04，168页25cm B5变判，日文；在库1注明2026-08-28 18:11，不是今日库存。普通次日—2日出库不保证到达；店取免运可能，店限特典无，书腰可能无。当前GET超时，未再重查。",
+          "cache_age": "约1个月",
+          "stock_event_time": "2026-08-28 18:11 source-local timezone not independently verified",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        }
+      ],
+      "sale_event_time": null,
+      "mainland_verified_transaction_count": null,
+      "sell_through_rate": null,
+      "seller_dedup_keys": [],
+      "sell_through_time": null
+    },
+    {
+      "id": "S1",
+      "identity": "WACKO MARIA WMGP-BR10 BLACK，M/L/XL分开；套装件数未知，用户尺码未知",
+      "source_ids": [
+        "S1-CN-SEARCH",
+        "S1-ROOTS",
+        "S1-ROOTS-POLICY"
+      ],
+      "decision": "待核，尚未验证合格：仅取得日本侧变体级库存声明与日本本地小计，大陆同规格需求/竞争证据缺失，六项财务字段保持null。",
+      "reasons": [
+        "大陆三组聚焦检索未取得同规格（WMGP-BR10+BLACK+具体尺码）价格或需求证据；搜索无结果不等于零销量（S1-CN-SEARCH）。",
+        "Roots当前页标价6600日元含税；变体级available：M=false且页面标SOLD OUT，L/XL=true，布尔值不代表件数或锁货，不能泛化为整款售罄（S1-ROOTS）。",
+        "身份须按变体区分：完整product JSON与另一个analytics对象不能当作重复完整产品；用户尺码与套装件数未知，M/L/XL分开判断（S1-ROOTS）。",
+        "仅能算出日本本地小计7260日元（6600+660运费，单件刷卡普通路径）；跨境税费、酒店/大陆接收履约、境外卡与中国买家资格均未知，日本小计不是完整成本（S1-ROOTS-POLICY）。"
+      ],
+      "missing_fields": [
+        "大陆同规格按具体尺码区分的在售价/近期成交与需求证据",
+        "转售目标规格分别核M/L/XL；用户自用尺码未知，不推定也不作为研究前置",
+        "套装或包内件数",
+        "拟购数量可执行的库存/发货确认；不强制全店精确库存件数或先锁货",
+        "跨境运费、税费及大陆接收/履约方式",
+        "境外信用卡及中国买家购买资格"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "new_facts": "新日本来源变体库存声明、条款/日本小计；国内证据仍缺。",
+      "sources": [
+        {
+          "source_id": "S1-CN-SEARCH",
+          "url": null,
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "3_mainland_focused_search_queries",
+          "facts": "WACKO MARIA 内裤 求购；同关键词限定xiaohongshu/weibo/goofish；WMGP-BR10 中国 价格，未取得可用同规格大陆价格/需求。weibo robots受限已停止；BUYMA中文页非大陆退出，2件豹纹不匹配。没有结果不等于零销量。",
+          "transaction_event_time": null,
+          "price_type": "no_usable_quote",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "S1-ROOTS",
+          "url": "https://www.roots83.com/products/boxer-briefs",
+          "observed_at": "2026-09-28T17:04:24.965493+00:00",
+          "method": "ordinary_https_get_200",
+          "facts": "可见6600JPY Tax in，款号WMGP-BR10；一个完整product JSON，另一个analytics对象不能当重复完整产品。price660000结合可见6600校验；BLACK/M available=false，BLACK/L及XL true；变体id依次46169663504642/46169663537410/46169663570178。三者barcode null、weight0不是真实重量。M可见SOLD OUT而L/XL未标，泛化SOLD OUT不是整款售罄。available布尔不代表件数/锁货。COTTON96%/POLYURETHANE4%，M/L/XL腰围73/78/82cm店测。",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "S1-ROOTS-POLICY",
+          "url": "https://www.roots83.com/policies/legal-notice",
+          "observed_at": "2026-09-28T17:09:02.930455+00:00",
+          "method": "ordinary_https_get_200",
+          "facts": "店铺在日本宫崎，不是东京实体店。日本通常运费660JPY，税込满15000免运，冲绳离岛另费、特大规格可能另费；货到付款另440，刷卡不加这项。支持VISA/MASTER/DINERS/JCB/AMEX，接受无会员购买；信用卡境外卡及中国买家资格未核。现货订单/收款确认2日内发货，16点前尽力当日，不保证旅期到达；店面共享库存可能缺货。尺码不合等个人原因不退换，破损/错货7日内先联系。单件按普通地区刷卡路径6600+660=7260JPY，仅日本小计；包件数、酒店接收、跨境税费和大陆退出未知。",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        }
+      ],
+      "sale_event_time": null,
+      "mainland_verified_transaction_count": null,
+      "sell_through_rate": null,
+      "seller_dedup_keys": [],
+      "sell_through_time": null
+    },
+    {
+      "id": "S2",
+      "identity": "UNDERCOVER UC2F1P94 BLACK/F；材料与尺寸跨来源冲突待核",
+      "source_ids": [
+        "S2-CN-SEARCH",
+        "S2-BOOMERANG",
+        "S2-PRIOR-CONFLICT"
+      ],
+      "decision": "待核，尚未验证合格：大陆同款可卖证据缺失，且材质/尺寸跨来源冲突未决，六项财务字段保持null。",
+      "reasons": [
+        "大陆三组聚焦检索（含闲鱼/淘宝/京东限定与款号词）未取得同款报价或近期成交；无结果不等于无销量（S2-CN-SEARCH）。",
+        "Boomerang当前独立页：5500日元含税、BLACK/F加购按钮存在，但未加购/锁货/下单，库存数量与最终履约未知；2026-07-29起售，非今日新品（S2-BOOMERANG）。",
+        "材质/尺寸跨来源冲突保留：Boomerang为100%PVC+100%PU、部分黄铜、7.5×12；前轮MAKES为polyester100%、8×12；本轮支持官网缓存字段，但不能据此判定MAKES错误或实物已一致（S2-BOOMERANG；S2-PRIOR-CONFLICT）。",
+        "通用页头满10000日元免运不适用单件，单件运费未知；跨境税费与大陆退出价无证据，财务字段无法成立（S2-BOOMERANG）。"
+      ],
+      "missing_fields": [
+        "大陆同款报价、近期成交与需求证据",
+        "同规格实物或可靠一手规格资料，保留材质/尺寸冲突；不以来源数量投票裁决",
+        "目标数量的可执行供给与旅期收货条件；精确库存件数不是研究门槛",
+        "单件日本境内运费",
+        "跨境税费与大陆接收/履约方式"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "new_facts": "新的独立日本当前页提供款号/色码/材质/尺寸/售价，有助诊断身份冲突，未形成大陆可卖证据。",
+      "sources": [
+        {
+          "source_id": "S2-CN-SEARCH",
+          "url": null,
+          "observed_at": "2026-09-29北京时间01:02—01:04搜索观察；缓存年龄单列",
+          "method": "3_mainland_focused_search_queries",
+          "facts": "UC2F1P94 中国 闲鱼；款号限定taobao/jd/goofish；UC2F1P94 转印 小包 价格，未取得大陆同款报价/近期成交；不等于无销量。",
+          "transaction_event_time": null,
+          "price_type": "no_usable_quote",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "S2-BOOMERANG",
+          "url": "https://www.boomerang-online.jp/fs/frontier/UNDER-COVER/UC2F1P94",
+          "observed_at": "2026-09-28T17:09:40.021788+00:00",
+          "method": "ordinary_https_get_200",
+          "facts": "当前商品24314、UC2F1P94，5500JPY税込，BLACK/F加购按钮存在但没加购/锁货/订单，库存数量及最终履约未知。销售起始2026-07-29 12:00不是今日新发售。材质100%POLYVINYLCHLORIDE、100%POLYURETHANE、PARTLY:BRASS，PVC袋/铜拉链，F7.5×12，made in Japan。通用页头满10000免运，单件运费未知。",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        },
+        {
+          "source_id": "S2-PRIOR-CONFLICT",
+          "url": "https://www.makes.jp/c/UNDER-COVER_w/UC2F1P94",
+          "observed_at": "2026-09-28 13:00 slot prior observation",
+          "method": "prior_accepted_observation_not_refetched",
+          "facts": "MAKES此前5500JPY含税、BLACK/F InStock，材质polyester100%尺寸8×12；官网此前缓存为PVC+PU/brass与7.5×12。本轮Boomerang支持官网缓存字段但不证明MAKES一定错或实物已一致，须保留冲突。",
+          "transaction_event_time": null,
+          "price_type": "listing_or_catalog_not_sale",
+          "seller_dedup_key": null
+        }
+      ],
+      "sale_event_time": null,
+      "mainland_verified_transaction_count": null,
+      "sell_through_rate": null,
+      "seller_dedup_keys": [],
+      "sell_through_time": null
+    }
+  ],
+  "cc_review": {
+    "run_id": "SPREAD-20260929-0100",
+    "reviewed_at": "2026-09-28T17:17:22.443263+00:00",
+    "packages": [
+      {
+        "task_id": "jp-spread-20260929-0100-books-a1",
+        "status": "verifying",
+        "started_at": "2026-09-28T17:11:50.975456+00:00",
+        "finished_at": "2026-09-28T17:15:08.460752+00:00",
+        "elapsed_seconds": 197.535,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "permission_denials": [],
+        "disallowed_changes": [],
+        "lane": "books",
+        "outcome": "completed",
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 44056,
+          "inference_geo": "",
+          "input_tokens": 14958,
+          "iterations": [],
+          "output_tokens": 9203,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "requested_profile": {
+          "model": "doubao-seed-evolving",
+          "thinking_enabled": true,
+          "reasoning_effort": "high"
+        },
+        "adoption": "accepted_with_changes",
+        "reviewed_records": 2
+      },
+      {
+        "task_id": "jp-spread-20260929-0100-smallgoods-a1",
+        "status": "verifying",
+        "started_at": "2026-09-28T17:11:50.975462+00:00",
+        "finished_at": "2026-09-28T17:15:48.473000+00:00",
+        "elapsed_seconds": 237.547,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "permission_denials": [],
+        "disallowed_changes": [],
+        "lane": "smallgoods",
+        "outcome": "completed",
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 59728,
+          "inference_geo": "",
+          "input_tokens": 16764,
+          "iterations": [],
+          "output_tokens": 10941,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "requested_profile": {
+          "model": "doubao-seed-evolving",
+          "thinking_enabled": true,
+          "reasoning_effort": "high"
+        },
+        "adoption": "accepted_with_changes",
+        "reviewed_records": 2
+      }
+    ],
+    "peak_parallel": 2,
+    "actual_calls": 2,
+    "downstream_correction_calls": 0,
+    "accepted_with_changes": 2,
+    "reviewed_records": 4,
+    "financial_null_count": 24,
+    "new_unknown": 0,
+    "native_usage": {
+      "input_tokens": 31722,
+      "cache_read_input_tokens": 103784,
+      "output_tokens": 20144
+    },
+    "qualified_candidates": 0,
+    "parent_validation_failure": "smallgoods adopted brief exceeded350 chars; shortened and passed; no downstream retry"
+  },
+  "formulas": {
+    "net_profit": "P - K",
+    "full_cost_roi": "(P - K) / K",
+    "sales_margin": "(P - K) / P",
+    "note": "P requires credible sale evidence; K includes purchase, FX/payment, Japan shipping, allocated cross-border transport, applicable taxes, platform fees, domestic shipping, packaging and separately stated aftersales reserve, each once. Missing P or K => all financial fields null. 50% denominator unresolved; both metrics needed for provisional qualification."
+  },
+  "next_actions": {
+    "books": [
+      "下一已授权时段只从未处理且可访问的大陆同规格来源补买方报价或成交参照；当前挂牌可作竞争，评论不能当成交价格。B05分别核印次/赠品，B06核2025复刊与品相；受阻原入口不空转。",
+      "大陆证据值得继续后，再补对应日本报价/旅期可收条件；日本境内收货后携带与国际直邮分别核算，不强制国际直邮或已实现成交。"
+    ],
+    "smallgoods": [
+      "下一已授权时段优先补大陆WMGP-BR10 BLACK具体尺码的有效买方报价/近期成交与竞争；可分别查L/XL，不等待用户自用尺码，不重查受限微博。",
+      "S2优先大陆同款需求/竞争。仅当证据支持继续时补实物或可靠一手规格资料；另一零售页不能单独裁决既有材质尺寸冲突。"
+    ]
+  },
+  "http_observations": [
+    {
+      "url": "https://www.jd.com/hprm/171314396c6f784a1113.html",
+      "observed_at": "2026-09-28T17:04:24.964034+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": 200,
+      "sha256": "6e908fb38cf5d5f92f078b4aa357d7b4fc8633f3a8d17b8addedd0ae59147de2",
+      "final_url": "https://www.jd.com/hprm/171314396c6f784a1113.html",
+      "bytes": 261872
+    },
+    {
+      "url": "https://store.tsite.jp/item-detail/art/22877.html?refs=GooglePLA",
+      "observed_at": "2026-09-28T17:04:24.965026+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": null,
+      "sha256": null,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://store.tsite.jp/item-detail/art/33298.html",
+      "observed_at": "2026-09-28T17:04:24.965215+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": null,
+      "sha256": null,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.kinokuniya.co.jp/f/dsg-01-9784865411966",
+      "observed_at": "2026-09-28T17:04:24.965356+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": null,
+      "sha256": null,
+      "error": "The read operation timed out"
+    },
+    {
+      "url": "https://www.roots83.com/products/boxer-briefs",
+      "observed_at": "2026-09-28T17:04:24.965493+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": 200,
+      "sha256": "3e406b8f34171da9983f94d7817947a2284491ee8f5cdd3fbac5f0b09f410f0c",
+      "final_url": "https://www.roots83.com/products/boxer-briefs",
+      "bytes": 250406
+    },
+    {
+      "url": "https://www.boomerang-online.jp/fs/frontier/c/mens-acce",
+      "observed_at": "2026-09-28T17:04:24.965627+00:00",
+      "method": "ordinary HTTPS GET; no login",
+      "http_status": 200,
+      "sha256": "bcbea73c2a947c853cb520af0a52803f0ac0f093ab984b8f1fe0d6c28cfb6daa",
+      "final_url": "https://www.boomerang-online.jp/fs/frontier/c/mens-acce",
+      "bytes": 137514
+    },
+    {
+      "url": "https://item.jd.com/10073730602984.html",
+      "observed_at": "2026-09-28T17:09:02.929626+00:00",
+      "method": "ordinary_https_get",
+      "http_status": 200,
+      "sha256": "072019ee6fae738eaf05af14e925ab71938c3cc1e0638d9aa28ce7f4f8ac196b",
+      "final_url": "https://item.jd.com/10073730602984.html",
+      "bytes": 35920
+    },
+    {
+      "url": "https://www.roots83.com/policies/legal-notice",
+      "observed_at": "2026-09-28T17:09:02.930455+00:00",
+      "method": "ordinary_https_get",
+      "http_status": 200,
+      "sha256": "61e212c65b9018a6c21f3afee407da0b0e608d4478523b090f25ef4eba41bdc4",
+      "final_url": "https://www.roots83.com/policies/legal-notice",
+      "bytes": 222550
+    },
+    {
+      "url": "https://www.boomerang-online.jp/fs/frontier/c/UNDER-COVER",
+      "observed_at": "2026-09-28T17:09:02.930617+00:00",
+      "method": "ordinary_https_get",
+      "http_status": 200,
+      "sha256": "41ddaccb9276cc42cc48bb8b7b29b505d2b7f7bac15e48b249750c42cb3c629f",
+      "final_url": "https://www.boomerang-online.jp/fs/frontier/c/UNDER-COVER",
+      "bytes": 136428
+    },
+    {
+      "url": "https://www.boomerang-online.jp/fs/frontier/UNDER-COVER/UC2F1P94",
+      "observed_at": "2026-09-28T17:09:40.021788+00:00",
+      "method": "ordinary_https_get",
+      "http_status": 200,
+      "sha256": "c9e05d6beb2dbe934f981d6b853c098447e07c6342564a130a858adf37dd121e",
+      "final_url": "https://www.boomerang-online.jp/fs/frontier/UNDER-COVER/UC2F1P94",
+      "bytes": 33421,
+      "encoding": "shift_jis"
+    }
+  ]
+}
