@@ -1,0 +1,534 @@
+{
+  "schema_version": 1,
+  "run_id": "SPREAD-20260928-2100",
+  "observed_date": "2026-09-28",
+  "observed_timezone": "Asia/Shanghai",
+  "scope": "Japan purchase -> mainland China resale; artbooks and streetwear smallgoods",
+  "demand_window_days": 30,
+  "qualified_candidates": 0,
+  "collection": {
+    "run_id": "SPREAD-20260928-2100",
+    "search_queries_by_target": {
+      "B04": [
+        "\"9784766130928\" 孔夫子",
+        "樋口裕子 CIRCUS 马戏团 画集 签名 (domains kongfz.com/dangdang.com/jd.com/taobao.com)",
+        "site:book.kongfz.com \"CIRCUS\" \"樋口\"",
+        "\"樋口裕子\" \"马戏团\" ISBN",
+        "\"9787534096624\" 孔夫子 价格",
+        "\"9787534096624\"",
+        "\"樋口裕子\" \"CIRCUS\" \"213\""
+      ],
+      "B10": [
+        "\"AQUIRAX UNO\" \"2024\" 图录 中国",
+        "宇野亚喜良 2024 展览 图录 AQUIRAX (same 4 domains)",
+        "\"宇野\" \"2024\" \"图录\" 价格",
+        "\"AQUIRAX UNO\" \"2024\" 宇野亚喜良 图录 淘宝 闲鱼"
+      ],
+      "G08": [
+        "\"1M20-182-006\" 得物 淘宝",
+        "\"BAPE\" \"1M20-182-006\" 中国",
+        "\"4580794395606\" 中国 淘宝 得物"
+      ],
+      "G09": [
+        "\"AK70-182-309\" 得物 淘宝",
+        "\"4580793902911\" 中国 淘宝 闲鱼"
+      ],
+      "G06": [
+        "\"4580794395637\" 中国 得物",
+        "\"4580794395637\""
+      ],
+      "G07": [
+        "\"4580794395750\" 中国 淘宝",
+        "\"4580794395750\""
+      ]
+    },
+    "search_queries_count": 20,
+    "web_open_count": 5,
+    "ordinary_get_count": 5,
+    "web_find_count": 2,
+    "total_source_requests": 32,
+    "primary_targets": [
+      "B04",
+      "B10",
+      "G06",
+      "G07",
+      "G08",
+      "G09"
+    ],
+    "additional_identity_exclusion": [
+      "9787534096624"
+    ],
+    "new_candidate_targets": 0,
+    "conservative_sku_count_including_exclusion": 7,
+    "unchanged_diagnoses_not_dispatched": [
+      "G06",
+      "G07"
+    ],
+    "collection_stopped_at": "2026-09-28T13:13:16.987846+00:00"
+  },
+  "rows": [
+    {
+      "id": "B04",
+      "target_identity": "9784766130928 / 店铺176 / 直笔签名本，未授权切换普通本",
+      "previous_observation": {
+        "date": "2026-09-27",
+        "facts": "商品页明确売り切れ；3960JPY含税；ISBN不区分签名；本轮未重访该页",
+        "url": "https://higuchiyuko.tokyo/products/176"
+      },
+      "domestic_queries": [
+        "\"9784766130928\" 孔夫子",
+        "樋口裕子 CIRCUS 马戏团 画集 签名 (domains kongfz.com/dangdang.com/jd.com/taobao.com)",
+        "site:book.kongfz.com \"CIRCUS\" \"樋口\"",
+        "\"樋口裕子\" \"马戏团\" ISBN",
+        "\"9787534096624\" 孔夫子 价格",
+        "\"9787534096624\"",
+        "\"樋口裕子\" \"CIRCUS\" \"213\""
+      ],
+      "sources": [
+        {
+          "source_id": "B04-CN-CACHE",
+          "url": "https://shop.dangdang.com/20487/list.html?inner_cat=204870680001&page_index=12&sort_type=sort_input_date_desc",
+          "access_method": "search result, cached 5 months",
+          "facts": "善本图书旗舰店的列表结果出现CIRCUS进口日文原版预订挂牌213元、8评论；无ISBN、签名、交期；评论不是成交。仅搜索线索。",
+          "observed_date": "2026-09-28",
+          "event_time": null,
+          "seller_dedupe_key": "dangdang-shop-20487"
+        },
+        {
+          "source_id": "B04-CN-GET",
+          "url": "https://shop.dangdang.com/20487/list.html?inner_cat=204870680001&page_index=12&sort_type=sort_input_date_desc",
+          "access_method": "ordinary HTTPS GET",
+          "facts": "200返回善本图书旗舰店联系方式页；没有CIRCUS或213，不是当前价格验证；此前web.open超时，停止该入口本轮重试。",
+          "observed_at": "2026-09-28T13:09:40.158273+00:00",
+          "seller_dedupe_key": "dangdang-shop-20487",
+          "response_sha256": "2b5e7e1675e99fc68b4f666659612c53d66055182fa68700ebbce99285e56200"
+        },
+        {
+          "source_id": "B04-CN-OTHER-ISBN",
+          "url": "https://list.suning.com/pinpai/0APF-502766-0-0-0-0-0-8-0-60_100.html",
+          "access_method": "search cache 5 months; later open cache4 months; find today misses ISBN",
+          "facts": "缓存卖家醉染图书旗舰店标题樋口裕子画集 马戏团9787534096624，与日本ISBN不同，只作排除匹配。不能确认当前在售、价格、内容完全等同或销量。当前检索该URL未找到ISBN。",
+          "observed_date": "2026-09-28",
+          "event_time": null,
+          "seller_dedupe_key": "suning:declared-name-醉染图书旗舰店-id-unverified"
+        }
+      ],
+      "diagnosis": {
+        "id": "B04",
+        "identity": "9784766130928 樋口裕子CIRCUS直笔签名本（日本店铺176）；2026-09-27该店页面标明売り切れ、3960日元含税，本轮未重访。ISBN本身不区分签名，不得切换为普通本或不同ISBN候选9787534096624。",
+        "source_ids": [
+          "B04-CN-CACHE",
+          "B04-CN-GET",
+          "B04-CN-OTHER-ISBN"
+        ],
+        "decision": "保留研究，不列采购：签名本当前可买性未知，大陆仅有过时缓存挂牌线索，无同版30日成交或有效需求证据。",
+        "reasons": [
+          "B04-CN-CACHE仅为5个月前搜索缓存：善本图书旗舰店出现CIRCUS进口日文原版213元'预订'挂牌与8评论，但无ISBN、签名、交期信息；评论不是成交，不构成大陆实时可买或成交价。",
+          "B04-CN-GET当前200只返回善本图书旗舰店联系方式页，没有CIRCUS或213，缓存挂牌未获当前验证；此前web.open超时，该入口本轮已停止重试。",
+          "B04-CN-OTHER-ISBN缓存标题对应9787534096624（樋口裕子画集 马戏团），与日本ISBN不同，只作排除匹配；当前检索该URL亦未找到该ISBN，不能确认同品在售、价格、内容等同或销量。"
+        ],
+        "missing_fields": [
+          "日本直笔签名本当前现货/售价及订单锁货可能（09-27売り切れ之后未重访）",
+          "大陆标注精确ISBN 9784766130928且明确直笔签名的当前在售挂牌与交期",
+          "大陆同品30日内真实成交或有效买方报价（预订挂牌与评论不算）",
+          "可验证的收货/进口履约路径及含税费完整成本"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "identity_attributes": {
+        "isbn": "9784766130928",
+        "language": "Japanese target; cached domestic source not confirmed",
+        "signature": "hand-signed target; domestic cached listing unspecified",
+        "printing": null,
+        "accessories": null,
+        "condition": null
+      },
+      "mainland_demand": {
+        "deduplicated_30d_transaction_count": null,
+        "transaction_price_range": null,
+        "independent_buyer_count": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "matched_current_ask": null,
+        "coverage": "targeted public searches only, not whole platform"
+      }
+    },
+    {
+      "id": "B10",
+      "target_identity": "AQUIRAX UNO 2024展览图录 / ISBN未取得",
+      "previous_observation": {
+        "date": "2026-09-27",
+        "facts": "2024归档展览页的发售价，不是2026现货报价",
+        "url": "https://www.operacity.jp/ag/exh273/j/publication.php"
+      },
+      "domestic_queries": [
+        "\"AQUIRAX UNO\" \"2024\" 图录 中国",
+        "宇野亚喜良 2024 展览 图录 AQUIRAX (same 4 domains)",
+        "\"宇野\" \"2024\" \"图录\" 价格",
+        "\"AQUIRAX UNO\" \"2024\" 宇野亚喜良 图录 淘宝 闲鱼"
+      ],
+      "sources": [
+        {
+          "source_id": "B10-JP-LIGHTUP",
+          "url": "https://www.lightup.jp/detail/151196.html",
+          "access_method": "ordinary HTTPS GET",
+          "facts": "朝日新聞SHOP商品151-196-01-01；4400JPY含税；在线限定；在庫あり但页面称库存定期更新可能滞后；数量选择1到15不等于15本库存。2024出版，B5、400页、精装，印刷図書印刷。通用配送条款每单每地址783JPY含税；条件适用则单本日本采购小计5183JPY，不是完整成本。10日内退换；已拆包装书籍排除一般退换。订单/锁货、旅期收货、日本酒店接受/国际交付均未验证。",
+          "observed_at": "2026-09-28T13:09:40.157024+00:00",
+          "price_type": "seller_ask",
+          "event_time": null,
+          "seller_dedupe_key": "lightup:asahi-shop",
+          "response_sha256": "2f1208d1e0544d1238f9173c3c2d9f0aec5bfc3b299096cba8eb1a74a88eca2d"
+        },
+        {
+          "source_id": "B10-ID-CINII",
+          "url": "https://ci.nii.ac.jp/ncid/BD09044430",
+          "access_method": "ordinary HTTPS GET",
+          "facts": "朝日新聞社c2024，日本出版，日文及部分英文；398p/27cm；NCID BD09044430是书目ID不是ISBN。店铺400页与CiNii398页有差异，原因未知，不武断合并成精确同版本。",
+          "observed_at": "2026-09-28T13:09:40.158416+00:00",
+          "price_type": "none",
+          "event_time": null,
+          "seller_dedupe_key": null,
+          "response_sha256": "686f4e318d4fd1c75e6b9718fc8e0f7b77778d41823aeec927008f33afb40050"
+        },
+        {
+          "source_id": "B10-CN-SEARCH",
+          "url": null,
+          "access_method": "4 targeted public web searches",
+          "facts": "未取得中国大陆同版原始挂牌、成交或有效买方报价；日本中古售出标记与台湾磁铁结果均不适用，不能用境外成交或不同品类代替大陆退出。",
+          "observed_date": "2026-09-28",
+          "event_time": null,
+          "seller_dedupe_key": null
+        }
+      ],
+      "diagnosis": {
+        "id": "B10",
+        "identity": "AQUIRAX UNO（宇野亚喜良）2024展览图录，朝日新聞社c2024；ISBN未取得，仅有NCID BD09044430（书目ID，非ISBN）。店铺页称B5/400页/精装，CiNii著录398p/27cm，页数差异原因未知，暂不武断合并为精确同一版本。",
+        "source_ids": [
+          "B10-JP-LIGHTUP",
+          "B10-ID-CINII",
+          "B10-CN-SEARCH"
+        ],
+        "decision": "保留研究，不列采购：日本卖方挂牌存在但精确版本同一性存疑，未取得大陆同版需求证据，不代表无需求，跨境履约与完整成本均未验证。",
+        "reasons": [
+          "B10-JP-LIGHTUP：朝日新聞SHOP商品在线限定挂牌4400日元含税、在庫あり，但页面自述库存定期更新可能滞后；数量选择1到15不等于15本库存。加每单每地址783日元运费只构成条件性日本境内小计5183日元，不是完整成本。",
+          "B10-JP-LIGHTUP：订单/锁货、旅期收货、日本酒店接受与国际交付均未验证；10日内退换且已拆包装书籍被排除，不能视为可履约保障。",
+          "B10-ID-CINII：仅取得NCID BD09044430书目ID而非ISBN；店铺400页与CiNii 398页存在差异，精确版本同一性未证实。",
+          "B10-CN-SEARCH：4次定向公开检索未取得中国大陆同版原始挂牌、成交或有效买方报价；日本中古售出标记与台湾磁铁结果均不适用，不能替代大陆退出证据。"
+        ],
+        "missing_fields": [
+          "精确版本身份依据（ISBN若存在，或版权页/出版年/封面/规格）；页数差异待解释，NCID不能填成ISBN",
+          "大陆同版当前挂牌、30日内真实成交或有效买方报价",
+          "可售声明和实际收货条件；未下单/锁货，不据此新增必须锁货才能研究的门槛",
+          "旅期收货/携带或寄运路径；完整K包含货款、汇兑支付、日本运费、跨境、适用税费、平台、国内寄件、包装和售后准备"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "identity_attributes": {
+        "isbn": null,
+        "ncid": "BD09044430",
+        "publication_year": 2024,
+        "publisher": "Asahi Shimbun",
+        "language": "Japanese; partial English per CiNii, precise edition join unconfirmed",
+        "signature": null,
+        "printing": null,
+        "accessories": null,
+        "condition": "retailer product; received condition not verified"
+      },
+      "mainland_demand": {
+        "deduplicated_30d_transaction_count": null,
+        "transaction_price_range": null,
+        "independent_buyer_count": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "matched_current_ask": null,
+        "coverage": "targeted public searches only, not whole platform"
+      }
+    },
+    {
+      "id": "G08",
+      "target_identity": "1M20-182-006 / GREEN / F",
+      "previous_observation": {
+        "date": "2026-09-27",
+        "facts": "明确SOLDOUT；未取得价格",
+        "url": "https://jp.bape.com/products/1m20-182-006"
+      },
+      "domestic_queries": [
+        "\"1M20-182-006\" 得物 淘宝",
+        "\"BAPE\" \"1M20-182-006\" 中国",
+        "\"4580794395606\" 中国 淘宝 得物"
+      ],
+      "sources": [
+        {
+          "source_id": "G08-JP-DIRECT",
+          "url": "https://jp.bape.com/products/1m20-182-006",
+          "access_method": "ordinary HTTPS GET; offline JSON decode",
+          "facts": {
+            "style": "1M20-182-006",
+            "color_size": "GREEN / F",
+            "variant_id": 47136931184771,
+            "sku": "1M20182006GRN00F",
+            "barcode": "4580794395606",
+            "available": false,
+            "stock_quantity": null,
+            "raw_product_price": 715000,
+            "metadata_price_jpy": 7150,
+            "price_role": "embedded catalog metadata; visible page SOLD OUT, not executable offer",
+            "price_unit_basis": "product:price:amount meta 7,150/5,500 with currency JPY; analytics 7150.0/5500.0; full product 715000/550000. Do not blindly divide arbitrary data.",
+            "tax_included": null,
+            "weight": null,
+            "weight_note": "raw weight 0 unverified, not zero physical weight",
+            "compatibility": "AirPods Pro 第3代",
+            "materials_dimensions": "silicone / 5.5x7.3x2.9cm",
+            "shipping": "400JPY incl tax Japan ordinary areas; typical dispatch1-3businessdays, overseas orders and overseas shipping not accepted; no actual delivery promised",
+            "ui_note": "SOLD OUT and selected F SOLD OUT. ADD TO CART / added modal are generic template, no order occurred. 2 full product blocks identical; availability both false."
+          },
+          "observed_at": "2026-09-28T13:09:40.157978+00:00",
+          "event_time": null,
+          "seller_dedupe_key": "bape-japan-official",
+          "response_sha256": "ae340ab9ab405ef80c31271aae920379872f4d5d072a5e4d573e3d21131f5640"
+        },
+        {
+          "source_id": "G08-CN-SEARCH",
+          "url": null,
+          "access_method": "public exact style/barcode web searches",
+          "facts": "无可用大陆同规格价/成交/买方报价；条码是在提取后本轮实际检索，并非沿用此前款号检索。不能认定市场无需求。G09外国AL70-182-309粉款不是本AK70棕款。",
+          "observed_date": "2026-09-28",
+          "event_time": null,
+          "seller_dedupe_key": null
+        }
+      ],
+      "diagnosis": {
+        "id": "G08",
+        "identity": "BAPE 1M20-182-006 / GREEN / F（SKU 1M20182006GRN00F，条码4580794395606），硅胶材质5.5x7.3x2.9cm，适配AirPods Pro第3代",
+        "source_ids": [
+          "G08-JP-DIRECT",
+          "G08-CN-SEARCH"
+        ],
+        "decision": "不采购、不列为合格候选：日本官方页SOLD OUT且不接受海外配送，大陆无同规格成交证据，仅作研究记录",
+        "reasons": [
+          "2026-09-28 BAPE日本官方页该GREEN/F变体available=false，页面与所选F均明确SOLD OUT；ADD TO CART及弹窗为通用模板，未发生订单，无可执行报价（G08-JP-DIRECT）。",
+          "页内7,150日元为嵌入式目录元数据价格（raw 715000、analytics 7150.0），非现货成交价；stock_quantity为null，raw weight 0未核实，不能当作零重量（G08-JP-DIRECT）。",
+          "日本配送通常400日元含税，部分地区例外；页面不受理海外订单或海外寄送，1—3工作日通常发出不保证旅期送达，在日本下单/收货资格及酒店接收未验证（G08-JP-DIRECT）。",
+          "本轮按款号及条码4580794395606实际检索，未取得大陆同规格价格、成交或买方报价；检索无结果不等于市场无需求（G08-CN-SEARCH）。"
+        ],
+        "missing_fields": [
+          "大陆同规格近期可复核成交或有效买方报价（不要求两者同时具备）",
+          "可采购渠道、可售声明、进价及税口径；库存件数未知单列，不增加强制件数门槛",
+          "完整成本：货款、汇兑支付、日本运费、跨境分摊、适用税费、平台费、国内寄件、包装、售后准备；实重待核",
+          "大陆真实需求量"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "identity_attributes": {
+        "style": "1M20-182-006",
+        "color": "GREEN",
+        "size": "F",
+        "sku": "1M20182006GRN00F",
+        "barcode": "4580794395606",
+        "compatibility": "AirPods Pro 3",
+        "condition": "official product; no received item",
+        "accessories": null
+      },
+      "mainland_demand": {
+        "deduplicated_30d_transaction_count": null,
+        "transaction_price_range": null,
+        "independent_buyer_count": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "matched_current_ask": null,
+        "coverage": "targeted public searches only, not whole platform"
+      }
+    },
+    {
+      "id": "G09",
+      "target_identity": "AK70-182-309 / BROWN / F",
+      "previous_observation": {
+        "date": "2026-09-27",
+        "facts": "明确SOLDOUT；未取得价格",
+        "url": "https://en.jp.bape.com/products/ak70-182-309"
+      },
+      "domestic_queries": [
+        "\"AK70-182-309\" 得物 淘宝",
+        "\"4580793902911\" 中国 淘宝 闲鱼"
+      ],
+      "sources": [
+        {
+          "source_id": "G09-JP-DIRECT",
+          "url": "https://jp.bape.com/products/ak70-182-309",
+          "access_method": "ordinary HTTPS GET; offline JSON decode",
+          "facts": {
+            "style": "AK70-182-309",
+            "color_size": "BROWN / F",
+            "variant_id": 44832111329411,
+            "sku": "AK70182309BRW00F",
+            "barcode": "4580793902911",
+            "available": false,
+            "stock_quantity": null,
+            "raw_product_price": 550000,
+            "metadata_price_jpy": 5500,
+            "price_role": "embedded catalog metadata; visible page SOLD OUT, not executable offer",
+            "price_unit_basis": "product:price:amount meta 7,150/5,500 with currency JPY; analytics 7150.0/5500.0; full product 715000/550000. Do not blindly divide arbitrary data.",
+            "tax_included": null,
+            "weight": null,
+            "weight_note": "raw weight 0 unverified, not zero physical weight",
+            "compatibility": "AirPods Pro; generation unknown",
+            "materials_dimensions": "polyester100% / 7.5x7.5cm",
+            "shipping": "400JPY incl tax Japan ordinary areas; typical dispatch1-3businessdays, overseas orders and overseas shipping not accepted; no actual delivery promised",
+            "ui_note": "SOLD OUT and selected F SOLD OUT. ADD TO CART / added modal are generic template, no order occurred. 2 full product blocks identical; availability both false."
+          },
+          "observed_at": "2026-09-28T13:09:40.158136+00:00",
+          "event_time": null,
+          "seller_dedupe_key": "bape-japan-official",
+          "response_sha256": "24527d9bc2af22eac42231528871eb9624eb0ff7fd53dd4c637976edbad046f0"
+        },
+        {
+          "source_id": "G09-CN-SEARCH",
+          "url": null,
+          "access_method": "public exact style/barcode web searches",
+          "facts": "无可用大陆同规格价/成交/买方报价；条码是在提取后本轮实际检索，并非沿用此前款号检索。不能认定市场无需求。G09外国AL70-182-309粉款不是本AK70棕款。",
+          "observed_date": "2026-09-28",
+          "event_time": null,
+          "seller_dedupe_key": null
+        }
+      ],
+      "diagnosis": {
+        "id": "G09",
+        "identity": "BAPE AK70-182-309 / BROWN / F（SKU AK70182309BRW00F，条码4580793902911），聚酯纤维100%、7.5x7.5cm，适配AirPods Pro（代次未知）",
+        "source_ids": [
+          "G09-JP-DIRECT",
+          "G09-CN-SEARCH"
+        ],
+        "decision": "不采购、不列为合格候选：日本官方页SOLD OUT且不接受海外配送，大陆无同规格成交证据，仅作研究记录",
+        "reasons": [
+          "2026-09-28 BAPE日本官方页该BROWN/F变体available=false，页面与所选F均明确SOLD OUT；ADD TO CART及弹窗为通用模板，未发生订单，无可执行报价（G09-JP-DIRECT）。",
+          "页内5,500日元为嵌入式目录元数据价格（raw 550000、analytics 5500.0），非现货成交价；stock_quantity为null，raw weight 0未核实，不能当作零重量（G09-JP-DIRECT）。",
+          "日本配送通常400日元含税，部分地区例外；页面不受理海外订单或海外寄送，1—3工作日通常发出不保证旅期送达，在日本下单/收货资格及酒店接收未验证（G09-JP-DIRECT）。",
+          "本轮按款号及条码4580793902911实际检索，未取得大陆同规格价格、成交或买方报价；境外AL70-182-309粉款与本AK70棕款身份不符不得混用，亦不能据此推断无需求（G09-CN-SEARCH）。"
+        ],
+        "missing_fields": [
+          "大陆同规格近期可复核成交或有效买方报价（不要求两者同时具备）",
+          "可采购渠道、可售声明、进价及税口径；库存件数未知单列，不增加强制件数门槛",
+          "完整成本：货款、汇兑支付、日本运费、跨境分摊、适用税费、平台费、国内寄件、包装、售后准备；实重待核",
+          "AirPods Pro适配代次与大陆真实需求量"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "identity_attributes": {
+        "style": "AK70-182-309",
+        "color": "BROWN",
+        "size": "F",
+        "sku": "AK70182309BRW00F",
+        "barcode": "4580793902911",
+        "compatibility": "AirPods Pro; generation unknown",
+        "condition": "official product; no received item",
+        "accessories": null
+      },
+      "mainland_demand": {
+        "deduplicated_30d_transaction_count": null,
+        "transaction_price_range": null,
+        "independent_buyer_count": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "matched_current_ask": null,
+        "coverage": "targeted public searches only, not whole platform"
+      }
+    }
+  ],
+  "search_only_targets": [
+    {
+      "id": "G06",
+      "queries": [
+        "\"4580794395637\" 中国 得物",
+        "\"4580794395637\""
+      ],
+      "result": "本轮用上轮新条码实际检索；未取得可用大陆同规格证据；不是无销量；未重复派CC",
+      "new_diagnosis": false
+    },
+    {
+      "id": "G07",
+      "queries": [
+        "\"4580794395750\" 中国 淘宝",
+        "\"4580794395750\""
+      ],
+      "result": "本轮用上轮新条码实际检索；未取得可用大陆同规格证据；不是无销量；未重复派CC",
+      "new_diagnosis": false
+    }
+  ],
+  "finance": {
+    "credible_sale_amount": null,
+    "complete_cost": null,
+    "qualified_candidates": 0,
+    "roi_formula": "(P-K)/K",
+    "sales_margin_formula": "(P-K)/P",
+    "fifty_percent_denominator": "unconfirmed; require both only for provisional qualification",
+    "partial_japan_subtotal_b10_jpy": 5183,
+    "partial_subtotal_formula": "4400+783; ordinary one-order one-address shipping terms; excludes crossborder/taxes/sale costs",
+    "risk_reserve_separate_from_incurred_cost": true
+  },
+  "execution": {
+    "calls": 2,
+    "peak_parallel": 2,
+    "waves": 1,
+    "requested_model": "doubao-seed-evolving",
+    "requested_thinking": true,
+    "requested_effort": "high",
+    "observed_models": [
+      "doubao-seed-evolving"
+    ],
+    "raw_outcomes": [
+      "completed",
+      "completed"
+    ],
+    "runner_states": [
+      "verifying",
+      "verifying"
+    ],
+    "adoption": [
+      "accepted_with_changes",
+      "accepted_with_changes"
+    ],
+    "reviewed_record_count": 4,
+    "financial_null_count": 24,
+    "native_usage": {
+      "input_tokens": 29166,
+      "cache_read_input_tokens": 80944,
+      "output_tokens": 16868
+    },
+    "reported_thinking_tokens": 0,
+    "downstream_correction_calls": 0,
+    "new_unknown": 0,
+    "source_requests": 32,
+    "permission_denials": 0,
+    "parent_validation_failure": "Adopted books brief initially exceeded350 chars; shortened and revalidated. First adoption-review write rejected missing evidence; later valid record verified.",
+    "product_tests": "not run; research documents only"
+  },
+  "next_step": "Next authorized 2026-09-29 01:00 slot: fresh Notion/ledger first; new accessible mainland exact-spec demand/competition from accepted queue. Do not requery all four already-searched barcodes or repeat identical inputs/unknown tasks."
+}
