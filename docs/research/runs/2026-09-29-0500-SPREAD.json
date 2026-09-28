@@ -1,0 +1,621 @@
+{
+  "run_id": "SPREAD-20260929-0500",
+  "triggered_at": "2026-09-28T21:01:41.082Z",
+  "observed_local_date": "2026-09-29",
+  "scope": "Japan to mainland China; artbooks and streetwear underwear/small accessories; research only",
+  "notion_gate": "DB/project/view read; 5 pending, has_more false; no new direction",
+  "counts": {
+    "run_id": "SPREAD-20260929-0500",
+    "search_queries": 15,
+    "ordinary_get": 5,
+    "total_source_requests": 20,
+    "primary_targets": [
+      "B01",
+      "B02",
+      "B03",
+      "G10"
+    ],
+    "new_named_skus": 0,
+    "additional_identity_exclusions": [
+      "B02 1968 no-box first edition",
+      "B03 exhibition edition ISBN unknown"
+    ],
+    "conservative_identity_count": 6,
+    "queries_by_target": {
+      "B01": 4,
+      "B02": 4,
+      "B03": 3,
+      "G10": 4
+    },
+    "smallgoods_no_increment": true,
+    "smallgoods_dispatch": 0,
+    "note": "G10 current news unchanged; no new market facts and no CC replay. Two independent book packages total3targets same wave, all under artbooks lane; no second smallgoods package fabricated."
+  },
+  "queries": {
+    "queries1": [
+      {
+        "q": "\"9784867910108\" 中国 价格"
+      },
+      {
+        "q": "\"9784908439100\" 宇野 亚喜良"
+      },
+      {
+        "q": "\"9784309923093\" 中国 空山基"
+      },
+      {
+        "q": "\"HYSTERIC\" \"Sanrio\" 袜子 中国"
+      }
+    ],
+    "queries2": [
+      {
+        "q": "横尾忠则 遗作集 复刻",
+        "domains": [
+          "kongfz.com",
+          "jd.com",
+          "dangdang.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "宇野亚喜良 恋 迷宫 豆本",
+        "domains": [
+          "kongfz.com",
+          "jd.com",
+          "dangdang.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "空山基 GYNOIDS SUBLIME",
+        "domains": [
+          "kongfz.com",
+          "jd.com",
+          "dangdang.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "HYSTERIC GLAMOUR 三丽鸥 草莓 袜子",
+        "domains": [
+          "goofish.com",
+          "xiaohongshu.com",
+          "taobao.com",
+          "jd.com"
+        ]
+      }
+    ],
+    "queries3": [
+      {
+        "q": "\"横尾忠则\" \"遗作集\""
+      },
+      {
+        "q": "\"宇野亚喜良\" \"恋之迷宫\""
+      },
+      {
+        "q": "\"空山基\" \"SUBLIME\" 画集 价格"
+      },
+      {
+        "q": "\"HYSTERIC GLAMOUR\" \"MY STRAWBERRY\" ソックス"
+      }
+    ],
+    "queries4": [
+      {
+        "q": "\"MY STRAWBERRY\" \"ソックス\" -site:hystericglamour.jp"
+      },
+      {
+        "q": "\"横尾忠則遺作集\" 复刻 2024"
+      },
+      {
+        "q": "\"恋の迷宮\" 宇野 价格"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "B01",
+      "identity": "横尾忠則《遺作集》2024复刻版，目标ISBN9784867910108/YB131；签名状态、印次与品相分开",
+      "sources": [
+        {
+          "source_id": "B01-CN",
+          "url": null,
+          "method": "4_public_search_queries",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "按ISBN+中国价、中文书名+复刻/限定大陆域名、精确中文书名、日文书名+复刻2024分别查；未得大陆同款可用报价/成交。返回JD作者总页与孔网其他作品，不能用作者系列评论/销量代替目标书；台湾moom/sungood排除大陆退出。",
+          "seller_key": null,
+          "price_type": "search_without_usable_exact_mainland_evidence",
+          "amount_jpy": null,
+          "stock": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B01-ROMDO",
+          "url": "https://romdo.base.shop/items/128638126",
+          "method": "search_cache_then_403",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "缓存约1周：卖家称2024初版第1刷、软封A4/132页，4700JPY，运费500JPY，残り1点；店评品相4/5，封皮轻磨痕、内文无污。未见ISBN/签名字段；不能完全匹配签名状态或断定无签名。当前21:05:19UTC GET403，价格、税态、可买库存/运费未重新核实；5200JPY只能当该缓存二手条件小计，非当前报价或全成本。",
+          "seller_key": "romdo.base.shop",
+          "price_type": "cached_used_ask",
+          "amount_jpy": 4700,
+          "tax_included": null,
+          "japan_shipping_jpy": 500,
+          "cache_age_reported": "about 1 week",
+          "condition": "seller 4/5; slight cover rubbing",
+          "signature": null,
+          "stock": "cached seller claims 1 remaining; current unknown",
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B01-OFFICIAL-PRIOR",
+          "url": "https://www.tadanoriyokoo.jp/product/1969",
+          "method": "prior_verified_source_not_refetched",
+          "observed_at": null,
+          "transaction_event_time": null,
+          "facts": "9/27原记录2024复刻、YB131、5500JPY含税，503g/A4/132页，可选择签名有/无但未选定最终签名价/库存；本轮搜索再次返回相同内容，不算新库存。不能用日本二手4700与新品5500作跨平台转售利润。",
+          "seller_key": "tadanoriyokoo.jp",
+          "price_type": "prior_new_ask",
+          "amount_jpy": 5500,
+          "tax_included": true,
+          "japan_shipping_jpy": null,
+          "evidence_as_of": "2026-09-27",
+          "signature": "signed/unsigned selectable; option not selected",
+          "stock": null,
+          "mainland_credible_sale_amount": null,
+          "referenced_at": "2026-09-29T05:03:00+08:00"
+        }
+      ],
+      "new_facts": "新二手来源缓存含印次/品相/运费及当前403；大陆缺证据。"
+    },
+    {
+      "id": "B02",
+      "identity": "宇野亞喜良《恋の迷宮》2018复刻盒装豆本，ISBN9784908439100；排除1968初版",
+      "sources": [
+        {
+          "source_id": "B02-CN",
+          "url": null,
+          "method": "4_public_search_queries",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "ISBN+中文作者、中文作者+书名豆本/限定大陆域名、中文恋之迷宫、日文恋の迷宮+价格；未取可用大陆同版价格/需求。日本书店与韩国YES24不是大陆买方证据。",
+          "seller_key": null,
+          "price_type": "search_without_usable_exact_mainland_evidence",
+          "amount_jpy": null,
+          "stock": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B02-BOOKOFF",
+          "url": "https://shopping.bookoff.co.jp/new/0019086641",
+          "method": "search_cache_then_connection_closed",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "约5个月缓存：新品1980JPY、在庫なし、JAN9784908439100、2018/06/06、箱付；通用满1800免运与1—5日发货不能覆盖该缺货状态。当前21:04:49UTC普通GET连接关闭；未反复重试，不标当前缺货。",
+          "seller_key": "shopping.bookoff.co.jp",
+          "price_type": "cached_new_ask_unavailable",
+          "amount_jpy": 1980,
+          "tax_included": null,
+          "japan_shipping_jpy": null,
+          "cache_age_reported": "about 5 months",
+          "isbn": "9784908439100",
+          "edition": "2018 boxed reprint",
+          "stock": "cached out of stock; current unknown",
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B02-KOSHO-EXCLUSION",
+          "url": "https://www.kosho.or.jp/search/%E5%AE%87%E9%87%8E%E4%BA%9C%E5%96%9C%E8%89%AF%20%E8%91%97",
+          "method": "search_cache_identity_exclusion",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "约4日搜索缓存：萩書房Ⅱ卖家8000JPY《恋の迷宮 Mini book》，山梨シルクセンター出版部、昭43=1968、31页11×8cm、初版函欠、封套背面磨损。它不是2018/888books/32页盒装ISBN9784908439100；只作误配排除，不研究该旧版采购、无成交事件。",
+          "seller_key": "kosho.or.jp::萩書房Ⅱ",
+          "price_type": "cached_used_ask_identity_exclusion",
+          "amount_jpy": 8000,
+          "tax_included": null,
+          "japan_shipping_jpy": null,
+          "cache_age_reported": "about 4 days",
+          "edition": "1968 first edition; 31 pages; no box",
+          "stock": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B02-PUBLISHER-METADATA",
+          "url": "https://www.hanmoto.com/bd/isbn/9784908439100",
+          "method": "publisher_supplied_bibliography_search_cache",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "约3个月缓存，书目2018/06/06、888books、ISBN9784908439100、105×80mm/32页/盒装，1980JPY含税；属于原书目定价与版本字段，不是当前库存。9/27已有该复刻版基础字段，不把今日搜索当新出版或新成交。",
+          "seller_key": null,
+          "price_type": "publisher_bibliographic_list_price",
+          "amount_jpy": 1980,
+          "tax_included": true,
+          "japan_shipping_jpy": null,
+          "cache_age_reported": "about 3 months",
+          "isbn": "9784908439100",
+          "stock": null,
+          "mainland_credible_sale_amount": null
+        }
+      ],
+      "new_facts": "新书店缺货历史与连接失败；1968无盒初版8000JPY的误配反例。"
+    },
+    {
+      "id": "B03",
+      "identity": "空山基 SORAYAMA THE GYNOIDS SUBLIME；普通流通版目标ISBN9784309923093，另有展览限定版不能自动并为同SKU",
+      "sources": [
+        {
+          "source_id": "B03-CN",
+          "url": null,
+          "method": "3_public_search_queries",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "ISBN+中国空山基、空山基GYNOIDS SUBLIME限定大陆平台、空山基SUBLIME画集价格；未取大陆同规格可用报价/近期成交，台湾飞比只是聚合线索不能作大陆退出。",
+          "seller_key": null,
+          "price_type": "search_without_usable_exact_mainland_evidence",
+          "amount_jpy": null,
+          "stock": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B03-TOWER",
+          "url": "https://tower.jp/item/7969211",
+          "method": "ordinary_https_get_200",
+          "observed_at": "2026-09-28T21:04:49.951482+00:00",
+          "transaction_event_time": null,
+          "facts": "当前5500JPY税込，ISBN/SKU9784309923093，発売2026/06/19，河出書房新社，130页、365×258×12mm、930g。販売中/在庫あり、発送目安当日—翌日；预付付款确认后发出。明确店舗受け取りサービス対象外，不能规划到该网站任意实体店自提。页面还有旧6月14/16日预售提醒，不用作9月旅期承诺。当前50积分/想要6人，搜索约2个月缓存750积分/想要3人；积分不是现金折价，想要不是成交。日本运费和酒店/境外买家条件未取得。",
+          "seller_key": "tower.jp",
+          "price_type": "current_new_ask_seller_stock_claim",
+          "amount_jpy": 5500,
+          "tax_included": true,
+          "japan_shipping_jpy": null,
+          "isbn": "9784309923093",
+          "stock": "seller claims in stock; no quantity/order verified",
+          "pickup": false,
+          "dispatch": "estimated same to next day; prepaid after payment confirmation",
+          "delivery_arrival": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B03-EROSTIKA",
+          "url": "https://erostika.jp/en/products/sorayama-the-gynoids-sublime-art-book",
+          "method": "ordinary_https_get_200",
+          "observed_at": "2026-09-28T21:04:49.950499+00:00",
+          "transaction_event_time": null,
+          "facts": "当前4600JPY Tax included，Default Title明确Sold out、限每客1件（不是库存件数）。描述写软封365×260mm/130页/metallic chrome finishing/展覧会限定版、发行Ediciones Treville；页面未取得ISBN。描述4182JPY+税与结算显示4600并存，成本不另加税。展览版声明和未见ISBN使其不能直接与Tower普通版精确匹配；内容是否相同未知。售罄价不是可执行低价；页面未成功加载pickup信息，不代表支持到店取货。",
+          "seller_key": "erostika.jp",
+          "price_type": "current_unavailable_catalog_price",
+          "amount_jpy": 4600,
+          "tax_included": true,
+          "japan_shipping_jpy": null,
+          "isbn": null,
+          "variant_id": "45995627610346",
+          "edition": "exhibition edition; exact identity relation unknown",
+          "stock": "OutOfStock visible and JSON-LD Offer",
+          "per_customer_limit": 1,
+          "pickup": null,
+          "mainland_credible_sale_amount": null
+        },
+        {
+          "source_id": "B03-YAHOO-CACHE",
+          "url": "https://store.shopping.yahoo.co.jp/kuunerudou/9784309923093.html",
+          "method": "search_cache_not_current_get",
+          "observed_at": "2026-09-29 北京时间05:03—05:05；搜索缓存年龄另列",
+          "transaction_event_time": null,
+          "facts": "约1个月缓存：5500JPY、东京运费510、ISBN9784309923093、全新未开封，写150页；页面8/28—8/31发货窗口已过。与Tower/出版者书目130页冲突，不能靠选择高价或更多商家裁决页数，未知原因保留。不把缓存发货期当今日。",
+          "seller_key": "store.shopping.yahoo.co.jp/kuunerudou",
+          "price_type": "cached_new_ask",
+          "amount_jpy": 5500,
+          "tax_included": null,
+          "japan_shipping_jpy": 510,
+          "cache_age_reported": "about 1 month",
+          "isbn": "9784309923093",
+          "stock": null,
+          "dispatch": "August 28–31 cached window expired",
+          "page_count": 150,
+          "page_conflict": "Tower/publisher 130; reason unknown",
+          "mainland_credible_sale_amount": null
+        }
+      ],
+      "new_facts": "两个新当前日本来源揭示可售声明/不可门店自提、展览版售罄和身份不可直接配对；有旧缓存页数冲突。"
+    }
+  ],
+  "adopted_diagnoses": [
+    {
+      "id": "B01",
+      "identity": "横尾忠則《遺作集》2024复刻版，目标ISBN9784867910108/YB131；签名状态、印次与品相分开认定",
+      "source_ids": [
+        "B01-CN",
+        "B01-ROMDO",
+        "B01-OFFICIAL-PRIOR"
+      ],
+      "decision": "尚未验证合格，留研究区：仅有二手缓存新线索，缺大陆可信销售依据与完整成本，当前货源未确认。",
+      "reasons": [
+        "4组定向检索（包括日本版本消歧）（ISBN+中国价、中文书名+复刻/限定、精确书名、日文书名+2024）未得同款可用报价或成交；JD作者总页与孔网其他作品不能代替目标书需求，台湾页面排除大陆口径[B01-CN]",
+        "ROMDO仅约1周搜索缓存：卖家称2024初版第1刷、4700JPY+运费500JPY、残り1点、品相4/5；当前GET403，价格、税态、库存、运费均未实时复核，5200JPY只能作该缓存二手条件小计[B01-ROMDO]",
+        "缓存未见ISBN与签名字段，不能完全匹配签名状态，也不能断定无签名；印次与品相为卖家单方描述[B01-ROMDO]",
+        "官方9/27记录为5500JPY含税、签名有/无可选但未选定最终签名价与库存；日本二手4700与新品5500不得当作跨平台转售价差[B01-OFFICIAL-PRIOR]"
+      ],
+      "missing_fields": [
+        "大陆同规格有效买方报价或近期可复核成交；挂牌另作竞争参考",
+        "当前实时报价、税态、可买库存与运费（ROMDO当前403）",
+        "所选签名/非签名状态与该规格的价格及库存；不强制签名采购",
+        "可信销售依据与完整成本：含运输分摊、适用税费、支付汇兑、平台费、国内寄件、包装和单列售后准备"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "B02",
+      "identity": "宇野亞喜良《恋の迷宮》2018复刻盒装豆本，ISBN9784908439100；1968初版排除、不混配",
+      "source_ids": [
+        "B02-CN",
+        "B02-BOOKOFF",
+        "B02-KOSHO-EXCLUSION",
+        "B02-PUBLISHER-METADATA"
+      ],
+      "decision": "尚未验证合格，留研究区：2018复刻版当前供应与大陆需求均缺，1968无盒初版不混配。",
+      "reasons": [
+        "4组定向检索（包括日文书名消歧）未取得同版价格或需求证据；日本书店页面与韩国YES24不属于大陆买方证据，大陆与其他市场分开[B02-CN]",
+        "BOOKOFF约5个月缓存：新品1980JPY、在庫なし、JAN9784908439100、箱付；通用满1800免运与1—5日发货不能覆盖该缺货状态；当前普通GET连接被关闭，不重试、也不标为当前缺货[B02-BOOKOFF]",
+        "古书网约4日搜索缓存中的8000JPY挂牌为1968年山梨シルクセンター出版部31页初版、函欠且封套磨损，非2018/888books/32页盒装目标ISBN，只作误配排除，无成交事件[B02-KOSHO-EXCLUSION]",
+        "版元书目约3个月缓存：1980JPY含税、2018/06/06、105×80mm/32页盒装，属原书目定价与版本字段，不是当前库存；9/27已有复刻基础字段，今日搜索不构成新出版或新成交[B02-PUBLISHER-METADATA]"
+      ],
+      "missing_fields": [
+        "大陆同规格有效买方报价或近期可复核成交；单一样本保留局限",
+        "当前可买库存与实时含税报价（BOOKOFF连接关闭、缓存为在庫なし）",
+        "可信销售依据与完整成本：含运输分摊、适用税费、支付汇兑、平台费、国内寄件、包装和单列售后准备",
+        "目标2018复刻版（非1968初版）的可履约货源"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "B03",
+      "identity": "空山基 SORAYAMA THE GYNOIDS SUBLIME；普通流通版目标ISBN9784309923093，展览限定版不能自动并为同SKU",
+      "source_ids": [
+        "B03-CN",
+        "B03-TOWER",
+        "B03-EROSTIKA",
+        "B03-YAHOO-CACHE"
+      ],
+      "decision": "尚未验证合格，留研究区：大陆同规格可信P及完整K缺失，普通版与展览版不自动配对。",
+      "reasons": [
+        "大陆3组公开检索未取得同ISBN普通版的可用报价或近期成交，台湾飞比仅为聚合线索不能作大陆退出，真实需求与退出价未知（B03-CN）",
+        "Tower当前页面5500日元税込、ISBN9784309923093、网页声明在库，网页预计当日—翌日发出，预付方式待付款确认，但明确不支持门店自提；积分/想要不是成交，日本运费及境外买家、酒店收货条件未取得（B03-TOWER）",
+        "Erostika当前4600日元税込但为展览限定版、Sold out、限每客1件且页面未取得ISBN，不能与Tower普通版精确配为同SKU，售罄价不是可执行低价，pickup信息未加载不等于可自提（B03-EROSTIKA）",
+        "Yahoo约1个月搜索缓存标价5500日元、东京运费510日元，8/28—8/31发货窗口已过，且其150页与Tower/出版者书目130页冲突，原因未知保留，缓存不升级为当前报价或成交（B03-YAHOO-CACHE）"
+      ],
+      "missing_fields": [
+        "大陆同规格有效买方报价或近期可复核成交；在售挂牌仅作竞争",
+        "完整成本：日本运费、跨境运输分摊、适用税费、汇兑支付、平台费、国内寄件、包装及单列售后准备",
+        "境外买家付款方式与酒店/转运收货规则",
+        "展览限定版与普通版的ISBN及内容是否相同的对应关系",
+        "缓存150页与书目130页冲突的原因"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    }
+  ],
+  "unchanged_source": {
+    "id": "G10",
+    "identity": "HYSTERIC GLAMOUR × Sanrio MY STRAWBERRY sports socks, FREE; formal style/color unknown",
+    "url": "https://www.hystericglamour.jp/news/release/23030/",
+    "access_method": "ordinary_https_get_200",
+    "checked_at": "2026-09-28T21:04:49.952125+00:00",
+    "news_published": "2026-04-24",
+    "historical_release": "2026-04-29 11:00 Japan",
+    "price_type": "historical_release_catalog_price",
+    "amount_jpy": 4730,
+    "tax_included": true,
+    "current_price": null,
+    "current_stock": null,
+    "mainland_credible_sale_amount": null,
+    "transaction_event_time": null,
+    "new_market_evidence": false,
+    "cc_dispatched": false,
+    "reason": "4 searches obtained no usable exact mainland evidence or new product source; current news unchanged, not a new release/price/transaction. Generic store links not exact SKU links."
+  },
+  "http_access": [
+    {
+      "source_id": "b01-romdo",
+      "url": "https://romdo.base.shop/items/128638126",
+      "observed_at": "2026-09-28T21:05:19.407999+00:00",
+      "access_method": "ordinary_https_get",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "source_id": "b02-bookoff",
+      "url": "https://shopping.bookoff.co.jp/new/0019086641",
+      "observed_at": "2026-09-28T21:04:49.951945+00:00",
+      "access_method": "ordinary_https_get",
+      "error": "Remote end closed connection without response"
+    },
+    {
+      "source_id": "b03-erostika",
+      "url": "https://erostika.jp/en/products/sorayama-the-gynoids-sublime-art-book",
+      "observed_at": "2026-09-28T21:04:49.950499+00:00",
+      "access_method": "ordinary_https_get",
+      "status": 200,
+      "sha256": "df2c98eec6a9c100be12f4a46ec61bfeb8ac757a9e0ad91520360c2b6ab9775d"
+    },
+    {
+      "source_id": "b03-tower",
+      "url": "https://tower.jp/item/7969211",
+      "observed_at": "2026-09-28T21:04:49.951482+00:00",
+      "access_method": "ordinary_https_get",
+      "status": 200,
+      "sha256": "fe001cd20282bf34b64dd6d4af8d02a8e76ce713b75e1fee9435b1b43250bf2a"
+    },
+    {
+      "source_id": "g10-news",
+      "url": "https://www.hystericglamour.jp/news/release/23030/",
+      "observed_at": "2026-09-28T21:04:49.952125+00:00",
+      "access_method": "ordinary_https_get",
+      "status": 200,
+      "sha256": "e136601bad59771234f5d477f5bd8f3ab7905d9a34a1c4a2738843c19ed2674b"
+    }
+  ],
+  "financial_policy": {
+    "credible_sale_amount": null,
+    "complete_cost": null,
+    "net_profit": "P - K",
+    "full_cost_roi": "(P - K) / K",
+    "sales_margin": "(P - K) / P",
+    "maximum_buy_price": null,
+    "threshold": "Both >=50% plus demand and delivery evidence while denominator undecided",
+    "cost_components": [
+      "goods",
+      "FX and payment",
+      "Japan domestic shipping",
+      "cross-border transport allocation",
+      "applicable taxes",
+      "platform fees",
+      "mainland postage",
+      "packing",
+      "separately disclosed after-sale risk reserve"
+    ],
+    "conditional_subtotal": {
+      "amount_jpy": 5200,
+      "formula": "4700 + 500",
+      "source_id": "B01-ROMDO",
+      "status": "cached used domestic subtotal only; not current quote or full cost"
+    }
+  },
+  "review": {
+    "run_id": "SPREAD-20260929-0500",
+    "reviewed_at": "2026-09-28T21:16:01.446596+00:00",
+    "packages": [
+      {
+        "task_id": "jp-spread-20260929-0500-books-supply-a1",
+        "status": "verifying",
+        "started_at": "2026-09-28T21:08:06.624903+00:00",
+        "finished_at": "2026-09-28T21:10:46.180843+00:00",
+        "elapsed_seconds": 159.552,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "disallowed_changes": [],
+        "permission_denial_count": 1,
+        "permission_denial_note": "Bash heredoc file-write attempt was blocked; final outputs used allowed Write and passed validation.",
+        "lane": "artbooks",
+        "package": "books-supply",
+        "outcome": "completed",
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 48976,
+          "inference_geo": "",
+          "input_tokens": 14660,
+          "iterations": [],
+          "output_tokens": 8268,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "requested_profile": {
+          "model": "doubao-seed-evolving",
+          "thinking_enabled": true,
+          "reasoning_effort": "high"
+        },
+        "adoption": "accepted_with_changes",
+        "reviewed_records": 2
+      },
+      {
+        "task_id": "jp-spread-20260929-0500-books-edition-a1",
+        "status": "verifying",
+        "started_at": "2026-09-28T21:08:06.624880+00:00",
+        "finished_at": "2026-09-28T21:10:15.444517+00:00",
+        "elapsed_seconds": 128.816,
+        "observed_models": [
+          "doubao-seed-evolving"
+        ],
+        "disallowed_changes": [],
+        "permission_denial_count": 0,
+        "permission_denial_note": null,
+        "lane": "artbooks",
+        "package": "books-edition",
+        "outcome": "completed",
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 42320,
+          "inference_geo": "",
+          "input_tokens": 12382,
+          "iterations": [],
+          "output_tokens": 6302,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "requested_profile": {
+          "model": "doubao-seed-evolving",
+          "thinking_enabled": true,
+          "reasoning_effort": "high"
+        },
+        "adoption": "accepted_with_changes",
+        "reviewed_records": 1
+      }
+    ],
+    "peak_parallel": 2,
+    "actual_calls": 2,
+    "downstream_correction_calls": 0,
+    "reviewed_records": 3,
+    "financial_null_count": 18,
+    "new_unknown": 0,
+    "native_usage": {
+      "input_tokens": 27042,
+      "cache_read_input_tokens": 91296,
+      "output_tokens": 14570
+    },
+    "qualified_candidates": 0,
+    "smallgoods_dispatched": false,
+    "parent_validation_correction": "Initial parent check incorrectly required zero permission denials instead of verifying final permitted outputs; assertion fixed. Two premature observability review calls returned evidence_unreadable and recorded no acceptance. No downstream retry."
+  },
+  "next_slot": {
+    "local": "2026-09-29 09:00 Asia/Shanghai",
+    "mode": "incremental review only; no new CC research"
+  },
+  "research_after_review": "2026-09-29 13:00; first recheck direction, ledger, source health; prioritize unprocessed mainland exact-spec buyer offers/recent transactions and competitive asks",
+  "lane_increment": {
+    "artbooks": {
+      "new_supply_or_identity_facts": true,
+      "no_increment_runs": 0
+    },
+    "smallgoods": {
+      "new_market_facts": false,
+      "no_increment_runs_before": 0,
+      "no_increment_runs_after": 1
+    }
+  },
+  "qualified_candidates": 0
+}
