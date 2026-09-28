@@ -1,5 +1,7 @@
 # 东京买手主线
 
+> 2026-09-28 09:00晨审/周审 **REVIEW-20260928-0900**：复核01点核查与CC-CONTINUE，4条诊断/15条队列，合格采购仍0；修正WACKO身份门槛、UNDERCOVER近似款表述与丸尾国内需求优先级。原始记录保留，后续执行以[晨审覆盖条款](../../docs/research/reviews/2026-09-28.md)为准。四个unknown不重发，两路无增量计数不因晨审改变；下一研究slot13:00。
+
 > 2026-09-28 用户要求CC持续找：**SPREAD-20260928-CC-CONTINUE-1** 已派两路独立CC证据诊断/检索队列，300秒/8轮、Seed Evolving thinking enabled/effort high；原unknown不重发。按[当前持续协议](../../docs/research/continuous-plan-loop.md)扩为每天01/05/13/17/21点研究、09点评审，每轮边界保留；旧候选卡不变、只研究。两包原始回执未通过、主审部分采用4目标/15条检索，无新unknown；可采购0。见[本轮结果](../../docs/research/runs/2026-09-28-CC-CONTINUE.md)。
 
 > 2026-09-27 单次扩量 **SPREAD-20260927-SCALE-1** 部分交付：20目标来源记录、15个套餐诊断返回、Stüssy5件诊断180秒超时unknown；六次真实调用、峰值2、已知32,293 tokens（另一次未知），新请求停止、未知不重发。可采购0；导购低价仅线索，新增缺货/签名截止/国外旧成交反例。见[扩量报告](../../docs/research/runs/2026-09-27-SPREAD-SCALE.md)。日常调度不扩容，下一轮优先国内同版退出与竞争证据。
