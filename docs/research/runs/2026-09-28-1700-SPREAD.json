@@ -1,0 +1,727 @@
+{
+  "run_id": "SPREAD-20260928-1700",
+  "triggered_at_utc": "2026-09-28T09:00:08.562Z",
+  "observation_date": "2026-09-28",
+  "local_slot": "17:00 Asia/Shanghai",
+  "scope": "Japan procurement to mainland China resale; artbooks and streetwear underwear/small accessories only",
+  "qualified_candidates": 0,
+  "research_leads": [
+    "B01",
+    "G06",
+    "G07"
+  ],
+  "source_hold_ids": [
+    "B02",
+    "B03"
+  ],
+  "searched_targets": 6,
+  "diagnosed_records": 5,
+  "new_named_sku_count": 0,
+  "new_exact_variant_identity_count": 5,
+  "source_request_counts": {
+    "search_queries": 20,
+    "domestic_focused_queries": 18,
+    "web_open": 6,
+    "web_find": 2,
+    "ordinary_http_get": 5,
+    "conservative_total": 33
+  },
+  "query_coverage": {
+    "mainland_focused_queries": 18,
+    "across_targets": 6,
+    "query_types_per_target": 3,
+    "queries": [
+      "\"9784309923093\" 中国 价格",
+      "\"9784867910108\" 横尾 购买",
+      "\"9784908439100\" 宇野 价格",
+      "\"1M20-182-005\" 得物",
+      "\"1M20-182-004\" 中国",
+      "\"HYSTERIC\" \"MY STRAWBERRY\" 袜子",
+      {
+        "q": "\"空山基\" \"GYNOIDS SUBLIME\" 价格",
+        "domains": [
+          "dangdang.com",
+          "kongfz.com",
+          "taobao.com",
+          "jd.com"
+        ]
+      },
+      {
+        "q": "\"横尾忠则\" \"遗作集\" 复刻",
+        "domains": [
+          "kongfz.com",
+          "dangdang.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "\"宇野亚喜良\" \"恋\" 迷宫",
+        "domains": [
+          "kongfz.com",
+          "dangdang.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "\"BAPE\" \"1M20\" \"182\" \"005\"",
+        "domains": [
+          "dewu.com",
+          "bape.com.cn",
+          "jd.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "\"BAPE\" \"1M20\" \"182\" \"004\"",
+        "domains": [
+          "dewu.com",
+          "bape.com.cn",
+          "jd.com",
+          "taobao.com"
+        ]
+      },
+      {
+        "q": "\"HYSTERIC\" \"草莓\" \"袜\"",
+        "domains": [
+          "dewu.com",
+          "xiaohongshu.com",
+          "taobao.com"
+        ]
+      },
+      "空山基 GYNOIDS SUBLIME 闲鱼 得物 淘宝",
+      "横尾忠则 遗作集 2024 书店 中国",
+      "宇野亚喜良 恋之迷宫 复刻 价格",
+      "BAPE 猿人 迷彩 手机肩带 绿色 得物",
+      "BAPE 1ST CAMO AirPods Pro2 耳机壳 黄色 得物",
+      "Hysteric Glamour 三丽鸥 草莓 袜子 得物 价格"
+    ],
+    "other_identity_queries": 2,
+    "new_bape_barcodes_searched_separately": false,
+    "limitation": "Bounded public search, not a platform-wide sales sample; no results are not no demand."
+  },
+  "records": [
+    {
+      "id": "B01",
+      "identity": "横尾忠則 遺作集 2024复刻 ISBN9784867910108；日文；A4/132页；签名未知",
+      "sources": [
+        {
+          "source_id": "B01-TSITE",
+          "url": "https://store.tsite.jp/item-detail/art/43886.html",
+          "observed_at_utc": "2026-09-28T09:03:58.012770+00:00",
+          "method": "ordinary public HTTP GET, selected saved HTML verified locally",
+          "cache_age": "direct response; not an order or reservation",
+          "source_sha256": "83af2dc5c7d49e68d0e13afa27193444cb8c47102a676ea0498aec9fe69f70d8",
+          "facts": [
+            "银座蔦屋书店主站，品番GART13321J-9784867910108；含税5500JPY；正文送料送料無料。",
+            "ADD TO CART仅入口，库存数量未知。通用条件：有库存通常1–3天发货，缺货则下单后邮件告知；旅期送达/自提未确认。",
+            "2024-11-26発売；新版复刻不是1968原版。返品交换原则不受理，缺陷例外。"
+          ],
+          "seller_dedup_key": "ginza-tsutaya-books",
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "japan_supply"
+        },
+        {
+          "source_id": "B01-YAHOO-CACHED",
+          "url": "https://store.shopping.yahoo.co.jp/g-tsutayabooks/gart13321j-9784867910108.html",
+          "method": "web.open cached page",
+          "cache_age": "open says crawled3weeks ago; search says4months; not fresh HTTP",
+          "facts": [
+            "同一银座蔦屋卖家、同商品编码，挂牌5500JPY，运费500JPY/满10000免运；该片段税是否包含未明。",
+            "9/2–3配送日期和9/1比价表已过期，不能旅期承诺；同卖家两个渠道不算独立供货商，不可推算两份库存。",
+            "主站与该缓存仅显示渠道运费口径差，不能认定当前跨境差价。"
+          ],
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00 research; precise per-request clock not recorded",
+          "seller_dedup_key": "ginza-tsutaya-books",
+          "transaction_event_at": null,
+          "source_role": "japan_supply"
+        }
+      ],
+      "mainland_exit": null,
+      "cost_known_parts": "TSITE含税商品5500JPY+页面日本免运；完整K未知",
+      "diagnosis": {
+        "id": "B01",
+        "identity": "横尾忠則 遺作集 2024复刻 ISBN9784867910108；日文；A4/132页；签名未知",
+        "source_ids": [
+          "B01-TSITE",
+          "B01-YAHOO-CACHED"
+        ],
+        "decision": "暂不买入：仅日本一侧挂牌，本轮未取得大陆需求与可信成交，库存数量与履约未解。",
+        "reasons": [
+          "B01-TSITE为直连响应（非下单/预约）：含税挂牌5500JPY、日本国内送料無料，仅有ADD TO CART入口，库存数量未知；通用“有库存1–3天发货”不等于现货或旅期送达承诺。",
+          "B01-YAHOO-CACHED系同一银座蔦屋卖家、同商品编码的缓存页（挂牌5500JPY、运费口径500JPY），非独立供货商，不能推算两份库存或当前跨境差价；9月配送模板已过期。",
+          "该书为2024-11-26发售的复刻版而非1968原版，签名未知；mainland_exit为null，无大陆同款报价、近期成交或买家证据。",
+          "18次国内定向查询覆盖六个目标（非每SKU18次），无结果只能记为待核，不能外推为无销量或淘汰品类。"
+        ],
+        "missing_fields": [
+          "大陆同款挂牌价/近期可信成交价与有效买方",
+          "大陆需求量/销量证据",
+          "实际可购库存数量与旅期或跨境运费、时效",
+          "签名/印次状态",
+          "完整成本（国际运费、关税、平台等费用）"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "quote": {
+        "currency": "JPY",
+        "amount": 5500,
+        "tax_included": true,
+        "price_role": "seller_asking_price",
+        "japan_shipping_single_item": 0,
+        "shipping_scope": "observed channel/default Japan fee only; region/payment/receipt eligibility not fully verified",
+        "complete_cost": null
+      },
+      "domestic_demand": {
+        "market": "mainland China",
+        "research_window_days": 30,
+        "matched_current_ask": null,
+        "deduplicated_trade_count": null,
+        "independent_buyer_count": null,
+        "recent_transaction_price_range": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "meaning": "No usable evidence obtained in bounded search; not zero sales."
+      },
+      "physical_condition": null,
+      "edition_print_run": null,
+      "signature": null,
+      "attachments_verified": null
+    },
+    {
+      "id": "B02",
+      "identity": "宇野亞喜良 恋の迷宮 2018复刻 ISBN9784908439100；签名未知",
+      "sources": [
+        {
+          "source_id": "B02-HONYA",
+          "url": "https://store.shopping.yahoo.co.jp/honyaclubbook/9784908439100.html",
+          "observed_at_utc": "2026-09-28T09:03:58.013717+00:00",
+          "method": "ordinary public HTTP GET, selected saved HTML verified locally",
+          "cache_age": "direct response; not an order or reservation",
+          "source_sha256": "7745adde705471173f8e88df91b7b1a452363f591f413fc522186b2aa9426d08",
+          "facts": [
+            "Honya Club Yahoo挂牌1980JPY+送料370JPY；抽取未明确税口径，不能擅填含税。",
+            "当前页面明确在庫なし和在庫がありません；标题翌日発送和通用次日发货话术不能覆盖缺货；仅该卖家状态。",
+            "ISBN与2018年06月、888books匹配；JSON-LD NewCondition，未带availability。",
+            "0条评价不能替代销量0；模板预测送达日不等于有货承诺。"
+          ],
+          "seller_dedup_key": "honya-club-yahoo",
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "japan_supply"
+        }
+      ],
+      "mainland_exit": null,
+      "cost_known_parts": "1980JPY挂牌+370JPY单本送料，但该店缺货；完整K未知",
+      "diagnosis": {
+        "id": "B02",
+        "identity": "宇野亞喜良 恋の迷宮 2018复刻 ISBN9784908439100；签名未知",
+        "source_ids": [
+          "B02-HONYA"
+        ],
+        "decision": "本轮暂不买入：新核Honya店明确缺货，本轮未取得大陆同规格需求与成交证据；其他旧渠道没有在此重新验证。",
+        "reasons": [
+          "B02-HONYA为直连响应，当前页面明确显示“在庫なし/在庫がありません”；标题“翌日発送”与通用次日发货话术不能覆盖缺货状态，且仅代表该单一卖家，不推断全平台无货。",
+          "挂牌1980JPY+送料370JPY，抽取内容未明确税口径，不能擅填含税，亦不能作为大陆可信销售金额P。",
+          "0条评价不能替代销量0；JSON-LD为NewCondition且无availability，模板预测送达日不构成有货承诺。",
+          "mainland_exit为null：无大陆同款报价、近期成交、买家或需求证据；签名未知。"
+        ],
+        "missing_fields": [
+          "Honya以外独立供货商的可售状态与库存数量",
+          "挂牌价税口径",
+          "大陆同款挂牌/近期成交价与可信买方",
+          "大陆需求量/销量证据",
+          "签名/印次状态",
+          "完整成本（本店日本送料370JPY已知，但缺货；其他路径运费另核，跨境/税费/平台/国内寄件/包装/售后等仍缺）"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "quote": {
+        "currency": "JPY",
+        "amount": 1980,
+        "tax_included": null,
+        "price_role": "seller_asking_price",
+        "japan_shipping_single_item": 370,
+        "shipping_scope": "observed channel/default Japan fee only; region/payment/receipt eligibility not fully verified",
+        "complete_cost": null
+      },
+      "domestic_demand": {
+        "market": "mainland China",
+        "research_window_days": 30,
+        "matched_current_ask": null,
+        "deduplicated_trade_count": null,
+        "independent_buyer_count": null,
+        "recent_transaction_price_range": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "meaning": "No usable evidence obtained in bounded search; not zero sales."
+      },
+      "physical_condition": "seller JSON-LD NewCondition",
+      "edition_print_run": null,
+      "signature": null,
+      "attachments_verified": null
+    },
+    {
+      "id": "B03",
+      "identity": "空山基 SORAYAMA THE GYNOIDS SUBLIME ISBN9784309923093；河出书房新社；2026-06-19",
+      "sources": [
+        {
+          "source_id": "B03-MARUZEN",
+          "url": "https://www.maruzenjunkudo.co.jp/products/9784309923093",
+          "observed_at_utc": "2026-09-28T09:03:58.013865+00:00",
+          "method": "ordinary public HTTP GET, selected saved HTML verified locally",
+          "cache_age": "direct response; not an order or reservation",
+          "source_sha256": "69d45d74ffb2b5f57103dab8f4ca3a57b8b19f78732e0a992897ae3f773d9c82",
+          "facts": [
+            "丸善淳久堂挂牌5500JPY含税。",
+            "当前HTML同时出现売り切れ、カートに入れる和库存読み込み中；JSON-LD无availability。搜索缓存另曾说在庫△/提携倉庫在庫あり，未在当前响应复现。实际可售状态未解，不单凭模板字样断言售罄或现货。",
+            "My店头库存与取货需登录；本轮未登录、未下单；日本运费/送达日期未知。"
+          ],
+          "seller_dedup_key": "maruzen-junkudo",
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "japan_supply"
+        }
+      ],
+      "mainland_exit": null,
+      "cost_known_parts": "含税价5500JPY，其余K未齐",
+      "diagnosis": {
+        "id": "B03",
+        "identity": "空山基 SORAYAMA THE GYNOIDS SUBLIME ISBN9784309923093；河出书房新社；2026-06-19",
+        "source_ids": [
+          "B03-MARUZEN"
+        ],
+        "decision": "暂不买入：日本售态信号互相冲突未解，本轮未取得大陆需求与可信成交。",
+        "reasons": [
+          "B03-MARUZEN为直连响应：含税挂牌5500JPY；当前HTML同时出现売り切れ、カートに入れる与库存読み込み中，JSON-LD无availability，实际可售状态未解。",
+          "搜索缓存曾称在庫△/提携倉庫在庫あり，但未在当前响应复现；按证据规则不凭缓存或模板字样断言售罄，也不断言现货。",
+          "My店头库存与取货需登录，本轮未登录、未下单；日本运费与送达日期未知。",
+          "mainland_exit为null：无大陆同款报价、近期成交、买家或需求证据。"
+        ],
+        "missing_fields": [
+          "实际可售状态与可购库存数量（冲突信号需新证据而非猜测）",
+          "日本国内运费与送达时间",
+          "大陆同款挂牌/近期可信成交价与有效买方",
+          "大陆需求量/销量证据",
+          "完整成本（跨境运费、关税、平台等费用）"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "quote": {
+        "currency": "JPY",
+        "amount": 5500,
+        "tax_included": true,
+        "price_role": "seller_asking_price",
+        "japan_shipping_single_item": null,
+        "shipping_scope": "observed channel/default Japan fee only; region/payment/receipt eligibility not fully verified",
+        "complete_cost": null
+      },
+      "domestic_demand": {
+        "market": "mainland China",
+        "research_window_days": 30,
+        "matched_current_ask": null,
+        "deduplicated_trade_count": null,
+        "independent_buyer_count": null,
+        "recent_transaction_price_range": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "meaning": "No usable evidence obtained in bounded search; not zero sales."
+      },
+      "physical_condition": "seller JSON-LD NewCondition",
+      "edition_print_run": null,
+      "signature": null,
+      "attachments_verified": null
+    },
+    {
+      "id": "G06",
+      "identity": "BAPE ABC CAMO SMARTPHONE SHOULDER STRAP 1M20-182-005；首核GREEN/F",
+      "sources": [
+        {
+          "source_id": "G06-BAPE",
+          "url": "https://jp.bape.com/products/1m20-182-005",
+          "observed_at_utc": "2026-09-28T09:03:58.014018+00:00",
+          "method": "ordinary public HTTP GET, selected saved HTML verified locally",
+          "cache_age": "direct response; not an order or reservation",
+          "source_sha256": "527e0896e859ef654249c48501a2e6363f540956df281ed536e72068eef8d209",
+          "facts": [
+            "日本官方正文含税4950JPY；通常日本运费400JPY（部分地区例外），通常1–3工作日发出，非旅期到货保证。",
+            "海外からのご注文および海外への発送は承っておりません：海外订单与海外寄送均不受理。日本在地收货、酒店/支付资格未知，不能建议现在海外直下单。",
+            "取消/退换原则不受理，缺陷收到7天内；SKU available是卖家数据声明，数量未知、未锁货。",
+            "完整产品JSON重复两段，已本地逐variant比对一致；price原始单位为展示价×100，不是495000/715000日元。weight0是未填占位，不是真实0重量。",
+            "聚丙烯100%；F长度140cm，带宽2cm，标签3.2×5cm。"
+          ],
+          "variants": [
+            {
+              "id": 46951715471491,
+              "title": "BLUE / F",
+              "sku": "1M20182005BLU00F",
+              "barcode": "4580794395620",
+              "raw_price_minor_units": 495000,
+              "price_jpy": 4950,
+              "raw_weight_placeholder": 0,
+              "physical_weight_g": null,
+              "available_claim": false,
+              "stock_quantity": null
+            },
+            {
+              "id": 46951715504259,
+              "title": "GREEN / F",
+              "sku": "1M20182005GRN00F",
+              "barcode": "4580794395637",
+              "raw_price_minor_units": 495000,
+              "price_jpy": 4950,
+              "raw_weight_placeholder": 0,
+              "physical_weight_g": null,
+              "available_claim": true,
+              "stock_quantity": null
+            },
+            {
+              "id": 46951715537027,
+              "title": "PINK / F",
+              "sku": "1M20182005PNK00F",
+              "barcode": "4580794395644",
+              "raw_price_minor_units": 495000,
+              "price_jpy": 4950,
+              "raw_weight_placeholder": 0,
+              "physical_weight_g": null,
+              "available_claim": false,
+              "stock_quantity": null
+            }
+          ],
+          "visible_jpy_price": 4950,
+          "seller_dedup_key": "bape-japan-official",
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "japan_supply"
+        }
+      ],
+      "mainland_exit": null,
+      "cost_known_parts": "4950JPY含税商品+通常400JPY日本运费，未知跨境/税/国内费等，完整K未知",
+      "diagnosis": {
+        "id": "G06",
+        "identity": "BAPE ABC CAMO SMARTPHONE SHOULDER STRAP 1M20-182-005；首核GREEN/F",
+        "source_ids": [
+          "G06-BAPE"
+        ],
+        "decision": "本轮采购门槛未通过，保留研究：大陆需求、完整成本及履约条件尚未验证",
+        "reasons": [
+          "日本官方页（G06-BAPE，2026-09-28直连保存HTML，非下单或预订）仅给挂牌：含税4950日元、通常日本运费400日元、1–3工作日发出；挂牌不是可信成交价P。",
+          "官方明示不受理海外订单与海外寄送；日本在地收货、酒店/支付资格未知，本轮尚未验证履约到大陆的可执行路径。",
+          "GREEN/F的available=true是卖家数据声明而非数量，未锁货；BLUE/PINK为false也不能据一个渠道推断全平台无货。",
+          "本目标做了款号、品牌/配色关键词等3类大陆定向查询，未取得可用同款报价、近期成交或有效买方。4580794395637是本轮新提取条码，尚未单独用此条码检索；不是条码无搜索结果。完整成本仍缺。"
+        ],
+        "missing_fields": [
+          "中国大陆市场同规格近期成交或有效买方报价（支持P），以及独立的低价竞争挂牌",
+          "日本在地合规收货条件与支付资格",
+          "跨境至中国大陆的物流方式、时效与进口税费",
+          "完整K（货款、汇兑支付、日本及跨境物流、税费、平台、国内寄件、包装、售后各计一次）与真实可购库存数量"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "quote": {
+        "currency": "JPY",
+        "amount": 4950,
+        "tax_included": true,
+        "price_role": "seller_asking_price",
+        "japan_shipping_single_item": 400,
+        "shipping_scope": "observed channel/default Japan fee only; region/payment/receipt eligibility not fully verified",
+        "complete_cost": null
+      },
+      "domestic_demand": {
+        "market": "mainland China",
+        "research_window_days": 30,
+        "matched_current_ask": null,
+        "deduplicated_trade_count": null,
+        "independent_buyer_count": null,
+        "recent_transaction_price_range": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "meaning": "No usable evidence obtained in bounded search; not zero sales."
+      },
+      "physical_condition": null,
+      "edition_print_run": null,
+      "signature": "not_applicable",
+      "attachments_verified": null
+    },
+    {
+      "id": "G07",
+      "identity": "BAPE 1ST CAMO AIRPODS PRO CASE 1M20-182-004；首核YELLOW/F；AirPods Pro第2代",
+      "sources": [
+        {
+          "source_id": "G07-BAPE",
+          "url": "https://jp.bape.com/products/1m20-182-004",
+          "observed_at_utc": "2026-09-28T09:03:58.014164+00:00",
+          "method": "ordinary public HTTP GET, selected saved HTML verified locally",
+          "cache_age": "direct response; not an order or reservation",
+          "source_sha256": "4d2f6a4a850f93bc3eded838b492d1e18021d94c9bc47200ddb280f149d454be",
+          "facts": [
+            "日本官方正文含税7150JPY；通常日本运费400JPY（部分地区例外），通常1–3工作日发出，非旅期到货保证。",
+            "海外からのご注文および海外への発送は承っておりません：海外订单与海外寄送均不受理。日本在地收货、酒店/支付资格未知，不能建议现在海外直下单。",
+            "取消/退换原则不受理，缺陷收到7天内；SKU available是卖家数据声明，数量未知、未锁货。",
+            "完整产品JSON重复两段，已本地逐variant比对一致；price原始单位为展示价×100，不是495000/715000日元。weight0是未填占位，不是真实0重量。",
+            "正文明确Pro第2代，5.5×7.3×2.9cm，硅胶；不要按同外观同名直接匹配其他代际或款号。"
+          ],
+          "variants": [
+            {
+              "id": 47136931053699,
+              "title": "GREEN / F",
+              "sku": "1M20182004GRN00F",
+              "barcode": "4580794395743",
+              "raw_price_minor_units": 715000,
+              "price_jpy": 7150,
+              "raw_weight_placeholder": 0,
+              "physical_weight_g": null,
+              "available_claim": false,
+              "stock_quantity": null
+            },
+            {
+              "id": 47136931119235,
+              "title": "YELLOW / F",
+              "sku": "1M20182004YEL00F",
+              "barcode": "4580794395750",
+              "raw_price_minor_units": 715000,
+              "price_jpy": 7150,
+              "raw_weight_placeholder": 0,
+              "physical_weight_g": null,
+              "available_claim": true,
+              "stock_quantity": null
+            }
+          ],
+          "visible_jpy_price": 7150,
+          "seller_dedup_key": "bape-japan-official",
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "japan_supply"
+        },
+        {
+          "source_id": "G07-FOREIGN-EXCLUSION",
+          "url": "https://stockx.com/de-de/bape-1st-camo-airpods-pro-case-yellow",
+          "method": "search excerpt only; web.open returned InternalError",
+          "cache_age": "3months",
+          "facts": [
+            "列款号1L30-182-052，与1M20-182-004不同。海外价格/交易不作本项目大陆退出或同款数据。"
+          ],
+          "seller_dedup_key": null,
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "excluded_foreign_lookalike"
+        },
+        {
+          "source_id": "G07-BUYMA-EXCLUSION",
+          "url": "https://zh-cn.buyma.com/item/133444369/",
+          "method": "search excerpt only; web.open returned InternalError",
+          "cache_age": "last week",
+          "facts": [
+            "写Pro3但尺寸相同，款号未确认；下单后采购/手动库存○不是实时库存；中文界面不等于中国大陆卖家或退出证据。"
+          ],
+          "seller_dedup_key": null,
+          "transaction_event_at": null,
+          "observed_on": "2026-09-28",
+          "observation_slot": "Beijing17:00; precise request timestamp unavailable unless observed_at_utc is present",
+          "source_role": "excluded_foreign_lookalike"
+        }
+      ],
+      "mainland_exit": null,
+      "cost_known_parts": "7150JPY含税商品+通常400JPY日本运费，未知跨境/税/国内费等，完整K未知",
+      "diagnosis": {
+        "id": "G07",
+        "identity": "BAPE 1ST CAMO AIRPODS PRO CASE 1M20-182-004；首核YELLOW/F；AirPods Pro第2代",
+        "source_ids": [
+          "G07-BAPE",
+          "G07-FOREIGN-EXCLUSION",
+          "G07-BUYMA-EXCLUSION"
+        ],
+        "decision": "本轮采购门槛未通过，保留研究：大陆需求、完整成本及履约条件尚未验证",
+        "reasons": [
+          "日本官方页（G07-BAPE）仅给挂牌含税7150日元、通常日本运费400日元、1–3工作日发出；挂牌非可信成交，正文限定AirPods Pro第2代（5.5×7.3×2.9cm，硅胶），不得按同名同外观外推其他代际。",
+          "官方明示不受理海外订单与海外寄送；在地收货与支付资格未知，大陆履约路径无证据。",
+          "YELLOW/F的available=true为卖家声明、数量未知且未锁货；GREEN为false不代表全平台无货。",
+          "StockX搜索片段款号1L30-182-052与本品1M20-182-004不同；Buyma片段写Pro3、款号未确认、下单后手动库存○非实时库存，中文界面不等于大陆卖家或退出证据，二者均不作同款或大陆数据；无大陆报价/成交/买方，跨境税费与完整成本未知。"
+        ],
+        "missing_fields": [
+          "中国大陆市场1M20-182-004 YELLOW（条码4580794395750）同规格近期成交或有效买方报价；低价挂牌另列竞争证据",
+          "日本在地收货条件与支付资格",
+          "跨境物流、进口税费与完整K（货款、汇兑支付、日本及跨境物流、税费、平台、国内寄件、包装、售后各计一次）",
+          "真实可购库存数量（available仅为布尔声明）"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      },
+      "qualified_for_purchase": false,
+      "quote": {
+        "currency": "JPY",
+        "amount": 7150,
+        "tax_included": true,
+        "price_role": "seller_asking_price",
+        "japan_shipping_single_item": 400,
+        "shipping_scope": "observed channel/default Japan fee only; region/payment/receipt eligibility not fully verified",
+        "complete_cost": null
+      },
+      "domestic_demand": {
+        "market": "mainland China",
+        "research_window_days": 30,
+        "matched_current_ask": null,
+        "deduplicated_trade_count": null,
+        "independent_buyer_count": null,
+        "recent_transaction_price_range": null,
+        "valid_buyer_bid": null,
+        "time_to_sale": null,
+        "sell_through_rate": null,
+        "meaning": "No usable evidence obtained in bounded search; not zero sales."
+      },
+      "physical_condition": null,
+      "edition_print_run": null,
+      "signature": "not_applicable",
+      "attachments_verified": null
+    }
+  ],
+  "search_only": [
+    {
+      "id": "G10",
+      "name": "HYSTERIC GLAMOUR × Sanrio MY STRAWBERRY socks",
+      "formal_style": null,
+      "new_market_evidence": false,
+      "cc_dispatched": false,
+      "reason": "No new usable current source; historical release news not reprocessed."
+    }
+  ],
+  "formula_policy": {
+    "P": "conservative sale amount supported by matched recent transactions or a valid buyer bid; not asking price",
+    "K": "purchase+FX/payment+Japan shipping+allocated cross-border freight+applicable tax+platform fees+domestic dispatch+packaging+after-sale reserve; no double counting",
+    "net_profit": "P-K",
+    "full_cost_roi": "(P-K)/K",
+    "sales_margin": "(P-K)/P",
+    "qualified_gate": "both 50% thresholds plus demand and fulfillment until denominator chosen",
+    "unknown_policy": "P or complete K missing => all six finance fields null; reserve separate from incurred fees"
+  },
+  "execution": {
+    "cc_jobs": 2,
+    "wave_count": 1,
+    "parallel_peak_verified": 2,
+    "attempts_per_job": 1,
+    "correction_calls": 0,
+    "requested_model": "doubao-seed-evolving",
+    "requested_thinking_enabled": true,
+    "requested_effort": "high",
+    "observed_models": [
+      "doubao-seed-evolving"
+    ],
+    "native_usage": {
+      "input_tokens": 28081,
+      "cache_read_input_tokens": 100000,
+      "output_tokens": 15368
+    },
+    "provider_reported_thinking_tokens": 0,
+    "thinking_note": "High is the requested configuration, not independently verified reasoning intensity; provider statistic was zero.",
+    "client_cost_estimate_is_actual_charge": false,
+    "additional_paid_services_used": false,
+    "raw_completed_jobs": 2,
+    "raw_runner_status": "verifying; Claude completed with returncode0",
+    "adoption": "accepted_with_changes",
+    "all_five_records_reviewed": true,
+    "validation": "Both raw and adopted JSON pass bounded validators; input/artifact hashes and source hashes verified; five BAPE variants checked against two equal embedded objects.",
+    "semantic_corrections": [
+      {
+        "lane": "books",
+        "items": [
+          "纠正B02“次日送达”为“次日发货”，销售金额P不叫采购价。",
+          "Honya缺货仅限定新核卖家；已知370JPY送料不再次当未知，完整K仍未齐。",
+          "删除必须新增第二供应商的额外门槛，下一动作保留国内需求优先及同源新事实。",
+          "将无需求表述限定为本轮未取得证据，不否定实际销量。"
+        ]
+      },
+      {
+        "lane": "smallgoods",
+        "items": [
+          "修正中文界面被误称繁中，不推断交易市场。",
+          "明确新增条码尚未单独检索，旧查询不能冒充条码检索；价格未变不算涨跌。",
+          "P仅由成交或有效买方报价支持；竞争挂牌单列，不强制两类需求凭证同时具备。",
+          "完整K包含国内平台/寄件/包装/售后，不能止于到岸；未证实履约不说绝对无法履约。"
+        ]
+      }
+    ],
+    "permission_denials": 0,
+    "new_unknown": 0,
+    "historical_unknown_not_replayed": 4,
+    "original_checkout_changes_preserved": true
+  },
+  "source_health": {
+    "current_http_200_responses": 5,
+    "tsutaya_generic_parse": "empty initially; selected saved-HTML price/ISBN/postage/dispatch fragments recovered locally; not a source access failure",
+    "maruzen_availability": "unresolved; conflicting template text and unloaded stock panel",
+    "foreign_open_failures": [
+      "StockX InternalError",
+      "BUYMA InternalError"
+    ],
+    "foreign_price_or_trade_used_in_profit": false,
+    "cached_yahoo_delivery_template": "past dates, excluded from trip fulfillment",
+    "raw_html_published": false
+  },
+  "increment_audit": [
+    {
+      "id": "B01",
+      "increment": "New Japanese retailer channel with observed free Japanese postage; cached same-seller Yahoo channel has different shipping. No price-move or independent-supply-count claim."
+    },
+    {
+      "id": "B02",
+      "increment": "New seller current unavailable declaration despite next-day dispatch title; not a publisher-wide stockout."
+    },
+    {
+      "id": "B03",
+      "increment": "New retailer source exposes unresolved stock-template versus loading/index conflict; not a verified available offer."
+    },
+    {
+      "id": "G06",
+      "increment": "Previously only add-to-cart; now three exact variant SKU/barcode/available fields independently checked. Price unchanged; availability claim not order assurance."
+    },
+    {
+      "id": "G07",
+      "increment": "Previously only add-to-cart; now two exact variant SKU/barcode/available fields independently checked; foreign lookalikes excluded. Price unchanged."
+    },
+    {
+      "id": "G10",
+      "increment": null,
+      "state": "searched_only_no_new_model_input",
+      "reason": "No new precise SKU/current source; old release news not reprocessed."
+    }
+  ],
+  "next_step": "At next authorized21:00 slot, check Notion/ledger first, prioritize accessible new mainland exact-spec evidence; use newly resolved BAPE identifiers only on a new useful query/input. No repeated unchanged inputs or unknown replay."
+}
