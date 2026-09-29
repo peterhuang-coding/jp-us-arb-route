@@ -1,0 +1,301 @@
+{
+  "run_id": "SPREAD-20260929-1700",
+  "observation_window_utc": "2026-09-29T09:01:11Z–09:08:38Z",
+  "scope": "日本采购→大陆，艺术书/画册与潮牌内衣/小配件；仅研究",
+  "source_request_counts": {
+    "web_search": 8,
+    "ordinary_get": 9,
+    "browser_navigation_unknown": 1,
+    "total": 18
+  },
+  "targets": {
+    "queried_existing_families": [
+      "B1-9784309272993",
+      "B2-9784309922263",
+      "HYSTERIC-02261CU01",
+      "S1-WMGP-BR10"
+    ],
+    "diagnosed_variants": [
+      "B2",
+      "S1-M",
+      "S1-L",
+      "S1-XL"
+    ],
+    "different_isbn_exclusion": "9784309921396",
+    "conservative_identity_count": 7,
+    "new_exact_identity_exclusions": 1
+  },
+  "sources": [
+    {
+      "source_id": "mainland-discovery",
+      "url": "https://search.kongfz.com/product/?keyword=9784309922263&dataType=0",
+      "observed_at": "2026-09-29T09:04:28Z",
+      "access_method": "web_search_and_public_GET",
+      "event_time": null,
+      "facts": [
+        "本轮先检索丸尾DXI、SM画报、02261CU01、WMGP-BR10大陆同款需求/竞争；没有取得可用大陆原始报价/成交，不能说销量零。",
+        "孔夫子两个ISBN的原始公开搜索GET仅JS空壳，原生浏览器创建超时、状态读取亦超时；没有绕过验证或重复创建未知导航。",
+        "tao.hooos.com品牌页是聚合线索，未找到目标两款内裤；其它衬衣/风格款价格及销量不可代入。"
+      ],
+      "observation_note": "Composite research summary: book ISBN search health applies only to books; brand aggregate applies only to underwear. Query observations within09:01:11–09:07:46UTC; GET snapshot09:04:28UTC. Not transaction time."
+    },
+    {
+      "source_id": "b2-hanmoto",
+      "url": "https://www.hanmoto.com/bd/isbn/9784309922263",
+      "observed_at": "2026-09-29T09:08:37.230908+00:00",
+      "access_method": "ordinary_public_GET",
+      "event_time": null,
+      "facts": [
+        "出版社提供的书目：9784309922263，B5/256×190×17mm/620g/232页，2021-05-25；4400JPY含税定价不是可成交购价；在库信息不明。",
+        "书目最末更新2025-04-05，本次访问不是新出版事件；页面利用可否不明是书影书目使用许可，不是库存。620g为书目净重，不是打包跨境计费重。"
+      ],
+      "price_type": "publisher_list_price",
+      "price": 4400,
+      "currency": "JPY",
+      "tax_included": true,
+      "seller_dedup_key": "hanmoto-kawade-bibliography"
+    },
+    {
+      "source_id": "b2-animate",
+      "url": "https://www.animate-onlineshop.jp/pn/pd/1929826/",
+      "observed_at": "2026-09-29T09:08:37.234409+00:00",
+      "access_method": "ordinary_public_GET",
+      "event_time": null,
+      "facts": [
+        "同ISBN4400JPY税込、在庫なし、販売終了；通用店舗受取り可能/3300免邮/加购成功模态模板不能推翻商品售罄。不是当前可履约供应。"
+      ],
+      "price_type": "unavailable_seller_ask",
+      "price": 4400,
+      "currency": "JPY",
+      "tax_included": true,
+      "seller_dedup_key": "animate"
+    },
+    {
+      "source_id": "b2-passage",
+      "url": "https://passage.allreviews.jp/item/55047",
+      "observed_at": "2026-09-29T09:08:37.231882+00:00",
+      "access_method": "ordinary_public_GET",
+      "event_time": null,
+      "facts": [
+        "当前服务端商品正文为10000JPY含税、ほぼ新品、店頭お取り置き、ISBN9784309921396，与目标ISBN不同；不是2021版的供给或成交证据。",
+        "当前商品正文指定SOLIDA神保町店，在线预付后保留、30日内12–19点取；店库存共用。未下单，不保证仍可买/符合国内需求。",
+        "原始HTML隐藏模态含未渲染Vue条件文本、店頭販売のみ/在庫なし/送料等互斥分支，不能把全部文本串当当前状态；两周搜索缓存只写店头销售，与当前具体预付自取说明分开。",
+        "泛用运费说明不证明本商品可邮寄；无两版内容差异与国内同版需求，不根据10000对4400算价差。"
+      ],
+      "price_type": "different_isbn_seller_ask",
+      "price": 10000,
+      "currency": "JPY",
+      "tax_included": true,
+      "seller_dedup_key": "passage-aramata"
+    },
+    {
+      "source_id": "s1-jack",
+      "url": "https://store.jb-voice.co.jp/ko/products/wacko-maria-boxer-briefs-wmgp-br10-1",
+      "observed_at": "2026-09-29T09:08:37.236584+00:00",
+      "access_method": "ordinary_public_GET",
+      "event_time": null,
+      "facts": [
+        "品番WMGP-BR10、BLACK、cotton96%/polyurethane4%；M77-/丈25.5，L81-/26.5，XL85-/27.5cm。两个商家尺寸相同不等于已验证用户合身。",
+        "原始页面JSON-LD逐variant：M50302557749531 InStock；L50302557782299 OutOfStock；XL50302557815067 InStock；各6600JPY。priceValidUntil2026-10-09是页面元数据不保证实际固定价/库存。本站韩语路径不代表韩国货源，页面币种JPY、取扱店岐阜ARGUS。",
+        "页面承诺订单完成当日到翌翌日办发货；水曜休店、13时以后可能不当日发，且实体库存共用可能取消。发货不等于旅期到货；没有核酒店代收/运费/税口径；不得把1万日元免运门槛当单件免运。",
+        "Roots此前同码尺码表腰围73/78/82，与新页77/81/85存在表述差异；测量标准未确认，保留冲突，不直接判错版或假货。"
+      ],
+      "price_type": "seller_ask",
+      "price": 6600,
+      "currency": "JPY",
+      "tax_included": null,
+      "seller_dedup_key": "jack-argus"
+    },
+    {
+      "source_id": "s1-valley",
+      "url": "https://valley093.jp/?pid=186676448",
+      "observed_at": "2026-09-29T09:08:37.240755+00:00",
+      "access_method": "ordinary_public_GET",
+      "event_time": null,
+      "facts": [
+        "同款号BLACK、M/L/XL6600JPY含税、尺寸77/81/85及丈25.5/26.5/27.5，cotton96%/PU4；10000含税免邮门槛，不推断单件运费。",
+        "当前原始HTML有三个启用的单选项及加购入口，无逐尺码明确库存文本；仅可选，不认定每码确定有货或数量。搜索缓存两周前M/L在庫なし、XL选项，与当前选择控件表现不同；不声称已补货。",
+        "日本发货日期、目的地到货、旅期收件及大陆退出金额均未核。"
+      ],
+      "price_type": "seller_ask",
+      "price": 6600,
+      "currency": "JPY",
+      "tax_included": true,
+      "seller_dedup_key": "valley"
+    }
+  ],
+  "records": [
+    {
+      "id": "B2",
+      "identity": "丸尾画報DXI改40周年增补新装版 / 9784309922263 / 2021-05-25 / 232页；与9784309921396分开",
+      "source_ids": [
+        "mainland-discovery",
+        "b2-hanmoto",
+        "b2-animate",
+        "b2-passage"
+      ],
+      "decision": "研究线索，尚未证实合格：大陆P与完整K未知；本轮新查来源未证实目标2021版可交付，不代表全市场无货。",
+      "reasons": [
+        "mainland-discovery：本轮丸尾DXI大陆检索未取得目标2021版的有效买方报价或可复核近期成交；孔夫子目标ISBN公开GET仅JS壳，原生浏览器超时；缺证据不等于零销量。",
+        "b2-hanmoto：仅出版社书目，4400日元含税为书目定价而非可成交购价，在库信息不明；620g为书目净重而非跨境计费重，2025-04-05为书目更新日非新出版事件。",
+        "b2-animate：同ISBN页面在庫なし・販売終了；通用店舗受取り、3300免邮、加购成功等模态模板不能推翻售罄状态，不构成当前可履约供应。",
+        "b2-passage：在售10000日元ほぼ新品商品的ISBN为9784309921396（另一版），SOLIDA神保町店在线预付店头自取、店库存共用；隐藏模态互斥分支不可拼接，不能作为2021版供给，也不得用10000对4400算价差。"
+      ],
+      "missing_fields": [
+        "大陆目标ISBN同规格有效买方报价或近期可复核成交P",
+        "完整K：货款、汇兑/支付、日本运费、跨境分摊、适用税费、平台费、国内寄件/包装及分列的售后损耗；按日本收货后携带回国路径逐项核实，不把P计入K",
+        "目标版按拟买数量的日本可得性、付款/收件及旅期到货条件；不要求国际直邮"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S1-M",
+      "identity": "WACKO MARIA WMGP-BR10 / BLACK / M / cotton96% PU4% / 用户服饰尺码未知",
+      "source_ids": [
+        "mainland-discovery",
+        "s1-jack",
+        "s1-valley"
+      ],
+      "decision": "研究线索，尚未证实合格：目标BLACK M的大陆P、完整K及旅期交付仍未齐备；自用合身不作为转售证据门槛。",
+      "reasons": [
+        "mainland-discovery：本轮WMGP-BR10名称/货号/内裤检索与品牌聚合页未取得BLACK M大陆有效买方报价或同规格近期可复核成交；他款挂牌/聚合销量不代入，缺证据不等于零销量。",
+        "s1-jack：JSON-LD逐variant标注M（50302557749531）InStock、6600JPY，但tax_included未注明、实体库存共用可能被取消，priceValidUntil至2026-10-09仅为页面元数据；这是按拟买数量的单源结构化可得信号。",
+        "s1-valley：当前HTML仅有三个启用单选项与加购入口、无逐尺码库存文本，两周前缓存M在庫なし；可选控件不等于可交付库存或已补货，不推断件数。",
+        "两店新表腰围77与Roots旧表73测量口径冲突予以保留；日本发货承诺不等于旅期日本收货，运费、税费、旅期/酒店收件及大陆退出金额均未核。；尺码表不同不能直接判错版，转售应匹配买方目标尺码。"
+      ],
+      "missing_fields": [
+        "大陆同款BLACK M有效买方报价或同规格近期可复核成交P",
+        "完整K：货款、汇兑/支付、日本运费、跨境分摊、适用税费、平台费、国内寄件/包装及分列的售后损耗；按日本收货后携带回国路径逐项核实，不把P计入K",
+        "日本旅期收货、付款资格与按拟买数量可得性（不是全店精确库存或锁货）",
+        "JACK税口径与尺寸测量定义；用户尺码仅在另做自用购买时相关"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S1-L",
+      "identity": "WACKO MARIA WMGP-BR10 / BLACK / L / cotton96% PU4% / 用户服饰尺码未知",
+      "source_ids": [
+        "mainland-discovery",
+        "s1-jack",
+        "s1-valley"
+      ],
+      "decision": "研究线索，尚未证实合格：目标BLACK L的大陆P、完整K及旅期交付仍未齐备；自用合身不作为转售证据门槛。",
+      "reasons": [
+        "mainland-discovery：本轮WMGP-BR10名称/货号/内裤检索与品牌聚合页未取得BLACK L大陆有效买方报价或同规格近期可复核成交；他款挂牌/聚合销量不代入，缺证据不等于零销量。",
+        "s1-jack：JSON-LD逐variant明确标注L（50302557782299）OutOfStock、6600JPY；该源L码当前不可供。",
+        "s1-valley：L仅表现为启用的单选项，无逐尺码库存文本，且两周前缓存L在庫なし；不能把可选按钮/加购入口当可交付库存。",
+        "用户尺码未知、新旧腰围表81对78口径冲突保留；跨境运费税费、日本旅期收件及大陆退出金额未核，六项财务字段全部null。；尺码表不同不能直接判错版，转售应匹配买方目标尺码。"
+      ],
+      "missing_fields": [
+        "大陆同款BLACK L有效买方报价或同规格近期可复核成交P",
+        "完整K：货款、汇兑/支付、日本运费、跨境分摊、适用税费、平台费、国内寄件/包装及分列的售后损耗；按日本收货后携带回国路径逐项核实，不把P计入K",
+        "日本旅期收货、付款资格与按拟买数量可得性（不是全店精确库存或锁货）",
+        "JACK税口径与尺寸测量定义；用户尺码仅在另做自用购买时相关"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "S1-XL",
+      "identity": "WACKO MARIA WMGP-BR10 / BLACK / XL / cotton96% PU4% / 用户服饰尺码未知",
+      "source_ids": [
+        "mainland-discovery",
+        "s1-jack",
+        "s1-valley"
+      ],
+      "decision": "研究线索，尚未证实合格：目标BLACK XL的大陆P、完整K及旅期交付仍未齐备；自用合身不作为转售证据门槛。",
+      "reasons": [
+        "mainland-discovery：本轮WMGP-BR10名称/货号/内裤检索与品牌聚合页未取得BLACK XL大陆有效买方报价或同规格近期可复核成交；他款挂牌/聚合销量不代入，缺证据不等于零销量。",
+        "s1-jack：JSON-LD逐variant标注XL（50302557815067）InStock、6600JPY，但含税口径未注明、共用实体库存可能取消；仅为单源按拟买数量的可得信号。",
+        "s1-valley：XL仅为启用单选项、无逐码库存文本；两周前缓存仅XL有选项，与当前三码控件表现不同，不声称已补货或具体数量。",
+        "新旧腰围表85对82口径冲突保留；发货时效不等于旅期日本到货，运费、税费、收件与退出金额均未核。；尺码表不同不能直接判错版，转售应匹配买方目标尺码。"
+      ],
+      "missing_fields": [
+        "大陆同款BLACK XL有效买方报价或同规格近期可复核成交P",
+        "完整K：货款、汇兑/支付、日本运费、跨境分摊、适用税费、平台费、国内寄件/包装及分列的售后损耗；按日本收货后携带回国路径逐项核实，不把P计入K",
+        "日本旅期收货、付款资格与按拟买数量可得性（不是全店精确库存或锁货）",
+        "JACK税口径与尺寸测量定义；用户尺码仅在另做自用购买时相关"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null
+    }
+  ],
+  "qualified_candidates": 0,
+  "financial_null_count": 24,
+  "execution": {
+    "packages": [
+      {
+        "task_id": "jp-spread-20260929-1700-maruo-a1",
+        "raw_status": "verifying",
+        "adoption": "accepted_with_changes",
+        "attempt_count": 1,
+        "quality_correction_count": 0,
+        "input_sha256": "1a31542e15a93138e2f5aa3a07f3c026c095424fa6e53f8ded7c7affd36b2b9e",
+        "normalized_input_sha256": "eee8e62e58084c452003ca9293c752dbeb8f373de41788a431a0f7fdd10843df"
+      },
+      {
+        "task_id": "jp-spread-20260929-1700-wacko-a1",
+        "raw_status": "verifying",
+        "adoption": "accepted_with_changes",
+        "attempt_count": 1,
+        "quality_correction_count": 0,
+        "input_sha256": "d679c54072b8caafcc9fefcf3c2e4ced02a3221f1f7dd56a6c9ddcfe98b3b7c0",
+        "normalized_input_sha256": "546fc6eff13f4d84a8809c7bb2e92599c867661e255311cce76ea612787bee37"
+      }
+    ],
+    "actual_model": "doubao-seed-evolving",
+    "thinking_requested": true,
+    "effort_requested": "high",
+    "actual_calls": 2,
+    "peak_parallel": 2,
+    "native_usage": {
+      "input_tokens": 30544,
+      "cache_read_input_tokens": 105632,
+      "output_tokens": 14660
+    },
+    "semantic_corrected_records": 4,
+    "review_denominator": 4,
+    "correction_calls": 0,
+    "new_unknown": 0,
+    "extra_paid_cny": 0,
+    "not_model_accuracy_estimate": true
+  },
+  "limitations": [
+    "没有取得目标规格大陆有效买方报价或近期可复核成交；不等于零销量。",
+    "P或完整K未知时所有财务字段null；50%口径未确认，合格须双口径及需求交付齐备。",
+    "供应商声明不等于订单或锁货；发货日不等于到货；自用尺码不作为转售研究前置。",
+    "本轮新增日本供应/版本证据，不是新双边价差。"
+  ],
+  "increment_audit": {
+    "artbooks": {
+      "before": 0,
+      "after": 0,
+      "reason": "新书目620g净重、Animate同ISBN售罄及PASSAGE不同ISBN/具体自取方式"
+    },
+    "smallgoods": {
+      "before": 2,
+      "after": 0,
+      "reason": "新JACK准确分码M/XL可售与L售罄声明、发货共享库存条款；Valley具体控件/测量对照。并非重写旧证据或新查询队列。"
+    },
+    "new_mainland_exit_evidence": false,
+    "counts_applied_once": true
+  }
+}
