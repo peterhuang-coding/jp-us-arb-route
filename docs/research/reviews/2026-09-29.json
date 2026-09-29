@@ -1,0 +1,277 @@
+{
+  "review_id": "REVIEW-20260929-0900",
+  "triggered_at": "2026-09-29T01:01:41.902Z",
+  "review_started_at": "2026-09-29T01:02:07Z",
+  "findings_finished_at": "2026-09-29T01:08:18.983965+00:00",
+  "scope": "Incremental review of saved research; no live market fetching or new downstream jobs",
+  "runs": [
+    {
+      "run_id": "SPREAD-20260928-1300",
+      "commit": "4beec685f60d7c7d26a75304d26c91eba559d822",
+      "records": 4,
+      "financial_null_count": 24,
+      "source_counts": {
+        "search_queries": 18,
+        "web_open_requests": 12,
+        "web_click_requests": 1,
+        "web_find_requests": 4,
+        "ordinary_http_get": 3,
+        "conservative_total": 38
+      },
+      "public_evidence_matches_commit": true
+    },
+    {
+      "run_id": "SPREAD-20260928-1700",
+      "commit": "bc6d179ab0dce754bf61e97d5db3296f1d3792c5",
+      "records": 5,
+      "financial_null_count": 30,
+      "source_counts": {
+        "search_queries": 20,
+        "domestic_focused_queries": 18,
+        "web_open": 6,
+        "web_find": 2,
+        "ordinary_http_get": 5,
+        "conservative_total": 33
+      },
+      "public_evidence_matches_commit": true
+    },
+    {
+      "run_id": "SPREAD-20260928-2100",
+      "commit": "cb83cea3ef9ec3b84670c8a67aa43409ad303641",
+      "records": 4,
+      "financial_null_count": 24,
+      "source_counts": {
+        "run_id": "SPREAD-20260928-2100",
+        "search_queries_by_target": {
+          "B04": [
+            "\"9784766130928\" 孔夫子",
+            "樋口裕子 CIRCUS 马戏团 画集 签名 (domains kongfz.com/dangdang.com/jd.com/taobao.com)",
+            "site:book.kongfz.com \"CIRCUS\" \"樋口\"",
+            "\"樋口裕子\" \"马戏团\" ISBN",
+            "\"9787534096624\" 孔夫子 价格",
+            "\"9787534096624\"",
+            "\"樋口裕子\" \"CIRCUS\" \"213\""
+          ],
+          "B10": [
+            "\"AQUIRAX UNO\" \"2024\" 图录 中国",
+            "宇野亚喜良 2024 展览 图录 AQUIRAX (same 4 domains)",
+            "\"宇野\" \"2024\" \"图录\" 价格",
+            "\"AQUIRAX UNO\" \"2024\" 宇野亚喜良 图录 淘宝 闲鱼"
+          ],
+          "G08": [
+            "\"1M20-182-006\" 得物 淘宝",
+            "\"BAPE\" \"1M20-182-006\" 中国",
+            "\"4580794395606\" 中国 淘宝 得物"
+          ],
+          "G09": [
+            "\"AK70-182-309\" 得物 淘宝",
+            "\"4580793902911\" 中国 淘宝 闲鱼"
+          ],
+          "G06": [
+            "\"4580794395637\" 中国 得物",
+            "\"4580794395637\""
+          ],
+          "G07": [
+            "\"4580794395750\" 中国 淘宝",
+            "\"4580794395750\""
+          ]
+        },
+        "search_queries_count": 20,
+        "web_open_count": 5,
+        "ordinary_get_count": 5,
+        "web_find_count": 2,
+        "total_source_requests": 32,
+        "primary_targets": [
+          "B04",
+          "B10",
+          "G06",
+          "G07",
+          "G08",
+          "G09"
+        ],
+        "additional_identity_exclusion": [
+          "9787534096624"
+        ],
+        "new_candidate_targets": 0,
+        "conservative_sku_count_including_exclusion": 7,
+        "unchanged_diagnoses_not_dispatched": [
+          "G06",
+          "G07"
+        ],
+        "collection_stopped_at": "2026-09-28T13:13:16.987846+00:00"
+      },
+      "public_evidence_matches_commit": true
+    },
+    {
+      "run_id": "SPREAD-20260929-0100",
+      "commit": "01b4a14cd142ac50b749e9dfb53ac7432a3f9a7d",
+      "records": 4,
+      "financial_null_count": 24,
+      "source_counts": {
+        "run_id": "SPREAD-20260929-0100",
+        "queries": 11,
+        "web_open": 1,
+        "ordinary_get": 10,
+        "total": 22,
+        "targets": [
+          "B05",
+          "B06",
+          "S1",
+          "S2"
+        ],
+        "new_named_skus": 0,
+        "note": "one local requests import failure made no HTTP call, excluded; UC category missing SKU led observed brand link then detail; count is requests not independent sources"
+      },
+      "public_evidence_matches_commit": true
+    },
+    {
+      "run_id": "SPREAD-20260929-0500",
+      "commit": "f6728649b238c83c447e2ac77929697af1c83c58",
+      "records": 3,
+      "financial_null_count": 18,
+      "source_counts": {
+        "run_id": "SPREAD-20260929-0500",
+        "search_queries": 15,
+        "ordinary_get": 5,
+        "total_source_requests": 20,
+        "primary_targets": [
+          "B01",
+          "B02",
+          "B03",
+          "G10"
+        ],
+        "new_named_skus": 0,
+        "additional_identity_exclusions": [
+          "B02 1968 no-box first edition",
+          "B03 exhibition edition ISBN unknown"
+        ],
+        "conservative_identity_count": 6,
+        "queries_by_target": {
+          "B01": 4,
+          "B02": 4,
+          "B03": 3,
+          "G10": 4
+        },
+        "smallgoods_no_increment": true,
+        "smallgoods_dispatch": 0,
+        "note": "G10 current news unchanged; no new market facts and no CC replay. Two independent book packages total3targets same wave, all under artbooks lane; no second smallgoods package fabricated."
+      },
+      "public_evidence_matches_commit": true
+    }
+  ],
+  "metrics": {
+    "research_runs": 5,
+    "diagnosis_observations": 20,
+    "financial_null_fields": 120,
+    "source_sample_count": 5,
+    "newly_detected_promoted_mismatch_in_samples": 0,
+    "ambiguous_inventory_missing_fields": 5,
+    "inventory_ambiguity_denominator": 20,
+    "not_a_statistical_accuracy_estimate": true,
+    "qualified_candidates": 0,
+    "mainland_valid_sale_evidence": 0,
+    "source_requests_in_reviewed_runs": 145
+  },
+  "sample_selection": "One risk-focused saved-source observation from each new research run; nonrandom, not whole-market or full-corpus accuracy",
+  "source_samples": [
+    {
+      "run": "SPREAD-20260928-1300",
+      "id": "S2",
+      "result": "Saved MAKES product contains exact code/polyester; retaining conflict with prior PVC/PU remains justified.",
+      "sha256": "0fea22d7d81de2d080b545d1ff59cbda66f2d6992bdce00942186fe600c1430a",
+      "pass": true
+    },
+    {
+      "run": "SPREAD-20260928-1700",
+      "id": "G06",
+      "result": "Saved full variant GREEN/F has exact barcode and available=true; boolean is not stock count or sale.",
+      "sha256": "527e0896e859ef654249c48501a2e6363f540956df281ed536e72068eef8d209",
+      "pass": true
+    },
+    {
+      "run": "SPREAD-20260928-2100",
+      "id": "B04",
+      "result": "Saved response is contact page; cached 213 offer did not become current quote.",
+      "sha256": "8fd2ac41c1ece4a556e826b977e78b839355123f46c456c458090d5f5b3bf112",
+      "pass": true
+    },
+    {
+      "run": "SPREAD-20260929-0100",
+      "id": "S1",
+      "result": "Saved M false/L and XL true; no full-product sellout, zero-weight or stock-count inference.",
+      "sha256": "70888f3f77b60532e8d72021f1a3965f12d719f207ddf98baa669634d8fbefdf",
+      "pass": true
+    },
+    {
+      "run": "SPREAD-20260929-0500",
+      "id": "B03",
+      "result": "Saved 4600 JPY offer is OutOfStock; unknown exhibition ISBN stays outside ordinary-edition pairing.",
+      "sha256": "da92d4520a4ce08a76a25e9540b15cba6a23d3a8003e57b4422d5151b322b1f3",
+      "pass": true
+    }
+  ],
+  "execution_guidance": [
+    {
+      "source": "docs/research/runs/2026-09-28-1700-SPREAD.json",
+      "ids": [
+        "B01",
+        "B02",
+        "B03",
+        "G06",
+        "G07"
+      ],
+      "path": "records[].diagnosis.missing_fields",
+      "issue": "All five list stock quantities among missing fields; wording can become an unnecessary exact-inventory gate.",
+      "rule": "Confirm availability and delivery for the intended purchase quantity. Exact whole-store inventory is optional unknown; no prerequisite to place an order or lock stock."
+    },
+    {
+      "source": "docs/research/runs/2026-09-28-1700-SPREAD.json",
+      "ids": [
+        "B02"
+      ],
+      "path": "records[B02].diagnosis.missing_fields[0]",
+      "issue": "Still says an independent supplier outside Honya although prior acceptance notes said that extra gate was removed.",
+      "rule": "A new accessible supplier or genuinely changed evidence from the existing supplier can resolve supply. Do not require a second independent supplier; do not blindly recheck unchanged sold-out input."
+    },
+    {
+      "source": "docs/research/standing-spread-research.md",
+      "path": "section 6",
+      "issue": "Legacy wording joins buyer channel and recent transactions with AND.",
+      "rule": "A current valid mainland buyer offer OR recent verifiable same-spec transactions can support P, with scope/time limits. Competitive listings never substitute for P. Complete costs and fulfillment remain required."
+    },
+    {
+      "source": "docs/research/source-policy.md",
+      "path": "section 3",
+      "issue": "Legacy identity wording can be read as ISBN being the only allowed book identity.",
+      "rule": "Use exact ISBN/style if assigned and verified. A book without an assigned ISBN may use independently verifiable publisher/year/edition/copyright-page attributes; missing ISBN alone does not prove matching. NCID is not ISBN."
+    }
+  ],
+  "raw_jobs": {
+    "count": 10,
+    "outcome": "completed",
+    "runner_status": "verifying",
+    "parent_adoption": "accepted_with_changes",
+    "new_unknown": 0,
+    "existing_unknown_count": 4,
+    "permission_denials": 1,
+    "disallowed_file_changes": 0
+  },
+  "fingerprints": {
+    "non_null": 10,
+    "unique": 10,
+    "package_count": 10,
+    "legacy_schema_fields_resolved": true
+  },
+  "native_usage": {
+    "input_tokens": 144767,
+    "cache_read_input_tokens": 448976,
+    "output_tokens": 82174
+  },
+  "market_fetches": 0,
+  "downstream_calls": 0,
+  "lane_counters_unchanged": {
+    "artbooks": 0,
+    "smallgoods": 1
+  },
+  "next_research": "2026-09-29 13:00 Asia/Shanghai; mainland exact-spec demand/competition via unprocessed accessible entries first; no blocked/unchanged/unknown replay"
+}
