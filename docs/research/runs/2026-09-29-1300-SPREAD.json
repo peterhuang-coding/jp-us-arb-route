@@ -1,0 +1,360 @@
+{
+  "run_id": "SPREAD-20260929-1300",
+  "observation_window_utc": "2026-09-29T05:04:42Z–05:07:32Z",
+  "scope": "日本采购→中国大陆；艺术书与潮牌小配件；研究不交易",
+  "qualified_candidates": 0,
+  "records": [
+    {
+      "id": "B07",
+      "identity": "森山大道《記録》No.62 / Akio Nagasawa Publishing / 2026 / 104p / 280×210mm / 软封 / 日英；当前签名属性未说明；ISBN未取得，不构成单独否决",
+      "sources": [
+        {
+          "source_id": "B07-Yahoo",
+          "url": "https://store.shopping.yahoo.co.jp/g-tsutayabooks/gpht13595j-2510000587626.html",
+          "access_method": "ordinary_GET",
+          "observed_at": "2026-09-29T05:06:43+00:00",
+          "event_time": null,
+          "facts": [
+            "当前页面JPY3300+日本普通运费500，满10000同店免运（条件可能改变）；确定性采购小计3300+500=3800JPY，不是完整成本。",
+            "JSON-LD NewCondition/InStock是卖家声明；页面同时声明与店头共用库存，可能缺货；页面写10时前下单预计9/30—10/1发货，不是到达期限，当前10时截点已过，不推定仍适用。",
+            "商品编号GPHT13595J-2510000587626；界面JAN/ISBN栏2510000587626是平台商品标识，不称ISBN；正文软封280×210mm/104p。",
+            "未确认签名、实际旅期到货、酒店收件/付款资格；不用店名推断可东京店取。店铺264评价是全店，不当本书成交。"
+          ],
+          "seller_dedup_key": "ginza-tsutaya",
+          "price_type": "seller_ask",
+          "currency": "JPY",
+          "price": 3300,
+          "tax_included": null,
+          "japan_shipping": 500
+        },
+        {
+          "source_id": "B07-Tsite",
+          "url": "https://store.tsite.jp/item-detail/art/52817.html",
+          "access_method": "search_cache_then_ordinary_GET",
+          "observed_at": "2026-09-29T05:06:43+00:00",
+          "event_time": null,
+          "facts": [
+            "同一银座蔦屋卖家的搜索缓存3周前3300JPY含税，不能作为独立卖家；当前GET404。"
+          ],
+          "seller_dedup_key": "ginza-tsutaya",
+          "price_type": "cached_seller_ask"
+        },
+        {
+          "source_id": "B07-Shashasha",
+          "url": "https://www.shashasha.co/jp/book/record-no-62",
+          "access_method": "web_open",
+          "observed_at": "2026-09-29T05:06:00+00:00",
+          "event_time": null,
+          "facts": [
+            "工具返回页面标注抓取昨天；No62/出版者/2026/104p/280×210/软封/日英吻合；在庫無し，显示$20.98税込但货币代码未确认。不作JPY或实时锁定库存。",
+            "推荐其他书的加购按钮不属于本款；当期签名未说明，旧2月预约签名资格不适用。"
+          ],
+          "price_type": "cached_seller_ask",
+          "seller_dedup_key": "shashasha",
+          "observed_time_precision": "approximate within 2026-09-29T05:04:42Z–05:07:32Z collection window; not event time"
+        },
+        {
+          "source_id": "B07-CN-query",
+          "url": "https://search.kongfz.com/",
+          "access_method": "web_search_query_scope",
+          "observed_at": "2026-09-29T05:05:30+00:00",
+          "event_time": null,
+          "facts": [
+            "查询森山大道记录62购买、森山大道62摄影集价格、site:kongfz.com森山大道62，未取得大陆同一期原始卖家/成交；此URL仅记录搜索域入口，未打开该站搜索页，不冒充商品来源。"
+          ],
+          "price_type": "no_usable_mainland_evidence",
+          "observed_time_precision": "approximate within 2026-09-29T05:04:42Z–05:07:32Z collection window; not event time"
+        }
+      ],
+      "diagnosis": {
+        "id": "B07",
+        "identity": "森山大道《記録》No.62 / Akio Nagasawa Publishing / 2026 / 104p / 280×210mm / 软封 / 日英；当前签名属性未说明；ISBN未取得，不构成单独否决",
+        "source_ids": [
+          "B07-Yahoo",
+          "B07-Tsite",
+          "B07-Shashasha",
+          "B07-CN-query"
+        ],
+        "decision": "研究线索，尚未证实合格：大陆P与完整K缺失，拟买数量可得性及旅期交付仍待核。",
+        "reasons": [
+          "大陆侧仅做搜索域查询，未取得No.62同规格原始卖方报价或近期可复核成交；挂牌、聚合销量或海外价均不能替代大陆P，需求与转售价未知。",
+          "日本侧仅银座蔦屋单一卖家当前JPY3300+运费500为依页面普通运费计算的条件小计，非完整落地成本；Tsite缓存同源不独立且当前GET404，Shashasha在庫無し、$20.98货币代码未确认，不能据此证明该数量可按计划交付。",
+          "JSON-LD NewCondition/InStock为卖家声明且与店头共用库存可能缺货；9/30—10/1为预计发货而非到达期限，截点已过不推定仍适用；缓存价不标实时。",
+          "签名属性当期未说明（不等于无签名），JAN/ISBN栏2510000587626是平台商品码不称ISBN；实际旅期到货、酒店收件及付款资格未确认。"
+        ],
+        "missing_fields": [
+          "大陆同规格No.62有效买方报价或近期可复核成交(P)",
+          "完整落地成本K（进口/跨境物流/税费/付款等）",
+          "按拟买数量的可得性与预计到货窗口（无需先下单、锁货或取得全店精确库存）",
+          "当期签名属性",
+          "酒店收件与付款资格"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      }
+    },
+    {
+      "id": "B08",
+      "identity": "The Unseen Saul Leiter 日文青幻舎版 / ISBN9784861528903；新书与二刷旧书分开",
+      "sources": [
+        {
+          "source_id": "CN-search",
+          "url": "https://www.jd.com/sptopic/98559eb9d45c350bdf65.html",
+          "access_method": "web_search_then_open",
+          "observed_at": "2026-09-29T05:06:00+00:00",
+          "event_time": null,
+          "facts": [
+            "搜索快照提及同名英文/繁中摄影书，评论数量不是成交；当前打开只有saful门铃，旧摄影书段落无法复现。不能当当前同款商家报价。"
+          ],
+          "observed_time_precision": "approximate within 2026-09-29T05:04:42Z–05:07:32Z collection window; not event time"
+        },
+        {
+          "source_id": "CN-aggregate",
+          "url": "https://tao.hooos.com/search?w=leiter",
+          "access_method": "ordinary_GET",
+          "observed_at": "2026-09-29T05:06:43+00:00",
+          "event_time": null,
+          "facts": [
+            "第三方优惠聚合而非卖家原页；当次页面105元的Unseen标题指向Thames and Hudson但无ISBN；另条256.15元标题明确英文版ISBN9780500545560，与B08日本9784861528903不同。",
+            "133.12元Centennial为多册选拍且英文标题，不能取套餐最低价配日文版；标题、销量与价格可能跨选项，统计窗口定义未核。",
+            "未取得目标日文版的近期可复核大陆成交或有效买方报价；缺证据不等于销量零。"
+          ],
+          "seller_dedup_key": "aggregator_only_not_independent_trade",
+          "price_type": "third_party_listing_lead"
+        },
+        {
+          "source_id": "B08-Atelier",
+          "url": "https://www.books-atelier.com/index.php?pid=189623849",
+          "access_method": "ordinary_GET_euc_jp",
+          "observed_at": "2026-09-29T05:07:31+00:00",
+          "event_time": null,
+          "facts": [
+            "当前商品主体明确SOLD OUT，2刷、本体良好、2022、28×22cm、160p、精装、condition A、ISBN9784861528903。",
+            "搜索缓存4个月前3850JPY含税及加购，不能当当前可买；当前推荐列表中的3850是别书，禁止误提为本书现价。首次误以UTF8解码乱码，第二次按页面euc-jp声明正确解码；两次GET都计数。"
+          ],
+          "seller_dedup_key": "books-atelier",
+          "price_type": "current_soldout_and_cached_ask"
+        },
+        {
+          "source_id": "B08-old",
+          "url": "https://product.dangdang.com/11685530047.html",
+          "access_method": "prior_2026_09_26_observation_not_rechecked",
+          "observed_at": "2026-09-26",
+          "event_time": null,
+          "facts": [
+            "历史498CNY挂牌及同ISBN，装帧/开本冲突尚未解决；9/27刷新失败，本轮未重试原受阻页；不是当前报价/成交。日本青幻舎历史4180JPY含税另日本660运费，不标今价。"
+          ],
+          "seller_dedup_key": "dangdang-original-seller-unresolved",
+          "price_type": "historical_seller_ask"
+        }
+      ],
+      "diagnosis": {
+        "id": "B08",
+        "identity": "The Unseen Saul Leiter 日文青幻舎版 / ISBN9784861528903；新书与二刷旧书分开",
+        "source_ids": [
+          "CN-search",
+          "CN-aggregate",
+          "B08-Atelier",
+          "B08-old"
+        ],
+        "decision": "研究线索，尚未证实合格：本轮未取得目标日文版的可信大陆P或完整K，不能形成采购建议。",
+        "reasons": [
+          "大陆侧仅第三方聚合线索（CN-search快照段无法复现）：105元Unseen条指向Thames and Hudson且无ISBN，256.15元明确为英文版ISBN9780500545560，均不能配日文版9784861528903；无近期可复核同规格成交或有效买方报价，缺证据不等于零销量。",
+          "日本books-atelier当前商品主体明确SOLD OUT（2刷、2022、28×22cm、160p、精装、condition A、ISBN匹配）；缓存3850JPY含税为约4个月前信息不能当当前可买价，推荐列表中3850为别书。",
+          "当当498CNY为2026-09-26历史挂牌，同ISBN但装帧/开本冲突未解，9/27刷新失败本轮未重试，非当前报价或成交；日本青幻舎历史4180JPY含税+660运费亦不标今价。"
+        ],
+        "missing_fields": [
+          "大陆同规格（日文青幻舎版ISBN9784861528903）近期可复核成交或有效买方报价（可信P）",
+          "日本当前可买报价及按拟买数量的可得性（现页售罄，缓存价不可用）",
+          "跨境完整成本K：国际运费、税费、汇损等均未核",
+          "历史挂牌装帧/开本与目标规格冲突的核实结论"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      }
+    },
+    {
+      "id": "B09",
+      "identity": "Saul Leiter The Centennial Retrospective 日文青幻舎版 / ISBN9784861529214",
+      "sources": [
+        {
+          "source_id": "CN-search",
+          "url": "https://www.jd.com/sptopic/98559eb9d45c350bdf65.html",
+          "access_method": "web_search_then_open",
+          "observed_at": "2026-09-29T05:06:00+00:00",
+          "event_time": null,
+          "facts": [
+            "搜索快照提及同名英文/繁中摄影书，评论数量不是成交；当前打开只有saful门铃，旧摄影书段落无法复现。不能当当前同款商家报价。"
+          ],
+          "observed_time_precision": "approximate within 2026-09-29T05:04:42Z–05:07:32Z collection window; not event time"
+        },
+        {
+          "source_id": "CN-aggregate",
+          "url": "https://tao.hooos.com/search?w=leiter",
+          "access_method": "ordinary_GET",
+          "observed_at": "2026-09-29T05:06:43+00:00",
+          "event_time": null,
+          "facts": [
+            "第三方优惠聚合而非卖家原页；当次页面105元的Unseen标题指向Thames and Hudson但无ISBN；另条256.15元标题明确英文版ISBN9780500545560，与B08日本9784861528903不同。",
+            "133.12元Centennial为多册选拍且英文标题，不能取套餐最低价配日文版；标题、销量与价格可能跨选项，统计窗口定义未核。",
+            "未取得目标日文版的近期可复核大陆成交或有效买方报价；缺证据不等于销量零。"
+          ],
+          "seller_dedup_key": "aggregator_only_not_independent_trade",
+          "price_type": "third_party_listing_lead"
+        },
+        {
+          "source_id": "B09-aggregate-detail",
+          "url": "https://tao.hooos.com/goods_xnVRZAAJfktqxgrr63puQ64TAt9-3RZ770FXg8JNBa5In.html",
+          "access_method": "ordinary_GET",
+          "observed_at": "2026-09-29T05:07:31+00:00",
+          "event_time": null,
+          "facts": [
+            "第三方聚合指向善本图书天猫预售英文原版，420.57CNY优惠价/528在售价，称月销量11；无目标日文ISBN及成交事件/买家/规格分母，不当大陆目标销量或P。",
+            "页面本身声明来源天猫不等于已核原始平台；只找到推广优惠券跳转，未取得原始同规格商品页，未登录/交易。优惠还含金币/券条件，不当人人可执行价格。"
+          ],
+          "seller_dedup_key": "unverified_tmall_shanben_via_aggregator",
+          "price_type": "third_party_listing_lead"
+        },
+        {
+          "source_id": "B09-old",
+          "url": "https://product.dangdang.com/11703246429.html",
+          "access_method": "prior_2026_09_26_observation_not_rechecked",
+          "observed_at": "2026-09-26",
+          "event_time": null,
+          "facts": [
+            "历史699CNY挂牌，同ISBN但装帧冲突未解；9/27刷新失败，本轮未重试；不是当前报价/成交。日本青幻舎历史9680JPY含税/普通区达免邮，不标今价。"
+          ],
+          "seller_dedup_key": "dangdang-original-seller-unresolved",
+          "price_type": "historical_seller_ask"
+        }
+      ],
+      "diagnosis": {
+        "id": "B09",
+        "identity": "Saul Leiter The Centennial Retrospective 日文青幻舎版 / ISBN9784861529214",
+        "source_ids": [
+          "CN-search",
+          "CN-aggregate",
+          "B09-aggregate-detail",
+          "B09-old"
+        ],
+        "decision": "研究线索，尚未证实合格：本轮未取得目标日文版的可信大陆P或完整K，不能形成采购建议。",
+        "reasons": [
+          "大陆侧仅第三方聚合：133.12元Centennial为多册选拍且英文标题，不能取套餐最低价配日文版；无目标ISBN9784861529214的近期成交或有效买方报价，标题/销量/价格可能跨选项且统计窗口未核。",
+          "聚合详情指向善本图书天猫预售英文原版（420.57元优惠/528元在售，称月销11），但未取得天猫原始同规格商品页，无成交事件/买家/规格分母，优惠含金币及券条件非人人可执行价，不构成目标日文版P。",
+          "当当699CNY为2026-09-26历史挂牌，同ISBN但装帧冲突未解，9/27刷新失败本轮未重试；日本青幻舎历史9680JPY含税为历史价，均不标今价、非成交。"
+        ],
+        "missing_fields": [
+          "大陆同规格（日文青幻舎版ISBN9784861529214）近期可复核成交或有效买方报价（可信P）",
+          "日本当前可读在售入口、报价及按拟买数量的可得性",
+          "跨境完整成本K：运费、税费、汇损等均未核",
+          "目标日文版历史国内挂牌装帧冲突、当前同版低价竞争与交付条件；英文版聚合统计只保留为异版线索"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      }
+    }
+  ],
+  "source_requests": {
+    "query_count": 15,
+    "queries": [
+      "\"9784861528903\" 价格 孔夫子",
+      "\"9784861529214\" 价格",
+      "森山大道 \"记录62\" 购买",
+      "\"HYSTERIC\" \"MY STRAWBERRY\" 袜子",
+      "\"9784861528903\" [domains:kongfz.com,dangdang.com,jd.com]",
+      "\"9784861529214\" [domains:kongfz.com,dangdang.com,jd.com]",
+      "\"森山大道\" \"62\" 摄影集 价格",
+      "\"Hysteric Glamour\" \"袜\" \"三丽鸥\"",
+      "\"未曾见过的\" \"莱特\" 价格",
+      "\"索尔莱特\" \"百年\" 画册 价格",
+      "\"森山大道\" \"62\" site:kongfz.com",
+      "\"9784861528903\" 当当 京东",
+      "\"MY STRAWBERRY柄\" \"ソックス\" \"0126\"",
+      "\"The Unseen Saul Leiter\" site:product.dangdang.com",
+      "\"The Centennial Retrospective\" site:product.dangdang.com"
+    ],
+    "web_open_urls": [
+      "https://www.jd.com/sptopic/98559eb9d45c350bdf65.html",
+      "https://www.shashasha.co/jp/book/record-no-62"
+    ],
+    "ordinary_get_ids": [
+      "atelier",
+      "hooos",
+      "tsite62",
+      "yahoo62",
+      "atelier-decoded",
+      "hooos-detail"
+    ],
+    "total_requests": 23,
+    "collection_window_utc": "2026-09-29T05:04:42Z to 2026-09-29T05:07:32Z",
+    "note": "Queries count as conservative source requests; cache snippets not real-time and not independent sources. Failed404 and decoding repair GET both counted. No further market requests planned."
+  },
+  "smallgoods": {
+    "target": "G10",
+    "result": "3个新检索未取得准确袜款新证据；4月旧新闻及异类T恤不作新增；未派重复CC包",
+    "no_increment_runs_before": 1,
+    "no_increment_runs_after": 2
+  },
+  "execution": {
+    "packages": [
+      {
+        "task_id": "jp-spread-20260929-1300-record62-a1",
+        "raw_status": "verifying",
+        "adoption": "accepted_with_changes",
+        "input_sha256": "8273f89e86ea85e773bd0b837cd669622624727eb5485ad0256221584a645b0a",
+        "normalized_input_sha256": "a3d8352c28da11e4a59979b8c77eb29ebd0c5ba1e12350ed39f4872165b837ef",
+        "attempt_count": 1,
+        "quality_correction_count": 0
+      },
+      {
+        "task_id": "jp-spread-20260929-1300-leiter-a1",
+        "raw_status": "verifying",
+        "adoption": "accepted_with_changes",
+        "input_sha256": "06b719a2c9a2f3442ba4d4a77cce4a35cb7aae8cf413690b1e9479be9e8c325e",
+        "normalized_input_sha256": "a88ad0cc8e0771d4ace18333e340dbf112f2bc39b276c35bb0d7216f1118b49b",
+        "attempt_count": 1,
+        "quality_correction_count": 0
+      }
+    ],
+    "observed_model": "doubao-seed-evolving",
+    "thinking_requested": true,
+    "effort_requested": "high",
+    "peak_parallel": 2,
+    "actual_calls": 2,
+    "native_usage": {
+      "input_tokens": 26131,
+      "cache_read_input_tokens": 82280,
+      "output_tokens": 12445
+    },
+    "new_unknown": 0,
+    "extra_paid_cny": 0,
+    "semantic_changes": [
+      [
+        "删除missing_fields残留的ISBN书目信息硬门槛；保留独立期号等身份。",
+        "单本3800JPY仅条件算术小计；不用锁价锁货作为研究前置条件。"
+      ],
+      [
+        "把不可买不可卖/不立项改为尚未证实合格，避免把样本缺证据概括成市场不存在。",
+        "将聚合平台报价明确归属第三方；缺ISBN只算未确认，不直接断言异版；英文多册统计不新增为目标日文版的强制验收项。"
+      ]
+    ]
+  },
+  "limitations": [
+    "P/K均未齐备，18个财务输出全部null；0合格不代表零销量。",
+    "50%口径未确认，需全成本ROI与销售净利率双口径核验，不用挂牌代替P。",
+    "只观察公开页面及索引；聚合或搜索缓存不是原始实时平台数据；未进入结算，未确认酒店或店取。",
+    "正式货号缺失不凭品牌相似补齐；两个英文版本仅身份排除线索，未扩展采购范围。"
+  ]
+}
