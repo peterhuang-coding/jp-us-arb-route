@@ -1,0 +1,233 @@
+{
+  "run_id": "SPREAD-20261008-0500",
+  "observation_date": "2026-10-08 Asia/Shanghai",
+  "status": "partial_delivery_time_budget_reached",
+  "records": [
+    {
+      "evidence": {
+        "id": "HG-01261QG13",
+        "identity": "HYSTERIC GLAMOUR 聚合标题红眼熊猫发帽，声称款号01261QG13；正式身份、配色/尺码/件数/品相未核，非准确SKU已匹配",
+        "sources": [
+          {
+            "source_id": "hat-cn-cache",
+            "url": "https://tao.hooos.com/search?w=Hysteric",
+            "observed_at": "2026-10-07T21:14:17Z",
+            "access_method": "web_search_cached",
+            "event_time": null,
+            "facts": [
+              "搜索缓存标约一周，标题声称01261QG13红眼熊猫发帽，363.85元、划线576、销量2，卖家标签天猫国际探物日本。原天猫商品链接、统计时间/口径、配色尺码未得；不是当前有效报价或可复核成交。"
+            ],
+            "price_type": "aggregator_cached_ask",
+            "price": 363.85,
+            "currency": "CNY",
+            "tax_included": null,
+            "seller_dedup_key": "unverified-tmall-tanwu-japan"
+          },
+          {
+            "source_id": "hat-cn-current",
+            "url": "https://tao.hooos.com/search?w=Hysteric",
+            "observed_at": "2026-10-07T21:14:32.421605+00:00",
+            "access_method": "ordinary_public_GET",
+            "event_time": null,
+            "facts": [
+              "当前普通GET HTTP200，但保存正文未出现01261QG13；web打开与搜索缓存商品列表不同。不能从本页缺席断言全平台下架或没销量。"
+            ]
+          },
+          {
+            "source_id": "hat-jp-discovery",
+            "url": "https://www.hystericglamour.jp/",
+            "observed_at": "2026-10-07T21:14:17Z",
+            "access_method": "search_query_only",
+            "event_time": null,
+            "facts": [
+              "本轮对准确款号及hystericglamour.jp、zozo.jp的索引检索未找到原始匹配详情页；这是有限检索未命中，不是日本无货。URL仅为检索域名，不是已访问商品详情。"
+            ]
+          }
+        ]
+      },
+      "diagnosis": {
+        "id": "HG-01261QG13",
+        "identity": "HYSTERIC GLAMOUR 聚合标题红眼熊猫发帽，声称款号01261QG13；正式SKU、配色/尺码/件数/品相均未核实，未与准确SKU匹配",
+        "source_ids": [
+          "hat-cn-cache",
+          "hat-cn-current",
+          "hat-jp-discovery"
+        ],
+        "decision": "不确定：不确认同款、不确认大陆可售价格与日本可履约货源，六财务字段全null",
+        "reasons": [
+          "hat-cn-cache 仅为约一周搜索缓存的聚合挂牌363.85元（划线576、销量2），无原天猫链接、统计口径与配色尺码，既非当前有效买方报价，也非近30天可复核同规格成交，不能支持可信P。",
+          "hat-cn-current 当前GET虽HTTP200，但保存正文未出现01261QG13，与缓存列表不同；页面缺席不能反推全平台下架或零销量。",
+          "hat-jp-discovery 对准确款号及hystericglamour.jp、zozo.jp的有限索引检索未命中详情页，URL仅为检索域名而非已访问商品页，不构成日本有货或可履约证据。",
+          "身份未确定（声称款号未经官方SKU核实），日本采购、税费、国际段运输等完整K亦无任何来源，故不凑同款、不估算件数与收益。"
+        ],
+        "missing_fields": [
+          "可信大陆销售金额P（有效买方报价或近30天可复核同规格成交）",
+          "可独立核验的商品身份、配色、尺码、件数与品相（正式款号若已分配则核对）",
+          "完整K：货款、汇兑支付、日本邮费、分摊跨境运输、适用税费、平台费、国内寄件包装及分开列示的售后准备，未知不填零",
+          "日本可履约货源与可交付库存"
+        ],
+        "credible_sale_amount": null,
+        "complete_cost": null,
+        "net_profit": null,
+        "full_cost_roi": null,
+        "sales_margin": null,
+        "max_buy_price": null
+      }
+    },
+    {
+      "evidence": {
+        "id": "SUP-HANES-4P-WHITE-M",
+        "identity": "Supreme x Hanes Boxer Briefs 4 Pack / White / US M，拟研究原装未拆4条；官方跨季版本编码未核，不按用户自用尺码假定",
+        "sources": [
+          {
+            "source_id": "sup-cn-jd-cache",
+            "url": "https://www.jd.com/jiage/171368ac3dae0df73025.html",
+            "observed_at": "2026-10-07T21:14:32Z",
+            "access_method": "web_search_cached",
+            "event_time": null,
+            "facts": [
+              "搜索缓存约3个月，仅相邻UHFR标题Supreme Hanes SS24 灰色1条S，未见价格；评论0+不是销量0。与白色4条M规格不同。京东品牌/商品标题自称不证明官方授权或真伪。"
+            ]
+          },
+          {
+            "source_id": "sup-cn-jd-current",
+            "url": "https://www.jd.com/jiage/171368ac3dae0df73025.html",
+            "observed_at": "2026-10-07T22:01:38.663457+00:00",
+            "access_method": "ordinary_public_GET",
+            "event_time": null,
+            "facts": [
+              "普通GET HTTP200，当前保存页不含Boxer，不能复现缓存目标；未取得可用大陆同规格报价或成交。"
+            ]
+          },
+          {
+            "source_id": "sup-jp-bring",
+            "url": "https://store.shopping.yahoo.co.jp/shopbring/1026f180017.html",
+            "observed_at": "2026-10-07T22:02:12.259489+00:00",
+            "access_method": "ordinary_public_GET",
+            "event_time": null,
+            "facts": [
+              "当前商品标题White/M/4点，9091JPY，东京运费600；正文在庫なし，发货日期未知。商品号1026F180017是店家库存号，不宣称品牌正式款号。JSON-LD写NewCondition，但未核实际未拆包装；9,691只是不可买条目的日本金额合计，非K。渋谷ANNEX店名不代表可店取。"
+            ],
+            "price_type": "unavailable_seller_ask",
+            "price": 9091,
+            "currency": "JPY",
+            "tax_included": null,
+            "seller_dedup_key": "bring"
+          },
+          {
+            "source_id": "sup-jp-loveletters",
+            "url": "https://store.shopping.yahoo.co.jp/loveletters/supreme-hanes-bp.html",
+            "observed_at": "2026-10-07T22:02:12.340763+00:00",
+            "access_method": "ordinary_public_GET",
+            "event_time": null,
+            "facts": [
+              "当前12800JPY，页面标全国一律免运并有条件提示，店家描述新品未开封4条、White/Black、S/M/L/XL可选；JSON-LD总商品InStock不能证明White/M组合库存。正式品牌款号与税口径未明确，SUPREME-HANES-BP是店家商品code。",
+              "材质cotton100%；商家称客户原因不退，并称未开封无法检查内部、包装瑕疵或腰带logo缝接不作不良；这是商家声明，不推广为法律结论。当前可交付日期及未来日本收货路径未知，旧旅期已结束不假定仍可携回。日本站评论非大陆需求，不能从评论时间推断今日成交价。"
+            ],
+            "price_type": "seller_ask_variant_availability_unverified",
+            "price": 12800,
+            "currency": "JPY",
+            "tax_included": null,
+            "seller_dedup_key": "loveletters"
+          }
+        ]
+      },
+      "diagnosis": null,
+      "diagnosis_status": "cc_unknown_quarantined; no model diagnosis adopted"
+    }
+  ],
+  "source_requests": {
+    "run_id": "SPREAD-20261008-0500",
+    "search_queries": 22,
+    "web_open": 2,
+    "ordinary_get": 4,
+    "total": 28,
+    "search_results_are_cached_not_live": true,
+    "books_no_new_evidence": true,
+    "no_results_is_not_zero_demand": true,
+    "queries_by_group": [
+      [
+        "site:book.kongfz.com 9784309272993",
+        "site:book.kongfz.com 9784309922263",
+        "WMGP-BR10 中国 价格",
+        "UC2F1P94 中国 价格"
+      ],
+      [
+        "新世紀SM画報 求购 [douban,weibo,xiaohongshu]",
+        "丸尾画報DXI改 价格 [kongfz,taobao,jd,dangdang]",
+        "WACKO MARIA 内裤 [goofish,xiaohongshu,taobao,dewu]",
+        "UNDERCOVER UC2F1P94 [goofish,taobao,dewu,jd]"
+      ],
+      [
+        "site:book.kongfz.com 丸尾 画集",
+        "site:book.kongfz.com 空山基 画集",
+        "HYSTERIC 01261QG13 价格",
+        "Supreme Hanes 四条 价格"
+      ],
+      [
+        "01261QG13 site:hystericglamour.jp",
+        "01261QG13 site:zozo.jp",
+        "01261QG13 天猫"
+      ],
+      [
+        "01261QG13",
+        "Supreme Hanes 内裤 价格 [smzdm,jd,dewu]",
+        "丸尾画报 孔夫子 价格",
+        "空山基 画集 元 [kongfz,dangdang]"
+      ],
+      [
+        "site:jp.supreme.com Hanes Boxer Briefs White",
+        "site:zozo.jp 01261QG13 RED"
+      ],
+      [
+        "Supreme Hanes ボクサーブリーフ 4枚組 白 ホワイト M 価格"
+      ]
+    ],
+    "no_business_catchup": "01:00 interrupted before business; 05:00 is distinct slot",
+    "cc_packages": [
+      "hat",
+      "supreme"
+    ],
+    "cc_scope_note": "Two independent new smallgoods evidence packets. Books and unchanged S1/S2 not dispatched."
+  },
+  "execution": {
+    "run_id": "SPREAD-20261008-0500",
+    "checked_at": "2026-10-07T22:54:30.764028+00:00",
+    "package_checks": [
+      {
+        "task_id": "jp-spread-20261008-0500-hat-a1",
+        "raw_status": "verifying",
+        "input_hashes_pass": true,
+        "no_disallowed_changes": true,
+        "receipt_sha256": "48a5eb5e6efa0ab0daa32157ed55e7d537c72a90ff49f9045a514ddb584c2ece"
+      },
+      {
+        "task_id": "jp-spread-20261008-0500-supreme-a1",
+        "raw_status": "unknown",
+        "input_hashes_pass": true,
+        "no_disallowed_changes": true,
+        "receipt_sha256": "0389b278ffb89ccd8829ac868851a3394e41df5440adae2de50f60f44ef0a500"
+      }
+    ],
+    "adopted_packages": 1,
+    "unknown_packages": 1,
+    "actual_calls": 2,
+    "peak_parallel": 2,
+    "correction_calls": 0,
+    "native_usage": {
+      "input_tokens": 10924,
+      "cache_read_input_tokens": 29008,
+      "output_tokens": 3281
+    },
+    "raw_outcomes": {
+      "hat": "verifying/completed",
+      "supreme": "unknown; Request timed out; no business output files"
+    },
+    "deadline_note": "Both started 22:03:54Z before 22:11:52Z cutoff; receipts finished 22:35:40Z/22:36:42Z after cutoff despite elapsed_seconds 57.699/118.814. Cause unverified. After collection only validation/save/sync; no new market or model calls.",
+    "qualified_candidates": 0,
+    "notification": "DONT_NOTIFY",
+    "stop_reason": "time budget reached; collected existing results only"
+  },
+  "qualified_candidates": 0,
+  "limits": "No verified mainland P or full K; no purchase recommendation. Historical Tokyo window is past; future fulfillment unknown."
+}
