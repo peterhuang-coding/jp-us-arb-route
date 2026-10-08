@@ -1,0 +1,97 @@
+{
+  "run_id": "SPREAD-20261008-1700",
+  "triggered_at": "2026-10-08T09:01:58.079Z",
+  "local_slot": "2026-10-08T17:00:00+08:00",
+  "deadline_utc": "2026-10-08T10:01:58.079Z",
+  "scope": "Japan purchase to Mainland China resale; art books and streetwear smallgoods only",
+  "notion_gate": {
+    "project_page_read": true,
+    "database_fetched": true,
+    "view_url": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "view_pagination_complete": true,
+    "cards": {"R1": "待选方向", "R2": "待选方向", "R3": "待选方向", "R4": "待选方向", "R5": "待选方向"},
+    "new_decision": false
+  },
+  "preflight_correction": {
+    "previous_run": "SPREAD-20261008-1300",
+    "issue": "Hub parent-validation.json labelled S01 package accepted despite raw blocked / observability partial.",
+    "correction": "Changed status to partial_adopted while preserving artifact_validation=passed and business_evidence_status=incomplete_material_missing.",
+    "this_was_0900_review_slot": false
+  },
+  "source_requests": {
+    "total": 10,
+    "search_queries": 8,
+    "page_opens": 2,
+    "ordinary_get": 0,
+    "observed_window_utc": ["2026-10-08T09:03:29Z", "2026-10-08T09:06:44Z"],
+    "exact_per_page_access_times": null,
+    "timestamp_correction": "Handoff initially stated 09:02Z without support. Canonical evidence uses the bounded call-sequence window; submitted input hashes remain archived separately."
+  },
+  "records": [
+    {
+      "id": "B01",
+      "identity": "新世纪SM画报 / Japanese edition / ISBN 9784309272993",
+      "decision": "research_only",
+      "new_source": {
+        "source_id": "B01-HANMOTO",
+        "url": "https://www.hanmoto.com/bd/isbn/9784309272993",
+        "facts": "Kawade Shobo Shinsha; first published 2012-01; 127 pages; height 310mm; page price missing; publisher stock unknown; record last updated 2016-08-19.",
+        "type": "bibliographic identity metadata; not a current offer"
+      },
+      "prior_mainland_search": "One bounded exact-ISBN/title index search did not surface a same-product result; does not imply zero demand.",
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "qualified": false
+    },
+    {
+      "id": "S01",
+      "identity": "HYSTERIC GLAMOUR MEN SPEEDSTER boxer brief / exact style 02251CU01 / orange / free-size label",
+      "decision": "research_lead",
+      "new_source": {
+        "source_id": "S01-JP-MERCARI-SHOPS",
+        "url": "https://jp.mercari.com/shops/product/2JQbPLHb7cGxjwurWbMoxd",
+        "facts": "JPY 2,700 seller-paid shipping, page UI sold out, description about three months old, no transaction receipt or realized amount, Fukuoka ship-from region.",
+        "type": "stale seller ask and sold-out listing state; not a sale"
+      },
+      "dedupe": "Multiple cached search snippets with management number 809-2079 are the same seller/item; one source only.",
+      "comparison_limit": "Do not compare the stale 2,700 JPY Mercari ask directly against the roughly one-month-old 7,700 JPY ZOZO index as a current spread.",
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "qualified": false
+    }
+  ],
+  "qualified_candidates": 0,
+  "financial_null_field_count": 12,
+  "package_wave": {
+    "count": 2,
+    "peak_parallel": 2,
+    "waves": 1,
+    "extra_paid_cny": 0,
+    "requested_model": "doubao-seed-evolving",
+    "requested_thinking": true,
+    "requested_effort": "high",
+    "requested_max_turns": 8,
+    "requested_timeout_seconds": 300,
+    "native_usage": {"input_tokens": 17321, "cache_read_input_tokens": 45504, "output_tokens": 10707, "thinking_tokens": 0},
+    "client_cost_estimate_usd": 0.377032,
+    "client_cost_estimate_is_invoice": false,
+    "results": [
+      {"task_id": "jp-spread-20261008-1700-books-a1", "status": "partial_adopted", "raw_status": "blocked", "observed_models": ["doubao-seed-evolving", "<synthetic>"], "failure_type": "call_exception", "parent_validator": "python3 validate.py passed for returned JSON", "limitations": ["returncode 1 and is_error true", "no brief.md or handoff-result.json", "do not claim successful Coding Plan completion"]},
+      {"task_id": "jp-spread-20261008-1700-smallgoods-a1", "status": "partial_adopted", "raw_status": "verifying", "observed_models": ["doubao-seed-evolving"], "reported_num_turns": 9, "failure_type": "other", "parent_validator": "python3 validate.py passed", "limitations": ["reported 9 turns exceeds requested max 8; partial result only"]}
+    ],
+    "new_unknown": 0,
+    "prior_unknowns_replayed": false
+  },
+  "lane_counters": {"artbooks": 0, "smallgoods": 0},
+  "market_requests_by_cc": 0,
+  "development_or_purchase": false,
+  "notification": "DONT_NOTIFY"
+}
