@@ -1,0 +1,200 @@
+{
+  "run_id": "SPREAD-20261009-0100",
+  "triggered_at": "2026-10-08T17:01:38.762Z",
+  "local_slot": "2026-10-09T01:00:00+08:00",
+  "started_at": "2026-10-08T17:04:11Z",
+  "finished_at": "2026-10-08T17:09:03Z",
+  "deadline_utc": "2026-10-08T18:01:38.762Z",
+  "status": "completed_with_partial_delivery",
+  "notion_gate": "Database and complete saved view read; R1-R5 pending, no new direction.",
+  "branch": "pm-loop/20260726-103909-jp-us-arb-route-55490",
+  "base_head": "33bb6ea2b3a583a10ed8e248c7ca795676c9c158",
+  "selected_targets": [
+    "B03-SORAYAMA-9784309923093",
+    "G03-WACKO-WMGP-BR11-BEIGE"
+  ],
+  "source_requests": 34,
+  "source_request_counts": {
+    "public_search_queries": 24,
+    "page_opens": 10,
+    "downstream_web_requests": 0,
+    "total": 34
+  },
+  "source_observation_window_utc": "2026-10-08T17:02Z to 17:05Z; exact per-page access time unavailable",
+  "qualified_candidates": 0,
+  "extra_paid_spend_cny": 0,
+  "wave_count": 1,
+  "requested_parallel": 2,
+  "peak_parallel": 2,
+  "actual_calls": 2,
+  "new_unknown": 0,
+  "downstream_correction_calls": 0,
+  "business_stopped": true,
+  "stop_reason": "Two novel exact-SKU leads diagnosed; neither has Mainland P, complete K and executable fulfillment. No further wave.",
+  "packages": [
+    {
+      "task_id": "jp-spread-20261009-0100-books-a1",
+      "logical_task_id": "spread-20261009-0100-books",
+      "lane": "artbooks",
+      "candidate": "B03-SORAYAMA-9784309923093",
+      "status": "accepted",
+      "runner_result_status": "completed",
+      "observed_model": "doubao-seed-evolving",
+      "requested_thinking_enabled": true,
+      "requested_effort": "high",
+      "timeout_seconds": 300,
+      "max_turns": 8,
+      "elapsed_seconds": 217.33,
+      "native_usage": {
+        "input_tokens": 16854,
+        "cache_read_input_tokens": 57480,
+        "output_tokens": 11279,
+        "thinking_tokens": 0
+      },
+      "parent_test": {
+        "command": "python3 validate.py",
+        "exit_code": 0
+      },
+      "observability": "accepted"
+    },
+    {
+      "task_id": "jp-spread-20261009-0100-smallgoods-a1",
+      "logical_task_id": "spread-20261009-0100-smallgoods",
+      "lane": "smallgoods",
+      "candidate": "G03-WACKO-WMGP-BR11-BEIGE",
+      "status": "accepted",
+      "runner_result_status": "completed",
+      "observed_model": "doubao-seed-evolving",
+      "requested_thinking_enabled": true,
+      "requested_effort": "high",
+      "timeout_seconds": 300,
+      "max_turns": 8,
+      "elapsed_seconds": 89.156,
+      "native_usage": {
+        "input_tokens": 9596,
+        "cache_read_input_tokens": 25624,
+        "output_tokens": 5020,
+        "thinking_tokens": 0
+      },
+      "parent_test": {
+        "command": "python3 validate.py",
+        "exit_code": 0
+      },
+      "observability": "accepted"
+    }
+  ],
+  "native_usage_total": {
+    "input_tokens": 26450,
+    "cache_read_input_tokens": 83104,
+    "output_tokens": 16299,
+    "thinking_tokens": 0
+  },
+  "lane_counters": {
+    "artbooks": {
+      "status": "ready",
+      "no_increment_runs": 0,
+      "last_checked_run": "SPREAD-20261009-0100",
+      "last_increment_run": "SPREAD-20261009-0100",
+      "increment_reason": "New exact ISBN lead and edition/language conflict; Mainland P remains unknown."
+    },
+    "smallgoods": {
+      "status": "ready",
+      "no_increment_runs": 0,
+      "last_checked_run": "SPREAD-20261009-0100",
+      "last_increment_run": "SPREAD-20261009-0100",
+      "increment_reason": "New exact style-code lead with two Japan listing states compared; Mainland P remains unknown."
+    }
+  },
+  "records": [
+    {
+      "candidate_id": "B03-SORAYAMA-9784309923093",
+      "identity": "Hajime Sorayama, SORAYAMA THE GYNOIDS SUBLIME, ISBN 9784309923093",
+      "sources": [
+        {
+          "url": "https://www.kawade.co.jp/np/isbn/9784309923093/",
+          "market": "Japan",
+          "type": "publisher identity/list price/availability",
+          "facts": "B4, 130 pages, release 2026-06-19, list price JPY 5,500, about three weeks ordering lead; not live stock/checkout."
+        },
+        {
+          "url": "https://www.hanmoto.com/bd/isbn/9784309923093",
+          "market": "Japan",
+          "type": "bibliographic mirror",
+          "facts": "Same ISBN/title; 365x258x12mm and 930g reported by this single mirror."
+        },
+        {
+          "url": "https://tower.jp/item/7969211",
+          "market": "Japan",
+          "type": "retailer listing via stale search result",
+          "facts": "Search excerpt about three months old reports JPY 5,500/in stock; not current executable supply."
+        },
+        {
+          "url": "https://sorayama2026.jp/goods/",
+          "market": "Japan",
+          "type": "official exhibition catalog page",
+          "facts": "JPY 4,600, B4/130 pages, English main text plus Japanese booklet; ISBN not shown, identity with target ISBN unresolved."
+        },
+        {
+          "url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=europe",
+          "market": "International future distribution",
+          "type": "publisher/distributor page",
+          "facts": "Same ISBN listed for English edition with UK release 2027-08-01 at GBP 70; edition/language relation to Japanese publisher record unresolved."
+        }
+      ],
+      "mainland_demand": "unknown",
+      "mainland_search_coverage": "Bounded exact ISBN/title indexed searches; no verified same-ISBN transaction, valid buyer offer or listing surfaced; search absence is not zero demand.",
+      "credible_mainland_P": null,
+      "complete_cost_K": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "fulfillment": null,
+      "status": "research_only",
+      "qualified": false
+    },
+    {
+      "candidate_id": "G03-WACKO-WMGP-BR11-BEIGE",
+      "identity": "WACKO MARIA LEOPARD BOXER BRIEFS TYPE-1, WMGP-BR11, beige; target size not selected",
+      "sources": [
+        {
+          "url": "https://store.jb-voice.co.jp/products/wacko-maria-leopard-boxer-briefs-type1-wmgp-br11",
+          "market": "Japan",
+          "type": "retailer exact-style listing",
+          "facts": "WMGP-BR11; beige; JPY 8,800; M/L/XL selector; crawl about one month old, current purchasability unconfirmed."
+        },
+        {
+          "url": "https://www.roots83.com/products/leopard-boxer-briefs-type-1",
+          "market": "Japan",
+          "type": "retailer exact-style listing",
+          "facts": "WMGP-BR11; beige; JPY 8,800 tax included; page says sold out."
+        },
+        {
+          "url": "https://ncnr.jp/products/leopard-boxer-briefs",
+          "market": "Japan",
+          "type": "similar unverified listing excluded",
+          "facts": "Similar name/material/color/price but page does not show WMGP-BR11; not accepted as exact-style supply."
+        }
+      ],
+      "mainland_demand": "unknown",
+      "mainland_search_coverage": "Bounded exact code/product-name indexed searches; no verified Mainland exact-code sale, valid buyer offer, or listing surfaced; incomplete coverage does not prove zero demand.",
+      "credible_mainland_P": null,
+      "complete_cost_K": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "fulfillment": null,
+      "status": "research_only",
+      "qualified": false
+    }
+  ],
+  "unknowns_checked": [
+    "jp-bilateral-20260927-synthesis-a1",
+    "jp-source-workflow-20260927-sources-a1",
+    "jp-continuous-loop-20260927-review-a1",
+    "jp-spread-scale-20260927-diagnosis-3-a1",
+    "jp-spread-20261008-0500-supreme-a1"
+  ],
+  "notification": "NOTIFY: user explicitly requested new SKU search; new leads delivered, neither qualifies as a purchase."
+}
