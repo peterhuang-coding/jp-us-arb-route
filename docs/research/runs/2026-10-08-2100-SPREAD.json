@@ -1,0 +1,73 @@
+{
+  "run_id": "SPREAD-20261008-2100",
+  "triggered_at": "2026-10-08T13:00:58.917Z",
+  "local_slot": "2026-10-08T21:00:00+08:00",
+  "deadline_utc": "2026-10-08T14:00:58.917Z",
+  "scope": "Japan purchase to Mainland China resale; art books/photo books and streetwear smallgoods only",
+  "notion_gate": {
+    "project_page_last_edited_at": "2026-10-08T09:14:17.883Z",
+    "database_fetched": true,
+    "saved_view": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "pagination_complete": true,
+    "card_states": {"R1":"待选方向","R2":"待选方向","R3":"待选方向","R4":"待选方向","R5":"待选方向"},
+    "new_decision": false
+  },
+  "source_requests": {
+    "conservative_total": 33,
+    "within_limit_40": true,
+    "breakdown": {"previous_search_open_and_inaccessible":19,"this_slot_opens":7,"this_slot_find_calls":7},
+    "source_sequence_window_utc": ["2026-10-08T13:02:21Z","2026-10-08T13:06:59Z"],
+    "exact_per_page_times": null
+  },
+  "records": [
+    {
+      "id":"B02",
+      "identity":"丸尾画報ＤＸⅠ改 / ISBN 9784309922263 / 2021 edition",
+      "japan_evidence":[
+        {"source_id":"B02-HANMOTO","url":"https://www.hanmoto.com/bd/isbn/9784309922263","type":"bibliographic metadata and list price","observed_facts":"B5, 232 pages, 620g, JPY 4,400 incl tax, 2021-05-25 edition; record updated 2025-04-05; not an offer or stock confirmation."},
+        {"source_id":"B02-RAKUTEN","url":"https://books.rakuten.co.jp/rb/16685031/","type":"retailer availability statement","observed_facts":"Exact ISBN; cannot currently be ordered on page; source crawl about one month old, not real-time inventory."}
+      ],
+      "mainland_search":"Bounded exact-ISBN search did not find independently verifiable same-product Mainland listing/transaction; not evidence of zero demand.",
+      "credible_mainland_P_cny":null,"complete_cost_K_cny":null,"net_profit_cny":null,"full_cost_roi":null,"sales_margin":null,"max_buy_price_cny":null,
+      "decision":"not_qualified","qualified":false
+    },
+    {
+      "id":"SAEKI-YUMENOZOKI",
+      "identity":"佐伯俊男《夢覘》 / ISBN 9784336057662 / 2014 Japanese edition",
+      "japan_evidence":[
+        {"source_id":"SAEKI-PUBLISHER","url":"https://www.kokusho.co.jp/np/isbn/9784336057662/","type":"publisher catalog/list price/availability","observed_facts":"2014-05-23; B5 variant; 224p; JPY 6,380 incl tax; sold out, reprint undecided."},
+        {"source_id":"SAEKI-MERCARI-ACTIVE","url":"https://jp.mercari.com/item/m74669499488","type":"seller ask","observed_facts":"JPY 22,700 incl seller shipping; exact ISBN shown; visibly scratched/dirty; description says mid-September shipping although page had recent activity marker; fulfillment conflict; ask not sale."},
+        {"source_id":"SAEKI-MERCARI-SOLD","url":"https://jp.mercari.com/item/m75027058305","type":"sold-out listing ask","observed_facts":"JPY 19,200 incl shipping; listing about 3 months old; ISBN not shown; edition unverified; not a realized transaction amount."}
+      ],
+      "mainland_search":"Bounded exact-ISBN search found no independently verifiable Mainland same-edition listing or transaction; not evidence of zero demand.",
+      "credible_mainland_P_cny":null,"complete_cost_K_cny":null,"net_profit_cny":null,"full_cost_roi":null,"sales_margin":null,"max_buy_price_cny":null,
+      "decision":"research_lead","qualified":false
+    },
+    {
+      "id":"S01",
+      "identity":"HYSTERIC GLAMOUR SPEEDSTER boxer brief / style 02251CU01",
+      "cross_market_evidence":[
+        {"source_id":"S01-MERCARI-SHOPS-OLD","market":"Japan","url":"https://jp.mercari.com/shops/product/2JQbPLHb7cGxjwurWbMoxd","type":"old seller ask + sold-out state","observed_facts":"JPY 2,700 seller-paid shipping; about 3 months old; sold out; no transaction receipt."},
+        {"source_id":"S01-KREAM-KR","market":"South Korea, not Mainland China","url":"https://kream.co.kr/products/416991","type":"historical trades + current seller ask","observed_facts":"Exact style, black, ONE SIZE; trades 108,000 KRW on 2026-07-14, 95,000 KRW on 2026-02-19, 100,000 KRW on 2025-10-21; 112,000 KRW ask. Latest trade >30 days old and not Mainland P."},
+        {"source_id":"S01-GREYBIRD-US","market":"United States, not Japan or Mainland China","url":"https://www.greybird.store/products/speedster-boxer-briefs","type":"retail listing/add-to-cart UI","observed_facts":"Style 02251CU01; colors Orange/Green/Black, FREE; USD 82 retail ask; destination policy not verified; not Japan cost or Mainland P."}
+      ],
+      "mainland_search":"Bounded exact-style query surfaced non-Mainland evidence only; no verifiable Mainland same-spec P. Not evidence of zero demand.",
+      "credible_mainland_P_cny":null,"complete_cost_K_cny":null,"net_profit_cny":null,"full_cost_roi":null,"sales_margin":null,"max_buy_price_cny":null,
+      "decision":"not_qualified","qualified":false
+    }
+  ],
+  "qualified_candidates":0,
+  "financial_null_fields":18,
+  "packages": {
+    "wave_count":1,"package_count":2,"peak_parallel":2,"paid_budget_cny":0,
+    "requested_model":"doubao-seed-evolving","requested_thinking_enabled":true,"requested_effort":"high","requested_timeout_seconds":300,"requested_max_turns":8,
+    "results":[
+      {"task_id":"jp-spread-20261008-2100-books-a1","runner_status":"invalid_output","runner_blocker":"handoff-result.changed_files included handoff-result.json itself","stderr_warning":"claude-code:unrecognized_model SDK warning; cause not verified","actual_model":"doubao-seed-evolving","cc_outcome":"completed","parent_validation":"python3 validate.py passed","adoption":"partial_adopted","semantic_correction":"corrected a duplicated digit in the sold Mercari URL from the CC output; canonical input URL retained"},
+      {"task_id":"jp-spread-20261008-2100-smallgoods-a1","runner_status":"invalid_output","runner_blocker":"handoff-result.changed_files included handoff-result.json itself","stderr_warning":"claude-code:unrecognized_model SDK warning; cause not verified","actual_model":"doubao-seed-evolving","cc_outcome":"completed","parent_validation":"python3 validate.py passed","adoption":"partial_adopted"}
+    ],
+    "native_usage":{"books":{"input_tokens":16582,"cache_read_input_tokens":59216,"output_tokens":11675},"smallgoods":{"input_tokens":16784,"cache_read_input_tokens":50000,"output_tokens":11470}},
+    "new_unknown":0,"retries":0,"additional_waves":0,"business_stopped":true
+  },
+  "no_increment_counts":{"artbooks":0,"smallgoods":0},
+  "next":"Only reconsider candidates after acquiring current Japan orderable supply, Mainland credible same-spec P, complete K and executable fulfillment. Do not infer zero demand from bounded search misses."
+}
