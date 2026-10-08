@@ -1,0 +1,284 @@
+{
+  "review_id": "REVIEW-20261008-0900",
+  "checked_at": "2026-10-08T01:06:22.994203+00:00",
+  "findings_finished_at": "2026-10-08T01:08:04.643811+00:00",
+  "runs": [
+    {
+      "run_id": "SPREAD-20260929-1300",
+      "commit": "c5fe86855ff88ceacb12abf4bc3c5816583c7f7f",
+      "diagnosis_observations": 3,
+      "source_requests": 23,
+      "financial_null_fields": 18,
+      "qualified": 0
+    },
+    {
+      "run_id": "SPREAD-20260929-1700",
+      "commit": "eec06851365242638b8678505a154073c91381db",
+      "diagnosis_observations": 4,
+      "source_requests": 18,
+      "financial_null_fields": 24,
+      "qualified": 0
+    },
+    {
+      "run_id": "SPREAD-20261008-0500",
+      "commit": "c26b962589ca4f36079adc49b2c6210bf5edf769",
+      "diagnosis_observations": 1,
+      "source_requests": 28,
+      "financial_null_fields": 6,
+      "qualified": 0
+    }
+  ],
+  "metrics": {
+    "research_runs": 3,
+    "diagnosis_observations": 8,
+    "financial_null_fields": 48,
+    "source_sample_count": 5,
+    "source_requests_in_reviewed_runs": 69,
+    "adopted_packages": 5,
+    "unknown_packages": 1,
+    "qualified_candidates": 0,
+    "mainland_valid_sale_evidence": 0,
+    "new_market_fetches": 0,
+    "new_downstream_calls": 0,
+    "not_a_statistical_accuracy_estimate": true
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20260929-1300-record62-a1",
+      "status": "verifying",
+      "adoption": "accepted_with_changes",
+      "receipt_sha256": "5accf564e71b16828d8a4754070c41947e5d94d41db653c54e8ca25f927386ce",
+      "normalized_input_sha256": "a3d8352c28da11e4a59979b8c77eb29ebd0c5ba1e12350ed39f4872165b837ef",
+      "public_records_match_adopted": true,
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": true,
+      "adoption_evidence_hashes_pass": true
+    },
+    {
+      "task_id": "jp-spread-20260929-1300-leiter-a1",
+      "status": "verifying",
+      "adoption": "accepted_with_changes",
+      "receipt_sha256": "d003f350c882aacd292e245dd82828724b69fd123df7cbd2737c9dd98f0a7321",
+      "normalized_input_sha256": "a88ad0cc8e0771d4ace18333e340dbf112f2bc39b276c35bb0d7216f1118b49b",
+      "public_records_match_adopted": true,
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": true,
+      "adoption_evidence_hashes_pass": true
+    },
+    {
+      "task_id": "jp-spread-20260929-1700-maruo-a1",
+      "status": "verifying",
+      "adoption": "accepted_with_changes",
+      "receipt_sha256": "46f17ccab9441459209ae20c194a432e6ac6db8d943de4d1101c3d49cd514994",
+      "normalized_input_sha256": "eee8e62e58084c452003ca9293c752dbeb8f373de41788a431a0f7fdd10843df",
+      "public_records_match_adopted": true,
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": true,
+      "adoption_evidence_hashes_pass": true
+    },
+    {
+      "task_id": "jp-spread-20260929-1700-wacko-a1",
+      "status": "verifying",
+      "adoption": "accepted_with_changes",
+      "receipt_sha256": "7d77727e4e2f02d6b1b57698dd359bed5d0cf9909d79304171ae20d26dac7338",
+      "normalized_input_sha256": "546fc6eff13f4d84a8809c7bb2e92599c867661e255311cce76ea612787bee37",
+      "public_records_match_adopted": true,
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": true,
+      "adoption_evidence_hashes_pass": true
+    },
+    {
+      "task_id": "jp-spread-20261008-0500-hat-a1",
+      "status": "verifying",
+      "adoption": "accepted_with_changes",
+      "receipt_sha256": "48a5eb5e6efa0ab0daa32157ed55e7d537c72a90ff49f9045a514ddb584c2ece",
+      "normalized_input_sha256": "bc8e24a913d02555bc5dd75013bd0ddeb76d5bf7f7a38bc16d0665231d785d61",
+      "public_records_match_adopted": true,
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": true,
+      "adoption_evidence_hashes_pass": true
+    },
+    {
+      "task_id": "jp-spread-20261008-0500-supreme-a1",
+      "status": "unknown",
+      "adoption": "not_adopted",
+      "receipt_sha256": "0389b278ffb89ccd8829ac868851a3394e41df5440adae2de50f60f44ef0a500",
+      "normalized_input_sha256": "596c82698bdc5360bd2a92b18de9ea378e78fe9df70996f37e761bd5155f5fd4",
+      "public_records_match_adopted": false,
+      "observed_models": [
+        "doubao-seed-evolving",
+        "<synthetic>"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "attempt_count": 1,
+      "quality_correction_count": 0,
+      "input_hashes_pass": true,
+      "business_output_hashes_pass": null,
+      "adoption_evidence_hashes_pass": null
+    }
+  ],
+  "timing": [
+    {
+      "task_id": "jp-spread-20261008-0500-hat-a1",
+      "started_at": "2026-10-07T22:03:54.172808+00:00",
+      "finished_at": "2026-10-07T22:36:42.021053+00:00",
+      "receipt_wall_seconds": 1967.848245,
+      "runner_elapsed_seconds": 118.814,
+      "finished_after_cutoff_seconds": 1489.647053,
+      "started_before_cutoff": true,
+      "cause": "unverified"
+    },
+    {
+      "task_id": "jp-spread-20261008-0500-supreme-a1",
+      "started_at": "2026-10-07T22:03:54.172744+00:00",
+      "finished_at": "2026-10-07T22:35:40.905021+00:00",
+      "receipt_wall_seconds": 1906.732277,
+      "runner_elapsed_seconds": 57.699,
+      "finished_after_cutoff_seconds": 1428.531021,
+      "started_before_cutoff": true,
+      "cause": "unverified"
+    }
+  ],
+  "native_usage": {
+    "input_tokens": 67599,
+    "cache_read_input_tokens": 216920,
+    "output_tokens": 30386
+  },
+  "scope": "Existing material only; Thursday daily review. Non-random risk samples, no current market revalidation.",
+  "dedupe": {
+    "six_task_ids_unique": true,
+    "six_registered_normalized_fingerprints_unique": true,
+    "no_duplicate_registered_fingerprint_in_other_ledger_packages": true,
+    "inflight_business_runs": 0
+  },
+  "corrections": [
+    {
+      "source": "10/8 receipts",
+      "rule": "Check wall deadline before dispatch and on recovery; elapsed_seconds is not wall deadline guarantee; cause unknown, no implementation authorized."
+    },
+    {
+      "source": "historical trip fulfillment constraints",
+      "rule": "The original Tokyo October2-7 window has passed. Future qualification needs an actual viable receiving/transport/cost path, not presumed hotel receipt; no location inferred."
+    },
+    {
+      "source": "2026-10-08-0500-SPREAD.json records[0].diagnosis.reasons[3]",
+      "rule": "Unverified official SKU is a missing fact, not an official-page-only identity gate. Require independently verifiable same-product identity and exact assigned codes."
+    }
+  ],
+  "notion_gate": {
+    "project_read": true,
+    "database_read_before_view": true,
+    "view_has_more": false,
+    "row_count": 5,
+    "statuses": [
+      "待选方向",
+      "待选方向",
+      "待选方向",
+      "待选方向",
+      "待选方向"
+    ],
+    "new_selection": false
+  },
+  "source_samples": [
+    {
+      "path": "research/2026-09-29-1300/sources/atelier-decoded.txt",
+      "sha256": "2d04bca0a0b1aa8d2d59f2ccaaf1192533f4feb7df71a353e6ed14ef86ac7886",
+      "required_markers": [
+        "9784861528903",
+        "SOLD OUT",
+        "2刷"
+      ],
+      "absent_markers": [],
+      "pass": true
+    },
+    {
+      "path": "research/2026-09-29-1700/sources/b2-passage.txt",
+      "sha256": "ae907247902dd60a41d1bc430fe61c4126119f9af2d3d59df05e24924f6179d5",
+      "required_markers": [
+        "9784309921396",
+        "10,000",
+        "SOLIDA"
+      ],
+      "absent_markers": [],
+      "pass": true
+    },
+    {
+      "path": "research/2026-09-29-1700/sources/s1-jack.html",
+      "sha256": "3d66750d3e0228a4cd2b847c64eaadb5abaf0e4ef619e99e1445c90782315c7c",
+      "required_markers": [
+        "50302557749531",
+        "50302557782299",
+        "50302557815067"
+      ],
+      "absent_markers": [],
+      "pass": true
+    },
+    {
+      "path": "research/2026-10-08-0500/sources/loveletters.txt",
+      "sha256": "ec4eae74db4e5babb41e4c686a44ef49a4a8f48348d63991cf671172d7af64b4",
+      "required_markers": [
+        "12,800",
+        "ホワイト",
+        "未開封"
+      ],
+      "absent_markers": [],
+      "pass": true
+    },
+    {
+      "path": "research/2026-10-08-0500/sources/hooos-current.html",
+      "sha256": "dcef7d78e19346361e0fff76211b1ad72f51e8b5b1d3315df3fafad0ed901a89",
+      "required_markers": [],
+      "absent_markers": [
+        "01261QG13"
+      ],
+      "pass": true
+    }
+  ],
+  "unknown_count": 5,
+  "lane_no_increment_counters_unchanged": {
+    "artbooks": 1,
+    "smallgoods": 0
+  },
+  "limitations": [
+    "No new market validation; source observation timestamps remain historical.",
+    "Five purposive risk samples are not accuracy estimates.",
+    "No confirmed profit or efficiency baseline.",
+    "Supreme source-only record is not an adopted diagnosis."
+  ]
+}
