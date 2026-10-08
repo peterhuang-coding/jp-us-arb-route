@@ -1,0 +1,237 @@
+{
+  "run_id": "SPREAD-20261008-1300",
+  "triggered_at": "2026-10-08T05:00:27.164Z",
+  "started_at": "2026-10-08T05:05:06Z",
+  "finished_at": "2026-10-08T05:08:34Z",
+  "notion_gate": {
+    "project_fetched_at": "2026-10-08T01:09:05.385Z",
+    "database_fetched": true,
+    "saved_view": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "pages": 5,
+    "has_more": false,
+    "all_statuses": "待选方向",
+    "new_direction": false
+  },
+  "scope": "Japan procurement to Mainland China resale; art books and streetwear underwear/smallgoods only",
+  "source_requests": {
+    "total": 35,
+    "search_queries": 21,
+    "web_open": 14,
+    "ordinary_get": 0,
+    "note": "Request count was 34 at package handoff; an additional direct ZOZOTOWN page open failed decoding, then total corrected to 35. No more source requests followed."
+  },
+  "records": [
+    {
+      "id": "B01",
+      "identity": "新世紀SM画報 / New Century SM Pictorial, ISBN 9784309272993, Japanese edition, 2012 reprint; exact ISBN match required",
+      "source_ids": [
+        "B01-JP-PUBLISHER",
+        "B01-JP-TOWER",
+        "B01-JP-MERCARI",
+        "B01-JP-BOOKOFF",
+        "B01-CN-SEARCH"
+      ],
+      "decision": "research_only",
+      "reasons": [
+        "本轮（访问时间2026-10-08T05:00:27Z）在中国大陆完成一次新的精确ISBN 9784309272993索引搜索（B01-CN-SEARCH），未检出同款商品结果；这只是有限的搜索索引观察，索引不完整，不能据此推断零成交或零需求。",
+        "日本侧金额（Tower 3,080 JPY定价、Mercari 4,400 JPY另加运费、BOOKOFF 3,520 JPY）均为卖家要价/挂牌价而非成交记录；Tower显示线上当前不可购，BOOKOFF缺货且为数月前旧缓存，Mercari为陈旧观察、封面有损且共享库存可能被取消，均不构成当前实时可执行供货。",
+        "未取得大陆同规格已成交价（P）或有效买家报价，亦无完整采购与履约成本（K），按规则六项财务字段全部为null。",
+        "不假设当前在日行程、酒店收货或物流路线；本记录仅为诊断性研究观察，不构成买入建议。"
+      ],
+      "missing_fields": [
+        "大陆同ISBN/同规格已成交价格（P）",
+        "大陆有效买家报价",
+        "需求或实际销量证据",
+        "完整采购及履约成本（K，含当前可执行进货价、国际运费、关税、平台等费用）",
+        "当前实时可执行供货来源与库存"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "market_sources": [
+        {
+          "source_id": "B01-JP-PUBLISHER",
+          "url": "https://www.kawade.co.jp/np/isbn/9784309272993/",
+          "market": "Japan",
+          "type": "publisher bibliographic/source identity; current availability not confirmed in this run",
+          "access": "public web result; page content not fully verified",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "B01-JP-TOWER",
+          "url": "https://tower.jp/item/3129047/新世紀SM画報",
+          "market": "Japan",
+          "type": "retail ask/list price",
+          "observed_facts": "3,080 JPY list; page says not currently available online; not a current executable offer",
+          "access": "public indexed page; older cached result",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "B01-JP-MERCARI",
+          "url": "https://jp.mercari.com/shops/product/9MM4Fws7gxfoYEjzF5Y7vU",
+          "market": "Japan",
+          "type": "used seller ask, not sold transaction",
+          "observed_facts": "4,400 JPY plus 660-1,320 JPY shipping; seller page stated one unit, but warned shared stock could cancel; condition label noted cover damage; product page snippet showed last-page time about 3 months before access",
+          "access": "public page/index result; stale observation",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "B01-JP-BOOKOFF",
+          "url": "https://shopping.bookoff.co.jp/used/0016867807",
+          "market": "Japan",
+          "type": "used ask/stock result",
+          "observed_facts": "older indexed result 3,520 JPY and out of stock; crawl was several months old",
+          "access": "public indexed result; stale",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "B01-CN-SEARCH",
+          "url": "https://www.kongfz.com/",
+          "market": "Mainland China",
+          "type": "exact ISBN web search, not marketplace transaction data",
+          "observed_facts": "query for exact ISBN 9784309272993 did not surface a same-product result; broad results were unrelated. Search indexing is incomplete; no zero-demand inference is valid",
+          "access": "public web search of exact ISBN + Chinese title terms",
+          "observed_at": "2026-10-08T05:00:27Z"
+        }
+      ],
+      "candidate_id": "B01"
+    },
+    {
+      "id": "S01",
+      "identity": "HYSTERIC GLAMOUR SPEEDSTER boxer brief, exact style 02251CU01, 2025 collection; free-size label is not a measured fit guarantee",
+      "source_ids": [
+        "S01-JP-ZOZO",
+        "S01-JP-BRAND-PDF",
+        "S01-JP-IMPORT-RETAILER",
+        "S01-CN-SEARCH"
+      ],
+      "decision": "research_lead",
+      "reasons": [
+        "Japan-side supply signal exists but is stale and unverified: ZOZO first-party brand-shop indexed result shows 7,700 JPY incl. tax and black/green/orange FREE variants, yet it is an approximately one-month-old index snapshot and direct page access failed with a decoding error, so current price, stock and order acceptance are not verified.",
+        "Official brand PDF corroborates the 7,700 JPY list price and colorways but is older catalog evidence, not current inventory or a sale.",
+        "Import-retailer indexing is discovery only and establishes neither Japan domestic supply nor a Mainland exit price.",
+        "Mainland China demand is unproven: bounded exact-code searches returned no same-code result, but incomplete indexing does not imply zero demand or zero listings; no valid same-SKU buyer offer or verifiable recent sale was found.",
+        "Listings are not sales, zero reviews on the Japan page are not demand proof, and no current Mainland P, complete K, or receiving/transport route is established; per rules all six financial fields stay null and the candidate is not qualified."
+      ],
+      "missing_fields": [
+        "current Mainland China same-SKU buyer offer or verifiable sale price (P)",
+        "complete landed cost including purchase, shipping and any transport/forwarding to receipt (K)",
+        "Mainland demand evidence for exact style 02251CU01",
+        "verified current Japan retail price and variant stock via a directly readable page",
+        "confirmed receiving/fulfillment route to Mainland China"
+      ],
+      "credible_sale_amount": null,
+      "complete_cost": null,
+      "net_profit": null,
+      "full_cost_roi": null,
+      "sales_margin": null,
+      "max_buy_price": null,
+      "market_sources": [
+        {
+          "source_id": "S01-JP-ZOZO",
+          "url": "https://zozo.jp/shop/hystericglamour/goods/89550645/",
+          "market": "Japan",
+          "type": "brand-shop retail offer/list price and displayed variant stock (not a sale)",
+          "observed_facts": "Indexed result for SPEEDSTER boxer brief, exact item number 02251CU01; 7,700 JPY incl tax; colors black/green/orange each shown FREE / in stock; ships from ZOZO and shipping is 330 JPY per shipment; Japan-made, cotton 95%/polyurethane 5%; zero reviews shown. Search engine said crawled last month; direct open failed with a decoding error, so the displayed stock and price are not freshly page-verified at access time.",
+          "access": "public search result for exact first-party brand-shop product URL; direct page open failed",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "S01-JP-BRAND-PDF",
+          "url": "https://www.hystericglamour.jp/wp/wp-content/uploads/tab69.pdf",
+          "market": "Japan",
+          "type": "official brand catalog/list-price corroboration, not current inventory",
+          "observed_facts": "Official catalog search result lists style 02251CU01 at 7,700 JPY and colors Green/Black/Orange; document is older than this observation and does not establish current availability.",
+          "access": "public official-domain PDF search result",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "S01-JP-IMPORT-RETAILER",
+          "url": "https://greybird.shop/collections/hysteric-glamour",
+          "market": "Foreign-market import retail",
+          "type": "retail listing / discovery only",
+          "observed_facts": "Exact style 02251CU01 and color names were indexed; seller jurisdiction and current availability are not adequate to establish Japan domestic supply or China exit price.",
+          "access": "public indexed result",
+          "observed_at": "2026-10-08T05:00:27Z"
+        },
+        {
+          "source_id": "S01-CN-SEARCH",
+          "url": "https://www.goofish.com/",
+          "market": "Mainland China",
+          "type": "exact product-code search, not transaction data",
+          "observed_facts": "Bounded searches for 02251CU01 across indexed Dewu/Poizon, Xianyu/Goofish and JD terms returned no same-code result. Indexing is incomplete; no inference of zero demand or no listings is valid.",
+          "access": "public web search only; no account/login access",
+          "observed_at": "2026-10-08T05:00:27Z"
+        }
+      ],
+      "candidate_id": "S01"
+    }
+  ],
+  "qualified_candidates": 0,
+  "financial_null_count": 12,
+  "packages": [
+    {
+      "task_id": "jp-spread-20261008-1300-books-a1",
+      "lane": "artbooks",
+      "runner_status": "verifying",
+      "observability_outcome": "accepted",
+      "model": "doubao-seed-evolving",
+      "thinking_requested": true,
+      "effort_requested": "high",
+      "native_usage": {
+        "input_tokens": 11203,
+        "cache_read_input_tokens": 33104,
+        "output_tokens": 5223,
+        "thinking_tokens": 0
+      },
+      "parent_semantic_review": "accepted",
+      "output_sha256": {
+        "research.json": "781108114708fa2b95a3a4a492011f83bd9b795fd9af674766c63c439f119874",
+        "brief.md": "46330eadee1886974e68482ac19975fd52b82ff98372257f207a199b05283538"
+      },
+      "test": "python3 validate.py passed"
+    },
+    {
+      "task_id": "jp-spread-20261008-1300-smallgoods-a1",
+      "lane": "smallgoods",
+      "runner_status": "blocked",
+      "observability_outcome": "partial",
+      "failure_type": "material_missing",
+      "model": "doubao-seed-evolving",
+      "thinking_requested": true,
+      "effort_requested": "high",
+      "native_usage": {
+        "input_tokens": 8637,
+        "cache_read_input_tokens": 23576,
+        "output_tokens": 2957,
+        "thinking_tokens": 0
+      },
+      "parent_semantic_review": "diagnostic adopted; opportunity proof incomplete",
+      "output_sha256": {
+        "research.json": "7d2ae5673d07209f00bb1b477f62cc8ec9ee23a5fe28af467e731cdf66bd9cb8",
+        "brief.md": "dcdc92d7d3384b8a58b3caa3f4c9174b55e3e4773cf51f8e38c0e0659eeeae6d"
+      },
+      "test": "python3 validate.py passed"
+    }
+  ],
+  "native_usage_total": {
+    "input_tokens": 19840,
+    "cache_read_input_tokens": 56680,
+    "output_tokens": 8180,
+    "thinking_tokens": 0
+  },
+  "client_cost_estimate_usd": 0.33204,
+  "client_cost_is_not_invoice_or_coding_plan_charge": true,
+  "extra_paid_spend_cny": 0,
+  "source_requests_not_equal_to_sales_or_demands": true,
+  "unknowns_replayed": 0,
+  "no_increment_counts_applied": {
+    "artbooks": 1,
+    "smallgoods": 0
+  },
+  "no_profit_or_time_saving_claim": true,
+  "no_purchase_contact_or_deployment": true
+}
