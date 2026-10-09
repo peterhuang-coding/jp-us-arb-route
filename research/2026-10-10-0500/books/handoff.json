@@ -1,0 +1,14 @@
+{
+  "version":1,
+  "task_id":"jp-spread-20261010-0500-books-a1",
+  "goal":"Diagnose the supplied public evidence bundle for one exact art-book ISBN. Return conservative source-linked JSON and a concise Chinese brief; do not invent market facts.",
+  "memory":{"summary":"Authorized Japan-to-Mainland SKU research; this is one of two independent packages in the same fixed wave.","decisions":["Target ISBN 9784309923093.","Same-ISBN language conflict remains unresolved.","No Mainland transaction or complete cost schedule is supplied.","Unknown values stay null."],"completed":["Parent collected bounded public search results and direct source observations; see input.json."],"known_issues":["Language/edition mismatch; no exact Mainland P; K incomplete; delivery to Mainland unverified."]},
+  "tasks":["Read only research/2026-10-10-0500/books/input.json.","Assess identity, Japanese supply evidence, Mainland evidence coverage, source quality, and remaining unknowns.","Write research.json and brief.md only.","Classify qualified, research_lead, or reject; do not qualify without resolved identity, credible Mainland P, complete K, and delivery evidence."],
+  "acceptance":["Every claim links to a supplied URL and is labeled catalog, offer, page stock claim, or transaction.","Preserve language conflict and do not call either language confirmed for resale.","P/K/profit/margins/max buy price remain null.","Do not interpret search absence as no demand.","Output files are valid JSON and concise Chinese Markdown."],
+  "constraints":["Use Write/Edit for allowed files; no shell redirection or Python writing.","No network, credentials, purchases, messages, listings, code changes, or extra research.","No Bash commands authorized.","Public information only; this is not procurement approval."],
+  "workspace":"/Volumes/SanDisk2TB/jp-us-arb-route",
+  "read_files":["research/2026-10-10-0500/books/input.json"],
+  "write_files":["research/2026-10-10-0500/books/research.json","research/2026-10-10-0500/books/brief.md"],
+  "commands":[],"data_sensitivity":"public","timeout_seconds":300,"max_turns":8,
+  "telemetry":{"project_id":"jp-us-arb-route","logical_task_id":"spread-20261010-0500-books","task_type":"research","attempt_kind":"business"}
+}

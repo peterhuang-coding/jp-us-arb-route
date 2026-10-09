@@ -1,0 +1,15 @@
+{
+  "candidate_id":"G03-WACKO-WMGP-BR11-BEIGE",
+  "target_spec":{"brand":"WACKO MARIA","style_code":"WMGP-BR11","color":"BEIGE","size":null},
+  "slot":"SPREAD-20261010-0500",
+  "checked_at_utc":"2026-10-09T21:05:00Z",
+  "evidence":[
+    {"url":"https://store.jb-voice.co.jp/products/wacko-maria-leopard-boxer-briefs-type1-wmgp-br11","type":"Japanese retail offer","claims":{"name":"LEOPARD BOXER BRIEFS TYPE1","style_code":"WMGP-BR11","color":"BEIGE","price_jpy":8800,"sizes_displayed":["M","L","XL"],"fabric":"cotton 96%, polyurethane 4%","measurements":"listed per size","free_shipping_threshold_jpy":11000,"inventory_note":"inventory shared with physical store; sale-out cancellation possible"},"limitation":"Tax treatment not explicit; selected size live availability not confirmed; page is an offer, not a transaction."},
+    {"url":"https://www.dolcegabbana.com.cn/productDetail/M4D19JFSGWFHA93M","type":"Mainland luxury competitor listing, different SKU","claims":{"price_cny":1290,"fabric":"cotton 92%, elastane 8%","pattern":"leopard","returns":"underwear not returnable","dispatch":"within 48h","availability":"some size options; some notify-on-arrival options"},"limitation":"Different brand/style; not a comparable WACKO price or evidence of WACKO demand/sale."},
+    {"url":"https://www.google.com/search?q=WMGP-BR11+中国","type":"bounded public query observation","claims":{"result":"No exact-spec Mainland offer, recent transaction, or reliable buyer quote identified in supplied search results."},"limitation":"Search misses are not evidence of zero demand."},
+    {"url":"https://www.google.com/search?q=WACKO+MARI+豹纹+平角裤+中国","type":"bounded public query observation","claims":{"result":"Generic competition and other brands surfaced; no exact code/color/size match established."},"limitation":"Not proof of no demand or market absence."}
+  ],
+  "prior_context":{"url":"https://store.jackinthe.net/","type":"prior-slot Japanese retailer context only","limitation":"Historical source context; not refreshed this slot and cannot establish current availability."},
+  "cost_and_exit":{"P":null,"K":null,"profit":null,"roi":null,"sales_net_margin":null,"max_buy_price":null,"mainland_transaction":null,"fulfillment_to_mainland":null},
+  "instructions":["Do not infer target size availability from variant controls.","Distinguish competitor listing from exact SKU demand.","Keep all unknown financial and fulfillment values null."]
+}

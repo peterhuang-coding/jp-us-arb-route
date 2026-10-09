@@ -1,0 +1,19 @@
+{
+  "candidate_id": "B03-SORAYAMA-9784309923093",
+  "slot": "SPREAD-20261010-0500",
+  "checked_at_utc": "2026-10-09T21:05:00Z",
+  "source_observation_type": "public search results and direct retailer/catalog pages; no purchase",
+  "evidence": [
+    {"url":"https://store.tsite.jp/item-detail/art/54429.html","type":"Japanese retail offer","claims":{"isbn":"9784309923093","price_jpy_tax_included":5500,"shipping_japan":"free","cart_button":true,"fulfillment":"usually ships 1-3 days if in stock; if out of stock retailer will advise availability/delivery after order"},"limitation":"No explicit live stock count or reservation; cart button is not inventory confirmation."},
+    {"url":"https://tower.jp/item/7969211","type":"Japanese retail offer","claims":{"isbn":"9784309923093","price_jpy_tax_included":5500,"page_stock_claim":"販売中/在庫あり","dispatch":"same day to next day","wishlist_count":6,"public_reviews":0,"collections":0},"limitation":"Retailer page stock claim only; no order placed or reserved stock. Wishlist is not demand proof."},
+    {"url":"https://www.ndl.go.jp/","type":"national library catalog context from prior accepted run","claims":{"isbn":"9784309923093","language":"Japanese (jpn)"},"limitation":"Catalog identity does not establish Mainland demand."},
+    {"url":"https://pie.co.jp/book/i/5792/","type":"publisher/international listing surfaced in public search","claims":{"isbn":"9784309923093","language":"English","price_usd":85,"release_date":"2027-10-05"},"limitation":"Conflicts with Japanese-language NDL and Japanese retailers for same ISBN; unresolved version/language identity conflict."},
+    {"url":"https://www.ruten.com.tw/","type":"Taiwan marketplace result from prior public search","claims":{"result":"Taiwan listing surfaced for same ISBN/title search"},"limitation":"Taiwan is not Mainland China; not a Mainland exit price or transaction."}
+  ],
+  "mainland_queries": [
+    {"query":"9784309923093 中国大陆 价格 购买","result":"No exact Mainland sale, buyer quote, or reliable exact-edition offer surfaced in this bounded search."},
+    {"query":"空山基 未来と過去 中国大陆 画集 ISBN 9784309923093","result":"No exact Mainland sale, buyer quote, or reliable exact-edition offer surfaced."}
+  ],
+  "cost_and_exit": {"P":null,"K":null,"profit":null,"roi":null,"sales_net_margin":null,"max_buy_price":null,"mainland_transaction":null},
+  "instructions": ["Preserve same-ISBN Japanese/English language conflict.","Differentiate catalog, offer, page stock claim, and transaction.","Unknown values remain null; do not call lack of search results zero demand."]
+}

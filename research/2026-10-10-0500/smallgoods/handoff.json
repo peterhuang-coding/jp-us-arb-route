@@ -1,0 +1,14 @@
+{
+  "version":1,
+  "task_id":"jp-spread-20261010-0500-smallgoods-a1",
+  "goal":"Diagnose supplied public evidence for exact underwear SKU WMGP-BR11 / BEIGE. Return conservative source-linked JSON and a concise Chinese brief; do not invent Mainland demand or current supply.",
+  "memory":{"summary":"Authorized Japan-to-Mainland SKU research; this is one of two independent packages in the same fixed wave.","decisions":["Target code/color WMGP-BR11 / BEIGE; size unresolved.","JACK in the NET page is a retailer offer with shared-inventory caveat, not confirmed size availability.","No exact Mainland P or transaction supplied.","Unknown amounts and costs stay null."],"completed":["Parent performed bounded current public searches and one direct Japanese retailer page observation."],"known_issues":["Size and Mainland fulfillment route unknown; exact code demand not evidenced."]},
+  "tasks":["Read only research/2026-10-10-0500/smallgoods/input.json.","Assess exact style/color identity, Mainland evidence, and current Japan offer without overstating inventory.","Write research.json and brief.md only.","Classify qualified, research_lead, or reject; never qualify without Mainland P, complete K, exact size, and fulfillment support."],
+  "acceptance":["Distinguish current supplied search coverage, Japanese offer, competitor listing, and prior context.","Do not call search absence zero demand or treat displayed variants as available inventory.","P/K/profit/margins/max buy price remain null.","Target size and delivery remain unknown; no purchase recommendation.","Outputs valid JSON and concise Chinese Markdown."],
+  "constraints":["Use Write/Edit for allowed files; no shell redirection or Python writing.","No network, credentials, purchases, messages, listings, code changes, or extra research.","No Bash commands authorized.","Public information only; this is not procurement approval."],
+  "workspace":"/Volumes/SanDisk2TB/jp-us-arb-route",
+  "read_files":["research/2026-10-10-0500/smallgoods/input.json"],
+  "write_files":["research/2026-10-10-0500/smallgoods/research.json","research/2026-10-10-0500/smallgoods/brief.md"],
+  "commands":[],"data_sensitivity":"public","timeout_seconds":300,"max_turns":8,
+  "telemetry":{"project_id":"jp-us-arb-route","logical_task_id":"spread-20261010-0500-smallgoods","task_type":"research","attempt_kind":"business"}
+}
