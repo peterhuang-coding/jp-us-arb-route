@@ -1,0 +1,50 @@
+{
+  "run_id": "SPREAD-20261009-2100",
+  "validator": "parent semantic and hash check",
+  "validated_at": "2026-10-09T13:08:30Z",
+  "package_results": [
+    {
+      "task_id": "jp-spread-20261009-2100-books-a1",
+      "outcome": "partial",
+      "runner_status": "invalid_output",
+      "failure_type": "structure",
+      "failure_reason": "runner rejects handoff-result.json because it incorrectly lists itself in changed_files",
+      "business_output_hashes_match_receipt": true,
+      "checks": {
+        "exact_isbn_and_title": true,
+        "japanese_versus_english_conflict_preserved": true,
+        "retail_offer_not_treated_as_transaction": true,
+        "no_mainland_P": true,
+        "K_and_profit_null": true,
+        "both_50_percent_tests_unknown": true,
+        "no_purchase_recommendation": true
+      },
+      "retry": "none; preserve invalid_output and independently adopt only checked business files"
+    },
+    {
+      "task_id": "jp-spread-20261009-2100-smallgoods-a1",
+      "outcome": "partial",
+      "runner_status": "invalid_output",
+      "failure_type": "structure",
+      "failure_reason": "runner rejects handoff-result.json because it incorrectly lists itself in changed_files",
+      "business_output_hashes_match_receipt": true,
+      "checks": {
+        "style_code_and_color": true,
+        "stale_japan_evidence_not_current": true,
+        "search_absence_not_zero_demand": true,
+        "target_size_null": true,
+        "P_K_profit_null": true,
+        "both_50_percent_tests_unknown": true,
+        "no_purchase_recommendation": true
+      },
+      "retry": "none; preserve invalid_output and independently adopt only checked business files"
+    }
+  ],
+  "market_boundary": {
+    "source_requests": 26,
+    "qualified_candidates": 0,
+    "no_new_sku_discovered": true,
+    "unpriced_unknowns_remain_unknown": true,
+    "no_prior_unknown_replayed": true
+  }
+}

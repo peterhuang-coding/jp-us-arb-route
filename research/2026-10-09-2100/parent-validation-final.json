@@ -1,0 +1,49 @@
+{
+  "run_id": "SPREAD-20261009-2100",
+  "validated_at_utc": "2026-10-09T13:11:17Z",
+  "prior_validation": {
+    "path": "research/2026-10-09-2100/parent-validation.json",
+    "sha256": "2b5c4f65f4ed2dee5a8809a35e5744178e640130d5c981221247bf05ef0ab14a",
+    "observability_review_outcome": "partial / structure"
+  },
+  "runner_format_failure": "Both handoff-result.json files incorrectly listed the reserved report itself in changed_files; preserve runner invalid_output and do not retry.",
+  "timestamp_correction": {
+    "reason": "The public evidence inputs copied the automation trigger timestamp into per-source retrieved_at/as_of fields, but the trigger is not a page observation.",
+    "correction": "Adopted JSON now sets exact per-page/per-query time to null and records only the bounded 2026-10-09T13:01Z to 13:08Z UTC run window.",
+    "raw_runner_outputs_remain_in_private_task_state": true
+  },
+  "adopted_files": [
+    {
+      "path": "research/2026-10-09-2100/books/research.json",
+      "raw_runner_sha256": "feba00cd4231be568f03ed0141caaf660960776fa186e9c0e154758bb95d07b3",
+      "adopted_sha256": "fea21b292ff1d9229d12a77aa4a2069758df5b722223452121765735ef201141",
+      "result": "partial; exact SKU identity and source limitations retained; P/K and profitability remain unknown"
+    },
+    {
+      "path": "research/2026-10-09-2100/books/brief.md",
+      "raw_runner_sha256": "eade22864dcb7c338e09ce918d06a80f9823354f27869ddc3788c4f5b61e31ab",
+      "adopted_sha256": "ac4355f0e8c5644d0da53d261437cda759a4a3bc81121e9c016f479fb9265be5",
+      "result": "partial; corrected source timestamp to the bounded observation window"
+    },
+    {
+      "path": "research/2026-10-09-2100/smallgoods/research.json",
+      "raw_runner_sha256": "b80a28ab322d4b4e6bf9daff2a6c672909a45a08f38e096ac5d33c2d4fe5f452",
+      "adopted_sha256": "5cd1563d512e5e7dd41b4ee13bcf3f92dc54897b02a235e4c2e2a11608f2e304",
+      "result": "partial; exact-code search absence remains coverage only and all financial values remain null"
+    },
+    {
+      "path": "research/2026-10-09-2100/smallgoods/brief.md",
+      "raw_runner_sha256": "c89b2902d82d8e34da90cda635c36ca91066464815f66afea4a50bc96624b63d",
+      "adopted_sha256": "c89b2902d82d8e34da90cda635c36ca91066464815f66afea4a50bc96624b63d",
+      "result": "partial; no timestamp correction was needed in the prose brief"
+    }
+  ],
+  "acceptance_boundary": {
+    "qualified_candidates": 0,
+    "extra_paid_spend_cny": 0,
+    "previous_unknowns_replayed": false,
+    "code_or_production_data_changed": false,
+    "tests_run": [],
+    "notion_cards_changed": 0
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "slot": "SPREAD-20261009-2100",
+  "lane": "art_books",
+  "collected_at": "2026-10-09T13:00:09Z",
+  "candidate": {
+    "id": "B03-SORAYAMA-9784309923093",
+    "title": "SORAYAMA THE GYNOIDS SUBLIME",
+    "creator": "Hajime Sorayama",
+    "isbn": "9784309923093"
+  },
+  "public_evidence": [
+    {
+      "url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093",
+      "access": "public web open",
+      "retrieved_at": "2026-10-09T13:00:09Z",
+      "facts": {
+        "title": "SORAYAMA THE GYNOIDS SUBLIME",
+        "publisher": "Edision Treville; distributed by Kawade Shobo Shinsha",
+        "publication": "2026-06",
+        "isbn": "9784309923093",
+        "format": "print, unpaginated, 37 cm",
+        "text_language_code": "jpn",
+        "bibliographic_price_jpy": 5000,
+        "national_library_copy": "not held by NDL; one Shiga Prefectural Library record is shown"
+      },
+      "event_time": null,
+      "evidence_type": "official national library bibliographic record, not a sale"
+    },
+    {
+      "url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154",
+      "access": "public web open",
+      "retrieved_at": "2026-10-09T13:00:09Z",
+      "facts": {
+        "title": "空山基作品集 SORAYAMA THE GYNOIDS SUBLIME",
+        "publisher_list_price_jpy_tax_included": 5500,
+        "isbn": "9784309923093",
+        "release_date": "2026-06-19",
+        "availability_text": "△3週間～"
+      },
+      "event_time": null,
+      "evidence_type": "publisher catalog / order lead time, not locked stock"
+    },
+    {
+      "url": "https://books.rakuten.co.jp/rb/18525964/",
+      "access": "public web open",
+      "retrieved_at": "2026-10-09T13:00:09Z",
+      "facts": {
+        "title": "空山基作品集 SORAYAMA THE GYNOIDS SUBLIME",
+        "creator": "空山 基",
+        "isbn": "9784309923093",
+        "listed_price_jpy_tax_included": 5500,
+        "displayed_japan_shipping": "free",
+        "page_availability_text": "在庫あり; 残りあと44個",
+        "reviews": 0,
+        "review_event_count": 0
+      },
+      "event_time": null,
+      "evidence_type": "retail offer and page stock claim, not purchase or Mainland sale"
+    },
+    {
+      "url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=america",
+      "access": "public web open",
+      "retrieved_at": "2026-10-09T13:00:09Z",
+      "facts": {
+        "page_description": "English version",
+        "isbn_displayed": "9784309923093",
+        "price_usd": 85,
+        "release_date": "2027-10-05",
+        "availability": "future global distribution stated"
+      },
+      "event_time": null,
+      "evidence_type": "international distributor page; conflicts with NDL Japanese language metadata"
+    }
+  ],
+  "mainland_searches": {
+    "queries": [
+      "9784309923093 中国 空山基",
+      "SORAYAMA THE GYNOIDS SUBLIME ISBN 中国",
+      "site:book.douban.com 9784309923093",
+      "site:kongfz.com 9784309923093",
+      "9784309923093 site:taobao.com",
+      "9784309923093 site:jd.com",
+      "9784309923093 site:kongfz.com OR site:book.kongfz.com"
+    ],
+    "result_summary": "Search pages returned irrelevant or non-matching entries; no exact-spec mainland sale, recent comparable transaction, or valid buyer offer was identified in this bounded search.",
+    "meaning": "search coverage only; does not establish zero demand or zero sales",
+    "count": 7
+  },
+  "financials": {
+    "mainland_conservative_sale_price_p_cny": null,
+    "complete_cost_k_cny": null,
+    "profit": null,
+    "roi_50_percent_test": "unknown",
+    "net_margin_50_percent_test": "unknown",
+    "max_purchase_price": null,
+    "unknown_costs": ["fx/payment", "cross-border freight", "applicable tax", "platform fee", "domestic postage", "packing", "after-sales reserve"]
+  }
+}

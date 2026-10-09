@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "task_id": "jp-spread-20261009-2100-smallgoods-a1",
+  "goal": "Diagnose one exact streetwear underwear SKU from the supplied public evidence bundle. Produce a conservative, source-linked JSON diagnosis and short Chinese brief. Do not invent Mainland demand or current supply.",
+  "memory": {
+    "summary": "An authorized recurring research run for Japan-to-Mainland resale. This lane is one independent package in a fixed two-package wave. Inputs contain current Mainland query coverage and explicitly historical Japan source context.",
+    "decisions": [
+      "The target code/color are WMGP-BR11 / BEIGE; exact target size remains unspecified.",
+      "Prior-run Japanese source pages are context only and were not refreshed in this slot.",
+      "No exact-spec Mainland demand/transaction evidence is supplied.",
+      "Unknown amounts and costs stay null; do not infer buyability or margin."
+    ],
+    "completed": [
+      "Five bounded exact-code Mainland searches were performed by the parent.",
+      "No usable matching Mainland offer, recent transaction, or valid buyer quote was identified in those search results."
+    ],
+    "known_issues": [
+      "Size and future fulfillment route are unknown.",
+      "Historical Japanese offer and stock observations are stale for current availability."
+    ]
+  },
+  "tasks": [
+    "Read only the supplied input.json.",
+    "Assess exact style/color identity, Mainland search coverage, and historical Japan supply context without refreshing or upgrading it.",
+    "Return one JSON record for the candidate using the schema described in the input, plus a concise Chinese brief.",
+    "Classify the item as qualified, research_lead, or reject; never qualify without Mainland P, complete K, exact target size, and fulfillment support."
+  ],
+  "acceptance": [
+    "Clearly distinguish current search results from previous-run historical supply context.",
+    "Do not call search absence zero demand, and do not call stale Japanese stock current.",
+    "P, K, profit, both 50% thresholds, and max purchase price remain unknown/null.",
+    "Target size and fulfillment route remain unknown; no purchase recommendation is issued.",
+    "JSON and Chinese brief are written to the two declared output files; no other file is changed."
+  ],
+  "constraints": [
+    "Use Write/Edit to save the allowed files; do not use Bash redirection or Python to write files.",
+    "No network, credentials, purchases, messages, listings, code changes, or extra research tasks.",
+    "Bash commands are not authorized for this document-only task.",
+    "This is research output, not procurement approval."
+  ],
+  "workspace": "/Volumes/SanDisk2TB/jp-us-arb-route",
+  "read_files": ["research/2026-10-09-2100/smallgoods/input.json"],
+  "write_files": ["research/2026-10-09-2100/smallgoods/research.json", "research/2026-10-09-2100/smallgoods/brief.md"],
+  "commands": [],
+  "data_sensitivity": "public",
+  "timeout_seconds": 300,
+  "max_turns": 8,
+  "telemetry": {"project_id": "jp-us-arb-route", "logical_task_id": "spread-20261009-2100-smallgoods", "task_type": "research", "attempt_kind": "business"}
+}

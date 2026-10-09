@@ -1,0 +1,186 @@
+{
+  "run_id": "SPREAD-20261009-2100",
+  "slot_id": "SPREAD-20261009-2100",
+  "triggered_at": "2026-10-09T13:00:09.422Z",
+  "triggered_local": "2026-10-09T21:00:09.422+08:00",
+  "deadline_utc": "2026-10-09T14:00:09.422Z",
+  "started_at": "2026-10-09T13:01:05Z",
+  "finished_at": "2026-10-09T13:08:30Z",
+  "status": "completed_with_partial_delivery",
+  "trigger": "automation-2 recurring authorized SKU research; user also explicitly requested using Coding Plan to find SKUs",
+  "notion_gate": {
+    "home_read": true,
+    "database_read": true,
+    "view_url": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "view_fully_paginated": true,
+    "has_more": false,
+    "pending_cards": ["R1", "R2", "R3", "R4", "R5"],
+    "card_mutations": 0,
+    "home_last_edited_at": "2026-10-08T17:13:11.704Z"
+  },
+  "branch": "pm-loop/20260726-103909-jp-us-arb-route-55490",
+  "base_head": "7b5b9da739452e36945102d7b4c4c74b47841f4f",
+  "limits": {
+    "max_minutes": 60,
+    "max_source_requests": 40,
+    "max_targets": 10,
+    "max_new_targets": 6,
+    "cc_parallel": 2,
+    "waves": 1,
+    "extra_paid_budget_cny": 0
+  },
+  "selected_targets": [
+    "B03-SORAYAMA-9784309923093",
+    "G03-WACKO-WMGP-BR11-BEIGE"
+  ],
+  "new_identified_skus": 0,
+  "source_request_counts": {
+    "public_search_queries": 16,
+    "page_opens": 10,
+    "ordinary_http_get": 0,
+    "total_conservative": 26,
+    "downstream_web_requests": 0
+  },
+  "source_observation_window_utc": "2026-10-09T13:01Z to 13:08Z; exact per-page/query timestamps unavailable",
+  "packages": [
+    {
+      "task_id": "jp-spread-20261009-2100-books-a1",
+      "logical_task_id": "spread-20261009-2100-books",
+      "lane": "artbooks",
+      "candidate": "B03-SORAYAMA-9784309923093",
+      "runner_status": "invalid_output",
+      "runner_failure": "handoff-result.changed_files listed handoff-result.json, which is reserved and outside the declared outputs",
+      "partial_adoption": true,
+      "observed_model": "doubao-seed-evolving",
+      "requested_thinking_enabled": true,
+      "requested_effort": "high",
+      "timeout_seconds": 300,
+      "max_turns": 8,
+      "elapsed_seconds": 180.531,
+      "native_usage": {
+        "input_tokens": 14925,
+        "cache_read_input_tokens": 30432,
+        "output_tokens": 10058,
+        "thinking_tokens": 0,
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "client_cost_estimate_usd_not_provider_charge": 0.341291,
+      "output_sha256": {
+        "research.json": "feba00cd4231be568f03ed0141caaf660960776fa186e9c0e154758bb95d07b3",
+        "brief.md": "eade22864dcb7c338e09ce918d06a80f9823354f27869ddc3788c4f5b61e31ab"
+      },
+      "adopted_output_sha256_after_parent_timestamp_correction": {
+        "research.json": "fea21b292ff1d9229d12a77aa4a2069758df5b722223452121765735ef201141",
+        "brief.md": "ac4355f0e8c5644d0da53d261437cda759a4a3bc81121e9c016f479fb9265be5"
+      },
+      "parent_validation": "JSON parsed; source links, conflict preservation, demand caveat, null P/K and qualification gates checked. Original output hashes matched runner receipt before parent timestamp normalization; no retry."
+    },
+    {
+      "task_id": "jp-spread-20261009-2100-smallgoods-a1",
+      "logical_task_id": "spread-20261009-2100-smallgoods",
+      "lane": "smallgoods",
+      "candidate": "G03-WACKO-WMGP-BR11-BEIGE",
+      "runner_status": "invalid_output",
+      "runner_failure": "handoff-result.changed_files listed handoff-result.json, which is reserved and outside the declared outputs",
+      "partial_adoption": true,
+      "observed_model": "doubao-seed-evolving",
+      "requested_thinking_enabled": true,
+      "requested_effort": "high",
+      "timeout_seconds": 300,
+      "max_turns": 8,
+      "elapsed_seconds": 76.956,
+      "native_usage": {
+        "input_tokens": 8647,
+        "cache_read_input_tokens": 15584,
+        "output_tokens": 3842,
+        "thinking_tokens": 0,
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "client_cost_estimate_usd_not_provider_charge": 0.147077,
+      "output_sha256": {
+        "research.json": "b80a28ab322d4b4e6bf9daff2a6c672909a45a08f38e096ac5d33c2d4fe5f452",
+        "brief.md": "c89b2902d82d8e34da90cda635c36ca91066464815f66afea4a50bc96624b63d"
+      },
+      "adopted_output_sha256_after_parent_timestamp_correction": {
+        "research.json": "5cd1563d512e5e7dd41b4ee13bcf3f92dc54897b02a235e4c2e2a11608f2e304",
+        "brief.md": "c89b2902d82d8e34da90cda635c36ca91066464815f66afea4a50bc96624b63d"
+      },
+      "parent_validation": "JSON parsed; stale Japan evidence, exact-code coverage limit, null P/K/size/fulfillment checked. Original output hashes matched runner receipt before parent timestamp normalization; no retry."
+    }
+  ],
+  "peak_parallel": 2,
+  "wave_count": 1,
+  "actual_calls": 2,
+  "downstream_corrections": 0,
+  "new_unknown": 0,
+  "qualified_candidates": 0,
+  "records": [
+    {
+      "candidate_id": "B03-SORAYAMA-9784309923093",
+      "identity": "SORAYAMA THE GYNOIDS SUBLIME, Hajime Sorayama, ISBN 9784309923093",
+      "sources": [
+        {"url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093", "market": "Japan", "observed_at": null, "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable", "type": "national library catalog", "fact": "text language jpn; 2026-06; 37cm; unpaginated; bibliographic price JPY 5000"},
+        {"url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154", "market": "Japan", "observed_at": null, "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable", "type": "publisher catalog", "fact": "ISBN; list JPY 5500 tax included; release 2026-06-19; order lead △3週間～"},
+        {"url": "https://books.rakuten.co.jp/rb/18525964/", "market": "Japan", "observed_at": null, "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable", "type": "retail offer/page stock claim", "fact": "JPY 5500 tax included, Japan shipping shown free, page says in stock/44 remaining; not reserved or delivered; 0 reviews"},
+        {"url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=america", "market": "international", "observed_at": null, "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable", "type": "future international catalog claim", "fact": "same ISBN described as English version, USD 85, 2027-10-05 release; conflict with NDL jpn not resolved"}
+      ],
+      "mainland_searches": 11,
+      "mainland_demand": "unknown",
+      "credible_mainland_P_cny": null,
+      "complete_cost_K_cny": null,
+      "profit_cny": null,
+      "full_cost_roi_50_percent": "unknown",
+      "sales_margin_50_percent": "unknown",
+      "max_buy_price_cny": null,
+      "fulfillment": null,
+      "classification": "research_lead",
+      "increment": "new NDL language/edition evidence and current Rakuten retail/page-stock observation; Mainland P remains unknown"
+    },
+    {
+      "candidate_id": "G03-WACKO-WMGP-BR11-BEIGE",
+      "identity": "WACKO MARIA Leopard Boxer Briefs Type-1, WMGP-BR11, beige; target size unspecified",
+      "mainland_searches": 5,
+      "mainland_demand": "unknown",
+      "japan_sources_refreshed_this_slot": false,
+      "credible_mainland_P_cny": null,
+      "complete_cost_K_cny": null,
+      "profit_cny": null,
+      "full_cost_roi_50_percent": "unknown",
+      "sales_margin_50_percent": "unknown",
+      "max_buy_price_cny": null,
+      "target_size": null,
+      "fulfillment": null,
+      "classification": "research_lead",
+      "increment": "none; exact-code search coverage only, which does not reset or prove demand"
+    }
+  ],
+  "lane_counters": {
+    "artbooks": {
+      "status": "ready",
+      "no_increment_runs": 0,
+      "last_checked_run": "SPREAD-20261009-2100",
+      "last_increment_run": "SPREAD-20261009-2100",
+      "increment_reason": "NDL jpn metadata and live-open Rakuten JPY 5500/page stock claim add identity/supply evidence; Mainland P remains unknown."
+    },
+    "smallgoods": {
+      "status": "ready",
+      "no_increment_runs": 1,
+      "last_checked_run": "SPREAD-20261009-2100",
+      "last_increment_run": "SPREAD-20261009-0100",
+      "increment_reason": "This slot adds only bounded exact-code Mainland search coverage; no new sale, buyer offer, or refreshed supply."
+    }
+  },
+  "source_limitations": [
+    "No search absence is evidence of zero sales or demand.",
+    "The listed Japanese prices are not Mainland P or complete K.",
+    "Mercari search-result listings are asking prices, not sold prices; Taiwan Shopee is not Mainland evidence; stale search snippets are not current stock.",
+    "The PIE same-ISBN English-version claim conflicts with NDL's Japanese-language record; resolution remains open."
+  ],
+  "stop_reason": "Both CC outputs were collected and individually checked; runner output format failed on reserved handoff-result.json in changed_files. No retry or second wave. No qualified purchase lead; stop business research for this slot.",
+  "parent_validation": "research/2026-10-09-2100/parent-validation-final.json",
+  "report": "docs/research/runs/2026-10-09-2100-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-09-2100-SPREAD.json",
+  "notification_policy": "Notify only on a qualified opportunity, material evidence that changes lane priority, major contrary evidence, or required user action."
+}

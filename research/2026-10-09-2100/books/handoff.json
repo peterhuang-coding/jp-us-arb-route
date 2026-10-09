@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "task_id": "jp-spread-20261009-2100-books-a1",
+  "goal": "Diagnose the public evidence bundle for one exact art-book SKU. Produce a conservative, source-linked JSON diagnosis and short Chinese brief. Decide what is established, what remains conflicting/unknown, and whether any facts justify upgrading the item. Do not create market facts.",
+  "memory": {
+    "summary": "An authorized recurring research run for Japan-to-Mainland resale. This lane is one independent package in a fixed two-package wave. Inputs are public source observations only.",
+    "decisions": [
+      "Exact ISBN is 9784309923093.",
+      "NDL records Japanese text, but PIE international page describes an English version with the same ISBN; preserve this conflict rather than declaring resolved.",
+      "A retail offer or library catalog is not a Mainland sale, buyer offer, or proof of resale price.",
+      "Unknown values must remain null; do not estimate complete cost or profit."
+    ],
+    "completed": [
+      "Seven bounded Mainland search queries and four current public bibliographic/retailer page observations were collected by the parent.",
+      "No exact Mainland demand or transaction evidence was identified in the supplied query results."
+    ],
+    "known_issues": [
+      "The source bundle does not include a verified Mainland transaction or complete cost schedule.",
+      "Rakuten displayed availability is a page claim, not reserved stock or confirmed delivery."
+    ]
+  },
+  "tasks": [
+    "Read only the supplied input.json.",
+    "Assess identity, edition/language conflict, Japanese supply evidence, Mainland demand coverage, and evidence limitations.",
+    "Return one JSON record for the candidate using the schema described in the input, plus a concise Chinese brief.",
+    "Classify the item as qualified, research_lead, or reject; do not use qualified without Mainland P, complete K, and fulfillment support."
+  ],
+  "acceptance": [
+    "Every factual claim is tied to a supplied URL and distinguished as catalog, retail offer, page stock claim, or transaction.",
+    "The same-ISBN language inconsistency is explicitly preserved and no edition is misrepresented as confirmed English.",
+    "P, K, profit, both 50% thresholds, and max purchase price remain unknown/null.",
+    "No unverified demand, sales, inventory, margin, or source-access claim is invented.",
+    "JSON and Chinese brief are written to the two declared output files; no other file is changed."
+  ],
+  "constraints": [
+    "Use Write/Edit to save the allowed files; do not use Bash redirection or Python to write files.",
+    "No network, credentials, purchases, messages, listings, code changes, or extra research tasks.",
+    "Bash commands are not authorized for this document-only task.",
+    "This is research output, not procurement approval."
+  ],
+  "workspace": "/Volumes/SanDisk2TB/jp-us-arb-route",
+  "read_files": ["research/2026-10-09-2100/books/input.json"],
+  "write_files": ["research/2026-10-09-2100/books/research.json", "research/2026-10-09-2100/books/brief.md"],
+  "commands": [],
+  "data_sensitivity": "public",
+  "timeout_seconds": 300,
+  "max_turns": 8,
+  "telemetry": {"project_id": "jp-us-arb-route", "logical_task_id": "spread-20261009-2100-books", "task_type": "research", "attempt_kind": "business"}
+}

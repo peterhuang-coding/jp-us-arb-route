@@ -1,0 +1,61 @@
+{
+  "slot": "SPREAD-20261009-2100",
+  "lane": "streetwear_smallgoods",
+  "collected_at": "2026-10-09T13:00:09Z",
+  "candidate": {
+    "id": "G03-WACKO-WMGP-BR11-BEIGE",
+    "brand": "WACKO MARIA",
+    "style_code": "WMGP-BR11",
+    "color": "BEIGE",
+    "size": null,
+    "item": "leopard boxer briefs"
+  },
+  "current_mainland_searches": {
+    "queries": [
+      "WMGP-BR11 闲鱼 WACKO MARIA",
+      "WMGP-BR11 内裤 中国",
+      "site:goofish.com \"WMGP-BR11\"",
+      "site:dewu.com \"WMGP-BR11\"",
+      "WMGP-BR11 site:taobao.com OR site:tmall.com"
+    ],
+    "result_summary": "Exact-code queries returned no usable same-style Mainland offer, recent transaction, or buyer quote in the bounded public search. Search results were irrelevant or empty.",
+    "meaning": "search coverage only; does not establish zero demand or zero sales",
+    "count": 5
+  },
+  "japan_supply_context_previously_observed_not_refreshed_this_slot": [
+    {
+      "url": "https://store.jb-voice.co.jp/products/wacko-maria-leopard-boxer-briefs-type1-wmgp-br11",
+      "observed_previous_run": "SPREAD-20261009-0100",
+      "facts": {
+        "style_code": "WMGP-BR11",
+        "color": "BEIGE",
+        "price_jpy": 8800,
+        "sizes": ["M", "L", "XL"],
+        "source_age_at_previous_run": "search-engine crawl about one month old"
+      },
+      "status": "historical source context only; not a current stock confirmation"
+    },
+    {
+      "url": "https://www.roots83.com/products/leopard-boxer-briefs-type-1",
+      "observed_previous_run": "SPREAD-20261009-0100",
+      "facts": {
+        "style_code": "WMGP-BR11",
+        "color": "BEIGE",
+        "price_jpy": 8800,
+        "availability": "sold out at prior observation"
+      },
+      "status": "historical source context only; do not describe as current stock"
+    }
+  ],
+  "constraints_and_gaps": {
+    "target_size": null,
+    "fulfillment_route": null,
+    "mainland_conservative_sale_price_p_cny": null,
+    "complete_cost_k_cny": null,
+    "profit": null,
+    "roi_50_percent_test": "unknown",
+    "net_margin_50_percent_test": "unknown",
+    "max_purchase_price": null,
+    "unknown_costs": ["fx/payment", "Japan delivery", "cross-border freight", "applicable tax", "platform fee", "domestic postage", "packing", "after-sales reserve"]
+  }
+}

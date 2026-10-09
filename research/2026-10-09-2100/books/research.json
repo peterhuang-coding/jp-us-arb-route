@@ -1,0 +1,185 @@
+{
+  "slot": "SPREAD-20261009-2100",
+  "lane": "art_books",
+  "generated_at": "2026-10-09",
+  "candidate": {
+    "id": "B03-SORAYAMA-9784309923093",
+    "title": "SORAYAMA THE GYNOIDS SUBLIME",
+    "creator": "Hajime Sorayama (空山 基)",
+    "isbn": "9784309923093"
+  },
+  "identity_assessment": {
+    "status": "isbn_title_creator_consistent",
+    "summary": "All four supplied public sources display ISBN 9784309923093 with the same title and creator, so identity as the Hajime Sorayama art book is supported by bibliographic and retail records. None of the supplied sources is a transaction.",
+    "source_links": [
+      {"url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093", "evidence_class": "catalog"},
+      {"url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154", "evidence_class": "catalog"},
+      {"url": "https://books.rakuten.co.jp/rb/18525964/", "evidence_class": "retail_offer"},
+      {"url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=america", "evidence_class": "catalog"}
+    ]
+  },
+  "evidence": [
+    {
+      "url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093",
+      "retrieved_at": null,
+      "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable",
+      "evidence_class": "catalog",
+      "class_note": "Official national library bibliographic record; not a sale, offer, or transaction.",
+      "observed_facts": {
+        "title": "SORAYAMA THE GYNOIDS SUBLIME",
+        "publisher": "Edision Treville; distributed by Kawade Shobo Shinsha",
+        "publication": "2026-06",
+        "isbn": "9784309923093",
+        "format": "print, unpaginated, 37 cm",
+        "text_language_code": "jpn",
+        "bibliographic_price_jpy": 5000,
+        "national_library_copy": "not held by NDL; one Shiga Prefectural Library record is shown"
+      }
+    },
+    {
+      "url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154",
+      "retrieved_at": null,
+      "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable",
+      "evidence_class": "catalog",
+      "class_note": "Publisher catalog page with order lead time; not locked stock and not a sale.",
+      "observed_facts": {
+        "title": "空山基作品集 SORAYAMA THE GYNOIDS SUBLIME",
+        "publisher_list_price_jpy_tax_included": 5500,
+        "isbn": "9784309923093",
+        "release_date": "2026-06-19",
+        "availability_text": "△3週間～"
+      }
+    },
+    {
+      "url": "https://books.rakuten.co.jp/rb/18525964/",
+      "retrieved_at": null,
+      "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable",
+      "evidence_class": "retail_offer",
+      "class_note": "Japanese retailer listing; an offer to sell, not a purchase and not a Mainland sale.",
+      "observed_facts": {
+        "title": "空山基作品集 SORAYAMA THE GYNOIDS SUBLIME",
+        "creator": "空山 基",
+        "isbn": "9784309923093",
+        "listed_price_jpy_tax_included": 5500,
+        "displayed_japan_shipping": "free",
+        "reviews": 0,
+        "review_event_count": 0
+      }
+    },
+    {
+      "url": "https://books.rakuten.co.jp/rb/18525964/",
+      "retrieved_at": null,
+      "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable",
+      "evidence_class": "page_stock_claim",
+      "class_note": "Retailer page stock display only; not reserved stock, not confirmed delivery, not a transaction.",
+      "observed_facts": {
+        "page_availability_text": "在庫あり; 残りあと44個"
+      }
+    },
+    {
+      "url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=america",
+      "retrieved_at": null,
+      "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-page timestamp unavailable",
+      "evidence_class": "catalog",
+      "class_note": "International distributor page describing future global distribution; not a current fulfilled offer and not a transaction.",
+      "observed_facts": {
+        "page_description": "English version",
+        "isbn_displayed": "9784309923093",
+        "price_usd": 85,
+        "release_date": "2027-10-05",
+        "availability": "future global distribution stated"
+      }
+    }
+  ],
+  "transaction_evidence": [],
+  "edition_language_conflict": {
+    "status": "unresolved_conflict_preserved",
+    "conflicting_claims": [
+      {
+        "claim": "NDL records text language code 'jpn' (Japanese), publication 2026-06, bibliographic price JPY 5000.",
+        "url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093",
+        "evidence_class": "catalog"
+      },
+      {
+        "claim": "Japanese publisher lists the book under the Japanese title 空山基作品集, release 2026-06-19, JPY 5500 tax included.",
+        "url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154",
+        "evidence_class": "catalog"
+      },
+      {
+        "claim": "Japanese retailer lists it under the Japanese title at JPY 5500 tax included.",
+        "url": "https://books.rakuten.co.jp/rb/18525964/",
+        "evidence_class": "retail_offer"
+      },
+      {
+        "claim": "PIE international page labels the same ISBN an 'English version' at USD 85 with release date 2027-10-05 and future global distribution.",
+        "url": "https://pie.co.jp/book/i/212309-sorayama-the-gynoids-sublime-%E6%B5%B7%E5%A4%96%E4%BB%95%E5%85%A5%E6%9C%AC/?lang=america",
+        "evidence_class": "catalog"
+      }
+    ],
+    "assessment": "ISBN 9784309923093 is tied to Japanese-language metadata in the national library record and to Japanese publisher/retailer listings released in June 2026, while the PIE international page describes an 'English version' carrying the same ISBN with a later 2027-10-05 release date. Supplied sources cannot establish whether PIE denotes a distinct English edition reusing the ISBN, a future reissue, or an erroneous page. The conflict must not be declared resolved and no edition may be represented as a confirmed English edition. Only the June 2026 Japanese-documented edition is evidenced in the supply records observed.",
+    "resolution_required": "Written publisher/distributor confirmation or inspection of a physical copy before any language- or edition-dependent claim."
+  },
+  "japan_supply_assessment": {
+    "status": "supply_signals_present_but_unverified",
+    "price_signals": [
+      {"price_jpy": 5000, "basis": "NDL bibliographic price (catalog record)", "url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093", "evidence_class": "catalog"},
+      {"price_jpy": 5500, "basis": "publisher list price, tax included", "url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154", "evidence_class": "catalog"},
+      {"price_jpy": 5500, "basis": "retailer listed price, tax included; Japan domestic shipping shown free", "url": "https://books.rakuten.co.jp/rb/18525964/", "evidence_class": "retail_offer"}
+    ],
+    "availability_signals": [
+      {"claim": "△3週間～ (order lead time of roughly three weeks or more)", "url": "https://www.kawade.co.jp/sp/search_result.html?writer_id=00154", "evidence_class": "catalog", "note": "publisher order lead time, not locked stock"},
+      {"claim": "在庫あり; 残りあと44個 (in stock; 44 remaining)", "url": "https://books.rakuten.co.jp/rb/18525964/", "evidence_class": "page_stock_claim", "note": "page claim only; not reserved stock or confirmed delivery"},
+      {"claim": "0 reviews / 0 review events", "url": "https://books.rakuten.co.jp/rb/18525964/", "evidence_class": "retail_offer"}
+    ],
+    "library_holding": {
+      "claim": "NDL does not hold a copy; one Shiga Prefectural Library record is shown.",
+      "url": "https://ndlsearch.ndl.go.jp/books/R100000137-I9784309923093",
+      "evidence_class": "catalog"
+    },
+    "note": "Japanese list and retail prices in JPY are supply-side signals only; they are not CNY landed costs, resale prices, or evidence of Mainland demand."
+  },
+  "mainland_demand_assessment": {
+    "status": "no_exact_evidence_in_bounded_search",
+    "bounded_queries_run": 7,
+    "queries": [
+      "9784309923093 中国 空山基",
+      "SORAYAMA THE GYNOIDS SUBLIME ISBN 中国",
+      "site:book.douban.com 9784309923093",
+      "site:kongfz.com 9784309923093",
+      "9784309923093 site:taobao.com",
+      "9784309923093 site:jd.com",
+      "9784309923093 site:kongfz.com OR site:book.kongfz.com"
+    ],
+    "result_summary": "Search pages returned irrelevant or non-matching entries; no exact-spec mainland sale, recent comparable transaction, or valid buyer offer was identified in this bounded search.",
+    "coverage_note": "This is search coverage only and does not establish zero demand or zero sales. A retail offer or library catalog is not a Mainland sale, buyer offer, or proof of resale price.",
+    "mainland_transaction_evidence": null,
+    "mainland_buyer_offer_evidence": null,
+    "p_established": false
+  },
+  "financials": {
+    "mainland_conservative_sale_price_p_cny": null,
+    "complete_cost_k_cny": null,
+    "profit": null,
+    "roi_50_percent_test": "unknown",
+    "net_margin_50_percent_test": "unknown",
+    "max_purchase_price": null,
+    "unknown_costs": ["fx/payment", "cross-border freight", "applicable tax", "platform fee", "domestic postage", "packing", "after-sales reserve"]
+  },
+  "evidence_limitations": [
+    "No supplied source is a verified Mainland transaction; no complete landed-cost schedule exists.",
+    "Rakuten availability ('在庫あり; 残りあと44個') is a page stock claim, not reserved stock or confirmed delivery.",
+    "PIE's USD 85 price and 2027-10-05 release describe stated future global distribution; they are not a current fulfilled offer and provide no Mainland demand evidence.",
+    "The JPY 5000/5500 figures are Japanese list/retail prices, not CNY costs or resale prices.",
+    "The seven Mainland queries are bounded coverage; non-matching results do not prove zero demand or zero sales.",
+    "The same-ISBN Japanese-vs-English language and release-date conflict is unresolved; no confirmed English edition may be claimed.",
+    "No cross-border fulfillment channel (logistics, tax handling, platform, delivery confidence) is evidenced."
+  ],
+  "classification": "research_lead",
+  "classification_rationale": "Identity of ISBN 9784309923093 as the Sorayama art book is corroborated by a national library catalog, a publisher catalog, and a Japanese retail offer, so outright rejection is not warranted. However, qualified status requires Mainland P evidence, complete K, and fulfillment support: no Mainland transaction or buyer offer was found, K and both 50% tests are unknown, max purchase price is null, and the edition/language conflict is unresolved. The item therefore remains a research lead only; no observed fact justifies upgrading it.",
+  "upgrade_conditions": [
+    "A verified Mainland buyer offer or comparable transaction for this exact ISBN/edition establishing a conservative P in CNY.",
+    "A complete landed-cost K in CNY covering fx/payment, cross-border freight, tax, platform fees, domestic postage, packing, and after-sales reserve.",
+    "A documented fulfillment path with delivery confidence into the Mainland.",
+    "Resolution of the Japanese-vs-English language and release-date conflict via publisher/distributor confirmation or physical-copy inspection."
+  ]
+}

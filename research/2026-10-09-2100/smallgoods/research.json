@@ -1,0 +1,88 @@
+{
+  "slot": "SPREAD-20261009-2100",
+  "lane": "streetwear_smallgoods",
+  "generated_at": "2026-10-09",
+  "candidate": {
+    "id": "G03-WACKO-WMGP-BR11-BEIGE",
+    "brand": "WACKO MARIA",
+    "style_code": "WMGP-BR11",
+    "color": "BEIGE",
+    "size": null,
+    "item": "leopard boxer briefs"
+  },
+  "identity_assessment": {
+    "style_color_match": "exact_code_and_color_confirmed_by_historical_japan_retail_listings",
+    "detail": "Two Japan retailer product pages observed in a prior run (SPREAD-20261009-0100) identify WMGP-BR11 as WACKO MARIA Leopard Boxer Briefs (Type-1) in BEIGE, listed at JPY 8,800. Code and color agree with the target; the product is an apparel smallgood (underwear), which affects resale hygiene/return considerations.",
+    "target_size_confirmed": false,
+    "sources": [
+      {
+        "url": "https://store.jb-voice.co.jp/products/wacko-maria-leopard-boxer-briefs-type1-wmgp-br11",
+        "role": "historical_style_color_price_identity",
+        "freshness": "observed previous run SPREAD-20261009-0100; based on a search-engine crawl already about one month old then; not refreshed this slot"
+      },
+      {
+        "url": "https://www.roots83.com/products/leopard-boxer-briefs-type-1",
+        "role": "historical_style_color_price_identity",
+        "freshness": "observed previous run SPREAD-20261009-0100; sold out at that observation; not refreshed this slot"
+      }
+    ]
+  },
+  "mainland_search_coverage_current": {
+    "as_of": null,
+    "observed_at_window_utc": "2026-10-09T13:01Z to 13:08Z; precise per-query timestamp unavailable",
+    "query_count": 5,
+    "queries": [
+      "WMGP-BR11 闲鱼 WACKO MARIA",
+      "WMGP-BR11 内裤 中国",
+      "site:goofish.com \"WMGP-BR11\"",
+      "site:dewu.com \"WMGP-BR11\"",
+      "WMGP-BR11 site:taobao.com OR site:tmall.com"
+    ],
+    "result": "No usable same-style (WMGP-BR11 / BEIGE) Mainland offer, recent transaction record, or valid buyer quote was found; results were irrelevant or empty.",
+    "interpretation": "Bounded exact-code search coverage only. Absence of hits does NOT establish zero demand, zero sales, or zero supply; code-based queries may miss Chinese-language listings that omit the style code.",
+    "demand_evidence": "none_supplied",
+    "is_current": true
+  },
+  "japan_supply_context_historical": {
+    "is_current": false,
+    "note": "Prior-run observations only; neither page was refreshed in this slot and neither confirms current stock or current price.",
+    "observations": [
+      {
+        "url": "https://store.jb-voice.co.jp/products/wacko-maria-leopard-boxer-briefs-type1-wmgp-br11",
+        "observed_previous_run": "SPREAD-20261009-0100",
+        "price_jpy": 8800,
+        "sizes_then": ["M", "L", "XL"],
+        "source_age_then": "search-engine crawl about one month old",
+        "do_not_treat_as": "current availability or current price confirmation"
+      },
+      {
+        "url": "https://www.roots83.com/products/leopard-boxer-briefs-type-1",
+        "observed_previous_run": "SPREAD-20261009-0100",
+        "price_jpy": 8800,
+        "availability_then": "sold out",
+        "do_not_treat_as": "current availability"
+      }
+    ]
+  },
+  "decision_inputs": {
+    "mainland_conservative_sale_price_p_cny": null,
+    "complete_cost_k_cny": null,
+    "profit_cny": null,
+    "roi_50_percent_test": "unknown",
+    "net_margin_50_percent_test": "unknown",
+    "max_purchase_price_cny": null,
+    "target_size": null,
+    "fulfillment_route": null,
+    "unknown_costs": ["fx/payment", "Japan delivery", "cross-border freight", "applicable tax", "platform fee", "domestic postage", "packing", "after-sales reserve"],
+    "buyability_or_margin_inferred": false
+  },
+  "classification": "research_lead",
+  "classification_reason": "Exact style/color identity (WMGP-BR11 / BEIGE) is supported by historical Japan retailer pages, but (1) no current Mainland same-style offer, transaction, or buyer quote exists in the bounded searches (search absence is not zero demand), (2) Mainland P and complete K are unknown so profit and both 50% tests cannot be evaluated, (3) target size is unspecified, and (4) no fulfillment route is defined. Fails every hard qualification requirement; not rejected because code/color identity is established and demand was never tested beyond exact-code queries.",
+  "purchase_recommendation": "none",
+  "next_evidence_needed": [
+    "Specify exact target size (M/L/XL) before any further evaluation",
+    "Refresh Japan retailer pages to confirm current stock, price, and purchasable sizes (no refresh authorized this slot)",
+    "Broaden Mainland research beyond exact-code queries (brand + Chinese item terms, sold listings, buyer-want posts) to test real demand",
+    "Define fulfillment route and build complete K before any margin assessment"
+  ]
+}
