@@ -1,0 +1,82 @@
+{
+  "review_id": "REVIEW-20261010-0900",
+  "local_date": "2026-10-10",
+  "started_at_utc": "2026-10-10T01:01:03Z",
+  "triggered_at_utc": "2026-10-10T01:00:11.246Z",
+  "previous_cursor": {
+    "run_id": "SPREAD-20261008-0500",
+    "commit": "ad049ec4c22209e9c51a28c61e5d39516233d03f"
+  },
+  "reviewed_runs": [
+    "SPREAD-20261008-1300",
+    "SPREAD-20261008-2100",
+    "SPREAD-20261009-MANUAL-01",
+    "SPREAD-20261009-0100",
+    "SPREAD-20261009-2100",
+    "SPREAD-20261010-0500"
+  ],
+  "reviewed_research_commit": "7e85c0c21126a8da5ea43539929922611ead8b42",
+  "notion_gate": {
+    "project_page_read": true,
+    "queue_database_read": true,
+    "view_id": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "view_fully_paginated": true,
+    "cards_pending": ["R1", "R2", "R3", "R4", "R5"],
+    "new_direction": false,
+    "card_statuses_changed": false
+  },
+  "scope": "Incremental review only; no market refetch, no downstream package, no weekly review (Saturday).",
+  "metrics": {
+    "research_runs": 6,
+    "newly_qualified_candidates": 0,
+    "mainland_valid_sale_or_buyer_offer_evidence": 0,
+    "full_cost_K_available": false,
+    "profit_or_50pct_metrics_claimed": false,
+    "source_error_rate_claimed": false,
+    "source_snapshot_sample_size": 0,
+    "market_fetches": 0,
+    "downstream_calls": 0,
+    "extra_paid_spend_cny": 0,
+    "time_saved_claimed": false
+  },
+  "latest_run_review": {
+    "run_id": "SPREAD-20261010-0500",
+    "qualified_candidates": 0,
+    "research_leads": 2,
+    "source_requests": 22,
+    "page_opens": 6,
+    "downstream_web_requests": 0,
+    "book_isbn": "9784309923093",
+    "book_language_edition_conflict": "unresolved",
+    "book_supply_pages": "conflicting_or_noncommittal",
+    "smallgoods_style_code": "WMGP-BR11",
+    "smallgoods_color": "BEIGE",
+    "smallgoods_target_size_and_live_stock": "unknown",
+    "mainland_P_and_full_K": null,
+    "financial_claims": null
+  },
+  "package_review": {
+    "tasks": [
+      "jp-spread-20261010-0500-books-a1",
+      "jp-spread-20261010-0500-smallgoods-a1"
+    ],
+    "runner_statuses": ["invalid_output_partial_adoption", "invalid_output_partial_adoption"],
+    "accepted_as_complete": 0,
+    "partial_adoption_only": true,
+    "combined_usage": {
+      "input_tokens": 22976,
+      "cache_read_input_tokens": 53296,
+      "output_tokens": 14278,
+      "web_requests": 0
+    },
+    "usd_estimate_is_not_actual_charge": true,
+    "extra_paid_spend_cny": 0,
+    "replayed": false
+  },
+  "status": "completed_with_evidence_limits_recorded",
+  "report": "docs/research/reviews/2026-10-10.md",
+  "evidence": "docs/research/reviews/2026-10-10.json",
+  "round": ".claude/autopilot/rounds/2026-10-10-0900-REVIEW.md",
+  "notification": "DONT_NOTIFY",
+  "new_method": false
+}
