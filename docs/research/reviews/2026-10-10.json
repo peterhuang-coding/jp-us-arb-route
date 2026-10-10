@@ -73,6 +73,18 @@
     "extra_paid_spend_cny": 0,
     "replayed": false
   },
+  "manifest_corrections": [
+    {
+      "slot_id": "SPREAD-20261009-2100",
+      "issue": "checked_slots remained in_progress despite completed_with_partial_delivery run evidence and verified public commit",
+      "correction": "reconciled checked slot with saved run report and Notion completion link; recorded finish, request/package counts, and commit"
+    },
+    {
+      "slot_id": "SPREAD-20261010-0500",
+      "issue": "trigger check used generic completed state despite both packages returning invalid_output_partial_adoption",
+      "correction": "changed trigger state to completed_with_partial_delivery and recorded verified commit"
+    }
+  ],
   "status": "completed_with_evidence_limits_recorded",
   "report": "docs/research/reviews/2026-10-10.md",
   "evidence": "docs/research/reviews/2026-10-10.json",
