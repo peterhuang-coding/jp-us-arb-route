@@ -1,0 +1,121 @@
+{
+  "slot_id": "SPREAD-20261012-0500",
+  "triggered_at": "2026-10-11T21:04:08.574Z",
+  "triggered_local": "2026-10-12T05:04:08.574+08:00",
+  "started_local": "2026-10-12T05:04:08+08:00",
+  "scope": "Japan procurement to Mainland China resale; artbooks and streetwear underwear/small goods only",
+  "notion": {
+    "project_page_last_edited_at": "2026-10-10T01:03:56.315Z",
+    "queue_view": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "queue_rows": 5,
+    "all_pending_selection": true,
+    "direction_change": false,
+    "verified": true
+  },
+  "sources": [
+    {
+      "sku": "ISBN 9784824204745",
+      "source_id": "hifumi-publisher",
+      "url": "https://hifumi.co.jp/lineup/9784824204745/",
+      "access_method": "public web open",
+      "observed_local_window": "2026-10-12 05:04-05:06 Asia/Shanghai",
+      "status": "readable",
+      "evidence_type": "publisher bibliographic identity/list price",
+      "extracted": ["ISBN", "usual edition", "B4", "release 2025-08-29", "6500 JPY before tax"],
+      "missing": ["Mainland exit price", "full landed cost", "current sellable stock", "fulfillment"]
+    },
+    {
+      "sku": "ISBN 9784824204745",
+      "source_id": "team-store-japan",
+      "url": "https://team-ec.jp/product/66363",
+      "access_method": "public web open",
+      "observed_local_window": "2026-10-12 05:04-05:06 Asia/Shanghai",
+      "status": "readable",
+      "evidence_type": "Japanese retailer offer/page stock declaration",
+      "extracted": ["7150 JPY tax-included", "B4 approx 176 pages", "stock symbol ◎", "Japan shipping rule"],
+      "missing": ["locked stock", "cross-border billable weight/cost", "Mainland P"]
+    },
+    {
+      "sku": "1M70-183-001 / NAVY",
+      "source_id": "bape-japan-official",
+      "url": "https://jp.bape.com/collections/sales-ranking/products/1m70-183-001?color=NAVY",
+      "access_method": "public web open/search result",
+      "observed_local_window": "2026-10-12 05:04-05:06 Asia/Shanghai",
+      "status": "readable",
+      "evidence_type": "official identity, retail offer, size chart, shipping policy",
+      "extracted": ["7150 JPY tax-included", "NAVY", "M/L/XL size chart", "usual 1-3 business days dispatch", "400 JPY Japan shipping rule", "no overseas orders/shipments"],
+      "missing": ["variant-specific live stock", "Mainland P", "cross-border full K"]
+    },
+    {
+      "sku": "M6GZ17K6YW1",
+      "source_id": "guess-japan-control",
+      "url": "https://store.guessjapan.com/category/GT2325/106017271.html?condition=GENDER%3AG1",
+      "access_method": "public web open",
+      "observed_local_window": "2026-10-12 05:04-05:06 Asia/Shanghai",
+      "status": "readable",
+      "evidence_type": "official supply exclusion/control",
+      "extracted": ["4290 JPY", "all displayed color/size counts 0"],
+      "missing": ["current executable stock"],
+      "decision": "excluded from actionable supply"
+    }
+  ],
+  "mainland_search": {
+    "query_count_verified": 11,
+    "query_terms": [
+      "9784824204745 + JD/Taobao/Tmall/Xianyu/Kongfz/Douban",
+      "1M70-183-001 + Xianyu/Dewu/Taobao/JD"
+    ],
+    "usable_exact_transactions": 0,
+    "usable_buyer_quotes": 0,
+    "interpretation": "limited indexed searches found no usable exact-code evidence; not evidence of zero demand"
+  },
+  "access_counts": {
+    "direct_page_opens_verified": 4,
+    "search_queries_verified": 12,
+    "preliminary_discovery_call_telemetry": "not fully recoverable",
+    "40_page_cap_breached": false,
+    "extra_spend_cny": 0
+  },
+  "candidates": [
+    {
+      "identity": "9784824204745 / usual edition",
+      "classification": "research_lead",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "full_cost_ROI_50pct": null,
+      "sales_net_margin_50pct": null,
+      "max_buy_price": null,
+      "qualification": false
+    },
+    {
+      "identity": "BAPE 1M70-183-001 / NAVY / target size unspecified",
+      "classification": "research_lead",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "full_cost_ROI_50pct": null,
+      "sales_net_margin_50pct": null,
+      "max_buy_price": null,
+      "qualification": false
+    }
+  ],
+  "coding_plan_batch": {
+    "batch_dir": "research/2026-10-12-0500/batch",
+    "status": "stopped",
+    "concurrency": 2,
+    "peak_in_flight": 2,
+    "dispatched_count": 2,
+    "jobs": [
+      {"id": "jp-20261012-0500-book-waishu", "status": "unknown", "error_class": "timeout", "elapsed_ms": 180087, "native_model": null, "native_usage": null},
+      {"id": "jp-20261012-0500-small-bape-trunks", "status": "unknown", "error_class": "timeout", "elapsed_ms": 180087, "native_model": null, "native_usage": null}
+    ],
+    "retries": 0,
+    "extra_waves": 0
+  },
+  "qualified_candidates": 0,
+  "new_research_leads": 2,
+  "source_requests_exact_total": null,
+  "next": "Wait for exact Mainland same-SKU exit evidence; resolve exact-size Japan inventory and complete K before any margin calculation.",
+  "no_production_changes": true
+}
