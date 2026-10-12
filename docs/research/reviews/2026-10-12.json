@@ -1,0 +1,84 @@
+{
+  "review_id": "REVIEW-20261012-0900",
+  "local_date": "2026-10-12",
+  "started_at_local": "2026-10-12T09:00:12+08:00",
+  "previous_cursor": {
+    "run_id": "SPREAD-20261010-0500",
+    "commit": "0860ee31fe5471ec65fb4de86fa64beaeef44115"
+  },
+  "reviewed_runs": ["SPREAD-20261012-0500"],
+  "reviewed_research_commit": "2fd07153504cb8184f2207ab1ae18be7c6bf3370",
+  "notion_gate": {
+    "project_page_read": true,
+    "queue_database_read": true,
+    "view_id": "view://08f085b7-9ec4-46ed-b913-a823efb1263b",
+    "view_fully_paginated": true,
+    "cards_pending": ["R1", "R2", "R3", "R4", "R5"],
+    "new_direction": false,
+    "card_statuses_changed": false
+  },
+  "scope": "Incremental review of one new run plus weekly summary from available Oct 8-12 records. No market refetch and no downstream package.",
+  "metrics": {
+    "incremental_runs_reviewed": 1,
+    "weekly_research_report_runs_found": 9,
+    "weekly_coverage_start": "2026-10-08",
+    "weekly_coverage_end": "2026-10-12",
+    "coverage_complete_7_days": false,
+    "qualified_candidates": 0,
+    "mainland_valid_sale_or_buyer_offer_evidence": 0,
+    "full_cost_K_available": false,
+    "source_pages_checked": 4,
+    "source_error_rate_claimed": false,
+    "time_saved_claimed": false,
+    "market_fetches": 0,
+    "downstream_calls": 0,
+    "extra_paid_spend_cny": 0
+  },
+  "weekly_package_statuses": {
+    "research_runs": 9,
+    "package_jobs": 18,
+    "accepted_complete": 4,
+    "invalid_output_partial_adoption": 6,
+    "unknown": 3,
+    "verifying_or_blocked_unresolved": 5,
+    "partial_adoption_counts_as_complete": false,
+    "source": "Saved artifacts for Oct 8-12; Oct 9 manual report plus Oct 8, Oct 9, Oct 10, and Oct 12 reports. This is an incomplete 7-day window.",
+    "request_total": null
+  },
+  "latest_run_review": {
+    "run_id": "SPREAD-20261012-0500",
+    "research_leads": ["ISBN 9784824204745", "BAPE 1M70-183-001/NAVY"],
+    "qualified_candidates": 0,
+    "verified_search_queries": 11,
+    "direct_page_opens": 4,
+    "exact_total_source_requests": null,
+    "mainland_P_and_full_K": null,
+    "financial_metrics": null,
+    "package_ids": ["jp-20261012-0500-book-waishu", "jp-20261012-0500-small-bape-trunks"],
+    "package_statuses": ["unknown_timeout", "unknown_timeout"],
+    "replayed": false
+  },
+  "evidence_sample": {
+    "pages": 4,
+    "candidate_records": 2,
+    "excluded_control_records": 1,
+    "raw_page_snapshots_available": false,
+    "sampling_frame_available": false,
+    "error_rate_estimate": null,
+    "findings": [
+      "Publisher and retailer records support book ISBN/edition identity; retailer stock symbol is not locked inventory.",
+      "BAPE official page supports style/color/size-chart identity but not size-specific live inventory.",
+      "GUESS control quantities are zero and the record is excluded from executable supply.",
+      "No search result is recorded as limited indexed evidence, not zero demand."
+    ]
+  },
+  "lane_counters": {
+    "artbooks": {"status": "ready", "no_increment_runs": 0, "last_increment_run": "SPREAD-20261012-0500"},
+    "smallgoods": {"status": "ready", "no_increment_runs": 0, "last_increment_run": "SPREAD-20261012-0500"}
+  },
+  "status": "completed_with_limited_sample_and_partial_package_statuses_recorded",
+  "report": "docs/research/reviews/2026-10-12.md",
+  "evidence": "docs/research/reviews/2026-10-12.json",
+  "notification": "NOTIFY: two new SKU leads and two downstream timeouts; neither SKU is purchase-qualified.",
+  "new_method": false
+}
