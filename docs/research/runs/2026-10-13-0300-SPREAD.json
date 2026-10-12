@@ -1,0 +1,260 @@
+{
+  "run_id": "SPREAD-20261013-0300",
+  "triggered_at": "2026-10-12T19:06:28.115Z",
+  "local_slot": "2026-10-13T03:00:00+08:00",
+  "started_at": "2026-10-12T19:06:52Z",
+  "evidence_completed_at": "2026-10-12T19:51:59.730747+00:00",
+  "status": "completed_with_corrected_adoption",
+  "market": "US",
+  "search_queries": 7,
+  "page_open_requests": 5,
+  "find_requests": 3,
+  "distinct_direct_urls": 4,
+  "requests_conservative_total": 15,
+  "new_candidate_families": 0,
+  "new_exact_authenticated_skus": 0,
+  "candidate_families_reviewed": 2,
+  "new_seller_listing_urls": 3,
+  "qualified_candidates": 0,
+  "extra_paid_cny": 0,
+  "parallel_packages": 2,
+  "one_wave_only": true,
+  "sources": {
+    "joan": {
+      "scope": "Public source observations only. Cached evidence not live inventory. No Mainland exit P/full K; all financial metrics unknown. No actual image authentication. Two existing candidate families, not new verified SKU.",
+      "sources": [
+        {
+          "id": "UJ1",
+          "url": "https://www.ebay.com/itm/265457453231",
+          "checked_at": null,
+          "method": "web open and find; find returned crawled today, earlier open month-old",
+          "facts": "Seller VIPexclusives; Green first vinyl 10-inch Selfie Gun. USD550 asking, New and Original Unopened seller claims. Located Tampa Florida US seller claim. No serial/provenance shown. Destination Japan on served find: may not ship to Japan; China fulfillment and cost unknown. 30-day buyer-paid returns. Last listing update Dec26 2023 not sale event/price observation date. Buy button plus server-error banner: inventory not verified. Watchers not sales.",
+          "event_time": null,
+          "checked_at_window": "2026-10-13T03:23:00+08:00/2026-10-13T03:24:00+08:00",
+          "seller_dedupe_key": "ebay:VIPexclusives",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "asking",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "UJ2",
+          "url": "https://stockx.com/joan-cornella-selfie-gun-vinyl-figure-green",
+          "checked_at": null,
+          "method": "search snippet crawled last week; direct open returned eight-month crawl; field finds failed",
+          "facts": "Snippet USD270 ask,293 with marketplace fee,last sale200,sell now126. Historical ranges343 and last-three-month count1/average344 not aligned with top last-sale field; update times unresolved, not proven platform error. Do not reconcile or use as P. US locale/USD not US buyer/seller/dispatch. Anonymous seller; sale time unknown. Stale delivery estimate excluded.",
+          "event_time": null,
+          "checked_at_window": "2026-10-13T03:23:00+08:00/2026-10-13T03:24:00+08:00",
+          "seller_dedupe_key": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "unreconciled_snapshot_fields",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "J3-baseline",
+          "url": "https://ddtstore.com/collections/joan-cornella/products/joan-cornella-1st-vinyl-figure-10-inch-selfie-gun",
+          "method": "prior 0100 adopted evidence, not revisited this slot",
+          "facts": "Official Green vinyl edition1000, serial numbered, printed signature under feet; first vinyl. No attributable price/stock. Not hand signed.",
+          "seller_dedupe_key": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "historical_baseline",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "J1-baseline",
+          "url": "https://jp.mercari.com/item/m87506588283",
+          "method": "prior 0100 adopted evidence, not revisited",
+          "facts": "JPY110000 ask incl tax and Japan shipping; seller claims green0642/1000,unused,no accessories. Different packaging/condition from US listing; no confirmed comparable sale, authenticity or China fulfillment.",
+          "seller_dedupe_key": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "historical_baseline",
+          "tax_duty_and_crossborder_fees": null
+        }
+      ]
+    },
+    "akira": {
+      "scope": "Public source observations only. Cached evidence not live inventory. No Mainland exit P/full K; all financial metrics unknown. No actual image authentication. Two existing candidate families, not new verified SKU.",
+      "sources": [
+        {
+          "id": "UA1",
+          "url": "https://www.ebay.com/itm/167036836460",
+          "checked_at": null,
+          "method": "open crawled two months ago; search five days ago",
+          "facts": "Seller beanit, located Blaine Washington US seller claim. USD175 asking plus25 Economy displayed to US destination (not China). Title Kaneda on Motorcycle Deluxe Boxed Set 3D Animation from Japan2 New. Seller condition New. MPN AND Model fields 0787926149203; UPC does not apply. Do not reclassify MPN as verified barcode. Size27cm PVC seller fields; origin Japan unverified. No returns stated. Last update Dec21 2025 not sale date. Old August delivery and server error; current stock unverified. No packaging image independently inspected.",
+          "checked_at_window": "2026-10-13T03:23:00+08:00/2026-10-13T03:24:00+08:00",
+          "seller_dedupe_key": "ebay:beanit",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "asking",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "UA2",
+          "url": "https://www.ebay.com/itm/267791048340",
+          "checked_at": null,
+          "method": "open crawled two weeks ago; source-time is cache, checked_at retrieval time only",
+          "facts": "Seller badlt437, located Brooklyn NY US seller claim. Loose used Kaneda plus motorcycle. Page labels SOLD and Sep21 7:12AM without year/timezone. USD90 or Best Offer displayed; final accepted amount, payment completion and buyer country unknown. Latest served page shipping68.21 international to NZ locale,30-day buyer-paid returns; earlier snippet15 domestic/no returns conflicts. Do not apply either to China or combine them. Seller origin field China not verified manufacture. No code/edition confirmed, not equal boxed lot.",
+          "checked_at_window": "2026-10-13T03:46:00+08:00/2026-10-13T03:48:00+08:00",
+          "seller_dedupe_key": "ebay:badlt437",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "sold_label_with_displayed_asking_or_best_offer",
+          "tax_duty_and_crossborder_fees": null,
+          "sale_time_displayed": "Mon Sep21 07:12AM; year/timezone not given",
+          "shipping_warning": "Latest NZ-localized rendering and earlier US-domestic snippet differ; not a proven seller policy change."
+        },
+        {
+          "id": "A1-baseline",
+          "url": "https://mil.stores.jp/items/6735913cf06ae8033636752d",
+          "method": "prior0100 adopted evidence not revisited",
+          "facts": "Japan seller page JPY31800 tax included plus unknown shipping; Kaneda on Motorcycle 2000 McFarlane NOS boxed unopened but used vintage/no returns. Exact code unknown; manufacturing/release-year meaning unresolved; not proven same SKU as US2series.",
+          "seller_dedupe_key": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "price_type": "historical_baseline",
+          "tax_duty_and_crossborder_fees": null
+        }
+      ]
+    }
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-0300-joan-us-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "corrections": [
+        "Removed unsupported attribution of 10-inch size to supplied official facts.",
+        "StockX differing snapshot fields remain unresolved, not proven platform self-contradiction.",
+        "Replaced Japan sold evidence as a route to P with target-market-specific exit evidence; removed unrelated NOS/Best Offer copy.",
+        "Per-URL exact seconds not captured consistently; final evidence uses retrieval windows."
+      ],
+      "request_sha256": "543b4a61ddab4bb984f6d09409d775e5deb2a1ba37380832146d4ddef3de6ecd",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T19:47:47.105811+00:00",
+      "finished_at": "2026-10-12T19:49:49.309839+00:00",
+      "elapsed_seconds": 122.202,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 17632,
+        "inference_geo": "",
+        "input_tokens": 9328,
+        "iterations": [],
+        "output_tokens": 5369,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": []
+    },
+    {
+      "task_id": "jp-spread-20261013-0300-akira-us-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "corrections": [
+        "Removed speculative declining boxed supply and unverified 2000 manufacturing claim from collection rationale.",
+        "Replaced one-shot SKU determination from photos/sold listing with separate manufacturer/packaging cross-check; authenticity remains separate.",
+        "Clarified missing comparable P/fullK instead of asserting no cost component can be calculated.",
+        "Per-URL exact seconds not captured consistently; final evidence uses retrieval windows."
+      ],
+      "request_sha256": "5f56ed8524a1bfa4997afba1baff420c8a6f9b3ac903316319f58029ff78911f",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T19:47:47.105687+00:00",
+      "finished_at": "2026-10-12T19:49:57.778669+00:00",
+      "elapsed_seconds": 130.67,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 11688,
+        "inference_geo": "",
+        "input_tokens": 9547,
+        "iterations": [],
+        "output_tokens": 5730,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": []
+    }
+  ],
+  "financial_values": {
+    "joan_green": {
+      "sale_price_P": null,
+      "full_cost_K": null,
+      "profit": null,
+      "roi": null,
+      "net_margin": null,
+      "max_buy_price": null
+    },
+    "akira_boxed_or_loose": {
+      "sale_price_P": null,
+      "full_cost_K": null,
+      "profit": null,
+      "roi": null,
+      "net_margin": null,
+      "max_buy_price": null
+    }
+  },
+  "review_sample": {
+    "candidate_families": 2,
+    "promotions": 0,
+    "excluded_comparisons": [
+      "StockX snapshot fields not usable as market-specific P",
+      "Sold AKIRA USD90/Best Offer not confirmed price",
+      "Search hit print set not vinyl figure",
+      "Auction platform US profile not Hong Kong sale location"
+    ],
+    "not_market_accuracy_rate": true
+  },
+  "lane_accounting": {
+    "smallgoods": {
+      "before": 0,
+      "after": 0,
+      "basis": "New US seller/MPN/sold-label observations; legacy toy lane, no paused path revived."
+    },
+    "artbooks": {
+      "before": 0,
+      "after": 0,
+      "basis": "Not worked; unchanged."
+    }
+  },
+  "notion_gate": "Fresh project/database plus complete view: five pending old cards; no newer direction conflict; untouched.",
+  "notifications": "No new qualified opportunity/material verified bilateral comparison/user action; no alert.",
+  "limitations": [
+    "Tool retrieval times are windows, not exact per-URL seconds; handoff original approximate group timestamps preserved but corrected here.",
+    "Cache ages and conflicting locale-specific shipping retained; no live-stock claim.",
+    "No usable Mainland exact-item exit evidence; search absence is not no demand.",
+    "US seller location does not prove US buyer demand or actual shipment.",
+    "No production changes, trades, paid calls, messages or account setup."
+  ],
+  "publication_cleanup": "Clarified unchecked images vs missing images, cache age in months, seller returns vs platform guarantee, shipping differences by destination; kept original Plan adoption evidence immutable."
+}
