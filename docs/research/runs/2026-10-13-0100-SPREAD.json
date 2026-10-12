@@ -1,0 +1,246 @@
+{
+  "run_id": "SPREAD-20261013-0100",
+  "triggered_at": "2026-10-12T17:02:42.251Z",
+  "local_slot": "2026-10-13T01:00:00+08:00",
+  "started_at": "2026-10-12T17:02:52Z",
+  "evidence_completed_at": "2026-10-12T17:12:02.642319+00:00",
+  "status": "completed_with_partial_adoption",
+  "market": "JP",
+  "search_queries": 15,
+  "page_open_click_requests": 8,
+  "distinct_direct_urls": 4,
+  "requests_conservative_total": 23,
+  "new_candidate_families": 2,
+  "new_exact_authenticated_skus": 0,
+  "qualified_candidates": 0,
+  "extra_paid_cny": 0,
+  "parallel_packages": 2,
+  "one_wave_only": true,
+  "sources": {
+    "joan": {
+      "observation_window": "2026-10-13T01:03:00+08:00/2026-10-13T01:06:38+08:00",
+      "per_url_exact_timestamp": null,
+      "access": "web tool rendered page; not physical authentication or stock confirmation",
+      "mainland_exit": {
+        "status": "No usable mainland exact-item sale evidence retrieved in this round",
+        "sale_price": null,
+        "sale_event_time": null,
+        "warning": "Search absence is missing evidence, not proof of no sales."
+      },
+      "cost": {
+        "full_landed_cost": null,
+        "profit": null,
+        "roi": null,
+        "net_margin": null,
+        "max_buy_price": null
+      },
+      "authorization": "Research only. No contact, purchases, listings, account setup or code changes.",
+      "candidate": "Joan Cornella Selfie Gun Green vinyl",
+      "sources": [
+        {
+          "id": "J1",
+          "url": "https://jp.mercari.com/item/m87506588283",
+          "type": "seller_listing",
+          "facts": [
+            "Ask JPY110000 tax included; seller-paid domestic shipping. International shipping availability/cost unknown, not a confirmed refusal.",
+            "Seller states green vinyl, edition1000, serial0642, new unused, no accessories.",
+            "Kanagawa ship-from stated; LetterPack, dispatch2-3days; page displays a relative time older than halfyear, exact listing and price-update times unknown.",
+            "Purchase button displayed. Box, provenance and physical condition unverified. Seller dedupe unknown; listing dedupe m87506588283."
+          ]
+        },
+        {
+          "id": "J3",
+          "url": "https://ddtstore.com/collections/joan-cornella/products/joan-cornella-1st-vinyl-figure-10-inch-selfie-gun",
+          "type": "official_product_body",
+          "facts": [
+            "ARR collaboration with Joan Cornella; first vinyl figure based on signature motif.",
+            "Selfie Gun Green, vinyl, edition1000, serial numbered, printed signature under feet.",
+            "No attributable current product price or stock read. Shared modal's July2026 draw and HKD12500 do NOT belong to verified product evidence."
+          ]
+        }
+      ],
+      "excluded_comparison": {
+        "url": "https://jp.mercari.com/item/m61117541966",
+        "status": "Related card showed85000; direct re-read returned tool internal error at01:06:38. Exact version/condition/price not adopted."
+      }
+    },
+    "akira": {
+      "observation_window": "2026-10-13T01:03:00+08:00/2026-10-13T01:06:38+08:00",
+      "per_url_exact_timestamp": null,
+      "access": "web tool rendered page; not physical authentication or stock confirmation",
+      "mainland_exit": {
+        "status": "No usable mainland exact-item sale evidence retrieved in this round",
+        "sale_price": null,
+        "sale_event_time": null,
+        "warning": "Search absence is missing evidence, not proof of no sales."
+      },
+      "cost": {
+        "full_landed_cost": null,
+        "profit": null,
+        "roi": null,
+        "net_margin": null,
+        "max_buy_price": null
+      },
+      "authorization": "Research only. No contact, purchases, listings, account setup or code changes.",
+      "candidate": "AKIRA Kaneda on Motorcycle, seller-described McFarlane boxed vintage",
+      "sources": [
+        {
+          "id": "A1",
+          "url": "https://mil.stores.jp/items/6735913cf06ae8033636752d",
+          "type": "seller_listing",
+          "facts": [
+            "Title says2000 McFARLANE TOYS AKIRA KANEDA ON MOTORCYCLE nos vintage.",
+            "Ask JPY31800 tax included, shipping extra unknown. Cart button displayed, not verified inventory.",
+            "Seller says boxed unopened NOS vintage but explicitly used/notnew. Size25.5x20.5x16cm, whether box/item dimensions unknown.",
+            "Seller states used items no returns, aging risk. Actual Japan ship-from unverified; Japanese store page alone is insufficient.",
+            "UPC, article code, series, region, inner completeness, provenance and exact manufacturing year unknown.",
+            "Ignore seller marketing that price will only rise. Seller dedupe mil.stores.jp; listing dedupe6735913cf06ae8033636752d."
+          ]
+        },
+        {
+          "id": "A2",
+          "url": "https://www.comiccollectorlive.com/McFarlanes-3D-Animation-from-Japan-Series-2-7A/details/0/f/c9e0f1p1x/id/68742727-16b5-4c0c-860c-f8c91a387550/",
+          "type": "secondary_search_snippet_only",
+          "facts": [
+            "Search snippet catalog associates Kaneda on Motorcycle with Series2 and2001; secondary not manufacturer, no direct page verification.",
+            "Conflicts with seller2000 wording; requires packaging/manufacturer evidence. Do not settle year from this snippet."
+          ]
+        }
+      ]
+    }
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-0100-joan-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "corrections": [
+        "Domestic shipping coverage does not establish refusal of international fulfillment.",
+        "Relative listing age is not price observation age.",
+        "Removed size inference from URL slug and unnecessary official serial-range requirement.",
+        "Japan sold-out listings do not establish Mainland exit price or completed sales."
+      ],
+      "request_sha256": "44d9bf15a45146b978fb55d7cb66c0665733875c459e0ba7f61b0093633c23a7",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T17:07:49.571132+00:00",
+      "finished_at": "2026-10-12T17:09:47.258638+00:00",
+      "elapsed_seconds": 117.685,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 17632,
+        "inference_geo": "",
+        "input_tokens": 9094,
+        "iterations": [],
+        "output_tokens": 5395,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": []
+    },
+    {
+      "task_id": "jp-spread-20261013-0100-akira-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "corrections": [
+        "Added exact source URLs omitted from delivered card.",
+        "A secondary search snippet is not a saved page snapshot.",
+        "Year wording difference remains unresolved, not conclusive misidentification.",
+        "Packaging photos cannot alone authenticate the object."
+      ],
+      "request_sha256": "9a5ae3912a76ea369e79d4ac1619c24d4371ecbb74d53a1e0b3d5f4fb458b057",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T17:07:49.571139+00:00",
+      "finished_at": "2026-10-12T17:09:37.533144+00:00",
+      "elapsed_seconds": 107.96,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10664,
+        "inference_geo": "",
+        "input_tokens": 8993,
+        "iterations": [],
+        "output_tokens": 4940,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": []
+    }
+  ],
+  "financial_fields": [
+    "sale_price_P",
+    "full_cost_K",
+    "profit",
+    "roi",
+    "net_margin",
+    "max_buy_price"
+  ],
+  "financial_values_per_candidate": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "review_sample": {
+    "candidates_reviewed": 2,
+    "promotions": 0,
+    "exclusions_reviewed": [
+      "Mercari related card85000 unverified",
+      "DDT shared modal12500 unattributed",
+      "domain-mismatched Yamada-looking search result excluded unopened"
+    ],
+    "not_a_market_accuracy_rate": true
+  },
+  "lane_accounting": {
+    "smallgoods": {
+      "before": 1,
+      "after": 0,
+      "basis": "New toy supply/official identity evidence in this authorized round, not a country/name reset; no paused path revived."
+    },
+    "artbooks": {
+      "before": 0,
+      "after": 0,
+      "basis": "Not worked this round; unchanged."
+    }
+  },
+  "notion_gate": "Fresh project/database and complete view: five existing cards pending, no newer direction conflict; no card mutations",
+  "notifications": "No new qualified opportunity, no verified bilateral price comparison, no user action required; no new alert",
+  "notion_result_sync": "Tracked in canonical Hub manifest after Git push",
+  "limitations": [
+    "Listing display is not stock confirmation or completed sale.",
+    "No Mainland exact comparable transaction; search absence is not absence of demand.",
+    "No product purchase, contact, listing, or code changes.",
+    "Per-URL seconds were not captured; observation window used instead."
+  ],
+  "parent_input_clarification": "The original handoff wording not international shipping meant domestic postage coverage only, but was ambiguous. The adopted evidence now explicitly states international availability unknown; original handoff hashes retained."
+}
