@@ -1,0 +1,343 @@
+{
+  "run_id": "SPREAD-20261013-0500",
+  "triggered_at": "2026-10-12T21:05:46.195Z",
+  "started_at": "2026-10-12T21:05:57Z",
+  "local_slot": "2026-10-13T05:00:00+08:00",
+  "evidence_completed_at": "2026-10-12T21:16:55.298596+00:00",
+  "status": "completed_with_partial_adoption",
+  "market": "GB",
+  "search_queries": 7,
+  "page_open_requests": 11,
+  "distinct_direct_urls": 8,
+  "requests_conservative_total": 18,
+  "candidate_families_reviewed": 2,
+  "new_candidate_families": 0,
+  "new_exact_authenticated_skus": 0,
+  "qualified_candidates": 0,
+  "extra_paid_cny": 0,
+  "parallel_packages": 2,
+  "one_wave_only": true,
+  "sources": {
+    "joan": {
+      "observed_window_utc": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+      "timing_note": "网页访问窗口；网页工具可能使用抓取缓存，并非秒级库存观察。",
+      "scope": "英国来源收藏玩具研究；公开摘录；不联网不补事实；长期收藏与短期转售分开；大陆与英国可信退出成交P、完整K均未知。",
+      "sources": [
+        {
+          "id": "M3",
+          "url": "https://www.collectanddisplay.com/",
+          "access": "direct readable, crawled today",
+          "facts": [
+            "自述英国设计玩具/盲盒/pop culture经销商，页面为B2B零售商联系入口；所读正文没有Joan或AKIRA具体SKU、价格或库存。",
+            "营销利润语句不是利润证据；首页品牌logo不等于某SKU授权或库存。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "collectanddisplay",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "FA-G",
+          "url": "https://fairart.com/artworks/joan-cornella/1432/selfie-gun-%28sculpture%29-%28green%29/51675",
+          "access": "search snippet crawled 4 months ago; direct open timeout",
+          "facts": [
+            "摘要：Selfie Gun Sculpture Green 2019 vinyl 25.4cm，edition1000，DDT，Digital Signature，Numbered，original packaging；Main/AP selector。",
+            "work not listed right now；Make Offer无报价；不证明实际出价、库存、成交或发货国家。",
+            "目录或泛化NFC入口不证明具体物品已验真。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "fairart:catalog:seller_unknown",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "FA-T",
+          "url": "https://fairart.com/terms-and-conditions",
+          "access": "direct readable, crawled yesterday; terms label updated 2023-08-24",
+          "facts": [
+            "平台自述England&Wales公司13377505；未查公司登记。",
+            "点对点交易技术平台，不持有货物所有权；不保证卖出。",
+            "注册/有效付款方式，付款前Stripe KYC；卖家从其登记地址所在国家发货的条款。",
+            "不提供专业真伪鉴定/估值/出处保证。英国平台不代表每件物品英国发货；中国卖家资格、具体收费、目标国收款与物流未核。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "fairart",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "FA-D",
+          "url": "https://fairart.com/how-it-works/fairart-database",
+          "access": "search excerpt + direct page available; direct body not extracted",
+          "facts": [
+            "搜索所见官方说明：社区提交作品信息形成数据库，审阅后可用于买卖；条目不是库存/报价/成交。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "fairart",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "BASE",
+          "url": "https://ddtstore.com/collections/joan-cornella/products/joan-cornella-1st-vinyl-figure-10-inch-selfie-gun",
+          "access": "prior accepted 0100 evidence, not revisited",
+          "facts": [
+            "官方首款绿色vinyl1000编号，脚底printed signature（印刷签名），不可改为亲笔。",
+            "此前未取得可归属当前SKU的有效价格/库存；仅旧身份基线，不算本轮新行情。"
+          ],
+          "checked_at": null,
+          "checked_at_window": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": null,
+          "tax_duty_and_crossborder_fees": null
+        }
+      ],
+      "required": "约600-800字中文卡，标注来源方法与缓存；Joan艺术语言/作品背景可以是收藏理由但非升值证据。本轮英国未取得可核实际供给或成交；列渠道缺口，不扩纯消费品。"
+    },
+    "akira": {
+      "observed_window_utc": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+      "timing_note": "网页访问窗口；网页工具可能使用抓取缓存，并非秒级库存观察。",
+      "scope": "英国来源收藏玩具研究；公开摘录；不联网不补事实；长期收藏与短期转售分开；大陆与英国可信退出成交P、完整K均未知。",
+      "sources": [
+        {
+          "id": "UG-P",
+          "url": "https://unifiedgoods.com/products/akira-kaneda-motorcycle",
+          "access": "direct readable, crawled last week",
+          "facts": [
+            "标题2001 Akira Kaneda+Motorcycle McFarlane Boxed Toy Figure；SOLD；没有价格、成交事件日期。",
+            "卖家描述McFarlane 3D Animation Japan Series ran2001，7inch high Kaneda带红车、stickers、windshield。",
+            "toy unpacked, NM；盒子minor wear，Made in China为卖家说法。不能说未开封/全新/实物已检。",
+            "精确barcode/款号未提供，未检查图片，不解决2000/2001差异。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "unifiedgoods",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "UG-L",
+          "url": "https://unifiedgoods.com/pages/london-store",
+          "access": "direct readable crawled today",
+          "facts": [
+            "自述伦敦Soho门店；不能推定已售该物品现在仍在店内。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "unifiedgoods",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "UG-S",
+          "url": "https://unifiedgoods.com/pages/shipping",
+          "access": "direct readable crawled today",
+          "facts": [
+            "订单从London store寄出，Royal Mail跟踪，周五/六发货；有时先汇集日本/美国/英国持有库存。故发货流程为英国但单件最初所在地未知。",
+            "英国包邮；EU/US/rest world订单超过£150宣称免费，标准£11；重物结算一般£15–25。门槛与重物例外适用未核，不能给本玩具中国运费定值。",
+            "不适用退货可7天内换货/credit，商家称下单后不受理退款/取消；这是商家声明，不代表法定权利已排除或条款有效。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "unifiedgoods",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "EB-UK",
+          "url": "https://www.ebay.co.uk/itm/297447223180",
+          "access": "search crawled 2 days ago vs direct body crawled 1.2 years ago",
+          "facts": [
+            "搜索：seller take1016，SOLD Sun2Aug7:57PM（年/时区未知），£151.95 including BuyerProtection，Used。",
+            "直开旧正文：seller curious_japan，£150.83 ask和buy按钮/servererror；located FKUOKA Japan，last updated Aug9 2025 20:10:25BST。",
+            "二者渲染/时间不一致；不选其一当实时真相，不算可核成交/英国库存/英国买方。",
+            "旧正文EAN字段787926149203（12位），UPC does not apply、MPN NA；盒有刮折/胶/胶带。不是已检查实物条码。"
+          ],
+          "checked_at": null,
+          "checked_at_window": "2026-10-12T21:06:00Z/2026-10-12T21:10:00Z",
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": "ebay:item:297447223180;seller_alias_conflict",
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "BASE-JP",
+          "url": "https://mil.stores.jp/items/6735913cf06ae8033636752d",
+          "access": "prior accepted evidence, not revisited",
+          "facts": [
+            "JPY31800卖家挂牌含税；2000、NOS未开封盒装但中古，身份年份与英国2001尚未解决。不是同品相可直接比价。"
+          ],
+          "checked_at": null,
+          "checked_at_window": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": null,
+          "tax_duty_and_crossborder_fees": null
+        },
+        {
+          "id": "BASE-US",
+          "url": "https://www.ebay.com/itm/167036836460",
+          "access": "prior 0300 accepted evidence, not revisited",
+          "facts": [
+            "卖家MPN/Model0787926149203（13位）；USD175挂牌美国Blaine。与旧英国站EAN去前零文本相似不等于实物SKU已匹配。"
+          ],
+          "checked_at": null,
+          "checked_at_window": null,
+          "sale_event_time": null,
+          "current_inventory_verified": false,
+          "seller_dedupe_key": null,
+          "tax_duty_and_crossborder_fees": null
+        }
+      ],
+      "required": "约700-900字中文收藏研究卡；英国SOLD无可验证成交价、非未开封；地理分平台/卖家发货/买方；跨来源身份待核；全部收益字段未知。"
+    }
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-0500-joan-gb-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "corrections": [
+        "Removed unsupported artist-biography/intent claim; collection rationale remains tentative.",
+        "FairArt unlisted label is historical snippet, not current page or proven cache/live contradiction.",
+        "KYC is eligibility condition, not a verified cost amount."
+      ],
+      "request_sha256": "898c0e1c29cac5c3a29089e015b2a8f31c5e702e446109d3b9e64b22df112b30",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T21:12:16.207889+00:00",
+      "finished_at": "2026-10-12T21:14:10.749913+00:00",
+      "elapsed_seconds": 114.538,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9840,
+        "inference_geo": "",
+        "input_tokens": 10576,
+        "iterations": [],
+        "output_tokens": 5111,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": [],
+      "adopted_sha256": "8803d9696fb1f6839220e7bd9cfc25706260a002d22e2e50594229d8ad235d11"
+    },
+    {
+      "task_id": "jp-spread-20261013-0500-akira-gb-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "corrections": [
+        "Shipping free threshold is over GBP150, not at GBP150.",
+        "Seller identifier fields exist but have not been physically verified; removed nobody-provided wording.",
+        "Highest affordable buy price unknown, while displayed asking prices remain observations.",
+        "Retained unresolved field/year differences, not proven edition mismatch."
+      ],
+      "request_sha256": "cd59cf7d40bbac82be5e8be80c0f04be5621c9659dd18eb9c2fba0348ccbf9c7",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "started_at": "2026-10-12T21:12:16.207882+00:00",
+      "finished_at": "2026-10-12T21:15:19.742970+00:00",
+      "elapsed_seconds": 183.531,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 19680,
+        "inference_geo": "",
+        "input_tokens": 12689,
+        "iterations": [],
+        "output_tokens": 8764,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "permission_denials": [],
+      "adopted_sha256": "9bd3fd921137a888a2ce540ce78a7604d97b664036a1b1256da6714d451fa4d2"
+    }
+  ],
+  "financial_values": {
+    "joan_green": {
+      "sale_price_P": null,
+      "full_cost_K": null,
+      "profit": null,
+      "roi": null,
+      "net_margin": null,
+      "max_buy_price": null
+    },
+    "akira": {
+      "sale_price_P": null,
+      "full_cost_K": null,
+      "profit": null,
+      "roi": null,
+      "net_margin": null,
+      "max_buy_price": null
+    }
+  },
+  "review_sample": {
+    "candidate_families": 2,
+    "promotions": 0,
+    "excluded_comparisons": [
+      "eBay UK domain/Japan location mixed cached prices do not establish UK sale",
+      "FairArt historical unlisted catalog not current inventory",
+      "Search artwork print/large painting not vinyl toy"
+    ],
+    "not_market_accuracy_rate": true
+  },
+  "lane_accounting": {
+    "smallgoods": {
+      "before": 0,
+      "after": 0,
+      "basis": "New UK seller toy-condition/sold-label and fulfillment observations; not a country reset."
+    },
+    "artbooks": {
+      "before": 0,
+      "after": 0,
+      "basis": "Not worked."
+    }
+  },
+  "notion_gate": "Fresh project/database plus complete 5-card view; no later conflicting direction; unchanged cards.",
+  "notifications": "No new qualified opportunity, decisive bilateral evidence or user action. No alert.",
+  "limitations": [
+    "Access window bounded by group clocks; cache ages retained, not live inventory.",
+    "No usable Mainland or verified UK target-buyer exit price; missing search result is not no demand.",
+    "Company/place/domain do not establish each physical item location or buyer country.",
+    "Terms are merchant statements, not legal clearance.",
+    "Original blocked/verifying runner receipts retained separately from parent adoption."
+  ]
+}
