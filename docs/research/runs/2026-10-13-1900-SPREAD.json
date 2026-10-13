@@ -1,0 +1,317 @@
+{
+  "run_id": "SPREAD-20261013-1900",
+  "market": "crossborder_routes_CN_US",
+  "status": "completed_with_adopted_corrections",
+  "triggered_at": "2026-10-13T10:56:12.385Z",
+  "started_at": "2026-10-13T10:59:16.990669+00:00",
+  "source_requests": 36,
+  "search_queries": 13,
+  "page_opens": 19,
+  "find_requests": 4,
+  "distinct_direct_urls": 11,
+  "source_request_started_at_window": [
+    "2026-10-13T10:59:17Z",
+    "2026-10-13T11:00:36Z"
+  ],
+  "new_verified_exact_skus": 0,
+  "qualified_candidates": 0,
+  "new_market_sale_evidence": 0,
+  "new_route_evidence": true,
+  "parallel_packages": 2,
+  "package_statuses": [
+    {
+      "task_id": "jp-spread-20261013-1900-import-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T11:02:24.331125+00:00",
+      "finished_at": "2026-10-13T11:04:42.437452+00:00",
+      "elapsed_seconds": 138.103,
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 13736,
+        "inference_geo": "",
+        "input_tokens": 10903,
+        "iterations": [],
+        "output_tokens": 6890,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.233633,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "validation": {
+        "task_id": "jp-spread-20261013-1900-import-a1",
+        "checked_at": "2026-10-13T11:06:01.857536+00:00",
+        "runner_status": "verifying",
+        "parent_outcome": "accepted_with_changes",
+        "input_hashes_verified": {
+          "research/2026-10-13-1900/import-sources.json": "d4440de53cffbb9463f3d42ee63ca22e93516d6002e87c83aad321dbb11bb74b"
+        },
+        "result_sha256": "1fa3ea55972ccfbfe3ef310ec5a27541a8cbbf8ea64580ecc49a47e671986c81",
+        "tools": [
+          {
+            "name": "Read",
+            "path": "research/2026-10-13-1900/import-sources.json"
+          },
+          {
+            "name": "Edit",
+            "path": "research/2026-10-13-1900/import-review.md"
+          },
+          {
+            "name": "Edit",
+            "path": "handoff-result.json"
+          }
+        ],
+        "permission_denials": [],
+        "corrections": [
+          "Removed unsupported fixed US sourcing assumption and unverified CCC manufacture-date condition.",
+          "Changed registration/application/contact next steps into research-only checkpoints.",
+          "Restored purchase cost and complete cost categories; clarified both administrative procedures list no fee, third-party costs separate."
+        ],
+        "validation_scope": "All generated regulatory claims compared with supplied official extracts; costs checked for omissions and double count; no executable tests",
+        "original_hanzi_count": 1037,
+        "adopted_hanzi_count": 964,
+        "original_output_sha256": "04be6e0e5dc2440304a549b21b74c929e6449ceb57bcaea13f4a3618c09a6922",
+        "adopted_output_sha256": "19221cf694e5e3bfc75dd9f0b6ca8e9226aaac08c38a50e88421af6fbe394958",
+        "retry": false
+      },
+      "request_sha256": "e51a4cf9451033725296f037f1e553d3ac002771ea4646ae2125cc7a0976da9d"
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-export-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T11:02:24.330754+00:00",
+      "finished_at": "2026-10-13T11:04:40.523591+00:00",
+      "elapsed_seconds": 136.189,
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 12712,
+        "inference_geo": "",
+        "input_tokens": 10310,
+        "iterations": [],
+        "output_tokens": 6003,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.207981,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "validation": {
+        "task_id": "jp-spread-20261013-1900-export-a1",
+        "checked_at": "2026-10-13T11:06:01.861462+00:00",
+        "runner_status": "verifying",
+        "parent_outcome": "accepted_with_changes",
+        "input_hashes_verified": {
+          "research/2026-10-13-1900/export-sources.json": "3b156dbb9d8e29482b8c26f107ab2b10b3bd027ee7602353d9b7c2267b2b980d"
+        },
+        "result_sha256": "30750fc0bed32b184c8a980843ee72b484aa81154b719ee61b0f6013c3b87758",
+        "tools": [
+          {
+            "name": "Read",
+            "path": "research/2026-10-13-1900/export-sources.json"
+          },
+          {
+            "name": "Edit",
+            "path": "research/2026-10-13-1900/export-review.md"
+          },
+          {
+            "name": "Edit",
+            "path": "handoff-result.json"
+          }
+        ],
+        "permission_denials": [],
+        "corrections": [
+          "Restored purchase, export and import-tax cost categories; separated held funds from expense.",
+          "Changed external consultation into pending authorization, research first."
+        ],
+        "validation_scope": "All generated regulatory claims compared with supplied official extracts; costs checked for omissions and double count; no executable tests",
+        "original_hanzi_count": 1073,
+        "adopted_hanzi_count": 1126,
+        "original_output_sha256": "504af61cc650024f8964526e10e3561bf563999e1ed375ba0b5449173c26402f",
+        "adopted_output_sha256": "d8e247fbf382450a20989a1c22210c4e8f72f9fa275413fac9d0b39c915bc806",
+        "retry": false
+      },
+      "request_sha256": "df705fec06a1a98c234ceae26a50b34722d65dec1d5e6dca46f38149a43feb9f"
+    }
+  ],
+  "sources": [
+    {
+      "id": "I1",
+      "url": "https://www.mofcom.gov.cn/zfxxgk/gkml/art/2018/art_1e2248ade45e4652a12c25d6a45e4f28.html",
+      "facts": [
+        "Official 2018 notice says consumers may not resell goods already purchased through cross-border ecommerce retail import. This policy does not establish admission of commercial inventory through general trade."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T10:59:31Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "I2",
+      "url": "https://online.customs.gov.cn/static/pages/guides/000729011000/000729011000.html",
+      "facts": [
+        "Customs consignee/consignor filing guide accepts qualifying market entities including companies and sole proprietors (individual businesses). Application can use singlewindow or customs portal, with market-entity qualification. Filing is separate from product admission.",
+        "Legal-basis section still repeats foreign-trade-operator registration. Read with I3; do not retain that abolished prerequisite. Administrative filing listed free; not total import cost."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T11:00:15Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "I3",
+      "url": "https://www.mofcom.gov.cn/syxwfb/art/2023/art_fe303b761df547ae8f35af1a691b7c5d.html",
+      "facts": [
+        "MOFCOM announcement dated 2023-01-03 says foreign-trade-operator registration ceased on 2022-12-30 after Foreign Trade Law Article9 deletion. Do not conflate this with customs filing."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T11:00:15Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "I4",
+      "url": "https://online.customs.gov.cn/static/pages/guides/000629010001/000629010001.html",
+      "facts": [
+        "Statutory inspection guide applies to goods in the inspection catalogue or otherwise required by law. Consignee/consignor or agent submits declarations and supporting documents; customs determines onsite inspection/testing by applicable rules/risk.",
+        "Listed documents include contract, invoice, packing list, transport bill and agency authorization; export entry also lists factory inspection proof. Import safety/health/environment failure can mean return/destruction; other failures may require supervised rectification and reinspection before sale/use.",
+        "This is a generic guide, not a decision that Joan or AKIRA is in the catalogue or admitted as used merchandise. Exact HS, CCC scope, used-toy restrictions, taxes and practical document sufficiency remain unknown."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T10:59:49Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "I5",
+      "url": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html",
+      "facts": [
+        "Direct open failed (Internal Error). Third-party discovery references 2026 toy CCC rules but not accepted as primary verified rule text. No definitive CCC exemption or effective-date conclusion from this record."
+      ],
+      "access": "direct open failed",
+      "checked_at": "2026-10-13T11:00:02Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O1",
+      "url": "https://www.ebay.cn/newcms/Home/topic/515",
+      "facts": [
+        "Current official page describes enterprise application subject to initial checks, human approval, business location/category and additional documentation such as business plan.",
+        "Enterprise-channel FAQ says companies other than individual businesses, registered at least one year; separate FAQ says personal sellers can join eBay. Do not turn this channel requirement into a total ban on all personal/individual-business sales or guarantee user approval.",
+        "Current page says individual account cannot convert to enterprise account. Specific chosen seller/entity eligibility, collectibles category approval, fees and account capabilities remain unverified. Old search snippet differs from direct current application wording."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T10:59:49Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O2",
+      "url": "https://www.payoneer.com/zh-hans/resources/how-to-use-payoneer/payoneer-account-to-manage-your-ebay-payments/",
+      "facts": [
+        "Official guide last modified2026-02-02 describes invitation-triggered eBay/Payoneer linkage; account types and identity/business documents must match, followed by verification and approval.",
+        "A described payment channel is not the user's approved account. Full current onboarding requirements, settlement/FX/withdrawal fees, timing, holds and refunds remain unknown."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T10:59:31Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O3",
+      "url": "https://www.cpsc.gov/FAQ/Childrens-Products",
+      "facts": [
+        "Classification weighs reasonable manufacturer intended-use statement, packaging/display/marketing, common consumer recognition and age-determination guidelines. A label alone does not determine classification.",
+        "Adult collectible features can matter but neither price nor collector label automatically excludes children's-product status. Some regulated general-use products still require GCC. Actual Joan/AKIRA classification has not been determined."
+      ],
+      "access": "direct open/find, crawled today",
+      "checked_at": "2026-10-13T10:59:49Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O4",
+      "url": "https://www.cpsc.gov/FAQ/eFiling-Frequently-Asked-Questions-FAQ",
+      "facts": [
+        "Consumer-to-consumer online sales are commercial; personal gift exemption does not cover sales.",
+        "For used products manufactured before the relevant CPSC rule/ban/standard took effect, no certificate/eFiling requirement arises on that basis; eFiling does not create a certificate requirement where none previously existed.",
+        "For used products manufactured after an applicable rule took effect and already subject to certification, commercial import still requires certification/eFiling. Not a blanket exemption for all vintage/used goods or all pre2008 goods.",
+        "Need actual manufacture date, version, applicable rules and importer responsibilities. Seller's '2000' title alone insufficient. Resold/overstock finished regulated goods also covered."
+      ],
+      "access": "direct open/find, crawled today",
+      "checked_at": "2026-10-13T10:59:49Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O5",
+      "url": "https://www.cpsc.gov/Business--Manufacturing/Business-Education/Business-Guidance/Certificates",
+      "facts": [
+        "Official guidance states general import certificate/eFiling update effective2026-07-08; FTZ entries have2027-01-08 date. Applies to products subject to CPSC certification requirements, not every collectible automatically."
+      ],
+      "access": "direct open, crawled today",
+      "checked_at": "2026-10-13T11:00:15Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    },
+    {
+      "id": "O6",
+      "url": "https://developer.ebay.com/api-docs/sell/static/finances/split-payouts.html",
+      "facts": [
+        "Official technical documentation references split payout facilities for Mainland China sellers. Confirms a supported seller population, not current applicant approval or authority to implement API."
+      ],
+      "access": "direct open, not used for new implementation",
+      "checked_at": "2026-10-13T11:00:36Z",
+      "timestamp_note": "request-start, not effective/event date",
+      "current_product_applicability": "unknown"
+    }
+  ],
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy_price": null,
+  "budget_extra_paid_cny": 0,
+  "notification": "new_route_evidence_manufacture_classification_priority",
+  "report": "docs/research/runs/2026-10-13-1900-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-13-1900-SPREAD.json",
+  "package_ids": [
+    "jp-spread-20261013-1900-import-a1",
+    "jp-spread-20261013-1900-export-a1"
+  ]
+}
