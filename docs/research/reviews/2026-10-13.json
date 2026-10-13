@@ -1,0 +1,182 @@
+{
+  "review_id": "REVIEW-20261013-0900",
+  "started_at": "2026-10-13T01:04:20Z",
+  "findings_finished_at": "2026-10-13T01:07:13.702297+00:00",
+  "triggered_at": "2026-10-13T01:04:10.146Z",
+  "weekday": "Tuesday",
+  "weekly_review": false,
+  "previous_cursor": {
+    "last_reviewed_run_id": "SPREAD-20261012-0500",
+    "last_reviewed_commit": "7c8879ff4129219a12a9be82e17978a104b62965",
+    "last_research_commit": "2fd07153504cb8184f2207ab1ae18be7c6bf3370",
+    "last_review_slot": "REVIEW-20261012-0900"
+  },
+  "run_ids": [
+    "SPREAD-20261012-1300",
+    "GLOBAL-COMMERCE-20261013-START",
+    "SPREAD-20261013-0100",
+    "SPREAD-20261013-0300",
+    "SPREAD-20261013-0500",
+    "SPREAD-20261013-0700"
+  ],
+  "reviewed_through_run_id": "SPREAD-20261013-0700",
+  "reviewed_through_commit": "2f3b79cf83760787cc88156d04fa1dd060c4ed5d",
+  "new_commit_count": 8,
+  "sample_definition": "8 already saved source observations compared with published conclusions; 4 UK observations also checked against saved raw tool return; not fresh webpage verification",
+  "source_samples": [
+    {
+      "id": "J1",
+      "file": "research/2026-10-13-0100/joan-sources.json",
+      "finding": "挂牌和日本包邮，没有大陆P或国际履约证明",
+      "new_final_report_error": false
+    },
+    {
+      "id": "J3",
+      "file": "research/2026-10-13-0100/joan-sources.json",
+      "finding": "印刷签名及官方版本，不证明卖家实物真伪",
+      "new_final_report_error": false
+    },
+    {
+      "id": "UA1",
+      "file": "research/2026-10-13-0300/akira-sources.json",
+      "finding": "MPN/Model未升格条码；美国卖家不等于美国买家",
+      "new_final_report_error": false
+    },
+    {
+      "id": "UA2",
+      "file": "research/2026-10-13-0300/akira-sources.json",
+      "finding": "SOLD/Best Offer金额未作成交价；日期缺年时区",
+      "new_final_report_error": false
+    },
+    {
+      "id": "UG-P",
+      "file": "research/2026-10-13-0500/akira-sources.json",
+      "finding": "unpacked与SOLD未作未拆新品/有效成交",
+      "new_final_report_error": false
+    },
+    {
+      "id": "UG-S",
+      "file": "research/2026-10-13-0500/akira-sources.json",
+      "finding": "超过150门槛、重物与目的地条件未当实际中国运费",
+      "new_final_report_error": false
+    },
+    {
+      "id": "EB-UK",
+      "file": "research/2026-10-13-0500/akira-sources.json",
+      "finding": "英国站旧页面位于日本及缓存冲突仍待核",
+      "new_final_report_error": false
+    },
+    {
+      "id": "FA-T",
+      "file": "research/2026-10-13-0500/joan-sources.json",
+      "finding": "平台注册地及非鉴定服务，不等于单件所在地/验真",
+      "new_final_report_error": false
+    }
+  ],
+  "raw_tool_sample_ids": [
+    "UG-P",
+    "UG-S",
+    "EB-UK",
+    "FA-T"
+  ],
+  "packages": [
+    {
+      "task_id": "jp-global-markets-20261013-a1",
+      "validation_path": "research/2026-10-13-global-launch/jp-global-markets-20261013-a1-validation.json",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "result_exists": true,
+      "result_status": "blocked",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-crossborder-routes-20261013-a1",
+      "validation_path": "research/2026-10-13-global-launch/jp-crossborder-routes-20261013-a1-validation.json",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_exists": true,
+      "result_status": "verifying",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-spread-20261013-0100-joan-a1",
+      "validation_path": "research/2026-10-13-0100/jp-spread-20261013-0100-joan-a1-validation.json",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_exists": true,
+      "result_status": "verifying",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-spread-20261013-0100-akira-a1",
+      "validation_path": "research/2026-10-13-0100/jp-spread-20261013-0100-akira-a1-validation.json",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "result_exists": true,
+      "result_status": "blocked",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-spread-20261013-0300-akira-us-a1",
+      "validation_path": "research/2026-10-13-0300/jp-spread-20261013-0300-akira-us-a1-validation.json",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_exists": true,
+      "result_status": "verifying",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-spread-20261013-0300-joan-us-a1",
+      "validation_path": "research/2026-10-13-0300/jp-spread-20261013-0300-joan-us-a1-validation.json",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_exists": true,
+      "result_status": "verifying",
+      "result_hash_matches_saved_validation": true
+    },
+    {
+      "task_id": "jp-spread-20261013-0500-joan-gb-a1",
+      "validation_path": "research/2026-10-13-0500/joan-parent-validation.json",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "result_exists": true,
+      "result_status": "blocked",
+      "result_hash_matches_saved_validation": null
+    },
+    {
+      "task_id": "jp-spread-20261013-0500-akira-gb-a1",
+      "validation_path": "research/2026-10-13-0500/akira-parent-validation.json",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_exists": true,
+      "result_status": "verifying",
+      "result_hash_matches_saved_validation": null
+    }
+  ],
+  "metrics": {
+    "run_records": 6,
+    "interrupted_unreviewed_runs": 1,
+    "historical_package_count": 8,
+    "accepted_with_changes": 5,
+    "partial": 3,
+    "runner_verifying": 5,
+    "runner_blocked": 3,
+    "raw_result_hash_baseline_matches": 6,
+    "raw_result_hash_baseline_missing": 2,
+    "source_observations_sampled": 8,
+    "new_promotion_or_price_errors_in_sample": 0,
+    "qualified_candidates": 0,
+    "market_fetches": 0,
+    "downstream_calls": 0,
+    "extra_paid_cny": 0,
+    "time_saved_claimed": false,
+    "accuracy_rate_claimed": false
+  },
+  "corrections_and_guidance": [
+    "10/12 13点BAPE后续建议已被10/13人工方向替代；不恢复普通消费品",
+    "FR raw evidence remains unreviewed; no candidate or coverage promotion; no missed-slot backfill",
+    "Only final corrected reports are accepted; raw CC drafts and runner verifying are not independent acceptance",
+    "Existing 7 unknowns, lane counters and manual wave state unchanged; no renaming/reset"
+  ],
+  "notification": "DONT_NOTIFY"
+}
