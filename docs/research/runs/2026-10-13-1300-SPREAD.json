@@ -1,0 +1,207 @@
+{
+  "slot_id": "SPREAD-20261013-1300",
+  "market": "ES",
+  "triggered_at": "2026-10-13T04:59:41.041Z",
+  "started_at": "2026-10-13T04:59:52Z",
+  "source_requests": 17,
+  "search_queries": 11,
+  "page_opens": 4,
+  "page_clicks": 2,
+  "distinct_direct_urls": 3,
+  "direct_readable_urls": 2,
+  "notes": [
+    "Count includes repeated reads and failed guessed gallery homepage; no gallery evidence adopted.",
+    "Search snippets are discovery/secondary metadata only.",
+    "Per-request exact timestamps not all captured; subsequent groups bounded by 05:06:28Z and 05:08:31Z.",
+    "Source page crawl age retained, not real-time inventory."
+  ],
+  "source_audit_sha256": "30abdb6c921a3bbbb7210569db96fb34453893de21f6f55dd1a5cbbaf26d9043",
+  "business_packages": 1,
+  "package_id": "jp-spread-20261013-1300-akira-es-a1",
+  "extra_paid_cny": 0,
+  "P": null,
+  "K": null,
+  "mainland_exit_event": null,
+  "spain_exit_event": null,
+  "status": "completed",
+  "finished_research_at": "2026-10-13T05:12:00.656077+00:00",
+  "sources": [
+    {
+      "id": "ES-A1",
+      "url": "https://www.todocoleccion.net/figuras-munecos-mcfarlane/figura-muneco-akira-kaneda-moto-mcfarlane-toys-3d-animation-japan-2001-28-cm~x703602435",
+      "cache": "crawled last week",
+      "price_eur": 118,
+      "price_type": "asking; accepts offers; no sale record obtained",
+      "seller": "LA PATINETA",
+      "seller_dedupe_key": "todocoleccion:lapatineta",
+      "seller_claims": {
+        "manufacturer": "McFarlane Toys",
+        "series": "3D Animation from Japan Series 2",
+        "year": 2001,
+        "variant": "Deluxe Kaneda riding motorcycle",
+        "bike_length_cm_approx": 28,
+        "included": [
+          "Kaneda with goggles",
+          "motorcycle",
+          "windscreen"
+        ],
+        "condition": "used; normal age wear; no original packaging; windscreen yellowing"
+      },
+      "unknown": [
+        "exact product code/UPC",
+        "release year independently verified",
+        "original accessories completeness",
+        "authenticity/provenance",
+        "current stock",
+        "sale event date",
+        "edition quantity",
+        "return terms"
+      ]
+    },
+    {
+      "id": "ES-S1",
+      "url": "https://www.todocoleccion.net/tienda/lapatineta",
+      "cache": "initial click crawled last week; subsequent open crawled today",
+      "seller_claims": {
+        "ship_from": "España (Valencia)",
+        "warehouse": "Valencia",
+        "international_europe": true,
+        "rest_of_countries": false,
+        "shipping_amounts": "approximate EUR5 small paper, EUR6 discs/magazines, EUR6-10 larger packages depending weight/dimensions; not an item-specific China quote",
+        "europe_rates": "some exceptions; ask rates before buying",
+        "payment": "bank transfer/Bizum/PayPal friends-family requested in prose; no transaction attempted",
+        "delivery": "2-4 days generic estimate, not China commitment"
+      },
+      "conflict": "intro says mail anywhere; explicit shipping field excludes outside Europe. Do not silently resolve as China deliverable."
+    },
+    {
+      "id": "ID-CATALOG",
+      "url": "https://www.figurerealm.com/actionfigure?action=actionfigure&id=3186",
+      "access": "search snippet only; third-party catalog; crawled 5 months ago",
+      "claims": {
+        "name": "Kaneda on Motorcycle",
+        "manufacturer_number": "14920",
+        "UPC": "787926149203",
+        "release_year": 2000
+      },
+      "limit": "not verified code of ES physical item; seller year 2001 conflicts; do not promote exact version."
+    }
+  ],
+  "collection_reason": "AKIRA character-and-motorcycle display; seller claims McFarlane manufacture; authorization, authenticity and physical identity unverified; no appreciation prediction",
+  "demand_searches": [
+    "Joan Cornella T-Love 闲鱼",
+    "AKIRA 麦克法兰 金田 转让",
+    "麦克法兰 金田 摩托 成交"
+  ],
+  "qualified_candidates": 0,
+  "new_verified_exact_skus": 0,
+  "new_candidate_variants": 0,
+  "adopted_research_leads": 1,
+  "source_observation_window": [
+    "2026-10-13T05:03:48Z",
+    "2026-10-13T05:08:31Z"
+  ],
+  "extra_observation": {
+    "url": "https://www.ebay.com/itm/127961338064",
+    "access": "search snippet only; crawled two months ago",
+    "use": "excluded as Spain supply; Best Offer accepted exact final price unknown; US located seller"
+  },
+  "plan": {
+    "task_id": "jp-spread-20261013-1300-akira-es-a1",
+    "runner_status": "verifying",
+    "parent_outcome": "accepted_with_changes",
+    "observed_models": [
+      "doubao-seed-evolving"
+    ],
+    "requested": {
+      "model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "reasoning_effort": "high"
+    },
+    "elapsed_seconds": 95.684,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 9640,
+      "inference_geo": "",
+      "input_tokens": 8450,
+      "iterations": [],
+      "output_tokens": 3968,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "cost_usd_client_estimate": 0.14627,
+    "cost_note": "client estimate; not Coding Plan charge",
+    "request_sha256": "9730ca8c703c148c9dc2b7e5cd8934f00cfd4ac4211d4118e7191f2efaa64ae8",
+    "result_sha256": "a786edb35bf29e8e30d9166ce14b9e3cc8dce6dd9458225bc7ae0532242efb47",
+    "input_hashes": {
+      "research/2026-10-13-1300/akira-sources.json": "419c1f6434fc698b0dca299dc3ede0802dd892eee35e8ee663a1402c8ff308ee"
+    },
+    "validation": {
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "checked_at": "2026-10-13T05:10:55.463163+00:00",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "result_sha256": "a786edb35bf29e8e30d9166ce14b9e3cc8dce6dd9458225bc7ae0532242efb47",
+      "input_hashes_verified": {
+        "research/2026-10-13-1300/akira-sources.json": "419c1f6434fc698b0dca299dc3ede0802dd892eee35e8ee663a1402c8ff308ee"
+      },
+      "output_original_sha256": "2a2a14f614f2ea5d4b3fa9c57691b85c1f432b76925a1d30925bc17e3844967f",
+      "output_adopted_sha256": "bd625303343618075797fb05dc509b2d0a0b6ebc1bf6fff670d042a3e93152c3",
+      "corrections": [
+        "Unverified unsold state changed to no observed sale record.",
+        "Unproven licensed-manufacturer wording changed to seller McFarlane claim; authorization unknown.",
+        "Bounded Chinese search scope separated from absence of Spain buyer-country transaction evidence."
+      ],
+      "scope_check": {
+        "business_files_only": [
+          "research/2026-10-13-1300/akira-review.md"
+        ],
+        "tools": [
+          {
+            "name": "Read",
+            "file": "research/2026-10-13-1300/akira-sources.json"
+          },
+          {
+            "name": "Edit",
+            "file": "research/2026-10-13-1300/akira-review.md"
+          },
+          {
+            "name": "Edit",
+            "file": "handoff-result.json"
+          }
+        ],
+        "permission_denials": [],
+        "no_bash": true
+      },
+      "review_sample": "all 1 adopted candidate; all 3 supplied source records; 2 direct primary pages +1 secondary snippet, no promotion",
+      "financial_checks": "No P/K; all calculated metrics unknown; no Mainland shipment commitment",
+      "tests": "document/source semantic review; no executable code tests applicable"
+    }
+  },
+  "notion_gate_verified": true,
+  "previous_1100_notion_sync": "recovered and read back; SHA15e373566de8a2146f3567687bbfb7c78ca6364d",
+  "limits": {
+    "sku_max": 10,
+    "new_sku_max": 6,
+    "requests_max": 40,
+    "extra_paid_cny": 0,
+    "wave_count": 1,
+    "parallel_packages": 1
+  },
+  "stop_counter_policy": "New direct Spain supply/condition/fulfillment evidence on active toys lane. Book lane untouched; no country-based reset.",
+  "notification": "none: no qualified candidate or bilateral route-changing evidence",
+  "raw_evidence_local": "research/2026-10-13-1300/source-audit.json",
+  "new_candidate_offers": 1,
+  "parent_input_correction": "Original handoff used ambiguous not sold and licensed-manufacturer wording. Parent corrected these in adopted outputs; original input hash remains intact. These are partly inherited input issues, not solely downstream errors."
+}
