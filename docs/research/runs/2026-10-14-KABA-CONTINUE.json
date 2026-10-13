@@ -1,0 +1,435 @@
+{
+  "run_id": "KABA-PROFIT-20261014-MANUAL-2",
+  "manual": true,
+  "status": "completed_with_parent_corrections",
+  "observed_window": [
+    "2026-10-14T00:58:36+08:00",
+    "2026-10-14T01:05:22+08:00"
+  ],
+  "observed_window_basis": "Task start clock and post-collection clock bound; submitted future01:10 endpoint corrected; inputs preserved.",
+  "source_request_count": 37,
+  "source_request_breakdown": {
+    "search": 16,
+    "open_click_including_failed_repeated": 21
+  },
+  "sku_scope": "one existing KABA work family; exact copy edition remains unverified; zero new confirmed SKUs",
+  "qualified_candidates": 0,
+  "new_usable_target_market_P": 0,
+  "paid_extra_cny": 0,
+  "parallel_packages": 2,
+  "packages": [
+    {
+      "task_id": "kaba-continue-20261014-supply-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T17:05:08.832312+00:00",
+      "finished_at": "2026-10-13T17:07:31.711552+00:00",
+      "elapsed_seconds": 142.876,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 12712,
+        "inference_geo": "",
+        "input_tokens": 10296,
+        "iterations": [],
+        "output_tokens": 5783,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.202411,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-kaba-continue/supply-sources.json": "8fa32d72e15dc7ba2922993bd2c34e22fa9fcdbaf437d31d33fe33193db39ee4"
+      },
+      "request_sha256": "fc6f779e3a08ce46cddc3f2c6c9bcc46bd56bee2bebd4a35120408f0427b7182",
+      "result_sha256": "ec999b3d88548beb77c0e1df0c71b4a4bd5415da3df11acb8c63a5f6d69532d4",
+      "original_output_sha256": "7e79616b61064415d016e2a03fb040744c1875abd32257e5cec45383b4d31bfb",
+      "adopted_output_sha256": "cfaab55debfb24b083cf915ab624cf4556efaa1a7b6d158de1dd7325610cf710",
+      "review_sample_records": 5,
+      "corrections": [
+        "copy identity and seller independence unknown",
+        "remove unsupported no-button claim",
+        "relative date not recent price anchor",
+        "selfclaimed completeness not higher verification",
+        "shipping location not manufacture origin",
+        "public research only, no contact or price negotiation",
+        "parent input observed window future endpoint corrected to actual clock upper bound",
+        "replace scalar evidence grades with types",
+        "report exceeded requested concise length; retained substantive table, no retry"
+      ],
+      "checked_at": "2026-10-13T17:10:12.527822+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    },
+    {
+      "task_id": "kaba-continue-20261014-exit-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T17:05:08.832280+00:00",
+      "finished_at": "2026-10-13T17:09:00.345930+00:00",
+      "elapsed_seconds": 231.509,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 22752,
+        "inference_geo": "",
+        "input_tokens": 14256,
+        "iterations": [],
+        "output_tokens": 8746,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.30130599999999996,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-kaba-continue/exit-sources.json": "d16ba0405f2fd3a57b9ebc821af21e253d3644c3539aafde58be90eb2b4f4734"
+      },
+      "request_sha256": "ab7150a074c1558a2bc56061511be32761b55000af6812ba192c5b85f468c325",
+      "result_sha256": "5cc4da9004ac2877bd0823732ff20f375e085573c0666e7df936f11bd7091231",
+      "original_output_sha256": "d42157a93fa65e58dacd7e624b2d79a7cd3eb68730867e9b3ed1385dfcff0ea0",
+      "adopted_output_sha256": "fa7e51f478719ced3c437ea3b3c6b9ac720d48d93c61f6a37a93fbded92cba04",
+      "review_sample_records": 5,
+      "corrections": [
+        "buyback quote is not liquidity floor",
+        "listing revision date absolute, not relative",
+        "18 item reviews not18 independently verified purchases",
+        "41 cache from same round, not prior round; no45 evidence",
+        "copy identity and seller independence unknown",
+        "no new signature/export/KABA2 package or private order/address request",
+        "parent input observed window future endpoint corrected to actual clock upper bound",
+        "replace scalar evidence grades with types",
+        "report exceeded requested concise length; retained substantive table, no retry"
+      ],
+      "checked_at": "2026-10-13T17:10:12.532109+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "m54059898954",
+      "url": "https://jp.mercari.com/item/m54059898954",
+      "jpy": 8000,
+      "status": "sold marker",
+      "tax_domestic_shipping_included": true,
+      "seller_key": "mercari-display:とゆき",
+      "condition": "firstprint claimed; cover scratches, front/back discoloration, innercover stains/dent",
+      "origin": "unknown",
+      "dispatch": "4-7d",
+      "relative_update": "4months",
+      "shipping_already_included": 850,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "m25511872734",
+      "url": "https://jp.mercari.com/item/m25511872734",
+      "jpy": 8500,
+      "status": "sold marker",
+      "tax_domestic_shipping_included": true,
+      "seller_key": "mercari-display:だん☆しゃり",
+      "condition": "firstprint claimed;178pages; seller checked no missing pages; numerous age stains/scratches",
+      "origin": "Saitama Japan",
+      "dispatch": "1-2d",
+      "relative_update": "2months",
+      "shipping_already_included": 870,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "m60170562258",
+      "url": "https://jp.mercari.com/item/m60170562258",
+      "jpy": 9000,
+      "status": "sold marker",
+      "tax_domestic_shipping_included": true,
+      "seller_key": "mercari-display:nh",
+      "condition": "firstprint title claim; no description; no noticeable damage field",
+      "origin": "unknown",
+      "dispatch": "2-3d",
+      "relative_update": "3months",
+      "shipping_already_included": 850,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "m36751093572",
+      "url": "https://jp.mercari.com/item/m36751093572",
+      "jpy": 10500,
+      "status": "sold marker",
+      "tax_domestic_shipping_included": true,
+      "seller_key": "mercari-display:AM6:00",
+      "condition": "no notable scratches seller claim; print unknown",
+      "origin": "Saitama Japan",
+      "dispatch": "2-3d",
+      "relative_update": "4months",
+      "shipping_already_included": 850,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "m77445862453",
+      "url": "https://jp.mercari.com/item/m77445862453",
+      "jpy": 10800,
+      "status": "sold marker",
+      "tax_domestic_shipping_included": true,
+      "seller_key": "mercari-display:1st Srius",
+      "condition": "dark stored,clean inside,surface fine scratches seller claim; print unknown",
+      "origin": "Chiba Japan",
+      "dispatch": "1-2d",
+      "relative_update": "13days",
+      "shipping_already_included": 215,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "ebay204036729920",
+      "url": "https://www.ebay.com/itm/204036729920",
+      "usd_ask": 110,
+      "displayed_shipping_usd": 25,
+      "shipping_destination_rendered": "100-0001 Japan (not CN/US quote)",
+      "sold_counter": 46,
+      "counter_previous_search_cache": 41,
+      "counter_caveat": "not 5 new independently dated sales; time window, per-order price, buyer countries unknown",
+      "stock_claim": "last one",
+      "seller_key": "ebay:Ginza Books",
+      "origin": "Saitama Japan",
+      "edition": "N/A;unsigned Japanese; ordinary KABA cover",
+      "condition": "Very Good",
+      "event_date": null,
+      "last_listing_revision": "2026-10-07 23:09:51 PDT",
+      "returns": "60days seller pays return postage",
+      "feedback": "This item(18), verified purchase feedback; displayed one within past year two more than year ago; dates/price/country not available",
+      "status": "public detail rendered, purchasing ability unverified",
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "yahoo-u1149495522",
+      "url": "https://paypayfleamarket.yahoo.co.jp/item/u1149495522",
+      "jpy": 18600,
+      "status": "search cache sold image; detail InternalError",
+      "condition": "seller claims1989-09-01 firstprint,vinyl jacket used,body generally good",
+      "seller_key": "yahoo-display:はやけん",
+      "origin": "Gifu Japan",
+      "dispatch": "1-2d",
+      "domestic_shipping_included": true,
+      "listed_at": "2024-08-24 22:47",
+      "sold_at": null,
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "surugaya185008136",
+      "url": "https://www.suruga-ya.jp/product/detail/185008136",
+      "status": "retail soldout; search reports buyback9100JPY",
+      "jpy_buyback_quote": 9100,
+      "not_retail_price": true,
+      "conditions": "buyback inspection,eligibility,validity and costs unverified; NOTguaranteed proceeds",
+      "checked_at_window": [
+        "2026-10-14T00:58:36+08:00",
+        "2026-10-14T01:05:22+08:00"
+      ],
+      "access_method": "web public page/search as stated",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "baseline-kongfz",
+      "url": "https://book.kongfz.com/357557/8926689607/",
+      "status": "PRIOR ROUND baseline not refreshed",
+      "cny_sold_display": 361,
+      "sold_date": "2026-04-12",
+      "identity": "1989Otomo KABA;ISBN printpublisherunknown",
+      "not_usable_P": true,
+      "checked_at_window": null,
+      "access_method": "prior round evidence, not revisited",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    },
+    {
+      "id": "baseline-buy",
+      "url": "https://jp.mercari.com/item/m28305381324",
+      "status": "PRIOR ROUND baseline not refreshed; purchase button rendered",
+      "jpy_ask": 12000,
+      "domestic_shipping_included": true,
+      "print": null,
+      "FX": "dated BOC2026-10-14 00:17:23 JPYselling0.042432CNY =>509.18CNY purchase-only, not fullK",
+      "checked_at_window": null,
+      "access_method": "prior round evidence, not revisited",
+      "identity_status": "work-family match; exact copy ISBN/print/authenticity unverified",
+      "profit": null,
+      "full_cost_K": null,
+      "target_market_P": null
+    }
+  ],
+  "supplemental_health": {
+    "checked_at_upper_bound": "2026-10-14T01:05:22+08:00",
+    "source_request_count": 37,
+    "accounting": "16 search queries + 21 open/click including repeated/failure accesses. No further market requests.",
+    "notion_view_rows": 5,
+    "notion_has_more": false,
+    "excluded_or_supplemental": [
+      {
+        "url": "https://jp.mercari.com/item/m10789195531",
+        "price_jpy": 8600,
+        "status": "sold marker",
+        "note": "print unknown; some scratches; tatukiくん;origin unspecified"
+      },
+      {
+        "url": "https://jp.mercari.com/item/m43982738291",
+        "price_jpy": 10000,
+        "status": "sold marker",
+        "note": "corner dents/yellow/scuffs;ぴぐぴぐ;Hyogo;domestic shipping included"
+      },
+      {
+        "url": "https://jp.mercari.com/item/m56520390102",
+        "price_jpy": 11000,
+        "status": "sold marker",
+        "note": "firstprint title claim, yellow upper edge/minor crushed corners;ちろる;Chiba;domestic shipping included"
+      },
+      {
+        "url": "https://jp.mercari.com/shops/product/2JUYMxjnWFdkweXD5HQCW9",
+        "price_jpy": 8000,
+        "status": "soldout explicitly despite purchase button",
+        "note": "seller firstprint1989-09-01 claim;stains/dents/discoloration;卸のあらいさん2;Tokyo;domestic included"
+      },
+      {
+        "url": "https://jp.mercari.com/item/m14742972185",
+        "status": "404",
+        "price_search_jpy": 11999
+      },
+      {
+        "url": "https://www.ebay.com/itm/355740353572",
+        "status": "initial cached detail; secondopen timeout; not used for price conclusions"
+      },
+      {
+        "url": "https://www.ebay.com/itm/365925625476",
+        "status": "initial cached detail; secondopen timeout; not used for price conclusions"
+      },
+      {
+        "url": "https://www.kosho.or.jp/products/detail.php?product_id=621170363",
+        "status": "searchonly",
+        "price_search_jpy": 20000,
+        "note": "No international orders; not lower source"
+      },
+      {
+        "url": "https://www.kosho.or.jp/products/detail.php?product_id=556174653",
+        "status": "searchonly",
+        "price_search_jpy": 16000,
+        "note": "firstprintclaim vinylmissing; no overseas;not lower source"
+      },
+      {
+        "url": "https://www.kosho.or.jp/products/detail.php?product_id=603472204",
+        "status": "duplicate prior evidence;searchonly16500;not new market evidence"
+      }
+    ],
+    "errors_to_correct_on_adoption": [
+      "handoff observed_window ended01:10 in future; actual all collection completed by01:05:22. Preserve submitted inputs; correct adopted evidence/report metadata."
+    ],
+    "coverage": "Japan supply checks and international marketplace competitor observed; no new verified Mainland or target-country transaction prices; Catawiki searches no usable result; no claim of zero demand."
+  },
+  "prior_unknown_preserved": 10,
+  "review_cursor_unchanged": true,
+  "notion_direction_check": {
+    "project_read": true,
+    "database_fetched": true,
+    "view_rows": 5,
+    "has_more": false,
+    "old_cards_untouched": true
+  }
+}
