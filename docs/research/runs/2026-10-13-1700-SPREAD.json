@@ -1,0 +1,294 @@
+{
+  "run_id": "SPREAD-20261013-1700",
+  "market": "SG",
+  "status": "completed_partial_delivery_with_unknown_package",
+  "triggered_at": "2026-10-13T09:02:11.705Z",
+  "started_at": "2026-10-13T09:05:24Z",
+  "source_requests": 18,
+  "search_queries": 8,
+  "page_opens": 5,
+  "find_requests": 5,
+  "distinct_direct_urls": 4,
+  "parallel_packages": 2,
+  "package_ids": [
+    "jp-spread-20261013-1700-joan-sg-a1",
+    "jp-spread-20261013-1700-akira-sg-a1"
+  ],
+  "package_statuses": [
+    {
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "elapsed_seconds": 115.0,
+      "started_at": "2026-10-13T09:09:45.836736+00:00",
+      "finished_at": "2026-10-13T09:11:40.838347+00:00",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 4720,
+        "inference_geo": "",
+        "input_tokens": 7667,
+        "iterations": [],
+        "output_tokens": 4556,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "usage_note": "Timeout zero telemetry does not establish zero provider consumption.",
+      "cost_usd_client_estimate": 0.15459499999999998,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "94949af5a27720f4f73634e0c194151b5b07b17ca24d9ba519095942da0cfa40",
+      "input_hashes": {
+        "research/2026-10-13-1700/joan-sources.json": "d02833cec30ae229dba99cf63585a1fd3d0e426036e95547ff0fe4490f754ba4"
+      },
+      "validation": {
+        "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+        "checked_at": "2026-10-13T09:12:51.522048+00:00",
+        "runner_status": "verifying",
+        "parent_outcome": "accepted_with_changes",
+        "input_hashes_verified": {
+          "research/2026-10-13-1700/joan-sources.json": "d02833cec30ae229dba99cf63585a1fd3d0e426036e95547ff0fe4490f754ba4"
+        },
+        "result_sha256": "dce55e52e69083f9b8800c8afe21e167138746033bd1668eb1164b84e3c09daa",
+        "tools": [
+          {
+            "name": "Read",
+            "file": "research/2026-10-13-1700/joan-sources.json"
+          },
+          {
+            "name": "Edit",
+            "file": "research/2026-10-13-1700/joan-review.md"
+          },
+          {
+            "name": "Edit",
+            "file": "handoff-result.json"
+          }
+        ],
+        "permission_denials": [],
+        "corrections": [
+          "Artist attribution changed from wording suggesting verified signature to seller attribution.",
+          "Removed irrelevant motorcycle comparison introduced by shared parent acceptance wording.",
+          "Reserved described as insufficient evidence of availability or sale, not a definitive transaction outcome.",
+          "Restored seller product/package defect disclaimer and precise domestic-shipping cost limitation."
+        ],
+        "sample": "All supplied records for Joan; AKIRA has no generated business output, original collected sources only",
+        "tests": "semantic source verification, no executable code tests",
+        "retry": false,
+        "original_output_sha256": "2d9c572f85f50010c426e3f8c95b55972e2171ad68e6d2d3401c5e4429912154",
+        "adopted_output_sha256": "73ed89116fd96d8b83c71c7201ba8ae600454aad170a49973f87f02c7cbefe69"
+      },
+      "blockers": [],
+      "retry": false
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "not_adopted_unknown",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "<synthetic>"
+      ],
+      "elapsed_seconds": 120.578,
+      "started_at": "2026-10-13T09:09:45.836783+00:00",
+      "finished_at": "2026-10-13T09:11:46.416050+00:00",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "",
+        "input_tokens": 0,
+        "iterations": [],
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "usage_note": "Timeout zero telemetry does not establish zero provider consumption.",
+      "cost_usd_client_estimate": 0,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "3436c09e1d6ff39cf3ac1d3ae26a7842a35a41101404610620123aa2057d4e11",
+      "input_hashes": {
+        "research/2026-10-13-1700/akira-sources.json": "f65483b4ba8308d06506ae0fa904eddf955ec28abca77e30dc64b106081e516d"
+      },
+      "validation": {
+        "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+        "checked_at": "2026-10-13T09:12:51.523178+00:00",
+        "runner_status": "unknown",
+        "parent_outcome": "not_adopted_unknown",
+        "input_hashes_verified": {
+          "research/2026-10-13-1700/akira-sources.json": "f65483b4ba8308d06506ae0fa904eddf955ec28abca77e30dc64b106081e516d"
+        },
+        "result_sha256": "7b7349992bbfc06b9831c162ec03149c94fe8d1068cbf242f265e92dcad9cfcc",
+        "tools": [],
+        "permission_denials": [],
+        "corrections": [],
+        "sample": "All supplied records for Joan; AKIRA has no generated business output, original collected sources only",
+        "tests": "semantic source verification, no executable code tests",
+        "retry": false
+      },
+      "blockers": [
+        "worker reported transport failure; inspect saved execution before recovery"
+      ],
+      "retry": false
+    }
+  ],
+  "qualified_candidates": 0,
+  "new_verified_exact_skus": 0,
+  "candidate_offers_observed": 3,
+  "new_candidate_variants": 1,
+  "new_variant_note": "single Kaneda figure research target only, not verified SKU",
+  "adopted_research_leads": 1,
+  "budget_extra_paid_cny": 0,
+  "sources": [
+    {
+      "id": "J1",
+      "url": "https://www.carousell.sg/p/in-stock-joan-cornella-selfie-gun-vinyl-green-ver-limited-edition-of-1000-numbered-1215405974/",
+      "checked_at": {
+        "current_time": "2026-10-13 09:07:15 UTC"
+      },
+      "method": "web open/find",
+      "cache": "initial open labelled crawled 2 weeks ago; find labelled today; no guarantee of origin-live response",
+      "seller_dedupe": "carousell.sg:sugoicollection",
+      "title": "Selfie Gun Vinyl Green Ver. Limited Edition of 1000, numbered",
+      "facts": [
+        "Asking SGD688, page state Reserved. Title says In Stock; description ready stock. Record contradiction, no current availability claim.",
+        "Seller claims brand new, limited numbered 1000. Exact physical number, signatures, size, provenance, authenticity, completeness and edition release date unverified.",
+        "Seller describes Orchard Central #06-21 Singapore store and free shipping within Singapore. Physical item location and dispatch origin not confirmed; no Mainland shipping fee/promise.",
+        "Seller terms disclaim product/package defects and say no refund/exchange except broken/missing parts. This is seller text, not independent legal enforceability finding.",
+        "Likes, reviews and 20 seller-wide Orders are not target item sales. No transaction price/date/buyer country."
+      ],
+      "price_type": "asking",
+      "sale_event_at": null,
+      "stock_verified": false,
+      "origin": null,
+      "parent_adoption": "accepted_with_changes",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "A1",
+      "url": "https://www.carousell.sg/p/mcfarlane-toys-akira-kaneda-figure-bike-2000-1459573084/",
+      "checked_at": {
+        "current_time": "2026-10-13 09:07:15 UTC"
+      },
+      "method": "web open/find",
+      "cache": "crawled today, not independent live inventory",
+      "seller_dedupe": "carousell.sg:yeer31",
+      "facts": [
+        "Asking SGD50, Reserved. Seller says lightly used McFarlane Kaneda figure plus red motorcycle, year2000, gun accessory.",
+        "Exact set/series/year/UPC, whether assembled bundle vs original boxed set, scale, box, repairs/yellowing, complete accessories, provenance and authenticity unknown.",
+        "Do not equate to earlier Kaneda on Motorcycle 14920. No item origin/dispatch address/China shipping or sale event shown.",
+        "Search snippet last month showed Yesterday and 3 likes; direct page says1month and7likes. These are cache differences, not a dated price/sale history."
+      ],
+      "price_type": "asking",
+      "sale_event_at": null,
+      "stock_verified": false,
+      "origin": null,
+      "parent_adoption": "raw_unreviewed_package_unknown",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "A2",
+      "url": "https://www.carousell.sg/p/mcfarlane-toys-akira-kaneda-action-figure-1457464258/",
+      "checked_at": {
+        "current_time": "2026-10-13 09:08:09 UTC"
+      },
+      "method": "web open",
+      "cache": "crawled today",
+      "seller_dedupe": "carousell.sg:meelo66",
+      "facts": [
+        "Direct page asks SGD38, Buy button, Like new. Seller says sealed figure, package wear, gun and bag. This is a single figure, not bike set.",
+        "Displayed delivery SGD1.99, crossed-out3.60, 2-4 days AFTER seller ships. Destination not explicitly fixed in the extract; not a Mainland quote or total cost.",
+        "Earlier search last-month snippet asks SGD40. Preserve as older snippet; no event date supports calling it a real-time markdown.",
+        "Year, accurate series/UPC, licence, sealed authenticity, condition of inner figure and all original accessories unknown. Site country not ship-from evidence.",
+        "Seller reviews include other items; no specific completed transaction/final price/buyer country. Not proven unsold either."
+      ],
+      "price_type": "asking",
+      "sale_event_at": null,
+      "stock_verified": false,
+      "origin": null,
+      "parent_adoption": "raw_unreviewed_package_unknown",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null
+    },
+    {
+      "id": "A3",
+      "url": "https://www.earthx.com.sg/content/product_details.php?pid=2235",
+      "checked_at": {
+        "current_time": "2026-10-13 09:06:59 UTC"
+      },
+      "method": "web open",
+      "status": "internal_error",
+      "facts": [
+        "Search category links same Earth X seller and standalone Kaneda SGD69.90; multi-product listing headlineSGD219.90 belongs other item. Exclude as adopted lead; no direct proof."
+      ],
+      "parent_adoption": "raw_unreviewed_package_unknown",
+      "sale_event_at": null,
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null
+    }
+  ],
+  "mainland_search": {
+    "queries": [
+      "\"麦克法兰\" \"金田\" \"枪\" \"包\" 成交",
+      "\"Joan Cornella\" \"绿色\" \"成交\""
+    ],
+    "result": "No qualifying exact-version Mainland sale/buyer quote obtained in these bounded queries; not evidence of no demand."
+  },
+  "exclusions": [
+    "Earth X direct page error; category/multi-product price not accepted",
+    "Carousell seller feedback, likes and account Orders not item transaction evidence",
+    "Manufacturer search not successful; typo site.mcfarlane.com query retained as discovery failure, no official identity inferred"
+  ],
+  "notification": "none_no_qualified_or_route_change",
+  "report": "docs/research/runs/2026-10-13-1700-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-13-1700-SPREAD.json",
+  "source_request_started_at_window": [
+    "2026-10-13T09:06:29Z",
+    "2026-10-13T09:08:09Z"
+  ],
+  "timestamp_note": "Per-batch clock captured immediately before web request; source checked_at is request-start time, not event time or exact response completion."
+}
