@@ -1,0 +1,508 @@
+{
+  "run_id": "SPREAD-20261013-2300",
+  "status": "accepted_pending_sync",
+  "triggered_at": "2026-10-13T14:58:13.264Z",
+  "first_clock_at": "2026-10-13T14:58:31Z",
+  "started_at": "2026-10-13T15:03:46.740442+00:00",
+  "compiled_at": "2026-10-13T15:11:08.160770+00:00",
+  "market": "daily_coverage_summary",
+  "kind": "summary_only",
+  "source_requests": 0,
+  "new_verified_exact_skus": 0,
+  "new_market_evidence": 0,
+  "new_sale_events": 0,
+  "qualified_candidates": 0,
+  "extra_paid_cny": 0,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy_price": null,
+  "parallel_packages": 2,
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T15:03:55.191102+00:00",
+      "finished_at": "2026-10-13T15:06:19.759242+00:00",
+      "elapsed_seconds": 144.566,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 25824,
+        "inference_geo": "",
+        "input_tokens": 13984,
+        "iterations": [],
+        "output_tokens": 6328,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.241032,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "2d117b9ca4685d0d3d68a06e4c9c9487dbcb5f0c561c314467d261f93dedbd9b",
+      "result_sha256": "9e447f933bf02bbd74c155503022a3753ca7df3ab2dcd1658739508325132c0d",
+      "input_hashes_verified": {
+        "research/2026-10-13-2300/coverage-sources.json": "b393bd729e12e3dc29fcd2ce972f61fc8ecfb9538bf254a975120e8a1d4a2a70"
+      },
+      "original_output_sha256": "8342b81da424689417aef512a5640a0f32c6c709f2a0e8921573d0197c770b2b",
+      "adopted_output_sha256": "d30eed5568d1ffac5f11c443146686569bf538e94b3dcfc9334c6f489c0c00f7",
+      "corrections": [
+        "Corrected exit evidence mistranslated as export.",
+        "Removed DE AKIRA raw source from accepted set; distinguished HK historical access failure from current raw status.",
+        "Removed instruction to backfill expired FR/HK slots.",
+        "Removed redundant URL appendix; every market remains linked and full URLs retained in public JSON."
+      ],
+      "retry": false
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T15:03:55.191103+00:00",
+      "finished_at": "2026-10-13T15:05:46.473962+00:00",
+      "elapsed_seconds": 111.279,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 21928,
+        "inference_geo": "",
+        "input_tokens": 14888,
+        "iterations": [],
+        "output_tokens": 4540,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.19890399999999997,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "b8fc796316982c0ca7bf46a98b601415cb5cc40341ae587af9fae4b6d8891e30",
+      "result_sha256": "832a8602865617c4ebfd14341b99f903330c1c6ee9d19cce0af9b62501a63657",
+      "input_hashes_verified": {
+        "docs/research/runs/2026-10-13-1900-SPREAD.md": "4d5b770ac98fa80cc92ffe0dbb92e816c6a5572a6dbb97e6d92df770a0e6a005",
+        "docs/research/runs/2026-10-13-2100-SPREAD.md": "137d9555d0a76cb7ebea9962f697ab122b487aede2c26eee4f16082de6d51395"
+      },
+      "original_output_sha256": "e62ac1cc519fca86ea84e6af60b51d284c0a7514b77465e6483483ed69e27d61",
+      "adopted_output_sha256": "eb1779bac3374622e55d5510ae9350971bf1db7cecc711d931fdd6ff4a205761",
+      "corrections": [
+        "Corrected parent unsupported no-inventory assumption to ownership unknown.",
+        "Separated rule observation time from market observation time.",
+        "Restored statutory inspection beyond catalogue; corrected eBay one-way restriction and FTZ/applicability caveat.",
+        "Scoped no AKIRA transaction claim to21slot, preserving03SOLD missing-price limitation.",
+        "Version/manufacture evidence necessary but insufficient for legal classification."
+      ],
+      "retry": false
+    }
+  ],
+  "markets": {
+    "JP": {
+      "status": "two_toy_listings_read_identity_pending_no_mainland_exit",
+      "source_ids": [
+        "J1",
+        "A1"
+      ],
+      "history": [
+        {
+          "status": "historical_snippet_direct_403",
+          "source_ids": [
+            "M6"
+          ]
+        }
+      ],
+      "checked_at": null,
+      "checked_at_window": "2026-10-13T01:03:00+08:00/2026-10-13T01:06:38+08:00",
+      "urls": [
+        "https://jp.mercari.com/item/m87506588283",
+        "https://mil.stores.jp/items/6735913cf06ae8033636752d"
+      ],
+      "gap": "Mercari ship-from seller claim; MIL actual ship-from unknown; stock/authenticity/Mainland P/fullK unverified.",
+      "evidence": "docs/research/runs/2026-10-13-0100-SPREAD.json"
+    },
+    "US": {
+      "status": "three_US_location_seller_pages_read_cached_version_and_exit_pending",
+      "source_ids": [
+        "UJ1",
+        "UA1",
+        "UA2"
+      ],
+      "history": [
+        {
+          "status": "channel_page_read_no_sku",
+          "source_ids": [
+            "M1"
+          ]
+        }
+      ],
+      "checked_at": null,
+      "checked_at_windows": [
+        "2026-10-13T03:23:00+08:00/2026-10-13T03:24:00+08:00",
+        "2026-10-13T03:46:00+08:00/2026-10-13T03:48:00+08:00"
+      ],
+      "urls": [
+        "https://www.ebay.com/itm/265457453231",
+        "https://www.ebay.com/itm/167036836460",
+        "https://www.ebay.com/itm/267791048340"
+      ],
+      "gap": "US located-in seller claims only; stock, actual ship-from, final sold price, buyer country, exact variant, Mainland P and full K unknown. Mixed cache ages preserved.",
+      "evidence": "docs/research/runs/2026-10-13-0300-SPREAD.json"
+    },
+    "GB": {
+      "status": "UK_merchant_toy_sold_no_price_channels_no_verified_live_stock_or_exit",
+      "history": [
+        {
+          "status": "channel_page_read_no_sku",
+          "source_ids": [
+            "M3"
+          ]
+        }
+      ],
+      "checked_at": null,
+      "checked_at_window": "2026-10-13T05:06:00+08:00/2026-10-13T05:10:00+08:00",
+      "urls": [
+        "https://www.collectanddisplay.com/",
+        "https://fairart.com/artworks/joan-cornella/1432/selfie-gun-%28sculpture%29-%28green%29/51675",
+        "https://fairart.com/terms-and-conditions",
+        "https://fairart.com/how-it-works/fairart-database",
+        "https://unifiedgoods.com/products/akira-kaneda-motorcycle",
+        "https://unifiedgoods.com/pages/london-store",
+        "https://unifiedgoods.com/pages/shipping",
+        "https://www.ebay.co.uk/itm/297447223180"
+      ],
+      "source_ids": [
+        "UG-P",
+        "UG-L",
+        "UG-S",
+        "M3",
+        "FA-G",
+        "FA-T",
+        "FA-D",
+        "EB-UK"
+      ],
+      "gap": "SOLD no price/event/buyer; FairArt item direct timeout; eBay UK item actually Japan-located in stale rendering; P/fullK unknown.",
+      "evidence": "docs/research/runs/2026-10-13-0500-SPREAD.json"
+    },
+    "FR": {
+      "status": "partial_collection_unreviewed_time_limit_not_completed",
+      "history": [
+        {
+          "status": "channel_page_read_no_sku",
+          "source_ids": [
+            "M2"
+          ]
+        }
+      ],
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-12T23:43:35Z",
+        "2026-10-12T23:44:35Z"
+      ],
+      "urls": [
+        "https://artoyz.com/products/yogawork-by-joan-cornella",
+        "https://ddtstore.com/products/yogawork-joan-cornella",
+        "https://artoyz.com/products/nobody-loves-you-by-joan-cornella",
+        "https://artoyz.com/pages/a-propos",
+        "https://artoyz.com/pages/livraison",
+        "https://artoyz.com/collections/allrightsreserved",
+        "https://www.lulu-berlu.com/akira-bandai-1988-kanedas-bike-loose-a17579-en.html",
+        "https://www.lulu-berlu.com/akira-mcfarlane-toys-kaneda-a9346.html"
+      ],
+      "gap": "Raw evidence preserved; Plan not submitted; identity, supply, ship-from, exit and full costs not accepted. DDT supplemental reference does not complete HK slot.",
+      "evidence": "docs/research/runs/2026-10-13-0700-SPREAD.json"
+    },
+    "DE": {
+      "status": "private_TLove_listing_and_official_spec_read_AKIRA_package_unknown",
+      "history": [
+        {
+          "status": "not_checked",
+          "source_ids": []
+        }
+      ],
+      "source_ids": [
+        "DE-J1",
+        "DDT-T",
+        "DOPE-T",
+        "DE-A1",
+        "JP-A-DELOCALE"
+      ],
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:06:14Z",
+        "2026-10-13T03:11:07Z"
+      ],
+      "urls": [
+        "https://www.kleinanzeigen.de/s-anzeige/joan-cornell-t-love-kunst-art-toy-trump/3464332497-240-9292",
+        "https://ddtstore.com/products/t-love",
+        "https://dope.gallery/joan-cornella",
+        "https://www.ebay.de/itm/158216194989",
+        "https://www.ebay.de/itm/163059223182"
+      ],
+      "gap": "T-Love listing location claim only; item identity/edition/provenance, dispatch, Mainland or target-country exit P/full K unknown. AKIRA raw observations preserved, worker unknown and no card adopted; eBay DE Japanese seller excluded as German supply.",
+      "evidence": "docs/research/runs/2026-10-13-1100-SPREAD.json"
+    },
+    "ES": {
+      "status": "AKIRA_used_offer_and_Valencia_shipping_claim_read_Europe_only_no_target_exit",
+      "history": [
+        {
+          "status": "artist_password_page_not_ship_from",
+          "source_ids": [
+            "M4"
+          ]
+        }
+      ],
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T05:03:48Z",
+        "2026-10-13T05:08:31Z"
+      ],
+      "timestamp_note": "actual tool-access interval; precise per-URL seconds not captured; not event time",
+      "source_ids": [
+        "ES-A1",
+        "ES-S1"
+      ],
+      "urls": [
+        "https://www.todocoleccion.net/figuras-munecos-mcfarlane/figura-muneco-akira-kaneda-moto-mcfarlane-toys-3d-animation-japan-2001-28-cm~x703602435",
+        "https://www.todocoleccion.net/tienda/lapatineta"
+      ],
+      "gap": "No live stock confirmation; seller year2001 vs secondary2000; physical identity/provenance/accessories uncertain. Europe yes/rest no conflicts with generic intro; no Mainland delivery, target-country P or full K. Joan Spain supply not found in bounded search.",
+      "evidence": "docs/research/runs/2026-10-13-1300-SPREAD.json"
+    },
+    "HK": {
+      "history": [
+        {
+          "status": "selected_site_unreadable",
+          "source_ids": [
+            "M5"
+          ]
+        }
+      ],
+      "status": "partial_collection_unreviewed_time_limit_not_completed",
+      "checked_at_window": [
+        "2026-10-13T07:00:37Z",
+        "2026-10-13T07:01:40Z"
+      ],
+      "urls": [
+        "https://ddtstore.com/",
+        "https://ddtstore.com/apps/help-center",
+        "https://ddtstore.com/collections/joan-cornella",
+        "https://www.carousell.com.hk/p/joan-cornella-selfie-gun-1384720285/"
+      ],
+      "gap": "Raw only; no Plan or accepted business evidence. Per-request raw responses retained, no backfill.",
+      "evidence": "docs/research/runs/2026-10-13-1500-SPREAD.md"
+    },
+    "SG": {
+      "history": [
+        {
+          "status": "storefront_geography_unverified",
+          "source_ids": [
+            "M7"
+          ]
+        }
+      ],
+      "status": "partial_Joan_adopted_AKIRA_unknown_no_qualified",
+      "checked_at_window": [
+        "2026-10-13T09:06:29Z",
+        "2026-10-13T09:08:09Z"
+      ],
+      "urls": [
+        "https://www.carousell.sg/p/in-stock-joan-cornella-selfie-gun-vinyl-green-ver-limited-edition-of-1000-numbered-1215405974/",
+        "https://www.carousell.sg/p/mcfarlane-toys-akira-kaneda-figure-bike-2000-1459573084/",
+        "https://www.carousell.sg/p/mcfarlane-toys-akira-kaneda-action-figure-1457464258/",
+        "https://www.earthx.com.sg/content/product_details.php?pid=2235"
+      ],
+      "source_ids": [
+        "J1",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "gap": "Reserved versus stock text; actual ship-from/authenticity/Mainland or SG buyer-country P/full K unknown; AKIRA package isolated.",
+      "evidence": "docs/research/runs/2026-10-13-1700-SPREAD.json"
+    }
+  },
+  "coverage_summary": {
+    "partly_adopted_markets": [
+      "JP",
+      "US",
+      "GB",
+      "DE",
+      "ES",
+      "SG"
+    ],
+    "raw_only_unreviewed_markets": [
+      "FR",
+      "HK"
+    ],
+    "not_verified_sourcing_countries": true,
+    "unknown_partial_lanes": [
+      "DE_AKIRA",
+      "SG_AKIRA"
+    ]
+  },
+  "prior_accepted_reports": [
+    "docs/research/runs/2026-10-13-1900-SPREAD.md",
+    "docs/research/runs/2026-10-13-2100-SPREAD.md"
+  ],
+  "daily_automated_package_count": 17,
+  "daily_automated_parent_outcomes": {
+    "accepted_with_changes": 13,
+    "partial": 2,
+    "not_adopted_unknown": 2
+  },
+  "daily_automated_package_records": [
+    {
+      "run_id": "SPREAD-20261013-0100",
+      "task_id": "jp-spread-20261013-0100-joan-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-0100",
+      "task_id": "jp-spread-20261013-0100-akira-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial"
+    },
+    {
+      "run_id": "SPREAD-20261013-0300",
+      "task_id": "jp-spread-20261013-0300-joan-us-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-0300",
+      "task_id": "jp-spread-20261013-0300-akira-us-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-0500",
+      "task_id": "jp-spread-20261013-0500-joan-gb-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial"
+    },
+    {
+      "run_id": "SPREAD-20261013-0500",
+      "task_id": "jp-spread-20261013-0500-akira-gb-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-1100",
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-1100",
+      "task_id": "jp-spread-20261013-1100-akira-de-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "not_adopted_unknown"
+    },
+    {
+      "run_id": "SPREAD-20261013-1300",
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-1700",
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-1700",
+      "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "not_adopted_unknown"
+    },
+    {
+      "run_id": "SPREAD-20261013-1900",
+      "task_id": "jp-spread-20261013-1900-import-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-1900",
+      "task_id": "jp-spread-20261013-1900-export-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-2100",
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-2100",
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-2300",
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "run_id": "SPREAD-20261013-2300",
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    }
+  ],
+  "manual_wave_separate": {
+    "run_id": "GLOBAL-COMMERCE-20261013-START",
+    "packages": 2,
+    "accepted_with_changes": 1,
+    "partial": 1
+  },
+  "unknown_isolation_count": 9,
+  "review_sample": {
+    "memos_fully_reviewed": 2,
+    "memos_corrected": 2,
+    "claim": "sample only, no general accuracy or savings estimate"
+  },
+  "lane_accounting": "summary_only_no_counter_change",
+  "review_cursor_unchanged": true,
+  "notion_gate": "fresh project/database/full view;5pending,no newer conflict",
+  "report": "docs/research/runs/2026-10-13-2300-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-13-2300-SPREAD.json"
+}
