@@ -1,0 +1,303 @@
+{
+  "run_id": "SPREAD-20261013-2100",
+  "triggered_at": "2026-10-13T13:03:42.836Z",
+  "local_slot": "2026-10-13T21:00:00+08:00",
+  "market": "bilateral_version_comparison",
+  "sources": {
+    "joan": {
+      "observation_window_utc": [
+        "2026-10-13T13:06:42Z",
+        "2026-10-13T13:11:33Z"
+      ],
+      "per_url_exact_timestamp": null,
+      "access": "web rendered text, may be cached; not physical verification",
+      "mainland_exit": "Eight targeted mainland keyword searches yielded no usable exact-sale record; missing evidence, not no sales.",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null,
+      "candidate": "Joan Cornella Selfie Gun Green vinyl, existing candidate",
+      "sources": [
+        {
+          "id": "J1",
+          "url": "https://fineart.ha.com/itm/collectible/joan-cornella-b-1981-selfie-gun-green-2019-painted-cast-vinyl-10-x-2-x-2-inches-254-x-51-x-51-cm-ed/a/16215-42051.s",
+          "access": "direct lot page, crawled today",
+          "facts": [
+            "Auction16215 lot42051 reports sold May1 2024 for USD250, Internet bidder; 2 Internet/Mail bids (not necessarily distinct buyers).",
+            "Green painted vinyl,2019,10x2x2in,edition263/1000,underside stamp,produced by AllRightsReserved Ltd Hong Kong. Auction condition report states original sealed packaging,no apparent issues,AS IS and caveats; not independent physical authentication.",
+            "Buyer premium table25%firstUSD1m/min49. Lot displayed USD250 sold-for is not seller net. This round has no lot-specific explicit proof whether USD250 includes premium; preserve basis unresolved, do not add it twice.",
+            "Buyer location,physical shipping origin,transaction completion payment,fees,tax,shipping not shown. US auction platform does not establish target-country buyer demand. Event old, one sample no trend/liquidity claim."
+          ]
+        },
+        {
+          "id": "J2",
+          "url": "https://stockx.com/joan-cornella-selfie-gun-vinyl-figure-green",
+          "access": "search snippet only; direct open failed, regional direct also oversized",
+          "facts": [
+            "Snippet shows ask270,lastsale200,bid126,3month1sale/average344/range343. Internal mismatch and old delivery dates; all unverified,not current price/sales observation. Locale/currency not buyer country. Do not use as comparable transaction."
+          ]
+        },
+        {
+          "id": "J3",
+          "url": "https://ddtstore.com/collections/joan-cornella/products/joan-cornella-1st-vinyl-figure-10-inch-selfie-gun",
+          "access": "previous01slot accepted body; NOT refreshed this slot",
+          "facts": [
+            "ARR Joan collaboration,Greenvinyl,1000numbered,printed signature underside; not hand signed. Historical identity reference only."
+          ]
+        },
+        {
+          "id": "J4",
+          "url": "https://www.ebay.com/itm/265457453231",
+          "access": "prior03slot accepted ask550; new search snippet same, not refreshed direct",
+          "facts": [
+            "Historical USseller askUSD550,originalunopenedclaim. Asking price not sale,condition/provenance no independent verification. Not newstock."
+          ]
+        }
+      ],
+      "conclusion_boundary": "Compare historical auction evidence with prior high asking claim only as price discipline; do not claim arbitrage or appreciation, current valuation or market decline."
+    },
+    "akira": {
+      "observation_window_utc": [
+        "2026-10-13T13:06:42Z",
+        "2026-10-13T13:11:33Z"
+      ],
+      "per_url_exact_timestamp": null,
+      "access": "web rendered text, may be cached; not physical verification",
+      "mainland_exit": "Eight targeted mainland keyword searches yielded no usable exact-sale record; missing evidence, not no sales.",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "ROI": null,
+      "net_margin": null,
+      "max_buy_price": null,
+      "candidate": "McFarlane AKIRA Kaneda variants, existing family",
+      "sources": [
+        {
+          "id": "A1",
+          "url": "https://www.netoff.co.jp/moetaku/detail/178497",
+          "access": "direct detail rendered, crawled today; page labels2026-10-13",
+          "facts": [
+            "Title Kaneda bike SPAWN.COM AKIRA; BUYBACK priceJPY6270,conditional3+items plus unopened bonus displayed7586; not purchase retail price,not completed transaction or guaranteed sellernet.",
+            "Unopened standard excludes significant outerboxdamage; original manufacturerseal,resealed/doubletape/bottomopened/nooriginalsealtreatedopen. JAN/UPC not found; cannot identify as14920 deluxe set.",
+            "Japanese dealer buyback reference; crossborder eligibility,assessment,actual item barcode,shipping and fees unknown. Do not use as Mainland exit or worldwide purchase floor."
+          ]
+        },
+        {
+          "id": "A2",
+          "url": "https://www.netoff.co.jp/figure/purchase/?ky=%E9%87%91%E7%94%B0",
+          "access": "direct listing crawled1.2yearsago; searchsnippet crawled6months; mismatch",
+          "facts": [
+            "Old rendered category separates bikeSPAWN.COM and Kaneda on Motorcycle DELUX BOXED SET;1620forboxset/3240bike versus newer detail6270bike. Searchsnippetdifferentagain. Cache snapshots are not chronological pricechange events.",
+            "Category terms:boxless/missing/scratched/dirtyreduceassessment,sameitemmax2perpersoninclfamily/accounts. Completeness and condition matter. No claim these are current guaranteed applicable offers."
+          ]
+        },
+        {
+          "id": "A3",
+          "url": "https://www.netoff.co.jp/moetaku/detail/85885",
+          "access": "initialclick metadata only; subsequentopen internalerror/timeout,findfailed",
+          "facts": [
+            "Deluxe boxed-set detail price not independently read. Do not assign category1620orsearch2184as current verifiedquote."
+          ]
+        },
+        {
+          "id": "A4",
+          "url": "https://www.carousell.sg/p/mcfarlane-toys-akira-kaneda-on-motorcycle-deluxe-boxed-set-1455824236/",
+          "access": "newsearchsnippetSGD80, direct410Gone",
+          "facts": [
+            "Seller toyz_enthusiast1631 snippet describedMISB/yellowingpack/no refunds. Directgone means no current availability or sale proven. Exclude price from actionable supply; keep only accessfailure."
+          ]
+        },
+        {
+          "id": "A5",
+          "url": "https://mcfarlane.com/toys/kaneda-on-motorcycle/",
+          "access": "attempted guessed manufacturer URL; directinternalerror; manufacturersearchreturned no exact product",
+          "facts": [
+            "No manufactureridentity/year verified."
+          ]
+        },
+        {
+          "id": "A6",
+          "url": "https://www.figurerealm.com/actionfigure?action=actionfigure&id=3186",
+          "access": "secondary discovery snippet only",
+          "facts": [
+            "Catalogsnippet manufacturer14920,UPC787926149203,year2000. Other previoussecondary saysSeries2/2001; don't settle manufactureyear or map listings bytitle. Not primaryverified."
+          ]
+        },
+        {
+          "id": "A7",
+          "url": "https://mil.stores.jp/items/6735913cf06ae8033636752d",
+          "access": "previous01accepted listing,not refreshed",
+          "facts": [
+            "HistoricalaskJPY31800taxincl,unopenedNOSbutused sellerclaim;title2000. Not directlycomparable to bike-only buyback6270."
+          ]
+        }
+      ],
+      "conclusion_boundary": "Only new dealer buyback/condition evidence accepted. Separate single figure,singlebike,deluxe rider+bike; packaging and manufacturer identity unresolved. No vintage legal exemption inference."
+    }
+  },
+  "source_requests": 30,
+  "search_queries": 14,
+  "mainland_targeted_queries": 8,
+  "page_open_click_requests": 13,
+  "find_requests": 3,
+  "distinct_direct_urls": 10,
+  "per_url_exact_timestamp": null,
+  "observation_window_utc": [
+    "2026-10-13T13:06:42Z",
+    "2026-10-13T13:11:33Z"
+  ],
+  "timestamp_note": "Conservative wall-clock bounds; exact per-request seconds not captured. Retrieval and historical event dates are separate.",
+  "qualified_candidates": 0,
+  "new_authenticated_exact_skus": 0,
+  "candidate_families_reviewed": 2,
+  "new_sale_events": 0,
+  "newly_discovered_historical_sale_records": 1,
+  "new_mainland_exit_records": 0,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy_price": null,
+  "extra_paid_cny": 0,
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T13:11:06.615595+00:00",
+      "finished_at": "2026-10-13T13:14:32.315923+00:00",
+      "elapsed_seconds": 205.699,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 23776,
+        "inference_geo": "",
+        "input_tokens": 13590,
+        "iterations": [],
+        "output_tokens": 9071,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.306613,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "6d5d46b3e62a2fb57dc52a2e86aad209f409bfa0c6299b34b585241bd36ca62f",
+      "corrections": [
+        "Removed cross-lane content caused by overly broad parent acceptance template; future handoffs must be lane-specific.",
+        "Corrected parent mainland-query count7to8 and conservative timestamp bounds.",
+        "Replaced private invoice/physical appraisal next step with public-source research."
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-13-2100/joan-sources.json": "58c19f2766eb345304af7b980582882266ad5f66ae58e1bfba6ae4f0a97fda14"
+      },
+      "adopted_output_sha256": "d1a0fc72662ca9f4e0061e09683db27a027898a3f614b53ac655542f71e933b5"
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "thinking_enabled": true,
+      "effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T13:11:06.615639+00:00",
+      "finished_at": "2026-10-13T13:15:06.793781+00:00",
+      "elapsed_seconds": 240.177,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 29920,
+        "inference_geo": "",
+        "input_tokens": 17655,
+        "iterations": [],
+        "output_tokens": 11799,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.39821,
+      "cost_note": "client estimate; not Coding Plan charge",
+      "request_sha256": "00708007e1fb6561d687a1329a5932b24f255331f694a9806a3995968ca0520b",
+      "corrections": [
+        "Removed cross-lane content caused by overly broad parent acceptance template; future handoffs must be lane-specific.",
+        "Corrected parent mainland-query count7to8 and conservative timestamp bounds.",
+        "Corrected invented user-ownership implication; this is an existing candidate family only.",
+        "Corrected double-taping translation; conditional bonus is a quote, not non-quote; distinguished domain-filtered web search from site inventory.",
+        "Separated target sale P from full supply-to-sale cost K; restored category-cache caveat."
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-13-2100/akira-sources.json": "8daa4ec8ed0e6491eaf901704cc9f2cb2352487a47c34902ce25976fb3ad9179"
+      },
+      "adopted_output_sha256": "6469ec2e395b0245aae4ee67af3dcbf6dd36a3dec4e6056e3208286b5d410fea"
+    }
+  ],
+  "one_wave_only": true,
+  "source_limitations": [
+    "Heritage May2024 event is old; one lot does not establish a price trend or target-country demand.",
+    "AKIRA current detail is dealer buyback not retail. Detail/category/snippet snapshots do not establish price movements.",
+    "Manufacturer exact version/year unverified.",
+    "No foreign market refresh counted as backfilling an expired slot.",
+    "No transaction, registration, contact, production code or paid service."
+  ],
+  "parent_input_corrections": [
+    "Mainland query count in original handoffs7 corrected to8 from actual calls; original handoff inputs retained unchanged.",
+    "Broadened observational bounds to captured clock checks; per-URL seconds unknown."
+  ],
+  "status": "completed_with_adopted_corrections",
+  "parallel_packages": 2,
+  "review_sample": {
+    "promoted": 0,
+    "entire_candidate_memos_reviewed": 2,
+    "memos_requiring_corrections": 2,
+    "exclusions_reviewed": [
+      "StockX cached mixed prices",
+      "SG80 direct410",
+      "stale Netoff category versus detail",
+      "unverified manufacturer year/UPC"
+    ],
+    "statistic_scope": "Explicit two-memo sample, not market/model accuracy estimate."
+  },
+  "lane_accounting": {
+    "smallgoods": {
+      "before": 0,
+      "after": 0,
+      "basis": "New historical lot record and dealer buyback evidence; no name/date reset."
+    },
+    "artbooks": {
+      "before": 0,
+      "after": 0,
+      "basis": "Not worked; unchanged."
+    }
+  },
+  "notion_gate": "Fresh project/database/view;5cards pending,no newer direction conflict;unchanged",
+  "source_health": "4failed direct URLs plus Netoff boxed-detail intermittent partial/fail and guessed DDT URL failure; see per-source access, not universal platform health"
+}
