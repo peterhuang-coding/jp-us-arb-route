@@ -1,0 +1,241 @@
+{
+  "run_id": "SPREAD-20261013-1100",
+  "triggered_at": "2026-10-13T03:05:10.604Z",
+  "started_at": "2026-10-13T03:05:37Z",
+  "collection_ended_at": "2026-10-13T03:11:07Z",
+  "compiled_at": "2026-10-13T03:18:37.999667+00:00",
+  "market": "DE",
+  "status": "completed_partial_delivery_with_unknown_package",
+  "notion_gate": "Fresh project, database and complete view fetched; 5 old cards pending; no newer conflicting direction.",
+  "source_request_counts": {
+    "search_queries": 16,
+    "open_requests_including_reopens": 7,
+    "find_requests": 1,
+    "total": 24,
+    "distinct_opened_urls": 5,
+    "downstream_web_requests": 0
+  },
+  "budget_extra_paid_cny": 0,
+  "parallel_packages": 2,
+  "waves": 1,
+  "new_candidate_variants": 2,
+  "new_verified_exact_skus": 0,
+  "total_candidate_or_comparator_families_inspected": 4,
+  "qualified_candidates": 0,
+  "adopted_research_leads": 1,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "cost_roi": null,
+  "sales_net_margin": null,
+  "max_buy_price": null,
+  "sources": [
+    {
+      "id": "DE-J1",
+      "url": "https://www.kleinanzeigen.de/s-anzeige/joan-cornell-t-love-kunst-art-toy-trump/3464332497-240-9292",
+      "access": "direct open; crawler label today, earlier discovery 2 months old",
+      "title": "JOAN CORNELLÀ - T-Love - Kunst - Art Toy - Trump",
+      "listing_id": "3464332497",
+      "seller_key": "kleinanzeigen:3464332497 (listing key; account-level dedup unresolved)",
+      "listing_location": "Stuttgart-Süd Germany seller/listing claim; actual dispatch and China delivery unknown",
+      "listing_date": "2026-07-21",
+      "price": 485,
+      "currency": "EUR",
+      "price_type": "asking price, not sale",
+      "shipping": "from EUR2.99 displayed, destination unknown; not international quote",
+      "condition": "seller claims new in original packaging, never unpacked; no independent authentication/photo inspection",
+      "edition_serial_signature": "not stated on seller page",
+      "stock": "listing visible only; no live availability verification",
+      "transaction_event_at": null,
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:05:37Z",
+        "2026-10-13T03:10:48Z"
+      ],
+      "review_status": "source_checked_card_adopted_with_changes"
+    },
+    {
+      "id": "DDT-T",
+      "url": "https://ddtstore.com/products/t-love",
+      "access": "direct open then find; first crawler label 3 weeks, second today",
+      "facts": "Official artist product listing: Joan Cornellà T-Love, vinyl, H6.8 inches, printed signature underneath, Delivery June 2025; no refund/exchange; pictures reference only. No readable edition count, price or live stock. Historical June2025 delivery is not a current promise. Printed signature is not handwritten. No proof the private seller item is this genuine version.",
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:05:37Z",
+        "2026-10-13T03:10:48Z"
+      ],
+      "review_status": "source_checked_card_adopted_with_changes"
+    },
+    {
+      "id": "DOPE-T",
+      "url": "https://dope.gallery/joan-cornella",
+      "access": "search-result extract only; crawler 2 weeks",
+      "facts": "Retailer says 2025, DDTStore, vinyl, 15.2cm/6.8in, edition200, printed signature, mint, $450, free worldwide shipping. Currency and geography unverified; 15.2cm conflicts with6.8in (17.272cm). Edition200 not confirmed by official page; do not promote as fact.",
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:05:37Z",
+        "2026-10-13T03:10:48Z"
+      ],
+      "review_status": "source_checked_card_adopted_with_changes"
+    },
+    {
+      "id": "DE-A1",
+      "url": "https://www.ebay.de/itm/158216194989",
+      "access": "search extract only, crawler last month; direct open InternalError",
+      "title": "AKIRA Figur KANEDA McFarlane Toys 2000 Komplett ohne Box",
+      "seller_key": "ebay:sean700",
+      "listing_location": "Köln Deutschland seller claim; dispatch unknown",
+      "price": 69.5,
+      "currency": "EUR",
+      "price_type": "offer/asking indication; excerpt also showed 0 bids; exact listing format and current close time unknown",
+      "condition": "used, complete without box, very good original condition seller claims; complete accessories unenumerated",
+      "identity": "seller claims McFarlane,2000,plastic; exact UPC/variant unknown; single figure title does not establish motorcycle inclusion",
+      "stock": "cached listing only, no current stock verified",
+      "fulfillment": "China/Germany shipping, tax, returns and fees unknown",
+      "transaction_event_at": null,
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:05:37Z",
+        "2026-10-13T03:10:48Z"
+      ],
+      "review_status": "raw_observation_only_worker_unknown_no_card"
+    },
+    {
+      "id": "JP-A-DELOCALE",
+      "url": "https://www.ebay.de/itm/163059223182",
+      "access": "two direct rendered observations; first crawler last month, second today",
+      "seller_key": "ebay:hospitality-japan*m",
+      "title": "Rare Akira Kaneda with Motorcycle Figure McFarlane Toys From Japan Free Shipping",
+      "listing_location": "Yahatanishi-ku Hukuoka Japan; NOT Germany",
+      "price": 326.7,
+      "currency": "USD",
+      "price_type": "ask; EUR conversion varied 285.65/291.70 between cache renderings, not new USD price change",
+      "identity": "seller field EAN787926149203, McFarlane, used Very Good, not signed; actual authenticity/parts unknown",
+      "stock": "last item and8sold are platform labels; no event price/date/buyer country",
+      "shipping": "first rendering US35 quote to UK postcode despite Free Shipping title; second says no shipping Japan; neither establishes China/Germany quote",
+      "feedback": "item-specific verified purchase feedback more than1year ago has no amount/date/buyer country; other product feedback excluded",
+      "transaction_event_at": null,
+      "checked_at": null,
+      "checked_at_window": [
+        "2026-10-13T03:05:37Z",
+        "2026-10-13T03:10:48Z"
+      ],
+      "review_status": "raw_observation_only_worker_unknown_no_card"
+    }
+  ],
+  "source_health_exclusions": [
+    {
+      "url": "https://dope.gallery/shop/p/selfie-gun-10in-joan-cornella",
+      "status": "read cached seller description; ship-from geography unverified, not Germany evidence"
+    },
+    {
+      "url": "https://www.ebay.de/itm/158216194989",
+      "status": "search extract; direct open failed InternalError; no live stock verified"
+    }
+  ],
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "requested_model": "doubao-seed-evolving",
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "served_model_confirmed": true,
+      "elapsed_seconds": 148.159,
+      "started_at": "2026-10-13T03:12:59.016819+00:00",
+      "finished_at": "2026-10-13T03:15:27.180378+00:00",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 17632,
+        "inference_geo": "",
+        "input_tokens": 10613,
+        "iterations": [],
+        "output_tokens": 6169,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "usage_note": "native result buckets; zero timeout telemetry does not prove zero provider consumption",
+      "cost_usd_client_estimate": 0.21610599999999996,
+      "cost_note": "client estimate, not extra cash charge",
+      "request_sha256": "57b22ca02455145e4d9f704f82f50fb121578a386cecc54134b74ede013c26ff",
+      "result_sha256": "1ce1e68194a27970ebb3f07a5eae6d9bf624aed4a00c61f7773ff361c26f87ee",
+      "input_hashes": {
+        "research/2026-10-13-1100/joan-sources.json": "3304996f1b5205ba894d0caaa23f1096d44c4fbed68dc3390f070f72477be05f"
+      },
+      "adoption_evidence": "research/2026-10-13-1100/joan-parent-validation.json",
+      "failure": [],
+      "retry": false
+    },
+    {
+      "task_id": "jp-spread-20261013-1100-akira-de-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "not_adopted_unknown",
+      "requested_model": "doubao-seed-evolving",
+      "requested_thinking": true,
+      "requested_effort": "high",
+      "observed_models": [
+        "<synthetic>"
+      ],
+      "served_model_confirmed": false,
+      "elapsed_seconds": 120.464,
+      "started_at": "2026-10-13T03:12:59.016777+00:00",
+      "finished_at": "2026-10-13T03:14:59.484415+00:00",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "",
+        "input_tokens": 0,
+        "iterations": [],
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "usage_note": "native result buckets; zero timeout telemetry does not prove zero provider consumption",
+      "cost_usd_client_estimate": 0,
+      "cost_note": "client estimate, not extra cash charge",
+      "request_sha256": "26e4034d41256cf35c091b6b75bda2f4808174173a4ac25687389c7ee2aae384",
+      "result_sha256": "b05ff40e6b3f8d8d50ff738fb8865b41b5f89d7b73e383c4a95e9a8d7ff97896",
+      "input_hashes": {
+        "research/2026-10-13-1100/akira-sources.json": "f648e745499dddaec3394663a21b7b9adb129aa5b935eb515e684c1bf84e044d"
+      },
+      "adoption_evidence": "research/2026-10-13-1100/akira-parent-validation.json",
+      "failure": [
+        "worker reported transport failure; inspect saved execution before recovery"
+      ],
+      "retry": false
+    }
+  ],
+  "unknown_added": "jp-spread-20261013-1100-akira-de-a1",
+  "unknown_previous_count": 7,
+  "source_audit_sha256": "214dd899d6131621e74944c854f36f0e74d471c3ba49ea7986e5b21a79a5192c",
+  "collection_checkpoint": "research/2026-10-13-1100/collection-checkpoint.json",
+  "notification": "silent: no qualified opportunity, no bilateral exit evidence changing priority, no user action required; timeout isolated without redispatch",
+  "stop_counter_policy": "smallgoods 0 remains0 due new T-Love source/official identity facts, not a country reset; artbooks unchanged; raw AKIRA not credited as adopted increment",
+  "remaining": "T-Love private-item identity/provenance, edition count, target-market exit and full cost remain open. AKIRA package unknown, do not resend. France07 remains unreviewed."
+}
