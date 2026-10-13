@@ -1,0 +1,301 @@
+{
+  "run_id": "JP-STORE-SCOUT-20261014-MANUAL-1",
+  "manual": true,
+  "source_request_count": 40,
+  "search_query_count": 20,
+  "open_or_click_count": 20,
+  "accounting": "Conservative total includes search queries and repeated/failed opens; cap40 reached, no further market browsing in this wave.",
+  "batches": [
+    {
+      "batch": 1,
+      "searches": 4,
+      "opens": 0
+    },
+    {
+      "batch": 2,
+      "searches": 4,
+      "opens": 0
+    },
+    {
+      "batch": 3,
+      "searches": 4,
+      "opens": 3
+    },
+    {
+      "batch": 4,
+      "searches": 4,
+      "opens": 4
+    },
+    {
+      "batch": 5,
+      "searches": 0,
+      "opens": 6
+    },
+    {
+      "batch": 6,
+      "searches": 4,
+      "opens": 3
+    },
+    {
+      "batch": 7,
+      "searches": 0,
+      "opens": 4
+    }
+  ],
+  "observed_window": [
+    "2026-10-14T00:04:41+08:00",
+    "2026-10-14T00:10:00+08:00"
+  ],
+  "per_url_exact_time": null,
+  "new_edition_targets": 4,
+  "work_families": 3,
+  "new_sale_events": 0,
+  "mainland_usable_comparisons": 0,
+  "paid_extra_cny": 0,
+  "limitations": [
+    "Bookstore/retailer listings and cached excerpts; no checkout, seller contact, stock reservation or purchase.",
+    "Searches for Mainland exact titles and ISBNs gave no usable results; no conclusion on absence of supply or demand.",
+    "Japan-first manual user request, not completion/backfill of any scheduled market slot."
+  ],
+  "status": "partial_toy_adopted_books_unknown",
+  "compiled_at": "2026-10-13T16:16:44.034658+00:00",
+  "qualified_candidates": 0,
+  "packages": [
+    {
+      "task_id": "jp-stores-20261014-books-a1",
+      "runner_status": "unknown",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "effort": "high"
+      },
+      "observed_models": [
+        "<synthetic>"
+      ],
+      "started_at": "2026-10-13T16:11:20.124447+00:00",
+      "finished_at": "2026-10-13T16:13:20.657091+00:00",
+      "elapsed_seconds": 120.531,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "",
+        "input_tokens": 0,
+        "iterations": [],
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0,
+      "cost_note": "client estimate, not Plan charge; synthetic zero usage does not prove server did not execute",
+      "input_hashes_verified": {
+        "research/2026-10-14-jp-stores/books-sources.json": "f12ab54d2fb52b9bb57cad506648394c0c45777e83f871d7b2a3747cccc59bdb"
+      },
+      "request_sha256": "7c1f6fb2727f764c53fed7ab2b2a847a2c7f5d9da5c8ba83dc1059c23a14b64e",
+      "result_sha256": "b8d98ff1be01f9a163857682fa2b47745f65b0167697142e3ef97946985ec7df",
+      "retry": false,
+      "parent_outcome": "unknown_no_business_output",
+      "adopted": false,
+      "evidence": "status done does not resolve transport unknown; events show Request timed out; no tool calls or business output"
+    },
+    {
+      "task_id": "jp-stores-20261014-toys-a1",
+      "runner_status": "blocked",
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T16:11:20.124498+00:00",
+      "finished_at": "2026-10-13T16:13:38.136630+00:00",
+      "elapsed_seconds": 138.011,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 16608,
+        "inference_geo": "",
+        "input_tokens": 9502,
+        "iterations": [],
+        "output_tokens": 5323,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.18888899999999997,
+      "cost_note": "client estimate, not Plan charge; synthetic zero usage does not prove server did not execute",
+      "input_hashes_verified": {
+        "research/2026-10-14-jp-stores/toys-sources.json": "09f8a2b6a1f313b1092265a5ba74e111a99f40346aeefe81bcae48f59731cf04"
+      },
+      "request_sha256": "a1d879453ac3ea3211a131a2ea6e49a636d96a54ff5bee4298df88ea09f5d963",
+      "result_sha256": "caa5b249a4db2b6438aaf7421b161a573f5406ea2b5f23d2b03eb89556a2459b",
+      "retry": false,
+      "parent_outcome": "partial",
+      "adopted": true,
+      "original_output_sha256": "be01870ff790d096b51ba36b261a32047e24a9d80dc3307e6f732759596cd307",
+      "adopted_output_sha256": "5d15abf18ca8ff850cbc14cf8e77487bbb3b778e07d5fb3473b0c9b22b91681b",
+      "corrections": [
+        "成交时间：无。",
+        "REVIVAL 是 2010 年初版停产后约 11 年的官方复刻，Bandai 身份明确，可作为买不到初版者的替代藏品；但复刻≠原版，不沿用初版溢价逻辑。",
+        "surugaya-tsudanuma-beat（门户）",
+        "同上，门店行 | 甲府",
+        "同上，门店行 | Union River",
+        "**税额、运费、代购汇损、履约条件全部缺失**",
+        "本轮精确标题/ID 检索未取得",
+        "1. 逐店索取实物照：箱说全否、电池仓、声光功能、涂装与压铸件瑕疵。",
+        "3. 追踪雅虎拍卖/Mercari 等同版**实际成交**后，再评估价格与利润。",
+        "P（实际买入价）"
+      ],
+      "evidence": "Full 1-candidate review of two sources and three seller rows; corrected P definition, unsupported discontinued/official claims, seller keys, unknown scope, contact and destination-exit instructions. Runner blocked because research gaps supplied as blockers; original state preserved."
+    }
+  ],
+  "books": {
+    "observed_at_window": "2026-10-14T00:04:41+08:00/2026-10-14T00:10:00+08:00",
+    "access_method": "web search/open (may use indexed or cached rendering)",
+    "transaction_time": null,
+    "scope": "Manual Japan ecommerce/bookshop scouting; compare exact editions domestically/abroad. No purchases.",
+    "mainland_comparison": "Repeated exact ISBN/title searches returned no usable Mainland offer or transaction in this round; this is missing evidence, NOT no demand.",
+    "P": null,
+    "K": null,
+    "profit": null,
+    "ROI": null,
+    "net_margin": null,
+    "max_buy_price": null,
+    "sources": [
+      {
+        "id": "B1",
+        "url": "https://www.suruga-ya.jp/product/detail/185007773",
+        "seller_key": "surugaya-main",
+        "access": "opened; crawled today",
+        "facts": [
+          "CANNABIS WORKS, Tatsuyuki Tanaka; Asuka Shinsha 2003-07-25,144pages; retailer ID185007773001; ISBN not shown, printing/signature/accessories unknown.",
+          "Used asking 1400JPY tax included, add-to-cart displayed; actual reservation/live stock not verified. Specific copy condition unknown. Other shops6 from1210JPY, not inspected.",
+          "Separate online order fee for Honshu/Shikoku/Kyushu basket below5000JPY:240JPY; shipping additional/unknown. Dealer BUYBACK700JPY is not sale.",
+          "Artist profile mistakenly describes same-name rock band; reject profile entirely."
+        ]
+      },
+      {
+        "id": "B2",
+        "url": "https://pie.co.jp/book/i/5875/?lang=e",
+        "seller_key": "PIE-publisher",
+        "access": "search excerpt available; base page opened once but repeated content opens InternalError",
+        "facts": [
+          "2024-02-15 reprint; ISBN9784756258755;144pages;2750JPY includingtax listprice, not stockconfirmation.",
+          "Reissue of2003Asuka book; some pageschanged and2newillustrations. Tanaka worked on AKIRA keyanimation and LindaCube art. Old and reprint notidentical."
+        ]
+      },
+      {
+        "id": "B3",
+        "url": "https://books.rakuten.co.jp/rb/17770447/",
+        "seller_key": "rakuten-books",
+        "access": "search excerpt only; crawled lastweek",
+        "facts": [
+          "ISBN9784756258755,2024-02-15,144pages,2750JPY taxincl,free shipping scope unverified; claimsstock5. Not checkout/liveverified."
+        ]
+      },
+      {
+        "id": "B4",
+        "url": "https://www.neotokyo.de/cannabis-works-tanaka-tatsuyuki-works.html",
+        "seller_key": "neo-tokyo",
+        "access": "search excerpt price; open succeeded but no relevant body returned; crawl3-4months",
+        "facts": [
+          "Same ISBN9784756258755;29.95EUR including7%VAT plus shipping;144pagehardcover; cart option only. Foreign RETAIL ASK not transaction or demand, shipfrom unknown."
+        ]
+      },
+      {
+        "id": "B5",
+        "url": "https://nostos.jp/archives/358891",
+        "seller_key": "nostos-books",
+        "access": "open readable; crawled3months",
+        "facts": [
+          "KABA byKatsuhiroOtomo,1989Kodansha hardcover283x285mm,Japanese/English. Collects1971–1989art inclAKIRA/Domu andcommercialdesigns.",
+          "16500JPY taxincluded free-shipping scopeunknown; coverrub/yellow/stains/dent,insideaverage; nofirstprint/signatureverified. Posted2026-07-01 is not sold date; actualstock unverified."
+        ]
+      },
+      {
+        "id": "B6",
+        "url": "https://www.kodansha.co.jp/comic/products/0000004332",
+        "seller_key": "kodansha",
+        "access": "search excerpt only; directopen InternalError",
+        "facts": [
+          "KABA1989-09-01,ISBN9784063050042,178pages,6050JPY cataloglist; do not imply availableatlistprice or applyISBN ascopyverified. Separateexporteditionmustnotmix."
+        ]
+      },
+      {
+        "id": "B7",
+        "url": "https://www.suruga-ya.jp/product/detail/185008136?tenpo_cd=400493",
+        "seller_key": "surugaya-umeda-chayamachi",
+        "access": "open readable crawledtoday; contradicts older search excerpt",
+        "facts": [
+          "KABA1989/09/01,178pages,1971–1989collection. Search excerpt earlier15600JPY used bodyflaw/1stock. Direct open explicitly OUT OF STOCK; otherstore1from15400JPY uninspected. Reject15600 as actionableoffer; do not call confirmednewpricechange or soldtransaction.",
+          "Retailcatalog4400JPY differspublisherlist6050; neitheriscurrentavailableoffer."
+        ]
+      }
+    ]
+  },
+  "toys": {
+    "observed_at_window": "2026-10-14T00:04:41+08:00/2026-10-14T00:10:00+08:00",
+    "access_method": "web search/open (may use indexed or cached rendering)",
+    "transaction_time": null,
+    "scope": "Manual Japan ecommerce/bookshop scouting; compare exact editions domestically/abroad. No purchases.",
+    "mainland_comparison": "Repeated exact ISBN/title searches returned no usable Mainland offer or transaction in this round; this is missing evidence, NOT no demand.",
+    "P": null,
+    "K": null,
+    "profit": null,
+    "ROI": null,
+    "net_margin": null,
+    "max_buy_price": null,
+    "sources": [
+      {
+        "id": "T1",
+        "url": "https://www.suruga-ya.jp/product/detail/602201088",
+        "seller_key": "surugaya-main",
+        "access": "open readable; latest rendering crawledtoday",
+        "facts": [
+          "Bandai PBM! Popinica Soul Kaneda Bike REVIVAL,AKIRA,1/6,2021-05-29,retailer602201088,manufacturerSKU/JANnotshown.",
+          "47cm; retailer says revives2010product after11years; diecastframe/frontsuspension/enginebrakesounds;14bodycoverparts+standsupport+instructions. This is2021revival not2000McFarlane or2010original.",
+          "Originalcatalog59400JPY; MAINSTORE OUT OF STOCK. BUYBACK39000JPY notsale. Used batteries not guaranteed; individualcondition/electronicfunction/box/completenessunknown."
+        ]
+      },
+      {
+        "id": "T2",
+        "url": "https://www.suruga-ya.jp/product/other/602201088",
+        "seller_key": "surugaya-tsudanuma-beat",
+        "access": "open readable crawledtoday",
+        "facts": [
+          "Same2021revivalproduct page: used asking61080JPY TsudanumaBeatstore,dispatchclaim1–3days; used64240JPY Kofustore1–5days; new79200JPY UnionRiver1–7days.",
+          "Three unique sellers; table repeatsrows underconditiontabs, do notcount6. Shipping stillloading; precisecondition/authenticity/boxparts/workinglightsandsound/actualdispatchoriginunverified.",
+          "Earliercachedsearchfrom62330JPY vsopen61080differentrendering: cannotassertverifiedtimelypricedrop. All offersaskingnotcompleted sales."
+        ]
+      }
+    ],
+    "comparison": "No usable exact Mainland or foreign completed transaction for this 2021 edition this round. Not interchangeable with existing McFarlane bike or Joan research."
+  },
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy_price": null
+}
