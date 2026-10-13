@@ -1,0 +1,320 @@
+{
+  "run_id": "KABA-PROFIT-20261014-MANUAL-1",
+  "manual": true,
+  "status": "completed_with_parent_corrections",
+  "observed_window": [
+    "2026-10-14T00:22:00+08:00",
+    "2026-10-14T00:34:00+08:00"
+  ],
+  "source_request_count": 39,
+  "accounting": "Conservative count includes searches, failed/repeated opens, find, browser timeout and public HTTP. No more market requests.",
+  "sku_scope": "One KABA work family; ordinary/export/signed editions distinguished; KABA2 excluded. Multiple copies do not become new exact SKUs without print verification.",
+  "qualified_candidates": 0,
+  "new_usable_mainland_P": 0,
+  "newly_discovered_historical_event_records": 5,
+  "event_count_basis": "Two Yahoo2025,one Kongfz2026 sold marker,two Heritage2005/2025; not new sales occurring today. Mercari relative dates remain unknown.",
+  "paid_extra_cny": 0,
+  "parallel_packages": 2,
+  "packages": [
+    {
+      "task_id": "kaba-profit-20261014-supply-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T16:31:38.694568+00:00",
+      "finished_at": "2026-10-13T16:35:42.709914+00:00",
+      "elapsed_seconds": 244.014,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 28896,
+        "inference_geo": "",
+        "input_tokens": 15419,
+        "iterations": [],
+        "output_tokens": 10801,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.361568,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-kaba-profit/supply-sources.json": "6f4d411a39ae1d5c961e98410eb9deb6d1d1c7d7a0d89d17c8be912b1e55fcdb"
+      },
+      "request_sha256": "6c9a570e09fd4fe01096ecd1e88a5e821797d9071dcfe313bcdf433f007bdc06",
+      "result_sha256": "2b4f0194095d61103d06aa916ae7567d4f4e3f81ebf98ff8808714c9d89e35b3",
+      "original_output_sha256": "946d08553953ba34d77d4c8032eda9c0e4670857aa0e8f8fa1c27c27cecab2c9",
+      "adopted_output_sha256": "f189dce81d19ca6f1dbf7fdedac84d904d3fc287a76fd2342198a423d630b2f2",
+      "review_sample_records": 6,
+      "corrections": [
+        "purchase button is not verified executable stock",
+        "masked lot ids not unique sellers",
+        "evidence types are not scalar grades",
+        "current FX conversion of historical JPY is not historic CNY cost",
+        "no unsupported best-condition ranking"
+      ],
+      "checked_at": "2026-10-13T16:38:16.811219+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    },
+    {
+      "task_id": "kaba-profit-20261014-exit-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T16:31:38.694760+00:00",
+      "finished_at": "2026-10-13T16:34:38.410087+00:00",
+      "elapsed_seconds": 179.713,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 37712,
+        "inference_geo": "",
+        "input_tokens": 14258,
+        "iterations": [],
+        "output_tokens": 7354,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.27399599999999996,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-kaba-profit/exit-sources.json": "1c80b1e5449be703f6d95caf686966d6969882c7dbccd6c951cb955d99836ec5"
+      },
+      "request_sha256": "8b50f6e9d4cf60fcaa2245622cf78d8231362682ba84577992c6e0db77b6b039",
+      "result_sha256": "50e7cdadea646020c0160725aa6c4a53faa9b83bb4182c81a9b47f144fe92d4e",
+      "original_output_sha256": "1b254f2b6e847a41c8a3d11c648834067d0c0e37beeb5c24566f749102d9784d",
+      "adopted_output_sha256": "fd6ed441b115eca1d74078f9f738d4a8437810607592c93941e7d4fa9d105ffb",
+      "review_sample_records": 5,
+      "corrections": [
+        "Kongfz explicit sold date not relative date",
+        "restore valid 13-digit ISBN",
+        "no private orders/contact recommendation",
+        "Heritage venue not independent consignor",
+        "Sold result not independent payment confirmation"
+      ],
+      "checked_at": "2026-10-13T16:38:16.816176+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    }
+  ],
+  "data": {
+    "supply": {
+      "observed_at": "2026-10-14 00:22–00:34 Asia/Shanghai",
+      "access": "web search/open snapshots may be cached; not real-time stock guarantee",
+      "identity": {
+        "title": "KABA 1971–1989",
+        "isbn": "9784063050042",
+        "url": "https://www.kodansha.co.jp/comic/products/0000004332",
+        "release": "1989-09-01",
+        "pages": 178,
+        "export_isbn": "9784063050073",
+        "export_url": "https://www.kodansha.co.jp/comic/products/0000004334",
+        "export_release": "1989-10-20",
+        "export_pages": 176
+      },
+      "fx": {
+        "url": "https://www.boc.cn/sourcedb/whpj/",
+        "jpy100_cny_selling": 4.2432,
+        "published": "2026-10-14 00:17:23",
+        "reference_only": true
+      },
+      "missing": "Target market reliable gross sales price P and complete all costs K unknown; profits, ROI, net margin and maximum buy price unknown.",
+      "columns": [
+        "url",
+        "seller_dedup",
+        "price_type",
+        "fulfilment",
+        "condition_identity",
+        "event_date"
+      ],
+      "sources": [
+        [
+          "https://jp.mercari.com/item/m28305381324",
+          "mercari:Kay.W",
+          "JPY12000 ask; purchase button",
+          "Okinawa Japan; domestic postage included; dispatch1–2days",
+          "No noticeable damage seller claim; slight surface scratches, clean inside; print/cover/accessories/signature unverified",
+          "event unknown"
+        ],
+        [
+          "https://jp.mercari.com/item/m47614942069",
+          "mercari:イブカチカ",
+          "JPY15000 current ongoing auction bid NOT fixed purchase price",
+          "Kyoto Japan;domestic postage included;2–3days",
+          "first print seller claim;aged,no notable stains",
+          "event unknown"
+        ],
+        [
+          "https://jp.mercari.com/item/m32366906653",
+          "mercari:KR500a",
+          "JPY10000 sold marker and displayed price, settlement unknown",
+          "domestic postage included;shown850 already seller-paid",
+          "firstprint surveycard;cleaninside,exteriorwear/fading",
+          "3monthsago relative update NOT confirmed sale date"
+        ],
+        [
+          "https://jp.mercari.com/item/m93668541518",
+          "mercari:a-gogo_direct",
+          "JPY12000 sold marker and displayed price, settlement unknown",
+          "Chiba Japan;domestic postage included;shown750already sellerpaid",
+          "firstprintclaim;dents,stains,yellowing",
+          "29daysago relative update NOT confirmed sale date"
+        ],
+        [
+          "https://auctions.yahoo.co.jp/jp/auction/l1212630783",
+          "yahoo:masked:l1212630783",
+          "JPY7750 winningprice inclosedsearch;lot22bids",
+          "Akita Japan;tax0,freightunknown,returnsallowed",
+          "moisturewrinkles;missing/misbound pages notchecked",
+          "2025-12-22T22:07+09:00"
+        ],
+        [
+          "https://auctions.yahoo.co.jp/jp/auction/l1199658652",
+          "yahoo:masked:l1199658652",
+          "JPY5000 winningprice inclosedsearch;lot1bid",
+          "Chiba Japan;tax0,freightunknown,noreturn",
+          "warping,agedamage",
+          "2025-09-28T21:55+09:00"
+        ]
+      ]
+    },
+    "exit": {
+      "observed_at": "2026-10-14 00:22–00:34 Asia/Shanghai",
+      "access": "web search/open snapshots may be cached; not real-time stock guarantee",
+      "identity": {
+        "title": "KABA 1971–1989",
+        "isbn": "9784063050042",
+        "url": "https://www.kodansha.co.jp/comic/products/0000004332",
+        "release": "1989-09-01",
+        "pages": 178,
+        "export_isbn": "9784063050073",
+        "export_url": "https://www.kodansha.co.jp/comic/products/0000004334",
+        "export_release": "1989-10-20",
+        "export_pages": 176
+      },
+      "fx": {
+        "url": "https://www.boc.cn/sourcedb/whpj/",
+        "jpy100_cny_selling": 4.2432,
+        "published": "2026-10-14 00:17:23",
+        "reference_only": true
+      },
+      "missing": "Target market reliable gross sales price P and complete all costs K unknown; profits, ROI, net margin and maximum buy price unknown.",
+      "columns": [
+        "url",
+        "seller_dedup",
+        "price_type",
+        "event_date",
+        "identity_condition",
+        "limitations"
+      ],
+      "sources": [
+        [
+          "https://book.kongfz.com/357557/8926689607/",
+          "kongfz:357557",
+          "CNY361 displayed price with sold marker; settlement unknown",
+          "2026-04-12",
+          "KABA Otomo1989hardcover coatedpaper,九品;publisherunspecified,ISBN/print/language/authenticityunverified;freightunknown,buyerlocationunknown",
+          "search + unauthenticated curl HTML successful;webopen failed,browser timedout"
+        ],
+        [
+          "https://comics.ha.com/itm/memorabilia/miscellaneous/rare-katsuhiro-otomo-kaba-artwork-hardcover-book-signed-by-otomo-katsuhiro-kodansha-1989/a/7401-16028.s",
+          "heritage:7401-16028",
+          "USD1680 Sold auction result",
+          "2025-03-22",
+          "1989firstprint SIGNED plus original selfportrait drawing,VGminimalwear,177pages stated; NOT ordinarycopy comparable",
+          "premiuminclusions/buyerlocation unverified"
+        ],
+        [
+          "https://www.ebay.com/itm/127825015893",
+          "ebay:hd_store_jp",
+          "USD280 askingprice; ENDED because item no longer available NOT SOLD",
+          "event unknown",
+          "ISBN9784063050042,1989,not signed,174pages vs178official;Acceptable dropdown vs gooddescription",
+          "TokyoJapan shipfrom;USfreeshipping30dayreturns sellerpays;notMainlandquote"
+        ],
+        [
+          "https://japaneseavantgardebooks.com/products/kaba-otomo-katsuhiro-artwork-1971-1989-illustration-collection",
+          "japaneseavantgardebooks",
+          "USD220 catalogSOLDOUT not verified transaction",
+          "event unknown",
+          "1989first-edclaim,Japanesehardcovervinyljacket",
+          "taxincludedlabel,freightanddispatchcountryunknown"
+        ],
+        [
+          "https://comics.ha.com/itm/books/fine-press-and-limited-editions/katsuhiro-otomo-kaba-artwork-kodansha-1989-japanese-artist-katsuhiro-otomo-is-probably-best-known-for-his-pioneering-s/a/816-4455.s",
+          "heritage:816-4455",
+          "USD34 Sold auctionresult",
+          "2005-05-19",
+          "1989firstedition,like-newplasticjacket",
+          "21yearold cannotsetcurrentP"
+        ]
+      ]
+    }
+  },
+  "calculations": {
+    "reference_fx_cny_per_jpy": "0.042432",
+    "purchase_only_cny": {
+      "5000": "212.16",
+      "7750": "328.85",
+      "10000": "424.32",
+      "12000": "509.18",
+      "15000": "636.48",
+      "16500": "700.13"
+    },
+    "difference_16500_vs_12000_cny": "190.94",
+    "P": null,
+    "K": null,
+    "profit": null,
+    "ROI": null,
+    "net_margin": null,
+    "max_buy": null,
+    "conditional_gate": "For same currency P>0,K>0: ROI=(P-K)/K>=0.5 implies K<=2P/3; margin=(P-K)/P>=0.5 implies K<=P/2. Both => K<=P/2. Not a quote/valuation."
+  },
+  "prior_unknown_preserved": 10,
+  "review_cursor_unchanged": true,
+  "notes": [
+    "No qualified current arbitrage; cheaper ask plus Mainland low-price counterevidence.",
+    "Old books unknown not retried; these are new profit-evidence tasks.",
+    "No sales, contact or production changes."
+  ]
+}
