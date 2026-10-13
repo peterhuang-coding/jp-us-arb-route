@@ -1,0 +1,348 @@
+{
+  "run_id": "SPREAD-20261014-0500",
+  "slot_market": "GB",
+  "triggered_at": "2026-10-13T21:04:21.305Z",
+  "started_at": "2026-10-13T21:04:42Z",
+  "source_observed_window": [
+    "2026-10-14T05:04:42+08:00",
+    "2026-10-14T05:06:17+08:00"
+  ],
+  "timing_basis": "task start / post-collection clock bounds, not exact per-URL timestamps",
+  "business_reviewed_at": "2026-10-13T21:14:31.943472+00:00",
+  "source_request_count": 26,
+  "source_request_breakdown": {
+    "search_queries": 12,
+    "open_click_find_including_failed": 14
+  },
+  "sku_scope": "Two existing work families KABA and McFarlane AKIRA; zero newly confirmed exact SKU. Different copies are not counted as new SKU.",
+  "qualified_candidates": 0,
+  "research_leads": 2,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "roi": null,
+  "net_margin": null,
+  "max_buy_price": null,
+  "new_usable_target_market_P": 0,
+  "newly_discovered_historical_auction_results": 2,
+  "event_count_basis": "T1 and T2 are distinct historical lots; T1C is same event as T1, not another sale. Sold markers and aggregate sold counts are not extra individual sales.",
+  "sources": {
+    "books": {
+      "run_id": "SPREAD-20261014-0500",
+      "observed_window": [
+        "2026-10-14T05:04:42+08:00",
+        "2026-10-14T05:06:17+08:00"
+      ],
+      "timing_basis": "task start / post-collection clock bounds, not exact per-URL timestamps",
+      "access": "public web search/open; cache possible, no checkout/contact",
+      "scope": "UK slot with cross-market comparisons. Do not infer buyer location from marketplace domain. Existing KABA and McFarlane AKIRA families, no new verified SKU.",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "qualified": 0,
+      "sources": [
+        {
+          "id": "B1",
+          "url": "https://www.ebay.co.uk/itm/134439220680",
+          "seller_key": "ebay:Yorozu_Japan",
+          "access_status": "search and initial detail readable, later open/find InternalError; crawl2months",
+          "facts": [
+            "KABA1989,first edition title claim,ISBN9784063050042 seller field; Good with scratches/dirt, actual print/signature/accessories/authenticity unverified.",
+            "USD114.01 approximatelyGBP84.48 display, out of stock,4sold aggregate; each price/date/buyer country unknown. Seller Hamamatsu Japan, not UK stock.",
+            "USD20.97 shipping and import-fees-included text are cached with unspecified destination; cannot use for Mainland or UK cost. Last updated13Jul2026 01:11:06BST is revision, not sale.",
+            "Product review10Jan2023 verified-purchase sold by ginza_books belongs another seller; not proof Yorozu sold this copy or at this price."
+          ]
+        },
+        {
+          "id": "B2",
+          "url": "https://clarisbooks.com/?pid=149372737",
+          "seller_key": "clarisbooks",
+          "access_status": "direct page readable,crawledtoday",
+          "facts": [
+            "Otomo first artbook KABA (1971-1989), Kodansha2012 seventh printing per seller; NOT KABA2 merely because2012. ISBN unshown.",
+            "JPY4000 taxincluded and SOLD OUT; tubular vinyl cover included,slight surface rubbing, YuPack shipping; freight unknown.",
+            "No sold date/settlement or current stock. ShimokitazawaTokyo shop; actual copy authenticity/print not independently checked. Footer cart/checkout modal doesn't overturn SOLD OUT."
+          ]
+        },
+        {
+          "id": "B3",
+          "url": "https://www.abebooks.co.uk/servlet/SearchResults?an=otomo+katsuhiro&cm_sp=click-_-plp-_-tbc&tn=kaba",
+          "access_status": "direct list,crawledlastweek; search4monthsnapshot different",
+          "facts": [
+            "List offers: Books From California,SimiValleyUS,1989hardcoverVG,GBP234.22 plus18.84 shipping toGermany;1available assertion, externalwear minimal/cleaninterior firmbinding seller claims;ISBNprintunknown.",
+            "Burke's Book Store,MemphisUS,ISBN9784063050042,1989FirstEdition/VG,sellerclaims lightrubbing,GBP136.91,1available,doesnotshipGermany rendered. No UK/Mainland shipping quote or live inventory verification.",
+            "Both asks not sales; .co.uk domain not UK stock/demand. Older search savehere619 GBP248.77+63.37toUK differsseller/time and cannot be called price change.",
+            "Burke detail opened:https://www.abebooks.co.uk/first-edition/KABA-1971-1989-ILLUSTRATION-COLLECTION-otomo-Katsuhiro/32482887038/bd; title corroborates metadata only."
+          ]
+        }
+      ],
+      "baseline": "Previous ordinaryKABA Ginza110USD/46sold aggregate and Mainland361CNY sold-marker already reviewed; not refreshed, not target-marketP. No reliable UK/Mainland sale price this round."
+    },
+    "toys": {
+      "run_id": "SPREAD-20261014-0500",
+      "observed_window": [
+        "2026-10-14T05:04:42+08:00",
+        "2026-10-14T05:06:17+08:00"
+      ],
+      "timing_basis": "task start / post-collection clock bounds, not exact per-URL timestamps",
+      "access": "public web search/open; cache possible, no checkout/contact",
+      "scope": "UK slot with cross-market comparisons. Do not infer buyer location from marketplace domain. Existing KABA and McFarlane AKIRA families, no new verified SKU.",
+      "P": null,
+      "K": null,
+      "profit": null,
+      "qualified": 0,
+      "sources": [
+        {
+          "id": "T1",
+          "url": "https://www.easyliveauction.com/catalogue/lot/d8450d824aebb022861464bbb7c46e21/1f1638c9faeb7c2641b7b1e9c67628d0/monday-2nd-toys-tuesday-3rd-antiques-and-bygones-and-w-lot-530/",
+          "seller_key": "James and Sons auction venue; underlying consignor unknown",
+          "access_status": "direct,crawledtoday",
+          "facts": [
+            "Lot530,McFarlane2000 KanedaBike sellerdescription,unboxed good condition claim; exactbarcode,parts,authenticity unknown; not Bandai2021REVIVAL.",
+            "HammerGBP25,Closed. Page auctiondate2Sep2024 10amBST, but sessionlist places lot501-753 on3Sep2024. Preserve conflict; actuallotdate not independently resolved.",
+            "Buyerfees display28.6%includingVAT free-registration route or25%includingVAT flat-fee route, otherfeesmayapply. Neither is seller net, complete cost or current resaleprice. Buyer country unknown."
+          ]
+        },
+        {
+          "id": "T1C",
+          "url": "https://www.easyliveauction.com/catalogue/0aa1baaa240dfe7d1541606a0d3b5de0/1f1638c9faeb7c2641b7b1e9c67628d0/monday-2nd-toys-tuesday-3rd-antiques-and-bygones-and-wednes/",
+          "seller_key": "same James and Sons",
+          "access_status": "direct,crawledtoday",
+          "facts": [
+            "Auctioneer FakenhamNorfolkUK; catalog confirms2-4Sep2024 sessions with lot530 group3Sep. UK venue does not prove buyer country.",
+            "Shippingpolicy says UKonly insured; directMainlandshipping notavailable under displayedpolicy. Terms illustrative historical; no legalvalidityassessment.",
+            "Seller terms £5lotfee,20%hammer sellerpremium and1%riskassumption on greaterreserve/hammer; applicability/tax/fullcost unknown, cannot treat25asnet or compute guaranteed net. No sellercontact authorized."
+          ]
+        },
+        {
+          "id": "T2",
+          "url": "https://hibid.com/lot/311908917/mcfarlane-toys-akira-nib-figure-motorcycle-lot",
+          "seller_key": "Back to the Past Collectibles auction venue; underlying consignor unknown",
+          "access_status": "direct,crawledtoday",
+          "facts": [
+            "Lot226,Tetsuo AND KanedaBike 2boxedMcFarlane pieces;NIB/lightboxstoragewear sellerclaim. Exactyear/barcode/unopened/authenticity unknown. Not singlebike orKaneda+rider set.",
+            "PriceRealizedUSD75. Auctionrange6-18July2026,detail bidding10-18July andstartsclosing18:00EST as written (do not silentlycorrecttimezone). Individual lotclosetime/payment unverified.",
+            "FarmingtonHillsMichiganUS venue, buyerlocationunknown;19%buyer premium additional perterms,tax/shipping additional. Tax wording differs allbuyers vsMichiganbuyers; don't resolve unsupported.",
+            "Internationaltrackedinsuredshipping mentioned,actual China/UKquote/customs/eligibility unknown. Historicalbundlepricecannotdivideby2 as perpieceP or use ascurrent stock;no purchases."
+          ]
+        }
+      ],
+      "baseline": "Prior McFarlane JapanJPY31800 NOS ask and USD175 ask not comparable to unboxed or mixed bundle; no Mainland exitP or fullK. Historical evidence not current profit."
+    }
+  },
+  "source_health": {
+    "source_requests": 26,
+    "breakdown": {
+      "search_queries": 12,
+      "open_click_find_including_failed": 14
+    },
+    "collection_window": [
+      "2026-10-14T05:04:42+08:00",
+      "2026-10-14T05:06:17+08:00"
+    ],
+    "excluded": [
+      {
+        "url": "https://www.ebay.co.uk/itm/204036729920",
+        "reason": "same GinzaBooks item already reviewed; UK localized 3-month cache41sold not new event or UK demand"
+      },
+      {
+        "url": "https://stockx.com/en-gb/joan-cornella-selfie-gun-vinyl-figure-green",
+        "reason": "search GBP151last/GBP259range/GBP260average contradictory cache; detailInternalError; no actionable new datum, no Joan Plan package"
+      },
+      {
+        "url": "https://www.newarteditions.com/joan-cornella-selfie-gun-sold/",
+        "reason": "3silkscreen print set not toy; excluded"
+      },
+      {
+        "url": "https://www.liveauctioneers.com/catalog/418126_modern-and-contemporary-art-online-sale/",
+        "reason": "HKcatalog sold price gated; not UK; uninspected discovery only, no accepted saleprice"
+      },
+      {
+        "url": "https://www.the-saleroom.com/en-gb/auction-catalogues/wessex-auction-rooms/catalogue-id-srwess10484/pdfexport",
+        "reason": "5mixedfigures catalog snippet no price; not opened or accepted"
+      }
+    ],
+    "search_limitations": "UK KABA search mixed unrelated Bonobo Otomo music pages, wiki, suspicious unrelated commerce domain; excluded. No result does not prove no demand. No new Mainland search this UK slot; prior absence of usable Mainland P remains unrefreshed."
+  },
+  "parallel_packages": 2,
+  "paid_extra_cny": 0,
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-0500-books-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T21:08:01.944034+00:00",
+      "finished_at": "2026-10-13T21:10:05.264552+00:00",
+      "elapsed_seconds": 123.318,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 4720,
+        "inference_geo": "",
+        "input_tokens": 9385,
+        "iterations": [],
+        "output_tokens": 5328,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.182485,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-0500/books-sources.json": "2a3833d59ac67d7283a401a4f3477af05035a67133e54541599e10fc7ce517bf"
+      },
+      "request_sha256": "31bd198035de3947709383e175d5b7f272863f9910457ce1fe9ece26eafb384b",
+      "result_sha256": "244b6d13d070150087dbf45ade64214ab62f5c56a945b855c539869bb8b4ffbb",
+      "original_output_sha256": "a3c24688e837c9654215186b446f1809322187d886a66d9c1e7a17ec40209d09",
+      "adopted_output_sha256": "f6eb163f963290da39daf6321f5a916e3e8f809f9c0248eff3b643e4d175c329",
+      "review_sample_records": 3,
+      "review_basis": "All supplied source rows and saved page excerpts checked; T1C same event as T1, B3 contains two seller offers; no statistical error rate or time-saving claim.",
+      "corrections": [
+        [
+          "当前缺货",
+          "缓存标示缺货，现时状态未核"
+        ],
+        [
+          "管装 vinyl 封入",
+          "附筒状塑料书衣（卖家描述）"
+        ],
+        [
+          "无英国/欧陆实时运费与库存核验",
+          "对英国/中国大陆的运费与实时库存未核"
+        ],
+        [
+          "本包无目标市场（英国）销售收入",
+          "本包没有可用于当前目标市场同版同品相定价的可信销售收入"
+        ],
+        [
+          "拍卖/成交日期冲突保留为未知",
+          "逐笔成交日期未知"
+        ],
+        [
+          "日本滨松（非英国现货）",
+          "日本滨松（页面所在地，无英国库存证明）"
+        ],
+        [
+          "在 ebay.co.uk 以 “KABA 1971 1989” 及 ISBN 9784063050042 开启 Sold items 筛选，逐条公开记录近 90 天成交的价格、币种、日期、运费与可见买家地区（缺失照录，无结果亦留档）；全程不登录、不联系、不结算。",
+          "继续收集公开可读、较近期的同版同品相成交记录，区分英国、中国大陆及买家地区未知的市场记录；价格、成交日期与买家地区缺失照录，不以无结果推断无需求。"
+        ]
+      ],
+      "checked_at": "2026-10-13T21:13:19.612236+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-toys-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "reasoning_effort": "high",
+        "thinking_enabled": true
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "started_at": "2026-10-13T21:08:01.944012+00:00",
+      "finished_at": "2026-10-13T21:10:04.447069+00:00",
+      "elapsed_seconds": 122.501,
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 11688,
+        "inference_geo": "",
+        "input_tokens": 9699,
+        "iterations": [],
+        "output_tokens": 4978,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.178789,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "input_hashes_verified": {
+        "research/2026-10-14-0500/toys-sources.json": "5d7428a25a0e67b689bad71f7ef45f8863db09bddd27cc9187aac037bc5d492a"
+      },
+      "request_sha256": "cfb93d9c6e7b571d9f9a1a75d63b971b6f40fa9a252bd98e9091cb45833253d1",
+      "result_sha256": "64cd73a7726852daaef5ad6792d76f9e43aa9facc0ac8151616d34d1ef17e1a8",
+      "original_output_sha256": "9b5d39154c35c5c4c4ce6419e65069404e6b0ac96e52c1c0addf056772f824d5",
+      "adopted_output_sha256": "71fb1e37e74384e07035bfb5162dc65414997ad99d2e3c723945c39ddc2de6b8",
+      "review_sample_records": 3,
+      "review_basis": "All supplied source rows and saved page excerpts checked; T1C same event as T1, B3 contains two seller offers; no statistical error rate or time-saving claim.",
+      "corrections": [
+        [
+          "统一费路径",
+          "固定登记费路径，登记费金额未核"
+        ],
+        [
+          "£5/件",
+          "£5/拍品批次（lot）"
+        ],
+        [
+          "本包无目标市场销售收入 P",
+          "有历史落槌和 Price Realized 记录，但无可用于当前目标市场同版同品相定价的可信 P"
+        ],
+        [
+          "运输政策仅保价英国境内",
+          "所读历史目录的运输政策仅保价英国境内"
+        ],
+        [
+          "调取 James and Sons 官网该场（2024-09-02/04）公开结果页或公开网页存档，核实 Lot 530 实际拍卖日并固化买家费用条款；全程不注册、不联系、不报价。",
+          "优先补充较近期、同款同品相的公开成交及当前供给；2024 年 Lot 530 日期冲突继续待核，不以修复旧日期代替当前盈利证据。"
+        ]
+      ],
+      "checked_at": "2026-10-13T21:13:19.614411+00:00",
+      "tool_names": [
+        "Edit",
+        "Read"
+      ]
+    }
+  ],
+  "parent_review": {
+    "all_supplied_rows_reviewed": 6,
+    "all_promotions_reviewed": 0,
+    "source_row_notes": "B3 has two seller offers; T1C same auction as T1. All rows reviewed; no accuracy-rate or time-saving claim.",
+    "original_results_unchanged": true,
+    "old_unknown_preserved": 10,
+    "review_cursor_unchanged": true
+  },
+  "notion_direction_check": {
+    "project_read": true,
+    "database_fetched": true,
+    "view_rows": 5,
+    "has_more": false,
+    "old_cards_untouched": true
+  },
+  "next_step": "Only new public evidence: prioritize recent same-edition/condition target-market exits and genuinely available low-cost supply, retain old date conflict as unknown.",
+  "boundaries": "Research only; no transactions, contacts, accounts, production changes or paid services. Plan did not browse."
+}
