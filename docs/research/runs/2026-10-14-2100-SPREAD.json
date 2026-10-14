@@ -1,0 +1,523 @@
+{
+  "run_id": "SPREAD-20261014-2100",
+  "kind": "scheduled_research",
+  "market": "bilateral-version-comparison",
+  "triggered_at": "2026-10-14T13:03:54.173Z",
+  "started_at": "2026-10-14T13:04:03Z",
+  "source_requests": 28,
+  "web_request_breakdown": {
+    "search_query": 16,
+    "open": 7,
+    "click": 3,
+    "find": 1,
+    "screenshot": 1
+  },
+  "source_count_note": "Search/open/click/find/screenshot count includes repeats, failed retrievals and cached responses; not 28 distinct readable pages.",
+  "collection_window": [
+    "2026-10-14T13:05:11Z",
+    "2026-10-14T13:09:29Z"
+  ],
+  "new_exact_skus_verified": 0,
+  "qualified_candidates": 0,
+  "research_leads": 0,
+  "new_usable_target_market_P": 0,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy": null,
+  "priority_change": false,
+  "new_market_evidence": false,
+  "source_qc_increment": true,
+  "parallel_packages": 2,
+  "paid_extra_cny": 0,
+  "notion_gate": {
+    "project_revision": "2026-10-14T11:10:59.764Z",
+    "project_readable": true,
+    "database_readable": true,
+    "view_rows": 5,
+    "has_more": false,
+    "new_direction_conflict": false,
+    "old_cards_unchanged": true
+  },
+  "usage_weekly_remaining_percent": 52,
+  "other_usage_window": "unavailable",
+  "review_cursor_unchanged": true,
+  "unknown_count_before": 11,
+  "sources": [
+    {
+      "id": "B1",
+      "url": "https://jp.mercari.com/item/m61440832851",
+      "dedup": "Mercari:m61440832851",
+      "facts": "Direct cache lastweek. KABA7788JPY seller-paid domestic shipping; SOLD OUT/shipment record100cm730JPY. Seller Musasabi; claimed Kanagawa dispatch. Coverrubbing,insidegood sellerclaims. ExactISBN/printing/case/attachments unknown. Relative overhalfyear not exactsale date.",
+      "checked_at": "2026-10-14 13:05:59 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "direct cached lastweek; soldout"
+    },
+    {
+      "id": "B2",
+      "url": "https://jp.mercari.com/item/m11261951175",
+      "dedup": "Mercari:m11261951175",
+      "facts": "Relatedproducttile showed7000JPY; directtodaycache7200JPY SOLD OUT/shipment record80cm870JPY. Seller Izuru;Chiba4-7days dispatchclaim. Agingstains/yellowing/rubbing;1971-1989content,notprintingproof. Relative6daysnot verifiedtransactiontime. Notavailable7000JPY.",
+      "checked_at": "2026-10-14 13:08:12 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "direct cached today; soldout; tile mismatch"
+    },
+    {
+      "id": "B3",
+      "url": "https://jp.mercari.com/item/m38524523858",
+      "dedup": "Mercari:m38524523858",
+      "facts": "Directtodaycache9900JPY SOLD OUT/shipment record100cm730JPY. Seller TOKYO select,Tokyo1-2daysclaim. Sellerclaims1989firstedition andagingstains; colophonphotosnotinspected,printnumbernotindependentlyverified. Relative5monthsnotexactdate.",
+      "checked_at": "2026-10-14 13:09:17 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "direct cached today; soldout; firstedition sellerclaim"
+    },
+    {
+      "id": "B4",
+      "url": "https://book.kongfz.com/357557/8926689607/",
+      "dedup": "Kongfz:357557:8926689607",
+      "facts": "Repeatedalreadyadoptedsearch lastmonthcache361CNY,九品1989hardback,2026-04-12售出. Notnewtransaction,notsellernet,currentdemandorfirstprintingcomparability. NootherusableMainlandexitfoundinboundedsearches≠nodemand.",
+      "checked_at": "2026-10-14 13:08:43 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "repeat indexed sold marker, cached lastmonth"
+    },
+    {
+      "id": "T1",
+      "url": "https://www.sbiartauction.co.jp/en/results/catalogue/114",
+      "dedup": "SBI:114:50",
+      "facts": "DirecttodaycacheMay26-27,2023auction,lot050SelfieGunGREEN PriceRealized blank. Catalogheaderrealizedpricesincludebuyerpremium. Lotdetailhttps://www.sbiartauction.co.jp/en/results/detail/114/50 timedout. Material/year/dimensions/edition/conditionunknown; notmatchedtovinyl. BlanknotzeroJPYpaidandnotconfirmedunsold.",
+      "checked_at": "2026-10-14 13:09:05 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "direct cached today blank result; lot detail failed13:09:17"
+    },
+    {
+      "id": "T2",
+      "url": "https://www.sbiartauction.co.jp/userfiles/calendar/r3lqksNtlDkstjXXiBlG.pdf",
+      "dedup": "SBI:114:50",
+      "facts": "Already05slotindexed0/0 rownotnew. ThisroundPDFopenmetadatafirstthenopenfailedtimeout,screenshotfailed. Cannotread0asfree/acquisition/salevalueorconfirmedunsoldwithoutlegend. Do notclaimPDFvisuallyverified.",
+      "checked_at": "2026-10-14 13:08:43 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "metadata first; body timeout13:08:12; screenshot internalerror13:08:43"
+    },
+    {
+      "id": "T3",
+      "url": "https://www.liveauctioneers.com/catalog/418126_modern-and-contemporary-art-online-sale/",
+      "dedup": "Bonhams:32076:101",
+      "facts": "Already05slotknowncatalog. DirectcachelastweekSOLD SelfieGun lot0101 SeeSoldPricewithhiddenamount. HKauctionlabelnotbuyerlocation. SearchDoneJun8,2026vsMay26title exacteventneedsverification. No directBonhamslotfound.",
+      "checked_at": "2026-10-14 13:05:59 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "repeat catalog direct cached lastweek"
+    },
+    {
+      "id": "T4",
+      "url": "https://www.liveauctioneers.com/price-result/joan-cornella-b1981-selfie-gun/",
+      "dedup": "LiveAuctioneers:generic-selfie-gun-result",
+      "facts": "Clickcataloglotredirectshere: directlastweekcacheTotalSales0Sold,pricelocked. Genericresultpageidentitynotverifiedsameauctionevent; doesnotproveBonhamsunsold. Retainconflict andunknownprice; no paidunlock.",
+      "checked_at": "2026-10-14 13:08:12 UTC",
+      "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+      "access_status": "generic result direct cached lastweek; event identity unknown"
+    }
+  ],
+  "source_access_log": [
+    {
+      "response_completed_at": "2026-10-14 13:05:11 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"KABA\" \"大友克洋\" \"已售\" 画集"
+          },
+          {
+            "q": "\"KABA\" \"大友克洋\" site:book.kongfz.com 1989"
+          },
+          {
+            "q": "\"Joan Cornella\" \"Selfie Gun\" 成交"
+          },
+          {
+            "q": "\"Joan Cornella\" \"Nobody Loves You\" 拍卖 成交"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:05:24 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "大友克洋 KABA 画集 site:book.kongfz.com"
+          },
+          {
+            "q": "\"KABA\" \"大友\" \"成交\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:05:43 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"9784063050042\" \"售出\""
+          },
+          {
+            "q": "\"KABA\" \"大友克洋\" site:jp.mercari.com/item 8000"
+          },
+          {
+            "q": "site:bonhams.com/auction/32076/lot/101 \"SELFIE\""
+          },
+          {
+            "q": "site:lamodern.com \"Nobody Loves You\" 2026"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:05:59 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://jp.mercari.com/item/m61440832851"
+          },
+          {
+            "ref_id": "https://www.liveauctioneers.com/catalog/418126_modern-and-contemporary-art-online-sale/"
+          },
+          {
+            "ref_id": "https://www.sbiartauction.co.jp/userfiles/calendar/r3lqksNtlDkstjXXiBlG.pdf"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site:bonhams.com \"2026\" \"SELFIE GUN\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:08:12 UTC",
+      "request": {
+        "click": [
+          {
+            "ref_id": "turn573view0",
+            "id": 14
+          },
+          {
+            "ref_id": "turn573view1",
+            "id": 229
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "turn573view2",
+            "lineno": 0
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:08:43 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "site:sbiartauction.co.jp \"SELFIE GUN\" \"2023\""
+          },
+          {
+            "q": "site:bonhams.com \"Selfie Gun\" \"32076\""
+          },
+          {
+            "q": "site:book.kongfz.com \"KABA\" \"1989\" \"售出\""
+          }
+        ],
+        "screenshot": [
+          {
+            "ref_id": "turn573view2",
+            "pageno": 0
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:08:54 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://www.sbiartauction.co.jp/en/results/catalogue/114"
+          }
+        ],
+        "response_length": "short"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:09:05 UTC",
+      "request": {
+        "find": [
+          {
+            "ref_id": "turn576view0",
+            "pattern": "SELFIE"
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "https://jp.mercari.com/item/m38524523858"
+          }
+        ],
+        "response_length": "short"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:09:17 UTC",
+      "request": {
+        "click": [
+          {
+            "ref_id": "turn576view0",
+            "id": 64
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "turn577view0",
+            "lineno": 30
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 13:09:29 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "site:sbiartauction.co.jp/en/results/detail/114/50"
+          },
+          {
+            "q": "site:bonhams.com \"Selfie Gun\" \"2026\" \"vinyl\""
+          }
+        ],
+        "response_length": "short"
+      }
+    }
+  ],
+  "lane_changes": {
+    "artbooks": {
+      "from": 2,
+      "to": 3,
+      "status": "paused_waiting_daytime_decision",
+      "reason": "Newly cleared sold-out copies and seller firstedition claim do not supply new exact-edition exits/current buyable supply; no reset for source QC."
+    },
+    "smallgoods": {
+      "from": 0,
+      "to": 1,
+      "status": "ready",
+      "reason": "Original blank result and generic-page conflict clarify old leads but provide no new exact-version transaction/current supply."
+    }
+  },
+  "notification": "none_no_qualified_opportunity_or_priority_change; KABA pause retained for daytime review",
+  "report": "docs/research/runs/2026-10-14-2100-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-14-2100-SPREAD.json",
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-2100-books-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T13:14:41.162559+00:00",
+      "sample_records": 4,
+      "review_basis": "All four supplied rows and complete draft checked against preserved raw; no market increment, not population accuracy.",
+      "corrections": [
+        [
+          "二手成交页快照",
+          "标有售罄及配送记录的二手商品页快照（最终支付和结算金额未核）"
+        ],
+        [
+          "卖家网络",
+          "卖家净收入"
+        ],
+        [
+          "最大可买量",
+          "最高买入价"
+        ],
+        [
+          "将B1–B3按\"境外成交、非大陆P\"归档，B4标注重复、不重复计数；在取得含ISBN/印次/版权页的可核证据前，不新增合格来源、不更新任何K字段。",
+          "将B1–B3归档为境外售罄观察，B4标重复；KABA累计三轮无有效增量，暂停重复检索并留待晨审，遇真实新证据再评估。"
+        ],
+        [
+          "境外成交，非大陆P",
+          "境外售罄观察，非大陆P"
+        ],
+        [
+          "已送达",
+          "有已配送记录"
+        ],
+        [
+          "以上文本均为未经核验的供应证据",
+          "以上页面文字已由主代理核对；实物真伪、品相、支付及结算未独立核验"
+        ],
+        [
+          "当日直接缓存（窗口内）",
+          "本次返回标为今日缓存（不保证实时）"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-2100/books-sources.json": "abdd850666795c4a409cc0711bb5ddaaf59de17bb33d780623d5dc816eb2bf67"
+      },
+      "original_sha256": "44e151711fbceb9f947eac6d56b56914546db688f82b1dc568f8f8f9418cf03b",
+      "adopted_sha256": "3517a789753b732c32d19c855e34596ec55158731efa836bcbe6cdfa441fd759",
+      "result_sha256": "51ebf0f20674af9a4852b2bc16d4394332fbf5a003541eb4cf4038042206924a",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Edit",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 20704,
+        "inference_geo": "",
+        "input_tokens": 11218,
+        "iterations": [],
+        "output_tokens": 7580,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.255942,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "elapsed_seconds": 161.235,
+      "started_at": "2026-10-14T13:10:43.591070+00:00",
+      "finished_at": "2026-10-14T13:13:24.826780+00:00",
+      "retry": false
+    },
+    {
+      "task_id": "jp-spread-20261014-2100-toys-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T13:14:41.164763+00:00",
+      "sample_records": 4,
+      "review_basis": "All four supplied rows and complete draft checked against preserved raw; no market increment, not population accuracy.",
+      "corrections": [
+        [
+          "本轮仅核对既有来源，无新检索、无交易/联系",
+          "本CC包仅核对主代理提供的来源；主代理本轮有新检索，无交易/联系"
+        ],
+        [
+          "大陆利润证据（P）",
+          "大陆同版销售收入证据（P）"
+        ],
+        [
+          "落槌价字段",
+          "Price Realized字段"
+        ],
+        [
+          "落槌价空白",
+          "Price Realized为空"
+        ],
+        [
+          "含买家佣金的目录口径不适用于空白字段",
+          "目录注明结果含买家佣金，但该项没有可用数值"
+        ],
+        [
+          "正文与截图超时",
+          "正文再次读取超时，截图返回内部错误"
+        ],
+        [
+          "正文/截图超时",
+          "正文超时/截图内部错误"
+        ],
+        [
+          "Total Sales 0、Sold",
+          "Total Sales 0 Sold"
+        ],
+        [
+          "Total Sales 0/Sold",
+          "Total Sales 0 Sold"
+        ],
+        [
+          "（含图例与落槌价）",
+          "（含结果说明与费用口径）"
+        ],
+        [
+          "2023-05-26/27",
+          "2023-05-26至27总场日期（具体lot日期未核）"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-2100/toys-sources.json": "acd582b3d714b1d98ed09c181fd75393d25015a4ed09cda6cb52f9c19e2312e0"
+      },
+      "original_sha256": "e3cdbb2a834c0cce54e4c04495d16590fa30c78cb4dec64f5a3d356610ac6b66",
+      "adopted_sha256": "6672ee39df783efff736553d676d4b0683d738abf676135ee46c4aefe8546140",
+      "result_sha256": "344022d9aad02f2996b093840376ef5e280c85ade9786429f669607c1cc96cfb",
+      "tool_names": [
+        "Read",
+        "Edit",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8616,
+        "inference_geo": "",
+        "input_tokens": 6511,
+        "iterations": [],
+        "output_tokens": 2563,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.100938,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "elapsed_seconds": 65.818,
+      "started_at": "2026-10-14T13:10:43.591125+00:00",
+      "finished_at": "2026-10-14T13:11:49.411121+00:00",
+      "retry": false
+    }
+  ],
+  "status": "completed_with_changes",
+  "unknown_total": 11,
+  "isolated_unknown_added": [],
+  "raw_sha256": "ada182d2136a1a747897bb9cc25265e1d4ea121ae7d55124e3e59be9173cea88",
+  "local_adopted_memos": [
+    "research/2026-10-14-2100/books-adopted.md",
+    "research/2026-10-14-2100/toys-adopted.md"
+  ]
+}
