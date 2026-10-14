@@ -1,0 +1,551 @@
+{
+  "run_id": "SPREAD-20261014-1900",
+  "kind": "scheduled_research",
+  "market": "crossborder-routes",
+  "triggered_at": "2026-10-14T10:55:23.582Z",
+  "started_at": "2026-10-14T10:55:33Z",
+  "status": "completed_with_changes",
+  "source_requests": 38,
+  "web_request_breakdown": {
+    "search_query": 11,
+    "open": 18,
+    "click": 3,
+    "find": 5,
+    "screenshot": 0
+  },
+  "shell_http": {
+    "url": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html",
+    "status": 403,
+    "checked_at": null,
+    "checked_at_bounds": [
+      "2026-10-14T10:59:22Z",
+      "2026-10-14T10:59:39Z"
+    ]
+  },
+  "source_count_note": "Search queries/open/click/find including repeated and failed calls; not distinct readable pages.",
+  "collection_window": [
+    "2026-10-14 10:58:08 UTC",
+    "2026-10-14 11:00:27 UTC"
+  ],
+  "new_exact_skus_verified": 0,
+  "qualified_candidates": 0,
+  "research_leads": 0,
+  "new_usable_target_market_P": 0,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy": null,
+  "priority_change": false,
+  "regulatory_increment": true,
+  "new_market_evidence": false,
+  "country_market_coverage_added": [],
+  "lane_changes": "none; regulatory-only does not reset or increment merchandise no-increment counters",
+  "review_cursor_unchanged": true,
+  "isolated_unknown_added": [],
+  "unknown_total": 11,
+  "notion_gate": {
+    "checked_at": null,
+    "checked_at_basis": "approximate toolsequence; exact Notion response timestamp not captured",
+    "project_revision": "2026-10-14T09:13:17.788Z",
+    "project_read": true,
+    "database_read": true,
+    "view_rows": 5,
+    "has_more": false,
+    "old_cards_unchanged": true,
+    "direction_conflict": false,
+    "manual_global_wave_status": "completed_with_partial_adoption",
+    "active_wave_before": null,
+    "isolated_unknown_count_before": 11,
+    "usage_weekly_remaining_percent": 53,
+    "other_usage_window": "unavailable",
+    "source_requests": 38,
+    "source_request_breakdown": {
+      "web": 37,
+      "shell_http": 1
+    },
+    "shell_http": {
+      "url": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html",
+      "status": 403,
+      "checked_at": null,
+      "checked_at_bounds": [
+        "2026-10-14T10:59:22Z",
+        "2026-10-14T10:59:39Z"
+      ]
+    },
+    "market_sku_count": 0,
+    "new_market_evidence": false,
+    "regulatory_only": true
+  },
+  "paid_extra_cny": 0,
+  "parallel_packages": 2,
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-1900-import-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T11:07:54.487970+00:00",
+      "sample_records": 5,
+      "review_basis": "Full draft and all five supplied source records checked; source access levels preserved; not an accuracy-rate estimate.",
+      "corrections": [
+        [
+          "外壳HTML返回403",
+          "另一路shell读取公告HTML返回403"
+        ],
+        [
+          "——均非商业库存转售路径",
+          "；这些限定用途不能直接推导为普通商业库存转售许可"
+        ],
+        [
+          "I5 香港工贸署通告PDF（可读）仅转载I1，非独立法源。",
+          "I5 香港工贸署转载PDF此次直接返回仅有标题/页数等元数据，未据此核验正文；不作为独立法源。"
+        ],
+        [
+          "新规转换可能引致的复测；",
+          ""
+        ],
+        [
+          "| 直接可读；1页转载件，非独立法源 |",
+          "| 此次直接返回仅标题/页数元数据，未核正文；非独立法源 |"
+        ],
+        [
+          "；内容日期同I1 |",
+          "；正文日期未另核 |"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-1900/import-sources.json": "8684cf2764ba56b386ec6d4c95428a14bd97bad8ce29b60b17d84384405f05ff"
+      },
+      "result_sha256": "33d2080c5e3923dc76c8f1da3a8c236a61711405c2599d0a97d2f1d967a8b2ba",
+      "original_output_sha256": "62d356a7ac8838789de3f27b2ffaedcbaf48956f4a324ea487945899f6e81f0d",
+      "adopted_output_sha256": "142fbae47a3441e8f3e727f3673ad45e1c8cca095da9eaac15912266e0cd7a2b",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Edit",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 43232,
+        "inference_geo": "",
+        "input_tokens": 21648,
+        "iterations": [],
+        "output_tokens": 12220,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.435356,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "elapsed_seconds": 274.7,
+      "started_at": "2026-10-14T11:02:34.108163+00:00",
+      "finished_at": "2026-10-14T11:07:08.807514+00:00",
+      "blockers": [],
+      "retry": false,
+      "removed": "EU paragraph outside independent input scope; speculative retesting cost; I5 full-read claim corrected to metadata only."
+    },
+    {
+      "task_id": "jp-spread-20261014-1900-export-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T11:07:54.493712+00:00",
+      "sample_records": 5,
+      "review_basis": "Full draft and all five supplied source records checked; source access levels preserved; not an accuracy-rate estimate.",
+      "corrections": [
+        [
+          "GPSR（(EU) 2023/988，2023-05-10通过）：新增贴标与可追溯要求不适用于2024-12-13前已投放欧盟市场的产品；",
+          "GPSR（O1/O3官方索引，暂定）：2024-12-13前已投放欧盟市场且符合旧GPSD的产品可继续流通，无新增贴标要求；"
+        ],
+        [
+          "产品须有设立于欧盟的责任人。",
+          "GPSR适用产品须有设立于欧盟的责任人，可由符合条件的制造商、进口商、获书面授权的代表或履约服务商承担；不能直接推导为必须额外购买代理服务。"
+        ],
+        [
+          "不得据此推断一般\"14+标签豁免\"或收藏品一律豁免；自用/展示豁免并非商业库存路径。",
+          "名称或限量发行不能代替分类证据，Joan/AKIRA具体SKU是否满足排除条件仍未知。"
+        ],
+        [
+          "远程购物有14天撤回权；",
+          "一般远程购物有14天撤回权；例外、具体目标国规则和中国卖家适用条件尚待核验；"
+        ],
+        [
+          "售后维修/更换/减价/退款及退货物流、",
+          "售后维修/更换/减价/退款及退货物流（缺陷救济与无理由撤回的费用责任须分开核实）、"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-1900/export-sources.json": "537cab1a4266ec53ac0c84b65bf030c88206cea307ac5bcde29eb0a2a6f33569"
+      },
+      "result_sha256": "b76173f6bc9028e96291c289933015a2568a3dace82284137c3542060ec53d12",
+      "original_output_sha256": "b26871e7fa086f20176f96fb1ced64969351b40e26e6a1b991b295daba77443f",
+      "adopted_output_sha256": "70cb810ccb8c9d9e17c2d0a94ab493b464c8b8fb15b36d3bdbf31e3ab13ee831",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Read",
+        "Edit",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 39136,
+        "inference_geo": "",
+        "input_tokens": 18575,
+        "iterations": [],
+        "output_tokens": 10443,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.373518,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "elapsed_seconds": 232.068,
+      "started_at": "2026-10-14T11:02:34.107891+00:00",
+      "finished_at": "2026-10-14T11:06:26.176518+00:00",
+      "blockers": [],
+      "retry": false,
+      "report_memory_delta_rejected": "Runner report incorrectly says O5 page-maintenance 2026-08-26; draft/source says20/08/2026. Report memory is not adopted."
+    }
+  ],
+  "sources": [
+    {
+      "id": "I1",
+      "url": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html",
+      "status": "direct announcement readable; linked2026rulesPDF click failed; shellHTML403",
+      "checked_at": "2026-10-14 10:58:45 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "I2",
+      "url": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_1fb2082e0cca45cbb8e70b4a33e15e99.html",
+      "status": "direct readable",
+      "checked_at": "2026-10-14 10:59:22 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "I3",
+      "url": "https://www.cnca.gov.cn/zwxx/tz/2018/art/2022/art_64ec7e5c8a254acfbe57e2ca056cacc4.html",
+      "status": "direct historical case-specific reply readable; not general 14+exemption",
+      "checked_at": "2026-10-14 10:58:22 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "I4",
+      "url": "https://www.cnca.gov.cn/cms_files/filemanager/cnca/zw/gg/gg2020/202007/W020200714314143062694.pdf",
+      "status": "official2020rule indexedexcerpt only; direct internalerror; 2026annex unread",
+      "checked_at": "2026-10-14 10:58:08 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "I5",
+      "url": "https://www.tid.gov.hk/en/tradecircular/files/2026/ci4972026a.pdf",
+      "status": "Direct PDF returned title/page-count metadata only; not a full-text verification; reproduction of I1, not independent legal evidence.",
+      "checked_at": "2026-10-14 10:59:57 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "O1",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52025XC06233",
+      "status": "official2025Commissionguidance searchindexonly; HTML/PDF directJSverification; no bypass",
+      "checked_at": "2026-10-14 10:59:39 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "O2",
+      "url": "https://www.europarl.europa.eu/doceo/document/E-10-2024-001775-ASW_EN.pdf",
+      "status": "official parliamentaryanswer indexedonly; PDFdirectJSverification; SKUexceptionunconfirmed",
+      "checked_at": "2026-10-14 10:59:00 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "O3",
+      "url": "https://webgate.ec.europa.eu/safety/consumers/consumers_safety_gate/obligationsForBusinesses/documents/Q%26A.pdf",
+      "status": "officialFAQ indexedonly; directtemporarilyunavailable; notfullread",
+      "checked_at": "2026-10-14 10:59:00 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "O4",
+      "url": "https://europa.eu/youreurope/business/selling-in-eu/consumer-contracts-guarantees/consumer-guarantees/index_en.htm",
+      "status": "directofficialoverviewreadable; notcountryspecificlegalruling",
+      "checked_at": "2026-10-14 10:59:57 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    },
+    {
+      "id": "O5",
+      "url": "https://europa.eu/youreurope/citizens/consumers/shopping/guarantees/index_en.htm",
+      "status": "directofficialoverviewreadable",
+      "checked_at": "2026-10-14 11:00:27 UTC",
+      "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+    }
+  ],
+  "source_request_log": [
+    {
+      "response_completed_at": "2026-10-14 10:58:08 UTC",
+      "request": {
+        "search_query": [
+          {
+            "q": "site.cnca.gov.cn 2025 玩具 强制性 认证 14岁 收藏品"
+          },
+          {
+            "q": "site.samr.gov.cn 强制性产品认证 目录 界定表 玩具 2202 收藏"
+          },
+          {
+            "q": "site.ec.europa.eu GPSR second hand antiques collectors items responsible person"
+          },
+          {
+            "q": "site.eur-lex.europa.eu 2023/988 second hand antiques collectors items"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:58:22 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://www.cnca.gov.cn/ywzl/qzxcprz/jszjz/TC21etyp/index.html"
+          },
+          {
+            "ref_id": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A52025XC06233"
+          },
+          {
+            "ref_id": "https://www.cnca.gov.cn/zwxx/tz/2018/art/2022/art_64ec7e5c8a254acfbe57e2ca056cacc4.html"
+          },
+          {
+            "ref_id": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_1fb2082e0cca45cbb8e70b4a33e15e99.html"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:58:34 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html"
+          },
+          {
+            "ref_id": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025XC06233"
+          },
+          {
+            "ref_id": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02023R0988-20260529"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site.cnca.gov.cn \"CNCA-C22-02：2026\""
+          },
+          {
+            "q": "site.cnca.gov.cn \"关于进一步强化玩具\" \"2026\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:58:45 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn562view0",
+            "lineno": 1
+          },
+          {
+            "ref_id": "https://webgate.ec.europa.eu/safety/consumers/consumers_safety_gate/obligationsForBusinesses/documents/Q&A.pdf"
+          },
+          {
+            "ref_id": "https://www.europarl.europa.eu/doceo/document/E-10-2024-001835-ASW_EN.html"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:59:00 UTC",
+      "request": {
+        "click": [
+          {
+            "ref_id": "turn563view0",
+            "id": 6
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site.ec.europa.eu \"GPSR\" \"collectors\" \"rarity\""
+          },
+          {
+            "q": "site.europa.eu \"2025/6233\" \"antiques\""
+          },
+          {
+            "q": "site.ec.europa.eu \"GPSR\" \"second-hand\" \"13 December 2024\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:59:22 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://eur-lex.europa.eu/eli/C/2025/6233/oj/eng/pdf"
+          },
+          {
+            "ref_id": "https://www.europarl.europa.eu/doceo/document/E-10-2024-001775-ASW_EN.pdf"
+          },
+          {
+            "ref_id": "https://www.ebay.co.uk/sellercentre/global-sales/general-product-safety-regulation"
+          },
+          {
+            "ref_id": "turn561view3",
+            "lineno": 240
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:59:39 UTC",
+      "request": {
+        "find": [
+          {
+            "ref_id": "turn565view2",
+            "pattern": "responsible"
+          },
+          {
+            "ref_id": "turn565view2",
+            "pattern": "13 December 2024"
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "https://www.cnca.gov.cn/cms_files/filemanager/cnca/zw/gg/gg2020/202007/W020200714314143062694.pdf"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site.eur-lex.europa.eu/legal-content/EN/TXT/HTML/ \"52025XC06233\" \"sufficient rarity\""
+          },
+          {
+            "q": "site.eur-lex.europa.eu/legal-content/EN/TXT/HTML/ \"52025XC06233\" \"responsible person\" \"online\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 10:59:57 UTC",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://europa.eu/youreurope/business/dealing-with-customers/consumer-contracts-guarantees/consumer-guarantees/index_en.htm"
+          },
+          {
+            "ref_id": "https://europa.eu/youreurope/business/dealing-with-customers/consumer-contracts-guarantees/consumer-contracts/index_en.htm"
+          },
+          {
+            "ref_id": "https://www.tid.gov.hk/en/tradecircular/files/2026/ci4972026a.pdf"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 11:00:09 UTC",
+      "request": {
+        "click": [
+          {
+            "ref_id": "turn567view0",
+            "id": 199
+          },
+          {
+            "ref_id": "turn567view0",
+            "id": 369
+          }
+        ],
+        "response_length": "short"
+      }
+    },
+    {
+      "response_completed_at": "2026-10-14 11:00:27 UTC",
+      "request": {
+        "find": [
+          {
+            "ref_id": "turn568view0",
+            "pattern": "Second-hand"
+          },
+          {
+            "ref_id": "turn568view0",
+            "pattern": "outside"
+          },
+          {
+            "ref_id": "turn568view1",
+            "pattern": "responsible person"
+          }
+        ],
+        "response_length": "long"
+      }
+    }
+  ],
+  "raw_sha256": "a513455447008186d30248e9825dc6d1d76ed6e9276ddbd84826a9e1fffe1efc",
+  "notification": "none_no_qualified_or_priority_change_or_user_action",
+  "report": "docs/research/runs/2026-10-14-1900-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-14-1900-SPREAD.json",
+  "validation": "All 10 supplied source records and both complete drafts checked. Five direct text sources, four indexed-only, one direct metadata-only. No population accuracy claim.",
+  "local_adopted_memos": [
+    "research/2026-10-14-1900/import-adopted.md",
+    "research/2026-10-14-1900/export-adopted.md"
+  ],
+  "source_gaps": [
+    "CNCA2026toy full rule/annex click failed;2020PDF direct internal error",
+    "EUR-Lex/EP original HTML/PDF JS verification, official indexed excerpts only; no bypass",
+    "Safety Gate original PDF redirected to temporarily unavailable page",
+    "eBay UK GPSR direct navigation only and find no match; policy not verified",
+    "Your Europe product safety page title only; substantive text not verified",
+    "I5 TID reproduction direct metadata only, not full-text evidence",
+    "Specific SKU commercial admissibility/HS/taxes and exact destination consumer-law applicability unverified"
+  ]
+}
