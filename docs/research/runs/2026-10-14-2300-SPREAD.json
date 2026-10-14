@@ -1,0 +1,554 @@
+{
+  "run_id": "SPREAD-20261014-2300",
+  "kind": "scheduled_daily_coverage_status",
+  "triggered_at": "2026-10-14T14:56:54.704Z",
+  "started_at": "2026-10-14T14:57:12Z",
+  "source_requests": 0,
+  "new_exact_skus_verified": 0,
+  "qualified_candidates": 0,
+  "new_market_evidence": false,
+  "P": null,
+  "K": null,
+  "profit": null,
+  "ROI": null,
+  "net_margin": null,
+  "max_buy": null,
+  "priority_change": false,
+  "paid_extra_cny": 0,
+  "parallel_packages": 1,
+  "counts_as_no_increment": false,
+  "lanes_preserved": {
+    "artbooks": {
+      "status": "paused_waiting_daytime_decision",
+      "no_increment_runs": 3,
+      "next": "Pause repeated KABA searches pending daytime review or genuinely new exact-edition target-market exit/current buyable supply. No country/date reset.",
+      "last_checked_run": "SPREAD-20261014-2100",
+      "last_increment_run": "SPREAD-20261014-0500",
+      "increment_reason": "New reviewed KABA seventh-printing sold-out copy, other-seller review attribution and international ask observations; no new usable target-market P.",
+      "previous_next_before_direction_20261013": "Wait for a new, specific Mainland exact-edition/code offer or transaction; for WACKO, resume only after target size is specified. Do not repeat unchanged searches.",
+      "scope_gate": "collectible-art-direction.md",
+      "pause_reason": "Three completed no-effective-increment research rounds; source clearing does not reset the counter.",
+      "paused_at": "2026-10-14T13:17:51.403492+00:00"
+    },
+    "smallgoods": {
+      "status": "ready",
+      "no_increment_runs": 1,
+      "next": "Only new public evidence: recent exact-version/condition destination-market exits and genuinely available low-cost supply; do not replay unknown or unchanged input.",
+      "last_checked_run": "SPREAD-20261014-2100",
+      "last_increment_run": "SPREAD-20261014-1700",
+      "increment_reason": "New merchant-detail availability and shipping conditions plus historical sale/identity/exclusion evidence",
+      "previous_next_before_direction_20261013": "Wait for a new, specific Mainland exact-edition/code offer or transaction; for WACKO, resume only after target size is specified. Do not repeat unchanged searches.",
+      "scope_gate": "collectible-art-direction.md"
+    }
+  },
+  "review_cursor_unchanged": true,
+  "daily_digest_delivered": false,
+  "summary_status": "blocked_unknown_no_business_output",
+  "coverage_snapshot": {
+    "compiled_at": "2026-10-14T14:58:44.603764+00:00",
+    "note": "Existing observations preserved; no new market visits in23slot; not refreshed checked_at.",
+    "day": "2026-10-14",
+    "data": {
+      "markets": {
+        "JP": {
+          "status": "manual_toy_offer_review_partial_books_collection_only",
+          "manual_run": "JP-STORE-SCOUT-20261014-MANUAL-1",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T00:04:41+08:00",
+            "2026-10-14T00:10:00+08:00"
+          ],
+          "urls": [
+            "https://www.suruga-ya.jp/product/detail/185007773",
+            "https://pie.co.jp/book/i/5875/?lang=e",
+            "https://books.rakuten.co.jp/rb/17770447/",
+            "https://nostos.jp/archives/358891",
+            "https://www.kodansha.co.jp/comic/products/0000004332",
+            "https://www.suruga-ya.jp/product/detail/185008136?tenpo_cd=400493",
+            "https://www.suruga-ya.jp/product/detail/602201088",
+            "https://www.suruga-ya.jp/product/other/602201088"
+          ],
+          "gap": "Specific live stock, copy condition/authenticity and destination-market P/fullK unknown. Books package unknown no draft. No scheduled slot marked complete.",
+          "evidence": "docs/research/runs/2026-10-14-JP-STORES.json"
+        },
+        "GB": {
+          "status": "historical_auction_price_and_fees_reviewed_no_current_qualified_supply_or_exit",
+          "run_id": "SPREAD-20261014-0500",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T05:04:42+08:00",
+            "2026-10-14T05:06:17+08:00"
+          ],
+          "timestamp_note": "task start / post-collection clock bounds, not exact per-URL timestamps",
+          "urls": [
+            "https://www.easyliveauction.com/catalogue/lot/d8450d824aebb022861464bbb7c46e21/1f1638c9faeb7c2641b7b1e9c67628d0/monday-2nd-toys-tuesday-3rd-antiques-and-bygones-and-w-lot-530/",
+            "https://www.easyliveauction.com/catalogue/0aa1baaa240dfe7d1541606a0d3b5de0/1f1638c9faeb7c2641b7b1e9c67628d0/monday-2nd-toys-tuesday-3rd-antiques-and-bygones-and-wednes/"
+          ],
+          "source_ids": [
+            "T1",
+            "T1C"
+          ],
+          "gap": "2024lotdate conflict, exact identity/condition/buyer region unverified, historical UK-only shipping; no reliable current target-market P/fullK. KABA co.uk listings are Japan/US-located, not UK stock.",
+          "evidence": "docs/research/runs/2026-10-14-0500-SPREAD.json"
+        },
+        "ES": {
+          "status": "dated_platform_sale_reviewed_price_gated_no_current_qualified_supply_or_exit",
+          "run_id": "SPREAD-20261014-1300",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T13:00:35+08:00",
+            "2026-10-14T13:05:03+08:00"
+          ],
+          "timestamp_note": "Collection clock bounds, not exact per-URL timestamps.",
+          "urls": [
+            "https://www.todocoleccion.net/figuras-munecos-mcfarlane/figura-akira-kaneda-su-moto-mcfarlane~x435660152",
+            "https://www.uniliber.com/buscar/libros_y_coleccionismo_ordenado_por_autor-z-a?autor=Otomo&rows=50",
+            "https://www.iberlibro.com/9784063050042/KABA-1971-1989-ILLUSTRATION-COLLECTION-4063050041/plp"
+          ],
+          "gap": "Sold price gated; buyer country, authenticity and precise version unknown. Uniliber error. IberLibro seller US, not ES supply. No Mainland/current target P/fullK.",
+          "evidence": "docs/research/runs/2026-10-14-1300-SPREAD.json"
+        },
+        "SG": {
+          "status": "merchant_pages_and_conditional_dispatch_policy_reviewed_no_qualified_exit",
+          "run_id": "SPREAD-20261014-1700",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T08:59:39Z",
+            "2026-10-14T09:05:07.621250+00:00"
+          ],
+          "timestamp_note": "Conservative session bounds, not exact per-URL times.",
+          "urls": [
+            "https://www.the-corner.shop/collections/toys",
+            "https://www.the-corner.shop/products/joan-cornella-idiotmeter-man-green",
+            "https://www.the-corner.shop/products/joan-cornella-nobody-loves-me",
+            "https://www.the-corner.shop/policies/shipping-policy"
+          ],
+          "gap": "Idiotmeter soldout; Nobody addtocart not independently verified stock/authenticity. Conditional SG dispatch policy, Mainland specific fee/fulfillment and usable P/fullK missing. KABA bounded searches no new SG evidence.",
+          "evidence": "docs/research/runs/2026-10-14-1700-SPREAD.json"
+        }
+      },
+      "compiled_at": "2026-10-14T13:17:51.403492+00:00",
+      "comparison_only": {
+        "url": "https://www.neotokyo.de/cannabis-works-tanaka-tatsuyuki-works.html",
+        "status": "same-ISBN cached retail asking price; not local market dispatch or DE scheduled check",
+        "checked_at_window": [
+          "2026-10-14T00:04:41+08:00",
+          "2026-10-14T00:10:00+08:00"
+        ]
+      },
+      "manual_increment_checks": [
+        {
+          "run_id": "KABA-PROFIT-20261014-MANUAL-1",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T00:22:00+08:00",
+            "2026-10-14T00:34:00+08:00"
+          ],
+          "markets": [
+            "JP",
+            "Mainland China comparison"
+          ],
+          "status": "new_ask_and_historical_sale_markers_reviewed_not_qualified",
+          "urls": [
+            "https://jp.mercari.com/item/m28305381324",
+            "https://jp.mercari.com/item/m47614942069",
+            "https://jp.mercari.com/item/m32366906653",
+            "https://jp.mercari.com/item/m93668541518",
+            "https://auctions.yahoo.co.jp/jp/auction/l1212630783",
+            "https://auctions.yahoo.co.jp/jp/auction/l1199658652",
+            "https://book.kongfz.com/357557/8926689607/",
+            "https://comics.ha.com/itm/memorabilia/miscellaneous/rare-katsuhiro-otomo-kaba-artwork-hardcover-book-signed-by-otomo-katsuhiro-kodansha-1989/a/7401-16028.s",
+            "https://www.ebay.com/itm/127825015893",
+            "https://japaneseavantgardebooks.com/products/kaba-otomo-katsuhiro-artwork-1971-1989-illustration-collection",
+            "https://comics.ha.com/itm/books/fine-press-and-limited-editions/katsuhiro-otomo-kaba-artwork-kodansha-1989-japanese-artist-katsuhiro-otomo-is-probably-best-known-for-his-pioneering-s/a/816-4455.s"
+          ],
+          "report": "docs/research/runs/2026-10-14-KABA-PROFIT.md",
+          "scheduled_slots_completed": [],
+          "gap": "Target price P, complete K, exact print and settlement unverified; overseas buyer country unknown."
+        },
+        {
+          "run_id": "KABA-PROFIT-20261014-MANUAL-2",
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T00:58:36+08:00",
+            "2026-10-14T01:05:22+08:00"
+          ],
+          "markets": [
+            "JP",
+            "international marketplace comparison; buyer country unknown"
+          ],
+          "status": "reviewed_sales_activity_and_sold_out_copies_not_qualified",
+          "urls": [
+            "https://jp.mercari.com/item/m54059898954",
+            "https://jp.mercari.com/item/m25511872734",
+            "https://jp.mercari.com/item/m60170562258",
+            "https://jp.mercari.com/item/m36751093572",
+            "https://jp.mercari.com/item/m77445862453",
+            "https://www.ebay.com/itm/204036729920",
+            "https://paypayfleamarket.yahoo.co.jp/item/u1149495522",
+            "https://www.suruga-ya.jp/product/detail/185008136"
+          ],
+          "report": "docs/research/runs/2026-10-14-KABA-CONTINUE.md",
+          "scheduled_slots_completed": [],
+          "gap": "Exact printing, destination-market sale prices/dates and full K remain unknown."
+        }
+      ],
+      "slot_checks": [
+        {
+          "slot_id": "SPREAD-20261014-0300",
+          "market": "US",
+          "status": "not_checked_prior_manual_closeout",
+          "checked_at": null,
+          "direction_checked_at": "2026-10-13T19:58:03.149660+00:00",
+          "urls": [],
+          "gap": "Prior manual wave ledger needed reconciliation; no US sources inspected in this slot."
+        },
+        {
+          "slot_id": "SPREAD-20261014-1500",
+          "status": "not_executed_no_backfill",
+          "checked_at": null,
+          "urls": [],
+          "gap": "Earlier queued heartbeat not executed before17slot; no HK market check claimed."
+        }
+      ],
+      "supplemental_observations": [
+        {
+          "run_id": "SPREAD-20261014-0500",
+          "markets": [
+            "JP comparison",
+            "US comparison"
+          ],
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T05:04:42+08:00",
+            "2026-10-14T05:06:17+08:00"
+          ],
+          "urls": [
+            "https://www.ebay.co.uk/itm/134439220680",
+            "https://clarisbooks.com/?pid=149372737",
+            "https://www.abebooks.co.uk/servlet/SearchResults?an=otomo+katsuhiro&cm_sp=click-_-plp-_-tbc&tn=kaba",
+            "https://hibid.com/lot/311908917/mcfarlane-toys-akira-nib-figure-motorcycle-lot"
+          ],
+          "status": "KABA sold-out/asks and US mixed-lot historical result reviewed; not completion of another country slot",
+          "scheduled_slots_completed": []
+        },
+        {
+          "run_id": "SPREAD-20261014-1300",
+          "markets": [
+            "GB historical comparison",
+            "JP cached source check",
+            "US seller via ES locale"
+          ],
+          "checked_at": null,
+          "checked_at_window": [
+            "2026-10-14T13:00:35+08:00",
+            "2026-10-14T13:05:03+08:00"
+          ],
+          "urls": [
+            "https://www.ewbankauctions.co.uk/20230217G-lot-1249-Akira-Kaneda-On-Motorcycle-Macfarlane-s-3D-Animation-from-Japan-2?auction_id=794&view=lot_detail",
+            "https://shop.robotrobot.com/products/3592408"
+          ],
+          "status": "Historic buyer-fee inclusive result and stale sold-out ask/404; not completion of other country slots",
+          "scheduled_slots_completed": []
+        },
+        {
+          "run_id": "SPREAD-20261014-1700",
+          "checked_at_window": [
+            "2026-10-14T08:59:39Z",
+            "2026-10-14T09:05:07.621250+00:00"
+          ],
+          "status": "comparison_only_not_other_markets_completed",
+          "urls": [
+            "https://fineart.ha.com/itm/collectible/joan-cornella-b-1981-idiotmeter-man-green-2023-painted-cast-vinyl-8-x-2-x-4-inches-203-x-51-x-102/a/16219-42051.s?ic4=GalleryView-ShortDescription-071515",
+            "https://ddtstore.com/products/joan-cornella-idiotmeter-mangn",
+            "https://stockx.com/joan-cornella-nobody-loves-you-figure",
+            "https://www.catawiki.com/en/l/104992059-joan-cornella-nobody-loves-you-humans-are-a-virus-set-of-2-resin-art-figures",
+            "https://ddtstore.com/products/nobody-loves-you-joan-cornella"
+          ],
+          "gap": "Historical sale buyercountry unknown; StockX directfailed; Catawiki wrongmaterial; DDT cachetemplateconflict/password. No new targetmarketP."
+        },
+        {
+          "run_id": "SPREAD-20261014-2100",
+          "markets": [
+            "JP sold-out copy comparisons",
+            "Mainland repeated exit source check",
+            "HK auction label comparison; buyer geography unknown"
+          ],
+          "checked_at_window": [
+            "2026-10-14T13:05:11Z",
+            "2026-10-14T13:09:29Z"
+          ],
+          "sources": [
+            {
+              "id": "B1",
+              "url": "https://jp.mercari.com/item/m61440832851",
+              "checked_at": "2026-10-14 13:05:59 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "direct cached lastweek; soldout"
+            },
+            {
+              "id": "B2",
+              "url": "https://jp.mercari.com/item/m11261951175",
+              "checked_at": "2026-10-14 13:08:12 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "direct cached today; soldout; tile mismatch"
+            },
+            {
+              "id": "B3",
+              "url": "https://jp.mercari.com/item/m38524523858",
+              "checked_at": "2026-10-14 13:09:17 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "direct cached today; soldout; firstedition sellerclaim"
+            },
+            {
+              "id": "B4",
+              "url": "https://book.kongfz.com/357557/8926689607/",
+              "checked_at": "2026-10-14 13:08:43 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "repeat indexed sold marker, cached lastmonth"
+            },
+            {
+              "id": "T1",
+              "url": "https://www.sbiartauction.co.jp/en/results/catalogue/114",
+              "checked_at": "2026-10-14 13:09:05 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "direct cached today blank result; lot detail failed13:09:17"
+            },
+            {
+              "id": "T2",
+              "url": "https://www.sbiartauction.co.jp/userfiles/calendar/r3lqksNtlDkstjXXiBlG.pdf",
+              "checked_at": "2026-10-14 13:08:43 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "metadata first; body timeout13:08:12; screenshot internalerror13:08:43"
+            },
+            {
+              "id": "T3",
+              "url": "https://www.liveauctioneers.com/catalog/418126_modern-and-contemporary-art-online-sale/",
+              "checked_at": "2026-10-14 13:05:59 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "repeat catalog direct cached lastweek"
+            },
+            {
+              "id": "T4",
+              "url": "https://www.liveauctioneers.com/price-result/joan-cornella-b1981-selfie-gun/",
+              "checked_at": "2026-10-14 13:08:12 UTC",
+              "checked_at_basis": "toolbatch completed UTC; cache not guaranteed live",
+              "access_status": "generic result direct cached lastweek; event identity unknown"
+            }
+          ],
+          "status": "source_QC_only_no_new_usable_market_P_or_current_supply",
+          "scheduled_slots_completed": [],
+          "gap": "Exact editions, settlement, buyer country and current stock unverified; not backfill of any country slot.",
+          "evidence": "docs/research/runs/2026-10-14-2100-SPREAD.json"
+        }
+      ],
+      "scheduled_slots_completed": [
+        "SPREAD-20261014-0500",
+        "SPREAD-20261014-1300",
+        "SPREAD-20261014-1700"
+      ],
+      "route_checks": [
+        {
+          "slot_id": "SPREAD-20261014-1900",
+          "checked_at_window": [
+            "2026-10-14 10:58:08 UTC",
+            "2026-10-14 11:00:27 UTC"
+          ],
+          "source_requests": 38,
+          "sources": [
+            {
+              "id": "I1",
+              "url": "https://www.cnca.gov.cn/zwxx/gg/2026/art/2026/art_1d458e27c76e4a738a4ea25b4725ca14.html",
+              "status": "direct announcement readable; linked2026rulesPDF click failed; shellHTML403",
+              "checked_at": "2026-10-14 10:58:45 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "I2",
+              "url": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_1fb2082e0cca45cbb8e70b4a33e15e99.html",
+              "status": "direct readable",
+              "checked_at": "2026-10-14 10:59:22 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "I3",
+              "url": "https://www.cnca.gov.cn/zwxx/tz/2018/art/2022/art_64ec7e5c8a254acfbe57e2ca056cacc4.html",
+              "status": "direct historical case-specific reply readable; not general 14+exemption",
+              "checked_at": "2026-10-14 10:58:22 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "I4",
+              "url": "https://www.cnca.gov.cn/cms_files/filemanager/cnca/zw/gg/gg2020/202007/W020200714314143062694.pdf",
+              "status": "official2020rule indexedexcerpt only; direct internalerror; 2026annex unread",
+              "checked_at": "2026-10-14 10:58:08 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "I5",
+              "url": "https://www.tid.gov.hk/en/tradecircular/files/2026/ci4972026a.pdf",
+              "status": "Direct PDF returned title/page-count metadata only; not a full-text verification; reproduction of I1, not independent legal evidence.",
+              "checked_at": "2026-10-14 10:59:57 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "O1",
+              "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52025XC06233",
+              "status": "official2025Commissionguidance searchindexonly; HTML/PDF directJSverification; no bypass",
+              "checked_at": "2026-10-14 10:59:39 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "O2",
+              "url": "https://www.europarl.europa.eu/doceo/document/E-10-2024-001775-ASW_EN.pdf",
+              "status": "official parliamentaryanswer indexedonly; PDFdirectJSverification; SKUexceptionunconfirmed",
+              "checked_at": "2026-10-14 10:59:00 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "O3",
+              "url": "https://webgate.ec.europa.eu/safety/consumers/consumers_safety_gate/obligationsForBusinesses/documents/Q%26A.pdf",
+              "status": "officialFAQ indexedonly; directtemporarilyunavailable; notfullread",
+              "checked_at": "2026-10-14 10:59:00 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "O4",
+              "url": "https://europa.eu/youreurope/business/selling-in-eu/consumer-contracts-guarantees/consumer-guarantees/index_en.htm",
+              "status": "directofficialoverviewreadable; notcountryspecificlegalruling",
+              "checked_at": "2026-10-14 10:59:57 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            },
+            {
+              "id": "O5",
+              "url": "https://europa.eu/youreurope/citizens/consumers/shopping/guarantees/index_en.htm",
+              "status": "directofficialoverviewreadable",
+              "checked_at": "2026-10-14 11:00:27 UTC",
+              "checked_at_basis": "toolbatch_response_completed_UTC_not_page_publication"
+            }
+          ],
+          "status": "regulatory_increment_specific_SKU_applicability_unknown",
+          "not_market_supply_or_sales": true,
+          "evidence": "docs/research/runs/2026-10-14-1900-SPREAD.json"
+        }
+      ]
+    },
+    "lanes": {
+      "artbooks": {
+        "status": "paused_waiting_daytime_decision",
+        "no_increment_runs": 3,
+        "next": "Pause repeated KABA searches pending daytime review or genuinely new exact-edition target-market exit/current buyable supply. No country/date reset.",
+        "last_checked_run": "SPREAD-20261014-2100",
+        "last_increment_run": "SPREAD-20261014-0500",
+        "increment_reason": "New reviewed KABA seventh-printing sold-out copy, other-seller review attribution and international ask observations; no new usable target-market P.",
+        "previous_next_before_direction_20261013": "Wait for a new, specific Mainland exact-edition/code offer or transaction; for WACKO, resume only after target size is specified. Do not repeat unchanged searches.",
+        "scope_gate": "collectible-art-direction.md",
+        "pause_reason": "Three completed no-effective-increment research rounds; source clearing does not reset the counter.",
+        "paused_at": "2026-10-14T13:17:51.403492+00:00"
+      },
+      "smallgoods": {
+        "status": "ready",
+        "no_increment_runs": 1,
+        "next": "Only new public evidence: recent exact-version/condition destination-market exits and genuinely available low-cost supply; do not replay unknown or unchanged input.",
+        "last_checked_run": "SPREAD-20261014-2100",
+        "last_increment_run": "SPREAD-20261014-1700",
+        "increment_reason": "New merchant-detail availability and shipping conditions plus historical sale/identity/exclusion evidence",
+        "previous_next_before_direction_20261013": "Wait for a new, specific Mainland exact-edition/code offer or transaction; for WACKO, resume only after target size is specified. Do not repeat unchanged searches.",
+        "scope_gate": "collectible-art-direction.md"
+      }
+    }
+  },
+  "coverage_gaps": {
+    "US": {
+      "slot": "0300",
+      "status": "not_checked_prior_manual_closeout",
+      "checked_at": null,
+      "urls": []
+    },
+    "FR": {
+      "slot": "0700",
+      "status": "stopped_deadline_raw_preserved_unreviewed",
+      "checked_at": null,
+      "urls": [],
+      "urls_note": "Not extracted from unreviewed raw; no accepted market evidence.",
+      "raw_file": "research/2026-10-14-0700/raw-unreviewed.json",
+      "raw_sha256": "7aa85a9184088795f14792b1e33eef555b5e2fbbed753440ef679386836976d2"
+    },
+    "DE": {
+      "slot": "1100",
+      "status": "sync_recovery_only_not_market_checked",
+      "checked_at": null,
+      "urls": []
+    },
+    "HK": {
+      "slot": "1500",
+      "status": "not_executed_no_backfill",
+      "checked_at": null,
+      "urls": []
+    }
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-2300-digest-a1",
+      "parent_outcome": "not_adopted_unknown_no_business_output",
+      "runner_status": "unknown",
+      "input_hashes_verified": {
+        "docs/research/runs/2026-10-14-0500-SPREAD.md": "ca233dbb4516bea1591184a95a62744e3767ff969741499fe7690333f48ccdc3",
+        "docs/research/runs/2026-10-14-1300-SPREAD.md": "34c57773c7a33374f2a9e3ffaa46e1b9314e64cc18e0f4fa0195d1efbe6a0362",
+        "docs/research/runs/2026-10-14-1700-SPREAD.md": "f12d04ab04baf328dcc17f315adda9310ddbd4bf1cb8131553360fa527ee4e2c",
+        "docs/research/runs/2026-10-14-1900-SPREAD.md": "3af71bbd874aa975323188e3eb3cd0d4b5fe122eddc9376717a07cffdbd5a6ae",
+        "docs/research/runs/2026-10-14-2100-SPREAD.md": "9004e32fa69ab8421d763dff8a29e15b8818db9542971f61208a343de3661f49"
+      },
+      "result_sha256": "f1e688e791354dd3e8df10f682a923db6537413db1f5104c13de8529e189e188",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Read",
+        "Read",
+        "Read",
+        "Read",
+        "Read"
+      ],
+      "business_output_exists": false,
+      "adopted": false,
+      "retry": false,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": null,
+      "cost_usd_client_estimate": null,
+      "elapsed_seconds": 300.13,
+      "started_at": "2026-10-14T14:58:44.739396+00:00",
+      "finished_at": "2026-10-14T15:03:44.877853+00:00",
+      "returncode": 143,
+      "blockers": [
+        "worker timeout"
+      ]
+    }
+  ],
+  "unknown_count_before": 11,
+  "unknown_total": 12,
+  "isolated_unknown_added": [
+    "jp-spread-20261014-2300-digest-a1"
+  ],
+  "status": "closed_status_only_digest_unknown",
+  "notification": "none_status_only_no_daily_digest_delivered",
+  "notion_gate": {
+    "project_revision": "2026-10-14T13:16:55.968Z",
+    "project_readable": true,
+    "database_readable": true,
+    "view_rows": 5,
+    "has_more": false,
+    "new_direction_conflict": false,
+    "old_cards_unchanged": true
+  },
+  "usage_weekly_remaining_percent": 49,
+  "other_usage_window": "unavailable",
+  "report": "docs/research/runs/2026-10-14-2300-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-14-2300-SPREAD.json"
+}
