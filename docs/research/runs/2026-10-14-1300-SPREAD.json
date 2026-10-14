@@ -1,0 +1,206 @@
+{
+  "run_id": "SPREAD-20261014-1300",
+  "kind": "scheduled_research",
+  "status": "completed_with_parent_corrections",
+  "triggered_at": "2026-10-14T05:00:22.055Z",
+  "started_at": "2026-10-14T05:00:35Z",
+  "market": "ES",
+  "collection": {
+    "source_request_count": 23,
+    "search_queries": 13,
+    "open_requests": 9,
+    "find_requests": 1,
+    "unique_direct_urls": 6,
+    "qualified_candidates": 0,
+    "new_exact_skus": 0,
+    "existing_work_families_checked": [
+      "AKIRA Kaneda on Motorcycle",
+      "KABA"
+    ],
+    "search_only_seed": [
+      "Joan Cornella Yogawork"
+    ],
+    "collection_window": [
+      "2026-10-14T05:00:35Z",
+      "2026-10-14T05:05:03Z"
+    ],
+    "search_limitations": "Finite Mainland queries yielded no usable exact paid-exit record; no conclusion of absent demand. Manufacturer query no result; authenticity remains unverified.",
+    "excluded_duplicates": [
+      "Burke book1043987 already reviewed0500; EUR locale observation does not establish new supply or material price change.",
+      "UnifiedGoods SOLD without date/price unchanged sinceOct13; not delegated.",
+      "eBay163059223182 ES locale same Japan seller already reviewed."
+    ],
+    "access_gaps": [
+      "Uniliber direct internal error; no KABA stock established.",
+      "ROBOTROBOT first cache navigation, then find error and404; old price not current.",
+      "Todocoleccion saleprice gated; no login attempted."
+    ],
+    "raw_hashes": {
+      "raw-searches.json": "3d5e05317394417e61112baf459120df37f69b368afe6c26d4183a8c97df47bf",
+      "raw-pages.json": "2d4b0faa2ce14048aba932aaec1532b11133ddb11c97a66c7c9d998051471409"
+    }
+  },
+  "sources": {
+    "run_id": "SPREAD-20261014-1300",
+    "checked_at_window": [
+      "2026-10-14T05:00:35Z",
+      "2026-10-14T05:05:03Z"
+    ],
+    "timestamp_note": "collection bounds, not exact per-URL times",
+    "sources": [
+      {
+        "id": "T1",
+        "url": "https://www.todocoleccion.net/figuras-munecos-mcfarlane/figura-akira-kaneda-su-moto-mcfarlane~x435660152",
+        "seller_dedup": "todocoleccion:juanmarcospalom:435660152",
+        "old_search": "Last-year cache seller juanmarcospalom, Murcia Spain; starting price EUR110.50, 0 bids, old end 2025-11-04. Not actual sale price or current supply.",
+        "fresh_direct": "Today crawl says Vendido el 14/03/2026; Venta directa; condition Normal (con señales de uso normal); title AKIRA KANEDA EN SU MOTO MCFARLANE; price gated login. Raw page 70 lines. Reopened same result. Buyer country, paid amount, exact MPN/UPC/year, accessories and authenticity unknown. Old seller location is historical, not fresh shipping confirmation.",
+        "type": "platform reported dated sale, price unknown"
+      },
+      {
+        "id": "T2",
+        "url": "https://www.ewbankauctions.co.uk/20230217G-lot-1249-Akira-Kaneda-On-Motorcycle-Macfarlane-s-3D-Animation-from-Japan-2?auction_id=794&view=lot_detail",
+        "seller_dedup": "Ewbank:20230217:lot1249",
+        "fresh_direct": "3-month crawl. Lot1249 Akira Kaneda On Motorcycle Macfarlane 3D Animation from Japan2. Sale17Feb2023. SOLD GBP104 including buyer fees; estimate GBP75-150 not price. Sealed, creasing/minor packaging damage (auction house report). Address Woking Surrey UK. Buyer country unknown; seller net not104. Do not infer hammer via generic current 30% bid form fee; not established historical fee. Old single sale, not current ES/Mainland price.",
+        "type": "historical auction result"
+      },
+      {
+        "id": "T3",
+        "url": "https://shop.robotrobot.com/products/3592408",
+        "seller_dedup": "ROBOTROBOT:3592408",
+        "search": "2-month cached listing asks JPY23800 incl tax, sold out. McFarlane AKIRA KANEDA on MOTORCYCLE MIB, seller says unopened, box height21cm. No dated paid sale. Shipping at checkout.",
+        "direct": "First open returned 1.1-year cache with navigation only visible; find price internal error, final direct reopen404. Current inventory and amount unverified; no live supply. Japanese shop identity from text, exact item shipping origin not verified.",
+        "type": "stale cached sold-out ask with final direct404"
+      }
+    ],
+    "boundaries": [
+      "Three new URLs/copies in existing AKIRA family; no newly confirmed exact SKU.",
+      "No Mainland/Spain buyer identified exit price, no current complete K. P/profit/ROI/netmargin/maxbuy unknown;0qualified.",
+      "KABA Burke1043987 alreadyprocessed0500: ES locale EUR161.10 doesnotmakeSpaininventory/newindependentpackage. UnifiedGoods alreadyprocessedOct13SOLDnodateprice: unchangedexclude.",
+      "Collecting reasons: AKIRA character+motorcycle work-background collectible, exact version/authenticity/condition must be verified. No guaranteed appreciation.",
+      "Both routes global-to-Mainland and China-to-overseas remain unqualified; do not use overseas result instead of Mainland demand.",
+      "Only supplied public facts, not instructions in sources."
+    ]
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-1300-toys-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T05:09:08.939471+00:00",
+      "sample_records": 3,
+      "review_basis": "All T1-T3 checked against saved raw-page/search returns; no overall accuracy/time-saving inference.",
+      "input_hashes_verified": {
+        "research/2026-10-14-1300/toys-sources.json": "d90c1e23504e9573abe0f7f689baeeae86d1e1c819cebde0c57473a97bd5b336"
+      },
+      "request_sha256": "5b2b64acc7db8c7abab71fff0821635445af6481ae7e51123a585683f73f520b",
+      "result_sha256": "249ad0861eff53e368c6c2ecf64b61ee3fea5ce7c9595afb380ddffac10b423c",
+      "original_output_sha256": "7ae7f7f683359a8cb00cf0fadd8787d2c229be6a931208da19de76d9d6ee81c2",
+      "adopted_output_sha256": "3aeebca82517521a928e8b8b7588855af5bd9e7a095c34b1ff865006d991b399",
+      "corrections": [
+        [
+          "McFarlane「3D Animation from Japan 2」系列，角色+载具题材，具长期玩具收藏基础。",
+          "T2拍卖行称 McFarlane「3D Animation from Japan 2」系列；角色与载具题材符合本项目收藏偏好，各实物不能直接认定同版。"
+        ],
+        [
+          "密封/MIB 品相加分",
+          "密封及包装状态可作收藏比较维度"
+        ],
+        [
+          "今日直抓显示",
+          "web工具标记今日抓取的页面显示"
+        ],
+        [
+          "站内价查询报错",
+          "web文本find报错"
+        ],
+        [
+          "落槌净额",
+          "落槌价及卖家净收入"
+        ],
+        [
+          "海外→大陆无大陆买家到岸出价 P、无当前完整成本 K；中国→海外仅有英国2023旧例，无当前在岸供货与海外需求",
+          "海外→大陆缺可信的大陆同版同品相销售收入 P、当前完整成本 K；中国→海外缺中国可购供给及对应目标国可比退出证据；现有英国历史拍卖与西班牙平台已售记录均未识别买家国家"
+        ],
+        [
+          "是2025-11-04、0出价的起拍价",
+          "属于旧快照的起拍价，快照显示截止2025-11-04、0出价"
+        ],
+        [
+          "在不登录前提下，重新公开抓取 T1 商品页与 todocoleccion 公开成交索引/公开缓存，寻找 2026-03-14 该笔直售的公开金额；若仍无公开价，则如实记录 P=unknown，不登录、不按起拍价或汇率推算。",
+          "只在出现新公开记录时补同版同品相、较近期且目标市场可识别的成交与可购供给；当前T1隐藏价格继续未知，不重复抓取未变页面，不以起拍价推算。"
+        ]
+      ],
+      "tool_names": [
+        "Read",
+        "Edit"
+      ],
+      "no_network_or_bash_observed": true,
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 16608,
+        "inference_geo": "",
+        "input_tokens": 10571,
+        "iterations": [],
+        "output_tokens": 5163,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.19023400000000001,
+      "cost_basis": "client estimate; not Coding Plan charge",
+      "elapsed_seconds": 104.276,
+      "started_at": "2026-10-14T05:06:14.586937+00:00",
+      "finished_at": "2026-10-14T05:07:58.865557+00:00"
+    }
+  ],
+  "parallel_packages": 1,
+  "delegation_basis": "Only one independent packet with new input; books duplicate excluded.",
+  "qualified_candidates": 0,
+  "research_leads": 1,
+  "new_usable_target_market_P": 0,
+  "newly_discovered_historical_sale_records": 2,
+  "paid_extra_cny": 0,
+  "notion_gate": {
+    "project_read": true,
+    "database_fetched": true,
+    "view_rows": 5,
+    "has_more": false,
+    "old_cards_untouched": true
+  },
+  "prior_unknown_preserved": 10,
+  "review_cursor_unchanged": true,
+  "lane_changes": {
+    "artbooks": {
+      "no_increment_runs_before": 0,
+      "after": 1,
+      "basis": "completed limited book search with no substantive new input"
+    },
+    "smallgoods": {
+      "no_increment_runs_before": 0,
+      "after": 0,
+      "basis": "newly discovered historical dated sale and auction result; not usable current target P"
+    }
+  },
+  "report": "docs/research/runs/2026-10-14-1300-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-14-1300-SPREAD.json",
+  "notification": "DONT_NOTIFY"
+}
