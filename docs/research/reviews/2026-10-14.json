@@ -1,0 +1,795 @@
+{
+  "review_id": "REVIEW-20261014-0900",
+  "started_at": "2026-10-14T01:05:39Z",
+  "triggered_at": "2026-10-14T01:03:21.203Z",
+  "run_records": [
+    {
+      "run_id": "SPREAD-20261013-1100",
+      "report": "docs/research/runs/2026-10-13-1100-SPREAD.md",
+      "sha256": "d6e5a65349469a51914aae6e647e2b88f526e24fd7898d1b8232f9c049f72580",
+      "commit": "15e373566de8a2146f3567687bbfb7c78ca6364d",
+      "status": "completed_partial_delivery_with_unknown_package",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261013-1300",
+      "report": "docs/research/runs/2026-10-13-1300-SPREAD.md",
+      "sha256": "17dee4bb839ad2054c3ede1043df0bf13611fec622b8b5fbf559f1f437595523",
+      "commit": "83168bb8483395b4a022cdbee4d7127b827c0431",
+      "status": "completed",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261013-1500",
+      "report": "docs/research/runs/2026-10-13-1500-SPREAD.md",
+      "sha256": "64c6ec0cacc7444bd63ae94104cd125a55bba56c04cdc520d18b2c03ea3cd1e9",
+      "commit": "389af63291d103d99a942ce455605bbef6eecfe4",
+      "status": "stopped_time_limit_evidence_saved_unreviewed",
+      "json_exists": false
+    },
+    {
+      "run_id": "SPREAD-20261013-1700",
+      "report": "docs/research/runs/2026-10-13-1700-SPREAD.md",
+      "sha256": "9ded5c2a1e85a05514ac8216a05013c1a646457d0ebf7bc191459282d981d88f",
+      "commit": "389af63291d103d99a942ce455605bbef6eecfe4",
+      "status": "completed_partial_delivery_with_unknown_package",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261013-1900",
+      "report": "docs/research/runs/2026-10-13-1900-SPREAD.md",
+      "sha256": "4d5b770ac98fa80cc92ffe0dbb92e816c6a5572a6dbb97e6d92df770a0e6a005",
+      "commit": "ee3163d43f3a952150ff6b8daace885d825db072",
+      "status": "completed_with_adopted_corrections",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261013-2100",
+      "report": "docs/research/runs/2026-10-13-2100-SPREAD.md",
+      "sha256": "137d9555d0a76cb7ebea9962f697ab122b487aede2c26eee4f16082de6d51395",
+      "commit": "f4058c44d87862e6e12487f253b309b8feb6bbd0",
+      "status": "completed_with_adopted_corrections",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261013-2300",
+      "report": "docs/research/runs/2026-10-13-2300-SPREAD.md",
+      "sha256": "433f0d37b4accf0a67df243a354ef90e77ca0d80ff41d406e8d6264ed53fe4a0",
+      "commit": "1853cf91fcaa1a023d28757a73e6f1df5e9cae32",
+      "status": "completed_summary_with_adopted_corrections",
+      "json_exists": true
+    },
+    {
+      "run_id": "JP-STORE-SCOUT-20261014-MANUAL-1",
+      "report": "docs/research/runs/2026-10-14-JP-STORES.md",
+      "sha256": "ca509c1097d480e1ecb41552c07f2de084d988bd85a1d62b4f54443180d4bc53",
+      "commit": "b2fc4e5ec0bebd2989346648934402d5715092d9",
+      "status": "partial_toy_adopted_books_unknown",
+      "json_exists": true
+    },
+    {
+      "run_id": "KABA-PROFIT-20261014-MANUAL-1",
+      "report": "docs/research/runs/2026-10-14-KABA-PROFIT.md",
+      "sha256": "1de82e257322ebd34ae091d2bb49c33b9bfc8b01587be822bbac2ab278d9bd23",
+      "commit": "d001ea7f7493b57052c1d3a04a780d3131b29cee",
+      "status": "completed_with_parent_corrections",
+      "json_exists": true
+    },
+    {
+      "run_id": "KABA-PROFIT-20261014-MANUAL-2",
+      "report": "docs/research/runs/2026-10-14-KABA-CONTINUE.md",
+      "sha256": "0953689645d5922fae576b34dec57a589c468125147a7816c0864a41eafcf9f2",
+      "commit": "53cd4a4500bb7b9a95caae93f574c7cc5cbfca73",
+      "status": "completed_with_parent_corrections",
+      "json_exists": true
+    },
+    {
+      "run_id": "SPREAD-20261014-0500",
+      "report": "docs/research/runs/2026-10-14-0500-SPREAD.md",
+      "sha256": "ca233dbb4516bea1591184a95a62744e3767ff969741499fe7690333f48ccdc3",
+      "commit": "0a0a77ed6b2f45ca2a0883b8e4d6b7b5d53544fb",
+      "status": "completed_with_parent_corrections",
+      "json_exists": true
+    }
+  ],
+  "packages": [
+    {
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-1100-joan-de-a1",
+        "receipt_sha256": "1ce1e68194a27970ebb3f07a5eae6d9bf624aed4a00c61f7773ff361c26f87ee",
+        "reviewed_at": "2026-10-13T03:16:48Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-1100/joan-parent-validation.json",
+            "sha256": "bc8ca5f87428f40ece6b18953dc2f4794104bfa9ab9829db0969f3ae29fbae89"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-1100-akira-de-a1",
+      "reported_runner": "unknown",
+      "reported_parent": "not_adopted_unknown",
+      "raw_status": "unknown",
+      "adoption_review": null
+    },
+    {
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-1300-akira-es-a1",
+        "receipt_sha256": "a786edb35bf29e8e30d9166ce14b9e3cc8dce6dd9458225bc7ae0532242efb47",
+        "reviewed_at": "2026-10-13T05:10:55Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-1300/akira-parent-validation.json",
+            "sha256": "c8777fcebe892870730839a964b1a37d6eed57404236e889c845718f1a098d9f"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+        "receipt_sha256": "dce55e52e69083f9b8800c8afe21e167138746033bd1668eb1164b84e3c09daa",
+        "reviewed_at": "2026-10-13T09:13:39Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-1700/joan-parent-validation.json",
+            "sha256": "0113defd0477bded93574881fa21c40ec3c0bec231c9947e80faf368da56c5e7"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+      "reported_runner": "unknown",
+      "reported_parent": "not_adopted_unknown",
+      "raw_status": "unknown",
+      "adoption_review": null
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-import-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-1900-import-a1",
+        "receipt_sha256": "1fa3ea55972ccfbfe3ef310ec5a27541a8cbbf8ea64580ecc49a47e671986c81",
+        "reviewed_at": "2026-10-13T11:07:14Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-1900/import-parent-validation.json",
+            "sha256": "a8685528285fa040be9c3d950746e826a6aa9808f0e3b4f11761dbe6d388c32c"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-export-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-1900-export-a1",
+        "receipt_sha256": "30750fc0bed32b184c8a980843ee72b484aa81154b719ee61b0f6013c3b87758",
+        "reviewed_at": "2026-10-13T11:07:14Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-1900/export-parent-validation.json",
+            "sha256": "300418cf20356efff7f3d33c7bf6e1eceab64eda984face03f93dbc7a1b33f29"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-2100-joan-a1",
+        "receipt_sha256": "3c3196b1774dcf7b8ec34cf8159ad0b2c0e574a2d1070acc9d064e056776267a",
+        "reviewed_at": "2026-10-13T13:17:23Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-2100/joan-parent-validation.json",
+            "sha256": "18fe2ae655f21fa3c18304226c3fe05cb5398ce186d1dbe42585130bf0b8d46a"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-2100-akira-a1",
+        "receipt_sha256": "787975a765ad1573e500e0c27a124f1b54e09b9a28d4d1c9c0c62d288a6d3a67",
+        "reviewed_at": "2026-10-13T13:17:23Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-2100/akira-parent-validation.json",
+            "sha256": "502c442043e960ffafd08cd68e9061ebb5fd82bce7f5c1047b695f281d7c48ae"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-2300-coverage-a1",
+        "receipt_sha256": "9e447f933bf02bbd74c155503022a3753ca7df3ab2dcd1658739508325132c0d",
+        "reviewed_at": "2026-10-13T15:08:25Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-2300/coverage-parent-validation.json",
+            "sha256": "49f80e22731f84145f9bd9de68010552e03151f3f0f4d2b8014d85d1235871d0"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261013-2300-synthesis-a1",
+        "receipt_sha256": "832a8602865617c4ebfd14341b99f903330c1c6ee9d19cce0af9b62501a63657",
+        "reviewed_at": "2026-10-13T15:08:25Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-13-2300/synthesis-parent-validation.json",
+            "sha256": "9e164867634f1d9e9a30aef78182128c5d4628475f5a6722a2c60841782749e5"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-stores-20261014-books-a1",
+      "reported_runner": "unknown",
+      "reported_parent": "unknown_no_business_output",
+      "raw_status": "unknown",
+      "adoption_review": null
+    },
+    {
+      "task_id": "jp-stores-20261014-toys-a1",
+      "reported_runner": "blocked",
+      "reported_parent": "partial",
+      "raw_status": "blocked",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-stores-20261014-toys-a1",
+        "receipt_sha256": "caa5b249a4db2b6438aaf7421b161a573f5406ea2b5f23d2b03eb89556a2459b",
+        "reviewed_at": "2026-10-13T16:15:00Z",
+        "outcome": "partial",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-jp-stores/toys-parent-validation.json",
+            "sha256": "f95092d340aadacd52aa7bc777618167d73d422cdab0ef4351c3e55a7fe47e95"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "kaba-profit-20261014-supply-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "kaba-profit-20261014-supply-a1",
+        "receipt_sha256": "2b4f0194095d61103d06aa916ae7567d4f4e3f81ebf98ff8808714c9d89e35b3",
+        "reviewed_at": "2026-10-13T16:38:48Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-kaba-profit/supply-parent-validation.json",
+            "sha256": "938caa0569c8193f2ae18ff7b9a843a0ddcb44c77aabed91be6fd890b5b7e809"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "kaba-profit-20261014-exit-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "kaba-profit-20261014-exit-a1",
+        "receipt_sha256": "50e7cdadea646020c0160725aa6c4a53faa9b83bb4182c81a9b47f144fe92d4e",
+        "reviewed_at": "2026-10-13T16:38:48Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-kaba-profit/exit-parent-validation.json",
+            "sha256": "3a09a84e47fdbcee344ea4ee18c1a2d26f592172072d45f97179ef4456b437f2"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "kaba-continue-20261014-supply-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "kaba-continue-20261014-supply-a1",
+        "receipt_sha256": "ec999b3d88548beb77c0e1df0c71b4a4bd5415da3df11acb8c63a5f6d69532d4",
+        "reviewed_at": "2026-10-13T17:11:42Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-kaba-continue/supply-parent-validation.json",
+            "sha256": "a98cac21bacc868a3cc059e73f277c1c3937a5d9d7b46fb431baf65bc015c3b9"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "kaba-continue-20261014-exit-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "kaba-continue-20261014-exit-a1",
+        "receipt_sha256": "5cc4da9004ac2877bd0823732ff20f375e085573c0666e7df936f11bd7091231",
+        "reviewed_at": "2026-10-13T17:11:42Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-kaba-continue/exit-parent-validation.json",
+            "sha256": "28721651ee5b4d776c5d66de796c5afc297cc860234512aed1a48029acaa4c6c"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-books-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261014-0500-books-a1",
+        "receipt_sha256": "244b6d13d070150087dbf45ade64214ab62f5c56a945b855c539869bb8b4ffbb",
+        "reviewed_at": "2026-10-13T21:13:28Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-0500/books-parent-validation.json",
+            "sha256": "9f0f3c84a2af40fec4010ff0efed1e6f806c84377ab73be0b86fb848f7b07e83"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-toys-a1",
+      "reported_runner": "verifying",
+      "reported_parent": "accepted_with_changes",
+      "raw_status": "verifying",
+      "adoption_review": {
+        "schema_version": 1,
+        "task_id": "jp-spread-20261014-0500-toys-a1",
+        "receipt_sha256": "64cd73a7726852daaef5ad6792d76f9e43aa9facc0ac8151616d34d1ef17e1a8",
+        "reviewed_at": "2026-10-13T21:13:28Z",
+        "outcome": "accepted_with_changes",
+        "failure_type": "semantic",
+        "evidence": [
+          {
+            "path": "research/2026-10-14-0500/toys-parent-validation.json",
+            "sha256": "bbfe7827c4c409d54586e11663c970c4e9073f233f22d6eb34c8c8c739e69ede"
+          }
+        ]
+      }
+    }
+  ],
+  "result_hash_checks": [
+    {
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "actual": "1ce1e68194a27970ebb3f07a5eae6d9bf624aed4a00c61f7773ff361c26f87ee",
+      "baseline": "1ce1e68194a27970ebb3f07a5eae6d9bf624aed4a00c61f7773ff361c26f87ee",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1100-akira-de-a1",
+      "actual": "b05ff40e6b3f8d8d50ff738fb8865b41b5f89d7b73e383c4a95e9a8d7ff97896",
+      "baseline": "b05ff40e6b3f8d8d50ff738fb8865b41b5f89d7b73e383c4a95e9a8d7ff97896",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "actual": "a786edb35bf29e8e30d9166ce14b9e3cc8dce6dd9458225bc7ae0532242efb47",
+      "baseline": "a786edb35bf29e8e30d9166ce14b9e3cc8dce6dd9458225bc7ae0532242efb47",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "actual": "dce55e52e69083f9b8800c8afe21e167138746033bd1668eb1164b84e3c09daa",
+      "baseline": "dce55e52e69083f9b8800c8afe21e167138746033bd1668eb1164b84e3c09daa",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+      "actual": "7b7349992bbfc06b9831c162ec03149c94fe8d1068cbf242f265e92dcad9cfcc",
+      "baseline": "7b7349992bbfc06b9831c162ec03149c94fe8d1068cbf242f265e92dcad9cfcc",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-import-a1",
+      "actual": "1fa3ea55972ccfbfe3ef310ec5a27541a8cbbf8ea64580ecc49a47e671986c81",
+      "baseline": "1fa3ea55972ccfbfe3ef310ec5a27541a8cbbf8ea64580ecc49a47e671986c81",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-export-a1",
+      "actual": "30750fc0bed32b184c8a980843ee72b484aa81154b719ee61b0f6013c3b87758",
+      "baseline": "30750fc0bed32b184c8a980843ee72b484aa81154b719ee61b0f6013c3b87758",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "actual": "3c3196b1774dcf7b8ec34cf8159ad0b2c0e574a2d1070acc9d064e056776267a",
+      "baseline": null,
+      "matches": null
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "actual": "787975a765ad1573e500e0c27a124f1b54e09b9a28d4d1c9c0c62d288a6d3a67",
+      "baseline": null,
+      "matches": null
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "actual": "9e447f933bf02bbd74c155503022a3753ca7df3ab2dcd1658739508325132c0d",
+      "baseline": "9e447f933bf02bbd74c155503022a3753ca7df3ab2dcd1658739508325132c0d",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "actual": "832a8602865617c4ebfd14341b99f903330c1c6ee9d19cce0af9b62501a63657",
+      "baseline": "832a8602865617c4ebfd14341b99f903330c1c6ee9d19cce0af9b62501a63657",
+      "matches": true
+    },
+    {
+      "task_id": "jp-stores-20261014-books-a1",
+      "actual": "b8d98ff1be01f9a163857682fa2b47745f65b0167697142e3ef97946985ec7df",
+      "baseline": "b8d98ff1be01f9a163857682fa2b47745f65b0167697142e3ef97946985ec7df",
+      "matches": true
+    },
+    {
+      "task_id": "jp-stores-20261014-toys-a1",
+      "actual": "caa5b249a4db2b6438aaf7421b161a573f5406ea2b5f23d2b03eb89556a2459b",
+      "baseline": "caa5b249a4db2b6438aaf7421b161a573f5406ea2b5f23d2b03eb89556a2459b",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-supply-a1",
+      "actual": "2b4f0194095d61103d06aa916ae7567d4f4e3f81ebf98ff8808714c9d89e35b3",
+      "baseline": "2b4f0194095d61103d06aa916ae7567d4f4e3f81ebf98ff8808714c9d89e35b3",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-exit-a1",
+      "actual": "50e7cdadea646020c0160725aa6c4a53faa9b83bb4182c81a9b47f144fe92d4e",
+      "baseline": "50e7cdadea646020c0160725aa6c4a53faa9b83bb4182c81a9b47f144fe92d4e",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-supply-a1",
+      "actual": "ec999b3d88548beb77c0e1df0c71b4a4bd5415da3df11acb8c63a5f6d69532d4",
+      "baseline": "ec999b3d88548beb77c0e1df0c71b4a4bd5415da3df11acb8c63a5f6d69532d4",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-exit-a1",
+      "actual": "5cc4da9004ac2877bd0823732ff20f375e085573c0666e7df936f11bd7091231",
+      "baseline": "5cc4da9004ac2877bd0823732ff20f375e085573c0666e7df936f11bd7091231",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-books-a1",
+      "actual": "244b6d13d070150087dbf45ade64214ab62f5c56a945b855c539869bb8b4ffbb",
+      "baseline": "244b6d13d070150087dbf45ade64214ab62f5c56a945b855c539869bb8b4ffbb",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-toys-a1",
+      "actual": "64cd73a7726852daaef5ad6792d76f9e43aa9facc0ac8151616d34d1ef17e1a8",
+      "baseline": "64cd73a7726852daaef5ad6792d76f9e43aa9facc0ac8151616d34d1ef17e1a8",
+      "matches": true
+    }
+  ],
+  "input_hash_checks": [
+    {
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "path": "research/2026-10-13-1100/joan-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1100-akira-de-a1",
+      "path": "research/2026-10-13-1100/akira-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "path": "research/2026-10-13-1300/akira-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "path": "research/2026-10-13-1700/joan-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-akira-sg-a1",
+      "path": "research/2026-10-13-1700/akira-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "path": "research/2026-10-13-2100/joan-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "path": "research/2026-10-13-2100/akira-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "path": "research/2026-10-13-2300/coverage-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "path": "docs/research/runs/2026-10-13-1900-SPREAD.md",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "path": "docs/research/runs/2026-10-13-2100-SPREAD.md",
+      "matches": true
+    },
+    {
+      "task_id": "jp-stores-20261014-books-a1",
+      "path": "research/2026-10-14-jp-stores/books-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-stores-20261014-toys-a1",
+      "path": "research/2026-10-14-jp-stores/toys-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-supply-a1",
+      "path": "research/2026-10-14-kaba-profit/supply-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-exit-a1",
+      "path": "research/2026-10-14-kaba-profit/exit-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-supply-a1",
+      "path": "research/2026-10-14-kaba-continue/supply-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-exit-a1",
+      "path": "research/2026-10-14-kaba-continue/exit-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-books-a1",
+      "path": "research/2026-10-14-0500/books-sources.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-toys-a1",
+      "path": "research/2026-10-14-0500/toys-sources.json",
+      "matches": true
+    }
+  ],
+  "active_wave_read_only": {
+    "run_id": "SPREAD-20261014-0700",
+    "status": "collecting",
+    "started_at": "2026-10-13T22:58:35Z",
+    "package_ids": []
+  },
+  "unknown_count": 10,
+  "market_fetches": 0,
+  "downstream_calls": 0,
+  "qualified_candidates": 0,
+  "extra_paid_cny": 0,
+  "weekly_review": false,
+  "source_sample": {
+    "count": 7,
+    "raw_supported": 6,
+    "structured_only": 1,
+    "new_price_type_or_promotion_errors_in_raw_samples": 0,
+    "raw_evidence_gap": "Ginza204036729920 corresponding detail excerpt not found in this run raw files; no new fetch; retain research lead only",
+    "files": [
+      {
+        "path": "research/2026-10-14-kaba-profit/kongfz-public-text.txt",
+        "sha256": "6009569f68a2611b834c24882e47bb71d304ded54b9ab23bbcb90ed3e2faf584"
+      },
+      {
+        "path": "research/2026-10-13-2100/web-receipts.json",
+        "sha256": "1022e91cb71317fb79f61c4d03e178e51f45e80ca18f71f63c3f7bc750ca03eb"
+      },
+      {
+        "path": "research/2026-10-14-0500/uksearch1.json",
+        "sha256": "91c0270b60b97a2f6d87a52d08bc0c9351bd3a44154f9c752f0c46b2e3488db8"
+      },
+      {
+        "path": "research/2026-10-14-0500/ukdetails.json",
+        "sha256": "2e9a00a8d26f8caba1f733467f5a30f3db17ee3e33319d72d12e5c5c8990688a"
+      },
+      {
+        "path": "research/2026-10-14-kaba-continue/exit-sources.json",
+        "sha256": "d16ba0405f2fd3a57b9ebc821af21e253d3644c3539aafde58be90eb2b4f4734"
+      }
+    ]
+  },
+  "adoption_evidence_checks": [
+    {
+      "task_id": "jp-spread-20261013-1100-joan-de-a1",
+      "evidence": "research/2026-10-13-1100/joan-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1300-akira-es-a1",
+      "evidence": "research/2026-10-13-1300/akira-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1700-joan-sg-a1",
+      "evidence": "research/2026-10-13-1700/joan-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-import-a1",
+      "evidence": "research/2026-10-13-1900/import-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-1900-export-a1",
+      "evidence": "research/2026-10-13-1900/export-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-joan-a1",
+      "evidence": "research/2026-10-13-2100/joan-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2100-akira-a1",
+      "evidence": "research/2026-10-13-2100/akira-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-coverage-a1",
+      "evidence": "research/2026-10-13-2300/coverage-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261013-2300-synthesis-a1",
+      "evidence": "research/2026-10-13-2300/synthesis-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-stores-20261014-toys-a1",
+      "evidence": "research/2026-10-14-jp-stores/toys-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-supply-a1",
+      "evidence": "research/2026-10-14-kaba-profit/supply-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-profit-20261014-exit-a1",
+      "evidence": "research/2026-10-14-kaba-profit/exit-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-supply-a1",
+      "evidence": "research/2026-10-14-kaba-continue/supply-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "kaba-continue-20261014-exit-a1",
+      "evidence": "research/2026-10-14-kaba-continue/exit-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-books-a1",
+      "evidence": "research/2026-10-14-0500/books-parent-validation.json",
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261014-0500-toys-a1",
+      "evidence": "research/2026-10-14-0500/toys-parent-validation.json",
+      "matches": true
+    }
+  ],
+  "metrics": {
+    "run_records": 11,
+    "commits": 10,
+    "historical_packages": 19,
+    "accepted_with_changes": 15,
+    "partial": 1,
+    "unknown_in_scope": 3,
+    "isolated_unknown_total": 10,
+    "raw_result_baseline_matches": 17,
+    "raw_result_baseline_missing": 2,
+    "adoption_receipt_bindings_verified": 16,
+    "adoption_evidence_hashes_verified": 16,
+    "input_hashes_verified": 18,
+    "source_samples": 7,
+    "raw_supported_samples": 6,
+    "structured_only_samples": 1,
+    "qualified_candidates": 0,
+    "market_fetches": 0,
+    "downstream_calls": 0,
+    "extra_paid_cny": 0,
+    "accuracy_rate_claimed": false,
+    "time_saved_claimed": false
+  },
+  "status": "completed_with_evidence_coverage_limits",
+  "notification": "DONT_NOTIFY",
+  "guidance": "Retain KABA profitability priority; verify current exact-edition destination exits and complete costs; preserve raw excerpts on future new evidence only."
+}
