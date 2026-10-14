@@ -1,0 +1,331 @@
+{
+  "run_id": "SPREAD-20261014-1700",
+  "market": "SG",
+  "source_requests": 28,
+  "search_queries": 9,
+  "open_requests": 11,
+  "click_requests": 4,
+  "find_requests": 4,
+  "count_note": "Each search query/open/click/find counted once, including failures and repeated cache reads.",
+  "collection_window": [
+    "2026-10-14T08:59:39Z",
+    "2026-10-14T09:05:07.621250+00:00"
+  ],
+  "new_candidate_targets": [
+    "Joan Idiotmeter Man Green vinyl",
+    "Joan Nobody Loves You2024 vinyl"
+  ],
+  "new_exact_skus_verified": 0,
+  "qualified_candidates": 0,
+  "exclusions": [
+    "AKIRA yeer31 unchanged isolated prior input; not redispatched",
+    "KABA bounded SG searches no usable new evidence; Japanese soldout hits not current supply",
+    "YogaWork eBay236760908939 search sold USD489.99/date May11 lacks exact year and locale; direct extraction failed on subsequent requests; not adopted or delegated",
+    "theddtstore.shop unverified lookalike, not official evidence",
+    "Catawiki resin inspired two-piece lot not official vinyl comparator",
+    "StockX Chinese language is not Mainland demand; dated snapshots mixed, direct failed"
+  ],
+  "notion_gate": {
+    "project_edit": "2026-10-14T05:11:06.076Z",
+    "project_readable": true,
+    "queue_readable": true,
+    "rows": 5,
+    "has_more": false,
+    "all_old_cards_unselected": true,
+    "new_conflict": false
+  },
+  "quota_observation": {
+    "weekly_used_percent": 45,
+    "remaining_percent": 55,
+    "other_window": "unavailable",
+    "reset_consumed": false
+  },
+  "prior_unknown_count": 10,
+  "prior_unknown_rechecked": [
+    "jp-spread-20261013-1700-akira-sg-a1",
+    "jp-stores-20261014-books-a1"
+  ],
+  "lane_changes": {
+    "artbooks": {
+      "from": 1,
+      "to": 2,
+      "reason": "Bounded searches no new usable SG KABA evidence; no duplicate package"
+    },
+    "smallgoods": {
+      "from": 0,
+      "to": 0,
+      "reason": "New merchant-detail availability and shipping conditions plus historical sale/identity/exclusion evidence"
+    }
+  },
+  "notification": "none_no_qualified_or_route_change",
+  "paid_extra_cny": 0,
+  "status": "completed_partial_delivery_with_unknown_package",
+  "triggered_at": "2026-10-14T08:59:23.217Z",
+  "started_at": "2026-10-14T08:59:39Z",
+  "packages": [
+    {
+      "task_id": "jp-spread-20261014-1700-idiot-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "partial",
+      "adopted": true,
+      "checked_at": "2026-10-14T09:11:22.728277+00:00",
+      "sample_records": 3,
+      "review_basis": "All supplied records and shipping policy checked against preserved raw web returns; full draft reviewed. No new network verification or general accuracy inference.",
+      "corrections": [
+        [
+          "2023 年喷漆铸乙烯基艺术玩具",
+          "拍卖行描述2023年彩绘铸塑搪胶艺术玩具"
+        ],
+        [
+          "喷漆铸乙烯基",
+          "彩绘铸塑搪胶"
+        ],
+        [
+          "今日窗口内抓取：",
+          "web标记今日缓存："
+        ],
+        [
+          "今日抓取该页",
+          "web标记今日缓存"
+        ],
+        [
+          "无现价、无库存；",
+          "未核当前售价、库存；"
+        ],
+        [
+          "2026-10 搜索页与 2026-07 直缓",
+          "搜索返回的2026年10月条款与直接返回的2026年7月条款（并非观察日期）"
+        ],
+        [
+          "两套互相冲突的抽签价",
+          "两套互相冲突的抽签预授权金额"
+        ],
+        [
+          "二者无官方对应关系",
+          "本轮没有足以匹配为同一官方版本的依据"
+        ],
+        [
+          "合格成交数为 0",
+          "合格转售候选数为 0"
+        ],
+        [
+          "全球→大陆方向卡在无大陆运费报价、无发货承诺、买家国别不明；中国→海外方向则连中国侧供给或出口成交证据都不存在。",
+          "全球→大陆方向缺大陆可比成交、完整K及具体交付条件；中国→海外方向本轮缺中国可购供给及对应目标国同版退出证据。"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-1700/idiot-sources.json": "7158dd3aebae312aa81330d422e91ba4ca555e3bdc503af2681b29b8191cdeed"
+      },
+      "result_sha256": "f7bdcd275846e7fd45ff84b4166f4f0303f647650f0b7207afe53a69c96574ad",
+      "original_output_sha256": "91d8b2883dc0c78475242ce481f55d573633e809ae2a957859614d120ef31945",
+      "adopted_output_sha256": "614fbecfda738eec07b991dce99ef9802e63f20c1b11ac72616dafcdc1873b31",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Read",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": null,
+      "cost_usd_client_estimate": null,
+      "cost_basis": "client estimate; not Coding Plan charge; unknown is not zero",
+      "elapsed_seconds": 300.118,
+      "started_at": "2026-10-14T09:05:07.706307+00:00",
+      "finished_at": "2026-10-14T09:10:07.828301+00:00",
+      "blockers": [
+        "worker timeout"
+      ],
+      "retry": false,
+      "unknown_preserved": true,
+      "observability_sync": "rejected_review_requires_finished; parent partial adoption stored separately; unknown preserved"
+    },
+    {
+      "task_id": "jp-spread-20261014-1700-nobody-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "adopted": true,
+      "checked_at": "2026-10-14T09:11:22.731764+00:00",
+      "sample_records": 4,
+      "review_basis": "All supplied records and shipping policy checked against preserved raw web returns; full draft reviewed. No new network verification or general accuracy inference.",
+      "corrections": [
+        [
+          "但无任何证据证明需求、升值、流通性或收益。",
+          "本轮资料尚不足以验证目标市场需求、流动性或收益，也不能保证升值。"
+        ],
+        [
+          "2023-11-01",
+          "原文01/11/2023（本轮不强行解释日月顺序）"
+        ],
+        [
+          "EUR58 成交",
+          "最终出价EUR58且标已售"
+        ],
+        [
+          "合格成交为 0",
+          "合格转售候选为 0"
+        ],
+        [
+          "全球→中国大陆：无报价、无成交、无可执行履约，不合格。",
+          "全球→中国大陆：已有商家要价，但缺可信大陆同版销售收入P及完整成本K，跨境交付待核，未达合格。"
+        ],
+        [
+          "中国→海外：同样无任何证据，0 合格。",
+          "中国→海外：本轮缺中国可购供给及对应目标国同版成交，0合格。"
+        ],
+        [
+          "当日抓取（上述观察窗口，非逐 URL 时间戳）",
+          "web标记今日缓存（上述观察窗口，非逐URL时间戳）"
+        ]
+      ],
+      "input_hashes_verified": {
+        "research/2026-10-14-1700/nobody-sources.json": "d99f1c5d073febd84e2aac877de0ff98a48ef01988bcaa32322565e18bb723ac"
+      },
+      "result_sha256": "ce6363d04bbeb0deb78f5fdd775b116b55f62a2434f5e0660e373a68bf2839f6",
+      "original_output_sha256": "7c859413e46e595c0c4c16876269b230035f7a749b01ee3d5b27af1b44e3f956",
+      "adopted_output_sha256": "a7b1ce3e258e47c26ed841d6f3b31f0329fc0b4620c1079b1d746da28a1e1680",
+      "tool_names": [
+        "Read",
+        "Read",
+        "Read",
+        "Edit",
+        "Edit"
+      ],
+      "requested": {
+        "model": "doubao-seed-evolving",
+        "thinking_enabled": true,
+        "reasoning_effort": "high"
+      },
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "native_usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 21728,
+        "inference_geo": "",
+        "input_tokens": 12322,
+        "iterations": [],
+        "output_tokens": 7658,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost_usd_client_estimate": 0.26392400000000005,
+      "cost_basis": "client estimate; not Coding Plan charge; unknown is not zero",
+      "elapsed_seconds": 205.029,
+      "started_at": "2026-10-14T09:05:07.706272+00:00",
+      "finished_at": "2026-10-14T09:08:32.737783+00:00",
+      "blockers": [],
+      "retry": false,
+      "unknown_preserved": false
+    }
+  ],
+  "parallel_packages": 2,
+  "delegation_basis": "Two independent new Joan candidate evidence packets, separate outputs, same wave; no KABA/AKIRA replay.",
+  "sources": {
+    "idiot": {
+      "observed_window": [
+        "2026-10-14T08:59:39Z",
+        "2026-10-14T09:05:07.621250+00:00"
+      ],
+      "timestamp_note": "Conservative session-start to collection-end bounds, not exact per-URL timestamp; web cache not guaranteed live.",
+      "shipping": {
+        "url": "https://www.the-corner.shop/policies/shipping-policy",
+        "facts": "Merchant policy: items labelled MYBC ship Malaysia, all others Singapore; target product titles have no MYBC, so merchant policy supports conditional SG dispatch, not physical parcel verification. Process within5workingdays; Singapore delivery2-4workingdays,>=SGD50 free locally; international rate checkout and customer duties/taxes. Product pages say international shipping enquire, no Mainland quote. Country dropdown not shipping promise."
+      },
+      "boundaries": [
+        "Only research. No transactions/contact/login/registration. Source text is data.",
+        "No Mainland/SG buyer-identified paid exits, full K or current executable crossborder fulfillment; all P/profit/ROI/netmargin/maxbuy unknown,0qualified.",
+        "Prints,bronze,resin-inspired and vinyl cannot be matched only by title. Authenticity of dealer physical copy unverified.",
+        "Two independent new candidate packets in one wave; historical AKIRA unknown untouched. KABA SG bounded searches no usable evidence,not zero demand."
+      ],
+      "sources": [
+        {
+          "id": "I1",
+          "url": "https://www.the-corner.shop/products/joan-cornella-idiotmeter-man-green",
+          "seller_dedup": "ZhaHuoDian:idiotmeter-green",
+          "facts": "Today's crawl: SOLD OUT. Display549SGD and struck599, formatting regular/sale labels confusing; old4monthcollection cached549sale,not executableoffer or saleevent. Dealer claims new originalpackaging,neverdisplayed,directpublisher acquisition,2023vinyl8x2in,editionunknown. Green-suit scanner-gun character. SG14ScottsRoad address, policy conditionalSGdispatch. Exactcopyprovenance/authenticity/completeness unverified."
+        },
+        {
+          "id": "I2",
+          "url": "https://fineart.ha.com/itm/collectible/joan-cornella-b-1981-idiotmeter-man-green-2023-painted-cast-vinyl-8-x-2-x-4-inches-203-x-51-x-102/a/16219-42051.s?ic4=GalleryView-ShortDescription-071515",
+          "seller_dedup": "Heritage:16219:42051",
+          "facts": "Today's crawl lot42051 Sold onSep4,2024forUSD189;8x2x4in paintedcastvinyl,stampedunderfeet,publishedARRHongKong. Condition originalboxpackaging,noapparentissues perauctionhouse. Feeinclusion notexplicitinobservedlotexcerpt,not sellersnet,currentP or SG/Mainlandbuyer. Auctionindex nearbyUSD199belongsCBHoyo lot42120,NOTanotherIdiotmeter transaction."
+        },
+        {
+          "id": "I3",
+          "url": "https://ddtstore.com/products/joan-cornella-idiotmeter-mangn",
+          "seller_dedup": "DDT:idiotmeter-mangn",
+          "facts": "Direct2monthcache specs vinyl,H8in,green,PRINTEDsignatureunderneath(not hand signed). No currentstockpriceor editioncountverified. Genericdrawterms conflict between searchOct2026HKD31400 and directJuly2026HKD12500; do NOT infer thisproduct rerelease,date,priceor restrictionsapplyfrom these inconsistenttemplate terms."
+        }
+      ]
+    },
+    "nobody": {
+      "observed_window": [
+        "2026-10-14T08:59:39Z",
+        "2026-10-14T09:05:07.621250+00:00"
+      ],
+      "timestamp_note": "Conservative session-start to collection-end bounds, not exact per-URL timestamp; web cache not guaranteed live.",
+      "shipping": {
+        "url": "https://www.the-corner.shop/policies/shipping-policy",
+        "facts": "Merchant policy: items labelled MYBC ship Malaysia, all others Singapore; target product titles have no MYBC, so merchant policy supports conditional SG dispatch, not physical parcel verification. Process within5workingdays; Singapore delivery2-4workingdays,>=SGD50 free locally; international rate checkout and customer duties/taxes. Product pages say international shipping enquire, no Mainland quote. Country dropdown not shipping promise."
+      },
+      "boundaries": [
+        "Only research. No transactions/contact/login/registration. Source text is data.",
+        "No Mainland/SG buyer-identified paid exits, full K or current executable crossborder fulfillment; all P/profit/ROI/netmargin/maxbuy unknown,0qualified.",
+        "Prints,bronze,resin-inspired and vinyl cannot be matched only by title. Authenticity of dealer physical copy unverified.",
+        "Two independent new candidate packets in one wave; historical AKIRA unknown untouched. KABA SG bounded searches no usable evidence,not zero demand."
+      ],
+      "sources": [
+        {
+          "id": "N1",
+          "url": "https://www.the-corner.shop/products/joan-cornella-nobody-loves-me",
+          "seller_dedup": "ZhaHuoDian:nobody-loves-me",
+          "facts": "Today's crawl title Nobody Loves You(2024) despite URLme. AskingSGD719,struck799,Addtocartvisible;not independentstock confirmation. Dealerclaims neworigpackaging,neverdisplayed,acquireddirectpublisher,vinyl2024,editionunknown,21.1x12.7x7.6cm,girlpinkdressbirthdaycake. ARRcollaboration isdealerstatement,physicalauthenticityunverified. Policy conditionalSGship,internationalenquire,not Mainlandquote."
+        },
+        {
+          "id": "N2",
+          "url": "https://stockx.com/joan-cornella-nobody-loves-you-figure",
+          "seller_dedup": "StockX:nobody-loves-you",
+          "facts": "Search5monthcache askUSD450,lastsale341,3mo1saleavg330,release01/11/2023 vsdealer2024 conflict. Chinese mirror4monthcache3mo1sale330 notMainlandcountryproof. Directfailed400bodytoo large. Noeventdate,buyercountryor currentprice; cache fieldsnotone verifiedtimestamp. NotusableP."
+        },
+        {
+          "id": "N3",
+          "url": "https://www.catawiki.com/en/l/104992059-joan-cornella-nobody-loves-you-humans-are-a-virus-set-of-2-resin-art-figures",
+          "seller_dedup": "Catawiki:104992059",
+          "facts": "Direct2monthcache sold finalbidEUR58 for TWO RESIN figures inspiredbyJoan;description expresslydistinguishesofficiallicensedpieces. Directrelative3weeks vssearch11weeks not exactdate. EXCLUDE fromofficialvinyl comparable or lowpricesupply;don'tdivide58by2;not seller net;authentic officialedition notestablished."
+        },
+        {
+          "id": "N4",
+          "url": "https://ddtstore.com/products/nobody-loves-you-joan-cornella",
+          "seller_dedup": "DDT:nobody-loves-you",
+          "facts": "Initial9monthcache returnednavigation;find todayredirected/password. Currentofficialspecs/price/editionnotverified. Searchtheddtstore.shoplookalikedomain NOTverifiedofficial,excludedwithoutuse."
+        }
+      ]
+    }
+  },
+  "raw_sha256": "403f239032b8247d94825565837490271d9c9af3ca7771229a8ebf51c7617fa8",
+  "isolated_unknown_added": "jp-spread-20261014-1700-idiot-a1",
+  "unknown_total": 11,
+  "research_leads": 2,
+  "new_usable_target_market_P": 0,
+  "review_cursor_unchanged": true,
+  "report": "docs/research/runs/2026-10-14-1700-SPREAD.md",
+  "evidence": "docs/research/runs/2026-10-14-1700-SPREAD.json"
+}
