@@ -1,0 +1,204 @@
+{
+  "run_ids": [
+    "SPREAD-20261014-0700",
+    "SPREAD-20261014-1300",
+    "SPREAD-20261014-1700",
+    "SPREAD-20261014-1900",
+    "SPREAD-20261014-2100",
+    "SPREAD-20261014-2300",
+    "JP-CONCRETE-20261015-MANUAL-1"
+  ],
+  "commits": [
+    "3bd96b547c29bf7f02e31754fc9ae988ac682823",
+    "7fba150555330efe2b22710c02fe9baec83ea66c",
+    "154fa422d623dea1dde2ed18c5b8449220025a3e",
+    "1d36d17320bdaee60fe71fa439ab89b4594d7019",
+    "e18228234a4f97eca5c53e84088a876a613fe6a3",
+    "cb58d4f7582dc868b50a5fb13f96a9dc1196dcfc"
+  ],
+  "package_checks": [
+    {
+      "task_id": "jp-spread-20261014-1300-toys-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "249ad0861eff53e368c6c2ecf64b61ee3fea5ce7c9595afb380ddffac10b423c",
+      "actual": "249ad0861eff53e368c6c2ecf64b61ee3fea5ce7c9595afb380ddffac10b423c",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-1700-idiot-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "partial",
+      "baseline": "f7bdcd275846e7fd45ff84b4166f4f0303f647650f0b7207afe53a69c96574ad",
+      "actual": "f7bdcd275846e7fd45ff84b4166f4f0303f647650f0b7207afe53a69c96574ad",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-1700-nobody-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "ce6363d04bbeb0deb78f5fdd775b116b55f62a2434f5e0660e373a68bf2839f6",
+      "actual": "ce6363d04bbeb0deb78f5fdd775b116b55f62a2434f5e0660e373a68bf2839f6",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-1900-import-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "33d2080c5e3923dc76c8f1da3a8c236a61711405c2599d0a97d2f1d967a8b2ba",
+      "actual": "33d2080c5e3923dc76c8f1da3a8c236a61711405c2599d0a97d2f1d967a8b2ba",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-1900-export-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "b76173f6bc9028e96291c289933015a2568a3dace82284137c3542060ec53d12",
+      "actual": "b76173f6bc9028e96291c289933015a2568a3dace82284137c3542060ec53d12",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-2100-books-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "51ebf0f20674af9a4852b2bc16d4394332fbf5a003541eb4cf4038042206924a",
+      "actual": "51ebf0f20674af9a4852b2bc16d4394332fbf5a003541eb4cf4038042206924a",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-2100-toys-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "344022d9aad02f2996b093840376ef5e280c85ade9786429f669607c1cc96cfb",
+      "actual": "344022d9aad02f2996b093840376ef5e280c85ade9786429f669607c1cc96cfb",
+      "match": true
+    },
+    {
+      "task_id": "jp-spread-20261014-2300-digest-a1",
+      "runner_status": "unknown",
+      "parent_outcome": "not_adopted_unknown_no_business_output",
+      "baseline": "f1e688e791354dd3e8df10f682a923db6537413db1f5104c13de8529e189e188",
+      "actual": "f1e688e791354dd3e8df10f682a923db6537413db1f5104c13de8529e189e188",
+      "match": true
+    },
+    {
+      "task_id": "jp-concrete-20261015-akira-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "baseline": "e403f6764b128529f06508719691423645e91a6da130dee8281e5ae034c3a7ea",
+      "actual": "e403f6764b128529f06508719691423645e91a6da130dee8281e5ae034c3a7ea",
+      "match": true
+    },
+    {
+      "task_id": "jp-concrete-20261015-joan-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "baseline": "f30f199ac0768fca4704212455ad04b391a237f69ec9244b22d7f5a9c7ed9c07",
+      "actual": "f30f199ac0768fca4704212455ad04b391a237f69ec9244b22d7f5a9c7ed9c07",
+      "match": true
+    }
+  ],
+  "prior_cursor": {
+    "last_reviewed_run_id": "SPREAD-20261014-0500",
+    "last_reviewed_commit": "b96e96e9e18ce44ab7d02bfb22571c678b6f35e8",
+    "last_research_commit": "0a0a77ed6b2f45ca2a0883b8e4d6b7b5d53544fb",
+    "last_review_slot": "REVIEW-20261014-0900",
+    "review_commit_remote_verified": true
+  },
+  "samples": [
+    {
+      "id": "manual_A2",
+      "file": "research/2026-10-15-japan-concrete/source-access-raw.json",
+      "root": "Hub",
+      "sha256": "cabea82b0ddbd27163d9d41df5d879d3e0306dd6eaafd47f31df942b4d506795",
+      "finding": "HardOff新潟12100JPY B级、未开封盒、经年老化、配件横杠未知；不证明实时库存。",
+      "raw_supported": true,
+      "new_error": false
+    },
+    {
+      "id": "manual_A1",
+      "file": "research/2026-10-15-japan-concrete/source-access-raw.json",
+      "root": "Hub",
+      "sha256": "cabea82b0ddbd27163d9d41df5d879d3e0306dd6eaafd47f31df942b4d506795",
+      "finding": "小平包装整体伤污、未开封、无保证；不推断内部实物完整。",
+      "raw_supported": true,
+      "new_error": false
+    },
+    {
+      "id": "manual_A4",
+      "file": "research/2026-10-15-japan-concrete/source-access-raw.json",
+      "root": "Hub",
+      "sha256": "cabea82b0ddbd27163d9d41df5d879d3e0306dd6eaafd47f31df942b4d506795",
+      "finding": "大阪店条码787926149111与eBay Akira on Throne条码对应，排除摩托比价；商户标6个月保证，适用未知。",
+      "raw_supported": true,
+      "new_error": false
+    },
+    {
+      "id": "2100_B2",
+      "file": "research/2026-10-14-2100/raw-web.json",
+      "root": "repo",
+      "sha256": "ada182d2136a1a747897bb9cc25265e1d4ea121ae7d55124e3e59be9173cea88",
+      "finding": "7200JPY、售罄和配送记录；不当作当前供给或实付结算。",
+      "raw_supported": true,
+      "new_error": false
+    },
+    {
+      "id": "1700_I1",
+      "file": "research/2026-10-14-1700/raw-complete.json",
+      "root": "repo",
+      "sha256": "403f239032b8247d94825565837490271d9c9af3ca7771229a8ebf51c7617fa8",
+      "finding": "Idiotmeter详情Sold out；549/599标签不构成当前可购促销。",
+      "raw_supported": true,
+      "new_error": false
+    },
+    {
+      "id": "1300_T2",
+      "file": "research/2026-10-14-1300/raw-pages.json",
+      "root": "repo",
+      "sha256": "2d4b0faa2ce14048aba932aaec1532b11133ddb11c97a66c7c9d998051471409",
+      "finding": "Ewbank Lot1249，2023-02-17，GBP104含买家费，密封盒损；不是当前大陆P。",
+      "raw_supported": true,
+      "new_error": false
+    }
+  ],
+  "review_id": "REVIEW-20261015-0900",
+  "started_at": "2026-10-15T01:04:01Z",
+  "findings_completed_at": "2026-10-15T01:06:14.830225+00:00",
+  "scope": "incremental historical evidence audit; Japan-only active sourcing; no fresh market verification",
+  "metrics": {
+    "run_records": 7,
+    "reports": 6,
+    "research_commits": 6,
+    "direction_commits": 1,
+    "historical_packages": 10,
+    "accepted_with_changes": 7,
+    "partial": 2,
+    "not_adopted": 1,
+    "runner_unknown_in_scope": 2,
+    "isolated_unknown_total": 12,
+    "raw_result_baseline_matches": 10,
+    "source_samples": 6,
+    "raw_supported_samples": 6,
+    "new_errors_in_samples": 0,
+    "qualified_candidates": 0,
+    "market_fetches": 0,
+    "downstream_calls": 0,
+    "extra_paid_cny": 0,
+    "accuracy_rate_claimed": false,
+    "time_saved_claimed": false
+  },
+  "notion_gate": {
+    "revision": "2026-10-14T16:34:24.587Z",
+    "view_rows": 5,
+    "has_more": false,
+    "new_conflict": false
+  },
+  "decisions": [
+    "KABA three-round pause retained",
+    "A2 then A1 verification priority retained, not purchase qualification",
+    "Historic global sourcing and China-to-overseas sections are superseded; retained as history only",
+    "01/05/07 status-only and unmatched03 do not count as completed market research or no-increment runs",
+    "07 France raw is inventoried only, not promoted; 23 digest remains undelivered",
+    "No new reusable method; existing resale evidence method applies"
+  ]
+}
