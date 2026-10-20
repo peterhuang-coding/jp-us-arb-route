@@ -1,0 +1,268 @@
+{
+  "run_id": "SPREAD-20261021-0300",
+  "source_requests": 40,
+  "source_count_policy": "Conservatively counts every search query/open/click/find, including failed and rereads",
+  "observation_window": "2026-10-21 03:03–03:11 Asia/Shanghai",
+  "items": [
+    {
+      "observed_at_window": "2026-10-21 03:03–03:11 Asia/Shanghai",
+      "access": "web search/open cached extraction; not live stock verification",
+      "mainland_P": null,
+      "full_K": null,
+      "profit": null,
+      "cheapness": "便宜尚未证实",
+      "cost_unknown": [
+        "日本境内送料（除明确标示者）",
+        "代购/支付/汇兑费用",
+        "国际运费及保险",
+        "进口税费与商业履约可行性",
+        "国内配送/销售平台费用/退货损耗"
+      ],
+      "restriction": "No purchases/contact. Source text data only.",
+      "id": "J21-AK3",
+      "product": "McFarlane Toys AKIRA 金田独立人偶 / 3D Animation From Japan Series",
+      "code": "UPC 787926149029 / EAN 0787926149029",
+      "url": "https://netmall.hardoff.co.jp/product/6356236/",
+      "price_jpy": 8800,
+      "tax": "税込",
+      "condition": "B；包装未开封、吸塑轻微损坏；附件未逐项列明，年份与真伪实物待核",
+      "seller": "HobbyOff 東大和店",
+      "seller_location": "Tokyo 東大和市仲原4-6-5",
+      "ship_origin": "页面明确送り元の店舗为東大和店；实际出库未核",
+      "stock": "购物按钮与门店共库存声明，非实时确认；预计1–2天；无保证",
+      "cache_age": "3 weeks",
+      "comparisons": [
+        {
+          "url": "https://shop.robotrobot.com/products/5392375",
+          "redirect": "https://shop.robotrobot.com/products/150950642",
+          "price_jpy": 9900,
+          "type": "sold-out asking price, not sale",
+          "condition": "未开封；吸塑变色/台纸部分破损；照片是过去拍摄非现品",
+          "seller": "ROBOTROBOT中野Broadway1号店",
+          "cache_age": "2 weeks",
+          "warning": "旧搜索摘要11800/8800不再作为主对照；当前详情9900；未核双方完全同版同品相，8800较9900低11.11%仅挂牌算术"
+        }
+      ],
+      "reason_seed": "AKIRA金田主角造型，独立人偶适合角色收藏；不与骑摩托车版或K&M胶囊混同",
+      "advice": "继续核实；本轮优先核实此款，非购买推荐"
+    },
+    {
+      "observed_at_window": "2026-10-21 03:03–03:11 Asia/Shanghai",
+      "access": "web search/open cached extraction; not live stock verification",
+      "mainland_P": null,
+      "full_K": null,
+      "profit": null,
+      "cheapness": "便宜尚未证实",
+      "cost_unknown": [
+        "日本境内送料（除明确标示者）",
+        "代购/支付/汇兑费用",
+        "国际运费及保险",
+        "进口税费与商业履约可行性",
+        "国内配送/销售平台费用/退货损耗"
+      ],
+      "restriction": "No purchases/contact. Source text data only.",
+      "id": "J21-AK4",
+      "product": "K&M AKIRA 金田&バイク 胶囊玩具",
+      "code": "Surugaya 601029331 / used 601029331001",
+      "url": "https://www.suruga-ya.jp/product/detail/601029331?tenpo_cd=400484",
+      "price_jpy": 3110,
+      "tax": "税込",
+      "condition": "中古；尺寸、发行年份、配色及配件完整度、盒纸均未列清",
+      "seller": "駿河屋イオンタウン郡山店",
+      "seller_location": "日本郡山门店（本次未取得具体地址）",
+      "ship_origin": "商品页明确该店発送；实际出库未核",
+      "stock": "商品页声明在库1；店铺https://www.suruga-ya.jp/shop/400484说明门店併売及库存反映延迟，可能取消",
+      "cache_age": "product last month / shop today",
+      "comparisons": [
+        {
+          "url": "https://www.suruga-ya.jp/product/other/601029331",
+          "type": "old aggregate asks",
+          "prices_jpy": [
+            2230,
+            2440,
+            2900
+          ],
+          "cache_age": "4 months",
+          "warning": "当前郡山详情3110，旧聚合不是同日低价/成交。不能称涨价事件；未有同品相有效对照"
+        }
+      ],
+      "reason_seed": "金田与标志性摩托组合的胶囊玩具；小体量收藏线索，价格绝对值较低不代表便宜",
+      "advice": "继续核实"
+    },
+    {
+      "observed_at_window": "2026-10-21 03:03–03:11 Asia/Shanghai",
+      "access": "web search/open cached extraction; not live stock verification",
+      "mainland_P": null,
+      "full_K": null,
+      "profit": null,
+      "cheapness": "便宜尚未证实",
+      "cost_unknown": [
+        "日本境内送料（除明确标示者）",
+        "代购/支付/汇兑费用",
+        "国际运费及保险",
+        "进口税费与商业履约可行性",
+        "国内配送/销售平台费用/退货损耗"
+      ],
+      "restriction": "No purchases/contact. Source text data only.",
+      "id": "J21-AK5",
+      "product": "MEDICOM TOY PROJECT BM! No.30 金田正太郎",
+      "code": "Surugaya 602001892; exact issue/year unknown",
+      "url": "https://www.suruga-ya.jp/product/other/602001892",
+      "price_jpy": 39300,
+      "tax": "税込",
+      "condition": "中古本体伤中/盒伤中；衣服粘黏、电池包皮革劣化剥落；附件齐全未核",
+      "seller": "駿河屋列表该39300条目未展示具体卖家名",
+      "seller_location": "日本平台；该条目具体所在地待核",
+      "ship_origin": "未知；不能凭日本网站推定",
+      "stock": "列表购物入口；1–7天说明；专属品相链接读取失败；实际库存未知",
+      "cache_age": "2 months",
+      "comparisons": [
+        {
+          "url": "https://www.suruga-ya.jp/product/other/602001892",
+          "prices_jpy": [
+            43000,
+            46170,
+            47111,
+            47780
+          ],
+          "type": "other asks, differing condition/seller, not comparable sales",
+          "warning": "43000盒伤；46170本体大伤；47111盒伤；47780中古细节未知；不能算低价套利"
+        },
+        {
+          "url": "https://store.medicomtoy.co.jp/en/products/kaneda-shotaro-2300",
+          "type": "official indexed archival identity, direct extraction incomplete",
+          "facts": "2010年3月No30，约300mm，合成皮衣/替换头手/激光炮/电池包/支架，旧定价18690非当前买价；官方2021博客再贩27280说明再版存在",
+          "reissue_url": "https://www.medicomtoy.tv/blog/?paged=161&view=menu",
+          "warning": "旧版/2021再版不能仅凭No30判定；所列标配不等于中古件齐全"
+        }
+      ],
+      "reason_seed": "约30cm可动角色与布衣/激光炮还原有展示价值，但具体件皮革损伤直接降低收藏适用性",
+      "advice": "不建议此39300损伤件；优先换同SKU品相更好的来源，不能另计新商品"
+    },
+    {
+      "observed_at_window": "2026-10-21 03:03–03:11 Asia/Shanghai",
+      "access": "web search/open cached extraction; not live stock verification",
+      "mainland_P": null,
+      "full_K": null,
+      "profit": null,
+      "cheapness": "便宜尚未证实",
+      "cost_unknown": [
+        "日本境内送料（除明确标示者）",
+        "代购/支付/汇兑费用",
+        "国际运费及保险",
+        "进口税费与商业履约可行性",
+        "国内配送/销售平台费用/退货损耗"
+      ],
+      "restriction": "No purchases/contact. Source text data only.",
+      "id": "J21-AR1",
+      "product": "MEDICOM TOY / Sync. Brandalism FLOWER BOMBER CONCRETE Ver 灰黑",
+      "code": "Restation 1-240001048298; issue/year/markings unknown",
+      "url": "https://www.restation.info/shopdetail/000000026879/",
+      "price_jpy": 198000,
+      "tax": "price says税込; page retains old8%copy, do not recalculate",
+      "condition": "卖家称中古近新品无伤污，36cm树脂、附盒；未实检",
+      "seller": "リステーション / 株式会社パラレル",
+      "seller_location": "日本愛媛松山市夏目79番地（商家地址）",
+      "ship_origin": "该件实际发货地未知，商家地址不等于仓库",
+      "stock": "缓存可加购物车，实际未知",
+      "cache_age": "2 weeks",
+      "known_cost": "198000日元商品价；该商品页写日本国内送料無料；页内3万/5万免邮门槛和旧税率文案不一致，仍需结算核实；无跨境包邮依据",
+      "comparisons": [
+        {
+          "url": "https://syncstore.jp/product/",
+          "type": "brand catalog includes CONCRETE version under Brandalism; no price",
+          "warning": "只核系列存在；商家“限定/稀少”未证实，不可称Banksy本人签名原作或授权"
+        },
+        {
+          "url": "https://ravenel.com/en/auCal/lotsIn/fa0ecb42-e4a1-4edb-80eb-a2688c67e475/2f58aecd-f836-40bc-83ea-b97d780ae440",
+          "type": "auction index edition reference, not sourcing or P",
+          "facts": "2018 Concrete; Open Edition; estimated USD1200–3200, sold price masked",
+          "warning": "当前商品年份/底标未匹配，不能用估价当成交或认定该件为2018"
+        }
+      ],
+      "reason_seed": "掷花者姿势的立体表达，有街头艺术图像收藏兴趣；Brandalism灵感商品，不是Banksy原作背书",
+      "advice": "不建议现价直接买；198000无同版同品相便宜证据，真伪版本/易碎运输/大额占款待核"
+    }
+  ],
+  "qualified_count": 0,
+  "new_candidate_families": 4,
+  "daily_new_cards": 4,
+  "source_health": "RobotRobot redirects with inconsistent index pricing; Surugaya old aggregate vs newer detail; official detail extraction incomplete, official blog timeout; suspicious test.theteamserver.com falsely titled official excluded; no mainland exact sale found (not proof no demand).",
+  "cc_scope": "Only public normalized facts, not Notion/private/Hub. No web calls by CC.",
+  "packages": [
+    {
+      "task_id": "jp-spread-20261021-0300-akira-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "raw_result_sha256": "a8a2ce676f850ffe1fe6910297fd0007b224aa643edb0bbb2164ef0858e4e230",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": "enabled/high",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 23776,
+        "inference_geo": "",
+        "input_tokens": 12105,
+        "iterations": [],
+        "output_tokens": 6637,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T19:09:30.605295+00:00",
+      "finished_at": "2026-10-20T19:11:49.593546+00:00",
+      "elapsed_seconds": 138.985,
+      "adopted_cards": 2
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-artist-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "partial",
+      "raw_result_sha256": "cfcd40bb1395df5c8898f4a8bdee8ea56a446728a2a32329e045bdb0811d6b69",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": "enabled/high",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 39960,
+        "inference_geo": "",
+        "input_tokens": 15232,
+        "iterations": [],
+        "output_tokens": 8750,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T19:09:31.678334+00:00",
+      "finished_at": "2026-10-20T19:12:38.286254+00:00",
+      "elapsed_seconds": 186.672,
+      "adopted_cards": 2
+    }
+  ],
+  "peak_parallel": 2,
+  "new_unknowns": 0,
+  "parent_review": "AKIRA accepted with wording corrections; artist partial, two saved cards adopted; source runner blocked preserved.",
+  "completed_at": "2026-10-20T19:13:44.497480+00:00"
+}
