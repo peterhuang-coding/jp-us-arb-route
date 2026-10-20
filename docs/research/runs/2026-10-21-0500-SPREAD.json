@@ -1,0 +1,290 @@
+{
+  "run_id": "SPREAD-20261021-0500",
+  "status": "evidence_saved_plan_auth_blocked",
+  "observation_window": "2026-10-21T05:05:00+08:00/2026-10-21T05:06:43+08:00",
+  "source_requests": 40,
+  "new_candidate_families": 4,
+  "candidate_families_checked": 5,
+  "new_decision_cards_adopted": 0,
+  "pending_normalization_items": 3,
+  "qualified_candidates": 0,
+  "P": null,
+  "full_K": null,
+  "profit": null,
+  "paid_extra_cny": 0,
+  "new_unknowns": 0,
+  "pending_cards": [
+    {
+      "id": "J21-AK6",
+      "name": "MEDICOM TOY / BANDAI PROJECT BM! No.40 島鉄雄 约300mm",
+      "url": "https://jp.mercari.com/item/m14202003793",
+      "price_jpy": 77000,
+      "price_type": "seller ask税込国内送料込み",
+      "seller": "haihai",
+      "seller_dedupe": "mercari:haihai:m14202003793",
+      "seller_location": "身份地址未知；发货地区兵库县为卖家声明",
+      "ship_origin": "兵库县，1–2天，らくらくメルカリ便；未实测",
+      "stock": "详情缓存last month,购买按钮；半年以上前商品文案，无实时确认",
+      "condition": "开封未使用（不是密封新品），替换左右手、替换头、台座/支柱/4臂；称台座附件袋未拆。老化/完整性未实物核",
+      "identity_source": "https://store.medicomtoy.co.jp/en/products/shima-tetsuo-2486",
+      "identity": "官方搜索索引：2010年10月No.40、300mm、RAH301改素体、再生右臂、替换脸、铁丝披风、支架、发行BANDAI，历史建议价18690；直读cache miss，不能当现售供给",
+      "comparisons": [
+        {
+          "url": "https://jp.mercari.com/item/m99116687766",
+          "facts": "索引65800税込包邮未开封/箱擦痕，显示已配送文字，详情失败；不是可执行替代供给，也无成交日期，不能定P"
+        },
+        {
+          "url": "https://auctions.yahoo.co.jp/closedsearch/closedsearch/%E3%83%A1%E3%83%87%E3%82%A3%E3%82%B3%E3%83%A0%20%E9%89%84%E9%9B%84/25888/",
+          "facts": "1.3年旧缓存：未使用31700 03/23；junk34746 05/29，年份/个体真实性及品相不全，排除可比成交"
+        }
+      ],
+      "advice": "不建议此77000日元件；理由是高价缺同版同品相与当前退出证据，非证明假货/一定亏损",
+      "reason_seed": "AKIRA主要角色的可动收藏版本，再生手臂和披风贴合角色造型；不同于Yamato小比例铁雄",
+      "cost": "77000国内包邮仅报价口径；跨境/代理/保险/税/支付/退货/销售费用与商业履约未知"
+    },
+    {
+      "id": "J21-J3",
+      "name": "Joan Cornellà × AllRightsReserved Selfie Gun GREEN 2019 vinyl约25cm",
+      "url": "https://jp.mercari.com/item/m61117541966",
+      "price_jpy": 85000,
+      "price_type": "seller ask税込国内送料込み",
+      "seller": "Enitam",
+      "seller_dedupe": "mercari:Enitam:m61117541966",
+      "seller_location": "身份地址未知；发货地区东京为卖家声明",
+      "ship_origin": "东京、1–2天、らくらくメルカリ便；未实测",
+      "stock": "详情缓存last week、购买按钮；文案2个月前，无实时确认",
+      "condition": "卖家标新品未使用但个人保管；箱/附件/个体编号/实物品相和真伪未知",
+      "identity": "卖家称2019-10-17、1000体、底足印刷签名/编号；不是亲笔签名。历史已核官方DDT绿版同类特征可作背景，当前具体个体未认证",
+      "comparisons": [
+        {
+          "url": "https://jp.mercari.com/item/m87506588283",
+          "facts": "同绿版110000 ask、编号0642/1000为卖家称、无附件、神奈川、LetterPack；当前读回与10/13事实不变，仅作为对照不重发旧包。85000比110000数字低22.727%，品相/完整性未齐不能证明好价"
+        },
+        {
+          "url": "https://stockx.com/joan-cornella-selfie-gun-vinyl-figure-green",
+          "facts": "本轮搜索索引Last Sale200USD与近3月单笔343/平均344USD矛盾；无事件日期/地点，不能作大陆P"
+        },
+        {
+          "url": "https://www.sothebys.com/en/buy-sell/private-sales/joan-cornella-selfie-gun-green",
+          "facts": "直接页为2020木板丙烯170x108cm，不是vinyl，排除比价"
+        }
+      ],
+      "reason_seed": "把艺术家的黑色幽默漫画构图变成三维物件，艺术表达与本人偏好吻合；收藏理由不能证明盈利",
+      "advice": "继续核实；不建议按85000直接买。先比具体盒配/编号/来源和目标市场成交",
+      "cost": "85000国内包邮报价；跨境及其他完整费用未知",
+      "increment": "10/13相同85000推荐卡因详情失败排除；本次首次直接可读具体绿版/东京发货/状态，不是价格下降"
+    },
+    {
+      "id": "J21-B1",
+      "name": "大友克洋 AKIRA CLUB 講談社1995日文版，ISBN9784063300031（该件ISBN/印次待核）",
+      "url": "https://www.suruga-ya.jp/product/detail/185241106",
+      "price_jpy": 4800,
+      "price_type": "中古限时ask税込，非成交，时限未知",
+      "seller": "ネットショップ駿河屋／株式会社駿河屋",
+      "seller_location": "静冈市葵区传马町5-4，官方法定商家地址；不是发货仓证明",
+      "ship_origin": "具体仓待核，日本供给商地址已核",
+      "stock": "详情3天缓存显示1件/购物按钮，非实时确认",
+      "condition": "只标中古，264页规格；印次/ISBN实物/日晒折损/明信片海报缺失未知",
+      "identity_source": "https://www.hanmoto.com/bd/isbn/9784063300031",
+      "identity": "版元ドットコム、CiNii搜索索引ISBN406330003X/9784063300031、1995.6、日文、26cm、附POST CARD；直读失败。不要把本书书目当该件实物初版证据",
+      "comparisons": [
+        {
+          "url": "https://jp.mercari.com/shops/product/5bvFwm2TCqzdWGmYivMvgZ",
+          "facts": "详情缓存last month：5316JPY国内包邮，山梨发货2–3天；同ISBN，良い/可各余1、非常に良い售罄；显示价绑定哪级未核。印次附件未知；搜索旧4401弃用"
+        },
+        {
+          "url": "https://www.kosho.or.jp/products/detail.php?product_id=578184656",
+          "facts": "索引7700JPY国内邮0、滋贺古本あい古屋；第一刷有明信片无海报、旧化日晒/灰尘；详情失败；不作同品相贵价证明"
+        },
+        {
+          "url": "https://jp.mercari.com/item/m23829821037",
+          "facts": "索引3280売り切れ、污渍日晒，已配送字样；事件日期/印次附件不明；详情失败，不作可执行货源/P"
+        }
+      ],
+      "cost": "官方https://www.suruga-ya.jp/man/tokusyo.html本州四国九州未满5000通信费240，>=1500国内邮0，信用卡等无列额外费情形：4800+240=5040JPY条件小计；北海道冲绳4800+570=5370，地区/支付/实际结算仍需核，非中国到手。与5316只有276JPY条件名义差，不能跨品相宣称便宜。代购国际运保险税清关支付销售退货未知",
+      "reason_seed": "与AKIRA作品直接相关的图像资料收藏，价位比大尺寸玩具低，适合补充而非KABA暂停路径复活；内容细节未用非一手站断言",
+      "advice": "继续核实；先核印次/附件与低价3280售罄对照，便宜尚未证实"
+    }
+  ],
+  "excluded": [
+    {
+      "name": "KAWS COMPANION OPEN EDITION BROWN",
+      "url": "https://www.suruga-ya.jp/product/detail/602146728",
+      "reason": "详情失败；ROBOTROBOT68774515也失败，仅搜索发现，不进卡"
+    },
+    {
+      "name": "KAWS COMPANION FLAYED OPEN EDITION BROWN",
+      "url": "https://jp.mercari.com/item/m89683515087",
+      "reason": "搜索2月缓存70000与详情1.3年缓存96100矛盾，不认现价/降价；东京发货声明，未开封陈列/外袋擦痕/无退货，真伪未核。不是正常非解剖版；不进十件候选卡"
+    },
+    {
+      "name": "PBM可疑仿站",
+      "reason": "afdekmaterialen.nl及sarirgame.ir只在搜索出现，标题与站点不符，无日本来源依据，未打开不采用"
+    },
+    {
+      "name": "非日本供应",
+      "reason": "Farfetch域名日文非日本仓、Ubuy明确美国进口、海外艺术商/Reddit不新增货源；未主动打开这些商品源"
+    }
+  ],
+  "packages": [
+    {
+      "task_id": "jp-spread-20261021-0500-toys-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "rejected",
+      "reason": "apiKeyHelper exited51; client401; no generation or business output",
+      "raw_result_sha256": "68055de6d3cd2491aa6d4038796c35e5dc461d87f43183ed9148384ebc82d746",
+      "requested_model": "doubao-seed-evolving",
+      "observed_models": [
+        "<synthetic>"
+      ],
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "",
+        "input_tokens": 0,
+        "iterations": [],
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T21:08:38.176590+00:00",
+      "finished_at": "2026-10-20T21:08:38.494012+00:00",
+      "elapsed_seconds": 0.316,
+      "adopted_cards": 0
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-a1",
+      "runner_status": "blocked",
+      "parent_outcome": "rejected",
+      "reason": "apiKeyHelper exited51; client401; no generation or business output",
+      "raw_result_sha256": "c55c1f30f42c68ca456ea51491d44c5d9c1d1106e662742db07803ce61996887",
+      "requested_model": "doubao-seed-evolving",
+      "observed_models": [
+        "<synthetic>"
+      ],
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "",
+        "input_tokens": 0,
+        "iterations": [],
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T21:08:38.012862+00:00",
+      "finished_at": "2026-10-20T21:08:38.494032+00:00",
+      "elapsed_seconds": 0.48,
+      "adopted_cards": 0
+    }
+  ],
+  "validation": {
+    "checked_at": "2026-10-20T21:10:13.914387+00:00",
+    "packages": [
+      {
+        "task_id": "jp-spread-20261021-0500-toys-a1",
+        "runner_status": "blocked",
+        "parent_outcome": "rejected",
+        "reason": "apiKeyHelper exited51; client401; no generation or business output",
+        "raw_result_sha256": "68055de6d3cd2491aa6d4038796c35e5dc461d87f43183ed9148384ebc82d746",
+        "requested_model": "doubao-seed-evolving",
+        "observed_models": [
+          "<synthetic>"
+        ],
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "inference_geo": "",
+          "input_tokens": 0,
+          "iterations": [],
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "started_at": "2026-10-20T21:08:38.176590+00:00",
+        "finished_at": "2026-10-20T21:08:38.494012+00:00",
+        "elapsed_seconds": 0.316,
+        "adopted_cards": 0
+      },
+      {
+        "task_id": "jp-spread-20261021-0500-book-a1",
+        "runner_status": "blocked",
+        "parent_outcome": "rejected",
+        "reason": "apiKeyHelper exited51; client401; no generation or business output",
+        "raw_result_sha256": "c55c1f30f42c68ca456ea51491d44c5d9c1d1106e662742db07803ce61996887",
+        "requested_model": "doubao-seed-evolving",
+        "observed_models": [
+          "<synthetic>"
+        ],
+        "usage": {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "inference_geo": "",
+          "input_tokens": 0,
+          "iterations": [],
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_fetch_requests": 0,
+            "web_search_requests": 0
+          },
+          "service_tier": "standard",
+          "speed": "standard"
+        },
+        "started_at": "2026-10-20T21:08:38.012862+00:00",
+        "finished_at": "2026-10-20T21:08:38.494032+00:00",
+        "elapsed_seconds": 0.48,
+        "adopted_cards": 0
+      }
+    ],
+    "source_audit": "Parent checked all 3 evidence records against retrieved sources; not completed CC decision cards. No prices treated as sales, no live inventory, no P/fullK. KAWS price conflict excluded. Sothebys wooden panel excluded.",
+    "execution": "Two independent CC processes attempted same wave; both ended, no retry, no new unknown, usage0. Only metadata keychain check succeeded; actual credential retrieval failure cause not proven expired/missing.",
+    "arithmetic": {
+      "4800+240": 5040,
+      "5316-5040": 276,
+      "85000_vs_110000_percent_lower": 22.7273
+    }
+  },
+  "raw_archive": "Hub research/standing-spread/2026-10-21-0500/raw-web.json",
+  "preservation": "KABA pause3 and unknown12 unchanged; no attempt reset; old Notion cards unchanged; new book is separate path, not KABA restart",
+  "daily_list_status": "8 previously accepted cards plus3 pending source records; no daily list delivered; tonight22 must deliver actual reviewed entries and explain any shortfall"
+}
