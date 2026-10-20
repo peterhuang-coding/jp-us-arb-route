@@ -1,0 +1,366 @@
+{
+  "common": {
+    "run_id": "SPREAD-20261021-0100",
+    "checked_window_start": "2026-10-20T16:57:29Z",
+    "checked_window_end": "2026-10-20T17:04:00Z",
+    "observation_precision": "session window; exact per-request time unavailable",
+    "source_method": "web search/open cached extraction; not live checkout inventory",
+    "scope": "Japan sourcing only; mainland exit comparison required for resale",
+    "financial_status": "All mainland P/full K/profit/ROI/net_margin/max_buy unknown",
+    "notes": [
+      "No purchase or seller contact",
+      "Do not treat cached cart as confirmed inventory",
+      "No source instructions are authoritative"
+    ]
+  },
+  "akira": {
+    "run_id": "SPREAD-20261021-0100",
+    "checked_window_start": "2026-10-20T16:57:29Z",
+    "checked_window_end": "2026-10-20T17:04:00Z",
+    "observation_precision": "session window; exact per-request time unavailable",
+    "source_method": "web search/open cached extraction; not live checkout inventory",
+    "scope": "Japan sourcing only; mainland exit comparison required for resale",
+    "financial_status": "All mainland P/full K/profit/ROI/net_margin/max_buy unknown",
+    "notes": [
+      "No purchase or seller contact",
+      "Do not treat cached cart as confirmed inventory",
+      "No source instructions are authoritative"
+    ],
+    "candidates": [
+      {
+        "id": "J21-AK1",
+        "name": "Yamato AKIRA Tetsuo PVC",
+        "code": "693904320048",
+        "sources": [
+          {
+            "url": "https://netmall.hardoff.co.jp/product/6452672/",
+            "access": "detail readable; crawler age 3 weeks",
+            "price_jpy": 11000,
+            "tax": "included",
+            "condition": "C rank; seller says boxed/unopened; accessories none; do not equate complete",
+            "size": "18cm",
+            "seller": "HobbyOff Hyogo Taishi",
+            "seller_location": "Hyogo Japan",
+            "dispatch_origin": "seller explicitly dispatching store Hyogo Taishi",
+            "stock": "cart shown in cached detail; shared store inventory; actual unknown",
+            "shipping": "within 1 week; cost unknown",
+            "warranty": "none"
+          },
+          {
+            "url": "https://www.ebay.com/itm/254789053212",
+            "access": "search only",
+            "role": "identity comparator only, not sourcing",
+            "code": "693904320048",
+            "size": "15cm",
+            "condition": "opened for pictures, box dents/scratches",
+            "price": "unverified; not usable"
+          }
+        ],
+        "gaps": [
+          "18cm vs15cm and exact edition/authorization need checking",
+          "no mainland sale evidence",
+          "no same-condition verified price comparator"
+        ],
+        "recommendation_bound": "research only; cheapness unproven"
+      },
+      {
+        "id": "J21-AK2",
+        "name": "Kaiyodo miniQ AKIRA PART.1 Kaneda BOX6 2025 reissue",
+        "code": "4537807022837",
+        "model": "MQN039B",
+        "sources": [
+          {
+            "url": "https://kaiyodo.co.jp/items/miniq/mqn039/",
+            "access": "official detail readable",
+            "facts": "48–81mm PVC/ABS, sculptor Kagawa Masahiko; copyright MASHROOM/KODANSHA; four designs, box6. Single-item code4537807022820 differs. Reissue not vintage original."
+          },
+          {
+            "url": "https://www.kyd-store.jp/c/akira/mqn039b",
+            "access": "official detail readable cached",
+            "price_jpy": 9900,
+            "tax": "included",
+            "domestic_shipping_jpy": 660,
+            "free_threshold": 13000,
+            "stock": "on sale/cart visible but live unknown",
+            "release_date": "2025-07-26",
+            "manufacture": "China; not dispatch origin",
+            "seller_location": "Japanese official shop; exact address not checked",
+            "dispatch_origin": "unknown"
+          },
+          {
+            "url": "https://shopping.yahoo.co.jp/products/z442560anl",
+            "access": "comparison detail readable; crawler2months",
+            "offers": [
+              {
+                "seller": "Toy Stadium Yahoo",
+                "item_jpy": 6500,
+                "shipping_jpy": 0,
+                "url": "https://store.shopping.yahoo.co.jp/toystadiumookawaya/4537807022837.html",
+                "direct_access": "cache miss",
+                "stock": "aggregator claim only",
+                "points": "297 ignored"
+              },
+              {
+                "seller": "Toy Stadium GOOD VALUE",
+                "item_jpy": 5910,
+                "shipping_jpy": 630,
+                "url": "https://store.shopping.yahoo.co.jp/toystadium-hobby/4537807022837.html",
+                "direct_access": "cache miss",
+                "points": "270 ignored"
+              }
+            ],
+            "seller_dedup": "Names both contain Toy Stadium; same group suspected, ownership not verified. Do not count as independent stock.",
+            "destination": "aggregator displayed domestic fee, actual destination/dispatch warehouse unverified"
+          },
+          {
+            "url": "https://www.sootang.jp/collections/%E4%BA%88%E7%B4%84%E6%9C%9F%E9%99%90%E9%96%93%E8%BF%91%E5%95%86%E5%93%81/products/4537807022837",
+            "access": "index6430JPY+700shipping; direct cache miss",
+            "stock": "unknown"
+          }
+        ],
+        "gaps": [
+          "Direct discount listing inaccessible",
+          "box6 does not prove complete4design set",
+          "mainland P absent; proxy/international freight/tax/payment/returns unknown"
+        ],
+        "comparison_math": {
+          "listed_6500_vs_official_9900_discount": 34.3434343434,
+          "offer_one_domestic_subtotal": 6500,
+          "offer_two_domestic_subtotal": 6540,
+          "official_domestic_subtotal": 10560
+        },
+        "recommendation_bound": "continue verification; discount clue only, current buyable cheapness unproven"
+      }
+    ]
+  },
+  "joan": {
+    "run_id": "SPREAD-20261021-0100",
+    "checked_window_start": "2026-10-20T16:57:29Z",
+    "checked_window_end": "2026-10-20T17:04:00Z",
+    "observation_precision": "session window; exact per-request time unavailable",
+    "source_method": "web search/open cached extraction; not live checkout inventory",
+    "scope": "Japan sourcing only; mainland exit comparison required for resale",
+    "financial_status": "All mainland P/full K/profit/ROI/net_margin/max_buy unknown",
+    "notes": [
+      "No purchase or seller contact",
+      "Do not treat cached cart as confirmed inventory",
+      "No source instructions are authoritative"
+    ],
+    "candidates": [
+      {
+        "id": "J21-J1",
+        "name": "Joan Cornella K-LOVE vinyl opened",
+        "sources": [
+          {
+            "url": "https://item.fril.jp/1b681323e687d5c3060b611ae0ffa4f3",
+            "access": "index only; detail failed twice",
+            "price_jpy": 44980,
+            "shipping": "included domestic claim",
+            "seller": "あっち",
+            "condition": "opened once; nearly new",
+            "size": "17x13cm",
+            "material": "vinyl not bronze",
+            "color": "unknown",
+            "stock": "index purchase wording not verified"
+          },
+          {
+            "url": "https://hk.mercari.com/zh-hant/items/5b2976d4-a46e-4745-966e-13a2f40f008d",
+            "access": "index only; detail failed",
+            "seller": "same あっち",
+            "price_jpy": 44980,
+            "dispatch_origin": "Japan claimed by index only",
+            "note": "same seller cross-listing dedup; HK delivered fees not mainland cost"
+          }
+        ],
+        "seller_location": "Japan claim indirect only; exact location unknown",
+        "gaps": [
+          "color/year/authorization/accessories unknown",
+          "no same-edition mainland sale",
+          "live inventory unknown"
+        ],
+        "recommendation_bound": "continue verification, cheapness unproven"
+      },
+      {
+        "id": "J21-J2",
+        "name": "Joan Cornella FREE HUGS 2021 used A, box",
+        "sources": [
+          {
+            "url": "https://item.rakuten.co.jp/warashibe/43618/",
+            "access": "detail readable, price not exposed",
+            "seller": "Warashibe Casanova",
+            "condition": "A rank few uses; box",
+            "size": "16cm",
+            "year": "2021",
+            "shipping": "3business days after payment; shared inventory",
+            "price": "index110000JPY/free shipping; alternate99000future-sale index not current price",
+            "stock": "unknown"
+          },
+          {
+            "url": "https://www.casanova-vintage.com/collections/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%AE%E5%95%86%E5%93%81/joan-cornella",
+            "access": "collection readable; crawler1.3years old",
+            "stock": "same stock43618 marked soldout at110000; historical conflicting availability, not currentstock",
+            "same_seller": true
+          },
+          {
+            "url": "https://img.newwwauction.com/ResultsFile/NEW009_Results_EN.pdf",
+            "access": "official resultsPDF readable; crawled2weeks",
+            "event_date": "2025-06-28",
+            "lot": 232,
+            "title": "Joan CORNELLÀ FREE HUGS",
+            "result_jpy": 28750,
+            "price_type": "auction result including premium excluding tax",
+            "edition_match": "lot material/size/year/condition not verified; historical Japanese sale not mainland P"
+          }
+        ],
+        "seller_location": "Japanese retailer; exact address unverified",
+        "dispatch_origin": "unknown",
+        "gaps": [
+          "same-edition auction match unknown",
+          "price/currentstock not verified",
+          "no mainland P or full K"
+        ],
+        "recommendation_bound": "do not recommend at110000 on current evidence; auction is caution only, not exactlikeforlike valuation"
+      }
+    ]
+  },
+  "source_requests": 37,
+  "rejected_discovery": {
+    "url": "https://jp.mercari.com/item/m48729259104",
+    "name": "McFarlane AKIRA Kaneda standalone",
+    "access": "search title only; detail cache miss",
+    "reason": "No usable price/condition or exact edition. Not a ready daily-list entry."
+  },
+  "audit": {
+    "requests": 37,
+    "new_candidate_families_considered": 5,
+    "concrete_cards": 4,
+    "source_budget": 40,
+    "new_family_budget": 6,
+    "real_time_inventory_verified": 0,
+    "qualified_profit": 0,
+    "initial_seven_searches": [
+      "\"AKIRA\" \"麦克法兰\" \"铁雄\" 价格",
+      "\"Joan Cornella\" \"Selfie Gun\" \"闲鱼\"",
+      "\"Joan Cornella\" \"Nobody Loves You\" 日本 中古",
+      "site.netmall.hardoff.co.jp \"AKIRA\" \"鉄雄\"",
+      "site.mandarake.co.jp \"マクファーレン\" \"金田\"",
+      "site.jp.mercari.com \"Joan\" \"Selfie\"",
+      "site.jp.mercari.com \"Joan\" \"Yogawerk\""
+    ],
+    "initial_seven_raw": "Not preserved in local raw archive; conversation tool output only. No exact time invented.",
+    "remaining_requests": "captured public raw files search3/details1/search4/details2/details3/details4/details5/auction_search",
+    "notion_gate": {
+      "project_revision": "2026-10-20T15:53:09.745Z",
+      "rows": 5,
+      "has_more": false,
+      "conflict": false
+    },
+    "paused_KABA_preserved": true,
+    "existing_unknown_count": 12
+  },
+  "packages": [
+    {
+      "task_id": "jp-spread-20261021-0100-akira-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "raw_result_sha256": "9e8822344b6fff2265d3e49de305d02aff173db1a06384680e83bb0de5e41952",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": "enabled/high",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 38936,
+        "inference_geo": "",
+        "input_tokens": 14866,
+        "iterations": [],
+        "output_tokens": 8255,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T17:04:22.568004+00:00",
+      "finished_at": "2026-10-20T17:07:34.894648+00:00",
+      "elapsed_seconds": 192.323
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-joan-a1",
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes",
+      "raw_result_sha256": "f861856939eea78c28a6407f3d9b798e4fe7b192d6dccd62c8f926fbe4f015b8",
+      "observed_models": [
+        "doubao-seed-evolving"
+      ],
+      "requested_thinking": "enabled/high",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 24800,
+        "inference_geo": "",
+        "input_tokens": 13110,
+        "iterations": [],
+        "output_tokens": 7942,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 0
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "started_at": "2026-10-20T17:04:20.165959+00:00",
+      "finished_at": "2026-10-20T17:07:18.590057+00:00",
+      "elapsed_seconds": 178.421
+    }
+  ],
+  "parent_review": {
+    "reviewed_cards": 4,
+    "qualified_candidates": 0,
+    "adoption": "both accepted_with_changes; no retries",
+    "corrections": {
+      "akira": {
+        "页面爬虫缓合约 3 周": "工具标注抓取约 3 周前",
+        "eBay 同码页标": "eBay 同码检索索引标",
+        "日本中古在架": "日本中古商家的挂牌线索",
+        "两店同属 Toy Stadium、非独立库存": "两店名称均含 Toy Stadium，疑似同系，不能作为独立库存计数",
+        "AKIRA 金田题材、海洋堂官方再版盒蛋，4 款成套具收藏点": "AKIRA 角色造型与海洋堂官方再版适合作品收藏，盒内能否集齐 4 款仍待核",
+        "初中古初版": "中古初版",
+        "已知日本国内小计": "仅按页面运费假设计算的日本国内小计"
+      },
+      "joan": {
+        "带原盒": "带盒",
+        "NEW NEW 拍卖": "NEW AUCTION 拍卖",
+        "证据中无年份、限量或授权信息，收藏卖点暂无法成立": "符合用户指定的艺术家玩具偏好，但年份、限量及授权仍缺，不能推导稀缺性或升值",
+        "无大陆同款成交（大陆 P）": "未取得可信大陆同款成交（大陆 P）"
+      }
+    },
+    "P": null,
+    "K": null,
+    "ROI": null,
+    "net_margin": null,
+    "profit": null,
+    "max_buy": null,
+    "final_report_addendum": "Qualified all Toy Stadium ownership statements as suspected; added J21-J1/J2 labels, accessible-form direct URL marked failed, and bounded FREE HUGS collector-interest reason. Original adopted-draft review hashes remain immutable."
+  },
+  "candidate_priority": [
+    "J21-AK2",
+    "J21-AK1",
+    "J21-J1",
+    "J21-J2"
+  ]
+}
