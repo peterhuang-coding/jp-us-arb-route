@@ -1,0 +1,114 @@
+{
+  "slot_id": "SPREAD-20261021-2100",
+  "list_id": "LIST-20261021-2200",
+  "status": "ready_not_delivered",
+  "target_count": 10,
+  "item_count": 8,
+  "shortfall": 2,
+  "qualified_opportunities": 0,
+  "items": [
+    {
+      "rank": 1,
+      "item_id": "J21-AK2",
+      "title": "海洋堂 miniQ《AKIRA》PART.1 BOX6，2025再版",
+      "evidence_observed_window": "2026-10-21 00:57–01:04 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "verbatim_block_sha256": "3530f193f16cbb1d3e6d61f74919f9be307ed1265b72bf17c7cccdce171aea8b",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 2,
+      "item_id": "J21-AK3",
+      "title": "McFarlane Toys《AKIRA》金田独立人偶",
+      "evidence_observed_window": "2026-10-21 03:03–03:11 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "verbatim_block_sha256": "438c71376b3d8c649abc00c7db483e59ff13c9b1d670bd31e40c8e88440e16a5",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 3,
+      "item_id": "J21-AK4",
+      "title": "K&M《AKIRA》金田与摩托胶囊玩具",
+      "evidence_observed_window": "2026-10-21 03:03–03:11 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "verbatim_block_sha256": "cec6b83725edc97d17a949dcca8fdf68355658e782e296815092bd06e8abfb04",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 4,
+      "item_id": "J21-AK1",
+      "title": "Yamato《AKIRA》铁雄 PVC",
+      "evidence_observed_window": "2026-10-21 00:57–01:04 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "verbatim_block_sha256": "62e197ab0a72a13f0ff7ad82657e647a6241b4faf971ef52f41367c5aaf611d8",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 5,
+      "item_id": "J21-J1",
+      "title": "Joan Cornellà K-LOVE vinyl",
+      "evidence_observed_window": "2026-10-21 00:57–01:04 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "verbatim_block_sha256": "1958fc6fe567485c337a28357079e14c87ff5819f29d761b02ff42affa7134d3",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 6,
+      "item_id": "J21-J2",
+      "title": "Joan Cornellà FREE HUGS，2021年版",
+      "evidence_observed_window": "2026-10-21 00:57–01:04 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "verbatim_block_sha256": "d5203ceedd2b1858bbc4636b0aac4a52bf98c4549d1e2b9e7e9fa72e90ebad17",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 7,
+      "item_id": "J21-AK5",
+      "title": "MEDICOM TOY PROJECT BM! No.30 金田损伤件",
+      "evidence_observed_window": "2026-10-21 03:03–03:11 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "verbatim_block_sha256": "bf3c45ede841440519f22d66f46042a9447427b844ea24229dd6828808c05138",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    },
+    {
+      "rank": 8,
+      "item_id": "J21-AR1",
+      "title": "MEDICOM / Sync. Brandalism FLOWER BOMBER CONCRETE 灰黑",
+      "evidence_observed_window": "2026-10-21 03:03–03:11 北京时间",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "verbatim_block_sha256": "764ec1d8c43c3513585744b92172fb09b5ad5726c0a3ac137086f6c321b0baa5",
+      "status": "preliminary_reused_not_reobserved",
+      "profit": null,
+      "cheapness": "unproven"
+    }
+  ],
+  "new_source_requests": 0,
+  "new_model_calls": 0,
+  "new_skus": 0,
+  "extra_paid_cny": 0,
+  "source_report_sha256": {
+    "docs/research/runs/2026-10-21-0100-SPREAD.md": "2e88acbe7feeaef9a5a2460baec3bbbafc68e13cf6085163913dfb7a681caf11",
+    "docs/research/runs/2026-10-21-0300-SPREAD.md": "8b984149ee9489e5899c185d77efea3da4cfa8f6424f17bad5c973b15c7274aa"
+  },
+  "validation": "8 distinct IDs; each card body exact substring of accepted report; original observation windows preserved",
+  "list_sha256": "3db55a4487ddf4a3f592f04af5dc7600e1f593a38aed18fc52463f6ecdcae36f",
+  "excluded_pending_ids": [
+    "J21-AK6",
+    "J21-J3",
+    "J21-B1"
+  ]
+}
