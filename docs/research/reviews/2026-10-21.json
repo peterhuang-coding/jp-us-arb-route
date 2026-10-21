@@ -1,0 +1,449 @@
+{
+  "review_id": "REVIEW-20261021-0900",
+  "triggered_at": "2026-10-21T00:58:57.079Z",
+  "started_at": "2026-10-21T00:59:08Z",
+  "previous_cursor": {
+    "last_reviewed_run_id": "JP-CONCRETE-20261015-MANUAL-1",
+    "last_reviewed_commit": "21d2b7304808547a400837b0a3e396bc11e6660a",
+    "last_research_commit": "cb58d4f7582dc868b50a5fb13f96a9dc1196dcfc",
+    "last_review_slot": "REVIEW-20261015-0900",
+    "review_commit_remote_verified": true
+  },
+  "run_ids": [
+    "SPREAD-20261021-0100",
+    "SPREAD-20261021-0300",
+    "SPREAD-20261021-0500",
+    "SPREAD-20261021-0700"
+  ],
+  "market_fetches": 0,
+  "downstream_calls": 0,
+  "extra_paid_cny": 0,
+  "weekly_review": false,
+  "receipt_checks": [
+    {
+      "task_id": "jp-spread-20261021-0100-akira-a1",
+      "sha256": "9e8822344b6fff2265d3e49de305d02aff173db1a06384680e83bb0de5e41952",
+      "expected": "9e8822344b6fff2265d3e49de305d02aff173db1a06384680e83bb0de5e41952",
+      "matches": true,
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-joan-a1",
+      "sha256": "f861856939eea78c28a6407f3d9b798e4fe7b192d6dccd62c8f926fbe4f015b8",
+      "expected": "f861856939eea78c28a6407f3d9b798e4fe7b192d6dccd62c8f926fbe4f015b8",
+      "matches": true,
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-akira-a1",
+      "sha256": "a8a2ce676f850ffe1fe6910297fd0007b224aa643edb0bbb2164ef0858e4e230",
+      "expected": "a8a2ce676f850ffe1fe6910297fd0007b224aa643edb0bbb2164ef0858e4e230",
+      "matches": true,
+      "runner_status": "verifying",
+      "parent_outcome": "accepted_with_changes"
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-artist-a1",
+      "sha256": "cfcd40bb1395df5c8898f4a8bdee8ea56a446728a2a32329e045bdb0811d6b69",
+      "expected": "cfcd40bb1395df5c8898f4a8bdee8ea56a446728a2a32329e045bdb0811d6b69",
+      "matches": true,
+      "runner_status": "blocked",
+      "parent_outcome": "partial"
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-a1",
+      "sha256": "68055de6d3cd2491aa6d4038796c35e5dc461d87f43183ed9148384ebc82d746",
+      "expected": "68055de6d3cd2491aa6d4038796c35e5dc461d87f43183ed9148384ebc82d746",
+      "matches": true,
+      "runner_status": "blocked",
+      "parent_outcome": "rejected"
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-a1",
+      "sha256": "c55c1f30f42c68ca456ea51491d44c5d9c1d1106e662742db07803ce61996887",
+      "expected": "c55c1f30f42c68ca456ea51491d44c5d9c1d1106e662742db07803ce61996887",
+      "matches": true,
+      "runner_status": "blocked",
+      "parent_outcome": "rejected"
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-wb-a1",
+      "native_id": "t_2csua7t2",
+      "sha256": "56a79f75a0a96067018a1f0d1744946e777ed2c6e18da516c1059bc741c72460",
+      "expected": "56a79f75a0a96067018a1f0d1744946e777ed2c6e18da516c1059bc741c72460",
+      "matches": true,
+      "runner_status": "failed",
+      "provider_completion": "unknown",
+      "result_present": false,
+      "attempt_count": 1
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-wb-a1",
+      "native_id": "t_pjawqcxt",
+      "sha256": "407b29966afef0b4f03a45ccbe5e57e5ecb63998871997bcd944555626c7f265",
+      "expected": "407b29966afef0b4f03a45ccbe5e57e5ecb63998871997bcd944555626c7f265",
+      "matches": true,
+      "runner_status": "failed",
+      "provider_completion": "not_started",
+      "result_present": false,
+      "attempt_count": 0
+    }
+  ],
+  "adoption_checks": [
+    {
+      "task_id": "jp-spread-20261021-0100-akira-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0100/akira-validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-joan-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0100/joan-validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-akira-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0300/akira/validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-artist-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0300/artist/validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0500/validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-a1",
+      "receipt_binding_matches": true,
+      "outcome_matches": true,
+      "evidence_checks": [
+        {
+          "path": "/private/tmp/spread-20261021-0500/validation.json",
+          "exists": true,
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "input_checks": [
+    {
+      "task_id": "jp-spread-20261021-0100-akira-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-akira-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-joan-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0100-joan-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-akira-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-akira-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-artist-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0300-artist-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-a1",
+      "file": "brief.md",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-a1",
+      "file": "evidence.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-toys-wb-a1",
+      "file": "toys-request.json",
+      "exists": true,
+      "matches": true
+    },
+    {
+      "task_id": "jp-spread-20261021-0500-book-wb-a1",
+      "file": "book-request.json",
+      "exists": true,
+      "matches": true
+    }
+  ],
+  "source_samples": [
+    {
+      "sample_id": "J21-AK3",
+      "archive": "research/standing-spread/2026-10-21-0300/raw-web.json",
+      "terms": [
+        "6356236",
+        "8,800",
+        "ホビーオフ東大和店",
+        "７８７９２６１４９０２９"
+      ],
+      "terms_found": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "review_note": "Price and dispatch store are cached claims, not live stock.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "J21-AK5",
+      "archive": "research/standing-spread/2026-10-21-0300/raw-web.json",
+      "terms": [
+        "39,300円",
+        "衣装部分にべたつき",
+        "剥がれ"
+      ],
+      "terms_found": [
+        true,
+        true,
+        true
+      ],
+      "review_note": "Damaged item remains not recommended; edition/merchant unknown.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "J21-AR1",
+      "archive": "research/standing-spread/2026-10-21-0300/raw-web.json",
+      "terms": [
+        "1-240001048298",
+        "198,000円"
+      ],
+      "terms_found": [
+        true,
+        true
+      ],
+      "review_note": "Ask only; Banksy authorization and exact edition unverified.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "J21-B1-main",
+      "archive": "research/standing-spread/2026-10-21-0500/raw-web.json",
+      "terms": [
+        "185241106001",
+        "4,800円",
+        "5,000円未満…240円"
+      ],
+      "terms_found": [
+        true,
+        true,
+        true
+      ],
+      "review_note": "4800+240=5040 conditional Japanese domestic subtotal, not landed China cost.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "J21-B1-comp",
+      "archive": "research/standing-spread/2026-10-21-0500/raw-web.json",
+      "terms": [
+        "¥5,316",
+        "9784063300031",
+        "商品画像と実際の商品とは異なる"
+      ],
+      "terms_found": [
+        true,
+        true,
+        true
+      ],
+      "review_note": "Condition-specific offer mapping unknown; 276 nominal difference not proof of bargain.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "J21-J3",
+      "archive": "research/standing-spread/2026-10-21-0500/raw-web.json",
+      "terms": [
+        "m61117541966",
+        "¥85,000",
+        "Enitam"
+      ],
+      "terms_found": [
+        true,
+        true,
+        true
+      ],
+      "review_note": "Seller quote/dispatch claim, serial and accessories unknown.",
+      "supports_limited_claim": true
+    },
+    {
+      "sample_id": "Selfie-excluded-painting",
+      "archive": "research/standing-spread/2026-10-21-0500/raw-web.json",
+      "terms": [
+        "acrylic on wood panel",
+        "170 by 108 cm.",
+        "Executed in 2020."
+      ],
+      "terms_found": [
+        true,
+        true,
+        true
+      ],
+      "review_note": "Not vinyl; correct exclusion from figure comparison.",
+      "supports_limited_claim": true
+    }
+  ],
+  "commit_checks": [
+    {
+      "commit": "040ff5482b6ff2f80402e1c894fdf3c92ba0fe10",
+      "path": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "matches_worktree": true
+    },
+    {
+      "commit": "040ff5482b6ff2f80402e1c894fdf3c92ba0fe10",
+      "path": "docs/research/runs/2026-10-21-0100-SPREAD.json",
+      "matches_worktree": true
+    },
+    {
+      "commit": "72003ff6471815104d93afd013578ef58e14381b",
+      "path": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "matches_worktree": true
+    },
+    {
+      "commit": "72003ff6471815104d93afd013578ef58e14381b",
+      "path": "docs/research/runs/2026-10-21-0300-SPREAD.json",
+      "matches_worktree": true
+    },
+    {
+      "commit": "b4f63e5632ea8c5112f4a3414ac6d9aab2986eaa",
+      "path": "docs/research/runs/2026-10-21-0500-SPREAD.md",
+      "matches_worktree": true
+    },
+    {
+      "commit": "b4f63e5632ea8c5112f4a3414ac6d9aab2986eaa",
+      "path": "docs/research/runs/2026-10-21-0500-SPREAD.json",
+      "matches_worktree": true
+    },
+    {
+      "commit": "08216432bca8b0c601fe4d7202291e510ab64ef6",
+      "path": "docs/research/runs/2026-10-21-0700-SPREAD.md",
+      "matches_worktree": true
+    },
+    {
+      "commit": "08216432bca8b0c601fe4d7202291e510ab64ef6",
+      "path": "docs/research/runs/2026-10-21-0700-SPREAD.json",
+      "matches_worktree": true
+    }
+  ],
+  "metrics": {
+    "run_records": 4,
+    "logical_tasks": 6,
+    "candidate_attempt_records": 8,
+    "cc_attempts": 6,
+    "client_submissions": 2,
+    "client_provider_attempts": 1,
+    "accepted_with_changes": 3,
+    "partial": 1,
+    "cc_rejected": 2,
+    "client_not_adopted": 2,
+    "unknown_total": 13,
+    "candidate_cards": 8,
+    "pending_source_records": 3,
+    "qualified_candidates": 0,
+    "historical_source_requests": 117,
+    "market_fetches_this_review": 0,
+    "downstream_calls_this_review": 0,
+    "sample_claim_errors": 0,
+    "accuracy_rate_claimed": false,
+    "time_saved_claimed": false
+  },
+  "limitations": [
+    "7 original0100search responses not locally archived; do not claim complete raw source audit.",
+    "7 judgemental source samples from0300/0500 only; no overall accuracy estimate.",
+    "All actual live stock, target-mainland P, full K and profits remain unverified.",
+    "8 preliminary cards are not8 profitable recommendations; pending3 do not raise accepted count to11.",
+    "Git remote state not reverified this review; existing authentication blocker remains pending."
+  ],
+  "arithmetic_checks": {
+    "miniq_discount_percent": 34.34343434343434,
+    "official_domestic_subtotal": 10560,
+    "toy_stadium_second_subtotal": 6540,
+    "mcfarlane_ask_difference_percent": 11.11111111111111,
+    "book_conditional_subtotal": 5040,
+    "book_nominal_difference": 276,
+    "selfie_ask_difference_percent": 22.727272727272727
+  },
+  "review_finished_at": "2026-10-21T01:00:56.923559+00:00"
+}
