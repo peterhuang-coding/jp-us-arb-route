@@ -1,7 +1,7 @@
 {
   "slot_id": "SPREAD-20261021-2100",
   "list_id": "LIST-20261021-2200",
-  "status": "ready_not_delivered",
+  "status": "delivered_with_shortfall",
   "target_count": 10,
   "item_count": 8,
   "shortfall": 2,
@@ -105,10 +105,14 @@
     "docs/research/runs/2026-10-21-0300-SPREAD.md": "8b984149ee9489e5899c185d77efea3da4cfa8f6424f17bad5c973b15c7274aa"
   },
   "validation": "8 distinct IDs; each card body exact substring of accepted report; original observation windows preserved",
-  "list_sha256": "3db55a4487ddf4a3f592f04af5dc7600e1f593a38aed18fc52463f6ecdcae36f",
+  "list_sha256": "46cd327f7d84f17fec349d5ef791c4daadf81cf8201a03ad9e49070991b98cfe",
   "excluded_pending_ids": [
     "J21-AK6",
     "J21-J3",
     "J21-B1"
-  ]
+  ],
+  "prepared_list_sha256": "3db55a4487ddf4a3f592f04af5dc7600e1f593a38aed18fc52463f6ecdcae36f",
+  "delivery_confirmed_at": "2026-10-21T15:04:21.295220+00:00",
+  "delivery_confirmation_basis": "Prior assistant final response visible in current conversation for heartbeat2026-10-21T13:57:30.090Z:8 numbered items, explicit shortfall2,NOTIFY. Exact send timestamp not available.",
+  "delivered_at": null
 }
