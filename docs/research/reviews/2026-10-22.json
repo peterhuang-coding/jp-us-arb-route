@@ -1,0 +1,141 @@
+{
+  "review_id": "REVIEW-20261022-0900",
+  "triggered_at": "2026-10-22T01:01:54.641Z",
+  "started_at": "2026-10-22T01:02:25Z",
+  "audited_at": "2026-10-22T01:06:02.951071+00:00",
+  "prior_review_cursor": {
+    "last_reviewed_run_id": "SPREAD-20261021-0700",
+    "last_reviewed_commit": "e5c14bf5032f4c7238a64275655645ee681b7562",
+    "last_research_commit": "08216432bca8b0c601fe4d7202291e510ab64ef6",
+    "last_review_slot": "REVIEW-20261021-0900",
+    "review_commit_remote_verified": true
+  },
+  "reviewed_head": "4614b4407aa81bf1a9d8eebd6af8a5ff74dfdce3",
+  "incremental_commits": [
+    "d070a3bd03d5bbee3be5841ef0938061e813eb77",
+    "bc848c62cf6a5bf57703d0f5ff1e7bee63dea684",
+    "3c9a577ebe5aba72ce8fb25c9cab4922010646a8",
+    "73e70abdbdbc202415a65c186357c5067e423a99",
+    "81d746e64e27f9e08f407433f6dc13510ec31667",
+    "4614b4407aa81bf1a9d8eebd6af8a5ff74dfdce3"
+  ],
+  "changed_files": {
+    ".claude/autopilot/rounds/2026-10-21-2100-SPREAD.md": "2353177bcc7bd610562801f9d125a1f7e80139fe9927a2c1ecb02ce8d59630c1",
+    "docs/research/collectible-art-direction.md": "57c532152d3b9d3607122050a51d7a29162be11e0caeccd65a77388bc2ea9ce5",
+    "docs/research/global-market-coverage.md": "f2dfc56cdef1d434c8eb809dbcb339f13470ac827cbc2c8cf1c95cf3f220f41c",
+    "docs/research/lists/2026-10-21-2200.json": "bf0883a9172a54fd7d541b10f848aeb9f58398793c002dd25410028960d5ae3d",
+    "docs/research/lists/2026-10-21-2200.md": "46cd327f7d84f17fec349d5ef791c4daadf81cf8201a03ad9e49070991b98cfe",
+    "docs/superpowers/specs/2026-10-22-sourcing-transparency-design.md": "3d614ba448e801822da2d2a1a8e4cb832ac92c95e5419c15143f771409b40c6b"
+  },
+  "committed_file_matches": 6,
+  "source_report_hashes_verified": 2,
+  "list_hash_verified": true,
+  "verbatim_blocks": [
+    {
+      "item_id": "J21-AK2",
+      "sha256": "3530f193f16cbb1d3e6d61f74919f9be307ed1265b72bf17c7cccdce171aea8b",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 00:57–01:04 北京时间"
+    },
+    {
+      "item_id": "J21-AK3",
+      "sha256": "438c71376b3d8c649abc00c7db483e59ff13c9b1d670bd31e40c8e88440e16a5",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 03:03–03:11 北京时间"
+    },
+    {
+      "item_id": "J21-AK4",
+      "sha256": "cec6b83725edc97d17a949dcca8fdf68355658e782e296815092bd06e8abfb04",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 03:03–03:11 北京时间"
+    },
+    {
+      "item_id": "J21-AK1",
+      "sha256": "62e197ab0a72a13f0ff7ad82657e647a6241b4faf971ef52f41367c5aaf611d8",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 00:57–01:04 北京时间"
+    },
+    {
+      "item_id": "J21-J1",
+      "sha256": "1958fc6fe567485c337a28357079e14c87ff5819f29d761b02ff42affa7134d3",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 00:57–01:04 北京时间"
+    },
+    {
+      "item_id": "J21-J2",
+      "sha256": "d5203ceedd2b1858bbc4636b0aac4a52bf98c4549d1e2b9e7e9fa72e90ebad17",
+      "source_report": "docs/research/runs/2026-10-21-0100-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 00:57–01:04 北京时间"
+    },
+    {
+      "item_id": "J21-AK5",
+      "sha256": "bf3c45ede841440519f22d66f46042a9447427b844ea24229dd6828808c05138",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 03:03–03:11 北京时间"
+    },
+    {
+      "item_id": "J21-AR1",
+      "sha256": "764ec1d8c43c3513585744b92172fb09b5ad5726c0a3ac137086f6c321b0baa5",
+      "source_report": "docs/research/runs/2026-10-21-0300-SPREAD.md",
+      "exact_substring": true,
+      "evidence_time": "2026-10-21 03:03–03:11 北京时间"
+    }
+  ],
+  "unique_item_ids": 8,
+  "profit_unknown_items": 8,
+  "pending_ids_not_in_list": [
+    "J21-AK6",
+    "J21-J3",
+    "J21-B1"
+  ],
+  "historical_list_now_excluded_ids": [
+    "J21-AK1",
+    "J21-AK2",
+    "J21-AK3",
+    "J21-AK5"
+  ],
+  "conditional_item_ids": {
+    "J21-AK4": "motorcycle-centered rider/bike set; clarify detachable rider; user acceptance not confirmed"
+  },
+  "delivery_status": "delivered_with_shortfall",
+  "delivery_attempt_count": 1,
+  "exact_delivery_time_known": false,
+  "checked_slot_ids_since_review": [
+    "SPREAD-20261021-1100",
+    "SPREAD-20261021-1300",
+    "SPREAD-20261021-1500",
+    "SPREAD-20261021-1700",
+    "SPREAD-20261021-1900",
+    "SPREAD-20261021-2100",
+    "SPREAD-20261021-2300",
+    "SPREAD-20261022-0100",
+    "SPREAD-20261022-0300",
+    "SPREAD-20261022-0500",
+    "SPREAD-20261022-0700"
+  ],
+  "new_research_runs_since_review": 0,
+  "market_requests": 0,
+  "new_cc_calls": 0,
+  "native_readonly_crosscheck_agents": 1,
+  "native_crosscheck": "3 direction commits;2 direction docs and manifest;46 additions0deletions;overrides equal corresponding direction-history entries;no contradiction;no list/code/database changes",
+  "unknown_count": 13,
+  "active_wave": null,
+  "lane_counters": {
+    "artbooks": 3,
+    "smallgoods": 0
+  },
+  "sample_errors_found": 0,
+  "error_sample_definition": "8 card text/hash mappings and3 direction commit consistency checks;not new page verification",
+  "accuracy_rate_claimed": false,
+  "time_saved_claimed": false,
+  "qualified_opportunities": 0,
+  "notification": "DONT_NOTIFY",
+  "notification_reason": "No new opportunity, material reversal or new user action; prior preference changes and execution blocker already communicated."
+}
